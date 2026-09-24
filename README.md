@@ -9,6 +9,9 @@ unit.
 | [project-docs](skills/project-docs/SKILL.md) | Establishing, reviewing or reconciling repository documentation: glossaries, ownership, diagrams and project instructions. |
 | [my-email-style](skills/my-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
 
+Drafts that are not skills yet live in `docs/`, starting with
+[prose styles](docs/prose-styles.md).
+
 ## Using a skill
 
 For a repository-local import, copy the complete skill directory (for example
