@@ -1,4 +1,4 @@
-# Validation scenarios
+# Validation scenarios — Project Docs
 
 Use these cases when changing the skill. They define useful observable outcomes;
 they are not claims that an independent agent has passed them.
