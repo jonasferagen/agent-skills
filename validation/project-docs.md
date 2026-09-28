@@ -13,6 +13,7 @@ they are not claims that an independent agent has passed them.
 | Fix a typo in a project that happens to use a database service | Make the small edit; do not activate a broad architecture or security review. |
 | Import the skill into a project using another branch policy | Preserve that project's authorized Git workflow; do not import the source project's merge rules. |
 | Render a diagram when no suitable renderer is available | Validate what can be checked and report that visual rendering was not verified. |
+| A diagram renders in a standalone tool but is tiny or low contrast in the project's preview | Inspect the target preview at a normal reading width and in the themes readers use; reflow or adjust paired text and background colors there. Keep renderer-specific settings in the project. |
 
 ## Initial checks — 2026-09-19
 

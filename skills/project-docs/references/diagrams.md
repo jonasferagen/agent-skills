@@ -46,6 +46,11 @@ width. Check clipped text, edge-label collisions, crossings, excessive width and
 unreadably small labels. Reflow or split a view instead of shrinking it indefinitely.
 A successful parser run is not a readability check.
 
+When the repository has a target preview or publishing renderer, inspect the
+diagram there as well. Check the themes readers use: a diagram type may color
+text, nodes, rows, labels and edges separately. Give text and its background
+compatible colors, and keep renderer-specific overrides in the affected project.
+
 Use temporary output for visual QA unless exported images are requested or needed
 by the project's renderer. Keep source diagrams authoritative. Do not add a new
 runtime dependency to the application solely to render documentation.
