@@ -65,9 +65,10 @@ rewrite for every task. It does not authorize publishing or external writes.
 
 - Check changed local links and heading anchors. On moves or renames, search for
   the old path and name and reconcile affected references.
-- Trace diagram relationships to evidence, render changed diagrams when tooling
-  is available, and inspect labels, crossings and readability. Report rendering
-  limitations rather than claiming visual verification.
+- Trace diagram relationships to evidence and render changed diagrams. Inspect
+  them at a normal reading width in the target renderer and themes readers use
+  when available; check labels, crossings, contrast and readability. Report any
+  rendering limits rather than claiming visual verification.
 - Review examples for private information and unsupported behavior.
 - Run the repository's relevant checks, including `git diff --check` where Git
   is available. Install dependencies only when a necessary check needs them;
