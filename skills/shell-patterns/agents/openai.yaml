@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shell Patterns"
+  short_description: "Preserve command status in Bash checks, pipelines and captures"
+  default_prompt: "Use $shell-patterns to check that this shell code preserves the status that answers its question."

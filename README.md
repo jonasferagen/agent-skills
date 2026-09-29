@@ -7,6 +7,8 @@ unit.
 | Skill | Use it for |
 | --- | --- |
 | [runtime-operations](skills/runtime-operations/SKILL.md) | Credential tiers, local service controls, child processes and arguments, and a shared encrypted PostgreSQL backup mechanism. |
+| [shell-patterns](skills/shell-patterns/SKILL.md) | Preserving command failures and query results in Bash checks, pipelines, captures and process substitutions. |
+| [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
 | [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, automatic timestamps and integrity boundaries. |
 | [project-docs](skills/project-docs/SKILL.md) | Establishing, reviewing or reconciling repository documentation: glossaries, ownership, diagrams and project instructions. |
 | [my-email-style](skills/my-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
@@ -85,6 +87,34 @@ Example requests: "Use $project-docs to establish documentation for this
 repository", "Use $project-docs to reconcile the docs after this release." See
 [its validation scenarios](validation/project-docs.md); it still needs
 experience in a second real project.
+
+**shell-patterns** was imported from the owner's Forge Agent Kit on 2026-09-29,
+pinned at `c98147a115a30f36b952df5faf1c869b54480c59`. The upstream package
+referenced no Forge systems, trackers or policy, so its guidance is unchanged and
+the adaptation is only the manifest and a paragraph naming what local docs decide.
+It distinguishes a successful match, a successful absence and a failed
+acquisition, and covers the defects that blur them: a `local` declaration
+reporting its own status, an early pipeline reader turning a match into a SIGPIPE
+failure under `pipefail`, and a process substitution whose producer status nobody
+collects. Example requests: "Use $shell-patterns to check whether this backup
+script's checks can pass when they should fail", "Use $shell-patterns on this
+pipeline before I trust its exit code." See
+[validation and alignment](validation/shell-patterns.md).
+
+**test-audit** was imported from the same Agent Kit commit on 2026-09-29, and
+fills a gap this repository declared on purpose: `typescript-patterns` leaves
+testing to the reading repository, so both consuming projects owned it locally
+with no shared method. Its sharpest lens is the unfalsifiable request — a double
+answers whatever the code asks it, so what the code claims about an external
+contract was never checked against the real thing, which is not drift because
+there was nothing to drift from. Three Forge Project Policy citations were
+redirected: two carried substance now stated in place, and the third defers to the
+reading project's own policy, because the upstream policy opens by declaring
+nothing is in production while both consumers are. References to three sibling
+Agent Kit skills became descriptions of the boundary, since a cross-package path
+would break when this skill is installed alone. Example requests: "Use $test-audit
+on the runner suite", "Use $test-audit to find what our mocks have never actually
+verified." See [validation and alignment](validation/test-audit.md).
 
 **typescript-patterns** is Jonas's TypeScript pattern canon, brought into this
 repository on 2026-09-29. It covers the shape of the code itself: naming and
