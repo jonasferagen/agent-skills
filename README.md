@@ -10,6 +10,7 @@ unit.
 | [shell-patterns](skills/shell-patterns/SKILL.md) | Preserving command failures and query results in Bash checks, pipelines, captures and process substitutions. |
 | [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
 | [diagrams](skills/diagrams/SKILL.md) | Choosing the smallest useful diagram, table or matrix, drawing it so it reads, and grounding every edge in its source. |
+| [change-landing](skills/change-landing/SKILL.md) | Landing one change safely: worktree isolation, keeping current by merge, the finishing pass, evidence about the tree that will merge, cleanup by containment and the hand-back. |
 | [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, automatic timestamps and integrity boundaries. |
 | [project-docs](skills/project-docs/SKILL.md) | Establishing, reviewing or reconciling repository documentation: glossaries, ownership, diagrams and project instructions. |
 | [my-email-style](skills/my-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
@@ -103,6 +104,32 @@ and report an absent dependency as absent rather than as a failing test. Forge
 Project Policy citations were redirected as in test-audit — two carried substance
 now stated in place, and whether a check earns its recurring cost defers to the
 reading project's own policy.
+
+**change-landing** merges the owner's Forge Agent Kit `worktree` and `reconcile`
+skills, imported on 2026-09-29 and pinned at
+`c98147a115a30f36b952df5faf1c869b54480c59`. It covers one change's whole path: a
+worktree before the first write, keeping current by merge, the finishing pass a
+rename or deletion owes, what counts as evidence about the tree that will actually
+merge, cleanup against a containment count, and the hand-back that reports it. The
+upstream packages were coupled to the owner's Forge fleet, and that coupling was
+removed rather than softened — the landing-door contract and its operations
+scripts, the lane lock and claim protocol, the container model in which the
+integration lane is what the container runs from, and the fleet-shaped
+authorization matrix. Seven Forge Project Policy citations were redirected: four
+carried substance now stated in place, and three defer to the reading project's own
+policy. Upstream's licence to treat undeclared state as disposable was inverted
+rather than imported, because that policy opens by declaring nothing is in
+production while both consumers are. Three divergences against Personal Atlas's own
+newer reduced extraction of the same skills were settled deliberately, the sharpest
+being the hand-back rule that a field empty by construction is omitted while one
+that could have carried content reports `none`. Upstream's `handoff` skill was read
+and left out: orienting work that has not started is the opposite of reporting work
+that finished. **This is a discipline a project opts into**, which the skill says in
+its own text; whether a project authors in worktrees is that project's policy
+decision, and it is registered in no consuming project. Example requests: "Use
+$change-landing to open a lane for this fix", "Use $change-landing — this branch is
+green, what does landing it still owe?" See
+[validation and alignment](validation/change-landing.md).
 
 **diagrams** merges the owner's Forge Agent Kit `diagrams` skill, at
 `c98147a115a30f36b952df5faf1c869b54480c59`, with the diagram conventions that
