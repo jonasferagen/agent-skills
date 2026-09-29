@@ -176,12 +176,13 @@ erDiagram
 - **Show the delta, not the whole schema.** Draw the entities the change
   touches plus their immediate neighbours; link to the schema's canonical home
   for the rest.
-- **`erDiagram` has no layout control analogous to a flowchart's `subgraph` and
-  `direction`.** It has no rank or cluster hint either: Mermaid lays every
-  entity and edge into one flat block. Split past roughly 10–12 entities, or a
-  comparable edge count, even when every attribute block is already keys-only.
-  Attribute trimming reduces width; it does not make a crowded relationship
-  layout tractable.
+- **ER direction and subgraphs depend on the target Mermaid renderer.** Current
+  [Mermaid ER syntax](https://mermaid.js.org/syntax/entityRelationshipDiagram.html)
+  supports both, but ER subgraphs require version 11.17.0 or newer.
+  Check the project's preview or publishing renderer before using them. Split
+  past roughly 10–12 entities, or a comparable edge count, even when every
+  attribute block is already keys-only. Attribute trimming reduces width; it
+  does not make a crowded relationship layout tractable.
 - **Split by aggregate cluster.** Start with one root-only overview naming every
   aggregate root and only the edges directly between roots, with no children.
   Then open each non-atomic root in its own compact detail `erDiagram`, showing

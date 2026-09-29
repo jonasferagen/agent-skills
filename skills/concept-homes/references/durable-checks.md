@@ -37,6 +37,7 @@ rots is a committed copy of a *structural* fact — a count, a file list, an
 inventory — that is meant to track the home and can only be kept current by
 hand.
 
+<!-- Package-boundary copy: test-audit/references/triage.md applies this ledger rule to test scanners. Keep both passages aligned. -->
 A **shrink-only ledger** is a bounded exception rather than a golden: it names
 known debt being paid down, belongs to the tree whose files it lists rather than
 to a shared tool, gates hard — a new or increased violation fails — and only

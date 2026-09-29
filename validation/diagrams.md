@@ -26,6 +26,7 @@ of an independent agent evaluation or a live render.
 | A diagram is readable in light mode | Dark mode and any other theme readers use are checked too, because a diagram type may color text, nodes, rows, labels and edges separately. |
 | Meaning is carried by color | Flagged; color alone is not sufficient. |
 | A diagram is too wide at reading width | Reflowed or split, rather than shrunk further. |
+| ER subgraphs are proposed to keep a crowded model in one block | Check the target renderer's Mermaid version (ER subgraphs need 11.17.0 or newer), then split the model if its relationships remain hard to trace. |
 | Rendering documentation would need a new application dependency | Refused; temporary output is used for visual checks unless the project's renderer needs a committed image. |
 | Deciding where a diagram lives in a document set | Deferred: this skill owns form choice, drawing and verification; the owning surface decides placement, discoverability and catalog entry. |
 | Adopting the skill into an existing project | No redrawing of existing diagrams is implied, and an established visual format the project already follows takes precedence. |
@@ -75,10 +76,11 @@ as part of doc review — so the craft has one home rather than two that drift.
 ## Review limits
 
 - No independent agent evaluation has run against these scenarios.
-- No diagram has yet been drawn or re-rendered under the merged guidance. The
-  readability rules are carried over from a reference that had been applied in one
-  project, not re-validated here.
-- The worked examples were verified as Mermaid by reading, not by rendering each
-  one. Their shapes come from a real repository; their entity names do not.
+- On 2026-09-29, all 19 Mermaid blocks in
+  `skills/diagrams/references/worked-examples.md` rendered with Mermaid CLI 12.0.0
+  and Chrome in light and dark themes. The two ER detail diagrams were also
+  inspected at an 830 px document width in both themes.
+- The examples have not been checked in every consuming project's publishing
+  renderer. Their shapes come from real repositories; their entity names do not.
 - The two new sections have not been reconciled against the consuming projects'
   existing diagrams, which were drawn under the narrower local reference.
