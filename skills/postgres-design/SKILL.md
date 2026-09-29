@@ -1,6 +1,8 @@
 ---
 name: postgres-design
 description: "Design or review PostgreSQL schemas and migrations: naming, keys, relationships, types, state, automatic timestamps and integrity boundaries. Use when creating or changing PostgreSQL tables and related objects; query tuning and database operations follow the project's own guidance."
+metadata:
+  version: "1.0.0"
 ---
 
 # Postgres design
