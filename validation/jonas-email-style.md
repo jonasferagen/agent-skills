@@ -1,4 +1,4 @@
-# Validation scenarios — My Email Style
+# Validation scenarios — Jonas Email Style
 
 Use these cases when changing the skill. They describe expected behavior, not
 results from an independent agent evaluation.

@@ -1,24 +1,37 @@
-# Skills
+# Jonas’s agent skills
 
 Jonas's reusable, project-agnostic agent skills. Each skill is one directory
 under `skills/` with a `SKILL.md` manifest; that directory is the installable
 unit.
 
+## Code and design
+
 | Skill | Use it for |
 | --- | --- |
-| [runtime-operations](skills/runtime-operations/SKILL.md) | Credential tiers, local service controls, child processes and arguments, and a shared encrypted PostgreSQL backup mechanism. |
-| [shell-patterns](skills/shell-patterns/SKILL.md) | Preserving command failures and query results in Bash checks, pipelines, captures and process substitutions. |
-| [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
-| [diagrams](skills/diagrams/SKILL.md) | Choosing the smallest useful diagram, table or matrix, drawing it so it reads, and grounding every edge in its source. |
-| [change-landing](skills/change-landing/SKILL.md) | Landing one change safely: worktree isolation, keeping current by merge, the finishing pass, evidence about the tree that will merge, cleanup by containment and the hand-back. |
-| [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, automatic timestamps and integrity boundaries. |
-| [project-docs](skills/project-docs/SKILL.md) | Establishing, reviewing or reconciling repository documentation: glossaries, ownership, diagrams and project instructions. |
-| [my-email-style](skills/my-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
-| [typescript-patterns](skills/typescript-patterns/SKILL.md) | Shaping TypeScript as it is authored or refactored: naming, types, class shape, dependency ports, orchestration, imports and enforcement. |
-| [concept-homes](skills/concept-homes/SKILL.md) | Deciding which medium owns a concept, keeping every other appearance derived from that home or loudly checked against it, and building a check that structural change cannot rot. |
+| [typescript-patterns](skills/typescript-patterns/SKILL.md) | Shaping TypeScript: naming, types, classes, dependency ports, imports and directory layout. |
+| [bash-patterns](skills/bash-patterns/SKILL.md) | Preserving command failures and query results in Bash checks, pipelines, captures and process substitutions. |
+| [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries. |
+| [source-of-truth](skills/source-of-truth/SKILL.md) | Choosing authoritative definitions and deriving or checking their copies across code, schemas, configuration and prose. |
 
-Drafts that are not skills yet live in `docs/`, starting with
-[prose styles](docs/prose-styles.md).
+## Changes and operations
+
+| Skill | Use it for |
+| --- | --- |
+| [change-workflow](skills/change-workflow/SKILL.md) | Taking a change from an isolated worktree through synchronization, verification, merge and cleanup. |
+| [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
+| [runtime-operations](skills/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
+
+## Writing and documentation
+
+| Skill | Use it for |
+| --- | --- |
+| [project-docs](skills/project-docs/SKILL.md) | Establishing, reviewing or reconciling repository documentation: glossaries, ownership, diagrams and project instructions. |
+| [diagrams](skills/diagrams/SKILL.md) | Choosing and drawing diagrams, tables and matrices, with relationships grounded in evidence. |
+| [clear-writing](skills/clear-writing/SKILL.md) | Writing and revising clear prose, precise instructions and concise labels without changing their meaning. |
+| [jonas-email-style](skills/jonas-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
+
+These groups organize the catalog. Packages remain directly under `skills/`, so
+changing a group does not change a skill's installation path.
 
 ## Using a skill
 
@@ -88,12 +101,23 @@ when one skill is released.
   files beside it. `agents/openai.yaml` carries the display name for tools that
   read it.
 - Choose a short lowercase hyphenated name for the activity or subject readers
-  will seek. No single grammatical pattern is required. Preserve an established
-  name unless a concrete discovery problem justifies changing consumer pins.
+  will seek. Use familiar terms and the actual language or tool when it narrows
+  the scope. Name the person when a skill encodes one person's voice. Preserve
+  an established name unless clearer discovery justifies changing consumer paths.
+- Apply [Clear Writing](skills/clear-writing/SKILL.md) to the package's prose.
+  It guides authors; installed packages remain independent of it.
 - Record intended behaviour in `validation/<name>.md` when a skill has scope
   boundaries worth testing, and add a row to the table above.
 
 ## Origins
+
+**clear-writing** brings the short-text guidance into a reusable prose skill,
+with a shared core and separate references for instructions and short text.
+It covers wording and meaning; document ownership belongs to `project-docs`,
+visual form to `diagrams`, and Jonas's email voice to `jonas-email-style`.
+Its first prose trials are the conceptual `source-of-truth` skill and the
+procedural `bash-patterns` skill. See
+[validation scenarios and results](validation/clear-writing.md).
 
 **postgres-design** was extracted from Personal Atlas's database conventions on
 2026-09-29 and compared with work-system's migrations and data model. The
@@ -117,8 +141,8 @@ repository", "Use $project-docs to reconcile the docs after this release." See
 experience in a second real project.
 
 The owner's Forge Agent Kit `selfcheck-guard` skill was folded into
-**concept-homes** at 1.1.0 on 2026-09-29, from the same commit as the
-shell-patterns and test-audit imports, rather than added as a ninth skill. This
+**source-of-truth** at 1.1.0 on 2026-09-29, from the same commit as the
+bash-patterns and test-audit imports, rather than added as a ninth skill. This
 one already ended at a check — keep the restatement, add a gate that fails when
 the homes disagree — and never said what keeps that check working after the next
 restructure. The bar and its seven questions now sit in the manifest at that rung,
@@ -131,7 +155,7 @@ Project Policy citations were redirected as in test-audit — two carried substa
 now stated in place, and whether a check earns its recurring cost defers to the
 reading project's own policy.
 
-**change-landing** merges the owner's Forge Agent Kit `worktree` and `reconcile`
+**change-workflow** merges the owner's Forge Agent Kit `worktree` and `reconcile`
 skills, imported on 2026-09-29 and pinned at
 `c98147a115a30f36b952df5faf1c869b54480c59`. It covers one change's whole path: a
 worktree before the first write, keeping current by merge, the finishing pass a
@@ -153,9 +177,9 @@ and left out: orienting work that has not started is the opposite of reporting w
 that finished. **This is a discipline a project opts into**, which the skill says in
 its own text; whether a project authors in worktrees is that project's policy
 decision, and it is registered in no consuming project. Example requests: "Use
-$change-landing to open a lane for this fix", "Use $change-landing — this branch is
+$change-workflow to open a lane for this fix", "Use $change-workflow — this branch is
 green, what does landing it still owe?" See
-[validation and alignment](validation/change-landing.md).
+[validation and alignment](validation/change-workflow.md).
 
 **diagrams** merges the owner's Forge Agent Kit `diagrams` skill, at
 `c98147a115a30f36b952df5faf1c869b54480c59`, with the diagram conventions that
@@ -179,18 +203,18 @@ decide whether this section wants a diagram or a table", "Use $diagrams to split
 this overview before it gets any wider." See
 [validation and alignment](validation/diagrams.md).
 
-**shell-patterns** was imported from the owner's Forge Agent Kit on 2026-09-29,
+**bash-patterns** was imported from the owner's Forge Agent Kit on 2026-09-29,
 pinned at `c98147a115a30f36b952df5faf1c869b54480c59`. The upstream package
-referenced no Forge systems, trackers or policy, so its guidance is unchanged and
-the adaptation is only the manifest and a paragraph naming what local docs decide.
+referenced no Forge systems, trackers or policy. Its behavioral guidance is
+retained, with local metadata, repository authority guidance and revised prose.
 It distinguishes a successful match, a successful absence and a failed
 acquisition, and covers the defects that blur them: a `local` declaration
 reporting its own status, an early pipeline reader turning a match into a SIGPIPE
 failure under `pipefail`, and a process substitution whose producer status nobody
-collects. Example requests: "Use $shell-patterns to check whether this backup
-script's checks can pass when they should fail", "Use $shell-patterns on this
+collects. Example requests: "Use $bash-patterns to check whether this backup
+script's checks can pass when they should fail", "Use $bash-patterns on this
 pipeline before I trust its exit code." See
-[validation and alignment](validation/shell-patterns.md).
+[validation and alignment](validation/bash-patterns.md).
 
 **test-audit** was imported from the same Agent Kit commit on 2026-09-29, and
 fills a gap this repository declared on purpose: `typescript-patterns` leaves
@@ -223,7 +247,7 @@ $typescript-patterns to name this module and its exports", "Use
 $typescript-patterns — this constructor takes six positional arguments." See
 [its validation scenarios](validation/typescript-patterns.md).
 
-**concept-homes** was extracted on 2026-09-29 from a duplication audit of
+**source-of-truth** was extracted on 2026-09-29 from a duplication audit of
 Personal Atlas: six parallel searches over validation rules, domain vocabularies,
 logic expressed in more than one medium, configuration constants, types and
 shapes, and documentation, with every candidate independently challenged before
@@ -238,16 +262,16 @@ toolchain as a requirement. Several of its false-positive tests — a complete c
 versus a deliberate subset, a test that states its expectations being a third
 home rather than a check, an opt-in test not counting as gate coverage — came
 from the challenge step rejecting or correcting an initial finding. Example
-requests: "Use $concept-homes — this vocabulary is defined in the schema and
-again in the reader", "Use $concept-homes to decide where this constant belongs."
-See [its validation scenarios](validation/concept-homes.md); it has been applied
+requests: "Use $source-of-truth — this vocabulary is defined in the schema and
+again in the reader", "Use $source-of-truth to decide where this constant belongs."
+See [its validation scenarios](validation/source-of-truth.md); it has been applied
 in one project only and is not yet released.
 
-**my-email-style** was derived on 2026-09-20 from Jonas's sent Gmail: the last
+**jonas-email-style** was derived on 2026-09-20 from Jonas's sent Gmail: the last
 100 messages before 2026-09-18 (about 55 with real prose) plus 17 older English
 messages. It moved here from the Personal project's shared files on 2026-09-24.
 Re-derive it from a fresh sample if his style drifts; the manifest says how the
-corpus was chosen. See [validation scenarios](validation/my-email-style.md).
+corpus was chosen. See [validation scenarios](validation/jonas-email-style.md).
 
 **runtime-operations** supplies the common credential, Linux service and encrypted
 backup machinery used by Personal Atlas and Work-system. Project adapters own

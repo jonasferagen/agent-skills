@@ -1,11 +1,11 @@
 ---
-name: my-email-style
+name: jonas-email-style
 description: "Write email in Jonas's own voice. Use when drafting, rewriting or shortening an email that Jonas will send - in Norwegian (his default) or English - so the draft sounds like him rather than like an assistant."
 metadata:
   version: "0.1.0"
 ---
 
-# My email style
+# Jonas’s email style
 
 Derived from Jonas's own sent mail: the last 100 messages sent before 2026-09-18
 (about 55 of those carry real prose - the rest are receipt forwards to the

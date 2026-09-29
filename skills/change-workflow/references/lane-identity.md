@@ -2,7 +2,7 @@
 
 Read this before the first read taken to guide authoring, again when a lane has
 to be named, and when the base checkout is found on the wrong branch.
-[`change-landing`](../SKILL.md) owns the lane the roles below belong to.
+[`change-workflow`](../SKILL.md) owns the lane the roles below belong to.
 
 ## Which lane is this
 

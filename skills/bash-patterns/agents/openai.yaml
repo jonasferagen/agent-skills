@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bash Patterns"
+  short_description: "Preserve command status in Bash checks, pipelines and captures"
+  default_prompt: "Use $bash-patterns to check that this Bash code distinguishes query results from command failures."

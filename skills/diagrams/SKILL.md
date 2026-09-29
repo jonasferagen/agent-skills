@@ -233,8 +233,8 @@ instead of splitting again.** A schema with dozens of aggregate roots has no
 useful ER split left beneath it. Group by ownership — one node per document,
 page, or migration family that owns the entities — and label each edge with the
 number of references crossing that boundary. The nodes stop being tables, so the
-block stops being an `erDiagram`: draw it as a `flowchart` and regain the
-`subgraph`, `direction`, and rank control ER layout never had. It answers a
+block becomes a `flowchart`, showing ownership groups and their dependencies.
+Use layout features supported by the target renderer. It answers a
 different question from the diagram it replaces — which groups depend on which,
 and the layer order that implies — while each group's own page keeps every
 individual relationship at full cardinality.

@@ -4,7 +4,7 @@ Cleanup follows landing as a separate operation, and covers **only the lane this
 session opened and landed.** Other lanes, mismatches between Git registrations and
 on-disk directories, orphaned directories, stale registrations and unrelated local
 or remote refs are a population sweep: a different job, with different evidence.
-Do not widen this tail into one. [`change-landing`](../SKILL.md) owns the landing
+Do not widen this tail into one. [`change-workflow`](../SKILL.md) owns the landing
 this cleanup follows.
 
 **A discarding operation names its target from an observed location, never an
