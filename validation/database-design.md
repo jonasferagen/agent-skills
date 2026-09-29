@@ -1,0 +1,78 @@
+# Validation and alignment — Database Design
+
+## Behavioral scenarios
+
+These describe expected outcomes. They are author-reviewed scenarios, not claims
+of an independent agent evaluation or a live database test.
+
+| Request and context | Expected outcome |
+| --- | --- |
+| Add a maintained entity whose label and provider URL can change | Stable local key; external identity and display references separate. |
+| Add a link that can occur in several capacities | Uniqueness includes the capacity; a surrogate ID alone is insufficient. |
+| Import a provider ID scoped to an account that is sometimes unknown | Preserve actual scope and case; explicitly choose null equality without treating unknown as a wildcard. |
+| Two items share one imported source | Preserve both items; model provenance separately and reject ambiguous capture targets. |
+| Replace every boolean with a timestamp, including a required/optional property | Keep the genuine binary property and avoid invented event times. |
+| A prerequisite can reopen after completion | Retain its condition and derive whether it currently blocks execution. |
+| A relationship has no known start date | Preserve uncertainty; add a validity period only if the domain needs it. |
+| Add tracking to existing records and an immutable log | Explain backfill as tracked-since; preserve log-specific timestamp semantics. |
+| Retry the same command key with different intent | Surface a conflict; do not duplicate writes or quietly return success. |
+| Two transactions insert opposing dependency edges | Assess the shared invariant under concurrency, not just each row in isolation. |
+| Delivery succeeds but recording success fails | Account for uncertain delivery during recovery; do not claim exactly-once behavior. |
+| Adopt into a project using enums, natural keys and command-only access | Evaluate semantics and local conventions; do not require cosmetic migrations or direct table grants. |
+| Fix a query's performance without changing its data model | Use the project's performance guidance; do not expand into a schema redesign. |
+
+## Sources inspected
+
+Comparison uses repository files, not live database inspection:
+
+- Personal Atlas at `e73722fc634e2ccae7d77396ed83b09eb1c2a1b5`:
+  [database conventions](https://github.com/jonasferagen/personal-atlas/blob/e73722fc634e2ccae7d77396ed83b09eb1c2a1b5/docs/database.md).
+- Work-system at `536dc621b786da6384deef524b362d390ce162ae`:
+  [data model](https://github.com/jonasferagen/work-system/blob/536dc621b786da6384deef524b362d390ce162ae/docs/architecture/data-model.md),
+  [design principles](https://github.com/jonasferagen/work-system/blob/536dc621b786da6384deef524b362d390ce162ae/docs/architecture/README.md#design-principles),
+  and the migrations listed below under
+  [migrations](https://github.com/jonasferagen/work-system/tree/536dc621b786da6384deef524b362d390ce162ae/supabase/migrations).
+
+## Extraction decisions
+
+Retained naming, stable identity, qualified relationship uniqueness, scoped
+external IDs, explicit unknowns, controlled codes and database bookkeeping.
+Generalized UUIDs, text/check vocabularies and mutable-table timestamps as defaults
+that defer to established local conventions.
+
+Removed Atlas's fixed vocabulary lists, relationship-specific date prohibitions,
+archive placement, schema and function names, blanket writer grants and audit
+trigger coverage. Those remain in Atlas's owning documentation. Git workflow,
+production approval and backup requirements remain project responsibilities.
+No project IDs, personal records or credentials belong in the installable package.
+
+## Work-system alignment
+
+| Area | Evidence and fit | Adoption implication |
+| --- | --- | --- |
+| Naming and identity | `20260927170000_work_schema.sql` uses plural tables, named checks, UUID entities and composite links. | Strong fit. `actor_addresses` uses its address as a natural primary key; assess that specific identity rather than mechanically converting it. |
+| Vocabulary | The initial schema uses text with named checks for kind, stage and status. | Fits the preferred convention; retain the work-specific lists locally. |
+| Booleans and state | `items.required` is a binary property. `20260929000935_explicit_holds.sql` derives satisfaction and blockers from retained conditions. | The skill permits genuine booleans and derives consequences from explicit state. |
+| External identity | `20260929131129_source_integrity.sql` scopes source uniqueness by reference and account with nulls treated as equal, and uses `item_sources` for many-to-many provenance. | Contributed the distinction between source identity and local item identity, plus ambiguity handling. |
+| Time | Mutable tables use defaults and `touch_record`; business dates use a defined timezone. `events` retains `at`, `created_at` and `updated_at` but rejects mutation. | Keep existing event columns; record their local semantics rather than applying a universal update-trigger rule. The name `at` is a local departure from the `_at` suffix default. |
+| Audit | `20260927230000_event_coverage.sql` records selected changes, excludes tokens and some bookkeeping, and permits scheduler events without an actor ID. | Audit coverage and actor meaning must stay explicit and local. Do not copy Atlas's every-table audit requirement. |
+| Write authority | Initial schema and subsequent migrations separate owner, agent, scheduler and read-only roles; writes use commands. | Preserve command-only writes. Atlas's record-writer grants would be incompatible. |
+| Retry and concurrency | Source-integrity filing compares accepted intent, serializes retries and returns duplicate/conflict outcomes; explicit-holds commands serialize structural changes. | Contributed optional operations guidance, including absent identities and graph invariants. |
+| External effects | `messages` stores outbox state and delivery attempts separately from work changes. | Supports the transaction/external-effect distinction; this review does not prove delivery guarantees. |
+
+The skill fits work-system as design guidance without a normalization migration.
+Before adopting it, route database design work to the skill in project instructions
+and keep the timezone, event shape, vocabularies, role model and command contracts
+in their current owning documents. Import the whole skill at an exact source
+commit and record provenance through the repository's normal workflow.
+
+Atlas can adopt the same package while retaining its stricter local conventions
+and domain exceptions in `docs/database.md`. Extraction does not remove that page
+or change either project's instructions; adoption is a separate change.
+
+## Verification limits
+
+The author reviewed the extracted instructions against the scenarios and the
+source files above. Manifest validation, local links and whitespace checks cover
+packaging. No database objects changed; no database tests, deployment, independent
+agent evaluation or live-service checks were performed.
