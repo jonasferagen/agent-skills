@@ -30,3 +30,11 @@ call-site symptoms rather than advertise testing.
 The author reviewed the instructions against the cases above. No independent
 behavioral evaluation has been run, and the package has not yet been exercised
 in a real project since testing left its scope.
+
+## Release 1.0.0 — 2026-09-29
+
+Added manifest version metadata for the per-skill release and commit pinning
+convention. The TypeScript description is quoted so its colon parses as YAML. The instruction body and references are unchanged.
+The manifest validator passes, and all 119 internal links and heading anchors
+resolve. Behavioral scenarios remain the review basis above; this packaging
+release does not claim a new independent behavioral evaluation.

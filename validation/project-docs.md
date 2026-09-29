@@ -22,3 +22,11 @@ resolved and the staged diff passed `git diff --check`. Both Mermaid examples
 rendered successfully and were visually inspected. The author reviewed the
 instructions against the cases above; no independent behavioral evaluation or
 second-project trial has been performed.
+
+## Release 1.0.0 — 2026-09-29
+
+Added manifest version metadata for the per-skill release and commit pinning
+convention. The instruction body and references are unchanged.
+The manifest validator passes, and all 4 internal links and heading anchors
+resolve. Behavioral scenarios remain the review basis above; this packaging
+release does not claim a new independent behavioral evaluation.
