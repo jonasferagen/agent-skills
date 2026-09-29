@@ -63,7 +63,8 @@ really about design shape, such as the port-versus-cast decision in
 heading anchor resolves inside it, and it defers to the reading repository's own
 instructions rather than to companion skills. Example requests: "Use
 $typescript-patterns to name this module and its exports", "Use
-$typescript-patterns — this constructor takes six positional arguments."
+$typescript-patterns — this constructor takes six positional arguments." See
+[its validation scenarios](validation/typescript-patterns.md).
 
 **my-email-style** was derived on 2026-09-20 from Jonas's sent Gmail: the last
 100 messages before 2026-09-18 (about 55 with real prose) plus 17 older English
