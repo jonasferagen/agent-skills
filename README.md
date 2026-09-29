@@ -10,6 +10,7 @@ unit.
 | [project-docs](skills/project-docs/SKILL.md) | Establishing, reviewing or reconciling repository documentation: glossaries, ownership, diagrams and project instructions. |
 | [my-email-style](skills/my-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
 | [typescript-patterns](skills/typescript-patterns/SKILL.md) | Shaping TypeScript as it is authored or refactored: naming, types, class shape, dependency ports, orchestration, imports and enforcement. |
+| [concept-homes](skills/concept-homes/SKILL.md) | Deciding which medium owns a concept, and keeping every other appearance of it derived from that home or loudly checked against it. |
 
 Drafts that are not skills yet live in `docs/`, starting with
 [prose styles](docs/prose-styles.md).
@@ -99,6 +100,26 @@ instructions rather than to companion skills. Example requests: "Use
 $typescript-patterns to name this module and its exports", "Use
 $typescript-patterns — this constructor takes six positional arguments." See
 [its validation scenarios](validation/typescript-patterns.md).
+
+**concept-homes** was extracted on 2026-09-29 from a duplication audit of
+Personal Atlas: six parallel searches over validation rules, domain vocabularies,
+logic expressed in more than one medium, configuration constants, types and
+shapes, and documentation, with every candidate independently challenged before
+acceptance. Its subject is the seam between media — a concept authored in a
+schema, a setting or a document and restated in application code, another
+language or prose, where no single search finds both sides and the restatement
+falls behind silently. It deliberately excludes code shape, which belongs to
+[typescript-patterns](skills/typescript-patterns/SKILL.md), and schema design,
+which belongs to [postgres-design](skills/postgres-design/SKILL.md). The
+installable package is synthetic throughout and names no language, framework or
+toolchain as a requirement. Several of its false-positive tests — a complete copy
+versus a deliberate subset, a test that states its expectations being a third
+home rather than a check, an opt-in test not counting as gate coverage — came
+from the challenge step rejecting or correcting an initial finding. Example
+requests: "Use $concept-homes — this vocabulary is defined in the schema and
+again in the reader", "Use $concept-homes to decide where this constant belongs."
+See [its validation scenarios](validation/concept-homes.md); it has been applied
+in one project only and is not yet released.
 
 **my-email-style** was derived on 2026-09-20 from Jonas's sent Gmail: the last
 100 messages before 2026-09-18 (about 55 with real prose) plus 17 older English
