@@ -6,7 +6,7 @@ unit.
 
 | Skill | Use it for |
 | --- | --- |
-| [database-design](skills/database-design/SKILL.md) | Designing and reviewing relational naming, identity, state, timestamps and integrity boundaries, with PostgreSQL conventions. |
+| [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, automatic timestamps and integrity boundaries. |
 | [project-docs](skills/project-docs/SKILL.md) | Establishing, reviewing or reconciling repository documentation: glossaries, ownership, diagrams and project instructions. |
 | [my-email-style](skills/my-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
 | [typescript-patterns](skills/typescript-patterns/SKILL.md) | Shaping TypeScript as it is authored or refactored: naming, types, class shape, dependency ports, orchestration, imports and tests. |
@@ -39,13 +39,13 @@ is its own step.
 
 ## Origins
 
-**database-design** was extracted from Personal Atlas's database conventions on
+**postgres-design** was extracted from Personal Atlas's database conventions on
 2026-09-29 and compared with work-system's migrations and data model. The
 installable package uses synthetic examples and contains no project schema names,
 service identifiers, vocabulary inventories or deployment policy. Work-system
 contributed guidance on provenance versus identity, explicit conditions, atomic
 commands and retries. Atlas credits the owner's Forge database conventions as an
-earlier influence. See [validation and alignment](validation/database-design.md)
+earlier influence. See [validation and alignment](validation/postgres-design.md)
 for pinned sources, adoption differences and review limits.
 
 **project-docs** was developed from a documentation review and cleanup in
