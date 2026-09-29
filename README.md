@@ -50,18 +50,20 @@ repository", "Use $project-docs to reconcile the docs after this release." See
 [its validation scenarios](validation/project-docs.md); it still needs
 experience in a second real project.
 
-**typescript-patterns** is a verbatim import of the `typescript-patterns` skill
-from the MIT-licensed [Forge Agent Kit](https://github.com/ferraforge/agent-kit),
-taken on 2026-09-29 at commit `c98147a115a30f36b952df5faf1c869b54480c59`. Unlike
-the skills above it is not originally authored here, so its upstream
-[LICENSE](skills/typescript-patterns/LICENSE) travels inside the skill
-directory and must stay with any copy. Two local adaptations make it standalone:
-that license file, and one reference in `references/testing.md` that upstream
-links to its sibling `test-audit` skill, reduced to plain text. The manifest
-also defers to `code-review`, `code-audit`, `test-audit` and `selfcheck-guard`,
-which live in the kit and are not packaged here; those deferrals read as named
-upstream skills rather than links. Re-import by replacing the directory at a
-newly chosen commit, then reapply both adaptations and record the new commit.
+**typescript-patterns** is Jonas's TypeScript pattern canon, brought into this
+repository on 2026-09-29. It covers the shape of the code itself: naming and
+placement, types and generics, class shape, domain primitives, dependency ports,
+orchestration, resolution and defaults, imports and barrels, directory layout
+and enforcement — a manifest plus thirteen reference pages, with a symptom table
+routing from the smell at the call site to the narrowest page. Testing is
+deliberately out of scope: test layout, fixtures and coverage policy belong to
+the reading repository, and rules phrased around tests stay only where they are
+really about design shape, such as the port-versus-cast decision in
+`dependency-ports.md`. The package is self-contained — every relative link and
+heading anchor resolves inside it, and it defers to the reading repository's own
+instructions rather than to companion skills. Example requests: "Use
+$typescript-patterns to name this module and its exports", "Use
+$typescript-patterns — this constructor takes six positional arguments."
 
 **my-email-style** was derived on 2026-09-20 from Jonas's sent Gmail: the last
 100 messages before 2026-09-18 (about 55 with real prose) plus 17 older English

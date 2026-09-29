@@ -15,8 +15,8 @@ asking when the relevant signal shows up. The value of these heuristics is what
 they surface in violation cases, not what they produce when followed blindly.
 
 This is the authoring-time triage sheet: symptoms that should make an author
-pause before choosing a constructive pattern. Use the `code-review` skill when
-the task is to review a current tree, branch, pull request, or diff.
+pause before choosing a constructive pattern. Reviewing a current tree, branch,
+pull request, or diff is a separate task with its own workflow.
 
 If a prompt fires repeatedly across the codebase, the underlying pattern may
 have crystallized enough to belong in the focused pattern docs. Some entries

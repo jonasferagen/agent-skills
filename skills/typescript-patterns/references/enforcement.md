@@ -89,11 +89,10 @@ in ordinary output rather than only to an audit nobody schedules. Say in the
 configuration that it is advisory, because a warning with no stated status reads
 as a gate that someone forgot to fix.
 
-Before adding a custom check, ratchet, or self-test of your own, use
-`selfcheck-guard`: it owns whether the guard survives structural change. The
-general order — change the shape before adding a guard, and name what would
-retire it — is `code-audit`'s remedy order; this page decides which TypeScript
-mechanism fits once a machine check is the answer.
+Before adding a custom check, ratchet, or self-test of your own, establish that
+the guard survives structural change. Follow the general remedy order — change
+the shape before adding a guard, and name what would retire it; this page
+decides which TypeScript mechanism fits once a machine check is the answer.
 
 ## When a rule cannot express its exemption
 

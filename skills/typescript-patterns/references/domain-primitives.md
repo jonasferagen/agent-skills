@@ -85,4 +85,4 @@ without booting the surrounding system or relying on ambient mutable state.
 - If it reads time, randomness, environment, or global state, inject that source
   through a callback or options object.
 - Keep the primitive's contract tests beside its owner according to the
-  repository's [testing convention](testing.md).
+  repository's own testing conventions.

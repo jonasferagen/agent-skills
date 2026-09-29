@@ -104,13 +104,12 @@ A correct port lets a test supply a plain object literal that the compiler check
 against production use. If the test still needs `as unknown as`, classify the
 case before changing production: the test may need a real domain fixture, may be
 reaching into private state, or may be modeling an opaque browser/vendor conduit
-that cannot be represented honestly. The decision sequence lives in
-[testing conventions](testing.md#choose-a-port-fixture-or-justified-cast).
+that cannot be represented honestly. The decision sequence belongs to the
+repository's own testing conventions.
 
 Do not add a port solely to eliminate a cast when the consumer genuinely needs
 the concrete dependency. A justified cast at an external conduit is safer than
 a false abstraction that licenses invalid production values.
 
 Related: [class shape](class-shape.md),
-[type placement](naming-and-placement.md#type-placement-three-tiers),
-[testing conventions](testing.md).
+[type placement](naming-and-placement.md#type-placement-three-tiers).
