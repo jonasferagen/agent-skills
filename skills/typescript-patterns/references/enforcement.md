@@ -78,9 +78,9 @@ Two things follow:
 - **A rule you cannot state as a machine-decidable predicate is not ready to be
   enforced.** Write it as guidance, or narrow it until a predicate exists.
 - **A rule whose exceptions are unbounded is guidance wearing a gate's
-  clothing.** One or two named exemptions are a rule with edges. Under the
-  **Forge Project Policy** a growing list is a defect in the classifier, so
-  narrow the predicate instead of extending the list.
+  clothing.** One or two named exemptions can define a rule's edges. A growing list
+  suggests the classifier is too broad; narrow the predicate instead of
+  extending the list.
 
 An advisory report is a real third option between a gate and silence. A rule
 worth surfacing but not worth blocking on emits a warning that the gate does not
@@ -119,9 +119,8 @@ suppression decision**:
 - **State the limit where the gate is**, in the configuration and in the
   repository's own guidance. An unexplained absence reads as an oversight, and
   the next reader either re-derives the investigation or "fixes" it.
-- **Say what the gate no longer claims.** The **Forge Project Policy** requires
-  a check to name what it measured; a gate believed to cover something it does
-  not is worse than a gate known not to.
+- **Say what the gate no longer claims.** State what the check measures and
+  what it leaves unverified, so reviewers know its actual coverage.
 - **Record the revisit condition** — the upstream change that would make the
   exemption expressible.
 

@@ -165,9 +165,10 @@ make the boundary obvious.
 
 Compatibility shims need a named external consumer or guarantee. Without one,
 they cost documentation, surface area, and "what is this?" cycles for new
-contributors. In Forge the **Forge Project Policy** settles it: nothing is in
-production, so the surface and its call sites change in one program and no shim,
-alias, or deprecation window is authored in the first place.
+contributors. Check the repository's deployed consumers and compatibility
+guarantees. When every consumer can change in the same release, update the
+surface and its call sites together. Keep a transition only when a named live
+consumer or published contract requires it, with a clear removal condition.
 
 **Diagnostic:** when changing a shim, check whether a live consumer still
 justifies it. If not, delete it with the old surface.
