@@ -1,8 +1,8 @@
 ---
 name: concept-homes
-description: "Decide which medium owns a concept and keep every other appearance of it derived or loudly checked. Use when one value, list, rule, pattern or shape appears in more than one place — across languages, schema, configuration, build files, tests or documentation — when adding a case to a vocabulary means editing several files, or when deciding where a new constant, type or rule belongs."
+description: "Decide which medium owns a concept and keep every other appearance of it derived or loudly checked. Use when one value, list, rule, pattern or shape appears in more than one place — across languages, schema, configuration, build files, tests or documentation — when adding a case to a vocabulary means editing several files, or when deciding where a new constant, type or rule belongs. Use it also when writing or reviewing the check that makes disagreement fail, or when a check keeps breaking because a directory moved, a count changed or a tool was absent rather than because anything is actually wrong."
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Concept homes
@@ -33,6 +33,8 @@ changing a schema. Examples below are synthetic.
 | Two appearances look alike and may mean different things | [What is not a second home](#what-is-not-a-second-home) |
 | A missing case produces plausible output instead of an error | [Beware the fallback](#beware-the-fallback) |
 | A restatement can be neither derived nor removed | [Make disagreement fail](references/boundaries.md#make-disagreement-fail) |
+| You are writing the check that fails when two homes disagree | [Keep the check durable](#keep-the-check-durable) |
+| A check keeps breaking when the structure moves, or when a tool is absent | [Checks that survive restructuring](references/durable-checks.md) |
 | Deciding how much a given duplication is worth | [Rank by how it fails](#rank-by-how-it-fails) |
 
 ## Name the concept
@@ -103,7 +105,9 @@ Work down this list and stop at the first rung that holds.
 4. **Derive it at request time.** Send the concept with the data that depends on
    it, so a consumer that cannot import the home still receives it.
 5. **Check it in the gate.** Keep the restatement and add a check, to whichever
-   suite always runs, that fails when the two homes disagree.
+   suite always runs, that fails when the two homes disagree. The check is now
+   something you maintain; [keep the check durable](#keep-the-check-durable) is
+   its bar.
 6. **Record it.** The duplication is structural. Say so where the concept lives,
    and name what must be edited together.
 
@@ -111,6 +115,40 @@ Rungs 1 to 4 make disagreement impossible. Rung 5 makes it loud. Rung 6 only
 makes it known, and is the answer only when a boundary genuinely forbids the
 rungs above it. [Boundaries](references/boundaries.md) covers which boundaries do
 that and what each one leaves available.
+
+## Keep the check durable
+
+Rung 5 leaves a check behind, and a check has a failure mode of its own: it can
+encode the very structure it is checking. Hold it to one bar — it protects a
+named consequence proportionately, computes its answer live rather than comparing
+against a committed golden, reads each structural fact from the home that declares
+it, anchors to its own location, fabricates its own fixtures, and fails only when
+the homes disagree. A check built that way survives the next restructure
+untouched.
+
+What the bar closes is a check that hard-codes an inventory: a directory set, a
+member list, an expected count, a failure when some tool is absent — written as a
+literal instead of derived from whatever already declares it. The literal is
+invisible until the structure moves. Then the check fails on the shape of the
+environment rather than on a disagreement between homes, and the only remedy is
+to patch the literal and re-bless the baseline. A check that must be re-blessed
+teaches reviewers to approve diffs they never read.
+
+| Ask of the check | If yes |
+| --- | --- |
+| Is the consequence it protects anything less than concrete? | do not add the check until that answer is concrete |
+| Is there cheaper evidence that observes the same consequence? | use that evidence instead |
+| Can it fire for a change that cannot affect that consequence? | narrow the trigger, or say why the proxy costs less than a missed defect |
+| Does it hold a name, a list or a count that also lives in the home? | read the home instead: that is rung 1 applied to the check |
+| Would it break if a directory moved, or if an optional component were absent? | anchor it to its own location and give it fabricated fixtures |
+| Does it fail when a tool or service is missing, rather than when the homes disagree? | move the failure to the boundary that owes the tool, or skip loudly where nobody owes it |
+| Is it report-only, with nothing consuming its output? | it is cost without teeth: give it a live invariant and a real gate, or drop it |
+
+[Checks that survive restructuring](references/durable-checks.md) states each
+property with the shape that breaks it and the shape that holds. Read it while
+writing the check, not after the gate has gone red. Whether a check is worth its
+recurring cost at all is the project's own policy; this bar keeps a check you
+have decided to keep from rotting.
 
 ## Beware the fallback
 
@@ -188,6 +226,8 @@ copies of a stable constant.
   extension that missed a home.
 - Where you stopped at rung 5 or 6, name the boundary that forbade the rungs
   above, and what remains unprotected.
+- Where you left a check behind, say what it reads at run time on each side, and
+  have its verdict name the root and the set it measured.
 - Reconcile the documents that state the concept, in the present tense, and leave
   the deciding home named in the guide that owns it.
 - Run the project's own checks. A check added to the gate belongs in the same

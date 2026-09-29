@@ -1,0 +1,4 @@
+interface:
+  display_name: "Diagrams"
+  short_description: "Choose, draw and verify the smallest useful diagram, table or matrix"
+  default_prompt: "Use $diagrams to choose the right form for this subject and draw it so it reads."

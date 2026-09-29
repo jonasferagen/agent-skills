@@ -2,7 +2,7 @@
 name: project-docs
 description: Establish, review, or reconcile repository documentation, including domain glossaries, document ownership, project instructions, and high-level relationship diagrams. Use for project documentation structure and consistency work; not standalone office documents, generic copyediting, or application implementation.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Project documentation
@@ -26,10 +26,13 @@ changing them is part of the task.
   Preserve durable evidence and unresolved questions.
 
 For structure, prose and instruction design, read
-[structure and ownership](references/structure.md). When creating or changing
-visuals, read [diagram conventions](references/diagrams.md). The
-[worked example](references/worked-example.md) illustrates the method with a
-synthetic domain; it is not a schema or template to impose on other projects.
+[structure and ownership](references/structure.md). For which document owns which
+view, and how a view stays true, read
+[diagrams in a documentation set](references/diagrams.md); choosing a form and
+drawing it well is a separate craft that a diagrams skill owns where one is
+available. The [worked example](references/worked-example.md) illustrates the
+method with a synthetic domain; it is not a schema or template to impose on other
+projects.
 
 ## Ground the content
 

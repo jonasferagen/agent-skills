@@ -9,11 +9,12 @@ unit.
 | [runtime-operations](skills/runtime-operations/SKILL.md) | Credential tiers, local service controls, child processes and arguments, and a shared encrypted PostgreSQL backup mechanism. |
 | [shell-patterns](skills/shell-patterns/SKILL.md) | Preserving command failures and query results in Bash checks, pipelines, captures and process substitutions. |
 | [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
+| [diagrams](skills/diagrams/SKILL.md) | Choosing the smallest useful diagram, table or matrix, drawing it so it reads, and grounding every edge in its source. |
 | [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, automatic timestamps and integrity boundaries. |
 | [project-docs](skills/project-docs/SKILL.md) | Establishing, reviewing or reconciling repository documentation: glossaries, ownership, diagrams and project instructions. |
 | [my-email-style](skills/my-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
 | [typescript-patterns](skills/typescript-patterns/SKILL.md) | Shaping TypeScript as it is authored or refactored: naming, types, class shape, dependency ports, orchestration, imports and enforcement. |
-| [concept-homes](skills/concept-homes/SKILL.md) | Deciding which medium owns a concept, and keeping every other appearance of it derived from that home or loudly checked against it. |
+| [concept-homes](skills/concept-homes/SKILL.md) | Deciding which medium owns a concept, keeping every other appearance derived from that home or loudly checked against it, and building a check that structural change cannot rot. |
 
 Drafts that are not skills yet live in `docs/`, starting with
 [prose styles](docs/prose-styles.md).
@@ -87,6 +88,43 @@ Example requests: "Use $project-docs to establish documentation for this
 repository", "Use $project-docs to reconcile the docs after this release." See
 [its validation scenarios](validation/project-docs.md); it still needs
 experience in a second real project.
+
+The owner's Forge Agent Kit `selfcheck-guard` skill was folded into
+**concept-homes** at 1.1.0 on 2026-09-29, from the same commit as the
+shell-patterns and test-audit imports, rather than added as a ninth skill. This
+one already ended at a check — keep the restatement, add a gate that fails when
+the homes disagree — and never said what keeps that check working after the next
+restructure. The bar and its seven questions now sit in the manifest at that rung,
+and the five properties behind it, each with the shape that breaks it and the
+shape that holds, are in its `references/durable-checks.md`: compute the invariant
+live instead of re-blessing a golden, anchor to the check's own location or to
+version control, read the manifest rather than copying it, fabricate the fixture,
+and report an absent dependency as absent rather than as a failing test. Forge
+Project Policy citations were redirected as in test-audit — two carried substance
+now stated in place, and whether a check earns its recurring cost defers to the
+reading project's own policy.
+
+**diagrams** merges the owner's Forge Agent Kit `diagrams` skill, at
+`c98147a115a30f36b952df5faf1c869b54480c59`, with the diagram conventions that
+`project-docs` had been carrying. Upstream supplied form choice, the
+underused-tables argument, draw-less-link-more, vertical-and-one-altitude, the
+drawing reference and ten worked examples; the local reference supplied two
+sections upstream lacked — grounding every edge in whatever owns it, and verifying
+that a diagram reads in the renderer and themes its readers use, where a
+successful parse is explicitly not a readability check. It is a top-level skill
+because form choice applies to plans, issue bodies, design records and review
+feedback, not only to documentation.
+
+`project-docs` was reduced in the same change to what is particular to a
+documentation set — which document owns which view, glossary-led terms, and
+freshness as part of doc review — so the craft has one home instead of two that
+drift. Three provenance citations naming a private repository and its commits were
+replaced with neutral descriptions, and one worked example's schema vocabulary was
+renamed, so the package carries no project identifiers while keeping the real
+shapes and counts the examples depend on. Example requests: "Use $diagrams to
+decide whether this section wants a diagram or a table", "Use $diagrams to split
+this overview before it gets any wider." See
+[validation and alignment](validation/diagrams.md).
 
 **shell-patterns** was imported from the owner's Forge Agent Kit on 2026-09-29,
 pinned at `c98147a115a30f36b952df5faf1c869b54480c59`. The upstream package
