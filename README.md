@@ -16,15 +16,39 @@ Drafts that are not skills yet live in `docs/`, starting with
 
 ## Using a skill
 
-For a repository-local import, copy the complete skill directory (for example
-`skills/project-docs/`) to the target's `.agents/skills/<name>/` through its
-normal review process. Record this repository URL and the exact source commit
-in the target's provenance notes. On updates, review the diff and preserve any
-documented local adaptations. Keep target-specific instructions outside the
-imported directory where practical.
+Copy the complete skill directory from a selected release commit into the target
+repository's `.agents/skills/<name>/` through its normal review process. Record
+source URL, source directory, release version, tag and full commit SHA in the
+target's `.agents/skills/UPSTREAM.md`. The SHA is the authoritative pin. Imported
+files should match that commit; keep project-specific rules outside the imported
+directory and document any necessary local modifications in the provenance file.
 
-Nothing here installs a skill globally or into another project; each adoption
-is its own step.
+Updates are deliberate: select a release, review its changes and local exceptions,
+replace the complete directory, compare it with the source, validate the manifest
+and links, then update provenance in the same commit. No automatic tracking of
+`main`, global installation or database deployment is implied by an import.
+
+## Skill releases
+
+Version each skill independently. Its `SKILL.md` declares a string under
+`metadata.version`, such as `"1.0.0"`. Publish an annotated Git tag named
+`<skill-name>/v<version>` on the committed release; never move a published tag.
+The tagged package and manifest version must agree. Unreleased skills can remain
+pinned by commit until their first release.
+
+Use semantic versions for the skill's behavioral contract: its scope, required
+behavior, defaults, exceptions and bundled resource interfaces.
+
+- **Patch:** clarify or correct wording without changing intended requirements.
+- **Minor:** add compatible guidance or capabilities within the existing contract.
+- **Major:** change defaults, mandatory rules, scope or exceptions in a way that
+  requires consumers to review their adoption.
+
+Validate the package and its behavioral scenarios before tagging. A release must
+contain no unfinished scaffold or project-specific credentials or identifiers.
+Consumers pin the full commit as well as the release label because tags are names,
+not an integrity guarantee. Other skills in the repository need no version bump
+when one skill is released.
 
 ## Adding a skill
 
