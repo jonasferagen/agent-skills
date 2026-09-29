@@ -38,3 +38,11 @@ convention. The TypeScript description is quoted so its colon parses as YAML. Th
 The manifest validator passes, and all 119 internal links and heading anchors
 resolve. Behavioral scenarios remain the review basis above; this packaging
 release does not claim a new independent behavioral evaluation.
+
+## Release 1.0.1 — 2026-09-29
+
+Removed three leftover dependencies on the source project's policy. Compatibility
+guidance now checks actual deployed consumers and published contracts instead of
+assuming nothing is in production. Enforcement guidance states its own rationale.
+The manifest validator and all 119 local links/anchors pass. A package search
+finds no remaining source-project policy references.
