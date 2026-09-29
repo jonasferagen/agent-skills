@@ -14,7 +14,7 @@ unit.
 | [project-docs](skills/project-docs/SKILL.md) | Establishing, reviewing or reconciling repository documentation: glossaries, ownership, diagrams and project instructions. |
 | [my-email-style](skills/my-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
 | [typescript-patterns](skills/typescript-patterns/SKILL.md) | Shaping TypeScript as it is authored or refactored: naming, types, class shape, dependency ports, orchestration, imports and enforcement. |
-| [concept-homes](skills/concept-homes/SKILL.md) | Deciding which medium owns a concept, and keeping every other appearance of it derived from that home or loudly checked against it. |
+| [concept-homes](skills/concept-homes/SKILL.md) | Deciding which medium owns a concept, keeping every other appearance derived from that home or loudly checked against it, and building a check that structural change cannot rot. |
 
 Drafts that are not skills yet live in `docs/`, starting with
 [prose styles](docs/prose-styles.md).
@@ -88,6 +88,21 @@ Example requests: "Use $project-docs to establish documentation for this
 repository", "Use $project-docs to reconcile the docs after this release." See
 [its validation scenarios](validation/project-docs.md); it still needs
 experience in a second real project.
+
+The owner's Forge Agent Kit `selfcheck-guard` skill was folded into
+**concept-homes** at 1.1.0 on 2026-09-29, from the same commit as the
+shell-patterns and test-audit imports, rather than added as a ninth skill. This
+one already ended at a check — keep the restatement, add a gate that fails when
+the homes disagree — and never said what keeps that check working after the next
+restructure. The bar and its seven questions now sit in the manifest at that rung,
+and the five properties behind it, each with the shape that breaks it and the
+shape that holds, are in its `references/durable-checks.md`: compute the invariant
+live instead of re-blessing a golden, anchor to the check's own location or to
+version control, read the manifest rather than copying it, fabricate the fixture,
+and report an absent dependency as absent rather than as a failing test. Forge
+Project Policy citations were redirected as in test-audit — two carried substance
+now stated in place, and whether a check earns its recurring cost defers to the
+reading project's own policy.
 
 **diagrams** merges the owner's Forge Agent Kit `diagrams` skill, at
 `c98147a115a30f36b952df5faf1c869b54480c59`, with the diagram conventions that
