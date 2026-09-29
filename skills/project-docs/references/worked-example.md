@@ -20,9 +20,9 @@ existing application. All arrows describe conceptual relationships.
 
 ```mermaid
 flowchart TB
-  Member[Member] -->|Borrows through| Loan[Loan]
-  Loan -->|Covers| Item[Item]
-  Loan -->|May prompt| Task[Maintenance task]
+  Member["Member"] -->|Borrows through| Loan["Loan"]
+  Loan -->|Covers| Item["Item"]
+  Loan -->|May prompt| Task["Maintenance task"]
   Task -->|Concerns| Item
 ```
 
@@ -32,10 +32,10 @@ it is not another loan state. Cardinalities would require the actual data model.
 ## Condition and evidence
 
 ```mermaid
-flowchart LR
-  Inspection[Inspection] -->|Describes condition of| Item[Item]
-  Inspection -->|Supported by| Evidence[Evidence reference]
-  Task[Maintenance task] -->|May arise from| Inspection
+flowchart TB
+  Inspection["Inspection"] -->|Describes condition of| Item["Item"]
+  Inspection -->|Supported by| Evidence["Evidence reference"]
+  Task["Maintenance task"] -->|May arise from| Inspection
 ```
 
 A reported condition and a plan to repair it answer different questions. A task's

@@ -18,17 +18,34 @@ unit.
 | [concept-homes](skills/concept-homes/SKILL.md) | Deciding which medium owns a concept, keeping every other appearance derived from that home or loudly checked against it, and building a check that structural change cannot rot. |
 
 Drafts that are not skills yet live in `docs/`, starting with
-[prose styles](docs/prose-styles.md). Unfinished repository work is in
-[HANDOFF](HANDOFF.md).
+[prose styles](docs/prose-styles.md).
 
 ## Using a skill
 
-Copy the complete skill directory from a selected release commit into the target
+Copy the complete skill directory from a selected source commit into the target
 repository's `.agents/skills/<name>/` through its normal review process. Record
-source URL, source directory, release version, tag and full commit SHA in the
-target's `.agents/skills/UPSTREAM.md`. The SHA is the authoritative pin. Imported
-files should match that commit; keep project-specific rules outside the imported
-directory and document any necessary local modifications in the provenance file.
+source URL, source directory, full commit SHA, and any selected release version
+and tag in the target's `.agents/skills/UPSTREAM.md`. The SHA is the authoritative
+pin. Imported files should match that commit; keep project-specific rules outside
+the imported directory and document any necessary local modifications in the
+provenance file.
+
+Each package must work when installed alone. Keep links and required resources
+inside its directory. If two skills both need a short rule, repeat it in each
+package and add a source comment in both places naming the other copy, so edits
+find both. A shared directory would change the installation unit and is not part
+of this repository's package format.
+
+The entrypoint carries the purpose, essential constraints and links to details.
+Put mode-specific procedures and longer examples in `references/` and link them
+where they become useful; a short skill can stay in one file. A skill can bundle
+`scripts/` when repeated operations need a reliable implementation and `tests/`
+when those helpers need offline verification. The entire directory, including
+those resources, is installed together.
+
+Run `python3 scripts/validate-packages.py` after editing a package. It checks
+frontmatter, local link targets and package containment; behavioral scenarios in
+`validation/` and any bundled helper tests still need their own review.
 
 Updates are deliberate: select a release, review its changes and local exceptions,
 replace the complete directory, compare it with the source, validate the manifest
@@ -42,6 +59,11 @@ Version each skill independently. Its `SKILL.md` declares a string under
 `<skill-name>/v<version>` on the committed release; never move a published tag.
 The tagged package and manifest version must agree. Unreleased skills can remain
 pinned by commit until their first release.
+
+The version on `main` can also describe an unreleased revision after an earlier
+tag. The tag remains the last released version until that revision is validated
+and tagged; consumers keep their selected pins. A version bump alone publishes
+nothing.
 
 Use semantic versions for the skill's behavioral contract: its scope, required
 behavior, defaults, exceptions and bundled resource interfaces.
@@ -65,6 +87,9 @@ when one skill is released.
 - Put the manifest at `skills/<name>/SKILL.md`, with references and helper
   files beside it. `agents/openai.yaml` carries the display name for tools that
   read it.
+- Choose a short lowercase hyphenated name for the activity or subject readers
+  will seek. No single grammatical pattern is required. Preserve an established
+  name unless a concrete discovery problem justifies changing consumer pins.
 - Record intended behaviour in `validation/<name>.md` when a skill has scope
   boundaries worth testing, and add a row to the table above.
 
@@ -222,7 +247,7 @@ in one project only and is not yet released.
 100 messages before 2026-09-18 (about 55 with real prose) plus 17 older English
 messages. It moved here from the Personal project's shared files on 2026-09-24.
 Re-derive it from a fresh sample if his style drifts; the manifest says how the
-corpus was chosen.
+corpus was chosen. See [validation scenarios](validation/my-email-style.md).
 
 **runtime-operations** supplies the common credential, Linux service and encrypted
 backup machinery used by Personal Atlas and Work-system. Project adapters own

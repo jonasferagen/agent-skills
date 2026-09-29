@@ -134,6 +134,7 @@ environment rather than on a disagreement between homes, and the only remedy is
 to patch the literal and re-bless the baseline. A check that must be re-blessed
 teaches reviewers to approve diffs they never read.
 
+<!-- Package-boundary copy: test-audit/references/triage.md applies the report-only rule below to scanner drift stamps. Keep both passages aligned. -->
 | Ask of the check | If yes |
 | --- | --- |
 | Is the consequence it protects anything less than concrete? | do not add the check until that answer is concrete |

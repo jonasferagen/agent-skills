@@ -362,88 +362,68 @@ erDiagram
 ```
 
 Then open one aggregate at a time. The character detail keeps its three owned
-children and immediate party seam. Cross-family targets referenced once are
-quoted comments on their FK attributes, so readers can still discover the
-target without paying for another entity and edge:
+children and immediate party seam. Short display labels keep the relationships
+readable; the companion table maps each label to its entity and keeps the key
+fields and cross-family FK targets:
 
 ```mermaid
 erDiagram
+  GAME_CHARACTER_EQUIPMENT["equipment"]
+  GAME_CHARACTER_INVENTORY["inventory"]
+  GAME_CHARACTER_LEVELS["levels"]
+  GAME_PARTY_MEMBERS["party members"]
+
   GAME_CHARACTERS ||--o{ GAME_CHARACTER_EQUIPMENT : equips
   GAME_CHARACTERS ||--o{ GAME_CHARACTER_INVENTORY : carries
   GAME_CHARACTERS ||--o{ GAME_CHARACTER_LEVELS : levels_as
   GAME_CHARACTERS ||--o| GAME_PARTY_MEMBERS : occupies_slot
-
-  GAME_CHARACTERS {
-    text key PK
-    text race_key FK "-> game_races.key"
-  }
-  GAME_CHARACTER_EQUIPMENT {
-    text character_key PK, FK
-    text slot PK
-    text item_key FK "-> game_items.key"
-  }
-  GAME_CHARACTER_INVENTORY {
-    text character_key PK, FK
-    text item_key PK, FK "-> game_items.key"
-  }
-  GAME_CHARACTER_LEVELS {
-    text character_key PK, FK
-    integer char_level PK
-    text class_key FK "-> game_classes.key"
-  }
 ```
 
+| Diagram label | Entity and selected fields |
+| --- | --- |
+| `GAME_CHARACTERS` | `game_characters`: `text key` PK; `text race_key` FK → `game_races.key` |
+| `equipment` | `game_character_equipment`: `text character_key` PK, FK; `text slot` PK; `text item_key` FK → `game_items.key` |
+| `inventory` | `game_character_inventory`: `text character_key` PK, FK; `text item_key` PK, FK → `game_items.key` |
+| `levels` | `game_character_levels`: `text character_key` PK, FK; `integer char_level` PK; `text class_key` FK → `game_classes.key` |
+| `party members` | `game_party_members`; fields are outside this example |
+
 The creature detail independently opens its children and the join table that
-carries the root-to-root natural-attack relationship. Targets reached from
-several of its entities stay comments rather than becoming drawn hubs; where
-that shared dependency is itself the question, it belongs in a fan-in table, as
-the next example shows:
+carries the root-to-root natural-attack relationship. Its cross-family targets
+stay in the companion table rather than becoming drawn hubs; where that shared
+dependency is itself the question, it belongs in a fan-in table, as the next
+example shows:
 
 ```mermaid
 erDiagram
+  GAME_CREATURE_CONDITION_IMMUNITY["immunity"]
+  GAME_CREATURE_DROP["drops"]
+  GAME_CREATURE_NATURAL_ATTACK["attack assignment"]
+  GAME_CREATURE_RESISTANCE["resistance"]
+  GAME_CREATURE_TAG["tags"]
+  GAME_NATURAL_ATTACKS["natural attacks"]
+
   GAME_CREATURES ||--o{ GAME_CREATURE_CONDITION_IMMUNITY : immune_to
   GAME_CREATURES ||--o{ GAME_CREATURE_DROP : drops
   GAME_CREATURES ||--o{ GAME_CREATURE_NATURAL_ATTACK : attacks_with
   GAME_CREATURES ||--o{ GAME_CREATURE_RESISTANCE : resists
   GAME_CREATURES ||--o{ GAME_CREATURE_TAG : tagged
   GAME_NATURAL_ATTACKS ||--o{ GAME_CREATURE_NATURAL_ATTACK : assigned_as
-
-  GAME_CREATURES {
-    text key PK
-    text class_key FK "-> game_classes.key"
-    text template_key FK "-> game_templates.key"
-    text dice_material_appearance_ref FK "-> material_appearances.ref"
-  }
-  GAME_CREATURE_CONDITION_IMMUNITY {
-    text creature_key PK, FK
-    text condition_key PK, FK "-> game_conditions.key"
-  }
-  GAME_CREATURE_DROP {
-    text creature_key PK, FK
-    text item_key PK, FK "-> game_items.key"
-  }
-  GAME_CREATURE_NATURAL_ATTACK {
-    text creature_key PK, FK
-    text natural_attack_key PK, FK
-  }
-  GAME_CREATURE_RESISTANCE {
-    text creature_key PK, FK
-    text damage_type_key PK, FK "-> game_damage_types.key"
-  }
-  GAME_CREATURE_TAG {
-    text creature_key PK, FK
-    text tag_key PK, FK "-> game_tags.key"
-  }
-  GAME_NATURAL_ATTACKS {
-    text key PK
-    text damage_type_key FK "-> game_damage_types.key"
-    text scales_with FK "-> game_attributes.key"
-  }
 ```
 
-The overview and details are one two-altitude set. The companion column table
-still owns full types, nullability, defaults, and constraints; splitting the ER
-layout does not add a third form or duplicate that detail.
+| Diagram label | Entity and selected fields |
+| --- | --- |
+| `GAME_CREATURES` | `game_creatures`: `text key` PK; `text class_key` FK → `game_classes.key`; `text template_key` FK → `game_templates.key`; `text dice_material_appearance_ref` FK → `material_appearances.ref` |
+| `immunity` | `game_creature_condition_immunity`: `text creature_key` PK, FK; `text condition_key` PK, FK → `game_conditions.key` |
+| `drops` | `game_creature_drop`: `text creature_key` PK, FK; `text item_key` PK, FK → `game_items.key` |
+| `attack assignment` | `game_creature_natural_attack`: `text creature_key` PK, FK; `text natural_attack_key` PK, FK |
+| `resistance` | `game_creature_resistance`: `text creature_key` PK, FK; `text damage_type_key` PK, FK → `game_damage_types.key` |
+| `tags` | `game_creature_tag`: `text creature_key` PK, FK; `text tag_key` PK, FK → `game_tags.key` |
+| `natural attacks` | `game_natural_attacks`: `text key` PK; `text damage_type_key` FK → `game_damage_types.key`; `text scales_with` FK → `game_attributes.key` |
+
+The overview and details are one two-altitude set. The companion tables retain
+the selected key fields and cross-family targets; a full schema column table
+would also own nullability, defaults, and constraints. Splitting the ER layout
+does not add a third form.
 
 ## An over-threshold overview raised to its owning documents
 

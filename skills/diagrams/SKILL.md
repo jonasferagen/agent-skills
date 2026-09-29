@@ -212,11 +212,12 @@ overview.
 
 An `erDiagram` has its own, lower split threshold: **past roughly 10–12
 entities, or a comparable number of relationship edges, split the block**.
-Unlike a flowchart, an ER diagram has no `subgraph`, `direction`, rank, or
-cluster control; every entity and edge enters one flat layout Mermaid controls.
-Trimming attributes to keys and moving column detail to a companion table makes
-entities narrower, but it does not raise this ceiling because it fixes width,
-not layout.
+Current Mermaid supports ER direction and subgraphs, but subgraphs require
+Mermaid 11.17.0 or newer; check the target renderer before using them. Neither
+control makes a crowded relationship map easy to read. Trimming attributes to
+keys and moving column detail to a companion table makes entities narrower, but
+it does not raise this ceiling because it fixes width, not the number of
+relationships a reader must trace.
 
 Split a large ER model by **aggregate cluster**, as the ER-specific instance of
 the same overview/detail black-box pattern above. The root-only overview names

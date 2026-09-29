@@ -21,6 +21,7 @@ signals worth having and how to weigh them.
 **What it cannot do:** infer coverage asymmetry when the production and test
 trees are separate. Trace those by class or endpoint name instead.
 
+<!-- Package-boundary copy: concept-homes/references/durable-checks.md covers ledgers; concept-homes/SKILL.md covers report-only checks. Keep these passages aligned. -->
 **A scanner's exemption ledger, and any drift stamp it carries, are judged as a
 check in their own right, not as test coverage.** A ledger lists files
 grandfathered out of a settled convention, and it may only shrink: a new or
@@ -43,15 +44,12 @@ Count casts **by target type**, not only by file:
 rg -o 'as unknown as [A-Za-z_]\w*' <scope> | sort | uniq -c
 ```
 
-Repeated casts to one type usually indicate **one missing port**. The
-`typescript-patterns` skill's testing conventions own the port → fixture →
-justified-cast order and when a port is the wrong answer; apply that order here.
-For a class with a private constructor, use a narrow structural port over the
-methods in use, or build the real object and spy on it.
-
-Before declaring a fixture absent, **inspect what the owning package already
-exports** — the actual gap is often an override surface that cannot express a
-needed or absent state, not a missing fixture.
+Repeated casts to one type can indicate **one missing port**. Check whether the
+owning package already exports a fixture whose overrides can express the needed
+or absent states, then inspect the consumer's actual dependency contract. A
+narrow structural port fits when the consumer needs only those methods and no
+hidden lifetime or identity guarantee. Otherwise use a real object or a justified
+local cast. Do not widen the production contract just to make a stub compile.
 
 ## Optional coverage
 
