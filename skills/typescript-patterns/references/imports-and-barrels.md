@@ -84,5 +84,5 @@ Then treat the remaining findings as review input.
 
 A durable checker derives current package surfaces from authoritative export
 maps or configuration instead of carrying a hardcoded inventory of filenames.
-Use `selfcheck-guard` when adding or reviewing that guard. Keep exceptions
-small, named, and justified; an exception list is not a backlog sink.
+Keep exceptions small, named, and justified; an exception list is not a backlog
+sink.

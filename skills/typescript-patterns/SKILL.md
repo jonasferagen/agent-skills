@@ -1,7 +1,6 @@
 ---
 name: typescript-patterns
-description: Choose and apply shared TypeScript code patterns for naming, types, classes, dependency ports, orchestration, resolution, imports, and tests. Use while authoring or refactoring TypeScript, when a call site or module has a shape smell, or when repository-local guidance needs the shared canon; use code-review for a current diff, code-audit for broader architecture, and test-audit for an existing suite.
-license: MIT
+description: The shared TypeScript pattern canon for naming, types, classes, dependency ports, orchestration, resolution, imports and directory layout. Use whenever authoring or refactoring TypeScript: naming a file, type or symbol; a call site growing positional arguments or `undefined` placeholders; a consumer taking a whole collaborator but using one method; defaults, overrides and absence shapes piling up; barrels or public surfaces blurring; or a compiler flag or lint rule being added or weakened. Reach for it even when the request is only "clean this up", "does this look right" or "make this more idiomatic". Covers the shape of the code itself, not testing or review workflow.
 ---
 
 # TypeScript Patterns
@@ -14,12 +13,9 @@ a real contradiction between those owners as documentation drift to reconcile,
 not as permission to pick whichever rule is easier. A repository links here
 rather than restating the shared rules in a second canonical home.
 
-This skill shapes code as it is authored or refactored. Use `code-review` to
-diagnose a current tree, branch, pull request, or diff; `code-audit` for
-ownership, coupling, lifecycle, and broader architecture; `test-audit` for
-brittleness, coverage asymmetry, fixtures, mocks, and nondeterminism across an
-existing suite; and `selfcheck-guard` before adding or approving a custom
-inventory, ratchet, or structural check.
+This skill shapes code as it is authored or refactored: the shape of the code
+itself, not the workflow around it. Testing conventions belong to the
+repository.
 
 ## Workflow
 
@@ -48,11 +44,9 @@ inventory, ratchet, or structural check.
 | A consumer accepts a concrete collaborator but uses only part of it            | [Dependency ports](references/dependency-ports.md)                                                                                |
 | A lifecycle or pipeline is spreading across a shell or service locator         | [Orchestration and pipelines](references/orchestration.md)                                                                        |
 | An import, barrel, public surface, or third-party boundary is unclear          | [Imports and barrels](references/imports-and-barrels.md)                                                                          |
-| A test needs a cast, fixture, port, mock policy, or async/event shape          | [Testing conventions](references/testing.md)                                                                                      |
 | A compiler flag, lint rule, or gate stage is being added, weakened, or scoped | [Enforcement](references/enforcement.md)                                                                                          |
 | A strictness flag reports a binding whose only job is to exist                | [Reading a strictness finding](references/enforcement.md#reading-a-strictness-finding)                                            |
 | A rule catches a real defect class and a correct-by-construction idiom alike  | [When a rule cannot express its exemption](references/enforcement.md#when-a-rule-cannot-express-its-exemption)                    |
-| A proposed guard enumerates files or a coverage pass reports untested modules  | [Coverage-gap classification](references/test-gap-classification.md); use `selfcheck-guard` for the guard's structural durability |
 | An authoring pass needs diagnostic prompts before changing the shape           | [Review heuristics](references/review-heuristics.md)                                                                              |
 
 ## Shape Escalation

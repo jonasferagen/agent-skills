@@ -377,8 +377,7 @@ Skip the brand when a richer value class already enforces the distinction.
   there.
 - Do not assign raw strings to `OrderId`, `AccountId`, or `SessionId` in normal
   implementation code.
-- Build fixture IDs through the same helper under [testing
-  conventions](testing.md#structure-and-assertions).
+- Build fixture IDs through the same helper.
 - Keep any unavoidable external-boundary cast local and explained.
 
 ### Nominal Class Instances

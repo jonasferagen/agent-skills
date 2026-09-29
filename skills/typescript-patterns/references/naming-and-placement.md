@@ -29,7 +29,7 @@ Type-only modules inside an explicit contract surface may use a lowercase
 domain noun when the directory supplies the namespace. Runtime classes still
 take their PascalCase class name. Class-free data and contract modules use
 camelCase names. Shared fixture modules use camelCase filenames and `make*`
-functions per [testing conventions](testing.md#file-naming).
+functions.
 
 A repository may enforce filename/export parity mechanically. Its command,
 entry-point exceptions, and any temporary baseline remain local facts. The
