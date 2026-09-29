@@ -1,0 +1,4 @@
+interface:
+  display_name: "TypeScript Patterns"
+  short_description: "Shared TypeScript design and coding patterns"
+  default_prompt: "Use $typescript-patterns to choose and apply the right TypeScript code pattern."
