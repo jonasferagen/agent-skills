@@ -26,6 +26,20 @@ of an independent agent evaluation.
 | A document and a constraint both list a vocabulary and the document is stale | The document is a home; it is reconciled in the present tense. |
 | A duplication can be neither derived nor checked | Recorded where the concept lives, naming what must change together and what goes wrong when one is missed. |
 | Ranking a stable constant copied many times against one growing cross-medium vocabulary | The growing cross-medium concept ranks higher; copy count alone does not decide. |
+| A gate check compares a freshly scanned count against a committed expected one | Named as a golden that has to be re-blessed on every legitimate change; the check computes its answer live instead. |
+| A unit test states the value an operation should produce | Not a golden; a literal expectation about behaviour is the test doing its job. |
+| An exemption ledger lists files grandfathered out of a settled convention | Accepted as a bounded exception where it gates hard, may only shrink, and belongs to the tree whose files it lists. |
+| A check derives its file inventory with `git ls-files` from the caller's working directory | Flagged; the repository root is resolved first and the verdict names the root and set it measured. |
+| A check reports a pass without stating what it measured | Treated as a partial denominator that can read as a whole-tree result; the verdict names its basis. |
+| A check's own test builds fixtures at a hard-coded path outside its tree | Rejected; it anchors to its own location and fabricates its world in a temporary directory. |
+| A check copies a directory list the build configuration already declares | Rung 1 applied to the check: it reads the declaration rather than restating it. |
+| A check's test requires a neighbouring checkout or a running service | Rejected as a dependency on environment shape; external commands are stubbed and the tree fabricated. |
+| A check throws, or asserts against empty output, when a required tool is absent | The failure moves to the boundary that owes the tool, naming what is missing. |
+| A dependency nobody opted into is unavailable | The check exits successfully with a loud notice; a silent skip is rejected because it reads as a pass. |
+| A check is report-only, with nothing consuming its output | Named as cost without teeth; it gains a live invariant and a real gate, or it goes. |
+| A check can fire for changes that cannot affect the consequence it protects | The trigger is narrowed, or the proxy's cost is stated against the cost of a missed defect. |
+| Mechanical enforcement is proposed as a scanner over a fixed set of directories | Rejected as the anti-pattern enforcing itself; enforcement is scoped to the tree it checks and derives its file set from version control. |
+| Whether a given check earns its recurring cost | Deferred to the reading project's own policy; the durability bar applies to a check already being kept. |
 | Adopting the skill into an existing project | No renaming, code movement or schema change is implied; existing project conventions take precedence. |
 
 ## Sources inspected
@@ -46,6 +60,29 @@ its expectations is a third home rather than a check, and the point that an
 opt-in test does not constitute gate coverage all came from that challenge step
 rather than from the initial findings.
 
+The durable-check material was imported on 2026-09-29 from the owner's Forge
+Agent Kit `selfcheck-guard` skill at
+`c98147a115a30f36b952df5faf1c869b54480c59` (2026-09-18), as its manifest and the
+`five-properties` reference. It is folded in rather than kept as a ninth skill
+because this one already ends at a check — rung 5, and the rules for making
+disagreement fail — and stopped without saying what keeps that check from rotting
+when the structure moves.
+
+Citations of the Forge Project Policy were redirected, because that policy opens
+by stating nothing is in production while both consuming projects are. Two
+carried substance now stated in place: that a check protects a named consequence
+with the least costly evidence able to observe it, and that a check fails at the
+boundary owing a missing precondition rather than on the surface that merely
+depends on it. Whether a check earns its recurring cost defers to the reading
+project's own policy. References to sibling Agent Kit skills were dropped rather
+than described: the remedy-order question they handed off — change the shape
+before adding a guard — is already answered here by the rung ladder, and a
+cross-package path would break when this skill is installed alone. Upstream's
+repository-set framing, in which a check breaks on whether a sibling repository
+is checked out, was generalised to any tree, directory or optional component,
+since the seam this skill addresses sits inside one project as often as between
+several.
+
 ## Extraction decisions
 
 Retained the diagnostic sequence — name the concept as a question, find its
@@ -58,6 +95,16 @@ project identifiers, the domain vocabularies themselves, and the source project'
 migration approval, backup and merge policy. Those remain in their owning
 documentation. The package names no language, framework, database or toolchain as
 a requirement, and no scenario depends on the source project's structure.
+
+The five durability properties are deliberately split. The bar and its six
+questions sit in the manifest, at the rung where a reader decides to keep a
+check, so the check can be judged without opening a reference; each property's
+rule, the shape that breaks it and the shape that holds are in
+`references/durable-checks.md`. They are not appended to `references/boundaries.md`,
+whose subject is the boundaries that forbid derivation — a check's durability is
+not one of them, and mixing the two would give that page a second subject. What a
+check must compare and where it must run stays in that page's make-disagreement-fail
+section; the new page cites it rather than restating it.
 
 This skill deliberately does not cover code shape, naming or module layout, which
 belong to a TypeScript or language-specific canon, nor schema design, which
@@ -72,3 +119,19 @@ was performed. The skill has been applied in one project only; it needs
 experience in a second before its scope boundaries can be considered settled. In
 particular, the rung list has not been exercised on a build-time generation case
 (rung 2), and the language-boundary guidance rests on a single observed instance.
+
+The durability material adds its own limits. It has not been applied to a real
+check in either consuming project; upstream's examples came from a third
+project's tooling and were read, not reproduced. No check has been observed here
+failing on environment shape and then surviving the same move after the bar was
+applied, so the claim that a check built this way survives restructuring
+untouched rests on upstream experience rather than on evidence gathered in this
+repository. The rule that a verdict names the root and set it measured has not
+been exercised against a case where the inventory basis was actually wrong. The
+reconciliation between a literal test expectation and a committed golden is new
+in this fold and has not been reviewed by anyone who had already absorbed the
+false-positive list, which is where a reader is most likely to mistake one for
+the other. The proportionality questions — the consequence a check protects, and
+whether it can fire for changes that cannot affect it — are adapted from a policy
+this repository does not carry, and no consuming project has yet judged a check
+against them.

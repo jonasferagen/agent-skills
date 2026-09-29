@@ -84,6 +84,10 @@ having if it would actually fail.
   constraint the database enforces, or a start-time refusal all run without anyone
   remembering to look.
 
+A check kept is a check maintained, and the way it usually dies is by encoding the
+structure it checks rather than reading it. [Checks that survive
+restructuring](durable-checks.md) holds it to that bar.
+
 Where a check is impossible too, rung 6 is the honest end: state the duplication
 where the concept lives, name every place that must change together, and say what
 goes wrong when one is missed. A recorded duplication is a known risk. An
