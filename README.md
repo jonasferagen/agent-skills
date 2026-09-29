@@ -8,6 +8,7 @@ unit.
 | --- | --- |
 | [project-docs](skills/project-docs/SKILL.md) | Establishing, reviewing or reconciling repository documentation: glossaries, ownership, diagrams and project instructions. |
 | [my-email-style](skills/my-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
+| [typescript-patterns](skills/typescript-patterns/SKILL.md) | Shaping TypeScript as it is authored or refactored: naming, types, class shape, dependency ports, orchestration, imports and tests. |
 
 Drafts that are not skills yet live in `docs/`, starting with
 [prose styles](docs/prose-styles.md).
@@ -48,6 +49,19 @@ Example requests: "Use $project-docs to establish documentation for this
 repository", "Use $project-docs to reconcile the docs after this release." See
 [its validation scenarios](validation/project-docs.md); it still needs
 experience in a second real project.
+
+**typescript-patterns** is a verbatim import of the `typescript-patterns` skill
+from the MIT-licensed [Forge Agent Kit](https://github.com/ferraforge/agent-kit),
+taken on 2026-09-29 at commit `c98147a115a30f36b952df5faf1c869b54480c59`. Unlike
+the skills above it is not originally authored here, so its upstream
+[LICENSE](skills/typescript-patterns/LICENSE) travels inside the skill
+directory and must stay with any copy. Two local adaptations make it standalone:
+that license file, and one reference in `references/testing.md` that upstream
+links to its sibling `test-audit` skill, reduced to plain text. The manifest
+also defers to `code-review`, `code-audit`, `test-audit` and `selfcheck-guard`,
+which live in the kit and are not packaged here; those deferrals read as named
+upstream skills rather than links. Re-import by replacing the directory at a
+newly chosen commit, then reapply both adaptations and record the new commit.
 
 **my-email-style** was derived on 2026-09-20 from Jonas's sent Gmail: the last
 100 messages before 2026-09-18 (about 55 with real prose) plus 17 older English
