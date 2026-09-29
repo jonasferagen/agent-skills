@@ -18,7 +18,8 @@ unit.
 | [concept-homes](skills/concept-homes/SKILL.md) | Deciding which medium owns a concept, keeping every other appearance derived from that home or loudly checked against it, and building a check that structural change cannot rot. |
 
 Drafts that are not skills yet live in `docs/`, starting with
-[prose styles](docs/prose-styles.md).
+[prose styles](docs/prose-styles.md). Unfinished repository work is in
+[HANDOFF](HANDOFF.md).
 
 ## Using a skill
 
