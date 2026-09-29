@@ -1,0 +1,4 @@
+interface:
+  display_name: "Runtime Operations"
+  short_description: "Credential custody, services and recovery tooling"
+  default_prompt: "Use $runtime-operations to align this project's credential launchers and service controls with its operational policy."
