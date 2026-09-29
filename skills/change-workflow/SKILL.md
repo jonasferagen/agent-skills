@@ -1,11 +1,11 @@
 ---
-name: change-landing
+name: change-workflow
 description: "Land a repository change safely: isolate it in a worktree before the first write, keep it current by merge, reconcile and verify the tree that will actually merge, then land it and clean up by containment. Use before the first write bound for the default branch and again at the merge boundary — when a branch has to be brought current, when a rename or deletion needs a stale-reference sweep, when deciding whether verification evidence is still fresh, when a worktree or branch is about to be removed, or when writing the hand-back that reports the result. Reach for it when a change is \"done\" but nothing has said what was verified. Describes a discipline a project opts into; the reading project owns its own landing policy, tracker conventions and authorization."
 metadata:
   version: "0.1.0"
 ---
 
-# Change Landing
+# Change Workflow
 
 **This describes a discipline a project opts into, not a universal rule.**
 Whether changes are authored in isolated worktrees, how one reaches the default

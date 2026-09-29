@@ -1,4 +1,4 @@
-# Validation and alignment — Concept Homes
+# Validation and alignment — Source of Truth
 
 ## Behavioral scenarios
 

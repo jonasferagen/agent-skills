@@ -1,7 +1,7 @@
 # The hand-back
 
 What a finished change reports, and what it must not pad.
-[`change-landing`](../SKILL.md) states the contract; this page holds the
+[`change-workflow`](../SKILL.md) states the contract; this page holds the
 field-by-field conditions.
 
 ## Fields, in this order

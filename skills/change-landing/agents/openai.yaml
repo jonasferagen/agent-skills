@@ -1,4 +1,0 @@
-interface:
-  display_name: "Change Landing"
-  short_description: "Isolate, keep current, verify and land one change"
-  default_prompt: "Use $change-landing to isolate this change in a worktree before the first write, keep it current by merge, verify the tree that will actually merge, then land it and clean up the lane."

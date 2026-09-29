@@ -1,7 +1,7 @@
 # What counts as merge evidence
 
 Read this while verifying, and again before merging when time has passed since
-the checks ran. [`change-landing`](../SKILL.md) owns the boundary this evidence
+the checks ran. [`change-workflow`](../SKILL.md) owns the boundary this evidence
 is owed at: what merges is green, verified on the tree that will actually merge.
 
 ## Three things that look like merge evidence

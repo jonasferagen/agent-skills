@@ -1,4 +1,4 @@
-# Validation and alignment — Shell Patterns
+# Validation and alignment — Bash Patterns
 
 ## Behavioral scenarios
 
@@ -34,10 +34,10 @@ those.
 
 Imported from the owner's Forge Agent Kit `shell-patterns` skill at
 `c98147a115a30f36b952df5faf1c869b54480c59` (2026-09-18) on 2026-09-29. The
-upstream package carried no references to Forge systems, trackers or policy, so
-the guidance is unchanged; the adaptation is the manifest frontmatter, an
-ownership paragraph naming what local docs decide, and a trigger-oriented
-description.
+upstream package carried no references to Forge systems, trackers or policy.
+Its behavioral guidance is retained. The local package has its own manifest,
+an explanation of what repository instructions decide, and clearer prose for
+the command outcomes and failure cases.
 
 ## Review limits
 

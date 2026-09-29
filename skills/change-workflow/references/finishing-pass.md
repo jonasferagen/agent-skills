@@ -1,6 +1,6 @@
 # The finishing pass
 
-[`change-landing`](../SKILL.md) runs this pass at its merge boundary. Run it at
+[`change-workflow`](../SKILL.md) runs this pass at its merge boundary. Run it at
 the end of non-trivial work and for **every tracked-path rename or deletion**,
 even when the change is otherwise trivial. It answers one question: **is the
 final state actually finished?** Intermediate commits may legitimately have left

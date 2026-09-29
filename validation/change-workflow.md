@@ -1,4 +1,4 @@
-# Validation and alignment — Change Landing
+# Validation and alignment — Change Workflow
 
 ## Behavioral scenarios
 
