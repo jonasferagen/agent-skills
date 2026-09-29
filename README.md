@@ -9,6 +9,7 @@ unit.
 | [runtime-operations](skills/runtime-operations/SKILL.md) | Credential tiers, local service controls, child processes and arguments, and a shared encrypted PostgreSQL backup mechanism. |
 | [shell-patterns](skills/shell-patterns/SKILL.md) | Preserving command failures and query results in Bash checks, pipelines, captures and process substitutions. |
 | [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
+| [diagrams](skills/diagrams/SKILL.md) | Choosing the smallest useful diagram, table or matrix, drawing it so it reads, and grounding every edge in its source. |
 | [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, automatic timestamps and integrity boundaries. |
 | [project-docs](skills/project-docs/SKILL.md) | Establishing, reviewing or reconciling repository documentation: glossaries, ownership, diagrams and project instructions. |
 | [my-email-style](skills/my-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
@@ -87,6 +88,28 @@ Example requests: "Use $project-docs to establish documentation for this
 repository", "Use $project-docs to reconcile the docs after this release." See
 [its validation scenarios](validation/project-docs.md); it still needs
 experience in a second real project.
+
+**diagrams** merges the owner's Forge Agent Kit `diagrams` skill, at
+`c98147a115a30f36b952df5faf1c869b54480c59`, with the diagram conventions that
+`project-docs` had been carrying. Upstream supplied form choice, the
+underused-tables argument, draw-less-link-more, vertical-and-one-altitude, the
+drawing reference and ten worked examples; the local reference supplied two
+sections upstream lacked — grounding every edge in whatever owns it, and verifying
+that a diagram reads in the renderer and themes its readers use, where a
+successful parse is explicitly not a readability check. It is a top-level skill
+because form choice applies to plans, issue bodies, design records and review
+feedback, not only to documentation.
+
+`project-docs` was reduced in the same change to what is particular to a
+documentation set — which document owns which view, glossary-led terms, and
+freshness as part of doc review — so the craft has one home instead of two that
+drift. Three provenance citations naming a private repository and its commits were
+replaced with neutral descriptions, and one worked example's schema vocabulary was
+renamed, so the package carries no project identifiers while keeping the real
+shapes and counts the examples depend on. Example requests: "Use $diagrams to
+decide whether this section wants a diagram or a table", "Use $diagrams to split
+this overview before it gets any wider." See
+[validation and alignment](validation/diagrams.md).
 
 **shell-patterns** was imported from the owner's Forge Agent Kit on 2026-09-29,
 pinned at `c98147a115a30f36b952df5faf1c869b54480c59`. The upstream package
