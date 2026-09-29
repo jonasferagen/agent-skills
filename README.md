@@ -6,7 +6,7 @@ unit.
 
 | Skill | Use it for |
 | --- | --- |
-| [runtime-operations](skills/runtime-operations/SKILL.md) | Credential tiers, local service controls and a shared encrypted PostgreSQL backup mechanism. |
+| [runtime-operations](skills/runtime-operations/SKILL.md) | Credential tiers, local service controls, child processes and arguments, and a shared encrypted PostgreSQL backup mechanism. |
 | [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, automatic timestamps and integrity boundaries. |
 | [project-docs](skills/project-docs/SKILL.md) | Establishing, reviewing or reconciling repository documentation: glossaries, ownership, diagrams and project instructions. |
 | [my-email-style](skills/my-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
@@ -132,4 +132,11 @@ corpus was chosen.
 backup machinery used by Personal Atlas and Work-system. Project adapters own
 vault IDs, roles, schema scope and access checks. The package includes offline
 helper tests; consumer adapters also exercise actual disposable restores.
+Child-process, argument and verification-reporting guidance was added in 1.1.0
+from a parallel review of the same two projects' tooling: withholding child
+output, inherited stdin reaching a child that parses it, timeouts and argument
+vectors; subcommand and argument rules, including what a script must never accept
+from its caller; verifying that a read-only session setting survived a pooler; and
+the rule that a verdict names its denominator, which is adopted from the owner's
+Forge project policy.
 See [validation scenarios](validation/runtime-operations.md).
