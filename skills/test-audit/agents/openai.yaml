@@ -1,0 +1,4 @@
+interface:
+  display_name: "Test Audit"
+  short_description: "Audit a settled test suite for brittleness, gaps and unfalsifiable assertions"
+  default_prompt: "Use $test-audit to assess whether these tests actually protect behavior."
