@@ -6,6 +6,7 @@ unit.
 
 | Skill | Use it for |
 | --- | --- |
+| [runtime-operations](skills/runtime-operations/SKILL.md) | Credential tiers, local service controls and a shared encrypted PostgreSQL backup mechanism. |
 | [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, automatic timestamps and integrity boundaries. |
 | [project-docs](skills/project-docs/SKILL.md) | Establishing, reviewing or reconciling repository documentation: glossaries, ownership, diagrams and project instructions. |
 | [my-email-style](skills/my-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
@@ -105,3 +106,9 @@ $typescript-patterns — this constructor takes six positional arguments." See
 messages. It moved here from the Personal project's shared files on 2026-09-24.
 Re-derive it from a fresh sample if his style drifts; the manifest says how the
 corpus was chosen.
+
+**runtime-operations** supplies the common credential, Linux service and encrypted
+backup machinery used by Personal Atlas and Work-system. Project adapters own
+vault IDs, roles, schema scope and access checks. The package includes offline
+helper tests; consumer adapters also exercise actual disposable restores.
+See [validation scenarios](validation/runtime-operations.md).
