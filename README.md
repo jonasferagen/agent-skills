@@ -37,7 +37,7 @@ as a manual review; automation can grow from actual transitions.
 | [typescript-patterns](skills/typescript-patterns/SKILL.md) | Shaping TypeScript: naming, types, classes, dependency ports, imports and directory layout. |
 | [bash-patterns](skills/bash-patterns/SKILL.md) | Preserving command failures and query results in Bash checks, pipelines, captures and process substitutions. |
 | [node-patterns](skills/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
-| [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries. |
+| [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries, and transactions on pooled connections. |
 
 ## Changes and operations
 
@@ -166,8 +166,11 @@ installable package uses synthetic examples and contains no project schema names
 service identifiers, vocabulary inventories or deployment policy. Work-system
 contributed guidance on provenance versus identity, explicit conditions, atomic
 commands and retries. Atlas credits the owner's Forge database conventions as an
-earlier influence. See [validation and alignment](validation/postgres-design.md)
-for pinned sources, adoption differences and review limits.
+earlier influence. Version 1.1.0 adds a reference on transactions over pooled
+connections, drawn from the transaction runner of the local atlas-work-dev
+services and checked against PostgreSQL 17. See
+[validation and alignment](validation/postgres-design.md) for pinned sources,
+adoption differences and review limits.
 
 **project-docs** was developed from a documentation review and cleanup in
 Personal on 2026-09-19. The reusable guidance is newly written, and the worked
