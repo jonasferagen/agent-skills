@@ -29,23 +29,24 @@ preferred; pick the one that fits.
   but read as `Domain.operation` at the call site.
 
 A one-shot operation that needs internal scratch state but no externally-held
-instance is still a stateful service — expose it via a `static` factory that
-constructs a private instance, runs it, and returns the result. Do not smear the
-scaffolding state through static method parameters.
+instance is still a stateful service. Expose it via a `static` factory that
+constructs a private instance, runs it, and returns the result. Do not pass that
+scratch state through static method parameters.
 For example, a `DocumentCompiler.compile()` entry can privately construct one
 compiler instance, wire its single-concern collaborators, run it, and return the
 result without leaking scratch-state plumbing onto the call site.
 
-Avoid bare `export function` for operations — wrap in a class (static-method or
-stateful, per the two shapes above). **Purity is not an exemption**: a stateless,
-side-effect-free operation is still an operation and gets a static-method class
-(`PolygonFaces.resolveUp`, `InvoiceTotal.of`), not a bare `export function`. The naming
-payoff — `Domain.operation()` legible at the call site — applies whether or not
-the operation holds state; a pure geometry or math kernel is exactly where the
-static-class shape earns its keep. Do not use `export const X = { method(), method() }`
-either: that is a static class spelled oddly, with the same call-site cost and
-worse tooling support. The trade-off (no tree-shaking, no direct use as
-higher-order functions) is acceptable at typical project scale.
+Avoid bare `export function` for operations. Wrap them in a class instead,
+static-method or stateful, per the two shapes above. **Purity is not an
+exemption**: a stateless, side-effect-free operation is still an operation and
+gets a static-method class (`PolygonFaces.resolveUp`, `InvoiceTotal.of`), not a
+bare `export function`. The naming benefit, a `Domain.operation()` call that is
+legible at the call site, applies whether or not the operation holds state. A
+pure geometry or math kernel is exactly where the static-class shape justifies
+its cost. Do not use `export const X = { method(), method() }` either: that is
+a static class spelled oddly, with the same call-site cost and worse tooling
+support. The trade-off (no tree-shaking, no direct use as higher-order
+functions) is acceptable at typical project scale.
 
 **First, check it should be a standalone operation at all.** A helper that takes
 a single domain object and only reads its public surface is not an operation
@@ -59,19 +60,20 @@ dependencies the type should not own (the companion-op case in
 gets a class:
 
 - **Value-boundary factories and guards.** A branded-ID constructor/validator
-  (`asOrderId`, `asAccountId`) or a type guard over a closed value set is a passive
-  value boundary — it mints or narrows a brand, not a domain operation — and may
-  stay a bare exported function. When it already has a natural home class, prefer
-  a static there (`PaymentKinds.isKnown`) over a standalone function.
+  (`asOrderId`, `asAccountId`) or a type guard over a closed value set is a
+  passive value boundary, not a domain operation: it mints or narrows a brand.
+  It may stay a bare exported function. When it already has a natural home
+  class, prefer a static there (`PaymentKinds.isKnown`) over a standalone
+  function.
 - **React hooks** — the idiomatic `export function useX(...)` shape.
 - **File-private helpers.** The rule governs the _exported_ surface. A
   non-`export` module-local function is implementation detail; leave it a bare
   function, or fold it to `private static` per the single-caller rule below.
 - **Data, not operations.** A `const` lookup table, descriptor record, or
-  registry map (`PAYMENT_METHODS`) is data—see
-  [Class-Owned Constants](#class-owned-constants) — not an operation namespace.
-  Reach it through a class accessor when it has behaviour to guard
-  (`PaymentMethods.get`); leave it a module `const` when it is pure free-standing data.
+  registry map (`PAYMENT_METHODS`) is data, not an operation namespace; see
+  [Class-Owned Constants](#class-owned-constants). Reach it through a class
+  accessor when it has behaviour to guard (`PaymentMethods.get`); leave it a
+  module `const` when it is pure free-standing data.
 - **Style/token derivation helpers.** A deterministic token-to-record map
   exported beside the tokens it derives from, in a class-free style module, is
   the parameterized form of the data record rather than a domain operation. It
@@ -106,8 +108,9 @@ Prefer this order:
 This works well for methods that compute a primary value, resolve
 fallback/error cases, update an index/cache/side table, and return the value.
 The top-level method should keep the sequence visible; named private steps
-should carry the branch policy. Avoid helper confetti: a helper that only hides
-three lines without improving the vocabulary makes the caller harder to read.
+should carry the branch policy. Avoid scattering tiny helpers: a helper that
+only hides three lines without improving the vocabulary makes the caller harder
+to read.
 If the method has a full multi-phase workflow rather than one local value story,
 use [orchestration.md](orchestration.md) instead.
 
@@ -121,17 +124,20 @@ of scattering conditional object assembly at call sites.
 Prefer promoting the shape itself to a class when it is runtime domain data that
 travels through the system with invariants or cached derived values. Keep a
 separate input/interface shape only for construction, wire DTOs, or truly
-passive contracts. Use a companion operation class when the behavior crosses
-multiple concepts, belongs to a conversion boundary rather than to the data
-itself, or would force the primary value module to import dependencies it should
-not own. Serialization, persistence, platform APIs, and heavyweight runtime
-adapters are good companion candidates when the primary type should stay small
-and dependency-light. Name the companion after the operation it owns, keep it in
+passive contracts.
+
+Use a companion operation class when the behavior crosses multiple concepts,
+belongs to a conversion boundary rather than to the data itself, or would force
+the primary value module to import dependencies it should not own.
+Serialization, persistence, platform APIs, and heavyweight runtime adapters are
+good companion candidates when the primary type should stay small and
+dependency-light. Name the companion after the operation it owns, keep it in
 the owning domain, and expose thin forwarding methods from the primary class
 only when those methods are the intended public API.
 
-The file shape that follows from these rules — primary export per file, filename
-parity, and where the promoted types live — is [naming-and-placement.md](naming-and-placement.md).
+[naming-and-placement.md](naming-and-placement.md) covers the file shape that
+follows from these rules: primary export per file, filename parity, and where
+the promoted types live.
 
 ### Why Classes Over Bare Functions
 
@@ -142,20 +148,20 @@ file.
 
 ## Sibling Families: A List, Not A Class Per Instance
 
-When several modules turn out structurally identical — same methods, same shape,
-differing only in fixed data — that repetition is the signal to collapse them
-into one class that holds the family as a list, with `private static` factory
-methods supplying the shared behavior. Each member becomes a `static readonly`
-descriptor built from a factory; the data that varies (a path, a schema, a key)
-is the only thing spelled out per entry.
+When several modules turn out structurally identical, with the same methods and
+shape and differing only in fixed data, that repetition is the signal to
+collapse them into one class. The class holds the family as a list, and its
+`private static` factory methods supply the shared behavior. Each member becomes
+a `static readonly` descriptor built from a factory; the data that varies (a
+path, a schema, a key) is the only thing spelled out per entry.
 
 This is easy to miss at the start, which is why it is worth naming. The first
 one or two siblings each look like they deserve their own class — their own
 type, their own filename, their own method bodies — so the per-instance shape
-gets set before the duplication is visible. The shape only reveals itself once
-the third and fourth copies clone the same skeleton. Treat "this new file is the
-last one with X's name swapped for Y's" as the trigger to stop and extract a
-factory plus a list instead of adding another copy.
+gets set before the duplication is visible. The shared shape becomes visible
+only when the third and fourth copies repeat the same structure. Treat "this
+new file is the last one with X's name swapped for Y's" as the trigger to stop
+and extract a factory plus a list instead of adding another copy.
 
 For example, one `ExportFormats` registry can own a format family, with
 descriptors built by `delimited`, `fixedWidth`, and `binary` factories — each

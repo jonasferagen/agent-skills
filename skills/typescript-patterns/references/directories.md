@@ -19,7 +19,7 @@ billing-tax domain. The same holds for sibling names such as `RateTable` and
 This is the directory side of the
 [`{Domain?}{Topic}{Role?}` filename grammar](naming-and-placement.md#file-naming):
 the path is already part of the name readers see at import sites and in editor
-search, so a domain prefix has to earn its place.
+search, so a domain prefix needs a specific reason to be in the name.
 
 ### Rules
 
@@ -32,9 +32,10 @@ search, so a domain prefix has to earn its place.
 - Prefer a bare topic plus role (`RateResolver`, `InvoiceBuilder`) when
   the directory supplies the domain. Keep a domain prefix only when it is a
   public/shared identity, prevents a real ambiguity, or signals a concept that
-  travels meaningfully outside the directory — a class imported from outside
-  its folder qualifies (`console/ConsoleCommands`, `admin/AdminBoot`: the import
-  site loses the path context, so the prefix is load-bearing there).
+  travels meaningfully outside the directory. A class imported from outside
+  its folder qualifies (`console/ConsoleCommands`, `admin/AdminBoot`): the
+  import site loses the path context, so only the prefix names the domain
+  there.
 
 ### Why
 
@@ -58,9 +59,9 @@ search, so a domain prefix has to earn its place.
 
 ## Cohesive Directory
 
-A directory's contents should share one concept that fits in a single
-elevator-pitch sentence. When the honest one-line description needs an "and
-also" clause, split.
+A directory's contents should share one concept that a single short sentence
+can describe. When the honest one-line description needs an "and also" clause,
+split the directory.
 
 ### Rules
 
@@ -69,14 +70,15 @@ also" clause, split.
 - An orchestrator that consumes from multiple sibling directories belongs at
   the parent level, not nested inside one of its dependencies' folders.
 - A one-file subdirectory is over-fragmentation. Flatten the file into the
-  parent until there is a second sibling that earns the subdir.
+  parent until a second sibling justifies the subdirectory.
 - Bridge re-exports across directories need an explicit public-surface reason.
   Otherwise, move the directory so the bridge is unnecessary or drop the bridge.
 
 ### Why
 
-- A grab-bag directory is the visible end-state of accretion. Splitting at the
-  point of drift is cheaper than splitting after another year of additions.
+- A directory of unrelated files is the visible end-state of accretion.
+  Splitting when the contents first drift from one concept is cheaper than
+  splitting after another year of additions.
 - Directory names are part of the namespace at every import site.
 - Orchestrators buried inside a dependency's folder mislead readers about
   ownership.
@@ -90,11 +92,12 @@ also" clause, split.
 
 ## Concept Or Phase, Not Bare Role
 
-A directory name answers one of two questions: **"what domain lives here?"**—a
-concept noun like `billing`, `delivery`, or `identity`—or, in a genuine pipeline,
-**"which phase?"** — a stage in a documented sequence like `compile` or `emit`.
-It must not name a generic technical role that could hold anything, such as
-`producer/`, `parsers/`, `handlers/`, or `helpers/`.
+A directory name answers one of two questions: **"what domain lives here?"** or,
+in a genuine pipeline, **"which phase?"** A concept noun like `billing`,
+`delivery`, or `identity` answers the first; a stage in a documented sequence,
+like `compile` or `emit`, answers the second. The directory must not be named
+for a generic technical role that could hold anything, such as `producer/`,
+`parsers/`, `handlers/`, or `helpers/`.
 
 This sharpens [Cohesive Directory](#cohesive-directory) with an explicit
 concept-vs-role test. A concept or phase folder has a one-line invariant with no
@@ -148,4 +151,4 @@ Do not add a `types/` subdirectory to a family just because a file is passive.
 Do not scatter support contracts through a subsystem root when a `types/`
 subdirectory would make their role clearer. The same
 [type-placement tiers](naming-and-placement.md#type-placement-three-tiers) still
-apply: promote a type only when its scope earns the new home.
+apply: promote a type only when its scope justifies the new home.

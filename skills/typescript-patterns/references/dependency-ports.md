@@ -17,8 +17,8 @@ tests and alternate callers can supply a checked literal without casting.
 
 Type the parameter from the transitive closure of what happens to the value:
 what the consumer calls directly **and** what every downstream recipient calls.
-A class that only forwards a dependency is a conduit, not proof that the
-dependency can be narrowed.
+A class that only forwards a dependency is a conduit: its own calls do not prove
+that the dependency can be narrowed.
 
 - A coordinator that forwards a clock to several workers needs the union of all
   those workers' clock capabilities, not just the method it calls directly.
@@ -44,7 +44,7 @@ session. The methods match and the lifecycle contract does not.
 Use a port that makes the semantic requirement visible:
 
 - accept a transaction/session role when the caller is already inside one;
-- accept an `withTransaction(callback)` or session-acquisition capability when
+- accept a `withTransaction(callback)` or session-acquisition capability when
   the consumer owns the lifetime; or
 - keep the concrete dependency when its full identity and ownership semantics
   are part of the contract.
@@ -102,14 +102,14 @@ consumer genuinely needs the provider's full semantics.
 
 A correct port lets a test supply a plain object literal that the compiler checks
 against production use. If the test still needs `as unknown as`, classify the
-case before changing production: the test may need a real domain fixture, may be
-reaching into private state, or may be modeling an opaque browser/vendor conduit
-that cannot be represented honestly. The decision sequence belongs to the
-repository's own testing conventions.
+case before changing production code: the test may need a real domain fixture,
+may be reaching into private state, or may be modeling an opaque browser/vendor
+conduit that cannot be represented honestly. The decision sequence belongs to
+the repository's own testing conventions.
 
 Do not add a port solely to eliminate a cast when the consumer genuinely needs
 the concrete dependency. A justified cast at an external conduit is safer than
-a false abstraction that licenses invalid production values.
+a false abstraction that allows invalid production values.
 
 Related: [class shape](class-shape.md),
 [type placement](naming-and-placement.md#type-placement-three-tiers).

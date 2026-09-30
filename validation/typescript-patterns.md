@@ -46,3 +46,28 @@ guidance now checks actual deployed consumers and published contracts instead of
 assuming nothing is in production. Enforcement guidance states its own rationale.
 The manifest validator and all 119 local links/anchors pass. A package search
 finds no remaining source-project policy references.
+
+## Clear writing pass — 2026-09-30
+
+Version 1.0.2 revises the prose of the manifest and twelve reference pages;
+`types-and-generics.md` needed no change. See the [package
+sweep](clear-writing.md#package-sweep--2026-09-30). The description's "blurring"
+became "becoming unclear", matching the symptom table. Review found one changed
+causal claim about where a total mirror's compile error appears and one clarity
+regression; both were corrected with the other wording notes. Code, links and
+heading anchors are unchanged. No behavioral trial was run.
+
+Left unresolved, because each answer changes behavior:
+
+- The manifest calls a contradiction with local docs drift "to reconcile"; the
+  scenario above says to surface it.
+- `directories.md` says an import from outside a folder loses the path context,
+  while its rationale says such consumers import through the barrel, whose path
+  names the directory.
+- `directories.md` forbids `parsers/` as a role name, then implies a folder
+  holding only parsers is acceptable.
+- `review-heuristics.md` applies its prompts to reviewing a colleague's code,
+  then says reviewing a diff is a separate task.
+- `dependency-ports.md` uses "conduit" both for a class that only forwards a
+  dependency and for an opaque external boundary.
+- `enforcement.md` never defines the "both directions" in which a rule can fail.

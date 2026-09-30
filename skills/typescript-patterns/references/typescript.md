@@ -32,9 +32,9 @@
 
 ### Boundary Normalizers
 
-Name a helper that converts an external shape into the project's internal shape
-`normalize...`, not a vague `clean` or `sanitize`. Use `parse...` / `tryParse...`
-when the helper validates a grammar and returns a domain value.
+When a helper converts an external shape into the project's internal shape,
+name it `normalize...`, not a vague `clean` or `sanitize`. Use `parse...` /
+`tryParse...` when the helper validates a grammar and returns a domain value.
 
 ```ts
 function normalizeOptionalParam(value: string | null): string | undefined {
@@ -95,16 +95,16 @@ in the API shape.
 
 ### Unused Parameters In An Imposed Signature
 
-A parameter you do not use but cannot remove — because a used parameter follows
-it in a signature you do not own — takes the underscore prefix the toolchain
-already exempts. Deleting it would shift every parameter after it.
+When you do not use a parameter but cannot remove it, because a used parameter
+follows it in a signature you do not own, give it the underscore prefix the
+toolchain already exempts. Deleting it would shift every parameter after it.
 
 ```ts
 codec.explainsEntry = (_revision, address, snapshots) =>
   addressIsExplained(address, snapshots);
 ```
 
-This is the language's own convention for the case, not a suppression, and a
+This is the language's own convention for the case, not a suppression. A
 policy that bans it outright is unimplementable wherever callbacks are
 implemented against a foreign interface. It applies only where removal is
 unavailable: an unused **trailing** parameter is deleted, and an unused local or
@@ -198,8 +198,8 @@ const FIELDS = ["name"] as const satisfies readonly FieldName[];
 ```
 
 A subset of `T[]`, `Set<T>`, or `Map<T, V>` is valid. `Partial` explicitly opts
-out, a cast launders the hole, and array `satisfies` checks membership only.
-Read the annotation; do not trust its protective appearance.
+out, a cast hides the missing entries, and array `satisfies` checks membership
+only. Read the annotation; do not trust its protective appearance.
 
 ### The Two Total Shapes
 
@@ -231,11 +231,11 @@ export const COMMAND_FOR_MODE = {
 Give opting out a value such as `null` or a tagged decision. An explicit decline
 is reviewable; a missing property is invisible.
 
-Put the obligation beside the declaration it mirrors so a compile error lands
-in front of the author who grows the vocabulary. If the source is open-ended
-data, say so and add a contract test when the stakes justify one. A closed
-vocabulary in another repository can still be held equal through generated
-types or a cross-contract test; a comment claiming equality is not a mechanism.
+Put the obligation beside the declaration it mirrors so the author who extends
+the vocabulary gets the compile error. If the source is open-ended data, say so
+and add a contract test when the stakes justify one. A closed vocabulary in
+another repository can still be held equal through generated types or a
+cross-contract test; a comment claiming equality does not enforce it.
 
 ### Fail-Closed Discovery Boundaries
 
@@ -248,10 +248,10 @@ const migrationFiles = names.filter((name) => name.endsWith(".sql"));
 const migrations = migrationFiles.map((name) => MigrationName.parse(name));
 ```
 
-`MigrationName.parse` should reject a malformed versioned SQL name. Filtering
+`MigrationName.parse` should reject a malformed versioned SQL name. Keeping
 only names that already match the full version pattern would silently drop the
-malformed migration—the boundary appears healthy while an owned input never
-enters the system.
+malformed migration. The boundary would appear healthy while an owned input
+never entered the system.
 
 Use a parse/partition step when every candidate must be accepted or explained:
 
@@ -310,8 +310,9 @@ Treat indexing as a lookup that can fail unless the type proves otherwise.
 
 - **Make the producing type prove it** when the cardinality is fixed and small:
   `readonly [T, ...T[]]` for non-empty, `readonly [T, T]` for a pair. Declare it
-  where the value is built, not where it is read. One declaration retires every
-  read site downstream; a guard retires one, and the next reader adds another.
+  where the value is built, not where it is read. One declaration removes the
+  need for a guard at every downstream read site; a guard covers one read, and
+  the next reader adds another.
 - Keep the proof through transformation. Both `.map()` and a spread widen a
   tuple back to an array, so a rebuilt collection silently loses the guarantee
   its source had. Destructure, or annotate the rebuilt tuple.
@@ -322,7 +323,7 @@ Treat indexing as a lookup that can fail unless the type proves otherwise.
 - Treat dynamic records and environment maps as untrusted input: read,
   validate, then pass a typed value onward.
 
-The first bullet has a ceiling. A type states a fixed shape, not a relation:
+The first bullet has a limit. A type states a fixed shape, not a relation:
 "length divisible by four", "these two arrays stay parallel", "this index came
 from that collection's length". Assert a relational constraint once, at the
 boundary that accepts the value, and say in that signature what it refuses.
@@ -408,7 +409,7 @@ export class ValidatedOrder {
 ```
 
 An ordinary private field brands equally well but emits a runtime property and
-reads as dead weight to both a reviewer and an unused-binding check — see
+looks unused to both a reviewer and an unused-binding check; see
 [reading a strictness finding](enforcement.md#reading-a-strictness-finding).
 
 Brand a class only where a structural impostor is actually reachable: a

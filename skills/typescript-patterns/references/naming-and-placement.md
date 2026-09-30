@@ -14,8 +14,9 @@ Name a class or primary type file after its primary export. Use the shape
 `{Domain?}{Topic}{Role?}.ts` for class-oriented code.
 
 - **Domain** is context not already supplied by the package or directory. Keep
-  it when it is a load-bearing public identity; drop it when it repeats the
-  path. See [directory patterns](directories.md#directory-carries-the-prefix).
+  it when the public identity depends on it; drop it when it repeats the path.
+  See
+  [directory patterns](directories.md#directory-carries-the-prefix).
 - **Topic** is the noun or concept the file owns.
 - **Role** names the unit's contract: `Parser`, `Resolver`, `Builder`,
   `Compiler`, `Adapter`, `Registry`, and similar words carry meaning when they
@@ -53,7 +54,7 @@ there.
 
 A folder is dominated by one mood or explicitly splits a functional core from
 an imperative shell. A role-named folder mixing values, operations, and policies
-usually wants to be split by concept first.
+usually should be split by concept first.
 
 ## Role Dictionary
 
@@ -84,15 +85,15 @@ pipeline rather than earning its own module.
 
 ### Name The Obligation, Not The Property
 
-If adding an entry to a registry transfers responsibility or disarms a fallback,
-name that obligation. `SUPPORTED_FIELDS` sounds like an inventory;
+If adding an entry to a registry transfers responsibility or disables a
+fallback, name that obligation. `SUPPORTED_FIELDS` sounds like an inventory;
 `SERIALIZER_OWNED_FIELDS` says that adding a member makes the serializer
 responsible for carrying it.
 
-The name is mitigation, not the guard. A registry whose omission is unsafe must
-also be fail-closed through an exhaustive record, an owner-derived schema, or a
-durable ratchet. See [Fail-Closed
-Mirrors](typescript.md#fail-closed-mirrors).
+The name reduces the risk but does not guard against it. If omitting an entry
+from the registry is unsafe, the registry must also be fail-closed through an
+exhaustive record, an owner-derived schema, or a durable ratchet. See
+[Fail-Closed Mirrors](typescript.md#fail-closed-mirrors).
 
 ## Representation Prefixes
 
@@ -109,14 +110,15 @@ leave the canonical carried form unmarked.
 | `*Json` / `Serialized*` | Serialized mirror of a carried value                          | `OrderJson`        |
 | `Resolved*`             | A decision made and consumed at a boundary                    | `ResolvedLocale`   |
 
-One concept's ordinary ladder is therefore:
+One concept's ordinary sequence of representations is therefore:
 
 ```text
 InputOrder -> Order -> OrderJson
 ```
 
-Strip the serialization marker from a mirror and expect the canonical type's
-name. A mismatch is evidence that one representation is misnamed.
+Removing the serialization marker from a mirror's name should leave the
+canonical type's name. A mismatch is evidence that one representation is
+misnamed.
 
 ### `Resolved*` Promises A Decision
 
@@ -154,4 +156,4 @@ Start at the lowest tier and promote when the type escapes its scope:
 
 Escape of scope, not raw importer count, triggers promotion. A private helper
 type used by many methods remains inline; a public type imported from another
-package does not remain a dangling implementation sibling.
+package does not stay in a sibling types file beside the implementation.
