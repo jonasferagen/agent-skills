@@ -35,6 +35,8 @@ as a manual review; automation can grow from actual transitions.
 | --- | --- |
 | [typescript-patterns](skills/typescript-patterns/SKILL.md) | TypeScript types, narrowing, generics, absence, module syntax and enforcement. |
 | [typescript-design](skills/typescript-design/SKILL.md) | Class-based TypeScript house style: operations, naming, ownership, ports, barrels and directory layout. |
+| [python-patterns](skills/python-patterns/SKILL.md) | Python types, runtime boundaries, defaults, exceptions, resource cleanup and async tasks. |
+| [python-design](skills/python-design/SKILL.md) | Class-based Python house style: operations, domain values, dependency protocols, naming and modules. |
 | [bash-patterns](skills/bash-patterns/SKILL.md) | Preserving command failures and query results in Bash checks, pipelines, captures and process substitutions. |
 | [node-patterns](skills/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
 | [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries, and transactions on pooled connections. |
@@ -317,6 +319,25 @@ table", "Use $typescript-design to name this module and its exports", and
 See the [language validation](validation/typescript-patterns.md) and
 [design validation](validation/typescript-design.md), including the split's
 reference mapping and remaining limits.
+
+**python-patterns** and **python-design** start the same language/design split
+for Python at version 0.1.0. They cover selected failure-prone patterns and the
+class-based house style, using Python conventions: keyword-only arguments,
+dataclasses, protocols, snake_case names and cohesive modules.
+
+Everything Claude Code's Python skill informed topic selection; Trail of Bits'
+modern-python plugin helped identify tooling decisions to leave with consuming
+projects. The prose and examples are newly authored and checked against Python's
+documentation. No upstream skill files, hooks or installers were imported.
+Source pins, adoption decisions and verification limits are recorded in the
+[language validation](validation/python-patterns.md) and
+[design validation](validation/python-design.md). Updates require deliberate
+review; neither upstream is tracked automatically.
+
+Example requests: "Use $python-patterns to review cancellation and cleanup in
+this worker", "Use $python-design to give these operations and values clear
+owners." Each package works alone; neither prescribes a toolchain or changes
+installed consumers.
 
 **source-of-truth** was extracted on 2026-09-29 from a duplication audit of
 Personal Atlas: six parallel searches over validation rules, domain vocabularies,
