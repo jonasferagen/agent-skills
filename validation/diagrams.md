@@ -91,3 +91,21 @@ Version 0.1.1 changes the display name and heading to “Diagrams and tables” 
 shortens the UI description. The installation name remains `diagrams`; drawing
 instructions and examples are unchanged. Package and skill-creator validation
 passed. No diagram was changed or rerendered for this metadata update.
+
+## Clear writing pass — 2026-09-30
+
+Version 0.1.2 revises the prose around the diagrams; see the [package
+sweep](clear-writing.md#package-sweep--2026-09-30). Idioms such as "hairball",
+"puzzle" and "from across the room" were replaced, and ambiguous references were
+resolved. The description's last clause was reworded with its triggers kept. No
+diagram source changed, so none was rerendered. Review found the meaning
+preserved; six wording corrections restored distinctions such as "cheapest"
+crossings and a "lower-altitude" owner.
+
+Left unresolved, because each answer changes behavior:
+
+- `worked-examples.md` says `erDiagram` has no layout controls, while the
+  manifest and `drawing.md` describe ER direction and subgraphs in current
+  Mermaid. The example may describe an older renderer but reads as current.
+- The ER-subgraph scenario above splits a model only if its relationships remain
+  hard to trace; the manifest and `drawing.md` split past the threshold.

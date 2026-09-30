@@ -1,7 +1,7 @@
 # Drawing conventions
 
 **Read this before writing a Mermaid block or an overview table.** `SKILL.md`
-decides *which* form carries a subject; this file is *how* to draw it so it
+decides *which* form carries a subject; this file covers *how* to draw it so it
 renders the same on GitHub, in editor previews, and in the live editor. For a
 model to copy, see [worked-examples.md](worked-examples.md).
 
@@ -18,7 +18,7 @@ at the top level and inside a subgraph `direction`.
 Reach for `LR` only when the flow is a genuinely short, linear pipeline that
 reads better wide _and_ fits the column, or for the layered-overview pattern
 below — not as a habit. **When a wide diagram starts wrapping or shrinking text
-to fit, it wanted `TB`.**
+to fit, switch it to `TB`.**
 
 `TB` alone does not save a diagram carrying too much. When the block is still
 too wide after switching, the problem is altitude rather than direction: split
@@ -138,7 +138,7 @@ flowchart TB
 ```
 
 N parallel edges between one pair say nothing the number does not, and they are
-the cheapest crossings a dense block has to give up. Keep edges separate only
+the cheapest crossings to remove from a dense block. Keep edges separate only
 when they differ in something the diagram is read for — cardinality, direction,
 or condition. Give a different *kind* of reference its own edge style instead of
 adding it to the count, so one number never mixes two meanings.
@@ -161,8 +161,8 @@ erDiagram
   }
 ```
 
-- **Every relationship needs a label** — a bare `A ||--o{ B` is a parse error,
-  still, on current Mermaid. Write `: ""` when there is genuinely nothing to
+- **Every relationship needs a label** — a bare `A ||--o{ B` is still a parse
+  error on current Mermaid. Write `: ""` when there is genuinely nothing to
   say.
 - **Cardinality reads left-then-right**: `||` exactly one, `o|` zero or one,
   `}o` zero or more, `}|` one or more. `||--o{` is the common one-to-many.
@@ -179,10 +179,11 @@ erDiagram
 - **ER direction and subgraphs depend on the target Mermaid renderer.** Current
   [Mermaid ER syntax](https://mermaid.js.org/syntax/entityRelationshipDiagram.html)
   supports both, but ER subgraphs require version 11.17.0 or newer.
-  Check the project's preview or publishing renderer before using them. Split
-  past roughly 10–12 entities, or a comparable edge count, even when every
-  attribute block is already keys-only. Attribute trimming reduces width; it
-  does not make a crowded relationship layout tractable.
+  Check the project's preview or publishing renderer before using them. With or
+  without those controls, split past roughly 10–12 entities, or a comparable
+  edge count, even when every attribute block is already keys-only. Attribute
+  trimming reduces width; it does not make a crowded relationship layout
+  tractable.
 - **Split by aggregate cluster.** Start with one root-only overview naming every
   aggregate root and only the edges directly between roots, with no children.
   Then open each non-atomic root in its own compact detail `erDiagram`, showing
@@ -210,10 +211,11 @@ erDiagram
   unanswered question — write `none`, `n/a`, or `unknown` on purpose.
 - **Keep cells short.** A cell that wants a paragraph means the table is at the
   wrong altitude: shrink the cell to a verdict and link to the prose.
-- **Watch the width.** A table that scrolls sideways in a rendered doc is a wide
-  diagram in disguise. Drop a column, or transpose the axes.
+- **Watch the width.** A table that scrolls sideways in a rendered doc has the
+  same problem as a diagram that is too wide. Drop a column, or transpose the
+  axes.
 - **One row per case, and say what the rows are.** A table whose rows mix two
-  kinds of thing is two tables.
+  kinds of thing should be two tables.
 - **Put the axis in the header**, not in the surrounding sentence, so the table
   still reads when it is quoted into an issue without its paragraph.
 

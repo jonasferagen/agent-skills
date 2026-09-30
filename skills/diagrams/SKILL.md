@@ -1,8 +1,8 @@
 ---
 name: diagrams
-description: "Apply the smallest useful diagram, table or matrix when authoring or revising docs, skills, plans, issues, comments, design records and review feedback. Use whenever a structured form might beat prose: a paragraph describing what connects to what, a flow or lifecycle across more than about three components, a schema or data-model change, options or tiers that want one row each, a diagram grown too wide to read, a decision or coverage matrix, or a relationship whose cardinality matters. Reach for it before writing the prose, and again when a diagram needs splitting by altitude, grounding in its source, or checking for readability in the renderer its readers use. Owns form choice, drawing and verification; where a form lives is the owning surface's call."
+description: "Apply the smallest useful diagram, table or matrix when authoring or revising docs, skills, plans, issues, comments, design records and review feedback. Use whenever a structured form might beat prose: a paragraph describing what connects to what, a flow or lifecycle across more than about three components, a schema or data-model change, options or tiers that want one row each, a diagram grown too wide to read, a decision or coverage matrix, or a relationship whose cardinality matters. Reach for it before writing the prose, and again when a diagram needs splitting by altitude, grounding in its source, or checking for readability in the renderer its readers use. Owns form choice, drawing and verification; the owning surface decides where a form lives."
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
 ---
 
 # Diagrams and tables
@@ -17,12 +17,12 @@ detail owner rather than copying it; in a skill, that owner is normally a
 bundled `references/` document.
 
 This skill owns **form choice**: which form carries a subject, at what altitude,
-and how it is drawn. Where a form lives is the owning surface's call. For a
+and how it is drawn. The owning surface decides where a form lives. For a
 documentation set, that owner decides the form's placement, discoverability,
 freshness review against its source, catalog entry, and when an index hands its
 detail to the owning document; it also decides that a system document opens with
 a brief overview. This skill decides only whether that overview wants a diagram
-or a table, and which — concise prose is the right overview when there is no
+or a table, and which one. Concise prose is the right overview when there is no
 relationship, flow or ownership shape to show. Where a project documentation
 skill is available, it owns those placement rules.
 
@@ -40,8 +40,8 @@ reads](#verify-that-it-reads) in the renderer its readers use afterwards. A
 diagram that parses is not yet a diagram that works.
 
 A repository-specific _diagram catalog_ is different again: it indexes the
-diagrams a repository owns and points at their canonical docs. Conventions here;
-inventory there.
+diagrams a repository owns and points at their canonical docs. This skill holds
+the conventions; the catalog holds the inventory.
 
 ## When to diagram
 
@@ -49,8 +49,8 @@ When a doc describes flow, structure, or lifecycle across more than about three
 components, sketch a Mermaid block **before** writing the prose — the topic is
 _what connects to what_, _in what order_, or _what shape_.
 
-**A diagram on its own is usually a puzzle** — pair it with a short framing
-paragraph and outbound links to deeper docs.
+**A diagram on its own is usually hard to interpret** — pair it with a short
+framing paragraph and outbound links to deeper docs.
 
 ## The job is the central concepts, not decoration
 
@@ -60,8 +60,8 @@ changing, how the shape differs afterward. That is the test to apply before
 drawing: name the one question the reader arrives with, and draw the answer.
 
 It follows that **a paragraph describing what a structured form would have shown
-is a paragraph the reader has to re-derive.** Prefer the structured form
-wherever one fits:
+makes the reader reconstruct that form.** Prefer the structured form wherever
+one fits:
 
 | Subject | Form to reach for first |
 | --- | --- |
@@ -85,10 +85,11 @@ Budget it: a README usually gets one compact thumbnail; a deep doc usually gets
 one or two detailed diagrams. That is an attention budget, not a hard block
 count. When one canonical overview owns several independently complex black
 boxes, the overview and its compact per-box details form **one two-altitude
-diagram set**; that set may contain one detail per important box. Do not spend
-that exception on boxes whose detail belongs to another canonical owner, or on
-extra diagrams that answer unrelated questions. Past that, each new block costs
-the reader attention and costs the repository another surface to keep true.
+diagram set**, an exception to that budget: the set may contain one detail per
+important box. Do not use that exception for boxes whose detail belongs to
+another canonical owner, or for extra diagrams that answer unrelated questions.
+Beyond the budget and that exception, each new block costs the reader attention
+and adds one more diagram the repository must keep accurate.
 
 **Before drawing, look for the diagram that already exists** — in the owning
 doc, in the design record, in the plan or issue that decided the shape. Link it.
@@ -97,7 +98,7 @@ drifts, silently, because nobody knows it is there to update.
 
 - **In an issue body, a plan, or review feedback, link the canonical diagram and
   draw only the delta.** Those texts are read once and never maintained; a full
-  system diagram pasted into one is stale within a sprint and outlives the
+  system diagram pasted into one is stale within weeks and outlives the
   discussion that justified it.
 - **Redraw only when the existing diagram answers a different question.** A
   different altitude or a different audience is a reason; wanting the picture
@@ -106,15 +107,15 @@ drifts, silently, because nobody knows it is there to update.
   of them.
 
 **Audit an existing over-threshold diagram before redesigning it.** Those rules
-fire while authoring something new; a block that has already outgrown its
+apply while you author something new; a block that has already outgrown its
 threshold needs one mechanical measurement first. For each element it draws, ask
-whether a canonical owner below already carries that element — the same fact,
-with the same or better fidelity. A low duplicated fraction means the block is
-genuinely dense, and the altitude split below is the fix. A high fraction is a
-different diagnosis: the block owns nothing, so delete it and draw the altitude
-**above** it instead. Take that measurement before choosing the remedy, because
-splitting a fully duplicated block yields a correctly-split set that still
-duplicates every fact.
+whether a lower-altitude canonical owner already carries that element — the same
+fact, with the same or better fidelity. A low duplicated fraction means the
+block is genuinely dense, and the altitude split described later is the fix. A
+high fraction is a different diagnosis: the block owns nothing, so delete it and
+draw the altitude **above** it instead. Take that measurement before choosing
+the remedy, because splitting a fully duplicated block yields a correctly-split
+set that still duplicates every fact.
 
 ## Tables and matrices are underused
 
@@ -126,8 +127,8 @@ anything is a table that was never drawn.
 **The test is shared fields, not item count.** Items carrying the same fields
 are a table however few of them there are: three items × three fields is one
 scan down a column instead of three sentences to parse. Items sharing no
-structure stay prose however many there are — ruling a list of unrelated
-statements gains the reader nothing. A short parallel set is exactly where a
+structure stay prose however many there are — putting unrelated statements in a
+table gains the reader nothing. A short parallel set is exactly where a
 table pays, so counting rows is the wrong question to ask first.
 
 Five shapes carry most cases:
@@ -142,23 +143,23 @@ Five shapes carry most cases:
 
 The coverage matrix is the one to reach for deliberately: prose can describe
 every surface in turn and never reveal that one of them answers nothing, whereas
-an empty cell is visible from across the room.
+an empty cell is visible at a glance.
 
 The fan-in table is the one that rescues a diagram. **A shared target reached by
-many entities belongs in a table rather than as a drawn hub** — it is the most
+many entities belongs in a table rather than as a drawn hub.** A hub is the most
 expensive node a graph layout can carry, since its edges cross every other edge
-in the block, while a table shows the same dependency with no crossing at all.
-Put the target in the heading, one referencing entity or group per row, and keep
-the hub out of the drawing.
+in the block; a table shows the same dependency with no crossing at all. Put the
+target in the heading, one referencing entity or group per row, and keep the hub
+out of the drawing.
 
 ### What choosing a form buys
 
 A structured form buys **scannability, not brevity**, and the two are easy to
 confuse when reporting a restructure. Converting wrapped prose into a table
-collapses the line count while barely moving the word count, because the words
-were never what made the passage slow to read — one table row holds what four
-wrapped lines held. Measure words before claiming a document got shorter. A
-line count after a form change describes cell width more than it describes how
+collapses the line count, since one table row holds what four wrapped lines
+held. It barely moves the word count, because the words were never what made
+the passage slow to read. Measure words before claiming a document got shorter.
+A line count after a form change describes cell width more than it describes how
 much the reader has to take in, and a reviewer told "150 lines to 115" will
 believe it.
 
@@ -234,7 +235,7 @@ useful ER split left beneath it. Group by ownership — one node per document,
 page, or migration family that owns the entities — and label each edge with the
 number of references crossing that boundary. The nodes stop being tables, so the
 block becomes a `flowchart`, showing ownership groups and their dependencies.
-Use layout features supported by the target renderer. It answers a
+Use layout features supported by the target renderer. The flowchart answers a
 different question from the diagram it replaces — which groups depend on which,
 and the layer order that implies — while each group's own page keeps every
 individual relationship at full cardinality.
@@ -247,7 +248,7 @@ graph.
 
 A subgraph is the right tool when the grouping is a handful of nodes the reader
 must see in place. **When a subgraph grows past roughly five nodes, or when two
-subgraphs in one block are each large enough to stand alone, it wanted to be a
+subgraphs in one block are each large enough to stand alone, it should be a
 separate diagram.** That local threshold is not the whole complexity test. A
 lifecycle is also above the split threshold when the whole block makes the
 reader independently understand several stage-level questions, especially a

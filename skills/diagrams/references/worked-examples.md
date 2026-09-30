@@ -21,7 +21,7 @@ flowchart TB
 ```
 
 The detail diagram opens that one node, in the doc that owns it. Its title
-repeats the black box's label exactly, so a reader knows what they opened:
+repeats the black box's label exactly, so a reader knows what they opened.
 
 The publish boundary checks the candidate in this order.
 
@@ -36,8 +36,9 @@ flowchart TB
   end
 ```
 
-Each diagram now answers one question at full column width. Its opening names
-the boundary; review the detail against its source when that boundary changes.
+Each diagram now answers one question at full column width. The detail's opening
+names the boundary; review the detail against its source when that boundary
+changes.
 
 ## One overview fanning out to several owned details
 
@@ -320,7 +321,7 @@ repository.
 `erDiagram`: fourteen owned tables, nine cross-family target stubs, and
 twenty-three relationship edges in one unclustered layout. Moving full columns
 to a companion table made the entity boxes thinner, but the remaining graph was
-still a hairball because `erDiagram` has no layout controls.
+still too dense to read because `erDiagram` has no layout controls.
 
 The crowded version mixed aggregate roots, owned children, join tables, and
 every single-FK target in one block. Even this relationship-only excerpt shows
@@ -389,9 +390,9 @@ erDiagram
 
 The creature detail independently opens its children and the join table that
 carries the root-to-root natural-attack relationship. Its cross-family targets
-stay in the companion table rather than becoming drawn hubs; where that shared
+stay in the companion table rather than becoming drawn hubs. Where that shared
 dependency is itself the question, it belongs in a fan-in table, as the next
-example shows:
+example shows.
 
 ```mermaid
 erDiagram
@@ -432,9 +433,9 @@ repository, replaced by per-aggregate diagrams in the documents that own them.
 
 **Replaces:** one `erDiagram` naming every table in the schema — 96 entities and
 122 relationship edges in a single flat block, several times over the ER split
-threshold. The aggregate-cluster split above has no purchase here: the schema
+threshold. The aggregate-cluster split above does not help here: the schema
 carries roughly forty plausible aggregate roots across eleven families, so even
-a root-only overview stays a hairball.
+a root-only overview stays too crowded to read.
 
 The measurement that chose the remedy was not the entity count. It was this:
 **all 122 edges were already drawn on a family page** — 76 inside a family, 46
@@ -448,9 +449,9 @@ fixes. Density prescribes a split, and a correctly split set would still have
 duplicated all 122 edges. Duplication prescribes deleting the block and drawing
 the altitude above it.
 
-The replaced block, in representative excerpt — the two hubs and one family's
-own edges are enough to show why no ER split rescues it; the frozen source owns
-the full inventory:
+This representative excerpt of the replaced block keeps the two hubs and one
+family's own edges, which are enough to show why no ER split rescues it; the
+frozen source owns the full inventory:
 
 ```mermaid
 erDiagram
@@ -472,11 +473,11 @@ erDiagram
   LEVEL_ROOTS ||--o{ LEVEL_HANDLES : ""
 ```
 
-The altitude above a table is the document that owns it. One node per migration
-family — which is also one node per family page — with each edge labelled by the
-number of foreign keys crossing that boundary. The nodes are no longer tables,
-so the form is a `flowchart`, and it gets rank control the `erDiagram` never
-had:
+The altitude above a table is the document that owns it. The family map draws
+one node per migration family, which is also one node per family page,
+and labels each edge with the number of foreign keys crossing that boundary. The
+nodes are no longer tables, so the form is a `flowchart`, and it gets rank
+control the `erDiagram` never had.
 
 The family map shows foreign-key dependencies and their layer order, with one
 node per family page.
@@ -520,17 +521,16 @@ flowchart TB
 Eleven nodes and nineteen edges replace ninety-six and one hundred and
 twenty-two, and the layer order becomes legible for the first time: the asset
 families stack, the game families stack separately, and the two stacks meet
-at exactly two edges. Collapsed counts are what make it readable — the eight
-foreign keys from game-core into game-combat are one labelled edge,
-not eight parallel ones — and the dotted edges are a different *kind* of
-reference, so they carry no count that could be added to the solid ones.
+at exactly two edges. Collapsed counts are what make it readable: the eight
+foreign keys from game-core into game-combat are one labelled edge, not eight
+parallel ones. The dotted edges are a different *kind* of reference, so they
+carry no count that could be added to the solid ones.
 
 Two hubs stay out of that graph entirely. Between them they account for 28 of
-the 46 cross-family edges — 13 of `blob`'s 15 referencing tables sit outside its
-own family, and all 15 game-core references cross a boundary — so drawing
-either hub would have put most of the crossings straight back. Each becomes a
-fan-in table beneath the map, with the hub named in the heading rather than
-drawn:
+the 46 cross-family edges: 13 of `blob`'s 15 referencing tables sit outside its
+own family, and all 15 game-core references cross a boundary. So drawing either
+hub would have put most of the crossings straight back. Each becomes a fan-in
+table beneath the map, with the hub named in the heading rather than drawn:
 
 | Family | Tables holding a `blob` foreign key |
 | --- | --- |
@@ -553,16 +553,16 @@ drawn:
 | `game_races` | none | `characters` |
 
 The two tables put their rows on **different axes on purpose**, and choosing that
-axis is the whole craft of the shape: `blob` is one target reached from many
-places, so the referencing families are the rows; game-core is many targets
-each reached from two places, so the targets are the rows and the referencing
-families are the columns. Pick whichever axis makes one row a single fact. The
-second table's `none` cells are the fill-every-cell rule earning its keep — an
-empty cell would have read as an oversight rather than as a real asymmetry.
+axis is the main decision in building this shape: `blob` is one target reached
+from many places, so the referencing families are the rows; game-core is many
+targets each reached from two places, so the targets are the rows and the
+referencing families are the columns. Pick whichever axis makes one row a single
+fact. The second table's `none` cells show why the fill-every-cell rule matters:
+an empty cell would have read as an oversight rather than as a real asymmetry.
 
-Nothing was lost in the deletion, because nothing lived here. The family pages
-still own every one of the 122 relationships at full cardinality; this altitude
-owns only the shapes no single family page can see.
+Nothing was lost in the deletion, because the overview owned no fact of its own.
+The family pages still own every one of the 122 relationships at full
+cardinality; this altitude owns only the shapes no single family page can see.
 
 ## A coverage matrix
 
