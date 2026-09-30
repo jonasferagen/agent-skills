@@ -103,28 +103,33 @@ behavior, defaults, exceptions and bundled resource interfaces.
 - **Major:** change defaults, mandatory rules, scope or exceptions in a way that
   requires consumers to review their adoption.
 
-Validate the package and its behavioral scenarios, and apply the
-[authoring skills](#authoring-skills), before tagging. A release must contain no
-unfinished scaffold or project-specific credentials or identifiers. Consumers
-pin the full commit as well as the release label because tags are names, not an
-integrity guarantee. Other skills in the repository need no version bump when
-one skill is released.
+Validate the package and its behavioral scenarios before tagging, and see the
+[authoring skills](#authoring-skills) recommended for releases. A release must
+contain no unfinished scaffold or project-specific credentials or identifiers.
+Consumers pin the full commit as well as the release label because tags are
+names, not an integrity guarantee. Other skills in the repository need no
+version bump when one skill is released.
 
 ### Authoring skills
 
-Skills in this repository must meet the standards they teach. Before tagging a
-release, apply each of these skills to the content that changed since the
-skill's last tag, or to the whole package for a first release:
+Skills in this repository should meet the standards they teach. Before tagging
+a release, apply these skills to the content that changed since the skill's
+last tag, or to the whole package for a first release:
 
 - [Clear writing](skills/clear-writing/SKILL.md), to the prose.
 - [Diagrams and tables](skills/diagrams/SKILL.md), to existing diagrams and
   tables and to passages a diagram or table would explain better.
 
-Record on the skill's validation page which skills were applied and what they
-changed; "no change needed" is a valid result. When a pass rewrites wording, an
-independent comparison of each changed passage with the prior text is
-recommended: the first Clear Writing sweep found four meaning changes that way.
-These skills guide authors; installed packages remain independent of them.
+This is a recommendation, not a release requirement. Clear Writing does not yet
+cover every kind of prose a skill package contains, such as trigger
+descriptions, defined terms, worked examples, pattern catalogs and templates.
+
+When you apply them, record on the skill's validation page which skills were
+applied and what they changed; "no change needed" is a valid result. When a pass
+rewrites wording, an independent comparison of each changed passage with the
+prior text is recommended: the first Clear Writing sweep found four meaning
+changes that way. These skills guide authors; installed packages remain
+independent of them.
 
 ## Adding a skill
 
@@ -139,8 +144,7 @@ These skills guide authors; installed packages remain independent of them.
   will seek. Use familiar terms and the actual language or tool when it narrows
   the scope. Preserve an established name unless clearer discovery justifies
   changing consumer paths.
-- Apply the [authoring skills](#authoring-skills) to the package before its
-  first release.
+- Use the [authoring skills](#authoring-skills) while writing the package.
 - Record intended behaviour in `validation/<name>.md` when a skill has scope
   boundaries worth testing, and add a row to the table above.
 

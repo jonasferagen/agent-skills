@@ -14,9 +14,9 @@ own their reusable rules; keep repository-specific package and release rules in
 the README.
 
 This is an authoring convention. Other skill packages do not require
-`clear-writing` or `diagrams` to be installed beside them. Before a skill
-release, these passes are required; the README's
-[authoring skills](README.md#authoring-skills) rule says what to record.
+`clear-writing` or `diagrams` to be installed beside them. The README's
+[authoring skills](README.md#authoring-skills) section recommends these passes
+before a skill release and says what to record.
 
 ## Verification
 
