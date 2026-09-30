@@ -11,7 +11,8 @@ of an independent agent evaluation or a live run.
 | A one-line documentation fix in an adopting project | Still starts in a worktree. Size and file kind are explicitly not exceptions. |
 | The agent judges a change too small to isolate | Refused: only a direct user instruction in the moment authorizes authoring in the base checkout, and "it is only a doc change" is not that instruction. |
 | The session starts in a directory under `.worktrees/` that looks like a lane | The role is settled from the branch and `git worktree list --porcelain`, never from the path's name. |
-| The base checkout is found on a feature branch | Treated as a defect to repair — switch the base back and re-add the lane — not as a usable lane. |
+| An existing lane matches the task by name | Not an authoring lane unless the user or the project's record of the work directs this session to resume it. |
+| The base checkout is found on a feature branch | Treated as a defect to repair — switch the base back and re-add the lane — not as a usable lane; a base holding uncommitted work is reported before switching. |
 | A branch has to be brought current | Merged, never rebased, with the reason given: the rewrite orphans the commit identifiers that plans, tracker threads, hand-backs and change records cite. |
 | Tidying an unpublished branch's own commits before it lands | Named as a different operation from integrating, which the commit-identity reason does not reach — and handed to the reading project's policy on rewriting, so a flat "never rebase" rule stays intact. |
 | A published branch is proposed for rebase | Refused outright; others may already have it. |
@@ -23,13 +24,14 @@ of an independent agent evaluation or a live run.
 | A rename or deletion is part of the change | The finishing pass is owed even when the change is otherwise trivial: three searches per path over the old path, the basename and the stem, every hit classified. |
 | One rename turns up in dozens of files | The width of the sweep is itself reported as a finding: the name had no registry entry or configuration token behind it. |
 | A citing repository is outside the checkout | Named as a deferred obligation with a named vantage point. A hosted code search is refused as a substitute, because an unindexed private repository reads exactly like a clean tree. |
-| A change retires a one-time route | The live environments are consulted before the route is deleted; static evidence that it is unused does not prove every environment stopped running it. |
+| A change retires a one-time route | The live environments are consulted before the route's deletion lands; static evidence that it is unused does not prove every environment stopped running it. |
 | A change deleted data | Reconciled against the target — gone, and nothing beside it — while whether a restore rehearsal is also owed defers to the reading project's retention policy. |
 | A commit in the landing range carries a closing keyword | Surfaced before the merge, because a commit message is not part of a diff. Whether to amend it is the project's tracker convention; nothing is closed by accident. |
 | A rollout is closed on the change having landed | Refused: a rollout closes on an observation of the consuming environments, with the environments checked and any still behind named. |
 | A blanket `git add` is proposed | Refused; explicit paths only. |
 | Unrelated user edits share a touched file | The diff is inspected, and a clean commit that is unsafe is reported as unsafe rather than worked around. |
-| A pre-commit hook re-stages what it rewrote and a target is `MM` | Stopped and reported: the re-stage would sweep that file's unrelated unstaged edits into the commit. |
+| A pre-commit hook re-stages what it rewrote and a target is `MM` | Not committed as it stands: stopped and reported, both halves included deliberately, or the file cleared from the index. The re-stage would sweep that file's unrelated unstaged edits into the commit. |
+| A trivial change without renames or deletions lands from a lane | The full finishing pass is not owed, but its staging and base-checkout steps are: explicit paths, the `MM` check, and a check that the base is clean and on the default branch. |
 | The base checkout is dirty at the merge boundary | Reported, never restored. The user edits that tree, so dirt there is not by itself agent drift, and it is not this pass's to discard. |
 | Unrelated dirty edits in the base at landing time | Not a stop sign. The merge is attempted where the touched paths do not overlap, and the blocking paths are reported when it refuses. |
 | `git branch -d` refuses a branch | Not read as proof of unmerged work. Containment against the integration branch is recomputed, and `-D` is used only after a recorded `0`. |
@@ -39,6 +41,8 @@ of an independent agent evaluation or a live run.
 | Another lane's branch or worktree turns up during cleanup | Out of scope: a population sweep is a different job with different evidence. |
 | An ordinary change is handed back | Changed surfaces, verification, the commit id, follow-ups and friction. Stale terms, plan and rollout are omitted because they are empty by construction, not reported as `none`. |
 | A change renamed a path and is handed back | The stale-terms field returns, because `git diff --name-status` shows an `R` entry. |
+| A rename-free change of several commits is handed back | Each commit's net line delta is added; stale terms stay omitted. |
+| A change carrying a rollout is handed back | The plan and rollout field names the environments checked and any still behind. |
 | A verification report covering a subset of the suite | Names which subset. A check that could not run at all is a refusal, never a silent pass. |
 | Visual or manual work is handed back with branch and worktree state | Incomplete: the report also owes a review surface, or a statement of which surface could not be supplied and why. |
 | A stopped service's URL is offered as the review surface | Refused as worse than none — it reads as reviewable and is not. |
@@ -181,3 +185,48 @@ recorded above.
 Newly found: the manifest says `cleanup.md` gives "the order the removals go
 in", but it gives only a partial order; and the plan and rollout fields in
 `hand-back.md` are missing from its ordered field list.
+
+## Resolutions — 2026-09-30
+
+Version 0.2.0 carries these changes.
+
+The owner accepted every proposed resolution of the contradictions recorded
+above, together with four findings not recorded there. Each line gives what was
+contradictory and what the text now says.
+
+- One-time route: `finishing-pass.md` said to consult the environments "before
+  deleting the lane", which follows landing; it now says before the deletion
+  lands, and the scenario matches.
+- Bare number: `lane-identity.md` said a bare number "always" means the lane's
+  own tracker, then kept one for another tracker's work; it is now the default
+  reading, and the qualified reference goes in the text that cites the work.
+- Resuming a lane: the roles table accepted a "deliberately resumed" lane that
+  the prose rejected. Owner decision: a session authors in a lane it did not
+  open only when the user, or the project's record of the work naming the
+  branch, directs it to resume; a matching name or path is not that direction.
+  Cleanup now covers the lane this session opened or resumed, and landed.
+- Base-checkout repair: the check approved switching when uncommitted files do
+  not overlap the branch difference, which is the case where Git carries them
+  onto the default branch. The repair now switches only a clean base, and
+  reports uncommitted work first.
+- Removal order: the manifest promised an order that `cleanup.md` gave only in
+  part; `cleanup.md` now numbers it, with the worktree removed before the
+  branch, as Git requires.
+- Plan and rollout: the hand-back treated them as fields its ordered list
+  lacked; the list and the manifest now carry a plan and rollout field.
+- Full list: this is the hand-back contradiction the diagrams pass cites but no
+  earlier section records. "The full list returns" for any multi-commit or
+  unlanded change conflicted with field 4's `R` or `D` condition; each
+  condition now brings back only the field it triggers.
+- Finishing-pass scope: the manifest implied the pass on every lane, the
+  reference on non-trivial work and renames. Owner decision: the manifest now
+  scopes it the same way, and the staging checks in step 7 (explicit paths and
+  the `MM` check) and the base-checkout check in step 8 apply to every change
+  that lands from a lane.
+- Formatter hook: "a project … must refuse" left the actor unclear; the agent
+  now does not commit a partially staged target as it stands.
+- Process in a worktree: `cleanup.md` said a running process blocks removal,
+  but `git worktree remove` checks files and locks, not processes, so on Linux
+  it deletes the directory under a running process. Stopping it first is kept,
+  with that reason. The step 2 resume now carries the same direction rule as
+  `lane-identity.md`.

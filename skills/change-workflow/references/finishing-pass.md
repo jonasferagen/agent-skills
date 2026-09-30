@@ -2,7 +2,9 @@
 
 [`change-workflow`](../SKILL.md) runs this pass at its merge boundary. Run it at
 the end of non-trivial work and for **every tracked-path rename or deletion**,
-even when the change is otherwise trivial. It answers one question: **is the
+even when the change is otherwise trivial. The staging checks in step 7 and the
+base-checkout check in step 8 apply to every change that lands from a lane,
+trivial or not. The pass answers one question: **is the
 final state actually finished?** Intermediate commits may legitimately have left
 things red where the plan named that red window.
 
@@ -62,7 +64,7 @@ name outsiders use for it — not a notification to them.
 and static evidence that a route is unused is not evidence that every
 environment stopped running it. So a change retiring a one-time route — a
 bootstrap, a migration, a backfill — consults the environments themselves, and
-whatever inventory of owed acts the project keeps, before deleting the lane.
+whatever inventory of owed acts the project keeps, before the deletion lands.
 
 **A change that deleted data is reconciled against its target, not against a
 restore.** Show that the named target is gone and that nothing beside it went with
@@ -113,8 +115,9 @@ project's own tracker conventions rather than inventing a comment form here.
 - **A rollout closes on an observation of the consuming environments, never on
   this change having landed.** Name the environments checked and any still behind.
 
-Each item is conditional on its subject existing. An item with no subject — no
-plan, no rollout obligation — is omitted from the hand-back, not reported as
+Each item is conditional on its subject existing, and the plan and rollout
+results go in the hand-back's plan and rollout field. An item with no subject —
+no plan, no rollout obligation — is omitted from the hand-back, not reported as
 `none`.
 
 ## 6. Capture what you are not doing
@@ -147,10 +150,10 @@ unsafe. Never silently leave verified implementation or refactor work
 uncommitted — where a clean commit is unsafe, or the user asked for no commit,
 say so plainly rather than working around it.
 
-**A project whose pre-commit hook re-stages what it rewrote must refuse a
-partially staged target.** Otherwise the re-stage silently sweeps that file's
-unrelated unstaged edits into the commit. Markdown formatters are the common case
-rather than a special exception:
+**In a project whose pre-commit hook re-stages what it rewrote, do not commit a
+partially staged target as it stands.** The re-stage would silently sweep that
+file's unrelated unstaged edits into the commit. Markdown formatters are the
+common case rather than a special exception:
 
 ```bash
 git status --short -- '*.md'

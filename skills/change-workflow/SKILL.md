@@ -2,7 +2,7 @@
 name: change-workflow
 description: "Land a repository change safely: isolate it in a worktree before the first write, keep it current by merge, reconcile and verify the tree that will actually merge, then land it and clean up by containment. Use before the first write bound for the default branch and again at the merge boundary — when a branch has to be brought current, when a rename or deletion needs a stale-reference sweep, when deciding whether verification evidence is still fresh, when a worktree or branch is about to be removed, or when writing the hand-back that reports the result. Reach for it when a change is \"done\" but nothing has said what was verified. Describes a discipline a project opts into; the reading project owns its own landing policy, tracker conventions and authorization."
 metadata:
-  version: "0.1.1"
+  version: "0.2.0"
 ---
 
 # Change Workflow
@@ -116,7 +116,9 @@ already be stale, and will diverge further as other work lands.
 
 ### 2. Resume, if the line of work already exists
 
-For a paused branch or a stacked phase, **bring it current before adding edits.**
+Resume a lane this session did not open only when the user or the project's
+record of the work directs it; a matching name is not that direction. For a
+paused branch or a stacked phase, **bring it current before adding edits.**
 Conflicts are cheapest before new work is layered on them, and a dirty paused
 branch can otherwise stay stale indefinitely.
 
@@ -161,11 +163,12 @@ assume either.
 
 **Correctness is owed at the merge boundary.** In-branch a lane may be red, built
 out of order and full of spikes; what merges is green, with its docs synchronized
-and its history readable. In exchange for that latitude, run a real finishing
-pass before the merge rather than an improvised checklist.
-[finishing-pass.md](references/finishing-pass.md) owns that pass, and it is
+and its history readable. In exchange for that latitude, non-trivial work runs
+a real finishing pass before the merge rather than an improvised checklist.
+[finishing-pass.md](references/finishing-pass.md) owns that pass. It is also
 owed for **every tracked-path rename or deletion** even when the change is
-otherwise trivial.
+otherwise trivial, and its staging and base-checkout steps apply to every change
+that lands from a lane.
 
 Synchronize before the final verification, and run the checks the change calls
 for on the resulting tree. [verification.md](references/verification.md) holds
@@ -237,9 +240,9 @@ conditions that retain a lane instead.
 
 Report, in this order: the changed surfaces; the verification performed, with the
 commands, their status and anything skipped together with the risk it leaves; the
-commit identifiers; the stale terms searched; the remaining risk and surfaced
-follow-ups; and any tooling or structural friction met along the way, where
-`friction: none` is a complete answer.
+commit identifiers; the stale terms searched; the plan and rollout state; the
+remaining risk and surfaced follow-ups; and any tooling or structural friction
+met along the way, where `friction: none` is a complete answer.
 
 **A field that is empty by construction is omitted; a field that could have
 carried content and did not is reported as `none`.** An omitted field says the
