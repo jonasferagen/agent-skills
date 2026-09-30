@@ -11,7 +11,7 @@ field-by-field conditions.
    skipped together with the risk it leaves unproven.
 3. **Commit identifiers.** Add each commit's net line delta **when the range holds
    more than one commit, or when the branch is handed back rather than landed**;
-   on a single landed commit the diff the reviewer already has carries the scale.
+   on a single landed commit the diff the reviewer already has shows its size.
 4. **Stale terms searched** — owed when the change renamed or deleted a tracked
    path, which `git diff --name-status <base>..HEAD` answers by showing an `R` or a
    `D` entry.
@@ -49,7 +49,8 @@ outcome is right.
 The user is being asked to judge the work, so the report owes the surface that
 judgment is made on. Branch and worktree state locate the change; they are not a
 review surface, and a report carrying only them leaves the reviewer to assemble
-one. Both go back together, with the first surface below that applies.
+one. Hand back the branch and worktree state together with the first review
+surface below that applies.
 
 | Review surface | Supply it when | What the hand-back names |
 | --- | --- | --- |
@@ -59,14 +60,14 @@ one. Both go back together, with the first surface below that applies.
 
 **A URL for a service stopped before the hand-back is worse than none** — it reads
 as reviewable and is not. Either keep the service up across the review window and
-say so, or fall to the captured set.
+say so, or fall back to the captured set.
 
 The third row is a stated result, never a silent omission. Naming the surface that
 could not be supplied is what lets the user ask for it, run the thing themselves,
 or accept the branch knowing what went unseen.
 
-**Prefer an assertion to a capture.** A change some test can observe owes no
-pixels — report the check that proved it. Reach for a capture only where no test
-surface can observe the outcome: rendered output, layout, audio, or a manual smoke
-step the task names by hand. Not knowing how to look at the thing is a reason to
-write the assertion, not a reason to capture.
+**Prefer an assertion to a capture.** A change that some test can observe owes
+no capture; report the check that proved it. Reach for a capture only where no
+test surface can observe the outcome: rendered output, layout, audio, or a
+manual smoke step the task names by hand. Not knowing how to look at the thing
+is a reason to write the assertion, not a reason to capture.

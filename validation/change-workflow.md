@@ -145,3 +145,27 @@ homed outside the project that holds facts.
   it: whether tidying an unpublished branch is allowed now depends on the reading
   project's policy, so a project with no rewriting policy gets no answer from the
   package.
+
+## Clear writing pass — 2026-09-30
+
+Version 0.1.1 revises the manifest and all five references; see the [package
+sweep](clear-writing.md#package-sweep--2026-09-30). Figurative uses of the
+defined terms "lane" and "land" were replaced where they clashed with the
+definitions, such as "a lane that holds" and "is never the lane". The
+description is unchanged. Review found rule strength, authorization boundaries,
+stop conditions and the order of Git steps unchanged; three wording corrections
+followed, and one edit was reverted to the original.
+
+Left unresolved, because each answer changes behavior:
+
+- `finishing-pass.md` has a change retiring a one-time route consult the
+  environments "before deleting the lane"; the scenario above says before the
+  route is deleted.
+- `lane-identity.md` says a bare number in a lane name always refers to the
+  lane's own repository's tracker, then keeps the bare number for work that
+  answers to another repository's tracker.
+- `lane-identity.md` accepts a lane "this session opened or deliberately
+  resumed", but rejects one "this session did not open and the project does not
+  name".
+- In the base-checkout repair, Git carries uncommitted edits across a switch
+  when the changed files do *not* overlap, which is the case the check approves.

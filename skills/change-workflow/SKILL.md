@@ -2,7 +2,7 @@
 name: change-workflow
 description: "Land a repository change safely: isolate it in a worktree before the first write, keep it current by merge, reconcile and verify the tree that will actually merge, then land it and clean up by containment. Use before the first write bound for the default branch and again at the merge boundary — when a branch has to be brought current, when a rename or deletion needs a stale-reference sweep, when deciding whether verification evidence is still fresh, when a worktree or branch is about to be removed, or when writing the hand-back that reports the result. Reach for it when a change is \"done\" but nothing has said what was verified. Describes a discipline a project opts into; the reading project owns its own landing policy, tracker conventions and authorization."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Change Workflow
@@ -11,16 +11,16 @@ metadata:
 Whether changes are authored in isolated worktrees, how one reaches the default
 branch, and who may land it are decisions the reading project makes in its own
 instructions. Read those first. Where they are silent, this package supplies a
-lane that holds; where they disagree with something here, they win — and a
-project that authors on branches in one checkout is not doing it wrong.
+reliable default; where they disagree with something here, they win. A project
+that authors on branches in one checkout is not doing it wrong.
 
 Once a project has adopted it, the rule is:
 
 **Before the first repository write bound for the default branch, create a
 worktree and author there.** Anything Git would track counts, however small or
 early: source, docs, configuration, generated files and status records alike.
-Ignored dependencies and disposable output do not. Size and file kind change
-nothing — a one-line doc fix counts.
+Ignored dependencies and disposable output do not. Size and file kind are not
+exceptions: a one-line doc fix counts.
 
 The base checkout stays on the default branch as the merge target. That is what
 keeps parallel agents and live user edits out of one working tree, and it keeps
@@ -60,11 +60,12 @@ Three conditions stop short of landing:
 | The user directed a stop or a branch hand-back | Branch and worktree state, with the hand-back below | The user authorizes landing |
 | The project lands through review, or a coordinator owns integration | Publish the branch; return its reference and the verification, leaving the lane intact | The reviewer or coordinator lands it |
 
-Work whose success is visual or manual is not a fourth condition. Hold it only
-when you cannot tell whether the rendered or manual outcome is right; not knowing
-how to look at the thing is not that uncertainty. Either way the report owes the
-surface the judgment is made on — branch and worktree state locate a change, they
-do not let anyone review it.
+Work whose success is visual or manual is not a fourth condition. Hold it back
+from landing only when you cannot tell whether the rendered or manual outcome is
+right; not knowing how to look at the outcome does not count as that
+uncertainty. Either way, the report owes the review surface the judgment is
+made on. Branch and worktree state locate a change, but they do not let anyone
+review it.
 [hand-back.md](references/hand-back.md#handing-back-visual-or-manual-work)
 settles which surface applies.
 
@@ -79,9 +80,9 @@ feature branch. They are often one remote, but neither is reliably named
 ### 0. Identify the lane you are in
 
 A session starts where the host put it, usually the base checkout on the default
-branch — and from the inside, that can look like a task lane. Settle the role
-from the branch and the Git registration, never from the path's name, before the
-first read taken to guide authoring.
+branch — and from the inside, that can look like a task lane. Before the first
+read taken to guide authoring, settle the role from the branch and the Git
+registration, never from the path's name.
 [lane-identity.md](references/lane-identity.md) holds the roles, the facts that
 decide between them, and the repair when the base is on the wrong branch.
 
@@ -100,12 +101,12 @@ git worktree add .worktrees/<name> -b <branch> \
 Lanes live at `.worktrees/<name>` inside the base checkout, a project-owned
 directory beside the tracked tree. **The ignore entry belongs in the project's
 tracked ignore file, not `.git/info/exclude`.** An untracked exclude is local to
-one machine and the symptom lands far from the cause: the first worktree makes
-the base checkout dirty, and whatever refuses to land on a dirty base then
-refuses for no visible reason. Do not put lanes under tool-control directories
-such as `.agents/` or `.codex/`, which a host may protect as read-only; where a
-convention names a protected path, use `.worktrees/` and fix the convention in
-the same authorized change.
+one machine, and the failure shows up far from its cause: without the entry, the
+first worktree makes the base checkout dirty, and whatever refuses to land on a
+dirty base then refuses for no visible reason. Do not put lanes under
+tool-control directories such as `.agents/` or `.codex/`, which a host may
+protect as read-only; where a convention names a protected path, use
+`.worktrees/` and fix the convention in the same authorized change.
 
 Then move into the worktree, **re-read the files there**, and run the project's
 documented setup or dependency-install step before running anything else. Every
@@ -126,8 +127,8 @@ git -C <worktree> rev-list --left-right --count \
 git -C <worktree> merge <integration-remote>/<integration-branch>
 ```
 
-Commit or stash first. Do not sweep uncommitted work into a merge nobody asked
-for.
+Commit or stash uncommitted work before the merge. Do not sweep it into a merge
+nobody asked for.
 
 ### 3. Keep current by merge, never rebase
 
@@ -135,35 +136,36 @@ for.
 git merge <integration-remote>/<integration-branch>
 ```
 
-**Rewriting history to integrate is never the lane**, and that holds even for a
-local unpushed branch, where rebasing looks free. It is not: a rebased tree is no
-better verified than a merged one, while the rewrite orphans the commit
-identifiers that plans, tracker threads, hand-backs and change records cite.
+**Never rewrite history to integrate**, not even on a local unpushed branch,
+where rebasing looks free. It is not: a rebased tree is no better verified than
+a merged one, while the rewrite orphans the commit identifiers that plans,
+tracker threads, hand-backs and change records cite.
 
 A published branch must never be rebased at all — others may already have it.
-Publishing is worth doing early as cheap insurance: once the branch is on the
-remote, the work survives whatever happens locally.
+Publishing early is cheap and worth doing: once the branch is on the remote, the
+work survives whatever happens locally.
 
 ```bash
 git push -u <publish-remote> <branch>
 ```
 
 Tidying an unpublished branch's own commits before it lands is a different
-operation, and the reason above does not reach it — nothing cites a commit nobody
-has seen. It is still history rewriting, so **the reading project's policy
-decides whether it is allowed**, and a project that says never rebase, flatly,
-has settled it. Establishing "unpublished" and "its own commits only" is part of
-the operation, not an assumption to make about it.
+operation, and the reason above does not apply to it, because nothing cites a
+commit nobody has seen. It is still history rewriting, so **the reading
+project's policy decides whether it is allowed**; a project with a flat "never
+rebase" rule has already ruled it out. The operation includes establishing that
+the branch is unpublished and that only its own commits are rewritten; do not
+assume either.
 
 ### 4. Reconcile and verify the tree that will merge
 
 **Correctness is owed at the merge boundary.** In-branch a lane may be red, built
 out of order and full of spikes; what merges is green, with its docs synchronized
-and its history readable. What that latitude costs is a real finishing pass
-before the merge rather than an improvised checklist —
-[finishing-pass.md](references/finishing-pass.md) owns it, and it is owed for
-**every tracked-path rename or deletion** even when the change is otherwise
-trivial.
+and its history readable. In exchange for that latitude, run a real finishing
+pass before the merge rather than an improvised checklist.
+[finishing-pass.md](references/finishing-pass.md) owns that pass, and it is
+owed for **every tracked-path rename or deletion** even when the change is
+otherwise trivial.
 
 Synchronize before the final verification, and run the checks the change calls
 for on the resulting tree. [verification.md](references/verification.md) holds
@@ -182,12 +184,13 @@ git -C <base-checkout> merge --no-ff <branch>
 git -C <base-checkout> push <integration-remote> <integration-branch>
 ```
 
-`--no-ff` regardless of size, so the branch stays legible in history. **Merge and
-push are one operation, not two decisions** — a completed landing is not left
-sitting local. Unrelated dirty edits in the base do not by themselves block the
-merge: Git refuses if local edits would be overwritten, so attempt it when the
-touched paths do not overlap, and report the blocking paths rather than reading
-any dirty status as a stop sign.
+Use `--no-ff` regardless of size, so the branch stays legible in history.
+**Merge and push are one operation, not two decisions**: do not leave a
+completed merge only in the local checkout. Unrelated dirty edits in the base
+do not by themselves block the merge. Git refuses if local edits would be
+overwritten, so attempt the merge when the touched paths do not overlap. If Git
+refuses, report the blocking paths; do not treat a dirty status by itself as a
+reason to stop.
 
 **Check the landing range's commit messages, not only its diff.** On hosts that
 act on closing keywords, such a keyword on any commit reaching the default branch
@@ -201,18 +204,18 @@ git log <integration-branch>..<branch> --format='%B' \
   | grep -inE '\b(close[sd]?|fix(es|ed)?|resolve[sd]?)[[:space:]]+(([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)?#[0-9]+|https://github\.com/[^ ]+/issues/[0-9]+)'
 ```
 
-No match exits non-zero, so guard the status where this runs inside a failing-fast
-script. A hit is not automatically wrong; it is a closeout nobody reviewed.
-Whether the message gets amended or the close is intended is the project's
-tracker convention to settle, and closing an item stays a deliberate, verified
-act either way.
+When nothing matches, grep exits non-zero, so guard its status where this runs
+inside a failing-fast script. A hit is not automatically wrong; it is a closeout
+nobody reviewed. Whether the message gets amended or the close is intended is
+the project's tracker convention to settle, and closing an item stays a
+deliberate, verified act either way.
 
 Where the project's commits carry trailers, ask Git for them rather than
-reimplementing paragraph parsing: Git reads only the last paragraph, so a trailer
-separated from that block by a blank line still renders on the host and is
-invisible to `git interpret-trailers --parse`. Report the denominator — how many
-commits carried one at all — so a range that measured nothing says so instead of
-passing.
+reimplementing paragraph parsing. Git reads trailers only from the last
+paragraph, so a trailer separated from that block by a blank line still renders
+on the host but is invisible to `git interpret-trailers --parse`. Report how
+many commits carried a trailer at all, so a range that measured nothing says so
+instead of passing.
 
 ### 6. Clean up the landed lane
 
@@ -255,11 +258,11 @@ a visual or manual result has to carry.
 
 ## What this package is not
 
-There is no control plane here, and building one — gate tiers, merge trains, lane
-sidecars, per-lane databases, fleet boards, port allocation — is not the
-follow-up. What this holds is judgment: work in isolation, integrate by merge,
-verify the tree that will actually merge, fail closed on anything that discards
-work. A project that wants automation on top owns it.
+There is no control plane here, and building one — gate tiers, merge trains,
+lane sidecars, per-lane databases, fleet boards, port allocation — is not the
+follow-up to propose or build. What this holds is judgment: work in isolation,
+integrate by merge, verify the tree that will actually merge, fail closed on
+anything that discards work. A project that wants automation on top owns it.
 
 Three neighbouring subjects belong elsewhere:
 

@@ -4,16 +4,16 @@ Cleanup follows landing as a separate operation, and covers **only the lane this
 session opened and landed.** Other lanes, mismatches between Git registrations and
 on-disk directories, orphaned directories, stale registrations and unrelated local
 or remote refs are a population sweep: a different job, with different evidence.
-Do not widen this tail into one. [`change-workflow`](../SKILL.md) owns the landing
-this cleanup follows.
+Do not widen this cleanup into one. [`change-workflow`](../SKILL.md) owns the
+landing this cleanup follows.
 
 **A discarding operation names its target from an observed location, never an
-assumed one.** Read the location first — `pwd`, or pass `git -C <path>` — before any
-`git checkout --`, `reset --hard`, worktree removal or branch delete. A shell
-session's working directory can drift between calls while file tools stay on
-absolute paths, so the two disagree silently and every file you inspect still looks
-right. Status output matched against a believed location is not evidence of which
-tree produced it.
+assumed one.** Before any `git checkout --`, `reset --hard`, worktree removal or
+branch delete, establish the location: read it with `pwd`, or name it explicitly
+with `git -C <path>`. A shell session's working directory can drift between
+calls while file tools stay on absolute paths, so the two disagree silently and
+every file you inspect still looks right. Status output matched against a
+believed location is not evidence of which tree produced it.
 
 ## Containment is the only safety boundary
 
@@ -54,11 +54,11 @@ independently, so recheck this lane's registration, directory and ref afterward
 instead of assuming one removal handled the others.
 
 A process still rooted inside the worktree — a dev server, a watcher — blocks
-removal. Stop it first, deliberately, rather than pulling the directory out from
-under it. Where a removal refuses for a reason you have not established, find out
-why instead of forcing it: the force flags discard another lane's live work exactly
-as easily as your own spent lane, which is why a project may keep some lanes marked
-to be left alone.
+removal. Stop it first, deliberately, rather than deleting the directory while
+it runs. Where a removal refuses for a reason you have not established, find out
+why instead of forcing it: the force flags discard another lane's live work
+exactly as easily as your own spent lane, which is why a project may keep some
+lanes marked to be left alone.
 
 **Retain and report the lane** when it is dirty, has unmerged commits, is still
 needed for named follow-up or debugging, is held for visual or manual judgment, or

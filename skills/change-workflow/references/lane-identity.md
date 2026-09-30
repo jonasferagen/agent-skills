@@ -12,7 +12,7 @@ path, a clean `git worktree list --porcelain` entry.
 
 | Role | What identifies it | What it permits |
 | --- | --- | --- |
-| Base checkout | the classic checkout, on the default branch | the merge target; lifecycle and service commands run here, nothing is authored here |
+| Base checkout | the main working tree, on the default branch | the merge target; lifecycle and service commands run here, nothing is authored here |
 | Task lane | a sibling worktree under `.worktrees/`, on its own branch, that this session opened or deliberately resumed | authoring |
 | Pin | a detached `HEAD` | a comparison basis, not an authoring lane |
 
@@ -29,9 +29,9 @@ Where the project provides a command that derives the role, run it before
 authoring and use its answer. An unavailable command is unknown role evidence,
 never permission to author.
 
-The remedy for finding yourself in the base checkout is to open a task lane from
-the default branch and author only there. A lane this session did not open and
-the project does not name is still not an authoring lane.
+If you find yourself in the base checkout, open a task lane from the default
+branch and author only there. A lane this session did not open and the project
+does not name is still not an authoring lane.
 
 ## Naming a lane
 
@@ -76,6 +76,6 @@ git -C <base-checkout> worktree add .worktrees/<name> <branch>
 ```
 
 The branch's commits are preserved, so this restores rather than loses anything.
-Take care when the base holds uncommitted work: confirm that the files differing
-between the two branches do not overlap what is uncommitted before switching, or
-the switch will refuse — or carry edits somewhere they were not meant to go.
+If the base holds uncommitted work, confirm before switching that the files
+differing between the two branches do not overlap what is uncommitted, or the
+switch will refuse or carry edits somewhere they were not meant to go.
