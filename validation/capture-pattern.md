@@ -62,6 +62,17 @@ is the agent's retrospective account, not an exported tool trace.
 - **Lookup after repair:** again answered the command without opening a skill.
   It did not report encountering the hook, so this establishes no unnecessary
   activation in that run, not rejection after reading the revised instruction.
+- **Lookup control after repair, hook read and declined.** A fresh agent answered
+  which verification commands the repository requires before a
+  `services/work` commit, from PROJECT-POLICY, AGENTS, CONVENTIONS and
+  `contracts/README.md`, and opened no SKILL.md. On follow-up it reported
+  noticing the Reusable lessons section and declining it deliberately: it
+  classified the request as a routine lookup under the checkpoint's own
+  exemption, with no review, fix or user correction, and noted that the flow's
+  proposing and editing end exceeded its read-only authorization. This
+  establishes rejection after reading the revised instruction, from the agent's
+  retrospective account rather than a tool trace. The package was absent from
+  its startup metadata, so only the project hook was under test.
 - **Original scan after repair: passed configured routing.** The agent opened
   the installed lesson-capture and source-of-truth instructions, followed import
   provenance to the source catalog, then read only verification-design and
@@ -104,3 +115,29 @@ shared-code-design, in that order. The explicit request and project mapping
 supplied discovery; provenance and the catalog supplied the source home.
 The new name was absent from inherited host metadata. This passes the explicit
 text-shortcut case, with the same retrospective-read reporting limit as above.
+
+## Replicated scan under the renamed package — 2026-09-30
+
+Another fresh agent received the original consolidation-review request with no
+skill named in its prompt. It began under `lesson-capture` at `dd91849`, and
+`c645165` landed mid-review, renaming the installed directory and rewriting
+AGENTS.md and HANDOFF.md. The agent reported noticing the change, re-read both
+documents and followed the current instruction, so the checkpoint it exercised
+is the renamed one.
+
+It took its strongest candidate as a drift gate whose hard-coded member list
+omits copies added outside it, traced the home through UPSTREAM.md to
+source-of-truth 1.2.0, read only that skill, and stopped at the first
+preference: existing guidance covers it. It quoted "Keep the check durable" on
+hard-coded directory sets, member lists and expected counts, proposed no skill
+edit, and named the remaining action as project-local. Its review reported six
+consolidation findings with file and line evidence, ran the two root checks,
+separated verified from inferred claims, and changed no file.
+
+Against the earlier passing scan this varies two things: the installed name, and
+which source skills the agent read — source-of-truth alone here, against
+verification-design and shared-code-design before. Both runs reached a home
+without loading the catalog, and one reached "already covered" where the other
+proposed an addition. Two runs exercise the project checkpoint. Neither
+establishes selection from refreshed host metadata, and a second passing run
+does not measure the rate across repeated runs.
