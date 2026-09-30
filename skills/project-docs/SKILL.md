@@ -2,7 +2,7 @@
 name: project-docs
 description: "Establish, review, or reconcile repository documentation, including domain glossaries, document ownership, project instructions, and high-level relationship diagrams. Use for project documentation structure and consistency work; not standalone office documents, generic copyediting, or application implementation."
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Project documentation
@@ -35,6 +35,15 @@ method with a synthetic domain; it is not a schema or template to impose on othe
 projects.
 
 ## Ground the content
+
+Read the project's policy when establishing or reconciling its documentation.
+Use its users, data, exposure and recovery requirements to set the depth and
+evidence needed. Keep the policy's facts and obligations in their canonical home;
+link procedures, the active work queue and verification records. If a policy
+change affects the docs, reconcile the affected instructions and preserve open
+transition work. A lighter project label does not waive existing commitments.
+When no policy exists, keep consequential unknowns explicit; a small editorial
+task does not require creating one or installing another skill.
 
 Start with repository instructions, the entry page, and affected files. Inspect
 code, schemas, configuration and dated records as relevant. Avoid reading every

@@ -4,6 +4,32 @@ Jonas's reusable, project-agnostic agent skills. Each skill is one directory
 under `skills/` with a `SKILL.md` manifest; that directory is the installable
 unit.
 
+## Project foundations
+
+Use these independent skills together when bootstrapping a project or revisiting
+its engineering expectations. Their display names describe their jobs; the
+installation names stay stable.
+
+| Display name / skill | Responsibility |
+| --- | --- |
+| [Project policy](skills/project-policy/SKILL.md) (`project-policy`) | Establish which requirements apply from users, data, exposure, lifetime, compatibility and recovery needs; assess changes to those requirements. |
+| [Project documentation](skills/project-docs/SKILL.md) (`project-docs`) | Decide where knowledge belongs and keep it current. |
+| [Diagrams and tables](skills/diagrams/SKILL.md) (`diagrams`) | Choose and verify useful visual explanations of relationships and comparisons. |
+| [Clear writing](skills/clear-writing/SKILL.md) (`clear-writing`) | Express facts and instructions clearly without changing their meaning. |
+| [Authoritative definitions](skills/source-of-truth/SKILL.md) (`source-of-truth`) | Give each rule a home and derive or check its other appearances. |
+
+Start with the project's existing decisions. Establish a project-owned policy
+using the policy skill's template when useful, then apply the other skills where
+their subjects arise. This is a recommended set, not a dependency chain or an
+automatic installer. Each package works alone; a small project may need only a
+short policy and README. Existing projects keep their established document homes.
+
+The project policy owns requirements; procedures and evidence live in their
+existing guides and records. Every policy change receives an impact assessment.
+Stricter requirements can create substantial downstream work, tracked with owners
+and acceptance evidence before the changed use is considered ready. This starts
+as a manual review; automation can grow from actual transitions.
+
 ## Code and design
 
 | Skill | Use it for |
@@ -11,7 +37,6 @@ unit.
 | [typescript-patterns](skills/typescript-patterns/SKILL.md) | Shaping TypeScript: naming, types, classes, dependency ports, imports and directory layout. |
 | [bash-patterns](skills/bash-patterns/SKILL.md) | Preserving command failures and query results in Bash checks, pipelines, captures and process substitutions. |
 | [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries. |
-| [source-of-truth](skills/source-of-truth/SKILL.md) | Choosing authoritative definitions and deriving or checking their copies across code, schemas, configuration and prose. |
 
 ## Changes and operations
 
@@ -22,13 +47,10 @@ unit.
 | [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
 | [runtime-operations](skills/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
 
-## Writing and documentation
+## Personal writing
 
 | Skill | Use it for |
 | --- | --- |
-| [project-docs](skills/project-docs/SKILL.md) | Establishing, reviewing or reconciling repository documentation: glossaries, ownership, diagrams and project instructions. |
-| [diagrams](skills/diagrams/SKILL.md) | Choosing and drawing diagrams, tables and matrices, with relationships grounded in evidence. |
-| [clear-writing](skills/clear-writing/SKILL.md) | Writing and revising clear prose, precise instructions and concise labels without changing their meaning. |
 | [jonas-email-style](skills/jonas-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
 
 These groups organize the catalog. Packages remain directly under `skills/`, so

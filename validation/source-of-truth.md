@@ -41,6 +41,8 @@ of an independent agent evaluation.
 | Mechanical enforcement is proposed as a scanner over a fixed set of directories | Rejected as the anti-pattern enforcing itself; enforcement is scoped to the tree it checks and derives its file set from version control. |
 | Whether a given check earns its recurring cost | Deferred to the reading project's own policy; the durability bar applies to a check already being kept. |
 | Adopting the skill into an existing project | No renaming, code movement or schema change is implied; existing project conventions take precedence. |
+| A changed policy raises the consequence of inconsistent copies | Revisit affected copies and checks, link unmet requirements to active work, and keep desired requirements distinct from observed behavior. |
+| A project has no policy skill installed | Use available project decisions and expose consequential unknowns; do not require installing another skill. |
 
 ## Sources inspected
 
@@ -135,3 +137,12 @@ the other. The proportionality questions — the consequence a check protects, a
 whether it can fire for changes that cannot affect it — are adapted from a policy
 this repository does not carry, and no consuming project has yet judged a check
 against them.
+
+## Project foundations update — 2026-09-30
+
+Version 1.2.0 uses the display name “Authoritative definitions” and makes project
+policy relevant to the consequences of inconsistent copies and the evidence
+required. Installation path unchanged. Author review covered changed requirements,
+standalone use, and preservation of existing guarantees. Package validation and
+the skill-creator manifest check passed. No new live consistency check or separate
+behavioral trial was executed for this update.

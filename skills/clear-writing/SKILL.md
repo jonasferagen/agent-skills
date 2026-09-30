@@ -2,7 +2,7 @@
 name: clear-writing
 description: "Draft or edit explanatory and instructional prose for clarity, including technical explanations, documentation, skills, project instructions and concise labels. Preserve the requested voice, factual meaning and level of certainty."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Clear writing
