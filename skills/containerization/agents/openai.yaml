@@ -1,0 +1,4 @@
+interface:
+  display_name: "Containerization"
+  short_description: "Build independent local services and database tests"
+  default_prompt: "Use $containerization to make this service reproducible in a local container and verify its database lifecycle."

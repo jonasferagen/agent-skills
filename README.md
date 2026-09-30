@@ -18,6 +18,7 @@ unit.
 | Skill | Use it for |
 | --- | --- |
 | [change-workflow](skills/change-workflow/SKILL.md) | Taking a change from an isolated worktree through synchronization, verification, merge and cleanup. |
+| [containerization](skills/containerization/SKILL.md) | Building independent local service containers with explicit interfaces, repeatable migrations and disposable database tests. |
 | [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
 | [runtime-operations](skills/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
 
