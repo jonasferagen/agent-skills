@@ -186,5 +186,5 @@ first consumer.
 - The leaf-module rule lets every subsystem share the defaults without inverting
   or tangling dependencies.
 
-The authoring-time diagnostic for spotting candidates—including the related
+The diagnostic prompts for spotting candidates—including the related
 "name vs type" signal—lives in [review heuristics](review-heuristics.md).

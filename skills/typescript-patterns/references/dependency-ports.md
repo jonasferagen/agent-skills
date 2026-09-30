@@ -6,6 +6,7 @@
 - [Include lifecycle semantics](#include-lifecycle-semantics)
 - [Choose the shape](#choose-the-shape)
 - [Place and own the port](#put-the-port-with-the-consumer)
+- [Keep provider types outside consumer ports](#keep-provider-types-outside-consumer-ports)
 - [Testing consequence](#testing-consequence)
 
 A dependency port is the smallest honest type a consumer needs from a
@@ -41,7 +42,7 @@ A database pool and a transaction-bound session may both expose
 satisfy code that actually requires every statement to run on one acquired
 session. The methods match and the lifecycle contract does not.
 
-Use a port that makes the semantic requirement visible:
+Make the semantic requirement visible in the parameter type:
 
 - accept a transaction/session role when the caller is already inside one;
 - accept a `withTransaction(callback)` or session-acquisition capability when
@@ -104,11 +105,11 @@ A correct port lets a test supply a plain object literal that the compiler check
 against production use. If the test still needs `as unknown as`, classify the
 case before changing production code: the test may need a real domain fixture,
 may be reaching into private state, or may be modeling an opaque browser/vendor
-conduit that cannot be represented honestly. The decision sequence belongs to
+boundary that cannot be represented honestly. The decision sequence belongs to
 the repository's own testing conventions.
 
 Do not add a port solely to eliminate a cast when the consumer genuinely needs
-the concrete dependency. A justified cast at an external conduit is safer than
+the concrete dependency. A justified cast at an external boundary is safer than
 a false abstraction that allows invalid production values.
 
 Related: [class shape](class-shape.md),

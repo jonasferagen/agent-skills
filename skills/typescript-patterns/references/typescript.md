@@ -15,10 +15,11 @@
 
 ### Files
 
-- Use `PascalCase.ts` for classes and primary model/type exports. Match the
-  filename to the primary exported class.
-- Use `camelCase.ts` for class-free modules: constants, data records, tokens,
-  hooks, and passive contracts.
+- Use `PascalCase.ts` for classes, primary model/type exports and sibling
+  `XTypes.ts` contract files. Match the filename to the primary exported class.
+- Use `camelCase.ts` for class-free runtime modules: constants, data records,
+  tokens, and hooks. Type-only modules inside a contract directory follow
+  [naming and placement](naming-and-placement.md#file-naming).
 - Use `kebab-case/` for directories, not TypeScript filenames.
 - Follow [naming and placement](naming-and-placement.md#file-naming) for the
   domain/topic/role decision. A repository may gate export parity locally, but
@@ -167,8 +168,10 @@ Use the repository's shared `never` helper when it has one. A real fallback is
 correct for open runtime input such as external JSON, URL parameters, or a
 forward-compatible wire contract.
 
-Read the repository's compiler settings before relying on implicit return
-checking. Two shapes commonly fail open:
+Implicit return checking catches a missing case only under `strictNullChecks`
+(TS2366, and only for a declared return type that excludes `undefined`) or
+`noImplicitReturns` (TS7030). Read the repository's compiler settings before
+relying on it. Two shapes commonly fail open:
 
 - A `void` switch silently does nothing for a new member.
 - A permissive `default` defeats exhaustiveness even when the function returns a

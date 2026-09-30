@@ -11,12 +11,16 @@ they are not claims that an independent agent has passed them.
 | A cast is unavoidable at an opaque browser or vendor boundary | Keep the cast local and explained; prefer it to a false abstraction that would license invalid production values. |
 | Asked to add tests for a module the skill just reshaped | Defer to the reading repository's own testing conventions. The canon carries no test layout, fixture, mock or coverage policy. |
 | Asked which companion skill reviews the current diff | Answer from the reading repository's own workflow. The package names no companion skills and must not invent one. |
-| The reading repository's instructions contradict a rule here | Surface it as documentation drift between two owners, not as permission to follow whichever rule is easier. |
+| The reading repository's instructions contradict a rule here | Report it to the user as documentation drift between two owners, quoting both passages. Edit neither side, and do not follow whichever rule is easier. |
 | A non-React codebase asks for help naming a module and its exports | Apply the framework-neutral rules only; the conditional React guidance stays unapplied. |
 | Fix a one-line naming typo in a file that has several other smells | Make the small edit. Do not open a broad reshaping pass off the back of it. |
 | A lint rule catches a real defect class and a correct-by-construction idiom alike | Follow the exemption guidance rather than weakening the rule or disabling it wholesale. |
 | A helper is wanted for a value that already has a natural home class | Prefer a static on that class over a new standalone exported function. |
 | Asked to wrap an awkward legacy shape so call sites stop seeing it | Prefer removing the bad shape to adding a compatibility layer; name what the wrapper would owe the transitive contract. |
+| Name a file of passive types shared by nearby callers | `{Topic}Types.ts` in PascalCase beside them. A lowercase domain noun only inside a `types/` contract directory; camelCase only for class-free runtime modules. |
+| A `parsers/` folder holds only parsers for several domains | Treat it as a role folder: split by concept, or rename it to a pipeline phase such as `parse/`. |
+| Asked to review a colleague's diff for shape smells | Use the review heuristics as questions inside the repository's own review workflow. The package supplies prompts, not a review procedure. |
+| A closed-union `switch` returns a value and has no `default` | Call it safe only under `strictNullChecks` with a declared return type that excludes `undefined`, or under `noImplicitReturns`. |
 
 ## Initial checks — 2026-09-29
 
@@ -88,3 +92,49 @@ Left unresolved:
   contract modules, and PascalCase in `DeliveryTypes` and `XTypes.ts`.
 - `review-heuristics.md` says the safe closed-union shape triggers TS2366
   without the compiler-settings caveat that `typescript.md` gives.
+
+## Resolutions — 2026-09-30
+
+Version 1.1.0 carries these changes.
+
+The owner accepted every recommendation below. The version stays 1.0.2 until
+release.
+
+- Drift with local docs: "reconcile" versus the scenario's "surface". The
+  manifest now says to report it to the user, quoting both passages, and to
+  edit neither side. Owner decision: report.
+- Type-module filename case: three answers. Owner chose PascalCase
+  `{Topic}Types.ts` for sibling contract files, a lowercase noun only inside a
+  contract directory, and camelCase for class-free runtime modules, in
+  `naming-and-placement.md` and `typescript.md`.
+- Prefix versus barrel: "the import site loses the path context" versus
+  importing through the barrel. A prefix now stays for concepts used widely
+  outside the directory, because it names the domain at every later use.
+- `parsers/`: forbidden, then implied acceptable. It is now a role folder even
+  when every file is a parser; only a `types/` contract folder is exempt.
+- Prefix-rule "When Not To Use": two items were not exceptions. They are now
+  rules; the public-API item joined the public-identity condition.
+- "Two or three files … known growth area": exempted no rule. It is now an
+  exception to the one-file flattening rule. Owner decision.
+- Review heuristics: authoring-only versus reviewing a colleague's code. The
+  page now supplies prompts for use inside the repository's review workflow,
+  and its diagnostics say "the change" instead of "the diff".
+- TS2366: the safe closed-union shape lacked a settings caveat. Both pages now
+  require a declared return type without `undefined` under `strictNullChecks`
+  (TS2366), or `noImplicitReturns` (TS7030). Tested with TypeScript 5.9.3 (no
+  error by default) and 7.0.2 (TS2366 by default; none with `--strict false`).
+- "Conduit": a forwarding class and an external boundary. The external sense
+  is now "boundary", matching the vendor-cast scenario.
+- Enforcement "both directions": undefined. The probe now checks that the idiom
+  stops being reported and the defect is still reported.
+- Smaller slips: "constraint" became "type parameter" in
+  `types-and-generics.md`; `class-shape.md` names the costs it compares; the
+  lifecycle list in `dependency-ports.md` no longer calls keeping the concrete
+  dependency a port; its contents list gains the provider-types section;
+  `resolution.md` says "the ledger" for "it".
+- Testing leftovers removed: the fixture-module naming sentence in
+  `naming-and-placement.md` and `fixtures/` in `directories.md`.
+
+Still open: `directories.md` allows a top-level `utils/` catch-all, while
+`naming-and-placement.md` says to avoid `Utils` and the concept-or-phase rule
+forbids `helpers/`.

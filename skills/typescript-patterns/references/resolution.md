@@ -125,8 +125,9 @@ const TIMEOUT_ABSENCE = {
 
 The ledger makes contract growth fail closed: adding an input field without a
 ledger entry is a compile error. Prefer consuming it in the implementation when
-that stays clear; an unused parallel map is only a review ratchet. Pair it with
-behavior tests proving the declared default, rejection, or intentional absence.
+that stays clear; an unused parallel map is only a review ratchet. Pair the
+ledger with behavior tests proving the declared default, rejection, or
+intentional absence.
 
 Use values, not missing keys, for exceptions. A missing entry says nothing;
 `intentionally-absent` records a decision. See [Fail-Closed

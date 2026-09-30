@@ -31,31 +31,24 @@ search, so a domain prefix needs a specific reason to be in the name.
 - Co-located type aliases follow the class.
 - Prefer a bare topic plus role (`RateResolver`, `InvoiceBuilder`) when
   the directory supplies the domain. Keep a domain prefix only when it is a
-  public/shared identity, prevents a real ambiguity, or signals a concept that
-  travels meaningfully outside the directory. A class imported from outside
-  its folder qualifies (`console/ConsoleCommands`, `admin/AdminBoot`): the
-  import site loses the path context, so only the prefix names the domain
-  there.
+  public/shared identity, such as a canonical export whose prefix is part of
+  the package's public API; prevents a real ambiguity; or names a concept used
+  widely outside the directory (`console/ConsoleCommands`, `admin/AdminBoot`).
+  A consumer's import line names the directory once; the prefix names the
+  domain at every later use.
+- If the prefix-free name would clash with another exported identifier in the
+  same file, rename one of them. A collision is not a reason to keep the
+  prefix.
+- If the prefix is the only thing tying some siblings together, the directory
+  holds unrelated files. Split the directory instead of keeping the prefix.
 
 ### Why
 
 - The prefix is noise at every read site within the directory and at the import
   statement.
-- Cross-directory consumers usually import via the barrel, so the directory
-  name appears at the call site exactly when the prefix would have been
-  informative.
+- Cross-directory consumers usually import through the barrel, whose path names
+  the directory, so most classes need no prefix even there.
 - Mixed prefixes leave no clear convention for the next file added.
-
-### When Not To Use
-
-- Name collision: if the prefix-free name would clash with another exported
-  identifier in the same file, rename one of them rather than keeping the
-  prefix on the other.
-- The class is the canonical export of a domain contract where the prefix is
-  part of the public API consumed downstream of the package.
-- The directory holds genuinely unrelated files where the prefix is the only
-  thing tying related siblings together. That is a sign the directory needs
-  splitting, not a sign to keep the prefix.
 
 ## Cohesive Directory
 
@@ -70,7 +63,8 @@ split the directory.
 - An orchestrator that consumes from multiple sibling directories belongs at
   the parent level, not nested inside one of its dependencies' folders.
 - A one-file subdirectory is over-fragmentation. Flatten the file into the
-  parent until a second sibling justifies the subdirectory.
+  parent until a second sibling justifies the subdirectory, unless the
+  subdirectory is a known growth area whose next files are planned.
 - Bridge re-exports across directories need an explicit public-surface reason.
   Otherwise, move the directory so the bridge is unnecessary or drop the bridge.
 
@@ -88,7 +82,6 @@ split the directory.
 - Top-level catch-all directories like `utils/` or `types/` that are genuinely
   the home for cross-cutting helpers. Even there, prefer named subgroups once
   the file count grows past a handful.
-- A subdirectory holding two or three files today but in a known growth area.
 
 ## Concept Or Phase, Not Bare Role
 
@@ -115,8 +108,8 @@ smell.
 - In a pipeline or compiler the _phases are the domain_, so phase-named folders
   like `compile/` and `emit/` are correct and desirable — a reader should see the
   pipeline by scanning the folder list. The test is whether the name is a **step
-  in a named sequence** (good) or a **kind of object** (bad). `compile/` is fine;
-  `parsers/` holding non-parsers is not.
+  in a named sequence** (good) or a **kind of object** (bad). `compile/` and
+  `parse/` are fine; `parsers/` is not, even when every file is a parser.
 
 ### Why
 
@@ -128,10 +121,8 @@ smell.
 
 ### When Not To Use
 
-- A folder whose concept genuinely _is_ a unit kind — a `types/` contract surface
-  or a `fixtures/` test-support family — is named for what it owns, not for an
-  accreting role. The smell is a role name holding mixed concepts, not any folder
-  that happens to share a suffix.
+- A `types/` subdirectory of passive contracts is named for what it owns:
+  nothing in it runs. A role folder such as `parsers/` does not qualify.
 
 ## Type-Only Files In Directory Shapes
 

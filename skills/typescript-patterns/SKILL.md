@@ -2,7 +2,7 @@
 name: typescript-patterns
 description: "The shared TypeScript pattern canon for naming, types, classes, dependency ports, orchestration, resolution, imports and directory layout. Use whenever authoring or refactoring TypeScript: naming a file, type or symbol; a call site growing positional arguments or `undefined` placeholders; a consumer taking a whole collaborator but using one method; defaults, overrides and absence shapes piling up; barrels or public surfaces becoming unclear; or a compiler flag or lint rule being added or weakened. Reach for it even when the request is only \"clean this up\", \"does this look right\" or \"make this more idiomatic\". Covers the shape of the code itself, not testing or review workflow."
 metadata:
-  version: "1.0.2"
+  version: "1.1.0"
 ---
 
 # TypeScript Patterns
@@ -11,8 +11,9 @@ The shared pattern canon for shaping TypeScript code. **The repository's local
 docs own product facts: grammar, framework setup, enforcement commands, package
 boundaries and paths, exemplars, mutable schemas, and domain facts. This package
 owns the transferable method.** Read the repository's own instructions first.
-Treat a real contradiction between the local docs and this package as
-documentation drift to reconcile, not as permission to pick whichever rule is
+When the local docs and this package really contradict each other, report it to
+the user as documentation drift between two owners, quoting both passages. Do
+not settle it by editing either side, and do not follow whichever rule is
 easier. A repository links here rather than restating the shared rules in a
 second canonical home.
 
@@ -50,7 +51,7 @@ repository.
 | A compiler flag, lint rule, or gate stage is being added, weakened, or scoped | [Enforcement](references/enforcement.md)                                                                                          |
 | A strictness flag reports a binding whose only job is to exist                | [Reading a strictness finding](references/enforcement.md#reading-a-strictness-finding)                                            |
 | A rule catches a real defect class and a correct-by-construction idiom alike  | [When a rule cannot express its exemption](references/enforcement.md#when-a-rule-cannot-express-its-exemption)                    |
-| An authoring pass needs diagnostic prompts before changing the shape           | [Review heuristics](references/review-heuristics.md)                                                                              |
+| Code needs diagnostic prompts before its shape changes                         | [Review heuristics](references/review-heuristics.md)                                                                              |
 
 ## Shape Escalation
 
