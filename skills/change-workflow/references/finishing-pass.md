@@ -28,36 +28,39 @@ checkout: the **old path**, the **basename** and the **stem**. Classify every hi
 and rerun any search that truncated. The results are advisory — a historical
 reference can be intentional.
 
-Add domain terms the filenames do not capture, and broaden shared names across
-the checkouts this lane already has when ownership crosses them. Where a refactor
-moved files between packages, treat a documentation review as required evidence:
-file moves ripple into docs, agent-instruction files and inline comments.
+Add domain terms the filenames do not capture. When a shared name's ownership
+crosses into other checkouts this lane already has, search those checkouts for
+that name too.
+Where a refactor moved files between packages, treat a documentation review as
+required evidence: file moves ripple into docs, agent-instruction files and
+inline comments.
 
 **A sweep this wide is itself a finding.** When one renamed tree, service or port
 turns up in dozens of files, the hand-sweep is the symptom: the name had no
 registry entry or configuration token behind it, so nothing connected the
-mentions to the thing. Fix the hits, say so in the hand-back, and route the
-missing indirection to whoever owns those names. Doing the sweep and leaving the
-name unregistered guarantees the next rename repeats it.
+mentions to the thing. Fix the hits, report the sweep's width as a finding in
+the hand-back, and route the missing indirection to whoever owns those names.
+Doing the sweep and leaving the name unregistered guarantees the next rename
+repeats it.
 
-**The sweep stops at the checkout boundary** — a limit on the lane, not on
-finishing. A hosted code search is not a substitute: it silently returns nothing
-for a private repository it cannot index, which reads exactly like a clean tree.
-So an unreachable citing repository is a deferred obligation with a named home.
-Name the outbound citation left unverified and the vantage point that can settle
-it, such as a session that already holds those repositories checked out side by
-side. That licence is exactly "sweep the checkouts this lane demonstrably already
-has", never an instruction to census a workspace or enumerate siblings looking for
-more.
+**The sweep stops at the checkout boundary.** That limits what this lane can
+search, not what finishing owes. A hosted code search is not a substitute: it
+silently returns nothing for a private repository it cannot index, which reads
+exactly like a clean tree. So a citing repository this lane cannot reach becomes
+a deferred obligation. Name the outbound citation left unverified and the
+vantage point that can settle it, such as a session that already holds those
+repositories checked out side by side. The permission to search other checkouts
+covers exactly the ones this lane demonstrably already has. It is never an
+instruction to census a workspace or enumerate siblings looking for more.
 
 An outbound citation survives because it was **authored**, not because someone
 found it later. When a rename moves or splits something another repository is
 known to cite, what is owed here is that the concept stays reachable under the
 name outsiders use for it — not a notification to them.
 
-**A live environment is the same blind spot in the other dimension.** It is not a
-tree you have, and static evidence that a route is unused is not evidence that
-every environment stopped running it. So a change retiring a one-time route — a
+**The sweep cannot see a live environment either.** It is not a tree you have,
+and static evidence that a route is unused is not evidence that every
+environment stopped running it. So a change retiring a one-time route — a
 bootstrap, a migration, a backfill — consults the environments themselves, and
 whatever inventory of owed acts the project keeps, before deleting the lane.
 
@@ -71,7 +74,7 @@ separate questions, and that project's policy settles both.
 
 Every doc describing the old shape gets updated to the new one — behavior, API,
 architecture, commands and paths — **in the present tense.** A doc that narrates
-the migration instead of describing the result is the next reader's confusion.
+the migration instead of describing the result confuses the next reader.
 
 Fix a stale reference or broken link the moment you find it, in whatever change
 you are making. A link pointing at a renamed heading or a moved file is a defect
@@ -81,10 +84,10 @@ surrounding claim went stale with the link, correct the claim too.
 **Burn down worklists.** Remove finished entries from any TODO-style list as the
 work lands, rather than leaving them checked off or struck through. A checked box
 is a fine temporary in-progress marker, but on merge the commit history is the
-durable record, so completed entries — and any section their removal leaves empty
-— come out of the file. Where the work completed something a forward-looking goals
-document tracked, move the durable part into whichever document owns it and remove
-the goal entry, instead of leaving a dated "landed" note under a still-active goal.
+durable record, so remove completed entries and any section their removal leaves
+empty. Where the work completed something a forward-looking goals document
+tracked, move the durable part into whichever document owns it and remove the
+goal entry, instead of leaving a dated "landed" note under a still-active goal.
 
 ## 4. Run focused verification
 
@@ -120,11 +123,11 @@ Flag anything outside the task's scope but worth tracking. **Do not silently
 absorb adjacent cleanup into the finishing pass.**
 
 Keep closeout cleanup separate from structural follow-up: land the mechanical
-stale-reference and dead-path fixes that are already safe, and route one evidenced
-root finding rather than one abstraction ticket per touched literal. Record where a
-direct dependency stays cheaper and clearer than a new seam. A classified list
-worth keeping is filed wherever the project tracks findings; report output is
-scratch data and is not committed.
+stale-reference and dead-path fixes that are already safe, and route one
+root-cause finding, with its evidence, rather than one abstraction ticket per
+touched literal. Record where a direct dependency stays cheaper and clearer than
+a new seam. A classified list worth keeping is filed wherever the project tracks
+findings; report output is scratch data and is not committed.
 
 Where this change copied a helper instead of extracting it, name the copied files
 somewhere durable now. Whether a landed duplicate must be filed is the reading
@@ -137,12 +140,12 @@ Stage **explicit paths**, never a blanket add. Prefix a numbered plan step's
 commit with its step number where the project works that way. Re-run the evidence
 after the final commit.
 
-Run `git status --short` in the repository that owns the touched files first. If
-unrelated edits share a file, inspect the diff and commit only when the staged
-hunk set is obviously yours; otherwise report that a clean commit is unsafe. Never
-silently leave verified implementation or refactor work uncommitted — where a
-clean commit is unsafe, or the user asked for no commit, say so plainly rather
-than working around it.
+Before staging, run `git status --short` in the repository that owns the touched
+files. If unrelated edits share a file, inspect the diff and commit only when
+the staged hunk set is obviously yours; otherwise report that a clean commit is
+unsafe. Never silently leave verified implementation or refactor work
+uncommitted — where a clean commit is unsafe, or the user asked for no commit,
+say so plainly rather than working around it.
 
 **A project whose pre-commit hook re-stages what it rewrote must refuse a
 partially staged target.** Otherwise the re-stage silently sweeps that file's
@@ -155,7 +158,7 @@ git status --short -- '*.md'
 
 Run the equivalent check over every path class the hook can rewrite. On an `MM`
 target, stop and report it, include both halves deliberately, or clear that file
-from the index. Retrying the commit walks into the same hook.
+from the index. Retrying the commit only triggers the same hook again.
 
 ## 8. Check the base checkout
 
@@ -166,7 +169,7 @@ An agent write that reached the base is the failure isolation exists to prevent,
 and nothing else here would see it — the lane's own diff is clean, so the only
 evidence sits in the other tree. Dirt there is not yours to discard either: the
 user edits that tree, so a dirty base is not by itself evidence of agent drift.
-Report the paths and the branch, and leave the decision about what that content is
-to a deliberate one. The
+Report the paths and the branch, and leave the question of what that content is
+to a deliberate decision. The
 [base-checkout repair](lane-identity.md#recovering-a-base-checkout-on-a-feature-branch)
 covers the case where the base is also on the wrong branch.

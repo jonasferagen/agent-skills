@@ -146,3 +146,19 @@ required. Installation path unchanged. Author review covered changed requirement
 standalone use, and preservation of existing guarantees. Package validation and
 the skill-creator manifest check passed. No new live consistency check or separate
 behavioral trial was executed for this update.
+
+## Clear writing pass — 2026-09-30
+
+Version 1.2.1 revises `boundaries.md` and `durable-checks.md`; the entrypoint
+was revised in the earlier Clear Writing trial and is unchanged. See the
+[package sweep](clear-writing.md#package-sweep--2026-09-30). "Re-bless" became
+"update and re-approve", "false green" became "false pass", and relative
+references such as "the rungs above" now name rungs checked against the
+entrypoint. The shrink-only ledger still states the same rule as its copy in
+`test-audit`. Review found the meaning preserved; four wording corrections
+followed. No live check or behavioral trial was run.
+
+Left unresolved: `durable-checks.md` says to compute the answer "if the correct
+answer can be computed when the check runs", while the entrypoint requires a
+durable check to compute its answer without that condition. The README counts
+seven questions in the bar; the extraction notes above count six.

@@ -18,15 +18,15 @@ private/static methods on the class that happens to use them first.
 - If a method operates only on its parameters and has no dependency on the
   containing class, it is a candidate for extraction.
 - Group utilities by domain, not by the first consumer.
-- The extracted operation is still a **class**, not a bare `export function` — a
+- The extracted operation is still a **class**, not a bare `export function`: a
   static-method (or stateful) class named for its domain, so the call site reads
   as `Domain.operation()`. This is [class-shape.md](class-shape.md#classes-and-managers)'s
-  rule, and "utility" is not an exemption—purity is not either. A repository
+  rule; neither "utility" nor purity is an exemption. A repository
   may enforce this convention mechanically; the command and configuration stay
   in that repository.
 - Reach for a barrel only when the helper is a genuine cross-directory boundary;
   a helper used by siblings in one directory stays an internal sibling import.
-  Barrels are opt-in API surfaces, not folder paperwork — see
+  Barrels are opt-in API surfaces, not a file every folder needs; see
   [imports-and-barrels.md](imports-and-barrels.md) (files are internal by
   default).
 
@@ -52,14 +52,14 @@ the same question.
 - Applies equally to `private static` helpers and free functions in a sibling
   file.
 - Singleton-instance classes (`Weekday.MONDAY`, ...) and value-type classes
-  (`GridCoordinate`, `DateRange`) are both fair game.
+  (`GridCoordinate`, `DateRange`) can both receive such methods.
 - Name the method after what it answers, not how it is used by the first
   consumer.
 
 ### Why
 
-- The same predicate ends up duplicated across every consumer that re-asks the
-  question.
+- Otherwise, the same predicate ends up duplicated across every consumer that
+  re-asks the question.
 - The call site reads as a domain operation, not as an external query about the
   domain.
 - Future contributors looking for "what can I ask a date range?" find the

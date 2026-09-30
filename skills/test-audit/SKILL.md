@@ -2,26 +2,27 @@
 name: test-audit
 description: "Audit existing tests for brittleness, coverage asymmetry, mock drift, weak assertions, fixture bloat, non-determinism, focused or skipped cases and untraced requirements. Use when asking whether a settled suite actually protects behavior: a suite that has never failed, a green run after a risky refactor, a doubled collaborator nothing has checked against the real thing, a snapshot or no-throw standing in for an assertion, a focused-test marker, or a source file with no test beside its tested siblings. Reach for it when coverage is high and confidence is not. Audits settled tests; a change under review is a different pass."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Test Audit
 
-**Local docs own the testing standard — which frameworks, layers and commands a
-repository uses, and what it has decided to test thinly on purpose; this package
-supplies the lenses.** Read the repository's own testing guidance first, and
-treat a real contradiction as documentation drift to reconcile rather than
-permission to pick the easier rule.
+**Local docs own the testing standard; this package supplies the lenses.** The
+standard covers which frameworks, layers and commands a repository uses, and
+what it has decided to test thinly on purpose. Read the nearest
+agent-instruction file and the repository's own testing guidance first. Treat a
+real contradiction as documentation drift to reconcile, not as permission to
+pick the easier rule.
 
 Assess whether settled tests protect behavior or are thin, brittle, redundant,
 flaky, or silently missing.
 
 **Stay read-only** for tests, fixtures, and production code unless the user asks
-for edits. Mechanically repair stale prose the audit surfaces when the work
-already authorizes repository edits. **A focused-test marker is a hard disabling
-footgun** — it silently reduces the suite to one case: report it prominently and
-remove it only with user approval. Writing tests for discovered gaps is follow-up
-work, not part of the audit.
+for edits. When the work already authorizes repository edits, mechanically
+repair stale prose that the audit surfaces. **A focused-test marker is a hard
+finding:** it silently reduces the suite to one case. Report it prominently and
+remove it only with user approval. Writing tests for discovered gaps is
+follow-up work, not part of the audit.
 
 Three neighbouring passes are not this one. Tests inside a change under review
 belong to that review. A finding whose subject is the production contract behind
@@ -30,10 +31,6 @@ a custom check or gate survives structural change is its own question. Hand thos
 on rather than settling them here.
 
 ## Authority and modes
-
-Read the nearest agent-instruction file and the repository's own testing
-guidance before judging against it — its conventions are the standard; this skill
-supplies the lenses.
 
 - **Default / suite** mode, for a package or directory: map source-to-test
   asymmetry, scan cross-cutting smells, then inspect representative files.
@@ -59,8 +56,8 @@ that policy governs.
    ```
 
 2. **Run the repository's own test scanner and coverage-shape pass**, if it has
-   one. This skill carries no scanner: what a scanner is worth asserting, and how
-   to read its output, is in
+   one. This skill carries no scanner. Which scanner signals are worth having,
+   and how to read the output, are in
    [references/triage.md](references/triage.md#reading-a-test-scanner).
 
    **Scanner output is a set of signals to weigh, not findings in itself.**
@@ -75,11 +72,11 @@ that policy governs.
    sibling, are candidate gaps; pass-throughs, type-only modules, framework
    scaffolding, fixtures, and integration-covered contracts may be intentional.
 
-3. **Read representative tests against these lenses.** The standard they encode —
-   structure, behavior-over-implementation, edge cases, mocking, determinism, and
-   the two tiers of mechanical check — is in
-   [references/principles.md](references/principles.md); read it when a judgment
-   call needs the full rule rather than the headline.
+3. **Read representative tests against these lenses.** The standard they encode
+   is in [references/principles.md](references/principles.md): structure,
+   behavior-over-implementation, edge cases, mocking, determinism, and the two
+   tiers of mechanical check. Read it when a judgment call needs the full rule
+   rather than the headline.
 
    - **Behavior:** observable output or state, instead of private fields,
      incidental calls, or implementation order.
@@ -108,8 +105,9 @@ that policy governs.
      links where the repository traces requirements.
 
 4. **Treat awkward test construction caused by a production contract as a
-   finding about that contract**, not about the test. Do not paper over it in
-   tests — a test bending itself into knots is usually reporting a design problem.
+   finding about that contract**, not about the test. Do not hide it with
+   workarounds in the test: convoluted test construction usually signals a
+   design problem.
 
 ## Classification and output
 

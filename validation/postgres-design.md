@@ -82,3 +82,12 @@ The author reviewed the extracted instructions against the scenarios and the
 source files above. Manifest validation, local links and whitespace checks cover
 packaging. No database objects changed; no database tests, deployment, independent
 agent evaluation or live-service checks were performed.
+
+## Clear writing pass — 2026-09-30
+
+Version 1.0.1 revises the manifest and `operations.md`; see the [package
+sweep](clear-writing.md#package-sweep--2026-09-30). Compressed phrases such as
+"nullable components of uniqueness" were expanded, and conditions now precede
+their actions. Review found one rule that had shifted from forbidding a result
+to forbidding an intent — JSON becoming a way around relational integrity — and
+restored it. No database objects changed; no database tests were run.

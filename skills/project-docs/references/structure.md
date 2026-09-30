@@ -49,8 +49,8 @@ Avoid conversational residue, unexplained abbreviations and unsupported absolute
 Explain the reason for a boundary where it helps a decision. Keep necessary
 cautions beside risky steps, while linking to the authoritative explanation.
 Brief repetition for comprehension is useful; independent copies of changing facts
-are a maintenance liability. Prefer exact references to copying configuration or
-schema declarations into prose.
+each need maintenance and can drift apart. Prefer exact references over
+copying configuration or schema declarations into prose.
 
 ## Project instructions
 
@@ -62,7 +62,8 @@ from generic skill advice.
 A workflow can map change types to checks: documentation links, application tests,
 database tests, configuration parsing, or diagram rendering. Discover commands
 from the project rather than importing another project's toolchain. Avoid fixed
-ceremonies unrelated to correctness, such as installing app dependencies for prose.
+steps unrelated to correctness, such as installing app dependencies for a prose
+change.
 
 For vendored skills, keep project-specific compatibility guidance outside the
 vendor directory. Record any necessary local correction, its evidence and how to

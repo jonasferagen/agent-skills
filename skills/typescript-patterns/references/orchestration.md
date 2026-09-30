@@ -51,9 +51,9 @@ cleanup after partial failure.
 ## Intentional Centrality Versus Service-Location Pressure
 
 Some nodes are intentionally central: an application shell, request context,
-or composition root may have high fan-in because it owns the lifecycle. The
-question is whether consumers take named capabilities or reach through the
-central object for arbitrary services.
+or composition root may have high fan-in because it owns the lifecycle. To tell
+that apart from a service locator, ask whether consumers take named
+capabilities or reach through the central object for arbitrary services.
 
 Pressure toward a service locator shows up when:
 
@@ -120,7 +120,7 @@ pin phase behavior without duplicating the entire operation.
 
 Use a nested pipeline when one phase of a larger workflow is itself a meaningful
 ordered process with its own vocabulary and tests. The parent keeps the phase as
-one step; the child opens it at the next altitude.
+one step; the child pipeline expands that step into its own ordered phases.
 
 ```ts
 class ReportBuilder {
@@ -142,8 +142,9 @@ class ReportBuilder {
 
 ### When Not To Use
 
-Do not mint a class merely to hide line count. If the child has no vocabulary,
-contract, or independent test surface, keep named private steps on the parent.
+Do not mint a class merely to reduce the parent's line count. If the child has
+no vocabulary, contract, or independent test surface, keep named private steps
+on the parent.
 
 ## Standardize The Pipeline
 
@@ -159,8 +160,8 @@ their phase meanings have stabilized.
   substituting implementations.
 - Keep domain-specific phases on their owners; a framework full of callbacks is
   harder to read than a few explicit pipelines.
-- Delete the duplicated old shape in the same change once the shared contract
-  wins.
+- Once you adopt the shared contract, delete the duplicated old shape in the
+  same change.
 
 ### When Not To Use
 

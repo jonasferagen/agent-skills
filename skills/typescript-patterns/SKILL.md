@@ -1,19 +1,20 @@
 ---
 name: typescript-patterns
-description: "The shared TypeScript pattern canon for naming, types, classes, dependency ports, orchestration, resolution, imports and directory layout. Use whenever authoring or refactoring TypeScript: naming a file, type or symbol; a call site growing positional arguments or `undefined` placeholders; a consumer taking a whole collaborator but using one method; defaults, overrides and absence shapes piling up; barrels or public surfaces blurring; or a compiler flag or lint rule being added or weakened. Reach for it even when the request is only \"clean this up\", \"does this look right\" or \"make this more idiomatic\". Covers the shape of the code itself, not testing or review workflow."
+description: "The shared TypeScript pattern canon for naming, types, classes, dependency ports, orchestration, resolution, imports and directory layout. Use whenever authoring or refactoring TypeScript: naming a file, type or symbol; a call site growing positional arguments or `undefined` placeholders; a consumer taking a whole collaborator but using one method; defaults, overrides and absence shapes piling up; barrels or public surfaces becoming unclear; or a compiler flag or lint rule being added or weakened. Reach for it even when the request is only \"clean this up\", \"does this look right\" or \"make this more idiomatic\". Covers the shape of the code itself, not testing or review workflow."
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # TypeScript Patterns
 
-The shared pattern canon for shaping TypeScript code. **Local docs own product
-facts — grammar, framework setup, enforcement commands, package boundaries and
-paths, exemplars, mutable schemas, and domain facts; this package owns the
-transferable method.** Read the repository's own instructions first, and treat
-a real contradiction between those owners as documentation drift to reconcile,
-not as permission to pick whichever rule is easier. A repository links here
-rather than restating the shared rules in a second canonical home.
+The shared pattern canon for shaping TypeScript code. **The repository's local
+docs own product facts: grammar, framework setup, enforcement commands, package
+boundaries and paths, exemplars, mutable schemas, and domain facts. This package
+owns the transferable method.** Read the repository's own instructions first.
+Treat a real contradiction between the local docs and this package as
+documentation drift to reconcile, not as permission to pick whichever rule is
+easier. A repository links here rather than restating the shared rules in a
+second canonical home.
 
 This skill shapes code as it is authored or refactored: the shape of the code
 itself, not the workflow around it. Testing conventions belong to the
@@ -53,7 +54,7 @@ repository.
 
 ## Shape Escalation
 
-Let a value climb only when its trigger fires:
+Escalate a value to the next shape only when that step's trigger fires:
 
 1. Positional parameters become a
    [parameter object](references/utilities-and-data.md#parameter-objects) when
@@ -62,20 +63,20 @@ Let a value climb only when its trigger fires:
 2. An inline object becomes a named contract when it escapes its local scope or
    is an options bag whose fields need names
    ([type placement](references/naming-and-placement.md#type-placement-three-tiers)).
-3. Repeatedly co-travelling fields become a
+3. Fields that repeatedly travel together become a
    [domain aggregate](references/utilities-and-data.md#parameter-bundling) when
    they share meaning or behavior.
 4. Passive data becomes a
    [value object or domain primitive](references/class-shape.md#promoting-a-passive-type-to-a-class)
-   when normalization, invariants, defaults, or derived values accrete around
-   it.
+   when normalization, invariants, defaults, or derived values accumulate
+   around it.
 
 Stop at a named passive contract for DTOs, wire shapes, results, and one-shot
 inputs. Promote only values that travel with behavior or invariants.
 
 ## Output shape
 
-Leave the code with one legible pattern, its obsolete shape removed, local docs
-synchronized, and verification named. When several patterns plausibly fit,
-state the deciding trigger and why the alternatives do not match the ownership
-or lifecycle in front of you.
+Leave the code with one legible pattern and its obsolete shape removed,
+synchronize local docs, and name the verification. When several patterns
+plausibly fit, state the deciding trigger and why the alternatives do not match
+the ownership or lifecycle in front of you.

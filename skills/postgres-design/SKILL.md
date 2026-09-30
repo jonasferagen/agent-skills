@@ -2,7 +2,7 @@
 name: postgres-design
 description: "Design or review PostgreSQL schemas and migrations: naming, keys, relationships, types, state, automatic timestamps and integrity boundaries. Use when creating or changing PostgreSQL tables and related objects; query tuning and database operations follow the project's own guidance."
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Postgres design
@@ -16,8 +16,9 @@ Apply these conventions to new application-owned PostgreSQL objects unless a
 concrete domain, compatibility or operational requirement justifies a departure.
 Record the reason in the project's owning guide. Explicit project conventions
 take precedence. Check the target PostgreSQL version before using newer features.
-Adoption alone does not call for renaming existing objects, rewriting deployed migrations,
-changing access or deploying anything. Examples below are synthetic.
+Adopting these conventions does not by itself call for renaming existing
+objects, rewriting deployed migrations, changing access or deploying anything.
+Examples below are synthetic.
 
 ## Naming
 
@@ -43,11 +44,13 @@ shortens. Naming communicates intent but does not enforce identity or access.
 Maintained entities need a stable local identity that survives corrections to
 labels and external references. Use `id uuid PRIMARY KEY DEFAULT gen_random_uuid()`
 for new entities. Keep UUIDs in the native `uuid` type. Use the project's chosen
-generator when established; selecting a newer UUID algorithm requires checking
-target-version support and the workload, not rewriting existing identities.
+generator when one is established. Before selecting a newer UUID algorithm,
+check target-version support and the workload; switching does not require
+rewriting existing identities.
 Give every application table a primary key unless its integrity design requires
-a documented exception. Natural keys can fit genuinely stable identities or rebuildable projections; do not key a maintained entity by
-a mutable display label or URL merely because it is unique today.
+a documented exception. Natural keys can fit genuinely stable identities or
+rebuildable projections; do not key a maintained entity by a mutable display
+label or URL merely because it is unique today.
 
 Simple links use the relationship's identifying columns as a composite primary
 key. Give a relationship its own identifier when it needs independent references
@@ -55,14 +58,16 @@ or maintained context. A surrogate key still needs a domain uniqueness rule.
 Include a role, capacity or other qualifier only when it distinguishes genuinely
 different relationships. Lifecycle flags must not create duplicate identities.
 
-For nullable components of uniqueness, decide whether two unknown values count
-as duplicates. PostgreSQL's `UNIQUE NULLS NOT DISTINCT`, where supported, can
-express that choice. An unknown scope must not silently match every known scope.
+When a uniqueness rule includes a nullable column or expression, decide whether
+two unknown values count as duplicates. PostgreSQL's
+`UNIQUE NULLS NOT DISTINCT`, where supported, can express that choice. An
+unknown scope must not silently match every known scope.
 Choose foreign-key deletion behavior from ownership and retention requirements;
 do not cascade away independent records just because they are related.
 
-Store external identifiers separately and enforce uniqueness within their real
-scope, including provider, account, list or other namespace where needed.
+Store external identifiers separately from the local identity and enforce
+uniqueness within their real scope, including provider, account, list or other
+namespace where needed.
 Preserve opaque identifiers' case and contents unless the provider defines
 normalization. Reject blank identifiers rather than treating them as identities.
 Keep evidence URLs separate from identity.
@@ -84,8 +89,8 @@ Use `text` unless a length bound is a domain rule. Use exact `numeric` with chos
 precision and scale, or integer minor units with currency, for monetary amounts.
 Use typed columns and related tables for fields that need foreign keys, uniqueness
 or stable query semantics. Reserve `jsonb` for genuinely variable payloads and
-validate the structure the application relies on. A JSON object must not become
-an escape hatch from relational integrity.
+validate the structure the application relies on. Do not let a JSON object
+become a way around relational integrity.
 
 ## Facts, state and time
 
@@ -105,9 +110,9 @@ invent midnight timestamps or infer domain events from database bookkeeping.
 
 Store explicit conditions and derive their current consequences. For example,
 readiness can depend on a prerequisite and a date; storing another mutable
-`is_ready` flag creates a second rule to maintain. Retain conditions that may
-become unsatisfied again. An answer, evidence match or review date establishes
-permission only through the domain's explicit rule.
+`is_ready` flag creates a second rule to maintain. Keep a condition after it is
+satisfied if it may become unsatisfied again. An answer, evidence match or
+review date establishes permission only through the domain's explicit rule.
 
 ## Controlled vocabularies
 
@@ -117,11 +122,11 @@ fixed vocabulary, prefer text with a named check constraint. Follow existing
 enum conventions when established; use a referenced table when values have
 their own maintained data or lifecycle. Add values for actual domain needs.
 
-Define null explicitly when it means unknown. A nullable check does not itself
-require a value. Enforce valid combinations as well as allowed individual values:
-typed relationships may require exactly one target, and a completion state may
-require its event timestamp. Keep these rules in the database where every writer
-must obey them.
+Define null explicitly when it means unknown. A check constraint on a nullable
+column does not itself require a value. Enforce valid combinations as well as
+allowed individual values: typed relationships may require exactly one target,
+and a completion state may require its event timestamp. Keep these rules in the
+database, where every writer must obey them.
 
 ## Bookkeeping and history
 
@@ -146,8 +151,8 @@ number or an optimistic concurrency token. Use an explicit version when a write
 must reject stale state. `timestamptz` stores an instant; retain a separate timezone
 identifier when the original or recurring local timezone matters.
 
-Backfilled timestamps mark tracking from the backfill unless older values have
-evidence. They cannot establish original creation or modification dates.
+Backfilled timestamps mark when tracking began, unless evidence supports older
+values. They cannot establish original creation or modification dates.
 Deleting and recreating a link creates a new row and new bookkeeping timestamps.
 Platform-owned tables and append-only logs need their own conventions; immutable
 events generally need an occurrence or recording time rather than update tracking.
@@ -175,9 +180,9 @@ need an index for access by `right_id`.
 
 Use constraints for row and relationship invariants. For changes spanning rows,
 commands, retries or workers, read [operations](references/operations.md).
-Choose the existing write boundary: a restricted record writer and a command-only
-API have different responsibilities. Do not grant direct table writes merely to
-make a generic convention easier to apply.
+Work within the project's existing write boundary: a restricted record writer
+and a command-only API have different responsibilities. Do not grant direct
+table writes merely to make a generic convention easier to apply.
 
 ## Review and verification
 

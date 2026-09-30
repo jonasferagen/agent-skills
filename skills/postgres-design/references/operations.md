@@ -8,8 +8,9 @@ a database command API or a queue.
 
 Keep a business operation's validation and related database writes in one
 transaction through the project's authoritative write boundary. Include required
-evidence associations and audit outcomes so a failure leaves no partial result.
-Adapters should use that contract rather than reimplement its rules.
+evidence associations and audit outcomes in that transaction so a failure leaves
+no partial result. Adapters should go through that write boundary rather than
+reimplement its rules.
 
 For retryable operations, define an operation identity separately from entity
 identity. Record enough accepted intent and outcome to distinguish an identical

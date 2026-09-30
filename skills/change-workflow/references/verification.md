@@ -57,24 +57,25 @@ resulting tree again. Re-running the checks without re-synchronizing establishes
 nothing. The comparison only detects invalidation — it never substitutes for the
 checks, authorizes a merge, or proves that a remote advance was harmless.
 
-**The window is real even when no push is rejected.** Two lanes of one repository
-share one merge target, so a second landing that merges there while these checks
-run pushes first; this push then fast-forwards cleanly and publishes a
-combination nothing verified. No push is rejected and nothing notices. Merge the
-commit that was checked rather than a branch tip that moved during its own run,
-and leave the rest for the next attempt.
+**The window between checks and merge is real even when no push is rejected.**
+Two lanes of one repository share one merge target. If another landing merges
+there while these checks run and pushes first, this lane's push then
+fast-forwards cleanly and publishes a combination nothing verified. No push is
+rejected and nothing notices. Merge the commit that was checked rather than a
+branch tip that moved during its own run, and leave the rest for the next
+attempt.
 
 ## Why the check has to be nameable
 
-A project with one composite check command makes freshness legible: the thing is
-nameable, and everything else is explicitly not it. A project whose "full check"
-is really one lane of a larger set will merge on partial evidence without anyone
-deciding to.
+A project with one composite check command makes freshness legible: the full
+check has a name, and everything else is explicitly not it. A project whose
+"full check" is really one part of a larger set of checks will merge on partial
+evidence without anyone deciding to.
 
 Where a project narrows the run from the changed paths, the narrowing is that
 project's to prove, not this lane's to assume: a path its selector cannot
-classify takes the full run, a narrowed run names the lane it selected and what
-it measured, and a selection that measured nothing is refused rather than
+classify takes the full run, a narrowed run names the subset it selected and
+what it measured, and a selection that measured nothing is refused rather than
 reported green.
 
 ## Markdown links and anchors

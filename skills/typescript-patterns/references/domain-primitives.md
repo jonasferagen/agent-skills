@@ -7,11 +7,11 @@ structure. A primitive can be a value type such as `GridCoordinate`,
 
 Missing behavior becomes a named method, static operation, lookup table, or
 sibling type on the primitive. Missing variants become additions to its module.
-The primitive is the vocabulary; consumers speak it.
+The primitive defines the vocabulary, and consumers use that vocabulary.
 
-This is the front-door rule that [Behavior On The
+This is the first rule to apply; [Behavior On The
 Data](utilities-and-data.md#behavior-on-the-data) and [Utility
-Extraction](utilities-and-data.md#utility-extraction) refine. Before deciding
+Extraction](utilities-and-data.md#utility-extraction) refine it. Before deciding
 where new behavior goes, ask whether an existing primitive already owns it.
 
 ## Rules
@@ -22,7 +22,7 @@ where new behavior goes, ask whether an existing primitive already owns it.
   offset table outside the owning package is a smell. Consume or extend the
   named primitive.
 - Derive a value object's stable key through its instance method, such as
-  `coordinate.toKey()`, rather than tearing it into fields for a static helper.
+  `coordinate.toKey()`, rather than passing its fields to a static helper.
 - Keep lookup tables beside the vocabulary they enumerate. A consumer-specific
   table stays with the consumer only when its policy is not intrinsic to the
   primitive.
@@ -57,7 +57,7 @@ inside the collection owner.
 - Stringify at the innermost collection boundary. Do not expose
   `Map<string, T>` when callers conceptually query by `GridCoordinate`; expose
   `valueAt(coordinate)` or return grouped value objects.
-- A repeated `map.get(value.toKey())!` at call sites is the tell that the
+- A repeated `map.get(value.toKey())!` at call sites is a sign that the
   internal key leaked through a signature.
 
 ## Why

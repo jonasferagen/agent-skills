@@ -9,8 +9,8 @@
 
 Resolution turns layered, optional, or inherited input into one decisive value.
 Do it once, at the boundary where the value becomes usable. Do not carry the
-same precedence chain through every consumer or reopen a resolved value as
-another optional later.
+same precedence chain through every consumer or make a resolved value optional
+again later.
 
 ## Resolve Precedence Once
 
@@ -105,8 +105,9 @@ that way.
 
 ## Keeping A Resolver Honest: The Absence Ledger
 
-A resolver can silently lag when its input contract gains an optional field.
-Record the policy for every field in a total ledger:
+When a resolver's input contract gains an optional field, the resolver can
+silently leave that field unhandled. Record the policy for every field in a
+total ledger:
 
 ```ts
 type AbsenceDecision =
@@ -122,10 +123,10 @@ const TIMEOUT_ABSENCE = {
 } as const satisfies Record<keyof TimeoutInput, AbsenceDecision>;
 ```
 
-The ledger makes contract growth fail closed. Prefer consuming it in the
-implementation when that stays clear; an unused parallel map is only a review
-ratchet. Pair it with behavior tests proving the declared default, rejection,
-or intentional absence.
+The ledger makes contract growth fail closed: adding an input field without a
+ledger entry is a compile error. Prefer consuming it in the implementation when
+that stays clear; an unused parallel map is only a review ratchet. Pair it with
+behavior tests proving the declared default, rejection, or intentional absence.
 
 Use values, not missing keys, for exceptions. A missing entry says nothing;
 `intentionally-absent` records a decision. See [Fail-Closed

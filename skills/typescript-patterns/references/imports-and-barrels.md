@@ -1,12 +1,13 @@
 # Imports And Barrels
 
-Barrels are opt-in API boundaries, not required folder paperwork. Use one when a
+Barrels are opt-in API boundaries, not a file every folder needs. Use one when a
 package entry point, subsystem, or sibling directory needs a stable import
 surface; otherwise direct imports inside the owning area are fine.
 
 ## Barrel Policy
 
-- Files are internal by default. Export only intentional consumers' surfaces.
+- Files are internal by default. Export only the surface you intend consumers
+  to use.
 - A directory barrel exports siblings only; it does not reach into parents,
   cousins, or deep descendants.
 - An aggregator exports sibling files and immediate child barrels.
@@ -27,8 +28,8 @@ surface; otherwise direct imports inside the owning area are fine.
 | Bridge barrel       | Rare transitional/public surface whose consumer and removal condition are documented |
 | Internal module     | Implementation absent from boundary barrels                                          |
 
-Use aggregators sparingly. A bridge that has no live consumer is dead surface,
-not compatibility value.
+Use aggregators sparingly. A bridge that has no live consumer provides no
+compatibility; it is dead surface.
 
 ## Choosing An Import Boundary
 
@@ -41,8 +42,9 @@ not compatibility value.
   area when no boundary exists.
 - Use package entry points for external consumers and true package boundaries.
 - Do not bypass an existing appropriate boundary to reach a concrete file.
-- Flatten a thin subdirectory when its files mostly reach back into the parent;
-  widening the parent barrel to preserve a hollow boundary hides the real shape.
+- Flatten a thin subdirectory when its files mostly reach back into the parent.
+  Widening the parent barrel to keep such a subdirectory separate hides that it
+  is not a real boundary.
 
 ## External Dependency Boundaries
 
@@ -84,5 +86,5 @@ Then treat the remaining findings as review input.
 
 A durable checker derives current package surfaces from authoritative export
 maps or configuration instead of carrying a hardcoded inventory of filenames.
-Keep exceptions small, named, and justified; an exception list is not a backlog
-sink.
+Keep exceptions small, named, and justified; an exception list is not a place to
+park violations you mean to fix later.
