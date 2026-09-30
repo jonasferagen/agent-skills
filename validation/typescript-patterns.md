@@ -19,6 +19,7 @@ they are not claims that an independent agent has passed them.
 | Asked to wrap an awkward legacy shape so call sites stop seeing it | Prefer removing the bad shape to adding a compatibility layer; name what the wrapper would owe the transitive contract. |
 | Name a file of passive types shared by nearby callers | `{Topic}Types.ts` in PascalCase beside them. A lowercase domain noun only inside a `types/` contract directory; camelCase only for class-free runtime modules. |
 | A `parsers/` folder holds only parsers for several domains | Treat it as a role folder: split by concept, or rename it to a pipeline phase such as `parse/`. |
+| A top-level `utils/` directory holds cross-cutting helpers | Treat it like `helpers/`: split its files by domain or concept. Only a top-level `types/` of passive contracts is exempt. |
 | Asked to review a colleague's diff for shape smells | Use the review heuristics as questions inside the repository's own review workflow. The package supplies prompts, not a review procedure. |
 | A closed-union `switch` returns a value and has no `default` | Call it safe only under `strictNullChecks` with a declared return type that excludes `undefined`, or under `noImplicitReturns`. |
 
@@ -135,6 +136,15 @@ release.
 - Testing leftovers removed: the fixture-module naming sentence in
   `naming-and-placement.md` and `fixtures/` in `directories.md`.
 
-Still open: `directories.md` allows a top-level `utils/` catch-all, while
-`naming-and-placement.md` says to avoid `Utils` and the concept-or-phase rule
-forbids `helpers/`.
+`utils/` (owner decision, resolved after the list above): `directories.md`
+exempted a top-level `utils/` catch-all, while `naming-and-placement.md` says to
+avoid `Utils`, the concept-or-phase rule forbids `helpers/`, and
+`utilities-and-data.md` says utility is no exemption → only a top-level `types/`
+of passive contracts stays exempt; `utils/` is split by domain or concept like
+`helpers/`. Fewer exceptions to maintain was the reason.
+
+Filename casing (owner decision, reaffirmed): a parallel branch proposed an
+export-parity rule, under which a `Types` bundle is camelCase (`orderTypes.ts`)
+because no export carries its name. The owner kept option A above,
+`{Topic}Types.ts` in PascalCase, as the simpler rule; the export-parity commit
+is not part of this package.
