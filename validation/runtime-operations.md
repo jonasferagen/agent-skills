@@ -11,6 +11,7 @@ The skill must preserve these decisions in realistic applications:
 | A different process owns a preview port | Fail readiness and stop only the attempted unit. |
 | Start an already running preview | Leave it running; restart explicitly applies changes. |
 | Restart an installed mail worker | Preserve its release and outbound settings; do not enable delivery. |
+| A service control command with a default service is run without a service name | The default is the viewer, a transient preview that sends nothing; workers and outbound senders need their names. Whether a command should have a default at all is still open. |
 | Reconstructible data versus a canonical queue | Keep backup triggers local; one mandatory restore routine can serve both when the owner chooses consolidation. |
 | A tool invoked from a heredoc-fed script reports an unexplained parse error | Inherited stdin is suspected first; the child is given a closed stdin. |
 | A script mutates the process environment before spawning a child | Replaced with a filtered copy passed to that child, so later calls are unaffected. |
@@ -21,6 +22,7 @@ The skill must preserve these decisions in realistic applications:
 | A rehearsal subcommand defaults its target | The target becomes required; a default is how the wrong archive gets used. |
 | A caller wants to pass an endpoint or query text to a boundary script | Refused; the script resolves and verifies its own endpoint and owns its statements. |
 | A check reports success having compared zero tables | Treated as a defect in the check; the honest output is a refusal naming the empty denominator. |
+| A capture's restore check fails | Nothing is published; a capture test makes that step fail and confirms it. |
 
 Run the helper tests with `python3 -B -m unittest discover -s
 skills/runtime-operations/tests`. Validate the manifest with the skill-creator
@@ -61,3 +63,45 @@ and service commands would have moved facts between sections or needed values
 the text does not state. Newly found: the text does not say whether the default
 viewer is one of the previews that run as transient user services, or whether
 "Stop only the named unit" also limits what a failed startup may stop.
+
+## Resolutions — 2026-09-30
+
+Version 1.2.0 carries these changes.
+
+The owner accepted every recommendation from the contradiction review, and chose
+option (c) for the naming rule. Helper tests pass (12 tests).
+
+- Naming across scripts: "Use the same verbs" was illustrated with option names.
+  The manifest now asks for the same subcommand and option names for the same
+  job and the same input, keeping the `--file`/`--archive` example.
+- Withheld output: the manifest asks for a comment saying why child output is
+  discarded, and the helpers had none. The prose is unchanged;
+  `databaseBackup.py` `run()` and `crypt()` and `credentialStore.py`
+  `item_fields()` now carry that comment.
+- Capture tests: "check failure before publication" had two readings. The
+  manifest now says capture tests make each verification step fail and confirm
+  that nothing is published. `test_failed_restore_does_not_publish` does this
+  for the restore check; the encryption round-trip and backup-directory
+  permission checks have no failure test yet, which stays open. A scenario above
+  records the rule.
+- Default viewer: the text did not say whether the viewer is a preview. The
+  manifest now says that where a control command has a default service, it is a
+  viewer, a preview that sends nothing, run as a transient user service, as
+  work-system's `view` is.
+- Failed start: the manifest now says "Stop only the named unit" applies after a
+  failed start too, matching `serviceControl.py` and its test.
+- Secret-store access: "Read permission on the secret store" read like the
+  **Read** tier. The manifest now says secret-store access is not a capability
+  tier; a service account needs only read access to its vault, even for a
+  writer's credentials.
+- Empty denominator: "an unsatisfiable threshold" named a cause rather than an
+  empty set. The example now reads "a filter or threshold that nothing could
+  meet", close to the paired `node-patterns` wording, which is unchanged.
+
+Open questions, not changed:
+
+- "Require an explicit target for a job that acts on a named thing" sits
+  uneasily with the consumer control scripts, which default the service to
+  `view` or `live`, and with the manifest's default viewer.
+- `credentialStore.py` and `crypt()` raise errors that do not name the command
+  and exit status, as the child-process rule asks.

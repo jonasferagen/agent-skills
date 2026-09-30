@@ -30,6 +30,7 @@ def item_fields(vault, item, *, account=None, directory=None):
     try:
         result = subprocess.run(['op', 'item', 'get', item, '--vault', vault, '--format=json'],
                                 capture_output=True, text=True, env=env, timeout=45)
+        # op output holds the item's secret fields; report only the identity.
         if result.returncode:
             raise ValueError('Credential read failed')
         return json.loads(result.stdout)['fields']
