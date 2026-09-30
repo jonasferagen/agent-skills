@@ -37,7 +37,7 @@ as a manual review; automation can grow from actual transitions.
 | [typescript-design](skills/typescript-design/SKILL.md) | Class-based TypeScript house style: operations, naming, ownership, ports, barrels and directory layout. |
 | [python-patterns](skills/python-patterns/SKILL.md) | Python types, runtime boundaries, defaults, exceptions, resource cleanup and async tasks. |
 | [python-design](skills/python-design/SKILL.md) | Class-based Python house style: operations, domain values, dependency protocols, naming and modules. |
-| [bash-patterns](skills/bash-patterns/SKILL.md) | Preserving command failures and query results in Bash checks, pipelines, captures and process substitutions. |
+| [bash-patterns](skills/bash-patterns/SKILL.md) | Preserving arguments, command failures, query results and cleanup ownership in Bash scripts. |
 | [node-patterns](skills/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
 | [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries, and transactions on pooled connections. |
 
@@ -260,7 +260,10 @@ reporting its own status, an early pipeline reader turning a match into a SIGPIP
 failure under `pipefail`, and a process substitution whose producer status nobody
 collects. Example requests: "Use $bash-patterns to check whether this backup
 script's checks can pass when they should fail", "Use $bash-patterns on this
-pipeline before I trust its exit code." See
+pipeline before I trust its exit code." Version 0.2.0 retains those rules in
+focused references and adds argument boundaries, explicit status handling, file
+iteration and resource ownership. Third-party defensive Bash guidance supplied
+topics to assess; the additions are newly authored and runtime-checked. See
 [validation and alignment](validation/bash-patterns.md).
 
 **node-patterns** was written on 2026-09-30 as the Node counterpart to
