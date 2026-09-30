@@ -51,6 +51,7 @@ for another.
 
 ## Child processes
 
+<!-- Package-boundary copy: node-patterns/SKILL.md (Close input the child does not need) states the Node mechanics of the stdin rule below. Keep both passages aligned. -->
 Operational tooling mostly calls other programs. Each call is a place a secret
 can escape, a command can hang, or an error can point to the wrong component.
 
@@ -157,6 +158,7 @@ unrelated port ownership with synthetic inputs. Follow the repository's checks.
 Check live service state only when relevant; documentation is not live evidence.
 Do not widen permissions merely to make a test or operation pass.
 
+<!-- Package-boundary copy: node-patterns/SKILL.md (Report a check's result) applies this denominator rule to check scripts. Keep both passages aligned. -->
 A verdict names its denominator: what was compared, run or counted. When that
 denominator is empty, the honest output is a refusal, not a pass. Examples of an
 empty denominator: nothing compared, no tests collected, no archive matched, or
