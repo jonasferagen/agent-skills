@@ -135,7 +135,7 @@ It covers wording and meaning; document ownership belongs to `project-docs` and
 visual form to `diagrams`. Jonas's email voice has its own skill outside this
 repository.
 Its first prose trials are the conceptual `source-of-truth` skill and the
-procedural `bash-patterns` skill. See
+procedural `bash-patterns` skill; a later sweep revised eight more packages. See
 [validation scenarios and results](validation/clear-writing.md).
 
 **postgres-design** was extracted from Personal Atlas's database conventions on

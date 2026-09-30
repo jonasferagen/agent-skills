@@ -2,7 +2,7 @@
 name: clear-writing
 description: "Draft or edit explanatory and instructional prose for clarity, including technical explanations, documentation, skills, project instructions and concise labels. Preserve the requested voice, factual meaning and level of certainty."
 metadata:
-  version: "0.1.1"
+  version: "0.2.0"
 ---
 
 # Clear writing
@@ -34,7 +34,9 @@ fluent wording does not resolve it.
   as "if," "because" and "so" to make the relationship explicit.
 - Replace vague claims, slogans and unexplained metaphors with the behavior,
   evidence or consequence the reader needs. Avoid inventing a label for something
-  a short description explains better.
+  a short description explains better. A metaphor can carry a distinction, such
+  as cost rather than effort; keep that distinction in the replacement, or keep
+  the metaphor when plain wording loses it.
 - Remove repetition and context the reader already has. Keep enough detail to
   prevent a plausible misunderstanding; brevity should reduce the reader's work.
 - Use headings, lists and tables when they expose useful structure. Connected
@@ -59,6 +61,8 @@ material to edit unless the user has also asked you to carry them out.
 
 Compare the revision with the source or supplied facts. Check especially for
 changed actors, conditions, quantities, exceptions, obligations and certainty.
-Then read it from the intended reader's position: can they find the point, follow
-the reasoning and understand any action without guessing? Revise only where the
+Also look for an ambiguity the revision settled: a condition moved to the front
+of a sentence can come to govern actions it did not govern before. Then read it
+from the intended reader's position: can they find the point, follow the
+reasoning and understand any action without guessing? Revise only where the
 answer reveals a concrete problem.

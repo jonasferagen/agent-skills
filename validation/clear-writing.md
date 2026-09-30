@@ -15,6 +15,8 @@ they are not claims that an independent agent has passed them.
 | Edit explanatory text in an established personal voice | Improve comprehension while retaining the requested tone and distinctive voice. |
 | The user requests a creative form or deliberately elaborate prose | Follow the requested form; do not impose terse technical prose as a universal style. |
 | Fix one unclear sentence in a documentation set | Make the focused edit without reorganizing the documentation or adding unrelated diagrams. |
+| Replace a metaphor whose word choice carries a distinction, such as "cheapest" meaning least information lost | Keep the distinction in plain wording, or keep the metaphor; do not substitute a near-synonym that changes the reason. |
+| Clarify a sentence where "when available" could limit one action or all of them | Keep the scope visible or ask; do not move the condition so that it governs more actions than before. |
 
 ## Initial checks — 2026-09-29
 
@@ -95,3 +97,22 @@ unresolved; the confirmed ones are recorded on each package's validation page.
 This was a text comparison. No behavioral scenario of a revised package was
 rerun, and the description edits in `diagrams` and `typescript-patterns` were
 not tested for changes in when the skill is selected.
+
+## Rewrite checks — 2026-09-30
+
+Version 0.2.0 adds two checks drawn from the package sweep's review findings: a
+replaced metaphor keeps the distinction it carried, and the final comparison
+looks for an ambiguity the revision settled, such as a condition moved to govern
+more actions. The last two scenarios above cover them.
+
+An independent agent used the revised skill on three supplied passages without
+receiving the expected answers:
+
+| Input | Observed result |
+| --- | --- |
+| "The cheapest columns to drop are the derived ones, since readers can recompute them" | Kept "cheapest" because the following clause explains the cost; declined near-synonyms that would change the claim. |
+| A release check to use "the production theme when available" | Kept the condition on the theme rather than the whole check, and asked what to do when the theme is unavailable. |
+| Retry an upload "but not when the server says the token is invalid — that's a dead end" | Replaced the idiom with the consequence, kept the exception beside the rule, and asked how many retries "a few" means. |
+
+These three cases do not establish that the checks prevent the sweep's errors in
+longer documents, where most of them occurred.
