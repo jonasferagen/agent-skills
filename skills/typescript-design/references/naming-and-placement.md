@@ -94,7 +94,7 @@ responsible for carrying it.
 The name reduces the risk but does not guard against it. If omitting an entry
 from the registry is unsafe, the registry must also be fail-closed through an
 exhaustive record, an owner-derived schema, or a durable ratchet. See
-[Fail-Closed Mirrors](typescript.md#fail-closed-mirrors).
+[complete registries](#complete-registries).
 
 ## Representation Prefixes
 
@@ -158,3 +158,10 @@ Start at the lowest tier and promote when the type escapes its scope:
 Escape of scope, not raw importer count, triggers promotion. A private helper
 type used by many methods remains inline; a public type imported from another
 package does not stay in a sibling types file beside the implementation.
+
+## Complete registries
+
+<!-- Package-boundary copy: typescript-patterns/references/typescript.md (The Two Total Shapes). Keep this summary aligned with that rule. -->
+Derive a closed vocabulary from its table when the table owns it; otherwise
+check the table with `satisfies Record<Union, Value>`. Use an explicit value for
+an opt-out. A typed array or set proves membership, not completeness.

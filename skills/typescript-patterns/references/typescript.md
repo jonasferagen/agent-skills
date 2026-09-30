@@ -2,65 +2,13 @@
 
 ## Contents
 
-- [Naming and symbol links](#naming)
-- [Events and booleans](#events-and-booleans)
 - [Nullability and declarations](#nullability)
 - [State modeling and exhaustiveness](#state-modeling)
 - [Fail-closed mirrors](#fail-closed-mirrors)
+- [Typed events](#typed-events)
 - [Safety and assertions](#safety)
 - [Tuples and branded IDs](#tuple-aliases)
 - [Nominal class instances](#nominal-class-instances)
-
-## Naming
-
-### Files
-
-- Use `PascalCase.ts` for classes, primary model/type exports and sibling
-  `XTypes.ts` contract files. Match the filename to the primary exported class.
-- Use `camelCase.ts` for class-free runtime modules: constants, data records,
-  tokens, and hooks. Type-only modules inside a contract directory follow
-  [naming and placement](naming-and-placement.md#file-naming).
-- Use `kebab-case/` for directories, not TypeScript filenames.
-- Follow [naming and placement](naming-and-placement.md#file-naming) for the
-  domain/topic/role decision. A repository may gate export parity locally, but
-  no mechanical check can choose the right domain name.
-
-### Symbols
-
-- `PascalCase` for types and enums.
-- `camelCase` for variables and functions.
-- `SCREAMING_CASE` for constants and enum members.
-
-### Boundary Normalizers
-
-When a helper converts an external shape into the project's internal shape,
-name it `normalize...`, not a vague `clean` or `sanitize`. Use `parse...` /
-`tryParse...` when the helper validates a grammar and returns a domain value.
-
-```ts
-function normalizeOptionalParam(value: string | null): string | undefined {
-  return value ?? undefined;
-}
-```
-
-The asymmetric signature names the boundary crossing between two absence
-models.
-
-### React, When Applicable
-
-- Use `PascalCase.tsx` and `PascalCase` component names.
-- Prefix hooks with `use`.
-
-## Cross-References In Comments
-
-When a comment points at a symbol, use TSDoc `{@link}` instead of a handwritten
-file path. Symbol links stay navigable and survive file moves.
-
-- Link an in-scope symbol as `{@link invoiceState}`.
-- Link another module as
-  `{@link import('./InvoiceState').InvoiceState}`.
-- Keep a path only when no symbol exists, such as a config file, asset, or
-  route.
 
 ## Nullability
 
@@ -204,6 +152,8 @@ A subset of `T[]`, `Set<T>`, or `Map<T, V>` is valid. `Partial` explicitly opts
 out, a cast hides the missing entries, and array `satisfies` checks membership
 only. Read the annotation; do not trust its protective appearance.
 
+<!-- Package-boundary copy: typescript-design/references/naming-and-placement.md (Complete registries) summarizes this rule. Keep both aligned. -->
+
 ### The Two Total Shapes
 
 Choose by the source of truth.
@@ -265,19 +215,12 @@ Use a parse/partition step when every candidate must be accepted or explained:
 - test one valid, one unrelated, and each invalid candidate class.
 
 Name registries for the obligation they transfer, not merely the property they
-describe. See [Name The Obligation, Not The
-Property](naming-and-placement.md#name-the-obligation-not-the-property).
+describe.
 
-## Events And Booleans
+## Typed events
 
 - Bind emitters and listeners to a typed event map so payload-required events
   enforce payload presence.
-- Name boolean values so they read as predicates at the call site. Prefer `isX`
-  for state or condition and `hasX` for possession or presence.
-- Use `canX`, `shouldX`, `didX`, or another predicate verb when it carries the
-  value's real modal or temporal meaning. Keep an externally owned field or an
-  established domain term when adding `is` or `has` would misstate the contract;
-  do not prefix a name only to advertise its type.
 
 ## Safety
 

@@ -1,4 +1,4 @@
 interface:
-  display_name: "TypeScript Patterns"
-  short_description: "Shared TypeScript design and coding patterns"
-  default_prompt: "Use $typescript-patterns to choose and apply the right TypeScript code pattern."
+  display_name: "TypeScript patterns"
+  short_description: "Type safety, generics and language conventions"
+  default_prompt: "Use $typescript-patterns to check these TypeScript types and boundary assumptions."

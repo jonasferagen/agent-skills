@@ -57,6 +57,8 @@ Keep the boundary name honest. A directory named for a dependency may import
 that dependency and project-owned values. Neighboring domain directories remain
 free of it unless their public purpose is to expose that external surface.
 
+<!-- Package-boundary copy: typescript-patterns/references/imports.md (Module And Path Syntax). Keep both passages aligned. -->
+
 ## Module And Path Syntax
 
 The repository owns ESM/CommonJS policy, file-extension conventions,

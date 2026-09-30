@@ -1,0 +1,4 @@
+interface:
+  display_name: "TypeScript design"
+  short_description: "Class-based TypeScript design and house style"
+  default_prompt: "Use $typescript-design to shape these TypeScript operations and their ownership."
