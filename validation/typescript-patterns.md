@@ -1,27 +1,82 @@
-# Validation scenarios — TypeScript Patterns
+# Validation scenarios — TypeScript patterns
 
-Use these cases when changing the skill. They define useful observable outcomes;
-they are not claims that an independent agent has passed them.
+These scenarios cover the language package from 2.0.0. The class-based design
+scenarios now live in [TypeScript design](typescript-design.md). Earlier records
+below describe the combined 1.x package under its historical name and paths.
 
 | Request and context | Expected outcome |
 | --- | --- |
-| A constructor takes six positional arguments, two of them optional | Escalate to a parameter object at the documented trigger; stop there unless invariants or behavior accrete. |
-| A DTO parsed from a wire response gains its first normalization helper | Keep it a named passive contract; promote to a value object only once normalization, invariants or derived values gather around it, and say which trigger fired. |
-| A consumer accepts a whole client but calls one method | Introduce a port at the consumer. Do not add one where the consumer genuinely needs the concrete dependency. |
-| A cast is unavoidable at an opaque browser or vendor boundary | Keep the cast local and explained; prefer it to a false abstraction that would license invalid production values. |
-| Asked to add tests for a module the skill just reshaped | Defer to the reading repository's own testing conventions. The canon carries no test layout, fixture, mock or coverage policy. |
-| Asked which companion skill reviews the current diff | Answer from the reading repository's own workflow. The package names no companion skills and must not invent one. |
-| The reading repository's instructions contradict a rule here | Report it to the user as documentation drift between two owners, quoting both passages. Edit neither side, and do not follow whichever rule is easier. |
-| A non-React codebase asks for help naming a module and its exports | Apply the framework-neutral rules only; the conditional React guidance stays unapplied. |
-| Fix a one-line naming typo in a file that has several other smells | Make the small edit. Do not open a broad reshaping pass off the back of it. |
-| A lint rule catches a real defect class and a correct-by-construction idiom alike | Follow the exemption guidance rather than weakening the rule or disabling it wholesale. |
-| A helper is wanted for a value that already has a natural home class | Prefer a static on that class over a new standalone exported function. |
-| Asked to wrap an awkward legacy shape so call sites stop seeing it | Prefer removing the bad shape to adding a compatibility layer; name what the wrapper would owe the transitive contract. |
-| Name a file of passive types shared by nearby callers | `{Topic}Types.ts` in PascalCase beside them. A lowercase domain noun only inside a `types/` contract directory; camelCase only for class-free runtime modules. |
-| A `parsers/` folder holds only parsers for several domains | Treat it as a role folder: split by concept, or rename it to a pipeline phase such as `parse/`. |
-| A top-level `utils/` directory holds cross-cutting helpers | Treat it like `helpers/`: split its files by domain or concept. Only a top-level `types/` of passive contracts is exempt. |
-| Asked to review a colleague's diff for shape smells | Use the review heuristics as questions inside the repository's own review workflow. The package supplies prompts, not a review procedure. |
-| A closed-union `switch` returns a value and has no `default` | Call it safe only under `strictNullChecks` with a declared return type that excludes `undefined`, or under `noImplicitReturns`. |
+| A cast is unavoidable at an opaque browser or vendor boundary | Keep it local and explained; do not invent a false type proof. |
+| A total label table uses `satisfies readonly State[]` | Explain that membership is not completeness; derive the vocabulary from its owner or use a total record. |
+| A closed-union switch returns a value with no default | Require the documented compiler settings before claiming missing cases will fail compilation. |
+| A generic preserves the type relationship between an input and output | Use the generic; avoid a framework for a one-site helper. |
+| A strictness check reports an unread nominal marker | Preserve the type guarantee and inspect the marker's purpose before removing it. |
+| A lint exemption hides both a valid idiom and a real defect | Narrow the one rule's scope and document the unverified portion. |
+| A project asks about import extensions or module resolution | Follow project configuration; no universal spelling or barrel policy is inferred. |
+| A request only concerns filename case or class-based operation organization | Language guidance does not prescribe that choice; select adopted design guidance separately. |
+| Asked to add tests or run a review workflow | Follow the consuming repository's conventions. |
+| Local docs contradict this package | Report the contradiction with both passages; edit neither owner to settle it. |
+
+## Split into language and design — 2026-09-30
+
+The split is based on main at `4755a78`. It preserves the reference rules and
+examples while changing selection and ownership. The scope reduction makes `typescript-patterns` 2.0.0;
+consumers seeking the former full contract must adopt both packages.
+
+### Reference ownership
+
+| Former reference | Current home |
+| --- | --- |
+| `class-shape.md`, `dependency-ports.md`, `directories.md`, `domain-primitives.md`, `orchestration.md`, `utilities-and-data.md` | Moved unchanged to `typescript-design/references/` |
+| `naming-and-placement.md`, `resolution.md` | Design; mirror links now reach a local completeness summary |
+| `imports-and-barrels.md` | Design; its short module-syntax rule is also available in patterns' `imports.md` |
+| `typescript.md` | Patterns; naming, boolean naming and comment links moved to design's `conventions.md` |
+| `types-and-generics.md` | Patterns; name/type cohesion moved to design's `conventions.md` |
+| `review-heuristics.md` | Split into type questions in patterns and design questions in design |
+| `enforcement.md` | Patterns, unchanged; remains a conditional reference |
+
+Both entrypoints retain repository authority, the focused workflow and output
+expectations. The shape-escalation table belongs to design. Short shared
+constraints have reciprocal source comments: repository authority/workflow,
+module syntax and total registries. Neither package requires the other to be
+installed or links outside its own directory.
+
+### Review basis and limits
+
+Clear writing was applied to the new entrypoints, scope descriptions and
+migration guidance. Existing rule strength, exceptions and code examples were
+preserved. Diagrams and tables guidance selected symptom tables and the mapping
+above; no diagram is needed for this two-package selection decision.
+
+The scenarios are reviewed statically against their routed references. This
+is not an independent agent evaluation or evidence of host skill discovery.
+No consumer installation, release tag, Python skill or Bash change is included.
+
+### Measured checks
+
+- `python3 scripts/validate-packages.py`: passed for all 14 packages.
+- Skill creator's `quick_validate.py`: passed for each TypeScript package.
+- Each package was copied alone into a separate temporary root and passed the
+  repository validator's manifest, local-target and containment checks.
+- `remark` CLI with `remark-validate-links --frail --no-stdout`: passed across
+  README, AGENTS, every skill Markdown file and every validation page. The
+  temporary runner needed an absolute plugin path because npm's ephemeral
+  installation was not resolvable from the worktree; no dependency was added.
+- A comparison against the source found all 19 fenced examples byte-for-byte
+  unchanged. Six moved design references and the retained enforcement reference
+  are also byte-for-byte unchanged.
+- `git diff --check`: passed.
+- Rendered both entrypoints, the current validation tables, reference mapping
+  and catalog in external Chrome at an 830 px content width. Tables wrap and
+  remain readable without horizontal clipping. This used temporary HTML,
+  not a committed renderer or a host-specific discovery test.
+
+Stale-reference review covered the moved paths, their basenames and stems,
+old design invocation examples and both skill names. Current catalog links and
+invocations follow the new owners; older validation and provenance records
+retain the historical package name. Consumer pins are outside this change.
+
+## Historical validation of the combined package
 
 ## Initial checks — 2026-09-29
 

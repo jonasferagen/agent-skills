@@ -1,28 +1,5 @@
 # Types And Generics
 
-## Name And Type Cohesion
-
-When a variable or parameter is an instance of a project-owned type, use the
-type name as the default name in `camelCase`.
-
-Examples:
-
-- `billingPeriod: BillingPeriod`
-- `gridCoordinate: GridCoordinate`
-- `localeResolver: LocaleResolver`
-
-Rename when the local role carries meaning the type cannot: `from`/`to`,
-`current`/`previous`, `source`/`target`, or `fallback`/`primary`.
-
-Third-party types are exempt because the project does not own their vocabulary:
-`layoutGroup: Group` is clearer than `group: Group` when a vendor group plays a
-domain role.
-
-If many call sites use the same non-matching name for a project-owned type, the
-type may be misnamed or a missing wrapper/domain concept may be hiding there.
-The review-time diagnostic lives in
-[review heuristics](review-heuristics.md#name-vs-type-cohesion).
-
 ## Generic Types And Methods
 
 Use type parameters when the code preserves a real relationship between types.
@@ -43,8 +20,7 @@ registry keeps the caller's item type intact".
   better as named domain behavior than as generic tuple or record machinery.
 - Do not introduce a generic framework for a one-site helper. Wait until the
   same type relationship appears in a second caller, then extract it to the
-  owning domain module. See
-  [Utility Extraction](utilities-and-data.md#utility-extraction).
+  owning domain module.
 - Avoid generic pipeline classes or registries for fixed workflows; a flat
   named sequence is clearer unless the step list is dynamic.
 

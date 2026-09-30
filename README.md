@@ -33,7 +33,8 @@ as a manual review; automation can grow from actual transitions.
 
 | Skill | Use it for |
 | --- | --- |
-| [typescript-patterns](skills/typescript-patterns/SKILL.md) | Shaping TypeScript: naming, types, classes, dependency ports, imports and directory layout. |
+| [typescript-patterns](skills/typescript-patterns/SKILL.md) | TypeScript types, narrowing, generics, absence, module syntax and enforcement. |
+| [typescript-design](skills/typescript-design/SKILL.md) | Class-based TypeScript house style: operations, naming, ownership, ports, barrels and directory layout. |
 | [bash-patterns](skills/bash-patterns/SKILL.md) | Preserving command failures and query results in Bash checks, pipelines, captures and process substitutions. |
 | [node-patterns](skills/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
 | [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries, and transactions on pooled connections. |
@@ -290,21 +291,32 @@ would break when this skill is installed alone. Example requests: "Use $test-aud
 on the runner suite", "Use $test-audit to find what our mocks have never actually
 verified." See [validation and alignment](validation/test-audit.md).
 
-**typescript-patterns** is Jonas's TypeScript pattern canon, brought into this
-repository on 2026-09-29. It covers the shape of the code itself: naming and
-placement, types and generics, class shape, domain primitives, dependency ports,
-orchestration, resolution and defaults, imports and barrels, directory layout
-and enforcement — a manifest plus thirteen reference pages, with a symptom table
-routing from the smell at the call site to the narrowest page. Testing is
-deliberately out of scope: test layout, fixtures and coverage policy belong to
-the reading repository, and rules phrased around tests stay only where they are
-really about design shape, such as the port-versus-cast decision in
-`dependency-ports.md`. The package is self-contained — every relative link and
-heading anchor resolves inside it, and it defers to the reading repository's own
-instructions rather than to companion skills. Example requests: "Use
-$typescript-patterns to name this module and its exports", "Use
-$typescript-patterns — this constructor takes six positional arguments." See
-[its validation scenarios](validation/typescript-patterns.md).
+**typescript-patterns** and **typescript-design** separate the language and
+house-style guidance in Jonas's TypeScript canon, first brought here on
+2026-09-29. Both packages use a symptom table to select focused references,
+remain installable alone, and leave testing and review workflows to the
+consuming repository.
+
+`typescript-patterns` owns language conventions, type safety, generics, module
+syntax and compiler/lint enforcement. `typescript-design` owns the class-based
+house style: operations, domain values, naming and placement, dependency ports,
+orchestration, resolution, barrels and directories. Class-based operations
+remain a strong convention with the same exceptions; this split changes where
+rules are selected, not the design choices themselves.
+
+To preserve the former package's full guidance when upgrading from
+`typescript-patterns` 1.x, adopt **both** packages and update project guidance
+that selected only the old skill. Existing commit-pinned copies remain intact.
+Version 2.0.0 of `typescript-patterns` narrows its scope; version 1.0.0 of
+`typescript-design` starts the extracted package. These manifest versions do not
+publish release tags or update installed consumers.
+
+Example requests: "Use $typescript-patterns to check this union and its label
+table", "Use $typescript-design to name this module and its exports", and
+"Use $typescript-design — this constructor takes six positional arguments."
+See the [language validation](validation/typescript-patterns.md) and
+[design validation](validation/typescript-design.md), including the split's
+reference mapping and remaining limits.
 
 **source-of-truth** was extracted on 2026-09-29 from a duplication audit of
 Personal Atlas: six parallel searches over validation rules, domain vocabularies,
@@ -314,7 +326,7 @@ acceptance. Its subject is the seam between media — a concept authored in a
 schema, a setting or a document and restated in application code, another
 language or prose, where no single search finds both sides and the restatement
 falls behind silently. It deliberately excludes code shape, which belongs to
-[typescript-patterns](skills/typescript-patterns/SKILL.md), and schema design,
+[typescript-design](skills/typescript-design/SKILL.md), and schema design,
 which belongs to [postgres-design](skills/postgres-design/SKILL.md). The
 installable package is synthetic throughout and names no language, framework or
 toolchain as a requirement. Several of its false-positive tests — a complete copy

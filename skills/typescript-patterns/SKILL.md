@@ -1,14 +1,18 @@
 ---
 name: typescript-patterns
-description: "The shared TypeScript pattern canon for naming, types, classes, dependency ports, orchestration, resolution, imports and directory layout. Use whenever authoring or refactoring TypeScript: naming a file, type or symbol; a call site growing positional arguments or `undefined` placeholders; a consumer taking a whole collaborator but using one method; defaults, overrides and absence shapes piling up; barrels or public surfaces becoming unclear; or a compiler flag or lint rule being added or weakened. Reach for it even when the request is only \"clean this up\", \"does this look right\" or \"make this more idiomatic\". Covers the shape of the code itself, not testing or review workflow."
+description: "Write or review TypeScript types, narrowing, generics, absence, tuples, brands and module syntax. Use also for compiler strictness and lint enforcement; class organization and naming belong to adopted design guidance."
 metadata:
-  version: "1.1.0"
+  version: "2.0.0"
 ---
 
-# TypeScript Patterns
+# TypeScript patterns
 
-The shared pattern canon for shaping TypeScript code. **The repository's local
-docs own product facts: grammar, framework setup, enforcement commands, package
+Apply TypeScript language patterns and type-safety conventions. This package
+does not prescribe class-based operations, filename conventions or directory
+layout. Repository design guidance owns those choices.
+
+<!-- Package-boundary copy: typescript-design/SKILL.md carries the same repository authority, workflow and output expectations. Keep both aligned. -->
+**The repository's local docs own product facts: grammar, framework setup, enforcement commands, package
 boundaries and paths, exemplars, mutable schemas, and domain facts. This package
 owns the transferable method.** Read the repository's own instructions first.
 When the local docs and this package really contradict each other, report it to
@@ -34,38 +38,16 @@ repository.
    pattern changes what they say, then run the repository's own focused checks
    and merge-boundary gate.
 
-## Start By Symptom
+## Start by symptom
 
-| Symptom or decision                                                            | Read                                                                                                                              |
-| ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| A class, helper, constant, or method has the wrong shape                       | [Class shape](references/class-shape.md)                                                                                          |
-| A file or symbol needs a name, role suffix, representation prefix, or home     | [Naming and placement](references/naming-and-placement.md), then [directory patterns](references/directories.md)                  |
-| A boolean name does not read as a predicate                                    | [Events and booleans](references/typescript.md#events-and-booleans)                                                               |
-| A generic, cast, tuple, brand, null, boolean, union, or mirror feels unsafe    | [TypeScript conventions](references/typescript.md) and [types and generics](references/types-and-generics.md)                     |
-| A helper reads one domain value, or parameters repeatedly travel together      | [Utilities and data](references/utilities-and-data.md) and [domain primitives](references/domain-primitives.md)                   |
-| A call has too many positional arguments or `undefined` placeholders           | [Parameter objects](references/utilities-and-data.md#parameter-objects)                                                           |
-| A value comes from overrides, defaults, inheritance, or several absence shapes | [Resolution and defaults](references/resolution.md)                                                                               |
-| A consumer accepts a concrete collaborator but uses only part of it            | [Dependency ports](references/dependency-ports.md)                                                                                |
-| A lifecycle or pipeline is spreading across a shell or service locator         | [Orchestration and pipelines](references/orchestration.md)                                                                        |
-| An import, barrel, public surface, or third-party boundary is unclear          | [Imports and barrels](references/imports-and-barrels.md)                                                                          |
-| A compiler flag, lint rule, or gate stage is being added, weakened, or scoped | [Enforcement](references/enforcement.md)                                                                                          |
-| A strictness flag reports a binding whose only job is to exist                | [Reading a strictness finding](references/enforcement.md#reading-a-strictness-finding)                                            |
-| A rule catches a real defect class and a correct-by-construction idiom alike  | [When a rule cannot express its exemption](references/enforcement.md#when-a-rule-cannot-express-its-exemption)                    |
-| Code needs diagnostic prompts before its shape changes                         | [Review heuristics](references/review-heuristics.md)                                                                              |
-
-## Shape Escalation
-
-Escalate a value to the next shape only when that step's trigger fires:
-
-| Step | Current shape                          | Becomes                                                                                           | Trigger                                                                            |
-| ---- | -------------------------------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| 1    | Positional parameters                  | [parameter object](references/utilities-and-data.md#parameter-objects)                            | optional values, same-shaped arguments, or placeholder `undefined`s obscure a call |
-| 2    | Inline object                          | named contract ([type placement](references/naming-and-placement.md#type-placement-three-tiers))  | it escapes its local scope or is an options bag whose fields need names            |
-| 3    | Fields that repeatedly travel together | [domain aggregate](references/utilities-and-data.md#parameter-bundling)                           | they share meaning or behavior                                                     |
-| 4    | Passive data                           | [value object or domain primitive](references/class-shape.md#promoting-a-passive-type-to-a-class) | normalization, invariants, defaults, or derived values accumulate around it        |
-
-Stop at a named passive contract for DTOs, wire shapes, results, and one-shot
-inputs. Promote only values that travel with behavior or invariants.
+| Symptom or decision | Read |
+| --- | --- |
+| A cast, tuple, brand, optional value or union feels unsafe | [Language conventions](references/typescript.md) |
+| A table must cover every member of a vocabulary | [Fail-closed mirrors](references/typescript.md#fail-closed-mirrors) |
+| A generic should preserve an input/output relationship | [Types and generics](references/types-and-generics.md) |
+| An import spelling or type-only dependency is unclear | [Module imports](references/imports.md) |
+| A compiler flag or lint rule is added, weakened or scoped | [Enforcement](references/enforcement.md) |
+| Code needs type-safety diagnostic questions | [Type review heuristics](references/review-heuristics.md) |
 
 ## Output shape
 

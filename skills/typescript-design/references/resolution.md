@@ -130,8 +130,8 @@ ledger with behavior tests proving the declared default, rejection, or
 intentional absence.
 
 Use values, not missing keys, for exceptions. A missing entry says nothing;
-`intentionally-absent` records a decision. See [Fail-Closed
-Mirrors](typescript.md#fail-closed-mirrors).
+`intentionally-absent` records a decision. See
+[complete registries](naming-and-placement.md#complete-registries).
 
 ## When Not To Use
 
