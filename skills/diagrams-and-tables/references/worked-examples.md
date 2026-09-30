@@ -324,7 +324,8 @@ repository.
 `erDiagram`: fourteen owned tables, nine cross-family target stubs, and
 twenty-three relationship edges in one unclustered layout. Moving full columns
 to a companion table made the entity boxes thinner, but the remaining graph was
-still too dense to read because `erDiagram` has no layout controls.
+still too dense to read. ER direction or subgraphs, where the renderer supports
+them, would arrange the same twenty-three edges without reducing them.
 
 The crowded version mixed aggregate roots, owned children, join tables, and
 every single-FK target in one block. Even this relationship-only excerpt shows
@@ -479,8 +480,7 @@ erDiagram
 The altitude above a table is the document that owns it. The family map draws
 one node per migration family, which is also one node per family page,
 and labels each edge with the number of foreign keys crossing that boundary. The
-nodes are no longer tables, so the form is a `flowchart`, and it gets rank
-control the `erDiagram` never had.
+nodes are no longer tables, so the form is a `flowchart`.
 
 The family map shows foreign-key dependencies and their layer order, with one
 node per family page.
@@ -526,14 +526,17 @@ twenty-two, and the layer order becomes legible for the first time: the asset
 families stack, the game families stack separately, and the two stacks meet
 at exactly two edges. Collapsed counts are what make it readable: the eight
 foreign keys from game-core into game-combat are one labelled edge, not eight
-parallel ones. The dotted edges are a different *kind* of reference, so they
-carry no count that could be added to the solid ones.
+parallel ones. The dotted edges mark families whose tables hold a `blob`
+foreign key; `blob` belongs to registry-core. They are a different *kind* of
+reference, so they carry no count that could be added to the solid ones.
 
-Two hubs stay out of that graph entirely. Between them they account for 28 of
+Neither hub is drawn as a table-level node. Between them they account for 28 of
 the 46 cross-family edges: 13 of `blob`'s 15 referencing tables sit outside its
 own family, and all 15 game-core references cross a boundary. So drawing either
-hub would have put most of the crossings straight back. Each becomes a fan-in
-table beneath the map, with the hub named in the heading rather than drawn:
+hub would have put most of the crossings straight back. The map carries them
+only as family edges: registry-core's dotted edges and game-core's two counted
+edges. Each becomes a fan-in table beneath the map, with the hub named in the
+heading rather than drawn:
 
 | Family | Tables holding a `blob` foreign key |
 | --- | --- |
@@ -590,9 +593,10 @@ decision needs.
 
 | Option | Effort | Reversible | Cost when wrong |
 | --- | --- | --- | --- |
-| bake at publish | medium | yes — republish | stale artifacts until the next publish |
+| **bake at publish** (chosen) | medium | yes — republish | stale artifacts until the next publish |
 | bake per request | low | yes | latency on every read, permanently |
 | bake nightly | low | no — batch window is fixed | a day of stale reads before anyone notices |
 
-Prose then carries only what the table cannot: *why* the reversibility column
-outranks the effort column here.
+Prose then carries only what the table cannot: *why* reversibility and the
+cost of being wrong outrank effort here. Effort is paid once; an irreversible
+choice, or one that charges every read, keeps costing after the work is done.
