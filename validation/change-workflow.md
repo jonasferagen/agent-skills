@@ -169,3 +169,15 @@ Left unresolved, because each answer changes behavior:
   name".
 - In the base-checkout repair, Git carries uncommitted edits across a switch
   when the changed files do *not* overlap, which is the case the check approves.
+
+## Diagrams and tables pass — 2026-09-30
+
+No change; see the [package
+pass](diagrams-and-tables.md#package-pass--2026-09-30). The five existing tables
+are complete and grounded. A table of when each hand-back field is owed was the
+strongest candidate, but it would have to settle the hand-back contradiction
+recorded above.
+
+Newly found: the manifest says `cleanup.md` gives "the order the removals go
+in", but it gives only a partial order; and the plan and rollout fields in
+`hand-back.md` are missing from its ordered field list.

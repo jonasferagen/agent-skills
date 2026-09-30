@@ -94,3 +94,12 @@ Left unresolved, because each answer changes behavior:
   repository.
 - "Documentation drift to reconcile" does not say whether reconciling includes
   editing documentation during an otherwise read-only audit.
+
+## Diagrams and tables pass — 2026-09-30
+
+No change; see the [package
+pass](diagrams-and-tables.md#package-pass--2026-09-30). The package has no
+diagrams or tables, and a table of scanner signals would have to settle the
+marker-tier contradiction recorded above. Newly found: `triage.md` also says a
+focused marker shrinks the suite to a single case, a third instance of the scope
+conflict.

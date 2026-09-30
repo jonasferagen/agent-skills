@@ -162,3 +162,13 @@ Left unresolved: `durable-checks.md` says to compute the answer "if the correct
 answer can be computed when the check runs", while the entrypoint requires a
 durable check to compute its answer without that condition. The README counts
 seven questions in the bar; the extraction notes above count six.
+
+## Diagrams and tables pass — 2026-09-30
+
+No change; see the [package
+pass](diagrams-and-tables.md#package-pass--2026-09-30). Both tables are
+complete; the rung list stays an ordered list. Newly found: `boundaries.md` says
+each boundary leaves a different set of rungs available, but most options do not
+name their rung, so a boundary-by-rung matrix cannot be filled. The manifest's
+bar lists six requirements, while the README counts seven questions and the
+extraction notes above count six.
