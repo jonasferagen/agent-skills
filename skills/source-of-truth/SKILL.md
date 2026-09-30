@@ -2,7 +2,7 @@
 name: source-of-truth
 description: "Choose the authoritative place for a concept, then derive its other appearances from that source or make disagreement fail a check. Use when a value, list, rule, pattern or shape appears in several places across languages, schemas, configuration, build files, tests or documentation; when adding a vocabulary member requires several edits; or when deciding where a constant, type or rule belongs. Also use when writing or reviewing checks for disagreement, or when a check fails because a directory moved, a count changed or a tool is absent even though the concept is still consistent."
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
 # Authoritative definitions
