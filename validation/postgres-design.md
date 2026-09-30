@@ -91,3 +91,11 @@ sweep](clear-writing.md#package-sweep--2026-09-30). Compressed phrases such as
 their actions. Review found one rule that had shifted from forbidding a result
 to forbidding an intent — JSON becoming a way around relational integrity — and
 restored it. No database objects changed; no database tests were run.
+
+## Diagrams and tables pass — 2026-09-30
+
+No change; see the [package
+pass](diagrams-and-tables.md#package-pass--2026-09-30). The naming table is
+complete. Candidate tables for types, vocabularies and retries would have
+separated rules from their conditions, and an outbox diagram would have needed
+components the text does not name.

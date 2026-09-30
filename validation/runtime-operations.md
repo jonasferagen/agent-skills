@@ -52,3 +52,12 @@ Left unresolved, because each answer changes behavior:
 - "Capture tests should check failure before publication" can mean that tests
   check a failed capture is never published, or that capture checks for failure
   before publishing.
+
+## Diagrams and tables pass — 2026-09-30
+
+No change; see the [package
+pass](diagrams-and-tables.md#package-pass--2026-09-30). Tables of tiers, helpers
+and service commands would have moved facts between sections or needed values
+the text does not state. Newly found: the text does not say whether the default
+viewer is one of the previews that run as transient user services, or whether
+"Stop only the named unit" also limits what a failed startup may stop.

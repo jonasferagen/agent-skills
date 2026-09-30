@@ -137,18 +137,13 @@ smell.
 
 A directory's shape decides where passive type-only modules go.
 
-**Family directories** are homogeneous: every file is a peer in the same
-vocabulary family, such as values, events, materials, vectors, or wire payload
-atoms. Type-only family members live beside class-bearing peers because the
-directory itself is the contract surface.
+| Directory shape | Family | Subsystem |
+| --- | --- | --- |
+| What it holds | Homogeneous: every file is a peer in the same vocabulary family, such as values, events, materials, vectors, or wire payload atoms | Mixed responsibility: an owning runtime concept plus support contracts, helpers, adapters, or nested families |
+| Type-only modules | Family members live beside class-bearing peers | Support modules go in a `types/` subdirectory when the subsystem needs one |
+| Why | The directory itself is the contract surface | The root stays focused on primary runtime concepts |
+| Do not | Add a `types/` subdirectory just because a file is passive | Scatter support contracts through the root when a `types/` subdirectory would make their role clearer |
 
-**Subsystem directories** are mixed-responsibility: they hold an owning runtime
-concept plus support contracts, helpers, adapters, or nested families. Type-only
-support modules go in a `types/` subdirectory when the subsystem needs one, so
-the root stays focused on primary runtime concepts.
-
-Do not add a `types/` subdirectory to a family just because a file is passive.
-Do not scatter support contracts through a subsystem root when a `types/`
-subdirectory would make their role clearer. The same
-[type-placement tiers](naming-and-placement.md#type-placement-three-tiers) still
-apply: promote a type only when its scope justifies the new home.
+The same [type-placement
+tiers](naming-and-placement.md#type-placement-three-tiers) still apply: promote a
+type only when its scope justifies the new home.

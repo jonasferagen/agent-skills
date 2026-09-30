@@ -7,14 +7,13 @@ unit.
 ## Project foundations
 
 Use these independent skills together when bootstrapping a project or revisiting
-its engineering expectations. Their display names describe their jobs; the
-installation names stay stable.
+its engineering expectations. Their display names describe their jobs.
 
 | Display name / skill | Responsibility |
 | --- | --- |
 | [Project policy](skills/project-policy/SKILL.md) (`project-policy`) | Establish which requirements apply from users, data, exposure, lifetime, compatibility and recovery needs; assess changes to those requirements. |
 | [Project documentation](skills/project-docs/SKILL.md) (`project-docs`) | Decide where knowledge belongs and keep it current. |
-| [Diagrams and tables](skills/diagrams/SKILL.md) (`diagrams`) | Choose and verify useful visual explanations of relationships and comparisons. |
+| [Diagrams and tables](skills/diagrams-and-tables/SKILL.md) (`diagrams-and-tables`) | Choose and verify useful visual explanations of relationships and comparisons. |
 | [Clear writing](skills/clear-writing/SKILL.md) (`clear-writing`) | Express facts and instructions clearly without changing their meaning. |
 | [Authoritative definitions](skills/source-of-truth/SKILL.md) (`source-of-truth`) | Give each rule a home and derive or check its other appearances. |
 
@@ -117,8 +116,8 @@ a release, apply these skills to the content that changed since the skill's
 last tag, or to the whole package for a first release:
 
 - [Clear writing](skills/clear-writing/SKILL.md), to the prose.
-- [Diagrams and tables](skills/diagrams/SKILL.md), to existing diagrams and
-  tables and to passages a diagram or table would explain better.
+- [Diagrams and tables](skills/diagrams-and-tables/SKILL.md), to existing
+  diagrams and tables and to passages a diagram or table would explain better.
 
 This is a recommendation, not a release requirement. Clear Writing does not yet
 cover every kind of prose a skill package contains, such as trigger
@@ -151,13 +150,13 @@ independent of them.
 ## Origins
 
 **clear-writing** brings the short-text guidance into a reusable prose skill,
-with a shared core and separate references for instructions and short text.
-It covers wording and meaning; document ownership belongs to `project-docs` and
-visual form to `diagrams`. Jonas's email voice has its own skill outside this
-repository.
-Its first prose trials are the conceptual `source-of-truth` skill and the
-procedural `bash-patterns` skill; a later sweep revised eight more packages. See
-[validation scenarios and results](validation/clear-writing.md).
+with a shared core and separate references for instructions and short text. It
+covers wording and meaning; document ownership belongs to `project-docs` and
+visual form to `diagrams-and-tables`. Jonas's email voice has its own skill
+outside this repository. Its first prose trials are the conceptual
+`source-of-truth` skill and the procedural `bash-patterns` skill; a later sweep
+revised eight more packages. See [validation scenarios and
+results](validation/clear-writing.md).
 
 **postgres-design** was extracted from Personal Atlas's database conventions on
 2026-09-29 and compared with work-system's migrations and data model. The
@@ -221,27 +220,27 @@ $change-workflow to open a lane for this fix", "Use $change-workflow — this br
 green, what does landing it still owe?" See
 [validation and alignment](validation/change-workflow.md).
 
-**diagrams** merges the owner's Forge Agent Kit `diagrams` skill, at
-`c98147a115a30f36b952df5faf1c869b54480c59`, with the diagram conventions that
-`project-docs` had been carrying. Upstream supplied form choice, the
-underused-tables argument, draw-less-link-more, vertical-and-one-altitude, the
-drawing reference and ten worked examples; the local reference supplied two
-sections upstream lacked — grounding every edge in whatever owns it, and verifying
-that a diagram reads in the renderer and themes its readers use, where a
-successful parse is explicitly not a readability check. It is a top-level skill
-because form choice applies to plans, issue bodies, design records and review
-feedback, not only to documentation.
+**diagrams-and-tables**, named `diagrams` until 2026-09-30, merges the owner's
+Forge Agent Kit `diagrams` skill, at `c98147a115a30f36b952df5faf1c869b54480c59`,
+with the diagram conventions that `project-docs` had been carrying. Upstream
+supplied form choice, the underused-tables argument, draw-less-link-more,
+vertical-and-one-altitude, the drawing reference and ten worked examples; the
+local reference supplied two sections upstream lacked — grounding every edge in
+whatever owns it, and verifying that a diagram reads in the renderer and themes
+its readers use, where a successful parse is explicitly not a readability check.
+It is a top-level skill because form choice applies to plans, issue bodies,
+design records and review feedback, not only to documentation.
 
 `project-docs` was reduced in the same change to what is particular to a
 documentation set — which document owns which view, glossary-led terms, and
 freshness as part of doc review — so the craft has one home instead of two that
-drift. Three provenance citations naming a private repository and its commits were
-replaced with neutral descriptions, and one worked example's schema vocabulary was
-renamed, so the package carries no project identifiers while keeping the real
-shapes and counts the examples depend on. Example requests: "Use $diagrams to
-decide whether this section wants a diagram or a table", "Use $diagrams to split
-this overview before it gets any wider." See
-[validation and alignment](validation/diagrams.md).
+drift. Three provenance citations naming a private repository and its commits
+were replaced with neutral descriptions, and one worked example's schema
+vocabulary was renamed, so the package carries no project identifiers while
+keeping the real shapes and counts the examples depend on. Example requests:
+"Use $diagrams-and-tables to decide whether this section wants a diagram or a
+table", "Use $diagrams-and-tables to split this overview before it gets any
+wider." See [validation and alignment](validation/diagrams-and-tables.md).
 
 **bash-patterns** was imported from the owner's Forge Agent Kit on 2026-09-29,
 pinned at `c98147a115a30f36b952df5faf1c869b54480c59`. The upstream package

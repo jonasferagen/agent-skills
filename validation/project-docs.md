@@ -54,3 +54,12 @@ regression and one nit. No behavioral trial was run.
 
 Left unresolved: "A documentation edit proves none of the latter" follows four
 items and does not say whether it covers the last two or the last three.
+
+## Diagrams and tables pass — 2026-09-30
+
+No change; see the [package
+pass](diagrams-and-tables.md#package-pass--2026-09-30). The reader-question and
+view-ownership tables are complete, and both worked-example diagrams were
+rendered and read clearly in light and dark themes. Newly found: the glossary
+defines "Evidence", but the diagram labels the node "Evidence reference",
+although `diagrams.md` asks diagrams to use glossary names.

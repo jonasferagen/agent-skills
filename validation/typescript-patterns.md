@@ -71,3 +71,20 @@ Left unresolved, because each answer changes behavior:
 - `dependency-ports.md` uses "conduit" both for a class that only forwards a
   dependency and for an opaque external boundary.
 - `enforcement.md` never defines the "both directions" in which a rule can fail.
+
+## Diagrams and tables pass — 2026-09-30
+
+See the [package pass](diagrams-and-tables.md#package-pass--2026-09-30). Three
+passages became tables: the shape-escalation steps in the manifest, the family
+and subsystem cases in `directories.md`, and the closed-union shapes in
+`review-heuristics.md`. Review corrected one changed quantifier, "the other two
+fail open" for "two shapes fail open". The tables were rendered at 830 px in
+both themes. The version stays 1.0.2, which is unreleased.
+
+Left unresolved:
+
+- Filename case for type-only and contract modules has three answers: a
+  lowercase domain noun in `naming-and-placement.md`, camelCase for class-free
+  contract modules, and PascalCase in `DeliveryTypes` and `XTypes.ts`.
+- `review-heuristics.md` says the safe closed-union shape triggers TS2366
+  without the compiler-settings caveat that `typescript.md` gives.

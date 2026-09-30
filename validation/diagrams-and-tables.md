@@ -1,4 +1,4 @@
-# Validation and alignment — Diagrams
+# Validation and alignment — Diagrams and tables
 
 ## Behavioral scenarios
 
@@ -109,3 +109,40 @@ Left unresolved, because each answer changes behavior:
   Mermaid. The example may describe an older renderer but reads as current.
 - The ER-subgraph scenario above splits a model only if its relationships remain
   hard to trace; the manifest and `drawing.md` split past the threshold.
+
+## Rename — 2026-09-30
+
+Version 0.2.0 renames the installation name from `diagrams` to
+`diagrams-and-tables`, so the name shows that the skill covers tables and
+matrices as well as diagrams. The display name, instructions and examples are
+unchanged. Consumers that copied the package under `.agents/skills/diagrams/`
+keep working at their pinned commit; they move the directory and update their
+provenance when they next update the pin. Earlier entries on this page use the
+old name as it was at the time.
+
+## Package pass — 2026-09-30
+
+The skill was applied to its own package and to the seven other packages revised
+in the Clear Writing package sweep. For each package, one agent checked the
+existing diagrams and tables and looked for prose that a structured form would
+explain better; a second agent reviewed every change. The literal comparison
+script, the heading-anchor scan and package validation passed.
+
+| Package | Result |
+| --- | --- |
+| `diagrams-and-tables` | Three corrections in the worked examples: the set-finalization detail now enters from the two seams its overview draws; the schema-change diagram is captioned as the touched entities after the change; and "the nine that were easy" now reads "seven", matching the coverage matrix. The changed detail was rendered in light and dark themes. |
+| `typescript-patterns` | Three passages became tables: shape escalation, type-only files in family and subsystem directories, and the shapes of a closed-union switch. Review corrected one quantifier in the last. |
+| `change-workflow`, `test-audit`, `postgres-design`, `project-docs`, `runtime-operations`, `source-of-truth` | No change. Existing tables were complete and grounded; each candidate conversion would have dropped a qualifier, invented a value or settled a question the text leaves open. |
+
+4 of 36 files changed. Most passages in these packages are connected reasoning,
+which the skill keeps as prose. Several candidate tables were blocked by
+contradictions in the source; each package's validation page records them.
+
+Left unresolved in this package:
+
+- The decision-matrix example does not say which option was chosen; its stated
+  reason, reversibility, rules out only one of the three.
+- The family map's dotted edges have no stated meaning, and the text says both
+  hubs stay out of the graph although game-core is drawn.
+- `drawing.md` lists four ER cardinality symbols in one sentence, mixes left-
+  and right-side forms, and omits `o{`, which its own examples use, and `|{`.

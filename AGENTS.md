@@ -6,17 +6,17 @@ Each skill directory must remain usable when copied on its own.
 ## Writing
 
 Use [Clear Writing](skills/clear-writing/SKILL.md) when authoring or revising
-prose here. For skill instructions, also read its
-[instruction guidance](skills/clear-writing/references/instructions.md).
-Use [Diagrams and tables](skills/diagrams/SKILL.md) when adding or changing a
-diagram or table, or when a passage might explain better as one. These skills
-own their reusable rules; keep repository-specific package and release rules in
-the README.
+prose here. For skill instructions, also read its [instruction
+guidance](skills/clear-writing/references/instructions.md). Use [Diagrams and
+tables](skills/diagrams-and-tables/SKILL.md) when adding or changing a diagram
+or table, or when a passage might explain better as one. These skills own their
+reusable rules; keep repository-specific package and release rules in the
+README.
 
 This is an authoring convention. Other skill packages do not require
-`clear-writing` or `diagrams` to be installed beside them. The README's
-[authoring skills](README.md#authoring-skills) section recommends these passes
-before a skill release and says what to record.
+`clear-writing` or `diagrams-and-tables` to be installed beside them. The
+README's [authoring skills](README.md#authoring-skills) section recommends these
+passes before a skill release and says what to record.
 
 ## Verification
 

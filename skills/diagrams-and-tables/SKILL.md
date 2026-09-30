@@ -1,8 +1,8 @@
 ---
-name: diagrams
+name: diagrams-and-tables
 description: "Apply the smallest useful diagram, table or matrix when authoring or revising docs, skills, plans, issues, comments, design records and review feedback. Use whenever a structured form might beat prose: a paragraph describing what connects to what, a flow or lifecycle across more than about three components, a schema or data-model change, options or tiers that want one row each, a diagram grown too wide to read, a decision or coverage matrix, or a relationship whose cardinality matters. Reach for it before writing the prose, and again when a diagram needs splitting by altitude, grounding in its source, or checking for readability in the renderer its readers use. Owns form choice, drawing and verification; the owning surface decides where a form lives."
 metadata:
-  version: "0.1.2"
+  version: "0.2.0"
 ---
 
 # Diagrams and tables

@@ -102,12 +102,15 @@ but ends in a broad `default`, `return undefined`, or no-op branch, ask whether
 the code should use the `never` exhaustiveness pattern from
 [Exhaustive Closed Unions](typescript.md#exhaustive-closed-unions).
 
-**Only one shape is already safe:** a non-`void` return type **and** no `default`
-(TS2366 fires on a new variant); leave those alone. Two shapes fail open. A
-**`void`** function forces nothing, so a new variant silently matches no case.
-These functions look harmless (bucketing loops, `update()` bodies, dispatchers).
-A **permissive `default`** defeats the return-type protection even in a function
-that returns a real value, so "it returns something, it must be fine" is wrong.
+**Only one shape is already safe**; two shapes fail open:
+
+| Shape | When a new variant is added | Verdict |
+| --- | --- | --- |
+| Non-`void` return type **and** no `default` | TS2366 fires | Safe; leave it alone |
+| `void` function, such as a bucketing loop, an `update()` body or a dispatcher | Nothing is forced, so the variant silently matches no case | Fails open, though it looks harmless |
+| Permissive `default` | The `default` defeats the return-type protection, even in a function that returns a real value | Fails open |
+
+A permissive `default` is why "it returns something, it must be fine" is wrong.
 Check for the `default`, not just the return type.
 
 Keep broad fallbacks for open runtime inputs: external JSON, URL params,
