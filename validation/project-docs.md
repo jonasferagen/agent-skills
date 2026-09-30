@@ -63,3 +63,18 @@ view-ownership tables are complete, and both worked-example diagrams were
 rendered and read clearly in light and dark themes. Newly found: the glossary
 defines "Evidence", but the diagram labels the node "Evidence reference",
 although `diagrams.md` asks diagrams to use glossary names.
+
+## Resolutions — 2026-09-30
+
+The owner accepted each proposal from the contradiction research. No version was
+bumped.
+
+- Verification: "proves none of the latter" followed four items → "proves
+  neither implementation nor verification, recorded or live"; the sentence
+  makes no claim about intended behavior.
+- Glossary name: the diagram labelled the node "Evidence reference" while the
+  glossary defines "Evidence" → the node is labelled "Evidence", as
+  `diagrams.md` requires. The diagram was re-rendered with Mermaid CLI 12.0.0
+  in the default and dark themes and read clearly in both.
+- Handoff: "links to its remaining checks" did not say whose → it links to the
+  release record for acceptance checks still outstanding.

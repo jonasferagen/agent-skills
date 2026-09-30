@@ -56,9 +56,10 @@ keys, cardinalities, permissions or workflows to make a diagram look complete.
 An implemented table does not establish an available UI feature.
 
 Distinguish intended behavior, implementation, recorded verification and live
-verification. A documentation edit proves none of the latter. Conflicting or
-missing evidence should remain explicit until resolved. Do not inspect live
-accounts or change services solely to make a documentation claim look current.
+verification. A documentation edit proves neither implementation nor
+verification, recorded or live. Conflicting or missing evidence should remain
+explicit until resolved. Do not inspect live accounts or change services solely
+to make a documentation claim look current.
 
 ## Shape the result
 
