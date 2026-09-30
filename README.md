@@ -35,14 +35,15 @@ as a manual review; automation can grow from actual transitions.
 | --- | --- |
 | [typescript-patterns](skills/typescript-patterns/SKILL.md) | Shaping TypeScript: naming, types, classes, dependency ports, imports and directory layout. |
 | [bash-patterns](skills/bash-patterns/SKILL.md) | Preserving command failures and query results in Bash checks, pipelines, captures and process substitutions. |
-| [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries. |
+| [node-patterns](skills/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
+| [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries, and transactions on pooled connections. |
 
 ## Changes and operations
 
 | Skill | Use it for |
 | --- | --- |
 | [change-workflow](skills/change-workflow/SKILL.md) | Taking a change from an isolated worktree through synchronization, verification, merge and cleanup. |
-| [containerization](skills/containerization/SKILL.md) | Building independent local service containers with explicit interfaces, repeatable migrations and disposable database tests. |
+| [containerization](skills/containerization/SKILL.md) | Building independent local service containers with explicit interfaces, repeatable migrations, disposable database tests and test runs that remove exactly what they create. |
 | [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
 | [runtime-operations](skills/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
 
@@ -164,8 +165,11 @@ installable package uses synthetic examples and contains no project schema names
 service identifiers, vocabulary inventories or deployment policy. Work-system
 contributed guidance on provenance versus identity, explicit conditions, atomic
 commands and retries. Atlas credits the owner's Forge database conventions as an
-earlier influence. See [validation and alignment](validation/postgres-design.md)
-for pinned sources, adoption differences and review limits.
+earlier influence. Version 1.1.0 adds a reference on transactions over pooled
+connections, drawn from the transaction runner of the local atlas-work-dev
+services and checked against PostgreSQL 17. See
+[validation and alignment](validation/postgres-design.md) for pinned sources,
+adoption differences and review limits.
 
 **project-docs** was developed from a documentation review and cleanup in
 Personal on 2026-09-19. The reusable guidance is newly written, and the worked
@@ -254,6 +258,21 @@ collects. Example requests: "Use $bash-patterns to check whether this backup
 script's checks can pass when they should fail", "Use $bash-patterns on this
 pipeline before I trust its exit code." See
 [validation and alignment](validation/bash-patterns.md).
+
+**node-patterns** was written on 2026-09-30 as the Node counterpart to
+bash-patterns, from a review of the local atlas-work-dev repository. That review
+found one idiom for reading a child process's result copied into seven places;
+it reported a timeout, a signal, a missing program and truncated output all as
+exit 1. The review also found check scripts that exit before their piped output
+is written, and a script root resolved from a URL path that fails under a
+directory containing a space. Every behavior the package states was reproduced
+with Node 24 on Linux before it was written down. It covers how Node reports
+outcomes; which output may hold secrets, how a child's environment is built and
+what a timeout should mean stay with runtime-operations or the project's own
+guidance. Example requests: "Use $node-patterns to check that this harness
+reports why docker failed", "Use $node-patterns on these check scripts before CI
+relies on their exit status." See
+[validation and alignment](validation/node-patterns.md).
 
 **test-audit** was imported from the same Agent Kit commit on 2026-09-29, and
 fills a gap this repository declared on purpose: `typescript-patterns` leaves

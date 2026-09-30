@@ -26,6 +26,15 @@ recorded below; generated container implementations have not been tested.
 | All embedded tests pass but the service image has not run | Report the embedded evidence and leave image/startup verification unclaimed. | Author review only |
 | Local container work explicitly defers production operations | Complete the requested local setup without adding backup systems, a secret manager or deployment requirements. | Author review only |
 | A request would reset an existing development volume | Establish that the data is disposable or that deletion is authorized; the development label alone is insufficient. | Author review only |
+| A test run starts a database container, then registers its cleanup | Cleanup by the run's label is registered before the container exists. | Author review only |
+| Teardown removes test containers by a name pattern or with a prune command | Rejected: removal selects by the run's label, and prune commands can reach resources the run did not create. | Author review only |
+| One teardown step fails | Later steps still run; failures are collected, the test failure stays the result, and cleanup alone failing fails the run. | Author review only |
+| The test run is interrupted with Ctrl-C | The same teardown runs, then the process exits with 130. | Author review only |
+| A test calls `docker compose` relying on the caller's environment | Every call passes project name, file and env file, and removes the `COMPOSE_*` variables that could redirect it. | Author review only |
+| A test Compose file sets `container_name` or a fixed volume name | Flagged: those names escape the project and collide between runs. | Author review only |
+| A test passes a database password with `--env NAME=value` | Moved into the CLI's environment and passed as `--env NAME`, so the value stays off the command line. | Author review only |
+| `compose down` succeeds after a partly failed start | The label sweep and a final listing of leftovers still run; anything left fails teardown. | Author review only |
+| A readiness check connects over the container's local socket | Replaced with a TCP query using a password; the initialization server accepts socket connections before the final server starts. | Author review only |
 
 ## Sources and scope
 
@@ -49,6 +58,23 @@ checked for the concrete engine limitations cited in that reference.
 Record actual trials and remaining limits here before describing the behavioral
 scenarios as verified. Passing manifest validation establishes package structure
 and local links, not the quality of generated container implementations.
+
+## Owned test resources — 2026-09-30
+
+Version 0.2.0 adds [owned test resources](../skills/containerization/references/owned-resources.md)
+and links it from the manifest and the database-tests lifecycle. It was drawn
+from three Docker harnesses in the local atlas-work-dev repository at `fb61765`:
+the shared native-database helper copied into both services, and the integration
+suite's stack harness. They had converged independently on run labels, early
+cleanup registration, a label sweep after `compose down`, a leftover listing,
+and removing the `COMPOSE_*` variables. The reference names no project
+identifiers.
+
+Checks behind specific statements: the stock PostgreSQL image's temporary
+initialization server listening only on its socket is documented in the image's
+entrypoint and relied on by the source harness. Compose's project label and
+`--rmi local` behavior are documented Compose behavior. No new container trial
+ran for this reference; the scenarios above remain author review.
 
 ## Independent outline trial — 2026-09-30
 

@@ -1,8 +1,8 @@
 ---
 name: postgres-design
-description: "Design or review PostgreSQL schemas and migrations: naming, keys, relationships, types, state, automatic timestamps and integrity boundaries. Use when creating or changing PostgreSQL tables and related objects; query tuning and database operations follow the project's own guidance."
+description: "Design or review PostgreSQL schemas and migrations: naming, keys, relationships, types, state, automatic timestamps and integrity boundaries, including how application transactions on pooled connections use restricted roles. Use when creating or changing PostgreSQL tables and related objects, or code that runs transactions through a connection pool; query tuning and database operations follow the project's own guidance."
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
 ---
 
 # Postgres design
@@ -183,6 +183,11 @@ commands, retries or workers, read [operations](references/operations.md).
 Work within the project's existing write boundary: a restricted record writer
 and a command-only API have different responsibilities. Do not grant direct
 table writes merely to make a generic convention easier to apply.
+
+When application code runs transactions through a connection pool under
+restricted roles, read [pooled transactions](references/pooled-transactions.md).
+It covers binding each transaction to a role, read-only transactions, refusing a
+commit after a failed statement, and resetting a connection before reuse.
 
 ## Review and verification
 

@@ -26,6 +26,13 @@ of an independent agent evaluation or a live database test.
 | Delivery succeeds but recording success fails | Account for uncertain delivery during recovery; do not claim exactly-once behavior. |
 | Adopt into a project using enums, natural keys and command-only access | Evaluate semantics and local conventions; do not require cosmetic migrations or direct table grants. |
 | Fix a query's performance without changing its data model | Use the project's performance guidance; do not expand into a schema redesign. |
+| A handler catches a failed statement and returns normally | The runner still refuses to commit; the `ROLLBACK` tag that `COMMIT` returns for an aborted transaction is treated as a failure. |
+| A capability role is chosen from a request field, or passed as a bind parameter to `SET LOCAL ROLE` | Rejected: the role comes from a closed map in code and is quoted as an identifier; `SET` accepts no parameters. |
+| A read-only transaction relies on `SET TRANSACTION READ ONLY` alone | A confirming query follows it; until the first snapshot, the mode can still be switched back. |
+| A transaction sets a session-level setting, role, temporary table or advisory lock | `DISCARD ALL` runs before the connection returns to the pool; `RESET ALL` is not accepted as a substitute because it keeps a session role. |
+| A rollback or reset fails on a pooled connection | The connection is destroyed rather than returned. |
+| A parameterless query string holds two statements | Flagged: the simple protocol runs both; statements go through the extended protocol one at a time. |
+| The application sits behind a pooler that assigns connections per transaction | Session-level state is avoided; `SET LOCAL`, transaction-local settings and transaction advisory locks are used. |
 
 ## Sources inspected
 
@@ -82,6 +89,38 @@ The author reviewed the extracted instructions against the scenarios and the
 source files above. Manifest validation, local links and whitespace checks cover
 packaging. No database objects changed; no database tests, deployment, independent
 agent evaluation or live-service checks were performed.
+
+## Pooled transactions reference — 2026-09-30
+
+Version 1.1.0 adds [pooled transactions](../skills/postgres-design/references/pooled-transactions.md)
+and widens the description to include application transactions on pooled
+connections. The guidance comes from the transaction runner, statement policy and
+serving pool of the local atlas-work-dev services at `fb61765`, which run every
+operation under a capability role. The reference is synthetic and names no
+project roles or objects.
+
+Each PostgreSQL behavior it states was checked on 2026-09-30 against a disposable
+`postgres:17` container (PostgreSQL 17.11) with node-postgres 8.23.0:
+
+- `COMMIT` after a failed statement returned the tag `ROLLBACK` without an
+  error; a later statement in the aborted transaction failed with `25P02`.
+- After `SET TRANSACTION READ ONLY` and a query, `SET TRANSACTION READ WRITE`
+  failed with `25001`; before the query it succeeded.
+- `SET LOCAL ROLE $1` failed with a syntax error. Two statements in one
+  extended-protocol query failed with `42601`; the same text without parameters
+  ran both statements through the simple protocol.
+- A `LOGIN NOINHERIT` role granted a capability `WITH INHERIT FALSE, SET TRUE`
+  could not read the table alone, could read it after `SET LOCAL ROLE`, and was
+  itself again after `COMMIT`. `RESET ROLE` inside the transaction made
+  `current_user` the login.
+- A session `set_config`, session `SET ROLE`, temporary table and session
+  advisory lock taken inside a transaction all survived `COMMIT`. `DISCARD ALL`
+  cleared them and failed inside a transaction block. `RESET ALL` left the
+  session role in place.
+
+Not checked: behavior behind an external pooler, which the reference states only
+as a consequence of per-transaction connection assignment, and versions other
+than 17.
 
 ## Clear writing pass — 2026-09-30
 
