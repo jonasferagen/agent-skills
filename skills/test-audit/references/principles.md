@@ -137,15 +137,16 @@ acceptable.
 ## Run the mechanical check
 
 Much of the advice above is greppable, and a scanner can grep it — the untested
-sibling, the parked test, the wall-clock call, the stub forced past the type
+sibling, the skipped test, the wall-clock call, the stub forced past the type
 system, the focused-test marker. Run it over what you touched instead of
 re-reading for these by eye.
 
 **Two tiers, carrying different authority:**
 
 - **Hard** — a **focused-test marker** (`.only`, `fit`, `fdescribe`, and
-  equivalents) silently disables every sibling test in its file, so the suite
-  reports green over a denominator it never names. That is a defect in the check
+  equivalents) silently skips every unfocused test in its scope (its file in
+  some runners, the whole run in others), so the suite can still report green
+  over a denominator it never names. That is a defect in the check
   rather than a preference, and it is the one finding worth failing on.
 - **Advisory** — everything else. These are **candidates for a human read, not a
   list of defects to fix.** A scanner can find an untested sibling but cannot
