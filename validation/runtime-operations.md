@@ -32,3 +32,23 @@ ownership and runtime grants. Atlas also rehearsed a retained encrypted archive.
 Live reader and operational credentials verified TLS and their expected database
 roles. Work-system's live administrator password remains unprovisioned; these
 checks do not claim a production Work backup.
+
+## Clear writing pass — 2026-09-30
+
+Version 1.1.1 revises the manifest; see the [package
+sweep](clear-writing.md#package-sweep--2026-09-30). Metaphors such as "accuse
+the wrong component" were replaced, long rules were split from their exceptions,
+and the withheld-output rule now says to raise an error naming the command and
+exit status, as `databaseBackup.py` does. Scripts and tests are unchanged; the
+helper tests pass. Review found one edit that settled an open ambiguity; it was
+reverted, and three wording corrections followed.
+
+Left unresolved, because each answer changes behavior:
+
+- "Use the same verbs across a project's scripts" is illustrated with option
+  names (`--file`, `--archive`), not verbs.
+- The manifest asks for a code comment explaining why child output is discarded;
+  `databaseBackup.py` and `credentialStore.py` withhold output without one.
+- "Capture tests should check failure before publication" can mean that tests
+  check a failed capture is never published, or that capture checks for failure
+  before publishing.
