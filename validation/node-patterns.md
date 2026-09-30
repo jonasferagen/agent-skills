@@ -20,7 +20,8 @@ are author-reviewed scenarios, not results of an independent agent evaluation.
 | A signal handler that must exit immediately after cleanup | Accepted when it exits with 130 or 143, from the callback of its last write. |
 | `new URL('..', import.meta.url).pathname` as a repository root | Flagged: percent-encoding breaks paths with spaces, and Windows paths gain a leading slash; `fileURLToPath` or `import.meta.dirname` is used. |
 | A check prints "all files identical" | Flagged: a passing result names what it measured, and a check that measured nothing fails. |
-| A changed script is verified by running it in a terminal | Called incomplete: piped output larger than a pipe buffer, another working directory and a path with a space are also exercised. |
+| A changed script is verified by running it in a terminal | Called incomplete: output larger than a pipe buffer into a reader that waits, another working directory and a path with a space are also exercised. |
+| Lost output is checked with `\| tail -1` or `\| wc -l` | Called insufficient: a fast reader drains the pipe before Node queues anything; a reader that waits before reading is used. |
 | A request to choose which child output may contain secrets | Deferred to the project's operational guidance; this skill covers how Node reports outcomes. |
 | Adopting the skill into a project with working scripts | No rewrite is implied; repository guidance decides what each script must report. |
 
@@ -71,10 +72,10 @@ in a scratch directory outside the source repository:
   error; `pipeline()` rejects with that error.
 - A socket with no `'error'` listener ends the process with an unhandled
   `'error'` event.
-- About 3 MB written before `process.exit(1)` was cut off when stdout or stderr
-  was a pipe, and arrived complete when written to a file or a pseudo-terminal.
-  Setting `process.exitCode`, or exiting from the write callback, delivered all
-  of it.
+- About 3 MB written in one call before `process.exit(1)` was cut off when
+  stdout or stderr was a pipe, and arrived complete when written to a file or a
+  pseudo-terminal. Setting `process.exitCode`, or exiting from the write
+  callback, delivered all of it.
 - `new URL('..', import.meta.url).pathname` produced `dir%20with%20space/`, which
   does not exist; `fileURLToPath` produced the real directory. A `file:///C:/`
   URL's `pathname` starts with `/C:/`. `import.meta.dirname` is available in
@@ -82,6 +83,18 @@ in a scratch directory outside the source repository:
 
 The package validator and `git diff --check` passed. Clear Writing guided the
 drafting; no separate comparison pass was recorded.
+
+## Pipe loss depends on the reader — 0.1.1
+
+While fixing the atlas-work-dev check scripts on 2026-09-30, the old
+`process.exit(1)` version of a check delivered all 12,002 problem lines through
+`| cat` and `| wc -l`: many small writes each fit the pipe while a fast reader
+drained it, so nothing was queued. The same script with a reader that waited
+one second before reading delivered 803 lines, about one 64 KiB pipe buffer, on
+two runs; the `process.exitCode` version delivered all 12,002 both times. Version
+0.1.1 states that the loss needs a reader slower than the writer, and replaces
+the `| tail -1` verification advice, which a fast reader passes, with a reader
+that waits.
 
 ## Conformance trial — 2026-09-30
 

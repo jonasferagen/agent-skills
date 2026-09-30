@@ -2,7 +2,7 @@
 name: node-patterns
 description: "Write or review Node.js scripts, command-line tools and test harnesses so that their exit status and output report what actually happened. Use when code runs child processes (execFile, exec, spawn), sets an exit status, pipes streams, handles 'error' events or signals, or finds files relative to its own module; especially when a failure is reported as the wrong kind, output is cut off, or a script works only from one directory. Repository guidance determines what each script should do."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Node Patterns
@@ -119,11 +119,14 @@ in a comment.
 
 ## Finish output before exiting
 
-`process.exit()` ends the process without waiting for pending writes to stdout
-or stderr when they are pipes. In a test with Node 24 on Linux, `process.exit(1)`
-called after writing 3 MB to a pipe lost most of that output, on both streams.
-Writes to a file or terminal completed. The loss therefore appears in CI logs
-and in `| tail`, but not when the script runs in a terminal.
+`process.exit()` ends the process without waiting for writes to stdout or
+stderr that are still queued. Node queues a write to a pipe once the pipe is
+full, so output is lost when the reader is slower than the script. In a test
+with Node 24 on Linux, a reader that waited one second before reading received
+803 of 12,002 lines written before `process.exit(1)`, about one pipe buffer. A
+file, a terminal and a fast reader such as `cat` received every line. The loss
+therefore appears with busy log collectors and slow consumers, and rarely when
+the script runs in a terminal.
 
 - Set `process.exitCode` and return. The process then ends after its work and
   pending writes finish.
@@ -163,8 +166,9 @@ For a changed script or helper, exercise success, a non-zero exit, a program
 that is not installed and a timeout. Where the script sets an output limit,
 exceed it. Each case should produce its own message and status.
 
-Run the script with its output piped, as in `node script.mjs | tail -1`, and with
-more output than a pipe buffer holds (64 KiB on Linux) to catch lost output. Run
-it from another directory and from a path that contains a space. Successful runs
-in a terminal do not show that output survives a pipe or that paths resolve
-elsewhere.
+To catch lost output, write more than a pipe buffer holds (64 KiB on Linux) into
+a reader that waits before reading, as in `node script.mjs 2>&1 | (sleep 1; wc -l)`,
+and compare the count with the same output written to a file. A fast reader can
+hide the loss. Run the script from another directory and from a path that
+contains a space. Successful runs in a terminal do not show that output survives
+a pipe or that paths resolve elsewhere.
