@@ -47,12 +47,6 @@ as a manual review; automation can grow from actual transitions.
 | [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
 | [runtime-operations](skills/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
 
-## Personal writing
-
-| Skill | Use it for |
-| --- | --- |
-| [jonas-email-style](skills/jonas-email-style/SKILL.md) | Drafting, rewriting or shortening email that Jonas will send, in Norwegian or English, so it sounds like him. |
-
 These groups organize the catalog. Packages remain directly under `skills/`, so
 changing a group does not change a skill's installation path.
 
@@ -118,15 +112,16 @@ when one skill is released.
 ## Adding a skill
 
 - Keep it project-agnostic: no account details, credentials, service
-  identifiers or private domain records. A skill about Jonas himself (such as
-  his writing style) is fine; a skill about one project's systems is not.
+  identifiers or private domain records. A skill about one project's systems
+  does not belong here. Skills about Jonas himself, such as his email style,
+  live in his separate local `personal-skills` repository.
 - Put the manifest at `skills/<name>/SKILL.md`, with references and helper
   files beside it. `agents/openai.yaml` carries the display name for tools that
   read it.
 - Choose a short lowercase hyphenated name for the activity or subject readers
   will seek. Use familiar terms and the actual language or tool when it narrows
-  the scope. Name the person when a skill encodes one person's voice. Preserve
-  an established name unless clearer discovery justifies changing consumer paths.
+  the scope. Preserve an established name unless clearer discovery justifies
+  changing consumer paths.
 - Apply [Clear Writing](skills/clear-writing/SKILL.md) to the package's prose.
   It guides authors; installed packages remain independent of it.
 - Record intended behaviour in `validation/<name>.md` when a skill has scope
@@ -136,8 +131,9 @@ when one skill is released.
 
 **clear-writing** brings the short-text guidance into a reusable prose skill,
 with a shared core and separate references for instructions and short text.
-It covers wording and meaning; document ownership belongs to `project-docs`,
-visual form to `diagrams`, and Jonas's email voice to `jonas-email-style`.
+It covers wording and meaning; document ownership belongs to `project-docs` and
+visual form to `diagrams`. Jonas's email voice has its own skill outside this
+repository.
 Its first prose trials are the conceptual `source-of-truth` skill and the
 procedural `bash-patterns` skill. See
 [validation scenarios and results](validation/clear-writing.md).
@@ -290,11 +286,9 @@ again in the reader", "Use $source-of-truth to decide where this constant belong
 See [its validation scenarios](validation/source-of-truth.md); it has been applied
 in one project only and is not yet released.
 
-**jonas-email-style** was derived on 2026-09-20 from Jonas's sent Gmail: the last
-100 messages before 2026-09-18 (about 55 with real prose) plus 17 older English
-messages. It moved here from the Personal project's shared files on 2026-09-24.
-Re-derive it from a fresh sample if his style drifts; the manifest says how the
-corpus was chosen. See [validation scenarios](validation/jonas-email-style.md).
+**jonas-email-style** lived here from 2026-09-24 until 2026-09-30, when it
+moved with its history to Jonas's local `personal-skills` repository. It is
+installed for his user account there rather than copied into projects.
 
 **runtime-operations** supplies the common credential, Linux service and encrypted
 backup machinery used by Personal Atlas and Work-system. Project adapters own
