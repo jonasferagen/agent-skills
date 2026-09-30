@@ -79,9 +79,10 @@ split the directory.
 
 ### When Not To Use
 
-- Top-level catch-all directories like `utils/` or `types/` that are genuinely
-  the home for cross-cutting helpers. Even there, prefer named subgroups once
-  the file count grows past a handful.
+- A top-level `types/` directory that is genuinely the home for cross-cutting
+  passive contracts. Even there, prefer named subgroups once the file count
+  grows past a handful. A top-level `utils/` gets no such exemption: split its
+  files by domain or concept, as for `helpers/`.
 
 ## Concept Or Phase, Not Bare Role
 
