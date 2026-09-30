@@ -56,20 +56,12 @@ repository.
 
 Escalate a value to the next shape only when that step's trigger fires:
 
-1. Positional parameters become a
-   [parameter object](references/utilities-and-data.md#parameter-objects) when
-   optional values, same-shaped arguments, or placeholder `undefined`s obscure
-   a call.
-2. An inline object becomes a named contract when it escapes its local scope or
-   is an options bag whose fields need names
-   ([type placement](references/naming-and-placement.md#type-placement-three-tiers)).
-3. Fields that repeatedly travel together become a
-   [domain aggregate](references/utilities-and-data.md#parameter-bundling) when
-   they share meaning or behavior.
-4. Passive data becomes a
-   [value object or domain primitive](references/class-shape.md#promoting-a-passive-type-to-a-class)
-   when normalization, invariants, defaults, or derived values accumulate
-   around it.
+| Step | Current shape                          | Becomes                                                                                           | Trigger                                                                            |
+| ---- | -------------------------------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| 1    | Positional parameters                  | [parameter object](references/utilities-and-data.md#parameter-objects)                            | optional values, same-shaped arguments, or placeholder `undefined`s obscure a call |
+| 2    | Inline object                          | named contract ([type placement](references/naming-and-placement.md#type-placement-three-tiers))  | it escapes its local scope or is an options bag whose fields need names            |
+| 3    | Fields that repeatedly travel together | [domain aggregate](references/utilities-and-data.md#parameter-bundling)                           | they share meaning or behavior                                                     |
+| 4    | Passive data                           | [value object or domain primitive](references/class-shape.md#promoting-a-passive-type-to-a-class) | normalization, invariants, defaults, or derived values accumulate around it        |
 
 Stop at a named passive contract for DTOs, wire shapes, results, and one-shot
 inputs. Promote only values that travel with behavior or invariants.
