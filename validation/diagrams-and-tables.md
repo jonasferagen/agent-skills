@@ -1,4 +1,4 @@
-# Validation and alignment — Diagrams
+# Validation and alignment — Diagrams and tables
 
 ## Behavioral scenarios
 
@@ -109,3 +109,13 @@ Left unresolved, because each answer changes behavior:
   Mermaid. The example may describe an older renderer but reads as current.
 - The ER-subgraph scenario above splits a model only if its relationships remain
   hard to trace; the manifest and `drawing.md` split past the threshold.
+
+## Rename — 2026-09-30
+
+Version 0.2.0 renames the installation name from `diagrams` to
+`diagrams-and-tables`, so the name shows that the skill covers tables and
+matrices as well as diagrams. The display name, instructions and examples are
+unchanged. Consumers that copied the package under `.agents/skills/diagrams/`
+keep working at their pinned commit; they move the directory and update their
+provenance when they next update the pin. Earlier entries on this page use the
+old name as it was at the time.

@@ -1,4 +1,4 @@
 interface:
   display_name: "Diagrams and tables"
   short_description: "Choose and verify useful diagrams and tables"
-  default_prompt: "Use $diagrams to choose the right form for this subject and draw it so it reads."
+  default_prompt: "Use $diagrams-and-tables to choose the right form for this subject and draw it so it reads."
