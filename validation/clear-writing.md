@@ -55,3 +55,43 @@ Version 0.1.1 uses sentence case for the display name “Clear writing.” The
 installation name and writing instructions are unchanged. Package and
 skill-creator validation passed; no new behavioral trial was needed for this
 metadata-only change.
+
+## Package sweep — 2026-09-30
+
+The skill was applied to the prose of eight packages it had not yet revised:
+`change-workflow`, `diagrams`, `typescript-patterns`, `test-audit`,
+`postgres-design`, `project-docs`, `runtime-operations` and the
+`source-of-truth` references. This skill, `bash-patterns` and the
+`source-of-truth` entrypoint were revised in the trials above;
+`containerization` and `project-policy` were written with it.
+`jonas-email-style` was excluded because its wording records a personal style
+derived from a mail corpus.
+
+For each package, one agent revised passages with a concrete clarity problem and
+left the rest. A second agent, without the author's rationale, compared every
+changed passage with the prior text. A script confirmed that fenced code, inline
+code, link destinations, headings and frontmatter other than descriptions were
+unchanged, and that every local heading anchor resolves. Package validation,
+`git diff --check` and the `runtime-operations` helper tests passed.
+
+33 of 35 files changed. Most edits replaced idioms and metaphors with the
+behavior they stood for, split sentences carrying several ideas, and moved
+conditions beside their actions. Review found four edits that changed meaning,
+all corrected before commit:
+
+| Package | Changed meaning |
+| --- | --- |
+| `project-docs` | Diagram inspection became conditional on the target renderer being available. |
+| `typescript-patterns` | Placing a total mirror beside its declaration was said to cause the compile error, rather than to decide where it appears. |
+| `postgres-design` | A rule forbidding JSON from *becoming* a way around relational integrity came to forbid only *using* it that way. |
+| `runtime-operations` | "Use the same verbs" was rewritten to fit its option-name example, settling an ambiguity the source left open. |
+
+Three of the four resolved an ambiguity while clarifying it, the failure the
+instruction guidance warns against. Several nits restored a distinction that a
+replaced metaphor had carried, such as "cheapest" rather than "easiest"
+crossings. Authors also reported contradictions in the source that they left
+unresolved; the confirmed ones are recorded on each package's validation page.
+
+This was a text comparison. No behavioral scenario of a revised package was
+rerun, and the description edits in `diagrams` and `typescript-patterns` were
+not tested for changes in when the skill is selected.
