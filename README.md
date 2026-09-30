@@ -157,15 +157,24 @@ version bump when one skill is released.
 
 ### Authoring skills
 
-Skills in this repository should meet the standards they teach. Before tagging
-a release, apply these skills to the content that changed since the skill's
+Skills in this repository should meet the standards they teach. Apply relevant
+guidance to the packages, helpers and documentation we maintain here. Start
+with the catalog and the task's actual trigger; load only the selected guidance
+and needed references. For example, use source-of-truth when reconciling copied
+rules, verification-design when selecting evidence, and capture-pattern when
+assessing a reusable finding or an explicit capture request. Its simplicity
+test also applies to our own rules and exceptions. Report a relevant conflict
+or gap rather than silently exempting the repository.
+
+During authoring, AGENTS.md requires writing and visual guidance where relevant.
+Before tagging a release, also apply these skills to the content changed since the skill's
 last tag, or to the whole package for a first release:
 
 - [Clear writing](skills/clear-writing/SKILL.md), to the prose.
 - [Diagrams and tables](skills/diagrams-and-tables/SKILL.md), to existing
   diagrams and tables and to passages a diagram or table would explain better.
 
-This is a recommendation, not a release requirement. Clear Writing does not yet
+This additional release pass is a recommendation, not a release requirement. Clear Writing does not yet
 cover every kind of prose a skill package contains, such as trigger
 descriptions, defined terms, worked examples, pattern catalogs and templates.
 

@@ -3,6 +3,11 @@
 [README](README.md) owns the catalog, package format, naming and release rules.
 Each skill directory must remain usable when copied on its own.
 
+Apply the [authoring principle](README.md#authoring-skills) to this repository's
+own changes: select relevant guidance from the catalog, then read only what
+the task needs. This includes Capture Pattern for a reusable finding or an
+explicit `/capture-pattern [idea]` request; its source home is this repository.
+
 ## Writing
 
 Use [Clear Writing](skills/clear-writing/SKILL.md) when authoring or revising

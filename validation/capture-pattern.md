@@ -84,3 +84,23 @@ this package during the turn did not add it to that inherited list. Consequently
 the original-request experiment tests the installed project hook, while the
 separate catalog experiment tests description matching. Neither proves future
 host refresh behavior or reliable activation across repeated runs.
+
+## Explicit small-idea trial — 2026-09-30
+
+Installed `capture-pattern` 0.2.0 from
+`02f79fcae69294ff471a4d9a316cb897e6483f7e`, with both files checked against
+their Git blobs. AGENTS.md maps `/capture-pattern [idea]` to the installed
+skill as an agent-interpreted text shortcut; this does not register a native
+slash command.
+
+A fresh agent received a read-only explicit request about a hypothetical
+shared-helper rule accumulating consumer exceptions. It assessed the mechanism,
+retained necessary invariants and compatibility distinctions, and found the
+idea already covered by Capture Pattern's simplicity section. It made no edits
+or tests and did not present the hypothesis as a demonstrated improvement.
+
+The agent reported reading the installed capture-pattern, the source copy and
+shared-code-design, in that order. The explicit request and project mapping
+supplied discovery; provenance and the catalog supplied the source home.
+The new name was absent from inherited host metadata. This passes the explicit
+text-shortcut case, with the same retrospective-read reporting limit as above.

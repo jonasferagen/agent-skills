@@ -66,3 +66,24 @@ The final renamed `capture-pattern` package also passed the system
 `quick_validate.py` check and repository package validation. The rename adds
 explicit invocation for small ideas and a simplicity check for accumulating
 exceptions. Earlier trial names are preserved in their historical records.
+
+## Applying our own guidance
+
+README already said that skills should meet the standards they teach. The
+authoring section and AGENTS.md now make selection of relevant guidance explicit,
+including Capture Pattern. This clarifies the existing authoring principle and
+extends its concrete routing beyond writing and visuals. The separate full
+pre-release pass remains recommended; it is not a new release gate.
+
+Impact: repository authoring instructions and this evidence record change.
+Package interfaces, installed consumers, stored data, permissions, operations
+and recovery obligations are unaffected. No full-catalog compliance audit is
+claimed. Clear Writing was applied to the changed instructions; source-of-truth
+informed keeping the principle in README with a routing link from AGENTS.md.
+The discovery refactor itself applies conditional loading to this catalog.
+
+Final checks: 16 packages passed repository validation; capture-pattern passed
+the system quick validator; 258 local Markdown paths and heading anchors passed;
+`git diff --check` passed. The explicit small-idea trial also passed, as recorded
+in [Capture Pattern validation](capture-pattern.md). No runtime helper or Mermaid
+source changed in this discovery pass.
