@@ -3,16 +3,16 @@
 ## Scope and measured context
 
 The review includes the 15 existing packages after reconciliation with main,
-plus the new lesson-capture package. Word counts describe source text, not
+plus the new capture-pattern package. Word counts describe source text, not
 token usage or a guarantee about host selection.
 
-Existing descriptions: 978 → 479 words. The new lesson-capture description adds 34 words.
+Existing descriptions: 978 → 479 words. The new capture-pattern description adds 36 words.
 
 The three largest entrypoints now route to conditional references:
 
 - `change-workflow`: 2200 → 1032 words.
-- `diagrams-and-tables`: 2964 → 401 words.
-- `source-of-truth`: 2339 → 505 words.
+- `diagrams-and-tables`: 2964 → 324 words.
+- `source-of-truth`: 2339 → 518 words.
 
 ## Decisions
 
@@ -48,8 +48,8 @@ require loading every neighboring package.
 
 ## Verification and trial results
 
-Package and moved-section verification and the fresh-agent trials are recorded
-below after they run. The trial uses the current project, whose milestone work
+Package and moved-section verification is recorded below. Fresh-agent results
+are recorded in [Capture Pattern validation](capture-pattern.md). The trial uses the current project, whose milestone work
 has advanced since the original prompt; it does not reconstruct the earlier tree.
 
 Structural verification before the trial:
@@ -61,3 +61,8 @@ Structural verification before the trial:
   remain verbatim apart from changed link destinations. The old symptom table
   was replaced by the narrower reference router.
 - `git diff --check`: passed. No Mermaid source was changed.
+
+The final renamed `capture-pattern` package also passed the system
+`quick_validate.py` check and repository package validation. The rename adds
+explicit invocation for small ideas and a simplicity check for accumulating
+exceptions. Earlier trial names are preserved in their historical records.

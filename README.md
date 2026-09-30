@@ -47,7 +47,7 @@ as a manual review; automation can grow from actual transitions.
 | [containerization](skills/containerization/SKILL.md) | Building independent local service containers with explicit interfaces, repeatable migrations, disposable database tests and test runs that remove exactly what they create. |
 | [verification-design](skills/verification-design/SKILL.md) | Choose evidence for a change or milestone and consolidate checks by the failures they detect. |
 | [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
-| [lesson-capture](skills/lesson-capture/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
+| [capture-pattern](skills/capture-pattern/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
 | [runtime-operations](skills/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
 
 These groups organize the catalog. Packages remain directly under `skills/`, so
@@ -93,18 +93,33 @@ package. Keep them concise and put the main trigger first. The selected
 open only the references needed for the current decision. Grouping this catalog
 does not itself control which instructions an agent reads.
 
-When installing `lesson-capture`, the consuming project's instructions can add
+When installing `capture-pattern`, the consuming project's instructions can add
 this checkpoint:
 
-> When a review, fix or user correction reveals a meaningful architectural
-> lesson, consider whether it generalizes. Use the installed lesson-capture
-> skill for a concrete candidate, and find its authoring source in the imported
-> skill provenance. Load the catalog and likely owner only when needed.
+> Before finishing an architecture or consolidation review that produced concrete
+> findings, use capture-pattern to assess the strongest reusable candidate against
+> existing guidance. Do the same after a fix or user correction exposes a recurring
+> design issue. Find the authoring source in imported-skill provenance and read
+> only the catalog and likely owner. Report its home or why it stays local.
+> Routine lookups and literal edits do not need this checkpoint.
 
 Use a local link to the installed skill in that instruction. Put the source
 location in provenance; never bake a machine-specific path into the skill.
 Reading and proposing guidance can fit a review. Writing the source repository
 or adopting a new pin follows the task's actual authorization.
+
+For explicit requests, invoke `$capture-pattern` with an idea or refer to the
+current discussion. To also accept `/capture-pattern [idea]`, add this project
+instruction beside the checkpoint:
+
+> Treat `/capture-pattern [idea]` as an explicit request to use the installed
+> capture-pattern skill, even for a small idea. Assess whether it generalizes,
+> prefer the simplest adequate rule and check its existing home. Follow the
+> request's scope when proposing or making changes.
+
+This is an agent-interpreted text shortcut. It does not add a native slash-menu
+entry; native skill discovery depends on the client's supported invocation and
+refresh behavior.
 
 Test discovery with realistic requests and metadata before showing skill bodies
 or expected answers. Record whether a trial used host-provided metadata, a

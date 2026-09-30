@@ -1,16 +1,23 @@
 ---
-name: lesson-capture
-description: "Capture reusable engineering lessons when a review, bug fix, architectural smell, simplification or user correction reveals a meaningful pattern. Check whether agent-skills already covers it, then improve the right home within the authorized scope."
+name: capture-pattern
+description: "Assess and capture an engineering pattern when explicitly requested, or when a review, fix or user correction reveals a reusable lesson. Check existing guidance, prefer a simple rule, and improve its home within the authorized scope."
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
-# Capture reusable lessons
+# Capture a reusable pattern
 
 At a natural checkpoint in the current task, consider whether a meaningful
 finding would improve future engineering decisions. Keep the original task
 moving. An ordinary edit or a speculative smell alone does not call for a
 catalog review.
+
+An explicit capture request also activates this workflow for small ideas that
+would not warrant that checkpoint. Use the idea named by the user or evident
+in the current discussion; ask only if the intended idea is unclear. In clients
+with native skill invocation, use `$capture-pattern`. A project may also map
+`/capture-pattern [idea]` to this skill in its instructions; that text shortcut
+does not register a native slash command.
 
 ## Decide whether the lesson generalizes
 
@@ -22,6 +29,19 @@ confidence but is not a prerequisite. Preserve uncertainty and local tradeoffs.
 Ask whether the guidance would change a future decision. Keep project-specific
 facts and choices in their project. Do not turn a local convention, an untested
 optimization or a user's one-time exception into a universal requirement.
+
+## Prefer the simplest adequate rule
+
+Choose the simplest rule that preserves the required behavior and meaningful
+distinctions. When exceptions accumulate, reconsider the rule's scope, ownership
+or abstraction before adding another exception. A narrower rule or separate
+concerns may explain the cases better. Keep exceptions that protect real
+invariants; brevity alone is not evidence that they are unnecessary.
+
+Apply this test to the proposed guidance and its existing home. Prefer improving
+one clear rule over adding a competing rule or another skill. Skill-authoring
+guidance covers how to write the package; this workflow decides what is worth
+capturing and where it belongs.
 
 ## Find its home without loading the catalog
 
@@ -55,4 +75,4 @@ validate behavior as well as package structure, within available authorization.
 
 Finish by reporting what generalized, its existing or changed home, and what
 was actually verified. If the existing guidance already covers it, say so and
-stop. Do not start another lesson-capture cycle about the capture process.
+stop. Do not recursively capture lessons about the capture process.

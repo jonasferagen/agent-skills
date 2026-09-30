@@ -26,20 +26,9 @@ or a table, and which one. Concise prose is the right overview when there is no
 relationship, flow or ownership shape to show. Where a project documentation
 skill is available, it owns those placement rules.
 
-- **How to draw it** — direction, subgraphs, `erDiagram`, table mechanics, and
-  portable syntax — is in [references/drawing.md](references/drawing.md). Read
-  it before writing a Mermaid block.
-- **Models to copy** — overview/detail splits (one detail, several details,
-  a staged lifecycle), before/after and layered lanes, a schema change, an
-  aggregate-cluster ER split, a whole-schema overview raised to its owning
-  documents, and coverage and decision matrices — are in
-  [references/worked-examples.md](references/worked-examples.md). Read it once
-  the form is chosen.
-
-Two steps bracket the drawing itself: [ground every edge in its
-source](references/verification.md#ground-every-edge-in-its-source) before drawing, and [verify that it
-reads](references/verification.md#verify-that-it-reads) in the renderer its readers use afterwards. A
-diagram that parses is not yet a diagram that works.
+Ground every edge in its source before drawing, then verify that the result
+reads in the renderer its readers use. A successful parse does not establish
+readability; the verification reference below covers both checks.
 
 A repository-specific _diagram catalog_ is different again: it indexes the
 diagrams a repository owns and points at their canonical docs. This skill holds

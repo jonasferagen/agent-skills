@@ -47,6 +47,8 @@ a separate policy skill; missing policy facts remain explicit unknowns.
 Read the relevant reference when that decision arises; these are not a startup
 reading list.
 
+The numbered “rungs” below are the [options for deriving or checking a copy](references/definitions.md#derive-instead-of-restate).
+
 ## Review and verification
 
 - Name the concept, its authoritative home, and the rung you stopped at.
