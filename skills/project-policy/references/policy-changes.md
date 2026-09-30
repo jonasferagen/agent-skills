@@ -36,6 +36,13 @@ live accounts merely to complete the table.
 
 ## Turn the assessment into work
 
+Review simplification opportunities as well as missing safeguards. Record what
+guarantee a mechanism protects, whether policy requires it, what a simpler design
+would preserve or remove, and what evidence could establish that result. Higher
+standards can sometimes be met with less machinery. Existing implementation
+complexity is not itself a requirement; retained data and explicit commitments
+still need deliberate treatment.
+
 Use the project's existing task queue. Each affected requirement needs an owner
 (a project role is sufficient), required work, dependencies, acceptance evidence
 and a due milestone or condition. Unknown ownership stays an open item. Keep

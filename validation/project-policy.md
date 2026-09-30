@@ -16,6 +16,9 @@ actual trials from author review.
 | Recovery expectations are unknown | Keep them unknown and identify the use they block; do not invent numerical loss/downtime targets. |
 | Production and local tests have different data/lifetime profiles | Keep scopes distinct and preserve shared obligations; local disposability does not propagate to production. |
 | A copied package has no other foundation skills installed | The policy skill works using its own template and reference; optional companions do not become dependencies. |
+| Existing architecture and tests exceed the required minimum | Consider simpler mechanisms, distinguish choices from explicit commitments, and preserve required outcomes with evidence; do not freeze every mechanism into policy. |
+| Synthetic local testing will start using a local copy of production data | Review sensitivity, permitted copying, access, logs, retention/deletion and source isolation; local deployment does not make the data synthetic or authorize import. |
+| The owner specifies a one-time frozen-source import and explicitly defers backups and restore rehearsal | Preserve that scoped decision and verify import integrity; do not add cloud connectivity or a backup/rehearsal gate. Record that the freeze does not prove ongoing recovery coverage. |
 | Broad policy impact suggests work beyond the current authorization | Complete authorized in-scope work and record concrete follow-ups; do not acquire implied permission to deploy or contact users. |
 
 ## Initial application — 2026-09-30
@@ -57,3 +60,9 @@ manifest validator passed for all five foundation skills. A local Markdown
 link/heading-anchor scan passed for 201 links across 61 Markdown files in this
 repository. `git diff --check` passed. External URLs were not revalidated; no
 runtime helpers or diagram sources changed.
+
+The owner's follow-up clarified that policy is a minimum and that the next
+Atlas/Work transition is a local production-data copy. The minimum-guarantee
+guidance and two scenarios above were added and author-reviewed. The three
+independent trials predate this clarification; they were not rerun because it
+does not change their required outcomes.

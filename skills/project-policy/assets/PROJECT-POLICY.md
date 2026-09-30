@@ -24,6 +24,11 @@ status and detailed engineering conventions.
 
 ## Requirements and their owners
 
+State the minimum required guarantees. Existing implementation may exceed them;
+record useful stronger guarantees separately when relevant. Do not promote every
+abstraction or test into policy. Simpler mechanisms may replace them when the
+required outcomes and explicit commitments remain supported by evidence.
+
 For each consequential profile choice, state an observable requirement, where
 its procedure lives, and what evidence establishes it. Preserve existing
 commitments. Keep commands and implementation details in their owning guides.

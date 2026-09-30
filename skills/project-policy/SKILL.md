@@ -11,6 +11,12 @@ Make the project's circumstances determine its engineering requirements. Keep
 the facts, required behavior and evidence of compliance distinct. A policy can
 be adopted while implementation gaps remain; adoption does not close those gaps.
 
+Policy sets the minimum required guarantees. An implementation may exceed them;
+its existing architecture, abstractions and test inventory do not automatically
+become policy requirements. Consider simpler designs that preserve required
+outcomes. Distinguish an implementation choice from an explicit commitment before
+removing it, and verify the affected behavior when changing the mechanism.
+
 ## Establish the policy
 
 Read project instructions, the active plan, architecture and relevant operations
