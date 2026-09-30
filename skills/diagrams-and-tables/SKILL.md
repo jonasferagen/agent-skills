@@ -29,8 +29,10 @@ skill is available, it owns those placement rules.
 - **How to draw it** — direction, subgraphs, `erDiagram`, table mechanics, and
   portable syntax — is in [references/drawing.md](references/drawing.md). Read
   it before writing a Mermaid block.
-- **Models to copy** — an overview/detail split, before/after lanes, a
-  schema change, a coverage matrix, a decision matrix — are in
+- **Models to copy** — overview/detail splits (one detail, several details,
+  a staged lifecycle), before/after and layered lanes, a schema change, an
+  aggregate-cluster ER split, a whole-schema overview raised to its owning
+  documents, and coverage and decision matrices — are in
   [references/worked-examples.md](references/worked-examples.md). Read it once
   the form is chosen.
 
@@ -137,13 +139,14 @@ Five shapes carry most cases:
 | --- | --- | --- |
 | **Delta table** | one field or option × before, after, migration | exactly what changes, at field altitude |
 | **Decision matrix** | one option × each criterion | why the chosen option wins, and what it costs |
-| **Coverage matrix** | one surface × each obligation | the blank cell nobody had noticed |
+| **Coverage matrix** | one surface × each obligation | the gap nobody had noticed |
 | **Registry table** | one term × status, canonical meaning | which name is current, and what replaced the rest |
 | **Fan-in table** | one referencing entity or group × what it reaches | who depends on a hub, without drawing the hub |
 
 The coverage matrix is the one to reach for deliberately: prose can describe
 every surface in turn and never reveal that one of them answers nothing, whereas
-an empty cell is visible at a glance.
+the cell nobody can fill, written as `unknown` or `none`, is visible at a
+glance.
 
 The fan-in table is the one that rescues a diagram. **A shared target reached by
 many entities belongs in a table rather than as a drawn hub.** A hub is the most
@@ -243,16 +246,16 @@ individual relationship at full cardinality.
 See [the worked ER split](references/worked-examples.md#a-large-er-family-split-by-aggregate-cluster)
 for the matching stub-elision rule on an aggregate-sized family, and
 [the whole-schema overview](references/worked-examples.md#an-over-threshold-overview-raised-to-its-owning-documents)
-for the ownership grouping and the fan-in tables that keep its hubs out of the
-graph.
+for the ownership grouping and the fan-in tables that keep its hubs from being
+drawn as table-level nodes.
 
 A subgraph is the right tool when the grouping is a handful of nodes the reader
-must see in place. **When a subgraph grows past roughly five nodes, or when two
-subgraphs in one block are each large enough to stand alone, it should be a
-separate diagram.** That local threshold is not the whole complexity test. A
-lifecycle is also above the split threshold when the whole block makes the
-reader independently understand several stage-level questions, especially a
-combination of:
+must see in place. **When a subgraph grows past roughly five nodes, it should
+be a separate diagram. When two subgraphs in one block are each large enough to
+stand alone, each should be its own diagram.** That local threshold is not the
+whole complexity test. A lifecycle is also above the split threshold when the
+whole block makes the reader independently understand several stage-level
+questions, especially a combination of:
 
 - **multi-input fan-in** whose normalization or precedence matters;
 - an **optional or branching middle lane** whose internal order matters; and

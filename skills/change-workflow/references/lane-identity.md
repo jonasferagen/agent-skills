@@ -13,7 +13,7 @@ path, a clean `git worktree list --porcelain` entry.
 | Role | What identifies it | What it permits |
 | --- | --- | --- |
 | Base checkout | the main working tree, on the default branch | the merge target; lifecycle and service commands run here, nothing is authored here |
-| Task lane | a sibling worktree under `.worktrees/`, on its own branch, that this session opened or deliberately resumed | authoring |
+| Task lane | a sibling worktree under `.worktrees/`, on its own branch, that this session opened or was directed to resume | authoring |
 | Pin | a detached `HEAD` | a comparison basis, not an authoring lane |
 
 **The branch decides, never the path's name.** A directory under `.worktrees/`
@@ -30,8 +30,10 @@ authoring and use its answer. An unavailable command is unknown role evidence,
 never permission to author.
 
 If you find yourself in the base checkout, open a task lane from the default
-branch and author only there. A lane this session did not open and the project
-does not name is still not an authoring lane.
+branch and author only there. A lane this session did not open is an authoring
+lane only when the session was directed to resume it, by the user or by the
+project's record of the work naming the branch. A matching name or path is not
+that direction.
 
 ## Naming a lane
 
@@ -54,10 +56,11 @@ Keep them short and kebab-case. A project may derive other identifiers from the
 name — a container, a database, a port label — and long names have overflowed
 downstream limits.
 
-A name cannot carry a slash, so a bare number in one always refers to the lane's
-own repository's tracker. Where the work answers to another repository's tracker,
-keep the bare number in the name and record the fully qualified
-`<owner>/<repo>#<number>` wherever it is unambiguous.
+A name cannot carry a slash, so a bare number in one is read as the lane's own
+repository's tracker. Where the work answers to another repository's tracker,
+still keep only the bare number in the name, and write the fully qualified
+`<owner>/<repo>#<number>` in the text that cites the work, such as the tracker
+reservation or pull request.
 
 **A name grants nothing.** No kind, topic, issue number or project-specific shape
 is evidence that a lane is active, important, disposable or safe to remove, and
@@ -68,14 +71,18 @@ liveness and containment evidence instead.
 
 Switching the base checkout onto a feature branch reintroduces exactly the
 intermingling that isolation prevents, and leaves the base useless for verifying
-a merged result. This is a repair, not part of the lifecycle:
+a merged result. This is a repair, not part of the lifecycle. Check for
+uncommitted work first, and switch only if the status is empty:
 
 ```bash
+git -C <base-checkout> status --short
 git -C <base-checkout> switch <integration-branch>
 git -C <base-checkout> worktree add .worktrees/<name> <branch>
 ```
 
-The branch's commits are preserved, so this restores rather than loses anything.
-If the base holds uncommitted work, confirm before switching that the files
-differing between the two branches do not overlap what is uncommitted, or the
-switch will refuse or carry edits somewhere they were not meant to go.
+The branch's commits are preserved, so this restores rather than loses anything
+committed. Uncommitted work is another matter. Git refuses the switch when an
+uncommitted file also differs between the two branches, and otherwise carries
+every uncommitted change onto the default branch while the lane opens without
+it. So if the status check shows anything, do not switch: report the paths and
+the branch, and leave where that work belongs to a deliberate decision.

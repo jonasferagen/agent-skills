@@ -18,11 +18,13 @@ Examples are synthetic.
 
 ## Compute the invariant live
 
-If the correct answer can be computed when the check runs, compute it. A
-committed "expected" count or snapshot stores the answer from when it was
-committed, and every legitimate change then has to update and re-approve it.
-That update becomes routine, and the routine trains reviewers to approve diffs
-they have not read.
+Compute the answer when the check runs, by reading the homes as they stand. If
+a home cannot be read then, do not commit a copy of its answer:
+[report the dependency as absent](#report-an-absent-dependency-as-absent), or
+stop at rung 6. A committed "expected" count or snapshot stores the answer from
+when it was committed, and every legitimate change then has to update and
+re-approve it. That update becomes routine, and the routine trains reviewers to
+approve diffs they have not read.
 
 - **Breaks:** a drift checker that stamps counts into committed baseline files
   and reports differences against them. Nothing consumes the report, it re-scans

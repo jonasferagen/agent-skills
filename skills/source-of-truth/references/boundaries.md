@@ -13,14 +13,15 @@ another the bare address, so the two allow-lists that mean the same thing cannot
 be the same strings. A copy looks right, passes review, and encodes a difference
 nobody stated.
 
-Available: build-time generation from the home into each language; a data file
-both languages read at run time; or, where the home is a database, reading it
-directly from both.
+Available: build-time generation from the home into each language (rung 2); a
+data file both languages read as they start (rung 3); or, where the home is a
+database, reading it directly from both, at start time (rung 3) or with the
+data (rung 4).
 
 If the rule must be stated once per language, say in each place that it is one
-rule with two spellings, and add a check that compares the two after
-normalising. Do not add a check that restates the expected values; it would be
-a third home.
+rule with two spellings (rung 6), and add a check that compares the two after
+normalising (rung 5). Do not add a check that restates the expected values; it
+would be a third home.
 
 ## The bundle boundary
 
@@ -29,13 +30,13 @@ dependencies. This is a real cost, not a style objection: one import can pull a
 validation library or a database driver into a browser bundle.
 
 Available: request-time delivery (rung 4), which sends the concept with the data
-that needs it; or extracting a dependency-free module that both sides import,
-while the heavier machinery stays in the home.
+that needs it; or extracting a dependency-free module that both sides import
+(rung 1), while the heavier machinery stays in the home.
 
 Type-only declarations are erased at compile time and cross this boundary for
-free, so sharing a type costs nothing while sharing a value may cost a great deal.
-Check which one the consumer actually needs before deciding the boundary blocks
-you.
+free (rung 1), so sharing a type costs nothing while sharing a value may cost a
+great deal. Check which one the consumer actually needs before deciding the
+boundary blocks you.
 
 ## The process boundary
 
@@ -44,15 +45,18 @@ pair needs the other's address, or each side of a handoff needs the other's
 schedule. Neither can read the other's configuration, and code shared between
 them cannot know either setting.
 
-Available: make the value an explicit input at the edge. The process that owns a
-setting passes it in; shared code receives it and never guesses. A hardcoded
-default inside the shared code is the shape to remove, because it is a second home
-for a value the edge already knows.
+Available: make the value an explicit input at the edge (rung 1, because the
+shared code then holds no copy). The process that owns a setting passes it in;
+shared code receives it and never guesses. A hardcoded default inside the shared
+code is the shape to remove, because it is a second home for a value the edge
+already knows.
 
 Where neither process can know the other's value, the pair itself is the concept
-and needs a home outside both: one settings source they both read. Introducing
-that shared source is a larger change than it looks; if it is out of scope, stop
-at rung 6 and record which two places must change together.
+and needs a home outside both: one settings source they both read as they start
+(rung 3). Introducing that shared source is a larger change than it looks. If it
+is out of scope and both settings are in the repository, add a check that reads
+both and fails when they disagree (rung 5). Otherwise stop at rung 6 and record
+which two places must change together.
 
 ## The schema boundary
 

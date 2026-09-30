@@ -19,6 +19,7 @@ IMAGE = 'public.ecr.aws/supabase/postgres:17.6.1.167'
 
 def run(args, data=None, env=None):
     result = subprocess.run(args, input=data, env=env, capture_output=True)
+    # Output withheld: psql, pg_dump and pg_restore output can hold credentials, queries or records.
     if result.returncode:
         raise RuntimeError(f'{args[0]} failed (exit {result.returncode}); output withheld')
     return result.stdout
@@ -61,6 +62,7 @@ def crypt(key, data, decrypt=False):
                 '--passphrase-fd', str(readfd)]
         args += ['--decrypt'] if decrypt else ['--symmetric', '--cipher-algo', 'AES256']
         result = subprocess.run(args, input=data, capture_output=True, pass_fds=(readfd,))
+        # GnuPG output can be plaintext; report no output.
         if result.returncode:
             raise RuntimeError('GnuPG encryption/integrity verification failed')
         return result.stdout

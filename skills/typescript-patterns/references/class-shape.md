@@ -43,10 +43,10 @@ gets a static-method class (`PolygonFaces.resolveUp`, `InvoiceTotal.of`), not a
 bare `export function`. The naming benefit, a `Domain.operation()` call that is
 legible at the call site, applies whether or not the operation holds state. A
 pure geometry or math kernel is exactly where the static-class shape justifies
-its cost. Do not use `export const X = { method(), method() }` either: that is
-a static class spelled oddly, with the same call-site cost and worse tooling
-support. The trade-off (no tree-shaking, no direct use as higher-order
-functions) is acceptable at typical project scale.
+its costs: no tree-shaking and no direct use as higher-order functions, both
+acceptable at typical project scale. Do not use
+`export const X = { method(), method() }` either: that is a static class spelled
+oddly, with the same costs and worse tooling support.
 
 **First, check it should be a standalone operation at all.** A helper that takes
 a single domain object and only reads its public surface is not an operation

@@ -34,7 +34,7 @@ it is not another loan state. Cardinalities would require the actual data model.
 ```mermaid
 flowchart TB
   Inspection["Inspection"] -->|Describes condition of| Item["Item"]
-  Inspection -->|Supported by| Evidence["Evidence reference"]
+  Inspection -->|Supported by| Evidence["Evidence"]
   Task["Maintenance task"] -->|May arise from| Inspection
 ```
 
@@ -46,8 +46,8 @@ existence does not prove that the inspection was correct or that a repair happen
 The entry page points to borrowing instructions, setup and domain explanation.
 The glossary defines “loan”; the design page explains its relation to inspections.
 A procedure explains how to record an inspection, including the evidence expected.
-The release record owns acceptance status. A short handoff links to its remaining
-checks instead of copying them.
+The release record owns acceptance status. A short handoff links to the release
+record for acceptance checks still outstanding, instead of copying them.
 
 For an existing project, map these purposes onto its current pages before adding
 files. Do not copy this example's entities, workflows or folder choices into it.

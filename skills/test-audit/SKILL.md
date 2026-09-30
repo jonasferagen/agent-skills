@@ -2,7 +2,7 @@
 name: test-audit
 description: "Audit existing tests for brittleness, coverage asymmetry, mock drift, weak assertions, fixture bloat, non-determinism, focused or skipped cases and untraced requirements. Use when asking whether a settled suite actually protects behavior: a suite that has never failed, a green run after a risky refactor, a doubled collaborator nothing has checked against the real thing, a snapshot or no-throw standing in for an assertion, a focused-test marker, or a source file with no test beside its tested siblings. Reach for it when coverage is high and confidence is not. Audits settled tests; a change under review is a different pass."
 metadata:
-  version: "0.1.1"
+  version: "0.2.0"
 ---
 
 # Test Audit
@@ -10,19 +10,22 @@ metadata:
 **Local docs own the testing standard; this package supplies the lenses.** The
 standard covers which frameworks, layers and commands a repository uses, and
 what it has decided to test thinly on purpose. Read the nearest
-agent-instruction file and the repository's own testing guidance first. Treat a
-real contradiction as documentation drift to reconcile, not as permission to
-pick the easier rule.
+agent-instruction file and the repository's own testing guidance first. If that
+guidance contradicts a lens here, judge against the guidance. Report the
+contradiction to the user as documentation drift, quoting both passages, and
+edit neither side. Do not use it as permission to pick the easier rule.
 
 Assess whether settled tests protect behavior or are thin, brittle, redundant,
 flaky, or silently missing.
 
 **Stay read-only** for tests, fixtures, and production code unless the user asks
-for edits. When the work already authorizes repository edits, mechanically
-repair stale prose that the audit surfaces. **A focused-test marker is a hard
-finding:** it silently reduces the suite to one case. Report it prominently and
-remove it only with user approval. Writing tests for discovered gaps is
-follow-up work, not part of the audit.
+for edits. When the work already authorizes repository edits, repair stale prose
+that the audit surfaces where the fix is mechanical, such as a renamed path or
+command. **A focused-test marker is a hard finding:** it silently skips every
+unfocused test in its scope (its file in some runners, the whole run in others),
+so the suite can still report green over a denominator it never names. Report it
+prominently and remove it only with user approval. Writing tests for discovered
+gaps is follow-up work, not part of the audit.
 
 Three neighbouring passes are not this one. Tests inside a change under review
 belong to that review. A finding whose subject is the production contract behind
@@ -38,11 +41,14 @@ on rather than settling them here.
   assertions and observable contract, then expand only to public API, peers, and
   traced requirements.
 
-**Audit and timing runs use the complete suite**, so their results describe the
-selected surface. Many repositories keep a fail-fast or fast-subset lane for the
-edit loop: it stops early or excludes tests by design, so a verdict from it does
-not name the denominator it measured. Such a lane is **non-certifying and must
-never be reported as complete coverage** or as a verification result. Where the
+**Audit and timing runs use the complete suite** (the full lane, not a fast
+subset), so their results describe the selected surface. Many repositories keep
+a fail-fast or fast-subset lane for the edit loop: it stops early or excludes
+tests by design, so a verdict from it does not name the denominator it measured.
+Such a lane is **non-certifying and must never be reported as complete
+coverage** or as a verification result. Where such a lane lists its members
+explicitly, treat membership as a performance classification, not a coverage
+exception: the full lane must still select every listed test. Where the
 reading project's own policy states when a verdict must name what it measured,
 that policy governs.
 
@@ -55,14 +61,14 @@ that policy governs.
    find <scope> -name AGENTS.md -print
    ```
 
-2. **Run the repository's own test scanner and coverage-shape pass**, if it has
-   one. This skill carries no scanner. Which scanner signals are worth having,
-   and how to read the output, are in
+2. **Run the repository's own test scanner, and its report of source files
+   without tests**, if it has them. This skill carries no scanner. Which
+   scanner signals are worth having, and how to read the output, are in
    [references/triage.md](references/triage.md#reading-a-test-scanner).
 
    **Scanner output is a set of signals to weigh, not findings in itself.**
-   Typically focused and parked markers are hard failures, while gaps, skips,
-   casts, determinism patterns, mocks, and call-count assertions are advisory
+   A focused-test marker is the one hard failure; gaps, skip markers, casts,
+   determinism patterns, mocks, and call-count assertions are advisory
    candidates.
 
    **Where the test tree is not colocated with production code** — a separate
@@ -96,9 +102,9 @@ that policy governs.
      *claims about an external contract*, and whether anything has ever checked
      that claim against the real thing. This is not drift: there was nothing to
      drift from. See [references/principles.md](references/principles.md#mocking).
-   - **Fixtures:** prefer owning factories and branded values; flag duplication,
-     over-building, inaccessible existing fixtures, and helpers that cannot
-     express absence.
+   - **Fixtures:** prefer fixture factories from the package that owns the
+     type, and branded values; flag duplication, over-building, inaccessible
+     existing fixtures, and helpers that cannot express absence.
    - **Determinism:** wall clock, unseeded randomness, network, sleeps, and real
      filesystem dependencies.
    - **Traceability:** one observable behavior per test, and visible requirement

@@ -113,8 +113,9 @@ flowchart LR
 
 Only the dependency layers move side by side; each layer remains a vertical
 lane. Unlike unconnected side-by-side lanes, connecting edges make the
-left-to-right layer order meaningful. This pattern is not a before/after
-comparison, whose reading order still belongs in a vertical stack.
+left-to-right layer order meaningful. A before/after pair has no connecting
+edge, so this pattern does not apply to it. Use side-by-side lanes, or stack
+them, as above, when they do not fit or reading order must be guaranteed.
 
 Treat layered `LR` as a deliberate exception to the `TB` default, not a general
 architecture-diagram direction. It spends horizontal space and is most useful
@@ -161,11 +162,22 @@ erDiagram
   }
 ```
 
+**Each end's symbol describes the entity beside it:** in
+`LEVEL ||--o{ PLACEMENT`, each placement belongs to exactly one level, and a
+level contains zero or more placements. `||--o{` is the common one-to-many. The
+symbols mirror across the line:
+
+| Meaning | Left end | Right end |
+| --- | --- | --- |
+| exactly one | `\|\|` | `\|\|` |
+| zero or one | `\|o` | `o\|` |
+| zero or more | `}o` | `o{` |
+| one or more | `}\|` | `\|{` |
+
 - **Every relationship needs a label** — a bare `A ||--o{ B` is still a parse
   error on current Mermaid. Write `: ""` when there is genuinely nothing to
-  say.
-- **Cardinality reads left-then-right**: `||` exactly one, `o|` zero or one,
-  `}o` zero or more, `}|` one or more. `||--o{` is the common one-to-many.
+  say. Quote a label that is a cardinality word, such as `: "one"` or
+  `: "many"`; unquoted, Mermaid reads it as cardinality and fails to parse.
 - **Never leave a space in an unquoted entity name.** `MESH DEFINITION` does not
   fail — it silently becomes *two* entities, `MESH` and `DEFINITION`, and the
   diagram renders as if that were intended. Use `MESH_DEFINITION`, or quote the
@@ -178,12 +190,14 @@ erDiagram
   for the rest.
 - **ER direction and subgraphs depend on the target Mermaid renderer.** Current
   [Mermaid ER syntax](https://mermaid.js.org/syntax/entityRelationshipDiagram.html)
-  supports both, but ER subgraphs require version 11.17.0 or newer.
-  Check the project's preview or publishing renderer before using them. With or
-  without those controls, split past roughly 10–12 entities, or a comparable
-  edge count, even when every attribute block is already keys-only. Attribute
-  trimming reduces width; it does not make a crowded relationship layout
-  tractable.
+  supports both, but ER subgraphs require version 11.17.0 or newer. Check the
+  project's preview or publishing renderer before using them, and read the
+  version of the Mermaid package it runs, not of a CLI wrapped around it. An
+  older renderer does not reject an ER subgraph: Mermaid 11.16.1 draws
+  `subgraph` and `end` as two extra entities. With or without those controls,
+  split past roughly 10–12 entities, or a comparable edge count, even when
+  every attribute block is already keys-only. Attribute trimming reduces width;
+  it does not make a crowded relationship layout tractable.
 - **Split by aggregate cluster.** Start with one root-only overview naming every
   aggregate root and only the edges directly between roots, with no children.
   Then open each non-atomic root in its own compact detail `erDiagram`, showing

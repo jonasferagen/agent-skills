@@ -104,7 +104,8 @@ calls, generated code, and platform callbacks all produce this.
 
 Establish that no configuration separates them rather than assuming it. Build a
 probe that carries a genuine defect and the idiom side by side, then try the
-rule's own exemption mechanism against it in both directions. Two outcomes are
+rule's own exemption mechanism against it and check both results: the idiom must
+stop being reported, and the defect must still be reported. Two failures are
 common and mean opposite things:
 
 - The exemption **does not match the idiom at all**, because the idiom's type is
@@ -113,7 +114,7 @@ common and mean opposite things:
   idiom and the bug in one move. This is the dangerous one, because the
   configuration looks like it worked.
 
-When neither direction works, the answer is a **scope decision, not a
+When no configuration achieves both, the answer is a **scope decision, not a
 suppression decision**:
 
 - **Narrow the one rule**, never the whole rule set. The other rules still apply

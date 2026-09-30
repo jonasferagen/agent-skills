@@ -15,8 +15,12 @@ field-by-field conditions.
 4. **Stale terms searched** — owed when the change renamed or deleted a tracked
    path, which `git diff --name-status <base>..HEAD` answers by showing an `R` or a
    `D` entry.
-5. **Remaining risk and surfaced follow-ups.**
-6. **Friction** — any tooling or structural friction met along the way. That is
+5. **Plan and rollout** — owed when the change carries a plan step or a rollout
+   obligation: the plan's state after this change, and for a rollout the
+   environments checked and any still behind. Either part is omitted when it
+   has no subject.
+6. **Remaining risk and surfaced follow-ups.**
+7. **Friction** — any tooling or structural friction met along the way. That is
    signal about the repository rather than noise, and `friction: none` is a
    complete answer.
 
@@ -34,10 +38,12 @@ not evidence about the change.
 **An ordinary change** — one that renames and deletes nothing, answers to no plan
 or rollout obligation, and lands from a single commit — hands back the changed
 surfaces, the verification, the commit id, the remaining follow-ups and the
-friction, and omits the rest. The full list returns the moment the change renames
-or deletes a tracked path, carries a plan step or a rollout, spans more than one
-commit, or is handed back unlanded. Every one of those conditions is readable from
-the lane you are standing in: a `git diff --name-status`, a commit count, or a
+friction, and omits the rest. Each departure from that brings back only the
+field it triggers: a renamed or deleted tracked path brings back the stale terms
+searched, a plan step or rollout brings back the plan and rollout field, and
+more than one commit, or a branch handed back unlanded, adds each commit's net
+line delta. Every one of those conditions is readable from the lane you are
+standing in: a `git diff --name-status`, a commit count, or a
 reference the branch already carries.
 
 ## Handing back visual or manual work

@@ -7,8 +7,11 @@ of an independent agent evaluation or a live run.
 
 | Request and context | Expected outcome |
 | --- | --- |
-| A focused-test marker (`.only`, `fit`, `fdescribe`) is found | Reported prominently as a hard finding: it silently disables every sibling in its file, so the suite reports green over a denominator it never names. Removed only with the user's approval. |
+| A focused-test marker (`.only`, `fit`, `fdescribe`) is found | Reported prominently as a hard finding: it silently skips every unfocused test in its scope (its file in some runners, the whole run in others), so the suite can still report green over a denominator it never names. Removed only with the user's approval. |
+| A skip marker (`.skip`, `xit`, `xdescribe`) is found | An advisory candidate, not a hard finding: the runner still counts the skipped test, so the denominator stays visible. |
 | A fast-subset or fail-fast lane is offered as the verification result | Refused as non-certifying; it stops early or excludes tests by design, so it does not name what it measured. |
+| A fast lane lists its members explicitly | Membership is read as a performance classification, not a coverage exception; the full lane must still select every listed test. |
+| Coverage is run to locate untested branches | Run on the full lane, with the report scoped to the surface under audit; a test elsewhere may cover that surface. |
 | A double answers whatever the code asks it | Named as an unfalsifiable request: the label names, field names, format and exit codes the code claims about an external contract were never checked against the real thing. Distinguished from drift, because there was nothing to drift from. |
 | A cast-shaped stub supplies fewer members than the collaborator's used methods | Treated as correctness evidence that can hide a live branch defect, not as style noise. |
 | An integration test re-proves a rule the inner layer owns | Flagged: the duplicate is slower, fails in pairs so one regression reads as two, and the copies drift until one is quietly wrong. The integration test asserts the rule ran, not what it concluded. |
@@ -23,8 +26,8 @@ of an independent agent evaluation or a live run.
 | The repository has no test scanner | The audit proceeds; the skill carries no scanner and the scanner step is conditional. |
 | A test bends itself into knots around a production contract | Handed on as a finding about that contract, not papered over in the test. |
 | The user asks for an audit and the suite has gaps | Gaps are reported; writing the missing tests is named as follow-up work, not performed as part of the audit. |
-| Tests, fixtures or production code would need editing | Left read-only unless the user asked for edits; stale prose the audit surfaces may be repaired where the work already authorizes repository edits. |
-| The repository's own testing guidance contradicts a lens here | The repository's conventions are the standard; the contradiction is reported as documentation drift to reconcile. |
+| Tests, fixtures or production code would need editing | Left read-only unless the user asked for edits; stale prose the audit surfaces is repaired where the fix is mechanical and the work already authorizes repository edits. |
+| The repository's own testing guidance contradicts a lens here | The repository's conventions are the standard; the contradiction is reported to the user as documentation drift, quoting both passages, and neither side is edited. |
 | Adopting the skill into an existing project | No test rewriting, framework change or coverage threshold is implied; deliberately thin tests are recorded with their rationale. |
 
 ## Scope boundaries
@@ -56,6 +59,11 @@ the boundary, since each skill directory is the installable unit here and a
 cross-package path would break when this one is installed alone. One reference
 into a sibling's reference page was inlined, keeping the shrink-only ledger rule
 and the report-only drift-stamp anti-pattern it was citing.
+
+One upstream sentence was dropped at import without being recorded here: a fast
+lane's explicit membership list is a performance classification, not a coverage
+exception, so the full lane must still select every listed test. It was restored
+on 2026-09-30; see the resolutions below.
 
 This fills a gap the repository declared on purpose: `typescript-patterns` leaves
 testing conventions to the reading repository, so both consuming projects owned
@@ -103,3 +111,33 @@ diagrams or tables, and a table of scanner signals would have to settle the
 marker-tier contradiction recorded above. Newly found: `triage.md` also says a
 focused marker shrinks the suite to a single case, a third instance of the scope
 conflict.
+
+## Resolutions — 2026-09-30
+
+The owner accepted each proposal from the contradiction research; the decisions
+on marker tiers and on documentation drift are theirs. Version 0.2.0 carries
+these changes.
+
+- Marker tiers: the entrypoint and `triage.md` made focused *and parked*
+  markers hard → only the focused-test marker is hard; skip markers are
+  advisory, in all three pages and the scenarios above (owner decision).
+- Focused-marker scope: "one case" and "every sibling in its file" → "every
+  unfocused test in its scope (its file in some runners, the whole run in
+  others)". Tested in a scratch project: Jest 30.5.2 and Vitest 5.0.3 skipped
+  only the rest of the focused file; Mocha 12.0.2 and Jasmine 7.0.0 ran only
+  the focused case across both files. Jest and Mocha exited 0, Jasmine exited 2
+  ("Incomplete"), and Vitest failed only with `CI=true`; hence "can still report
+  green".
+- Coverage run: scoped to the surface and also "the complete suite" → the full
+  lane runs; the coverage report, not the test selection, is scoped to the
+  surface.
+- Documentation drift: "drift to reconcile" named neither side nor the action →
+  a contradiction between local guidance and a lens is reported to the user,
+  quoting both passages, and neither side is edited (owner decision).
+- Stale prose: the entrypoint's "mechanically repair" and the scenario's "may be
+  repaired" → repaired where the fix is mechanical and edits are authorized.
+- Undefined terms: "coverage-shape pass" → the repository's report of source
+  files without tests; "owning factories" → fixture factories from the package
+  that owns the type, as upstream `typescript-patterns` defined them.
+- Fast-lane membership: the upstream sentence dropped at import is restored in
+  the entrypoint, with a scenario above.

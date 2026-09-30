@@ -26,7 +26,7 @@ of an independent agent evaluation or a live render.
 | A diagram is readable in light mode | Dark mode and any other theme readers use are checked too, because a diagram type may color text, nodes, rows, labels and edges separately. |
 | Meaning is carried by color | Flagged; color alone is not sufficient. |
 | A diagram is too wide at reading width | Reflowed or split, rather than shrunk further. |
-| ER subgraphs are proposed to keep a crowded model in one block | Check the target renderer's Mermaid version (ER subgraphs need 11.17.0 or newer), then split the model if its relationships remain hard to trace. |
+| ER subgraphs are proposed to keep a crowded model in one block | Check the target renderer's Mermaid version; subgraphs are not a substitute for splitting: past roughly 10–12 entities or a comparable edge count, the model is split whether or not the renderer supports ER subgraphs (Mermaid 11.17.0 or newer). |
 | Rendering documentation would need a new application dependency | Refused; temporary output is used for visual checks unless the project's renderer needs a committed image. |
 | Deciding where a diagram lives in a document set | Deferred: this skill owns form choice, drawing and verification; the owning surface decides placement, discoverability and catalog entry. |
 | Adopting the skill into an existing project | No redrawing of existing diagrams is implied, and an established visual format the project already follows takes precedence. |
@@ -146,3 +146,50 @@ Left unresolved in this package:
   hubs stay out of the graph although game-core is drawn.
 - `drawing.md` lists four ER cardinality symbols in one sentence, mixes left-
   and right-side forms, and omits `o{`, which its own examples use, and `|{`.
+
+## Resolutions — 2026-09-30
+
+The owner accepted every recommendation from the contradiction review. Mermaid
+behavior was checked by rendering scratch diagrams with Mermaid 12.0.0 (CLI
+12.0.0), 11.17.2 and 11.16.1 (both through CLI 11.17.0).
+
+- `erDiagram` layout controls: the ER family example said the type "has no
+  layout controls" and the family map said a flowchart gains rank control
+  "the `erDiagram` never had", against the manifest and `drawing.md`. The
+  example now says direction or subgraphs would arrange the same edges without
+  reducing them, and the rank-control clause is gone. Mermaid 12.0.0 and
+  11.17.2 render ER `direction` and subgraphs; 11.16.1 has direction only.
+- ER-subgraph scenario: it split a model only if its relationships remained
+  hard to trace. It now matches the manifest and `drawing.md`: split past the
+  threshold, with or without subgraphs.
+- Decision matrix: no option was marked as chosen, and reversibility ruled out
+  only one of three. **bake at publish** is marked chosen, matching the
+  before/after example's target, and the prose names reversibility and the cost
+  of being wrong as what outranks effort.
+- Family map: the dotted edges had no stated meaning, and the text said both
+  hubs stayed out of the graph although game-core is drawn. The dotted edges
+  now mark families holding a `blob` foreign key, and the text says neither hub
+  is drawn as a table-level node; the map carries them only as family edges.
+- ER cardinality: one sentence mixed left- and right-end symbols and omitted
+  `o{` and `|{`. `drawing.md` now says each end's symbol describes the entity
+  beside it and tabulates both ends; checked against Mermaid 12.0.0 markers.
+- ER labels: `drawing.md` now says to quote a label that is a cardinality word;
+  unquoted `: one` and `: many` failed to parse on 12.0.0 and 11.17.2.
+- ER subgraphs on older renderers: `drawing.md` now says Mermaid 11.16.1 draws
+  `subgraph` and `end` as entities instead of failing, and that the renderer's
+  Mermaid package version, not its CLI version, decides support.
+- Blank cells: the manifest's "blank cell" and "empty cell" read against
+  "Fill every cell". The manifest now names the gap, and the cell nobody can
+  fill written as `unknown` or `none`.
+- Before/after layout: `drawing.md` said a before/after pair's reading order
+  "belongs in a vertical stack", against the side-by-side lanes elsewhere. It
+  now says the layered pattern does not apply to such a pair: use side-by-side
+  lanes, or stack them when reading order must be guaranteed.
+- Model list: the manifest named five of the ten worked examples as if
+  complete; it now names all ten, grouped.
+- Subgraph split: "it should be a separate diagram" had two possible subjects.
+  The manifest now gives each case its own sentence.
+
+No Mermaid block changed, so none was rerendered for the package; the family
+map and ER example were rendered in light and dark themes to check the new
+prose against them.

@@ -2,7 +2,7 @@
 name: runtime-operations
 description: "Design and operate credential launchers, local services and encrypted database backups. Use when changing secret custody, execution identities, service start/stop/restart behavior or recovery tooling, and when an operational script spawns a child process, builds its environment, takes arguments or reports a verification result; repository policy owns authorization, deployment and the required recovery evidence."
 metadata:
-  version: "1.1.1"
+  version: "1.2.0"
 ---
 
 # Runtime operations
@@ -20,8 +20,9 @@ tiers, not a requirement to use exactly three vaults or merge distinct roles.
 
 - Keep distinct database credentials for distinct consumers. Owner commands,
   intake and scheduling can need separate identities within Operate.
-- Service accounts read only their assigned vaults. Read permission on the
-  secret store can supply credentials for a database writer. Maintain uses the
+- Service accounts read only their assigned vaults. Secret-store access is not
+  a capability tier: a service account needs only read access to its vault,
+  even when the vault holds a database writer's credentials. Maintain uses the
   owner's sign-in without a standing service account.
 - Vault sharing shares access to every credential in that vault. Separate item
   names, tokens and database passwords do not create an item-level boundary.
@@ -82,15 +83,19 @@ can escape, a command can hang, or an error can point to the wrong component.
 
 Expose `start`, `stop`, `restart`, `status` and `logs` for each named service.
 `start` leaves an active service running; `restart` applies changed code or
-credentials. Keep a default viewer distinct from workers and outbound senders.
+credentials. If the control command has a default service, make it a viewer: a
+preview that sends nothing. Keep it a separate unit from workers and outbound
+senders.
 
 - Let the process manager own the complete process group. Stop only the named
-  unit. An occupied port is a startup failure, never permission to kill its owner.
+  unit, including after a failed start. An occupied port is a startup failure,
+  never permission to kill its owner.
 - Check readiness from the intended unit. An unrelated HTTP listener returning
   success does not establish startup. Status should expose the selected checkout.
-- Use transient user services for previews and installed units for retained
-  workers. Preserve pinned releases and settings across worker restarts; an
-  ordinary control command does not install, enable or upgrade a worker.
+- Run previews, including the viewer, as transient user services, and retained
+  workers as installed units. Preserve pinned releases and settings across
+  worker restarts; an ordinary control command does not install, enable or
+  upgrade a worker.
 - Keep secret values out of unit definitions and command arguments. Launchers
   read their token files when the service starts. Limit browser services to
   loopback and keep request-origin checks in the application.
@@ -106,9 +111,9 @@ units, dependencies or credentials.
 ## Arguments
 
 Keep one script to one job. When jobs share setup, make them subcommands of one
-script rather than separate scripts that repeat it. Use the same verbs across a
-project's scripts; two scripts taking an archive should not call it `--file` and
-`--archive`.
+script rather than separate scripts that repeat it. Use the same subcommand and
+option names across a project's scripts for the same job and the same input;
+two scripts taking an archive should not call it `--file` and `--archive`.
 
 - Give a destructive or privileged job its own subcommand, never a flag on a safe
   one. The safe invocation should not be only one word away from the dangerous
@@ -146,8 +151,9 @@ published port, persistent data volume or production passwords.
 
 Keys stay separate from archives; archives, metadata and receipts stay outside
 Git. Publish without overwriting retained files. Verify archive identity, checksum
-and decryption before restoration. Capture tests should check failure before
-publication, and project tests should exercise actual restoration and permissions.
+and decryption before restoration. Capture tests make each verification step
+fail and confirm that nothing is published; project tests should exercise actual
+restoration and permissions.
 An archive covers only its selected schemas; document external dependencies and
 login provisioning. Never imply it is a full managed-project backup.
 
@@ -162,7 +168,7 @@ Do not widen permissions merely to make a test or operation pass.
 A verdict names its denominator: what was compared, run or counted. When that
 denominator is empty, the honest output is a refusal, not a pass. Examples of an
 empty denominator: nothing compared, no tests collected, no archive matched, or
-an unsatisfiable threshold. A passing result that measured nothing is a defect
-in the check. It is the failure mode that stays unnoticed longest, because
-nobody investigates a pass. This is why capture tests check failure before
-publication.
+a filter or threshold that nothing could meet. A passing result that measured
+nothing is a defect in the check. It is the failure mode that stays unnoticed
+longest, because nobody investigates a pass. This is why capture tests exercise
+failing verification, not only a passing one.

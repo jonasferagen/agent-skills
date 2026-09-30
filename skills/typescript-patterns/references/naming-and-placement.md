@@ -26,11 +26,12 @@ Reserve a bare noun for the primary concept, such as `Order`, `DateRange`, or
 `GridCoordinate`. Avoid `Utils`, `Helpers`, and `Common`. Use `Manager` only for
 a long-lived shell or lifecycle, not a bucket of unrelated operations.
 
-Type-only modules inside an explicit contract surface may use a lowercase
-domain noun when the directory supplies the namespace. Runtime classes still
-take their PascalCase class name. Class-free data and contract modules use
-camelCase names. Shared fixture modules use camelCase filenames and `make*`
-functions.
+A sibling contract file takes the `Types` role suffix, such as
+`DeliveryTypes.ts`. Inside a contract directory such as `types/`, the directory
+supplies the namespace, so a module may use a lowercase domain noun, such as
+`types/delivery.ts`. Runtime classes take their PascalCase class name.
+Class-free runtime modules, such as constants, data records and tokens, use
+camelCase names.
 
 A repository may enforce filename/export parity mechanically. Its command,
 entry-point exceptions, and any temporary baseline remain local facts. The

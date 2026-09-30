@@ -17,6 +17,7 @@ of an independent agent evaluation.
 | A proposed fix would import a server module into a client bundle | Unification refused; request-time delivery or a dependency-free shared module proposed instead. |
 | Only a type is shared across a bundle boundary | Type-only declarations are erased, so the boundary does not block it. |
 | Paired processes each hardcode the other's address | The hardcoded value is removed from shared code and supplied at the edge by whichever process owns it. |
+| Neither paired process can know the other's value, and a shared settings source is out of scope | Where both settings are in the repository, a check reads both and fails when they disagree (rung 5); otherwise the pair is recorded at rung 6. |
 | A vocabulary would need to become rows a check constraint reads | Identified as impossible for a check constraint and as a schema decision; the project's migration rules govern. |
 | A test restates the expected values as the check | Rejected as a third home; the check must compare one home to the other. |
 | A relevant test exists but runs only behind an environment variable | Reported as unprotected in the gate rather than as covered. |
@@ -27,6 +28,7 @@ of an independent agent evaluation.
 | A duplication can be neither derived nor checked | Recorded where the concept lives, naming what must change together and what goes wrong when one is missed. |
 | Ranking a stable constant copied many times against one growing cross-medium vocabulary | The growing cross-medium concept ranks higher; copy count alone does not decide. |
 | A gate check compares a freshly scanned count against a committed expected one | Named as a golden that has to be re-blessed on every legitimate change; the check computes its answer live instead. |
+| A home cannot be read when the check runs | No committed copy of its answer is added; the dependency is reported as absent, or the duplication is recorded at rung 6. |
 | A unit test states the value an operation should produce | Not a golden; a literal expectation about behaviour is the test doing its job. |
 | An exemption ledger lists files grandfathered out of a settled convention | Accepted as a bounded exception where it gates hard, may only shrink, and belongs to the tree whose files it lists. |
 | A check derives its file inventory with `git ls-files` from the caller's working directory | Flagged; the repository root is resolved first and the verdict names the root and set it measured. |
@@ -98,15 +100,16 @@ migration approval, backup and merge policy. Those remain in their owning
 documentation. The package names no language, framework, database or toolchain as
 a requirement, and no scenario depends on the source project's structure.
 
-The five durability properties are deliberately split. The bar and its six
-questions sit in the manifest, at the rung where a reader decides to keep a
-check, so the check can be judged without opening a reference; each property's
-rule, the shape that breaks it and the shape that holds are in
-`references/durable-checks.md`. They are not appended to `references/boundaries.md`,
-whose subject is the boundaries that forbid derivation — a check's durability is
-not one of them, and mixing the two would give that page a second subject. What a
-check must compare and where it must run stays in that page's make-disagreement-fail
-section; the new page cites it rather than restating it.
+The five durability properties are deliberately split. The bar's six
+requirements and the seven questions that apply it sit in the manifest, at the
+rung where a reader decides to keep a check, so the check can be judged without
+opening a reference; each property's rule, the shape that breaks it and the
+shape that holds are in `references/durable-checks.md`. They are not appended to
+`references/boundaries.md`, whose subject is the boundaries that forbid
+derivation — a check's durability is not one of them, and mixing the two would
+give that page a second subject. What a check must compare and where it must run
+stays in that page's make-disagreement-fail section; the new page cites it
+rather than restating it.
 
 This skill deliberately does not cover code shape, naming or module layout, which
 belong to a TypeScript or language-specific canon, nor schema design, which
@@ -172,3 +175,27 @@ each boundary leaves a different set of rungs available, but most options do not
 name their rung, so a boundary-by-rung matrix cannot be filled. The manifest's
 bar lists six requirements, while the README counts seven questions and the
 extraction notes above count six.
+
+## Resolutions — 2026-09-30
+
+The owner accepted each proposal from the contradiction research, including
+rung 3 for the two options whose rung was open. Version 1.3.0 carries these
+changes.
+
+- Computing live: `durable-checks.md` computed the answer "if" it could be
+  computed, while the entrypoint required it unconditionally → both require it;
+  if a home cannot be read, the dependency is reported as absent or the
+  duplication recorded at rung 6. A scenario above covers that case.
+- The bar's count: the extraction notes said six questions and the README seven
+  → the bar has six requirements and the table seven questions, because the fold
+  split upstream's first question in two. The extraction notes and one README
+  sentence now say so, and the entrypoint says the reference page states
+  requirements two to six as its five properties.
+- Boundary rungs: `boundaries.md` said each boundary leaves different rungs but
+  named few → every option now names its rung. A data file both languages read
+  and a settings source both processes read are rung 3, read as they start
+  (owner decision; either could be read as rung 1).
+- Process boundary: an out-of-scope shared settings source went straight to
+  rung 6, although rung 6 is only for when every higher rung is blocked → a
+  rung 5 check that reads both settings comes first where both are in the
+  repository. A scenario above covers it.

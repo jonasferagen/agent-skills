@@ -14,9 +14,9 @@ a colleague's. None of these are enforced rules; they are questions worth
 asking when the relevant signal shows up. Their value is in the violations they
 surface, not in following them mechanically.
 
-This is the authoring-time triage sheet: symptoms that should make an author
-pause before choosing a constructive pattern. Reviewing a current tree, branch,
-pull request, or diff is a separate task with its own workflow.
+This package supplies the prompts, not a review workflow. When the task is to
+review a tree, branch, pull request, or diff, follow the repository's review
+workflow and use these prompts inside it.
 
 If a prompt fires repeatedly across the codebase, the underlying pattern may
 be stable enough to belong in the focused pattern docs. Some entries
@@ -102,11 +102,12 @@ but ends in a broad `default`, `return undefined`, or no-op branch, ask whether
 the code should use the `never` exhaustiveness pattern from
 [Exhaustive Closed Unions](typescript.md#exhaustive-closed-unions).
 
-**Only one shape is already safe**; two shapes fail open:
+**Only one shape can be safe, and only under the compiler settings its row
+names**; two shapes fail open:
 
 | Shape | When a new variant is added | Verdict |
 | --- | --- | --- |
-| Non-`void` return type **and** no `default` | TS2366 fires | Safe; leave it alone |
+| Returns a value on every path, **and** no `default` | TS2366 under `strictNullChecks` when the declared return type excludes `undefined`; TS7030 under `noImplicitReturns`, declared or inferred | Safe under those settings; leave it alone |
 | `void` function, such as a bucketing loop, an `update()` body or a dispatcher | Nothing is forced, so the variant silently matches no case | Fails open, though it looks harmless |
 | Permissive `default` | The `default` defeats the return-type protection, even in a function that returns a real value | Fails open |
 
@@ -121,11 +122,11 @@ third-party values, or intentionally forward-compatible wire data.
 A list, set, or record that must stay in step with a union or schema declared
 elsewhere, where forgetting an entry is silent rather than a build failure.
 
-**Diagnostic:** the diff adds a member to a union, a key to a schema, or an entry
-to a table — and somewhere else there is a second declaration over the same
-vocabulary that the diff did _not_ touch. Ask what happens to a member that is
-present in one and absent from the other. If the answer is "it is silently not
-carried / not rendered / not handled", the mirror is fail-open.
+**Diagnostic:** the change adds a member to a union, a key to a schema, or an
+entry to a table — and somewhere else there is a second declaration over the
+same vocabulary that the change did _not_ touch. Ask what happens to a member
+that is present in one and absent from the other. If the answer is "it is
+silently not carried / not rendered / not handled", the mirror is fail-open.
 
 **The warning sign is an annotation that looks protective and is not.**
 `readonly T[]`, `ReadonlySet<T>`, `Partial<Record<T, …>>`, and
@@ -146,7 +147,7 @@ declaration rather than look like an oversight.
 Assertions are sometimes necessary at boundaries, but repeated assertions
 usually show where the type model is missing an invariant.
 
-**Diagnostic:** when a diff adds repeated `as`, `as unknown as`, or non-null
+**Diagnostic:** when a change adds repeated `as`, `as unknown as`, or non-null
 assertions, ask which invariant is missing:
 
 - Should an incoming literal use `satisfies` so the compiler checks the shape
@@ -203,7 +204,7 @@ shared helper per
 [Sibling Families](class-shape.md#sibling-families-a-list-not-a-class-per-instance),
 and ask whether a family worth a helper is worth its own module.
 
-**Diagnostic:** the diff adds a **field + constructor wiring + a public
+**Diagnostic:** the change adds a **field + constructor wiring + a public
 method** to a long-lived shell or orchestrator in one change. That trio is a
 collaborator being inlined. The feature likely belongs as (or inside) a class
 beside the shell, per

@@ -1,9 +1,10 @@
 # Cleaning up a landed lane
 
 Cleanup follows landing as a separate operation, and covers **only the lane this
-session opened and landed.** Other lanes, mismatches between Git registrations and
-on-disk directories, orphaned directories, stale registrations and unrelated local
-or remote refs are a population sweep: a different job, with different evidence.
+session opened or resumed, and landed.** Other lanes, mismatches between Git
+registrations and on-disk directories, orphaned directories, stale registrations
+and unrelated local or remote refs are a population sweep: a different job, with
+different evidence.
 Do not widen this cleanup into one. [`change-workflow`](../SKILL.md) owns the
 landing this cleanup follows.
 
@@ -42,23 +43,35 @@ been recorded against the integration branch.
 
 ## Order and rechecks
 
-Land, observe the remote integration branch containing the landed commit, then
-clean up. If additional commits or uncommitted changes appeared during the landing,
-preserve that work before completing the lane. The integration branch and its
-checkout are landing surfaces, never cleanup candidates.
+Clean up after landing, in this order:
 
-Before removing, inspect this worktree for uncommitted changes and its branch for
-commits not in the integration branch, and report either rather than discarding it.
-The worktree and branch removals are separate operations that can fail or race
-independently, so recheck this lane's registration, directory and ref afterward
-instead of assuming one removal handled the others.
+1. Observe the remote integration branch containing the landed commit. If
+   additional commits or uncommitted changes appeared during the landing,
+   preserve that work before going on.
+2. Inspect this worktree for uncommitted changes and its branch for commits not
+   in the integration branch, and report either rather than discarding it.
+   Decide whether the lane is retained, under the conditions below. A retained
+   lane stops here: its processes keep running and nothing is removed.
+3. Stop any process still rooted inside the worktree, deliberately.
+4. Remove the worktree, then the branch. Git refuses to delete a branch that a
+   worktree still has checked out, even with `-D`.
+5. Recheck this lane's registration, directory and ref. The removals are
+   separate operations that can fail or race independently, so one succeeding
+   says nothing about the others.
 
-A process still rooted inside the worktree — a dev server, a watcher — blocks
-removal. Stop it first, deliberately, rather than deleting the directory while
-it runs. Where a removal refuses for a reason you have not established, find out
-why instead of forcing it: the force flags discard another lane's live work
-exactly as easily as your own spent lane, which is why a project may keep some
-lanes marked to be left alone.
+This lane's published branch, below, depends only on step 1, not on the local
+removals. The integration branch and its checkout are landing surfaces, never
+cleanup candidates.
+
+A process still rooted inside the worktree — a dev server, a watcher — is not
+something Git checks for. `git worktree remove` checks the worktree's files and
+lock, never its processes, so on Linux it deletes the directory while the
+process runs. That is why step 3 stops it first.
+
+Where a removal refuses for a reason you have not established, find out why
+instead of forcing it: the force flags discard another lane's live work exactly
+as easily as your own spent lane, which is why a project may keep some lanes
+marked to be left alone.
 
 **Retain and report the lane** when it is dirty, has unmerged commits, is still
 needed for named follow-up or debugging, is held for visual or manual judgment, or

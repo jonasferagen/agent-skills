@@ -15,6 +15,8 @@ of an independent agent evaluation or a live database test.
 | Put a stable referenced entity ID inside JSONB | Use a typed foreign-key column unless a concrete payload requirement justifies otherwise. |
 | Add a maintained entity whose label and provider URL can change | Stable local key; external identity and display references separate. |
 | Add a link that can occur in several capacities | Uniqueness includes the capacity; a surrogate ID alone is insufficient. |
+| Add vocabulary codes for cases the domain may need later | Only codes a current domain case needs are added. |
+| Create new application tables with no local schema convention | Placed in a named schema that holds one application's or concern's objects, not in `public` or a platform-managed schema. |
 | Import a provider ID scoped to an account that is sometimes unknown | Preserve actual scope and case; explicitly choose null equality without treating unknown as a wildcard. |
 | Two items share one imported source | Preserve both items; model provenance separately and reject ambiguous capture targets. |
 | Replace every boolean with a timestamp, including a required/optional property | Keep the genuine binary property and avoid invented event times. |
@@ -138,3 +140,19 @@ pass](diagrams-and-tables.md#package-pass--2026-09-30). The naming table is
 complete. Candidate tables for types, vocabularies and retries would have
 separated rules from their conditions, and an outbox diagram would have needed
 components the text does not name.
+
+## Resolutions — 2026-09-30
+
+The owner accepted both recommendations from the contradiction review. No
+database objects changed and no database tests were run.
+
+- Bounded schemas: "named, bounded schemas" did not say what bounded means. The
+  manifest now says each named schema holds one application's or concern's
+  objects, not `public` or a platform-managed schema (the platform-managed case
+  is an addition, also from the Atlas source), following the Atlas source's
+  `personal` and `personal_audit` schemas.
+- New vocabulary values: "Add values for actual domain needs" did not say
+  "only". The manifest now says to add a value only when an actual domain case
+  needs it, following the Atlas rule "add one only when a record needs it".
+
+A scenario above records each result.

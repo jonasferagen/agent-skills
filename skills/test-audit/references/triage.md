@@ -12,11 +12,14 @@ signals worth having and how to weigh them.
 
 - **Colocated source/test asymmetry** — production files with no neighbouring
   test. Only meaningful where tests are colocated; see below.
-- **Focused and parked markers** — markers that take tests out of the run. These
-  are the one class worth failing a gate over, because a focused marker silently
-  shrinks the suite to a single case while still reporting green.
-- **Cast-shaped stubs, determinism patterns, mock candidates, and call-count
-  assertions** — advisory. Each is a prompt to read the test, not a verdict.
+- **Focused-test markers** — markers that confine the run to the focused tests.
+  These are the one class worth failing a gate over, because a focused marker
+  silently skips every unfocused test in its scope (its file in some runners,
+  the whole run in others) while the run can still report green.
+- **Skip markers, cast-shaped stubs, determinism patterns, mock candidates, and
+  call-count assertions** — advisory. Each is a prompt to read the test, not a
+  verdict. A runner still counts a skipped test in its summary, so a skip marker
+  does not hide the denominator.
 
 **What it cannot do:** infer coverage asymmetry when the production and test
 trees are separate. Trace those by class or endpoint name instead.
@@ -55,8 +58,9 @@ local cast. Do not widen the production contract just to make a stub compile.
 ## Optional coverage
 
 Use coverage **only to locate untested branches, never as a target number.** Run
-it through the repository's own test runner, scoped to the surface under audit.
+it through the repository's own test runner on its full lane, not a fail-fast or
+fast-subset lane: such a lane is non-certifying under the audit-run rule in
+[SKILL.md](../SKILL.md), so it can report only a partial run.
 
-Run it on the complete suite: a fail-fast or fast-subset lane is non-certifying
-under the audit-run rule in [SKILL.md](../SKILL.md), so it can report only a
-partial run.
+Scope the coverage report to the surface under audit, not the test selection. A
+test elsewhere, such as an integration test, may cover that surface.

@@ -35,8 +35,9 @@ registry keeps the caller's item type intact".
 - Reach for a generic when a method returns the same shape it receives, maps a
   key to a typed value, wraps a caller-supplied item type, or keeps a parser /
   resolver result precise without casts.
-- Name the constraint after the domain when one exists. `TEventMap`, `TPart`,
-  or `TNode` is more useful than a bare `T` once the type parameter has a role.
+- Name the type parameter after its domain role when it has one. `TEventMap`,
+  `TPart`, or `TNode` is more useful than a bare `T` once the type parameter
+  has a role.
 - Prefer explicit domain primitives and methods when the concept is fixed.
   `GridCoordinate`, bounded quantities, and numeric invariant guards usually read
   better as named domain behavior than as generic tuple or record machinery.
