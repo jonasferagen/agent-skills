@@ -2,7 +2,7 @@
 name: containerization
 description: "Build, review or standardize local service containers: independent builds and state, HTTP or MCP boundaries, repeatable database migrations, disposable PostgreSQL tests, and test runs that own and remove the containers, networks, volumes and images they create. Use for development containers and local service stacks; production rollout policy remains with the project."
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Containerization
@@ -37,6 +37,16 @@ ingress, high availability or a deployment platform.
   verify the built image once without them so a mount cannot conceal a bad build.
 - Name required configuration and defaults in one maintained place. Fail early
   for missing required values, without printing secrets.
+
+When the API, migrator and seed command need the same built runtime files, use
+one image for that service and select the command and credentials at launch.
+In a disposable test stack, build that image once per run and reuse it for those
+commands. Repeated build requests during seed or migration add work without
+checking a different artifact unless the build inputs have changed. Keep images
+scoped to their owning service and test run so cleanup cannot remove another
+run's resources. If the processes genuinely need different files or system
+packages, keep separate images and state that reason. Measure setup cost before
+adding a cache or image-publishing workflow.
 
 ## Connect services through their contracts
 

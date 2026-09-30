@@ -37,6 +37,7 @@ as a manual review; automation can grow from actual transitions.
 | [bash-patterns](skills/bash-patterns/SKILL.md) | Preserving command failures and query results in Bash checks, pipelines, captures and process substitutions. |
 | [node-patterns](skills/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
 | [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries, and transactions on pooled connections. |
+| [shared-code-design](skills/shared-code-design/SKILL.md) | Decide when copied implementation should remain checked copies, be generated or become a versioned dependency. |
 
 ## Changes and operations
 
@@ -44,6 +45,7 @@ as a manual review; automation can grow from actual transitions.
 | --- | --- |
 | [change-workflow](skills/change-workflow/SKILL.md) | Taking a change from an isolated worktree through synchronization, verification, merge and cleanup. |
 | [containerization](skills/containerization/SKILL.md) | Building independent local service containers with explicit interfaces, repeatable migrations, disposable database tests and test runs that remove exactly what they create. |
+| [verification-design](skills/verification-design/SKILL.md) | Choose evidence for a change or milestone and consolidate checks by the failures they detect. |
 | [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
 | [runtime-operations](skills/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
 
@@ -149,6 +151,27 @@ independent of them.
   boundaries worth testing, and add a row to the table above.
 
 ## Origins
+
+**verification-design** and **shared-code-design** capture two architecture
+decisions exposed by a review of the local Atlas/Work proof of concept in
+2026-09. The former separates evidence at schema, domain, independent-session,
+public-interface and built-artifact boundaries while looking for repeated setup.
+The latter compares checked copies with generation and versioned dependencies
+against the promise that each component builds independently. The installable
+skills use language-neutral examples and impose no project test matrix or
+package manager. See their [verification scenarios](validation/verification-design.md)
+and [shared-code scenarios](validation/shared-code-design.md).
+
+**containerization** 0.3.0 adds reuse of one service image for API, migration
+and seed commands when their runtime files are the same. This came from the same
+review; it does not prescribe a container tool or image cache. See
+[validation](validation/containerization.md).
+
+**test-audit** 0.3.0 narrows its integration-test advice to the failure each
+test can observe. Native contention, real permissions and built-artifact checks
+remain distinct evidence even when they call the same domain operation. Its
+full-suite rule now applies to complete coverage and timing claims; a static
+audit need not run the suite. See [validation](validation/test-audit.md).
 
 **clear-writing** brings the short-text guidance into a reusable prose skill,
 with a shared core and separate references for instructions and short text. It

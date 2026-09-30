@@ -1,8 +1,8 @@
 ---
 name: test-audit
-description: "Audit existing tests for brittleness, coverage asymmetry, mock drift, weak assertions, fixture bloat, non-determinism, focused or skipped cases and untraced requirements. Use when asking whether a settled suite actually protects behavior: a suite that has never failed, a green run after a risky refactor, a doubled collaborator nothing has checked against the real thing, a snapshot or no-throw standing in for an assertion, a focused-test marker, or a source file with no test beside its tested siblings. Reach for it when coverage is high and confidence is not. Audits settled tests; a change under review is a different pass."
+description: "Audit a settled test suite for weak assertions, gaps, brittle cases, mock drift, non-determinism and misleading coverage claims. Use when asking whether existing tests actually protect behavior; choosing evidence for an active change is a separate task."
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Test Audit
@@ -41,16 +41,13 @@ on rather than settling them here.
   assertions and observable contract, then expand only to public API, peers, and
   traced requirements.
 
-**Audit and timing runs use the complete suite** (the full lane, not a fast
-subset), so their results describe the selected surface. Many repositories keep
-a fail-fast or fast-subset lane for the edit loop: it stops early or excludes
-tests by design, so a verdict from it does not name the denominator it measured.
-Such a lane is **non-certifying and must never be reported as complete
-coverage** or as a verification result. Where such a lane lists its members
-explicitly, treat membership as a performance classification, not a coverage
-exception: the full lane must still select every listed test. Where the
-reading project's own policy states when a verdict must name what it measured,
-that policy governs.
+An audit can inspect files without running the suite. If it reports suite timing
+or complete coverage, run the complete selected suite and name what it measured.
+A fail-fast or fast-subset lane excludes tests by design; report its result as
+partial feedback, not as a complete verification result. The reading project's
+own policy decides which runs are required for a change or release.
+When a fast lane lists its members, the full lane must still select every
+listed test; membership is a performance classification, not a coverage exception.
 
 ## Workflow
 
