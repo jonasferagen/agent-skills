@@ -57,7 +57,9 @@ bootstrap success does not prove an upgrade preserves existing rows.
    the real command or query and assert its effects, errors and replay behavior.
 4. Close clients and dispose of the database even when setup or assertions fail.
    Keep the original failure as the test result; report a cleanup failure as
-   additional evidence. If only cleanup fails, fail the run.
+   additional evidence. If only cleanup fails, fail the run. For containers and
+   other engine resources, [owned test resources](owned-resources.md) describes
+   how a run finds and removes exactly what it created.
 
 Separate database state between tests unless a suite deliberately shares a
 fixture. Prefer injection of a database connection over environment mutations

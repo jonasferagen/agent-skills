@@ -1,8 +1,8 @@
 ---
 name: containerization
-description: "Build, review or standardize local service containers: independent builds and state, HTTP or MCP boundaries, repeatable database migrations, and disposable PostgreSQL tests. Use for development containers and local service stacks; production rollout policy remains with the project."
+description: "Build, review or standardize local service containers: independent builds and state, HTTP or MCP boundaries, repeatable database migrations, disposable PostgreSQL tests, and test runs that own and remove the containers, networks, volumes and images they create. Use for development containers and local service stacks; production rollout policy remains with the project."
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Containerization
@@ -65,6 +65,11 @@ Keep durable data in named storage owned by its service. Starting or rebuilding
 must preserve it. A disposable test profile uses separate storage and clearly
 identifies any destructive reset command; do not infer that existing data is
 disposable from a development label.
+
+When a test run creates containers, networks, volumes or images, read
+[owned test resources](references/owned-resources.md). It covers run identity
+and labels, cleanup registered before creation, Compose isolation, ephemeral
+ports, secrets and a final check that nothing remains.
 
 Distinguish a running process from a ready service. Check dependency readiness
 with a bounded wait, apply required migrations, and report ready only when the
