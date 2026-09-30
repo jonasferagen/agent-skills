@@ -2,10 +2,10 @@
 name: source-of-truth
 description: "Choose the authoritative place for a concept, then derive its other appearances from that source or make disagreement fail a check. Use when a value, list, rule, pattern or shape appears in several places across languages, schemas, configuration, build files, tests or documentation; when adding a vocabulary member requires several edits; or when deciding where a constant, type or rule belongs. Also use when writing or reviewing checks for disagreement, or when a check fails because a directory moved, a count changed or a tool is absent even though the concept is still consistent."
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
-# Source of truth
+# Authoritative definitions
 
 Give each concept one authoritative home: the place that decides its value or
 rule. Derive every other appearance from that home, or make a check fail when the
@@ -25,6 +25,14 @@ Start with the project's guides for the area you are working in. They may alread
 name a concept's home, and an explicit project convention takes precedence over
 this guidance. Adopting this skill does not call for renaming anything, moving
 existing code or changing a schema. Examples below are synthetic.
+
+Use the project's policy to judge the consequence of disagreement and the
+evidence worth maintaining. A policy change can alter that consequence: revisit
+affected copies and checks, and record unmet requirements in the active queue.
+Keep project policy authoritative for requirements and implementation owners
+authoritative for observed behavior; one cannot prove the other. A prototype
+label does not by itself waive an existing guarantee. This guidance works without
+a separate policy skill; missing policy facts remain explicit unknowns.
 
 ## Start by symptom
 

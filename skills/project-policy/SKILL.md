@@ -1,0 +1,88 @@
+---
+name: project-policy
+description: "Establish or revise a project's engineering policy from its intended lifetime, users, data, exposure, compatibility and recovery needs. Use when bootstrapping a project, changing those assumptions or requirements, or assessing the downstream work caused by a policy change. Produces a project-owned policy and an impact review; does not authorize deployment or run a general audit for an ordinary code or prose edit."
+metadata:
+  version: "0.1.0"
+---
+
+# Project policy
+
+Make the project's circumstances determine its engineering requirements. Keep
+the facts, required behavior and evidence of compliance distinct. A policy can
+be adopted while implementation gaps remain; adoption does not close those gaps.
+
+Policy sets the minimum required guarantees. An implementation may exceed them;
+its existing architecture, abstractions and test inventory do not automatically
+become policy requirements. Consider simpler designs that preserve required
+outcomes. Distinguish an implementation choice from an explicit commitment before
+removing it, and verify the affected behavior when changing the mechanism.
+
+## Establish the policy
+
+Read project instructions, the active plan, architecture and relevant operations
+guidance. Reuse an existing policy owner; otherwise adapt the bundled
+[project policy template](assets/PROJECT-POLICY.md) into the repository. Keep the
+populated policy outside the imported skill. Link it from the project's agent
+instructions and entry page.
+
+Record the following axes separately. Add a domain-specific axis when it changes
+a concrete requirement; avoid collapsing them into one maturity label or score.
+
+| Axis | Establish | Requirements it can change |
+| --- | --- | --- |
+| Intended lifetime | Experiment, evolving product or maintained system; expected disposal or handoff | Investment in reuse, maintenance and documentation |
+| Users and reliance | Who uses it and what failure prevents them doing | Release evidence, availability and support |
+| Data | Synthetic or real, sensitivity, ownership and replaceability | Access, retention, deletion, migrations and recovery |
+| Exposure and authority | Local/public reach, identities, external writes, spending or unattended actions | Authentication, isolation and execution boundaries |
+| Compatibility | Existing consumers, interfaces and retained state | Versioning, migration and upgrade obligations |
+| Recovery | Acceptable data loss and downtime, recovery owner | Restore evidence, rollback or forward recovery |
+
+Use repository evidence and the user's decisions. Mark missing facts as unknown,
+with the decision they block; ask only when the current task depends on them.
+An experiment with real data still has real data obligations. Local development
+does not establish that all local state is disposable. If environments differ,
+give them separate scopes and identify shared requirements.
+
+Map each relevant fact to an observable requirement and its owning document or
+check. Link existing procedures rather than copying their details. Retain
+explicit project commitments until deliberately changed: a lighter profile
+cannot silently waive tests, migration rules or authorization boundaries.
+Follow the user's existing authorization; neither the template nor a stricter
+policy grants permission to contact users, access production or deploy.
+
+## Change the policy
+
+Every policy edit needs an impact assessment. A wording-only change may record
+that it changes no obligations. For a substantive change, including relaxing a
+rule, read [policy changes](references/policy-changes.md) and examine downstream
+requirements across the project. A change in real circumstances also triggers
+this review even if nobody has edited the policy yet.
+
+Stricter requirements can create substantial work across code, stored data,
+tests, operations and docs. Record that work in the project's active queue,
+with owners, dependencies, required evidence and the condition that gates the
+new use. Carry out the work already authorized within the task; preserve visible
+gaps for work outside its scope. Do not describe the project as meeting the new
+requirements before the evidence exists.
+
+Keep the initial mechanism manual and proportional. A broad impact review does
+not mean running every test or making every possible change on each edit.
+Automate repeated checks after actual policy transitions show what they need to
+protect. Changes to policy are not a reason to halt unaffected authorized work.
+
+## Verify the application
+
+- When establishing or substantively revising policy, check that each axis has
+  evidence, a decision or an explicit unknown. For wording-only edits, verify
+  that obligations are unchanged without reconstructing the profile.
+- Trace changed requirements to their consumers, work items and acceptance
+  evidence. For unaffected areas, record a short reason when reviewing a change.
+- Confirm that existing commitments and live state were preserved unless their
+  change was authorized. Separate current scope from a proposed future scope.
+- Check local links and the repository's applicable documentation checks.
+  Report which checks ran and which operational claims remain unverified.
+
+This skill can stand alone. A documentation skill can organize its output, a
+diagrams skill can choose its visual form, a writing skill can clarify it, and
+an authoritative-definitions skill can keep derived rules consistent. None is
+a required dependency.

@@ -48,3 +48,10 @@ options. The prose trial did not exercise the skill against a live codebase.
 
 These checks cover the supplied cases. They do not establish performance on
 every scenario above or in another project.
+
+## Project foundations naming — 2026-09-30
+
+Version 0.1.1 uses sentence case for the display name “Clear writing.” The
+installation name and writing instructions are unchanged. Package and
+skill-creator validation passed; no new behavioral trial was needed for this
+metadata-only change.

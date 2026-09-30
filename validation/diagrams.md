@@ -84,3 +84,10 @@ as part of doc review — so the craft has one home rather than two that drift.
   renderer. Their shapes come from real repositories; their entity names do not.
 - The two new sections have not been reconciled against the consuming projects'
   existing diagrams, which were drawn under the narrower local reference.
+
+## Project foundations naming — 2026-09-30
+
+Version 0.1.1 changes the display name and heading to “Diagrams and tables” and
+shortens the UI description. The installation name remains `diagrams`; drawing
+instructions and examples are unchanged. Package and skill-creator validation
+passed. No diagram was changed or rerendered for this metadata update.
