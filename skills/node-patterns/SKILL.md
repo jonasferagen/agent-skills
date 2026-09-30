@@ -1,8 +1,8 @@
 ---
 name: node-patterns
-description: "Write or review Node.js scripts, command-line tools and test harnesses so that their exit status and output report what actually happened. Use when code runs child processes (execFile, exec, spawn), sets an exit status, pipes streams, handles 'error' events or signals, or finds files relative to its own module; especially when a failure is reported as the wrong kind, output is cut off, or a script works only from one directory. Repository guidance determines what each script should do."
+description: "Write or review Node child-process wrappers and command-line checks. Use for exit status, timeouts, inherited environment, pipe output or failures reported as success."
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
 ---
 
 # Node Patterns

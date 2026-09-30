@@ -138,3 +138,7 @@ release.
 Still open: `directories.md` allows a top-level `utils/` catch-all, while
 `naming-and-placement.md` says to avoid `Utils` and the concept-or-phase rule
 forbids `helpers/`.
+
+## Discovery routing — 2026-09-30
+
+The description was shortened. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.

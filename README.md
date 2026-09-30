@@ -47,6 +47,7 @@ as a manual review; automation can grow from actual transitions.
 | [containerization](skills/containerization/SKILL.md) | Building independent local service containers with explicit interfaces, repeatable migrations, disposable database tests and test runs that remove exactly what they create. |
 | [verification-design](skills/verification-design/SKILL.md) | Choose evidence for a change or milestone and consolidate checks by the failures they detect. |
 | [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
+| [lesson-capture](skills/lesson-capture/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
 | [runtime-operations](skills/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
 
 These groups organize the catalog. Packages remain directly under `skills/`, so
@@ -83,6 +84,33 @@ Updates are deliberate: select a release, review its changes and local exception
 replace the complete directory, compare it with the source, validate the manifest
 and links, then update provenance in the same commit. No automatic tracking of
 `main`, global installation or database deployment is implied by an import.
+
+## Discovery and lesson capture
+
+Skill descriptions name the task or observed symptom that should select the
+package. Keep them concise and put the main trigger first. The selected
+`SKILL.md` supplies essential guidance and routes to conditional references;
+open only the references needed for the current decision. Grouping this catalog
+does not itself control which instructions an agent reads.
+
+When installing `lesson-capture`, the consuming project's instructions can add
+this checkpoint:
+
+> When a review, fix or user correction reveals a meaningful architectural
+> lesson, consider whether it generalizes. Use the installed lesson-capture
+> skill for a concrete candidate, and find its authoring source in the imported
+> skill provenance. Load the catalog and likely owner only when needed.
+
+Use a local link to the installed skill in that instruction. Put the source
+location in provenance; never bake a machine-specific path into the skill.
+Reading and proposing guidance can fit a review. Writing the source repository
+or adopting a new pin follows the task's actual authorization.
+
+Test discovery with realistic requests and metadata before showing skill bodies
+or expected answers. Record whether a trial used host-provided metadata, a
+supplied metadata catalog, or a project hook. Check a nearby request that should
+not activate the skill as well. A successful package check alone says nothing
+about selection. See [the discovery review](validation/discovery.md).
 
 ## Skill releases
 

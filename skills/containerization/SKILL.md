@@ -1,8 +1,8 @@
 ---
 name: containerization
-description: "Build, review or standardize local service containers: independent builds and state, HTTP or MCP boundaries, repeatable database migrations, disposable PostgreSQL tests, and test runs that own and remove the containers, networks, volumes and images they create. Use for development containers and local service stacks; production rollout policy remains with the project."
+description: "Build or review independent local service containers, startup, migrations and disposable test resources. Use for service images and local stacks; production rollout policy belongs to the project."
 metadata:
-  version: "0.3.0"
+  version: "0.3.1"
 ---
 
 # Containerization

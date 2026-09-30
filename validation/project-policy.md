@@ -66,3 +66,7 @@ Atlas/Work transition is a local production-data copy. The minimum-guarantee
 guidance and two scenarios above were added and author-reviewed. The three
 independent trials predate this clarification; they were not rerun because it
 does not change their required outcomes.
+
+## Discovery routing — 2026-09-30
+
+The description was shortened. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.

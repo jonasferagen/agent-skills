@@ -143,3 +143,7 @@ once per skill.
   The package cites the documented behavior without claiming an observed case.
 - An `EPIPE` on a child's stdin did not end the process in a test, so the
   package gives no example of it.
+
+## Discovery routing — 2026-09-30
+
+The description was shortened. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.

@@ -199,3 +199,7 @@ changes.
   rung 6, although rung 6 is only for when every higher rung is blocked → a
   rung 5 check that reads both settings comes first where both are in the
   repository. A scenario above covers it.
+
+## Discovery routing — 2026-09-30
+
+The description was shortened and conditional entrypoint guidance moved to references. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.

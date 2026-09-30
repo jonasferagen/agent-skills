@@ -105,3 +105,7 @@ Observed response:
 Result: the response followed the intended guidance for this combined scenario.
 This was a read-only planning trial, not evidence that generated code builds,
 migrations execute or containers work. Other scenarios remain author review only.
+
+## Discovery routing — 2026-09-30
+
+The description was shortened. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.
