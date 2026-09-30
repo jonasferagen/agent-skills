@@ -120,7 +120,8 @@ Use stable English `snake_case` codes for roles, capacities and types; keep
 display labels, translations and qualifications outside the code. For a small
 fixed vocabulary, prefer text with a named check constraint. Follow existing
 enum conventions when established; use a referenced table when values have
-their own maintained data or lifecycle. Add values for actual domain needs.
+their own maintained data or lifecycle. Add a value only when an actual domain
+case needs it, not in anticipation of one.
 
 Define null explicitly when it means unknown. A check constraint on a nullable
 column does not itself require a value. Enforce valid combinations as well as
@@ -165,7 +166,8 @@ sensitive payloads into logs. Project policy decides which tables need coverage.
 
 ## Integrity and access
 
-Use named, bounded schemas for application-owned objects. Preserve the
+Put application-owned objects in named schemas, each holding one application's
+or concern's objects, not in `public` or a platform-managed schema. Preserve the
 project's exposure model; a schema name alone provides no access protection.
 Schema-qualify objects at trust boundaries and review the privileges of functions
 and views as well as tables. Separate runtime authority from schema ownership.
