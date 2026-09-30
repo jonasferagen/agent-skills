@@ -2,8 +2,8 @@
 
 ## Behavioral scenarios
 
-These describe expected outcomes. They are author-reviewed scenarios, not claims
-of an independent agent evaluation or a live run.
+These describe expected outcomes from the initial import. They are author-reviewed
+scenarios; the later strengthening review records the runtime probes separately.
 
 | Request and context | Expected outcome |
 | --- | --- |
@@ -25,10 +25,10 @@ of an independent agent evaluation or a live run.
 
 ## Scope boundaries
 
-Covers preserving command status and query results in Bash. It does not cover
-shell style, portability to other shells, what a given repository's checks should
-assert, or whether a failed acquisition should abort — the reading repository owns
-those.
+Covers preserving argument and record boundaries, command status, query results
+and resource ownership in Bash. The reading repository owns command intent,
+deployment policy and whether failed acquisition should abort. Other shells,
+process supervision and a universal shell style are outside this package.
 
 ## Sources inspected
 
@@ -42,9 +42,85 @@ the command outcomes and failure cases.
 ## Review limits
 
 - No independent agent evaluation has run against these scenarios.
-- The guidance has not yet been applied to a shell suite in either consuming
+- At the initial review, the guidance had not been applied to a shell suite in either consuming
   project, though both run shell that it covers: an encrypted backup and restore
   path in one, a test harness and service launcher in the other.
 - Behavior is described for Bash. The early-reader and status-preservation rules
   generalize, but the specific constructs and exit codes are not verified against
   other shells.
+
+## Strengthening review — 2026-09-30
+
+Version 0.2.0 keeps the original query and pipeline rules in
+`references/queries-and-streams.md`. Three new references cover status/control
+flow, argument/record boundaries, and resource/shell-state ownership. The
+entrypoint routes by symptom. This is a compatible expansion of the existing
+skill; no second Bash skill or toolchain migration is introduced.
+
+### Prior art and adoption
+
+Reviewed [wshobson/agents bash-defensive-patterns](https://github.com/wshobson/agents/tree/156b7a5e7a8b93642628a339ee4039c925b34c7f/plugins/shell-scripting/skills/bash-defensive-patterns)
+at `156b7a5e7a8b93642628a339ee4039c925b34c7f`, including its detailed reference
+(MIT, copyright 2024 Seth Hobson). Arrays, temporary resources, argument parsing
+and file publication were useful subjects to assess. The new prose and examples
+are independently authored; no third-party files, hooks or helpers were copied.
+This was a content review, not a full repository security audit.
+
+Rejected a universal strict-mode header and the claim that errexit catches every
+failure. Retained our producer-status rule where upstream process substitutions
+omit it. Replaced inherited TMPDIR cleanup with ownership of a freshly acquired
+path. The resource reference also corrects the assumption that a system-temp
+file followed by mv necessarily gives atomic replacement. Sourced libraries,
+cleanup failures and concurrent writers retain explicit limits.
+
+The references link to Bash, GNU utility and POSIX documentation, plus
+ShellCheck's argument-expansion guidance. The installed Bash builtin help and
+runtime probes supplied local evidence when GNU's website timed out. Upstream
+updates require fresh review; the package has no automatic upstream dependency.
+
+### Added scenarios
+
+| Request and context | Expected outcome |
+| --- | --- |
+| Capture `$?` inside `if ! command` | Preserve the original status in an else branch before negation loses it. |
+| A pipeline has two failing stages | Snapshot PIPESTATUS immediately; do not confuse pipefail's aggregate with both results. |
+| A function tested by if relies on errexit | Propagate required failures explicitly within the function. |
+| A substitution fails before a successful final command | Do not treat its final zero status as evidence that every step succeeded. |
+| A counter starts at zero under errexit | Avoid using post-increment's Boolean status as an accidental failure. |
+| A background launch succeeds | Wait for its PID and collect the actual outcome; bare wait is insufficient. |
+| A command contains empty arguments, spaces or wildcards | Preserve an array and quoted expansions; avoid reparsing with eval. |
+| A quoted operand begins with a dash | Handle option parsing as well as shell quoting. |
+| A literal search value contains a dot | Use fixed-string matching when regex semantics are unwanted. |
+| A file name contains a newline | Use NUL records and check enumeration before consumption when failure matters. |
+| A loop updates state in a pipeline | Account for subshell scope; a checked manifest can keep the loop in the parent. |
+| Work and cleanup both fail | Preserve work failure, report cleanup failure; cleanup-only failure remains nonzero. |
+| A sourced library installs global traps | Keep trap ownership with the caller or isolate the operation. |
+| A temporary file is moved across filesystems | Do not claim atomic publication; acquire beside the destination and check writing first. |
+| An existing application has different deployment or failure policy | Preserve its policy and keep changes scoped. |
+
+### Actual verification
+
+All seven fenced Bash examples passed `bash -n`. A temporary Python-driven
+harness ran 33 runtime cases successfully on Bash 5.3.9/Linux with GNU utilities.
+It exercised capture success/absence/partial failure, errexit suppression,
+substitution failure masking, negation, arithmetic status, both pipeline statuses,
+background failure and bare wait, loop scope, empty defaults, newline stripping,
+pattern versus literal equality, literal grep success/absence/error/usage,
+NUL filenames (spaces, newline, wildcard, backslash, leading dash), enumeration
+and consumer failures, cleanup success/work failure/cleanup failure/both failures,
+TERM cleanup, failed acquisition, a large early-reader SIGPIPE case, and a draining
+reader with successful and failed producers. The harness used disposable fixtures
+and was not installed as a skill helper.
+
+The author reviewed every original and added scenario against the final text.
+Clear writing preserved the original caveats and made ownership and conditions
+explicit. Diagrams and tables selected a compact symptom lookup and scenario
+matrix; no diagram was needed. Package, isolated-copy, manifest, local Markdown
+link and whitespace checks passed. ShellCheck was unavailable and was not run.
+
+No independent agent evaluation, Bash 3.2/BSD runtime trial or application-script
+migration is claimed. Atomic publication, hostile concurrent path replacement and
+process-tree shutdown were reviewed as limits, not established by these probes.
+
+The entrypoint lookup was rendered in a temporary 830-pixel content column and
+inspected in external Chrome; no clipped text or horizontal overflow was visible.
