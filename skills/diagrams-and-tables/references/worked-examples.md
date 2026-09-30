@@ -159,7 +159,8 @@ Set finalization commits and activates the selection before delivery.
 
 ```mermaid
 flowchart TB
-  P["prepared candidate"] --> F0
+  P["candidate preparation"] -. "build skipped" .-> F0
+  B["optional backend build"] --> F0
   subgraph Finalize [set finalization]
     direction TB
     F0["commit inactive"] --> F1["compare-and-swap activation"]
@@ -290,6 +291,8 @@ wide form only where the actual render gives its lanes enough horizontal room.
 **Replaces:** prose walking through each altered column. Two forms, never three
 — the diagram carries the relationships, the table carries the field-level
 delta, and no paragraph restates either.
+
+The diagram shows the touched entities after the change:
 
 ```mermaid
 erDiagram
@@ -576,7 +579,7 @@ three surfaces honestly and still never reveal that one of them answers nothing.
 | bulk importer | **unknown** | no | **none** |
 
 The importer row is the finding. Two cells nobody could fill are worth more than
-the nine that were easy, and they are visible at a glance — which is the whole
+the seven that were easy, and they are visible at a glance — which is the whole
 argument for the matrix over the paragraph.
 
 ## A decision matrix
