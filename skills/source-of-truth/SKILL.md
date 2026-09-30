@@ -2,7 +2,7 @@
 name: source-of-truth
 description: "Choose the authoritative place for a concept, then derive its other appearances from that source or make disagreement fail a check. Use when a value, list, rule, pattern or shape appears in several places across languages, schemas, configuration, build files, tests or documentation; when adding a vocabulary member requires several edits; or when deciding where a constant, type or rule belongs. Also use when writing or reviewing checks for disagreement, or when a check fails because a directory moved, a count changed or a tool is absent even though the concept is still consistent."
 metadata:
-  version: "1.2.1"
+  version: "1.3.0"
 ---
 
 # Authoritative definitions
@@ -161,11 +161,11 @@ read.
 | Does it fail when a tool or service is missing, rather than when the homes disagree? | fail at the boundary where the environment contract requires that dependency; if no contract requires it, skip with a prominent notice |
 | Does it only produce a report, with nothing consuming that report? | make it check an invariant using current facts and fail a real gate, or remove it |
 
-[Checks that survive restructuring](references/durable-checks.md) explains each
-property with examples of checks that violate and satisfy it. Read it while
-writing the check. The project's own policy decides whether a check is worth its
-recurring cost; these requirements keep a retained check working as the project
-changes.
+[Checks that survive restructuring](references/durable-checks.md) states
+requirements two to six as five properties, with examples of checks that violate
+and satisfy each. Read it while writing the check. The project's own policy
+decides whether a check is worth its recurring cost; these requirements keep a
+retained check working as the project changes.
 
 ## Beware the fallback
 

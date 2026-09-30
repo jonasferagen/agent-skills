@@ -188,15 +188,16 @@ The owner's Forge Agent Kit `selfcheck-guard` skill was folded into
 bash-patterns and test-audit imports, rather than added as a ninth skill. This
 one already ended at a check — keep the restatement, add a gate that fails when
 the homes disagree — and never said what keeps that check working after the next
-restructure. The bar and its seven questions now sit in the manifest at that rung,
-and the five properties behind it, each with the shape that breaks it and the
-shape that holds, are in its `references/durable-checks.md`: compute the invariant
-live instead of re-blessing a golden, anchor to the check's own location or to
-version control, read the manifest rather than copying it, fabricate the fixture,
-and report an absent dependency as absent rather than as a failing test. Forge
-Project Policy citations were redirected as in test-audit — two carried substance
-now stated in place, and whether a check earns its recurring cost defers to the
-reading project's own policy.
+restructure. The bar's six requirements and seven questions now sit in the
+manifest at that rung, and the five properties behind it, each with the shape
+that breaks it and the shape that holds, are in its
+`references/durable-checks.md`: compute the invariant live instead of
+re-blessing a golden, anchor to the check's own location or to version control,
+read the manifest rather than copying it, fabricate the fixture, and report an
+absent dependency as absent rather than as a failing test. Forge Project Policy
+citations were redirected as in test-audit — two carried substance now stated in
+place, and whether a check earns its recurring cost defers to the reading
+project's own policy.
 
 **change-workflow** merges the owner's Forge Agent Kit `worktree` and `reconcile`
 skills, imported on 2026-09-29 and pinned at
