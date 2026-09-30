@@ -2,7 +2,7 @@
 name: project-docs
 description: "Establish, review, or reconcile repository documentation, including domain glossaries, document ownership, project instructions, and high-level relationship diagrams. Use for project documentation structure and consistency work; not standalone office documents, generic copyediting, or application implementation."
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
 # Project documentation
@@ -26,13 +26,13 @@ changing them is part of the task.
   Preserve durable evidence and unresolved questions.
 
 For structure, prose and instruction design, read
-[structure and ownership](references/structure.md). For which document owns which
-view, and how a view stays true, read
-[diagrams in a documentation set](references/diagrams.md); choosing a form and
-drawing it well is a separate craft that a diagrams skill owns where one is
-available. The [worked example](references/worked-example.md) illustrates the
-method with a synthetic domain; it is not a schema or template to impose on other
-projects.
+[structure and ownership](references/structure.md). For which document owns
+which view, and how to keep a view accurate, read
+[diagrams in a documentation set](references/diagrams.md). Choosing a diagram
+form and drawing it well is separate work, which a diagrams skill owns where
+one is available. The [worked example](references/worked-example.md)
+illustrates the method with a synthetic domain; it is not a schema or template
+to impose on other projects.
 
 ## Ground the content
 
@@ -41,9 +41,10 @@ Use its users, data, exposure and recovery requirements to set the depth and
 evidence needed. Keep the policy's facts and obligations in their canonical home;
 link procedures, the active work queue and verification records. If a policy
 change affects the docs, reconcile the affected instructions and preserve open
-transition work. A lighter project label does not waive existing commitments.
-When no policy exists, keep consequential unknowns explicit; a small editorial
-task does not require creating one or installing another skill.
+transition work. A project label that suggests less rigor, such as "prototype",
+does not waive existing commitments. When no policy exists, keep consequential
+unknowns explicit; a small editorial task does not require creating one or
+installing another skill.
 
 Start with repository instructions, the entry page, and affected files. Inspect
 code, schemas, configuration and dated records as relevant. Avoid reading every
@@ -80,9 +81,10 @@ rewrite for every task. It does not authorize publishing or external writes.
 - Check changed local links and heading anchors. On moves or renames, search for
   the old path and name and reconcile affected references.
 - Trace diagram relationships to evidence and render changed diagrams. Inspect
-  them at a normal reading width in the target renderer and themes readers use
-  when available; check labels, crossings, contrast and readability. Report any
-  rendering limits rather than claiming visual verification.
+  them at a normal reading width, in the target renderer and the themes readers
+  use where those are available; check labels, crossings, contrast and
+  readability. Report any rendering limits rather than claiming visual
+  verification.
 - Review examples for private information and unsupported behavior.
 - Run the repository's relevant checks, including `git diff --check` where Git
   is available. Install dependencies only when a necessary check needs them;

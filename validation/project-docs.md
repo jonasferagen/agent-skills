@@ -41,3 +41,16 @@ the new policy/commitment scenarios and existing small-edit and standalone cases
 Package validation and the skill-creator manifest check passed. The independent
 policy trials are recorded in [project-policy](project-policy.md); this skill did
 not receive a separate new behavioral trial.
+
+## Clear writing pass — 2026-09-30
+
+Version 1.2.1 revises the manifest, `structure.md` and `diagrams.md`; the worked
+example needed no change. See the [package
+sweep](clear-writing.md#package-sweep--2026-09-30). "Altitude" is now explained
+inline, because this package must work without the diagrams skill. Review caught
+one meaning change: diagram inspection had become conditional on the target
+renderer being available. The original scope was restored, with one clarity
+regression and one nit. No behavioral trial was run.
+
+Left unresolved: "A documentation edit proves none of the latter" follows four
+items and does not say whether it covers the last two or the last three.
