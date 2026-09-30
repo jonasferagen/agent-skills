@@ -72,3 +72,25 @@ them locally with no shared method.
 - The unfalsifiable-request lens is the highest-value claim in the package and
   the least validated: it has been reasoned about, not yet run against a suite
   built on provider doubles.
+
+## Clear writing pass — 2026-09-30
+
+Version 0.1.1 revises the prose; see the [package
+sweep](clear-writing.md#package-sweep--2026-09-30). The two instructions to read
+local testing guidance first were merged, "footgun" became "hard finding", and
+idioms in the principles were replaced with the behavior they described.
+Independent review found the requirements unchanged; two wording corrections
+followed. No behavioral trial was run.
+
+Left unresolved, because each answer changes behavior:
+
+- The entrypoint and `triage.md` treat focused *and parked* markers as hard
+  failures; `principles.md` makes the focused-test marker the only hard finding.
+- The entrypoint says a focused marker reduces the suite to one case;
+  `principles.md` and the scenario above say it disables every sibling in its
+  file.
+- `triage.md` scopes the coverage run to the surface under audit, then says to
+  run it on the complete suite, without saying whether that means the whole
+  repository.
+- "Documentation drift to reconcile" does not say whether reconciling includes
+  editing documentation during an otherwise read-only audit.

@@ -12,9 +12,9 @@ signals worth having and how to weigh them.
 
 - **Colocated source/test asymmetry** — production files with no neighbouring
   test. Only meaningful where tests are colocated; see below.
-- **Focused and parked markers** — the disabling footgun. These are the one class
-  worth failing a gate over, because a focused marker silently shrinks the suite
-  to a single case while still reporting green.
+- **Focused and parked markers** — markers that take tests out of the run. These
+  are the one class worth failing a gate over, because a focused marker silently
+  shrinks the suite to a single case while still reporting green.
 - **Cast-shaped stubs, determinism patterns, mock candidates, and call-count
   assertions** — advisory. Each is a prompt to read the test, not a verdict.
 
@@ -23,11 +23,12 @@ trees are separate. Trace those by class or endpoint name instead.
 
 <!-- Package-boundary copy: source-of-truth/references/durable-checks.md covers ledgers; source-of-truth/SKILL.md covers report-only checks. Keep these passages aligned. -->
 **A scanner's exemption ledger, and any drift stamp it carries, are judged as a
-check in their own right, not as test coverage.** A ledger lists files
-grandfathered out of a settled convention, and it may only shrink: a new or
-increased violation fails. A report-only drift *stamp* — a frozen snapshot the scanner
-diffs against, with no consumer acting on the diff — is that anti-pattern
-exactly: run the scanner against the live tree instead.
+check in their own right, not as test coverage.** A ledger lists files that
+predate a settled convention and are exempt from it, and it may only shrink: a
+new or increased violation fails. A report-only drift *stamp* is a frozen
+snapshot the scanner diffs against, with no consumer acting on the diff. A
+report-only check like this is an anti-pattern: run the scanner against the live
+tree instead.
 
 ## Cast-shaped stub triage
 
