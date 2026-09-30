@@ -83,8 +83,46 @@ in a scratch directory outside the source repository:
 The package validator and `git diff --check` passed. Clear Writing guided the
 drafting; no separate comparison pass was recorded.
 
+## Conformance trial — 2026-09-30
+
+Two fresh agents received the same prompt: a strict conformance pass over every
+`.mjs` file in atlas-work-dev against the repository's own conventions and
+imported skills, finding the guidance themselves. The prompt did not mention
+Node, child processes or this skill. The baseline ran at `fb61765` without the
+package. The trial ran at `d100bd0`, where the package is installed and listed
+in the repository's agent instructions. The three scripts differ between those
+commits only by a new rules check in one of them.
+
+**Discovery.** The trial agent found the package through the repository's agent
+instructions, called it the main guidance for the files, and cited its sections
+by name in each finding.
+
+| Scenario above | Baseline, without the package | Trial, with it |
+| --- | --- | --- |
+| Collapsed `execFile` outcome | Noticed only a symptom: a missing Docker CLI reported as "not running", flagged as an unmet prerequisite | Flagged the idiom, confirmed the symptom with a stub, proposed classifying the error |
+| `code ?? …` mapping of a signal | Not found | Flagged; 128 plus the signal number proposed |
+| `execFile` stdin left open; `stdio: 'inherit'` | Not found | Both flagged; the trial confirmed inherited stdin reaching a stub |
+| `process.exit(1)` after the problem list | Not found; the baseline praised another script's `process.exitCode` | Flagged in both check scripts; 593 of 4,001 problem lines got through a pipe |
+| `.pathname` as the repository root | Found, through source-of-truth's anchoring rule | Found |
+| A pass that measured nothing | Not found | Flagged in both check scripts; confirmed with empty service directories |
+| Unreadable input reported as a failed comparison | Not found | Flagged |
+| `spawn` promise that must settle | Not examined | Accepted: the script listens for `'error'` |
+
+The package's scenarios for streams, `'error'` listeners and signal handlers had
+no subject in these three files and were not exercised.
+
+**Attention.** The baseline reported several findings the trial did not, all
+outside this package's scope. Examples: a stack command that removes orphans for
+any project name, an exported variable that overrides the run label, and
+contract-check fallbacks that let malformed examples pass. With the package
+installed, the strict pass concentrated on process behavior. A conformance pass
+that should cover everything may need to name every applicable skill, or run
+once per skill.
+
 ## Review limits
 
+- The conformance trial is one run of each agent; it shows discovery and use,
+  not a stable detection rate.
 - Behavior was reproduced on Linux only. Pipe write behavior differs by
   platform, and Windows paths were checked only through URL parsing.
 - The Node documentation's statement that stdio can remain open when `'exit'`
