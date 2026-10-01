@@ -1,8 +1,8 @@
 ---
 name: project-policy
-description: "Establish or revise a project's engineering policy from its intended lifetime, users, data, exposure, compatibility and recovery needs. Use when bootstrapping a project, changing those assumptions or requirements, or assessing the downstream work caused by a policy change. Produces a project-owned policy and an impact review; does not authorize deployment or run a general audit for an ordinary code or prose edit."
+description: "Establish or revise engineering requirements when users, data, exposure, lifetime, compatibility or recovery needs change. Assess the impact and track prerequisites; ordinary edits do not require a policy review."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Project policy

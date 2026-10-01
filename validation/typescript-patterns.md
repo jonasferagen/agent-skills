@@ -203,3 +203,11 @@ export-parity rule, under which a `Types` bundle is camelCase (`orderTypes.ts`)
 because no export carries its name. The owner kept option A above,
 `{Topic}Types.ts` in PascalCase, as the simpler rule; the export-parity commit
 is not part of this package.
+
+## Discovery routing — 2026-09-30
+
+The discovery review shortened the 1.1.1 description before the language/design
+split. Version 2.0.0's description was written for the split and has 30 words, so
+the review's measurements for this skill describe 1.1.1, not 2.0.0. See [the
+discovery review](discovery.md) for the measured sizes, scope and verification.
+Earlier behavioral results do not establish the new discovery behavior.

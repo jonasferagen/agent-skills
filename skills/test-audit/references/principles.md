@@ -27,48 +27,27 @@ Test public methods and exported functions, not private internals. Private
 behavior is exercised transitively through the public API; testing it directly
 couples the test to implementation details.
 
-## The decision layer is the layer worth testing
+## Test decisions where they are made
 
-Most systems have an outer layer that adapts — a CLI entry point, an HTTP
-controller, a queue consumer, an event handler — and an inner layer that decides.
-**The inner layer is where the tests belong**, and it is where coverage should
-come from.
+Many systems have an outer adapter — a CLI entry point, HTTP controller or queue
+consumer — and an inner layer that makes domain decisions. Test a rule's cases
+close to that decision when the layer can be exercised directly. Keep adapters
+thin so the rule does not require a full process for every branch. If awkward
+tests can reach a decision only through the whole stack, inspect the production
+boundary before adding more wide tests.
 
-The outer layer's job is parsing inputs, choosing a mode, rendering output, and
-returning a status. That work is mostly the framework's, and **testing it tests
-the framework**: that the router routes, that the CLI parses a flag, that the
-container injects. The framework's own suite already proves those, and a test
-that re-proves them is slow, wide, and pins nothing you own.
+Integration tests answer questions the inner layer cannot: whether the adapter
+passes the right input and identity, whether the real database grants access or
+serializes writers, whether processes communicate, and whether a built artifact
+starts. Keep tests for those distinct boundaries. Their number follows the
+failure modes and the project's own gate, not an entry-point quota.
 
-So the split is a design obligation before it is a testing one:
-
-- **Keep the adapter thin enough to be uninteresting.** If the entry point holds
-  the decisions, there is no inner layer to test, and the only way to reach the
-  logic is through the whole stack. That is a structural defect surfacing as a
-  testing problem — the fix is extraction, not a bigger integration test.
-- **Extract so the logic takes plain inputs and returns plain results.** Pure
-  functions, value objects, and injected collaborators are what make the decision
-  layer reachable without booting anything.
-- **Aim coverage at that layer deliberately.** When a branch is only reachable
-  through the full stack, that is the signal it is in the wrong place.
-
-**Integration tests are a second, thinner layer, and they are not where coverage
-should come from.** One per entry point is usually right: it proves the wiring —
-that the adapter reaches the logic, passes the parsed inputs, and maps the
-result to the right status or response. It does not re-prove the rule matrix the
-inner layer already owns. Full integration coverage is a cost paid per case
-forever, in runtime and in fixtures, for evidence a unit test gives more
-precisely.
-
-**A rule matrix proved twice is worse than proved once.** The duplicate is slower,
-it fails in pairs so a real regression reads as two failures, and the two copies
-drift until one is quietly wrong. When the inner layer owns a rule, the
-integration test asserts that the rule *ran*, not what it concluded.
-
-The reverse failure is real too: an integration suite is not a licence for an
-untested inner layer. When the wiring is proved and the decisions are not, a
-green run measures none of the rules the suite claims to protect. That is a
-defect in the evidence, not coverage.
+An integration test that repeats every case of a rule already proven at the
+decision layer adds cost when it sees no new failure. Retain a representative
+case showing the public path reaches the rule; keep additional cases when the
+outer boundary can change the outcome. Conversely, public wiring cannot prove
+an untested decision matrix. Compare the failure each test detects before
+calling two assertions duplicates.
 
 ## Cover edge cases
 

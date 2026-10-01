@@ -1,8 +1,8 @@
 ---
 name: postgres-design
-description: "Design or review PostgreSQL schemas and migrations: naming, keys, relationships, types, state, automatic timestamps and integrity boundaries, including how application transactions on pooled connections use restricted roles. Use when creating or changing PostgreSQL tables and related objects, or code that runs transactions through a connection pool; query tuning and database operations follow the project's own guidance."
+description: "Design or review PostgreSQL schemas, migrations and transaction boundaries, including pooled connections. Use for keys, relationships, types, state and integrity; query tuning follows project guidance."
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Postgres design

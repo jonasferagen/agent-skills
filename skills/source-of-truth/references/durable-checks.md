@@ -10,7 +10,7 @@ The remedy is not more checks. It is checks built so that structural change
 cannot break them.
 [Make disagreement fail](boundaries.md#make-disagreement-fail) says what a check
 must compare and where it must run; this page says what keeps it working
-afterwards. The [rung ladder](../SKILL.md#derive-instead-of-restate)
+afterwards. The [rung ladder](definitions.md#derive-instead-of-restate)
 decides whether a check is the right remedy at all: a check is rung 5 because
 rungs 1 to 4 make disagreement impossible, while a check only makes it fail. The
 project's own policy decides whether a check is worth its recurring cost.
@@ -35,7 +35,7 @@ approve diffs they have not read.
 
 A literal expectation is not a golden. A test stating the value an operation
 should produce is doing its job, as
-[what is not a second home](../SKILL.md#what-is-not-a-second-home) says. What
+[what is not a second home](definitions.md#what-is-not-a-second-home) says. What
 goes stale is a committed copy of a *structural* fact, such as a count, a file
 list or an inventory, that is meant to track the home and can only be kept
 current by hand.

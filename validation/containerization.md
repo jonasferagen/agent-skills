@@ -35,6 +35,8 @@ recorded below; generated container implementations have not been tested.
 | A test passes a database password with `--env NAME=value` | Moved into the CLI's environment and passed as `--env NAME`, so the value stays off the command line. | Author review only |
 | `compose down` succeeds after a partly failed start | The label sweep and a final listing of leftovers still run; anything left fails teardown. | Author review only |
 | A readiness check connects over the container's local socket | Replaced with a TCP query using a password; the initialization server accepts socket connections before the final server starts. | Author review only |
+| API, migrator and seed use the same runtime files but every test seed requests another image build | Build one service image per run and reuse it with distinct commands and credentials; keep ownership and cleanup scoped to that run. | Author review only |
+| Seed genuinely needs different system packages from the API | Keep a separate image and state why; do not force reuse for its own sake. | Author review only |
 
 ## Sources and scope
 
@@ -46,7 +48,13 @@ checked for the concrete engine limitations cited in that reference.
 
 ## Verification results
 
-- Package validator: passed on 2026-09-30; 12 installable packages checked.
+The 0.3.0 image-reuse addition was author-reviewed against the two new scenarios
+above. It has not been implemented or timed in a consuming project; the original
+0.1.0 trial and verification below do not establish that it saves time.
+On 2026-09-30, the current tree passed the package validator (15 packages),
+the system skill validator for `containerization`, and `git diff --check`.
+
+- Initial 0.1.0 package validator: passed on 2026-09-30; 12 installable packages checked.
 - System skill quick validation: passed on 2026-09-30 for `containerization`.
 - Whitespace check: `git diff --check` passed on 2026-09-30; new files were
   additionally checked directly before handoff.
@@ -97,3 +105,7 @@ Observed response:
 Result: the response followed the intended guidance for this combined scenario.
 This was a read-only planning trial, not evidence that generated code builds,
 migrations execute or containers work. Other scenarios remain author review only.
+
+## Discovery routing — 2026-09-30
+
+The description was shortened. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.
