@@ -87,3 +87,45 @@ the system quick validator; 258 local Markdown paths and heading anchors passed;
 `git diff --check` passed. The explicit small-idea trial also passed, as recorded
 in [Capture Pattern validation](pattern-capture.md). No runtime helper or Mermaid
 source changed in this discovery pass.
+
+## Port to main — 2026-10-01
+
+The branch this record came from grouped the packages by area and built a plugin.
+Main keeps flat packages, so that layout was not ported, nor were the things that
+came with it: the plugin build and `identifiers.toml`, the package-layout
+validation, sentence-case display names, plugin-qualified invocations and the
+matching link edits in AGENTS.md. The discovery work was ported with its
+validation records:
+
+| Package | Version on main, before to after | Brought over |
+| --- | --- | --- |
+| shared-code-design, verification-design | new, 0.1.0 each | The two skills from `d8895d1` |
+| pattern-capture | new, 0.3.0 | The skill, called lesson-capture and then capture-pattern on the branch, with the guidance on learning from skill use |
+| containerization | 0.2.0 to 0.5.0 | Image reuse, separate environments, applying values where the tool reads them |
+| test-audit | 0.2.0 to 0.3.0 | Integration-test advice narrowed to the failure each test can observe |
+| source-of-truth | 1.3.0 to 1.4.0 | Entrypoint split into references; the external identifier rule |
+| change-workflow, diagrams-and-tables | 0.2.0 to 0.2.1 | Entrypoints split into conditional references |
+| node-patterns, postgres-design, project-policy, runtime-operations | patch bump each | Shortened descriptions |
+
+No release tag was created or moved. A version bump alone publishes nothing.
+
+Where main differs from the measurements above:
+
+- Main's `typescript-patterns` (2.0.0) and `bash-patterns` were rewritten
+  independently and keep their own descriptions, 30 and 34 words against 32 and 42
+  on the branch. Main's `typescript-design`, `python-patterns` and `python-design`
+  (26, 28 and 24 words) arrived after this review and were not part of it.
+- The 13 packages that already existed on main had 874 words of description before
+  the port and 393 after it. With the three new skills, the 19 descriptions total
+  589 words and none exceeds 42.
+- The three splits were checked line by line against main's text, ignoring link
+  targets. Every body line of `change-workflow` is still present. In
+  `diagrams-and-tables` and `source-of-truth` the missing lines are the routing
+  prose and the old symptom table that the reference router replaced.
+- The activation trials above ran on the branch. They were not repeated on main,
+  so they do not show how the merged descriptions select skills there.
+
+Checks on main's tree: `python3 scripts/validate-packages.py` passed for 19
+packages; 252 relative links and anchors in 96 Markdown files resolved; and
+`git diff --check` against main was clean. No Mermaid source changed, and no helper
+script changed.
