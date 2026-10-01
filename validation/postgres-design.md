@@ -156,3 +156,7 @@ database objects changed and no database tests were run.
   needs it, following the Atlas rule "add one only when a record needs it".
 
 A scenario above records each result.
+
+## Discovery routing — 2026-09-30
+
+The description was shortened. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.

@@ -25,6 +25,8 @@ of an independent agent evaluation.
 | Two similar lists answer different questions | Not a second home; the questions are compared rather than the contents. |
 | One constant is used several times inside one module | Not a duplication. |
 | A document and a constraint both list a vocabulary and the document is stale | The document is a home; it is reconciled in the present tense. |
+| A plugin namespace appears in docs, a generated manifest and UI prompts | One project-owned lookup value decides the namespace; docs use its key, generated files derive the literal, and historical pins retain their original names. |
+| A manifest needs a literal namespace but its loader does not expand variables | A placeholder is rejected; generate the literal or compare it with the owner in a required check. |
 | A duplication can be neither derived nor checked | Recorded where the concept lives, naming what must change together and what goes wrong when one is missed. |
 | Ranking a stable constant copied many times against one growing cross-medium vocabulary | The growing cross-medium concept ranks higher; copy count alone does not decide. |
 | A gate check compares a freshly scanned count against a committed expected one | Named as a golden that has to be re-blessed on every legitimate change; the check computes its answer live instead. |
@@ -199,3 +201,18 @@ changes.
   rung 6, although rung 6 is only for when every higher rung is blocked → a
   rung 5 check that reads both settings comes first where both are in the
   repository. A scenario above covers it.
+
+## Discovery routing — 2026-09-30
+
+The description was shortened and conditional entrypoint guidance moved to references. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.
+
+## External identifier lookup — 2026-09-30
+
+Version 1.4.0 adds a conditional rule for project-chosen external identifiers
+repeated across documentation and machine-readable files. The plugin namespace of
+the grouped layout on the skill-discovery branch prompted it; main has no plugin
+build. The rule uses the existing rungs: derive copies where possible, then
+require a check where a consumer must keep a literal. It does not require a new
+table when configuration already owns the value, or rewrite historical pins. The
+cases above were reviewed against that branch's generated plugin build, not
+against anything on main; no independent discovery trial was run.

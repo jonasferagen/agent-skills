@@ -1,8 +1,8 @@
 ---
 name: containerization
-description: "Build, review or standardize local service containers: independent builds and state, HTTP or MCP boundaries, repeatable database migrations, disposable PostgreSQL tests, and test runs that own and remove the containers, networks, volumes and images they create. Use for development containers and local service stacks; production rollout policy remains with the project."
+description: "Build or review independent local service containers, startup, migrations, the environments a local stack can run, and disposable test resources. Use for service images and local stacks; production rollout policy belongs to the project."
 metadata:
-  version: "0.2.0"
+  version: "0.5.0"
 ---
 
 # Containerization
@@ -38,6 +38,16 @@ ingress, high availability or a deployment platform.
 - Name required configuration and defaults in one maintained place. Fail early
   for missing required values, without printing secrets.
 
+When the API, migrator and seed command need the same built runtime files, use
+one image for that service and select the command and credentials at launch.
+In a disposable test stack, build that image once per run and reuse it for those
+commands. Repeated build requests during seed or migration add work without
+checking a different artifact unless the build inputs have changed. Keep images
+scoped to their owning service and test run so cleanup cannot remove another
+run's resources. If the processes genuinely need different files or system
+packages, keep separate images and state that reason. Measure setup cost before
+adding a cache or image-publishing workflow.
+
 ## Connect services through their contracts
 
 Give each service its own storage and runtime identity. Other services use its
@@ -62,9 +72,7 @@ start, inspect and stop the local stack. Expose host ports only where the local
 client needs them; containers address dependencies through the stack's network.
 
 Keep durable data in named storage owned by its service. Starting or rebuilding
-must preserve it. A disposable test profile uses separate storage and clearly
-identifies any destructive reset command; do not infer that existing data is
-disposable from a development label.
+must preserve it.
 
 When a test run creates containers, networks, volumes or images, read
 [owned test resources](references/owned-resources.md). It covers run identity
@@ -77,6 +85,39 @@ service can serve its contract. Starting two instances must not race migrations.
 Handle termination, close connections and return failures through exit status.
 Choose one owner for each scheduled job so the container and an external
 orchestrator do not both run the same loop.
+
+## Separate the environments a stack can run
+
+Name the environments the stack serves and make the selection one value: a
+project or profile that chooses every service together, so a half-switched stack
+cannot be expressed. Give each its own storage, credentials and published
+addresses, and keep the selection observable without printing secrets. A
+disposable test profile uses separate storage and clearly identifies any
+destructive reset command; do not infer that existing data is disposable from a
+development label.
+
+Treat the set of names as closed. A project-scoped command such as
+`compose down --remove-orphans` acts on whatever name it is given, so an
+unrecognised name must be refused rather than passed through. That refusal is
+what stands between a typo and another stack's containers.
+
+A command's blast radius depends on which environment is selected, and
+documenting that is not enough. Refuse the commands that repopulate or delete
+data for an environment whose data no seed can reproduce, and refuse their
+confirmation flag where it does not apply, so it cannot be carried unnoticed in
+a script.
+
+Decide all of this while the arguments are parsed. The refusals are then
+testable without a container engine, and a wrong selection fails before anything
+is created.
+
+Parse time does not settle what the container tool renders. A published address,
+a volume name or an image tag takes effect only where the tool reads it, so
+write each environment's own value into that file or those arguments. A wrapper
+that keeps the value to itself, to check that a port is free or to print an
+address, has not applied it: the tool then falls back to its single default,
+usually the first environment's. Let a check read the value from the artifact
+the tool reads, so the wrapper and the tool cannot disagree unnoticed.
 
 ## Preserve migration history
 

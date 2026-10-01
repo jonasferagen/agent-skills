@@ -62,5 +62,9 @@ it through the repository's own test runner on its full lane, not a fail-fast or
 fast-subset lane: such a lane is non-certifying under the audit-run rule in
 [SKILL.md](../SKILL.md), so it can report only a partial run.
 
+For a complete coverage claim, run the complete selected suite. A fail-fast or
+fast-subset lane reports only partial coverage under the run rule in
+[SKILL.md](../SKILL.md).
+
 Scope the coverage report to the surface under audit, not the test selection. A
 test elsewhere, such as an integration test, may cover that surface.

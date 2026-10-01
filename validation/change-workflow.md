@@ -230,3 +230,7 @@ contradictory and what the text now says.
   it deletes the directory under a running process. Stopping it first is kept,
   with that reason. The step 2 resume now carries the same direction rule as
   `lane-identity.md`.
+
+## Discovery routing — 2026-09-30
+
+The description was shortened and conditional entrypoint guidance moved to references. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.

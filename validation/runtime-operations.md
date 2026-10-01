@@ -105,3 +105,7 @@ Open questions, not changed:
   `view` or `live`, and with the manifest's default viewer.
 - `credentialStore.py` and `crypt()` raise errors that do not name the command
   and exit status, as the child-process rule asks.
+
+## Discovery routing — 2026-09-30
+
+The description was shortened. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.

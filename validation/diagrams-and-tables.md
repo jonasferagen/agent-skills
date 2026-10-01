@@ -193,3 +193,7 @@ behavior was checked by rendering scratch diagrams with Mermaid 12.0.0 (CLI
 No Mermaid block changed, so none was rerendered for the package; the family
 map and ER example were rendered in light and dark themes to check the new
 prose against them.
+
+## Discovery routing — 2026-09-30
+
+The description was shortened and conditional entrypoint guidance moved to references. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.

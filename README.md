@@ -40,6 +40,7 @@ as a manual review; automation can grow from actual transitions.
 | [bash-patterns](skills/bash-patterns/SKILL.md) | Preserving arguments, command failures, query results and cleanup ownership in Bash scripts. |
 | [node-patterns](skills/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
 | [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries, and transactions on pooled connections. |
+| [shared-code-design](skills/shared-code-design/SKILL.md) | Decide when copied implementation should remain checked copies, be generated or become a versioned dependency. |
 
 ## Changes and operations
 
@@ -47,7 +48,9 @@ as a manual review; automation can grow from actual transitions.
 | --- | --- |
 | [change-workflow](skills/change-workflow/SKILL.md) | Taking a change from an isolated worktree through synchronization, verification, merge and cleanup. |
 | [containerization](skills/containerization/SKILL.md) | Building independent local service containers with explicit interfaces, repeatable migrations, disposable database tests and test runs that remove exactly what they create. |
+| [verification-design](skills/verification-design/SKILL.md) | Choose evidence for a change or milestone and consolidate checks by the failures they detect. |
 | [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
+| [pattern-capture](skills/pattern-capture/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
 | [runtime-operations](skills/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
 
 These groups organize the catalog. Packages remain directly under `skills/`, so
@@ -85,6 +88,54 @@ replace the complete directory, compare it with the source, validate the manifes
 and links, then update provenance in the same commit. No automatic tracking of
 `main`, global installation or database deployment is implied by an import.
 
+## Discovery and lesson capture
+
+Skill descriptions name the task or observed symptom that should select the
+package. Keep them concise and put the main trigger first. The selected
+`SKILL.md` supplies essential guidance and routes to conditional references;
+open only the references needed for the current decision. Grouping this catalog
+does not itself control which instructions an agent reads.
+
+When installing `pattern-capture`, the consuming project's instructions can add
+this checkpoint:
+
+> Before finishing an architecture or consolidation review that produced concrete
+> findings, use pattern-capture to assess the strongest reusable candidate against
+> existing guidance. Do the same after a fix or user correction exposes a recurring
+> design issue. Find the authoring source in imported-skill provenance and read
+> only the catalog and likely owner. Report its home or why it stays local.
+> Routine lookups and literal edits do not need this checkpoint.
+
+Also route to pattern-capture when skill use reveals repeated friction, an
+undocumented workaround or a correction that suggests missing guidance. Keep
+this trigger in project or personal instructions so it is available before the
+skill body is loaded. Load pattern-capture when the trigger applies; ordinary
+successful skill use needs no capture pass.
+
+Use a local link to the installed skill in that instruction. Put the source
+location in provenance; never bake a machine-specific path into the skill.
+Reading and proposing guidance can fit a review. Writing the source repository
+or adopting a new pin follows the task's actual authorization.
+
+For explicit requests, invoke `$pattern-capture` with an idea or refer to the
+current discussion. To also accept `/pattern-capture [idea]`, add this project
+instruction beside the checkpoint:
+
+> Treat `/pattern-capture [idea]` as an explicit request to use the installed
+> pattern-capture skill, even for a small idea. Assess whether it generalizes,
+> prefer the simplest adequate rule and check its existing home. Follow the
+> request's scope when proposing or making changes.
+
+This is an agent-interpreted text shortcut. It does not add a native slash-menu
+entry; native skill discovery depends on the client's supported invocation and
+refresh behavior.
+
+Test discovery with realistic requests and metadata before showing skill bodies
+or expected answers. Record whether a trial used host-provided metadata, a
+supplied metadata catalog, or a project hook. Check a nearby request that should
+not activate the skill as well. A successful package check alone says nothing
+about selection. See [the discovery review](validation/discovery.md).
+
 ## Skill releases
 
 Version each skill independently. Its `SKILL.md` declares a string under
@@ -115,15 +166,24 @@ version bump when one skill is released.
 
 ### Authoring skills
 
-Skills in this repository should meet the standards they teach. Before tagging
-a release, apply these skills to the content that changed since the skill's
+Skills in this repository should meet the standards they teach. Apply relevant
+guidance to the packages, helpers and documentation we maintain here. Start
+with the catalog and the task's actual trigger; load only the selected guidance
+and needed references. For example, use source-of-truth when reconciling copied
+rules, verification-design when selecting evidence, and pattern-capture when
+assessing a reusable finding or an explicit capture request. Its simplicity
+test also applies to our own rules and exceptions. Report a relevant conflict
+or gap rather than silently exempting the repository.
+
+During authoring, AGENTS.md requires writing and visual guidance where relevant.
+Before tagging a release, also apply these skills to the content changed since the skill's
 last tag, or to the whole package for a first release:
 
 - [Clear writing](skills/clear-writing/SKILL.md), to the prose.
 - [Diagrams and tables](skills/diagrams-and-tables/SKILL.md), to existing
   diagrams and tables and to passages a diagram or table would explain better.
 
-This is a recommendation, not a release requirement. Clear Writing does not yet
+This additional release pass is a recommendation, not a release requirement. Clear Writing does not yet
 cover every kind of prose a skill package contains, such as trigger
 descriptions, defined terms, worked examples, pattern catalogs and templates.
 
@@ -152,6 +212,27 @@ independent of them.
   boundaries worth testing, and add a row to the table above.
 
 ## Origins
+
+**verification-design** and **shared-code-design** capture two architecture
+decisions exposed by a review of the local Atlas/Work proof of concept in
+2026-09. The former separates evidence at schema, domain, independent-session,
+public-interface and built-artifact boundaries while looking for repeated setup.
+The latter compares checked copies with generation and versioned dependencies
+against the promise that each component builds independently. The installable
+skills use language-neutral examples and impose no project test matrix or
+package manager. See their [verification scenarios](validation/verification-design.md)
+and [shared-code scenarios](validation/shared-code-design.md).
+
+**containerization** 0.3.0 adds reuse of one service image for API, migration
+and seed commands when their runtime files are the same. This came from the same
+review; it does not prescribe a container tool or image cache. See
+[validation](validation/containerization.md).
+
+**test-audit** 0.3.0 narrows its integration-test advice to the failure each
+test can observe. Native contention, real permissions and built-artifact checks
+remain distinct evidence even when they call the same domain operation. Its
+full-suite rule now applies to complete coverage and timing claims; a static
+audit need not run the suite. See [validation](validation/test-audit.md).
 
 **clear-writing** brings the short-text guidance into a reusable prose skill,
 with a shared core and separate references for instructions and short text. It

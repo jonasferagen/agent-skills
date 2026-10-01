@@ -9,12 +9,13 @@ of an independent agent evaluation or a live run.
 | --- | --- |
 | A focused-test marker (`.only`, `fit`, `fdescribe`) is found | Reported prominently as a hard finding: it silently skips every unfocused test in its scope (its file in some runners, the whole run in others), so the suite can still report green over a denominator it never names. Removed only with the user's approval. |
 | A skip marker (`.skip`, `xit`, `xdescribe`) is found | An advisory candidate, not a hard finding: the runner still counts the skipped test, so the denominator stays visible. |
-| A fast-subset or fail-fast lane is offered as the verification result | Refused as non-certifying; it stops early or excludes tests by design, so it does not name what it measured. |
 | A fast lane lists its members explicitly | Membership is read as a performance classification, not a coverage exception; the full lane must still select every listed test. |
 | Coverage is run to locate untested branches | Run on the full lane, with the report scoped to the surface under audit; a test elsewhere may cover that surface. |
+| A fast-subset or fail-fast lane is offered as a complete verification result | Reported as partial feedback; it excludes tests by design. |
 | A double answers whatever the code asks it | Named as an unfalsifiable request: the label names, field names, format and exit codes the code claims about an external contract were never checked against the real thing. Distinguished from drift, because there was nothing to drift from. |
 | A cast-shaped stub supplies fewer members than the collaborator's used methods | Treated as correctness evidence that can hide a live branch defect, not as style noise. |
-| An integration test re-proves a rule the inner layer owns | Flagged: the duplicate is slower, fails in pairs so one regression reads as two, and the copies drift until one is quietly wrong. The integration test asserts the rule ran, not what it concluded. |
+| An integration test re-proves a rule the inner layer owns without seeing another boundary | Flagged as overlapping; keep a public-path case and any cases where the boundary changes the outcome. |
+| A native integration test checks independent-session contention that an embedded domain test cannot see | Kept as distinct evidence, even if both tests call the same command. |
 | An integration suite is offered as licence for an untested inner layer | Refused: wiring proved and decisions unproved leaves a green that measured none of the rules it claims to protect. |
 | A 200 response, a no-throw, or a broad snapshot is the only assertion | Flagged as insufficient on its own; the test must be able to fail for the promised behavior. |
 | A test asserts private fields, incidental calls or implementation order | Flagged; observable output or state is the subject. |
@@ -70,6 +71,12 @@ testing conventions to the reading repository, so both consuming projects owned
 them locally with no shared method.
 
 ## Review limits
+
+The 0.3.0 revision narrows the blanket advice about integration-test counts and
+full-suite runs. It was author-reviewed against the scenarios above; no
+independent agent trial or consuming-suite rewrite has tested the revision.
+On 2026-09-30, the current tree passed the package validator (15 packages),
+the system skill validator for `test-audit`, and `git diff --check`.
 
 - No independent agent evaluation has run against these scenarios.
 - Not yet applied to a real suite in either consuming project. The two surfaces

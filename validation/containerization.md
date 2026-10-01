@@ -31,10 +31,19 @@ recorded below; generated container implementations have not been tested.
 | One teardown step fails | Later steps still run; failures are collected, the test failure stays the result, and cleanup alone failing fails the run. | Author review only |
 | The test run is interrupted with Ctrl-C | The same teardown runs, then the process exits with 130. | Author review only |
 | A test calls `docker compose` relying on the caller's environment | Every call passes project name, file and env file, and removes the `COMPOSE_*` variables that could redirect it. | Author review only |
+| A wrapper checks that an environment's fixed port is free, and the container tool publishes it | The tool's own configuration decides the published port, so each environment's value is written where the tool reads it and the check reads it from there. | Reproduced defect and fix in one project |
+| A wrapper passes the project name on every invocation of the container tool | No second copy exists: the value the wrapper passes is the one the tool uses, so no further check is needed. | Author review only |
 | A test Compose file sets `container_name` or a fixed volume name | Flagged: those names escape the project and collide between runs. | Author review only |
 | A test passes a database password with `--env NAME=value` | Moved into the CLI's environment and passed as `--env NAME`, so the value stays off the command line. | Author review only |
 | `compose down` succeeds after a partly failed start | The label sweep and a final listing of leftovers still run; anything left fails teardown. | Author review only |
 | A readiness check connects over the container's local socket | Replaced with a TCP query using a password; the initialization server accepts socket connections before the final server starts. | Author review only |
+| API, migrator and seed use the same runtime files but every test seed requests another image build | Build one service image per run and reuse it with distinct commands and credentials; keep ownership and cleanup scoped to that run. | Author review only |
+| Seed genuinely needs different system packages from the API | Keep a separate image and state why; do not force reuse for its own sake. | Author review only |
+| A stack tool gains a second retained environment beside its development one | The environment names are a closed set; a name outside it is refused rather than passed to a project-scoped command | Author review; one implemented case |
+| A seed or reset command is available for an environment whose data no seed can reproduce | Refused for that environment, decided while the arguments are parsed, so nothing is created | Author review; one implemented case |
+| A confirmation flag for a destructive command is accepted where it has no meaning | Rejected: refuse it outside the case it applies to, so it cannot be carried unnoticed in a script | Author review; one implemented case |
+| One service is pointed at a different environment from its peers | Rejected: one selection chooses the environment for every service, so a half-switched stack cannot be expressed | Author review; one implemented case |
+| A stack has one development environment plus disposable test runs | The new section adds nothing beyond the existing storage and cleanup rules; it does not activate | Author review — non-activating case |
 
 ## Sources and scope
 
@@ -46,7 +55,13 @@ checked for the concrete engine limitations cited in that reference.
 
 ## Verification results
 
-- Package validator: passed on 2026-09-30; 12 installable packages checked.
+The 0.3.0 image-reuse addition was author-reviewed against the two new scenarios
+above. It has not been implemented or timed in a consuming project; the original
+0.1.0 trial and verification below do not establish that it saves time.
+On 2026-09-30, the current tree passed the package validator (15 packages),
+the system skill validator for `containerization`, and `git diff --check`.
+
+- Initial 0.1.0 package validator: passed on 2026-09-30; 12 installable packages checked.
 - System skill quick validation: passed on 2026-09-30 for `containerization`.
 - Whitespace check: `git diff --check` passed on 2026-09-30; new files were
   additionally checked directly before handoff.
@@ -97,3 +112,63 @@ Observed response:
 Result: the response followed the intended guidance for this combined scenario.
 This was a read-only planning trial, not evidence that generated code builds,
 migrations execute or containers work. Other scenarios remain author review only.
+
+## Discovery routing — 2026-09-30
+
+The description was shortened. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.
+
+## Multiple retained environments — 2026-09-30
+
+Version 0.4.0 adds "Separate the environments a stack can run" and moves the
+disposable-profile sentence into it, so the startup section no longer carries
+both lifecycle and environment rules. No requirement was removed: that sentence
+is preserved verbatim in its new home.
+
+The mechanism came from one implemented case rather than a survey. A local
+Compose stack that had served a development project and disposable test runs
+gained a second retained environment for an imported copy of real data. Three
+defects followed from the tool still assuming two kinds of environment:
+
+- Its seed command accepted any project, so it would have written synthetic rows
+  into the environment holding the real copy. The refusal now happens while the
+  arguments are parsed.
+- Its destructive-project guard admitted exactly two name shapes and refused
+  everything else, which was correct but had to be extended deliberately rather
+  than loosened: `compose down --remove-orphans` removes every container of the
+  project it is given, so the closed set is the protection.
+- A published-port default fell back to the development environment's fixed
+  port when an environment did not declare one, which would have collided with
+  the running development stack. At 0.4.0 this was the weakest of the three and
+  was recorded here as an observation, not a rule: it suggested "give each its
+  own published addresses". Version 0.5.0 promotes it, because the predicted
+  collision then happened; see below.
+
+Limits. One project supplied the mechanism, so recurrence is not established.
+The guidance was applied to that project and its refusals were tested there
+without a container engine; it has not been applied to another stack, another
+container tool, or an environment set larger than three. The non-activating case
+in the table above was reasoned through by the author, not observed. Nothing
+here establishes that a generated implementation of this guidance works.
+
+Version 0.5.0 adds the paragraph on what the container tool renders. The 0.4.0
+observation above stopped being a prediction: provisioning that project's second
+retained environment published it on the first environment's ports. The
+environment's own ports existed in the wrapper, which checked that they were
+free, and in the tool's configuration only as commented lines, so the tool used
+its single literal default. The wrapper therefore confirmed that the new port was
+free and published on the old one. Nothing detected it: every refusal was decided
+while the arguments were parsed and tested without a container engine, exactly as
+0.4.0 advises, and no test rendered a published mapping. The defect appeared on
+the first real start of the environment.
+
+The fix wrote each environment's value into the file the tool reads and added a
+check that reads the tool's literal default and requires the first environment's
+file to state exactly it. Commenting the values out again fails that check and
+one existing test. This is what 0.5.0 states as a rule.
+
+Limits. The same project supplied both occurrences, so recurrence across projects
+is still not established, and the mechanism has been exercised with one container
+tool. Published addresses are the observed case; volume names and image tags are
+named as instances of the same mechanism by reasoning, not observation. The rule
+says where a value must be written and what a check must read; it does not
+prescribe a configuration format or a test framework.

@@ -1,8 +1,8 @@
 ---
 name: runtime-operations
-description: "Design and operate credential launchers, local services and encrypted database backups. Use when changing secret custody, execution identities, service start/stop/restart behavior or recovery tooling, and when an operational script spawns a child process, builds its environment, takes arguments or reports a verification result; repository policy owns authorization, deployment and the required recovery evidence."
+description: "Design or change credential handling, local service controls and encrypted database backups. Use for secret custody, execution identities, lifecycle or recovery tooling, and their child-process and verification behavior."
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
 # Runtime operations
