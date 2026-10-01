@@ -2,7 +2,7 @@
 name: containerization
 description: "Build or review independent local service containers, startup, migrations, the environments a local stack can run, and disposable test resources. Use for service images and local stacks; production rollout policy belongs to the project."
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # Containerization
@@ -110,6 +110,14 @@ a script.
 Decide all of this while the arguments are parsed. The refusals are then
 testable without a container engine, and a wrong selection fails before anything
 is created.
+
+Parse time does not settle what the container tool renders. A published address,
+a volume name or an image tag takes effect only where the tool reads it, so
+write each environment's own value into that file or those arguments. A wrapper
+that keeps the value to itself, to check that a port is free or to print an
+address, has not applied it: the tool then falls back to its single default,
+usually the first environment's. Let a check read the value from the artifact
+the tool reads, so the wrapper and the tool cannot disagree unnoticed.
 
 ## Preserve migration history
 

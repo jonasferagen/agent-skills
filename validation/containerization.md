@@ -31,6 +31,8 @@ recorded below; generated container implementations have not been tested.
 | One teardown step fails | Later steps still run; failures are collected, the test failure stays the result, and cleanup alone failing fails the run. | Author review only |
 | The test run is interrupted with Ctrl-C | The same teardown runs, then the process exits with 130. | Author review only |
 | A test calls `docker compose` relying on the caller's environment | Every call passes project name, file and env file, and removes the `COMPOSE_*` variables that could redirect it. | Author review only |
+| A wrapper checks that an environment's fixed port is free, and the container tool publishes it | The tool's own configuration decides the published port, so each environment's value is written where the tool reads it and the check reads it from there. | Reproduced defect and fix in one project |
+| A wrapper passes the project name on every invocation of the container tool | No second copy exists: the value the wrapper passes is the one the tool uses, so no further check is needed. | Author review only |
 | A test Compose file sets `container_name` or a fixed volume name | Flagged: those names escape the project and collide between runs. | Author review only |
 | A test passes a database password with `--env NAME=value` | Moved into the CLI's environment and passed as `--env NAME`, so the value stays off the command line. | Author review only |
 | `compose down` succeeds after a partly failed start | The label sweep and a final listing of leftovers still run; anything left fails teardown. | Author review only |
@@ -136,9 +138,10 @@ defects followed from the tool still assuming two kinds of environment:
   project it is given, so the closed set is the protection.
 - A published-port default fell back to the development environment's fixed
   port when an environment did not declare one, which would have collided with
-  the running development stack. This is the weakest of the three and is not
-  stated as a rule in the skill; it is recorded here as the observation that
-  suggested "give each its own published addresses".
+  the running development stack. At 0.4.0 this was the weakest of the three and
+  was recorded here as an observation, not a rule: it suggested "give each its
+  own published addresses". Version 0.5.0 promotes it, because the predicted
+  collision then happened; see below.
 
 Limits. One project supplied the mechanism, so recurrence is not established.
 The guidance was applied to that project and its refusals were tested there
@@ -146,3 +149,26 @@ without a container engine; it has not been applied to another stack, another
 container tool, or an environment set larger than three. The non-activating case
 in the table above was reasoned through by the author, not observed. Nothing
 here establishes that a generated implementation of this guidance works.
+
+Version 0.5.0 adds the paragraph on what the container tool renders. The 0.4.0
+observation above stopped being a prediction: provisioning that project's second
+retained environment published it on the first environment's ports. The
+environment's own ports existed in the wrapper, which checked that they were
+free, and in the tool's configuration only as commented lines, so the tool used
+its single literal default. The wrapper therefore confirmed that the new port was
+free and published on the old one. Nothing detected it: every refusal was decided
+while the arguments were parsed and tested without a container engine, exactly as
+0.4.0 advises, and no test rendered a published mapping. The defect appeared on
+the first real start of the environment.
+
+The fix wrote each environment's value into the file the tool reads and added a
+check that reads the tool's literal default and requires the first environment's
+file to state exactly it. Commenting the values out again fails that check and
+one existing test. This is what 0.5.0 states as a rule.
+
+Limits. The same project supplied both occurrences, so recurrence across projects
+is still not established, and the mechanism has been exercised with one container
+tool. Published addresses are the observed case; volume names and image tags are
+named as instances of the same mechanism by reasoning, not observation. The rule
+says where a value must be written and what a check must read; it does not
+prescribe a configuration format or a test framework.
