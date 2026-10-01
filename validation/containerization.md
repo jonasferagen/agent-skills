@@ -37,6 +37,11 @@ recorded below; generated container implementations have not been tested.
 | A readiness check connects over the container's local socket | Replaced with a TCP query using a password; the initialization server accepts socket connections before the final server starts. | Author review only |
 | API, migrator and seed use the same runtime files but every test seed requests another image build | Build one service image per run and reuse it with distinct commands and credentials; keep ownership and cleanup scoped to that run. | Author review only |
 | Seed genuinely needs different system packages from the API | Keep a separate image and state why; do not force reuse for its own sake. | Author review only |
+| A stack tool gains a second retained environment beside its development one | The environment names are a closed set; a name outside it is refused rather than passed to a project-scoped command | Author review; one implemented case |
+| A seed or reset command is available for an environment whose data no seed can reproduce | Refused for that environment, decided while the arguments are parsed, so nothing is created | Author review; one implemented case |
+| A confirmation flag for a destructive command is accepted where it has no meaning | Rejected: refuse it outside the case it applies to, so it cannot be carried unnoticed in a script | Author review; one implemented case |
+| One service is pointed at a different environment from its peers | Rejected: one selection chooses the environment for every service, so a half-switched stack cannot be expressed | Author review; one implemented case |
+| A stack has one development environment plus disposable test runs | The new section adds nothing beyond the existing storage and cleanup rules; it does not activate | Author review — non-activating case |
 
 ## Sources and scope
 
@@ -109,3 +114,35 @@ migrations execute or containers work. Other scenarios remain author review only
 ## Discovery routing — 2026-09-30
 
 The description was shortened. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.
+
+## Multiple retained environments — 2026-09-30
+
+Version 0.4.0 adds "Separate the environments a stack can run" and moves the
+disposable-profile sentence into it, so the startup section no longer carries
+both lifecycle and environment rules. No requirement was removed: that sentence
+is preserved verbatim in its new home.
+
+The mechanism came from one implemented case rather than a survey. A local
+Compose stack that had served a development project and disposable test runs
+gained a second retained environment for an imported copy of real data. Three
+defects followed from the tool still assuming two kinds of environment:
+
+- Its seed command accepted any project, so it would have written synthetic rows
+  into the environment holding the real copy. The refusal now happens while the
+  arguments are parsed.
+- Its destructive-project guard admitted exactly two name shapes and refused
+  everything else, which was correct but had to be extended deliberately rather
+  than loosened: `compose down --remove-orphans` removes every container of the
+  project it is given, so the closed set is the protection.
+- A published-port default fell back to the development environment's fixed
+  port when an environment did not declare one, which would have collided with
+  the running development stack. This is the weakest of the three and is not
+  stated as a rule in the skill; it is recorded here as the observation that
+  suggested "give each its own published addresses".
+
+Limits. One project supplied the mechanism, so recurrence is not established.
+The guidance was applied to that project and its refusals were tested there
+without a container engine; it has not been applied to another stack, another
+container tool, or an environment set larger than three. The non-activating case
+in the table above was reasoned through by the author, not observed. Nothing
+here establishes that a generated implementation of this guidance works.

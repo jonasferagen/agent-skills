@@ -1,8 +1,8 @@
 ---
 name: containerization
-description: "Build or review independent local service containers, startup, migrations and disposable test resources. Use for service images and local stacks; production rollout policy belongs to the project."
+description: "Build or review independent local service containers, startup, migrations, the environments a local stack can run, and disposable test resources. Use for service images and local stacks; production rollout policy belongs to the project."
 metadata:
-  version: "0.3.1"
+  version: "0.4.0"
 ---
 
 # Containerization
@@ -72,9 +72,7 @@ start, inspect and stop the local stack. Expose host ports only where the local
 client needs them; containers address dependencies through the stack's network.
 
 Keep durable data in named storage owned by its service. Starting or rebuilding
-must preserve it. A disposable test profile uses separate storage and clearly
-identifies any destructive reset command; do not infer that existing data is
-disposable from a development label.
+must preserve it.
 
 When a test run creates containers, networks, volumes or images, read
 [owned test resources](references/owned-resources.md). It covers run identity
@@ -87,6 +85,31 @@ service can serve its contract. Starting two instances must not race migrations.
 Handle termination, close connections and return failures through exit status.
 Choose one owner for each scheduled job so the container and an external
 orchestrator do not both run the same loop.
+
+## Separate the environments a stack can run
+
+Name the environments the stack serves and make the selection one value: a
+project or profile that chooses every service together, so a half-switched stack
+cannot be expressed. Give each its own storage, credentials and published
+addresses, and keep the selection observable without printing secrets. A
+disposable test profile uses separate storage and clearly identifies any
+destructive reset command; do not infer that existing data is disposable from a
+development label.
+
+Treat the set of names as closed. A project-scoped command such as
+`compose down --remove-orphans` acts on whatever name it is given, so an
+unrecognised name must be refused rather than passed through. That refusal is
+what stands between a typo and another stack's containers.
+
+A command's blast radius depends on which environment is selected, and
+documenting that is not enough. Refuse the commands that repopulate or delete
+data for an environment whose data no seed can reproduce, and refuse their
+confirmation flag where it does not apply, so it cannot be carried unnoticed in
+a script.
+
+Decide all of this while the arguments are parsed. The refusals are then
+testable without a container engine, and a wrong selection fails before anything
+is created.
 
 ## Preserve migration history
 
