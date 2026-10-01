@@ -1,4 +1,9 @@
-# Validation — Capture Pattern
+# Validation — Pattern capture
+
+The current package is `pattern-capture`. The dated trials below retain the
+names installed at the time: `lesson-capture` and `capture-pattern`. The rename
+was checked structurally with the package validator; the earlier discovery trials
+do not test the new invocation name.
 
 ## Expected behavior
 
@@ -17,7 +22,7 @@
 - No source repository is configured: report the missing location and proposed
   home; do not assume a private filesystem path.
 - A lesson is already covered: report the existing home and stop.
-- An explicit `/capture-pattern` request names a small, speculative idea: assess
+- An explicit `/pattern-capture` request names a small, speculative idea: assess
   it even without an opportunistic trigger; preserve uncertainty and scope.
 - A rule has growing exceptions: reconsider its scope or abstraction, while
   keeping distinctions needed to protect required behavior.

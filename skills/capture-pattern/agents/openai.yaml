@@ -1,4 +1,0 @@
-interface:
-  display_name: "Capture Pattern"
-  short_description: "Give an engineering lesson a useful home"
-  default_prompt: "Use $capture-pattern to decide whether this finding generalizes and where it belongs in our skills."

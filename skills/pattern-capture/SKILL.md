@@ -1,11 +1,11 @@
 ---
-name: capture-pattern
+name: pattern-capture
 description: "Assess and capture an engineering pattern when explicitly requested, or when a review, fix or user correction reveals a reusable lesson. Check existing guidance, prefer a simple rule, and improve its home within the authorized scope."
 metadata:
   version: "0.2.0"
 ---
 
-# Capture a reusable pattern
+# Pattern capture
 
 At a natural checkpoint in the current task, consider whether a meaningful
 finding would improve future engineering decisions. Keep the original task
@@ -15,8 +15,8 @@ catalog review.
 An explicit capture request also activates this workflow for small ideas that
 would not warrant that checkpoint. Use the idea named by the user or evident
 in the current discussion; ask only if the intended idea is unclear. In clients
-with native skill invocation, use `$capture-pattern`. A project may also map
-`/capture-pattern [idea]` to this skill in its instructions; that text shortcut
+with native skill invocation, use `$pattern-capture`. A project may also map
+`/pattern-capture [idea]` to this skill in its instructions; that text shortcut
 does not register a native slash command.
 
 ## Decide whether the lesson generalizes

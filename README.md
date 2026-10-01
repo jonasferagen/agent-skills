@@ -50,7 +50,7 @@ as a manual review; automation can grow from actual transitions.
 | [containerization](skills/containerization/SKILL.md) | Building independent local service containers with explicit interfaces, repeatable migrations, disposable database tests and test runs that remove exactly what they create. |
 | [verification-design](skills/verification-design/SKILL.md) | Choose evidence for a change or milestone and consolidate checks by the failures they detect. |
 | [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
-| [capture-pattern](skills/capture-pattern/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
+| [pattern-capture](skills/pattern-capture/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
 | [runtime-operations](skills/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
 
 These groups organize the catalog. Packages remain directly under `skills/`, so
@@ -96,11 +96,11 @@ package. Keep them concise and put the main trigger first. The selected
 open only the references needed for the current decision. Grouping this catalog
 does not itself control which instructions an agent reads.
 
-When installing `capture-pattern`, the consuming project's instructions can add
+When installing `pattern-capture`, the consuming project's instructions can add
 this checkpoint:
 
 > Before finishing an architecture or consolidation review that produced concrete
-> findings, use capture-pattern to assess the strongest reusable candidate against
+> findings, use pattern-capture to assess the strongest reusable candidate against
 > existing guidance. Do the same after a fix or user correction exposes a recurring
 > design issue. Find the authoring source in imported-skill provenance and read
 > only the catalog and likely owner. Report its home or why it stays local.
@@ -111,12 +111,12 @@ location in provenance; never bake a machine-specific path into the skill.
 Reading and proposing guidance can fit a review. Writing the source repository
 or adopting a new pin follows the task's actual authorization.
 
-For explicit requests, invoke `$capture-pattern` with an idea or refer to the
-current discussion. To also accept `/capture-pattern [idea]`, add this project
+For explicit requests, invoke `$pattern-capture` with an idea or refer to the
+current discussion. To also accept `/pattern-capture [idea]`, add this project
 instruction beside the checkpoint:
 
-> Treat `/capture-pattern [idea]` as an explicit request to use the installed
-> capture-pattern skill, even for a small idea. Assess whether it generalizes,
+> Treat `/pattern-capture [idea]` as an explicit request to use the installed
+> pattern-capture skill, even for a small idea. Assess whether it generalizes,
 > prefer the simplest adequate rule and check its existing home. Follow the
 > request's scope when proposing or making changes.
 
@@ -164,7 +164,7 @@ Skills in this repository should meet the standards they teach. Apply relevant
 guidance to the packages, helpers and documentation we maintain here. Start
 with the catalog and the task's actual trigger; load only the selected guidance
 and needed references. For example, use source-of-truth when reconciling copied
-rules, verification-design when selecting evidence, and capture-pattern when
+rules, verification-design when selecting evidence, and pattern-capture when
 assessing a reusable finding or an explicit capture request. Its simplicity
 test also applies to our own rules and exceptions. Report a relevant conflict
 or gap rather than silently exempting the repository.

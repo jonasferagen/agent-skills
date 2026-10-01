@@ -49,7 +49,7 @@ require loading every neighboring package.
 ## Verification and trial results
 
 Package and moved-section verification is recorded below. Fresh-agent results
-are recorded in [Capture Pattern validation](capture-pattern.md). The trial uses the current project, whose milestone work
+are recorded in [Capture Pattern validation](pattern-capture.md). The trial uses the current project, whose milestone work
 has advanced since the original prompt; it does not reconstruct the earlier tree.
 
 Structural verification before the trial:
@@ -85,5 +85,5 @@ The discovery refactor itself applies conditional loading to this catalog.
 Final checks: 16 packages passed repository validation; capture-pattern passed
 the system quick validator; 258 local Markdown paths and heading anchors passed;
 `git diff --check` passed. The explicit small-idea trial also passed, as recorded
-in [Capture Pattern validation](capture-pattern.md). No runtime helper or Mermaid
+in [Capture Pattern validation](pattern-capture.md). No runtime helper or Mermaid
 source changed in this discovery pass.
