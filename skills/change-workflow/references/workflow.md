@@ -164,4 +164,3 @@ Never substitute a name, an issue state, an age or `git branch -d`'s refusal for
 that count. [cleanup.md](cleanup.md) holds why the refusal proves
 nothing, the order the removals go in, this lane's published branch, and the
 conditions that retain a lane instead.
-

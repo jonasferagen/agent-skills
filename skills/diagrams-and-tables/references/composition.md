@@ -229,4 +229,3 @@ overview: intentionally atomic, compact detail here, or canonical detail
 elsewhere. The resulting overview and per-stage details remain one two-altitude
 set. Two altitudes are almost always enough; a subject needing a third wants a
 doc with sections, not a diagram with nesting.
-

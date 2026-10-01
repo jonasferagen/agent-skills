@@ -145,4 +145,3 @@ Set the effort according to the consequences of disagreement.
 
 One growing concept copied across media, whose copies can disagree silently,
 deserves more attention than twenty copies of a stable constant.
-

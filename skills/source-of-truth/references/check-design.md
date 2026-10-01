@@ -38,4 +38,3 @@ requirements two to six as five properties, with examples of checks that violate
 and satisfy each. Read it while writing the check. The project's own policy
 decides whether a check is worth its recurring cost; these requirements keep a
 retained check working as the project changes.
-
