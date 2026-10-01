@@ -1,8 +1,8 @@
 ---
 name: pattern-capture
-description: "Assess and capture an engineering pattern when explicitly requested, or when a review, fix or user correction reveals a reusable lesson. Check existing guidance, prefer a simple rule, and improve its home within the authorized scope."
+description: "Assess and capture reusable lessons from reviews, fixes, user corrections or friction while using a skill, and on explicit request. Check existing guidance, prefer a simple rule, and improve its home within the authorized scope."
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Pattern capture
@@ -29,6 +29,29 @@ confidence but is not a prerequisite. Preserve uncertainty and local tradeoffs.
 Ask whether the guidance would change a future decision. Keep project-specific
 facts and choices in their project. Do not turn a local convention, an untested
 optimization or a user's one-time exception into a universal requirement.
+
+## Learn from using a skill
+
+Repeated tuning, an undocumented workaround or a correction while using a skill
+can reveal missing or misleading guidance. At a natural checkpoint, identify
+the specific observation and check whether the skill already covers it. Routine
+successful use alone does not call for an improvement proposal.
+
+Separate the reusable technique from the tool used to demonstrate it. Describe
+the required outcome and conditions; make a tool mandatory only when the
+technique genuinely depends on it. Keep renderer- or environment-specific
+observations scoped to those conditions.
+
+Before promoting a candidate to guidance, reproduce the original problem and
+improvement, then check another relevant case and a case outside its scope as
+appropriate to the claim. Preserve required behavior and meaningful distinctions.
+If evidence is missing, record the candidate and the validation still needed;
+do not present it as an established rule.
+
+When source maintenance is outside the task's scope, offer the concrete candidate
+and its validation step to the user, asking whether to pursue it. When already
+authorized, carry out the scoped change and checks. A useful offer names what
+was learned and where it belongs; avoid a generic question after every skill use.
 
 ## Prefer the simplest adequate rule
 

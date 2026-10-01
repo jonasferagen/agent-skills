@@ -146,3 +146,35 @@ without loading the catalog, and one reached "already covered" where the other
 proposed an addition. Two runs exercise the project checkpoint. Neither
 establishes selection from refreshed host metadata, and a second passing run
 does not measure the rate across repeated runs.
+
+
+## Feedback from skill use — 2026-09-30
+
+Version 0.3.0 adds friction during skill use to the description and an explicit
+feedback assessment. The source authoring instructions and README installation
+example carry the trigger outside the skill body. Clear Writing was applied to
+keep the observation, proposal, authorization and evidence distinct.
+
+Manual scenario review against the instructions:
+
+- Repeated diagram tuning reveals an undocumented layout technique: identify
+  the mechanism, inspect existing drawing guidance and propose validation on
+  the original and another relevant case before asserting a general rule.
+- Playwright happens to be the inspection tool: preserve the outcome (a legible
+  render at the actual reading width); this observation does not justify making
+  that tool mandatory.
+- A renderer-specific workaround: retain its renderer conditions and check an
+  out-of-scope case rather than broadening it to every renderer.
+- Ordinary successful rendering: no generic improvement question or capture pass.
+- Source maintenance is not authorized: offer the concrete candidate and needed
+  validation. Already authorized maintenance continues without another approval.
+
+These are manual instruction checks, not new agent activation trials. The user's
+reported diagram session was not available as an artifact or tool trace; no new
+diagram technique is claimed to have been reproduced. Existing diagram guidance
+already uses tool-neutral verification. No diagram instructions were changed.
+Plugin refresh and consumer repins are separate from this source change.
+
+Checks: repository validation passed for all 16 packages; the system skill quick
+validator passed for pattern-capture; `git diff --check` passed. No helper code
+or diagram changed, so no runtime or rendering check was needed for this edit.

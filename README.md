@@ -106,6 +106,12 @@ this checkpoint:
 > only the catalog and likely owner. Report its home or why it stays local.
 > Routine lookups and literal edits do not need this checkpoint.
 
+Also route to pattern-capture when skill use reveals repeated friction, an
+undocumented workaround or a correction that suggests missing guidance. Keep
+this trigger in project or personal instructions so it is available before the
+skill body is loaded. Load pattern-capture when the trigger applies; ordinary
+successful skill use needs no capture pass.
+
 Use a local link to the installed skill in that instruction. Put the source
 location in provenance; never bake a machine-specific path into the skill.
 Reading and proposing guidance can fit a review. Writing the source repository
