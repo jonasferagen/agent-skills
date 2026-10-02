@@ -19,6 +19,7 @@ Part of the [project-foundation collection](collections/project-foundation/COLLE
 | Skill | Use it for |
 | --- | --- |
 | [Project bootstrap](collections/project-foundation/skills/project-bootstrap/SKILL.md) (`project-bootstrap`, draft) | Start a repository and establish boundaries, policy and overview, with an entry README. |
+| [Git worktrees](collections/project-foundation/skills/git-worktrees/SKILL.md) (`git-worktrees`) | Use task worktrees for repository edits, with exceptions owned by repository policy. |
 | [Project policy](collections/project-foundation/skills/project-policy/SKILL.md) (`project-policy`) | Establish which requirements apply from users, data, exposure, lifetime, compatibility and recovery needs; assess changes to those requirements. |
 | [Project documentation](collections/project-foundation/skills/project-docs/SKILL.md) (`project-docs`) | Decide where knowledge belongs and keep it current. |
 | [Authoritative definitions](collections/project-foundation/skills/source-of-truth/SKILL.md) (`source-of-truth`) | Give each rule a home and derive or check its other appearances. |
@@ -28,6 +29,12 @@ overview, plus README and agent routes. Project-policy interprets those facts an
 reviews their consequences when circumstances change. The collection supplies
 the authoring guidance; the templates are not standalone manuals. Existing
 projects keep their established document homes.
+
+The foundation uses task worktrees for edits in Git repositories unless local
+instructions explicitly opt out, for example for a deliberately single-agent
+project. Work outside Git proceeds directly. Bootstrap places this default and
+the Git skill route in project instructions; existing installations receive it
+when their collection and instruction hook are deliberately updated.
 
 The project policy owns requirements; procedures and evidence live in their
 existing guides and records. Every policy change receives an impact assessment.
@@ -80,7 +87,6 @@ Source directory: `skills/workflow/`.
 
 | Skill | Use it for |
 | --- | --- |
-| [change-workflow](skills/workflow/change-workflow/SKILL.md) | Taking a change from an isolated worktree through synchronization, verification, merge and cleanup. |
 | [pattern-capture](skills/workflow/pattern-capture/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
 
 ## Languages and runtimes
@@ -385,31 +391,11 @@ citations were redirected as in test-audit — two carried substance now stated 
 place, and whether a check earns its recurring cost defers to the reading
 project's own policy.
 
-**change-workflow** merges the owner's Forge Agent Kit `worktree` and `reconcile`
-skills, imported on 2026-09-29 and pinned at
-`c98147a115a30f36b952df5faf1c869b54480c59`. It covers one change's whole path: a
-worktree before the first write, keeping current by merge, the finishing pass a
-rename or deletion owes, what counts as evidence about the tree that will actually
-merge, cleanup against a containment count, and the hand-back that reports it. The
-upstream packages were coupled to the owner's Forge fleet, and that coupling was
-removed rather than softened — the landing-door contract and its operations
-scripts, the lane lock and claim protocol, the container model in which the
-integration lane is what the container runs from, and the fleet-shaped
-authorization matrix. Seven Forge Project Policy citations were redirected: four
-carried substance now stated in place, and three defer to the reading project's own
-policy. Upstream's licence to treat undeclared state as disposable was inverted
-rather than imported, because that policy opens by declaring nothing is in
-production while both consumers are. Three divergences against Personal Atlas's own
-newer reduced extraction of the same skills were settled deliberately, the sharpest
-being the hand-back rule that a field empty by construction is omitted while one
-that could have carried content reports `none`. Upstream's `handoff` skill was read
-and left out: orienting work that has not started is the opposite of reporting work
-that finished. **This is a discipline a project opts into**, which the skill says in
-its own text; whether a project authors in worktrees is that project's policy
-decision, and it is registered in no consuming project. Example requests: "Use
-$change-workflow to open a lane for this fix", "Use $change-workflow — this branch is
-green, what does landing it still owe?" See
-[validation and alignment](validation/change-workflow.md).
+**change-workflow** was retired on 3 October 2026. It combined Git worktree
+operations with verification, document maintenance, tracker procedures and
+reporting conventions. Its [validation history](validation/change-workflow.md)
+retains the source provenance and review evidence; the former package remains in
+Git history.
 
 **diagrams-and-tables**, named `diagrams` until 2026-09-30, merges the owner's
 Forge Agent Kit `diagrams` skill, at `c98147a115a30f36b952df5faf1c869b54480c59`,

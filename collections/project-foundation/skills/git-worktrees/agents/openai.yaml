@@ -1,0 +1,3 @@
+interface:
+  display_name: "Git worktrees"
+  short_description: "Use task worktrees and preserve repository work"

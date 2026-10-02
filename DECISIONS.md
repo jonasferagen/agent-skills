@@ -3,6 +3,33 @@
 Keep structural decisions and unresolved ideas here. Detailed trial evidence
 belongs in `validation/`. A follow-up idea is not an adopted requirement.
 
+## 3 October 2026
+
+### Retire change-workflow — completed
+
+Remove the standalone package and active catalog entry at the owner's request.
+Its broad workflow is not needed. Preserve the [validation and retirement
+review](validation/change-workflow.md) and Git history; do not transfer its merge,
+publishing, tracker or reporting requirements into another package.
+
+### Make task worktrees a foundation default — adopted
+
+Use a separate task worktree for edits in Git repositories. Only repository-local
+instructions can opt out, for example for a deliberately single-agent project.
+Work outside Git proceeds directly; a spike needs no repository merely to
+satisfy this rule. Small tasks and an agent working alone do not create implicit
+exceptions.
+
+The collection's [Git worktrees skill](collections/project-foundation/skills/git-worktrees/SKILL.md)
+owns the short shared procedure. Bootstrap installs a visible rule and concrete
+skill route in each project's instructions. Local policy owns exceptions, and
+existing installations adopt the rule through an explicit collection and hook
+update. The authoring repository uses the same route.
+
+Git worktrees starts at unreleased version 0.1.0. Project bootstrap becomes 2.0.0
+because the default for repository edits and generated instructions changes.
+No release tag or downstream installation is updated by this source change.
+
 ## 2 October 2026
 
 ### Group packages by the task that selects them — adopted
@@ -52,8 +79,6 @@ Containerization's narrowed scope is version 1.0.0; the two new packages start a
   systemd implementations.
 - Consider separating consistency-check design from source-of-truth, with a home
   under verification.
-- Review general completion and handoff guidance inside change-workflow separately
-  from its adopted Git worktree workflow.
 - Clarify documentation ownership versus domain modeling in project-docs.
 - Decide user-wide installation after the responsibilities settle.
 

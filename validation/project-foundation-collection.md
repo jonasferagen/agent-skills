@@ -1,5 +1,15 @@
 # Validation — Project foundation collection
 
+## Git worktree default — 3 October 2026
+
+Git worktrees joins the collection at unreleased version 0.1.0. Project bootstrap
+2.0.0 installs its rule and concrete route in project instructions. Repository
+edits use task worktrees unless local policy explicitly opts out; work outside
+Git proceeds directly. Existing installed copies and instruction hooks require
+deliberate updates. See [Git worktrees validation](git-worktrees.md) for evidence.
+
+The dated sections below describe earlier collection revisions.
+
 ## Scope — 2 October 2026
 
 The collection replaces independent installation for project-bootstrap,

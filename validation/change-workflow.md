@@ -1,5 +1,37 @@
 # Validation and alignment — Change Workflow
 
+Status: retired on 3 October 2026 at the owner's request. The former package is
+preserved in Git history. The scenarios and reviews below describe that retired
+package; they are not current operating instructions.
+
+## Retirement review — 3 October 2026
+
+The package mixed Git operations, project policy, verification, documentation,
+tracker procedures and reporting. The owner chose to delete it rather than retain
+that workflow. No downstream installation was updated or removed by this change.
+
+Review used the package at source commit
+`9aadc441cd69e55035fca9823d41bfc2add5a615`. Two problems were reproduced in a
+synthetic repository with a local bare remote, without contacting a hosting
+service:
+
+- The freshness check recorded the candidate and remote tracking ref, but the
+  landing merged into the local default branch. A local default-branch commit
+  left both recorded comparisons unchanged. Candidate and base checks each
+  passed; their conflict-free merge and push succeeded while the combined
+  behavior failed its check.
+- The closing-keyword check appeared after merge and push. A commit containing
+  `Fixes #17` was visible in `main..feature` before merge; the same range was empty
+  afterward. No external issue was opened or closed in this reproduction.
+
+The temporary reproduction and exact object IDs were recorded in
+`/tmp/change-workflow-review-6glod0uf/evidence.json`. This account retains the
+material findings without depending on that temporary directory.
+
+The retirement removes the package and its active catalog entry. Historical
+mentions in dated reviews remain evidence of the former package.
+
+
 ## Behavioral scenarios
 
 These describe expected outcomes. They are author-reviewed scenarios, not claims

@@ -1,5 +1,15 @@
 # Validation — Project bootstrap
 
+## Git worktree default — 3 October 2026
+
+Unreleased version 2.0.0 applies the collection's Git worktree rule before
+repository edits and installs the rule and skill link in generated instructions.
+Existing repository-local exceptions remain authoritative. A directory outside
+Git does not acquire a repository unless creating one is within the task.
+
+The [Git worktrees validation](git-worktrees.md) records the shared behavior and
+practical trials. Earlier bootstrap results below predate this default.
+
 ## Collection adoption — 2 October 2026
 
 The current entry point belongs to the project-foundation collection. See

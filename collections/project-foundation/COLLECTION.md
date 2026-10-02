@@ -7,13 +7,14 @@ for consumption. Follow provenance to the source only when the task needs source
 maintenance, an upgrade or investigation of a concrete source issue.
 
 Install this directory as one dependency. It contains the bootstrap workflow,
-project documentation and policy skills, source-of-truth, their authoring skills,
-and the templates they interpret. Preserve the directory layout so relative
-references work.
+Git worktree guidance, project documentation and policy skills, source-of-truth,
+their authoring skills and the templates they interpret. Preserve the directory
+layout so relative references work.
 
 | Task | Entry point |
 | --- | --- |
 | Start the project foundation | [Project bootstrap](skills/project-bootstrap/SKILL.md) |
+| Start or resume edits and preserve repository work | [Git worktrees](skills/git-worktrees/SKILL.md) |
 | Interpret policy facts and review changed circumstances | [Project policy](skills/project-policy/SKILL.md) |
 | Organize and reconcile project documents | [Project documentation](skills/project-docs/SKILL.md) |
 | Keep authoritative decisions and their consumers aligned | [Source of truth](skills/source-of-truth/SKILL.md) |
@@ -22,6 +23,11 @@ references work.
 | Record an observed obstacle during work | [Friction capture](references/friction.md) |
 
 Project work follows [foundation authority guidance](references/foundation-authority.md).
+Edits in Git repositories use task worktrees unless repository-local instructions
+explicitly opt out. Work outside Git proceeds directly. Bootstrap puts this rule
+and the [Git worktrees route](skills/git-worktrees/SKILL.md) in project instructions
+so it is visible before the first edit; installation alone does not activate it.
+
 For a question about an existing document, consult its owner and relevant terms.
 A literal wording edit that preserves meaning needs a focused edit check. Neither
 task needs an authoring workflow merely because it involves prose. A replacement
