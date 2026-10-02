@@ -127,3 +127,8 @@ baseline, exercise a large ER that still needs decomposition, and repeat a nearb
 prose task. Check preserved semantics and verification duties as well as reading
 cost. No routing change is bundled into this evidence commit. Collection
 dependency packaging and a fresh-agent correction handoff remain separate trials.
+
+## ER routing follow-up — 2 October 2026
+
+The [ER routing trial](er-routing.md) tests a direct ER route, conditional
+large-model guidance, and reading an existing model without diagram construction.

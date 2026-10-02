@@ -2,7 +2,7 @@
 name: diagrams-and-tables
 description: "Choose prose, tables or diagram types for an explanation, and route construction or review to the relevant visual guidance. Use when selecting a form or creating or reviewing a visual."
 metadata:
-  version: "0.5.0"
+  version: "0.6.0"
 ---
 
 # Diagrams and tables
@@ -39,13 +39,14 @@ construction references. Preserve its columns, meaning and uncertainty. Stop her
 when the task is only form selection.
 
 - To design or restructure a table, read [tables](references/tables.md).
-- To create or restructure a diagram, read [composition](references/composition.md)
-  and [verification](references/verification.md) for detail, grounding and visual checks.
-- For an ER diagram, also read [ER guidance](references/er-diagrams.md); other
-  diagram tasks need not load schema decomposition rules.
-- If implementing that diagram in Mermaid, also read [drawing](references/drawing.md).
-- To review an existing diagram, read verification; add composition when its
-  structure needs work and drawing when Mermaid syntax or layout is involved.
+- When the form is already ER, go directly to [ER guidance](references/er-diagrams.md).
+  It separates reading, semantic review, construction and large-view work; do not
+  also load general composition or Mermaid drawing guidance by default.
+- For other diagram construction, read [composition](references/composition.md)
+  and [verification](references/verification.md); add
+  [drawing](references/drawing.md) when implementing in Mermaid.
+- For visual review, read verification; add the relevant construction reference
+  only when structure or notation needs work.
 - Use [worked examples](references/worked-examples.md) only when the chosen form
   needs an example.
 

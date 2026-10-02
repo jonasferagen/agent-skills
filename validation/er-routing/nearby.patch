@@ -1,0 +1,7 @@
+diff --git a/README.md b/README.md
+index 0992891..fe53e5a 100644
+--- a/README.md
++++ b/README.md
+@@ -3 +3 @@
+-A bounded database design experiment. No implementation exists.
++A bounded database design experiment. Nothing is implemented yet.

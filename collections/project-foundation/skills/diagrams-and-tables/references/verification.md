@@ -26,6 +26,19 @@ instances of one type, name their roles — *parent task* and *subtask* — rath
 than repeating the type name. Do not let a layout group read as a domain entity it
 is not.
 
+## Find the renderer when needed
+
+For diagram construction or visual review, inspect the project’s documented
+preview/build command and relevant package scripts or configuration first. Use
+that renderer when available. Otherwise check for an existing compatible local
+tool. Record the renderer/version used when it affects syntax or layout claims.
+A repository containing Mermaid text alone does not establish a render command.
+
+If no renderer is available, report source review separately from unperformed
+parse and visual checks. Follow the task’s dependency/network constraints; do not
+add an application dependency solely for documentation. Reading a model or
+reviewing only its semantics needs no renderer search.
+
 ## Verify that it reads
 
 A parse is not a readability check, and neither is your own satisfaction with the

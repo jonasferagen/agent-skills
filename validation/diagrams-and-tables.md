@@ -228,3 +228,8 @@ Author review checked that a validation pipeline selects flowchart, request/repl
 ordering selects sequence, one object's allowed transitions select state, and
 stored entity relationships select ER. These are author-reviewed selection cases,
 not additional agent trials. No changed diagram was rendered.
+
+## ER routing follow-up — 2 October 2026
+
+The [ER routing trial](er-routing.md) tests a direct ER route, conditional
+large-model guidance, and reading an existing model without diagram construction.

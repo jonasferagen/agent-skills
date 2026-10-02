@@ -7,7 +7,9 @@ project prose. For agent instructions, also use its
 Before a substantive explanation, use
 [diagrams-and-tables](../skills/diagrams-and-tables/SKILL.md) to choose whether
 prose, a table or a diagram carries the information best. Follow its references
-when constructing the selected form. Filling an existing scaffold table needs
+when constructing the selected form. When the task already selects a form,
+use that route directly; an ER task needs the ER reference, not a new comparison
+of diagram types. Filling an existing scaffold table needs
 only the entrypoint; diagram composition and rendering are conditional on actual
 diagram work. Ordinary table edits need no Mermaid tooling.
 

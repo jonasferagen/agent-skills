@@ -1,0 +1,133 @@
+diff --git a/README.md b/README.md
+index 60c3698..310ae10 100644
+--- a/README.md
++++ b/README.md
+@@ -3,0 +4,10 @@ A bounded database design experiment. No implementation exists.
++
++## Document owners
++
++- [Project instructions](AGENTS.md) own this trial's scope and restrictions.
++- [Supplied brief](brief.md) owns the retrieval questions and supplied facts.
++- [Model proposal](docs/database/model.md) owns the canonical ER view, provisional relationships, blocking choices and verification record.
++- [Domain glossary](docs/project/glossary.md) owns term meanings.
++- [Retrieval scenarios](docs/database/scenarios.md) own synthetic cases and expected answers under the proposal.
++
++Start with the model, then use the scenarios to challenge its assumptions.
+diff --git a/docs/database/model.md b/docs/database/model.md
+new file mode 100644
+index 0000000..84b4232
+--- /dev/null
++++ b/docs/database/model.md
+@@ -0,0 +1,47 @@
++# Provisional database model
++
++Status: conceptual proposal for this trial; no adopted schema or implementation.
++Date: 2026-10-02. Revision: 1.
++
++This model can answer both [supplied retrieval questions](../../brief.md) under the assumptions below. PostgreSQL is selected by [project instructions](../../AGENTS.md); representation and implementation remain deferred. [Term meanings](../project/glossary.md) and [synthetic scenarios](scenarios.md) have separate owners.
++
++## Known facts and provisional assumptions
++
++The supplied entities are organisation, agreement and service. Participant roles and all relationship cardinalities remain undecided. For a small worked proposal:
++
++- A1: An agreement involves one or more organisations. An organisation can participate in zero or more agreements. This is a hypothesis to exercise retrieval, not a conclusion from missing requirements.
++- A2: Each agreement covers exactly one service. A service can be covered by zero or more agreements. The brief's singular wording motivates this hypothesis but does not settle cardinality.
++- A3: Involvement means a direct agreement–organisation relationship. It carries no inferred provider, customer, payer or permission role. The retrieval returns each agreement once even if later modeling introduces several roles for a participant.
++- A4: Each entity has an identity independent of its name. Synthetic identifiers below distinguish entities; storage types and identifier generation are undecided.
++
++## Canonical ER view
++
++Conceptual and provisional: **every cardinality below is assumed under A1–A2**. There are no implemented keys or tables in this view. Crow's-foot ends describe the entity next to them: `||` exactly one, `o{` zero or more, `}|` one or more. Dashed edges use Mermaid’s non-identifying notation; here they are illustrative only, with identity dependence deferred.
++
++```mermaid
++erDiagram
++    ORGANISATION }|..o{ AGREEMENT : "participates in (A1)"
++    SERVICE ||..o{ AGREEMENT : "is covered by (A2)"
++```
++
++For one agreement, follow participation to its organisations and coverage to its single service. For one organisation, reverse participation to retrieve its agreements, then follow coverage for each agreement. No direct organisation–service relationship is proposed: participation alone does not establish who supplies a service.
++
++Agreement participation and coverage are agreement-scoped facts. Organisation and service identity and naming belong to those respective concepts. Renaming does not change identity. Withdrawal, deletion, corrections and historical retention have no decided lifecycle rules; this read-only exercise does not invent them.
++
++## Choices blocking implementation
++
++1. Decide whether an agreement may have no participants, exactly one, or several; decide whether an organisation may have no agreements. This can invalidate A1 and affects required links.
++2. Define participation and its roles: which roles exist, whether they are required, and whether the same organisation can have several roles in one agreement. This determines whether a separate participation concept is needed.
++3. Decide whether an agreement may cover zero or several services and whether a service may be shared by agreements. This can invalidate A2 and changes the coverage relationship.
++4. Decide stable identifier policy, duplicate recognition and relationship uniqueness before choosing PostgreSQL representation. Names cannot serve as identity merely because the examples use distinct labels.
++5. Decide correction, withdrawal, deletion and retention behavior before any maintained implementation needs those operations.
++
++The next bounded task is to resolve participation and coverage meaning against the counterexamples, then revise this model and its scenarios together. No external owner is contacted during this trial.
++
++## Verification record
++
++2026-10-02: Reviewed both ER ends against A1–A2 and traced the two retrieval paths through the synthetic cases. Checked local documentation links and whitespace. Only one canonical ER source is maintained.
++
++No project preview/build configuration or local `mmdc` command was found. Mermaid parsing, rendered readability and theme checks were not performed. No runtime, SQL, migration, provisioning, permission or seed-loading behavior was tested. The proposal is not implementation-ready.
++
++Verification friction: the local `python` alias was absent; the documentation link check succeeded with `python3`. A word-count audit unnecessarily opened all installed guidance files to count words, although only relevant guidance text was reviewed. Future audits should use an explicit read manifest. Renderer absence leaves visual verification outstanding.
+diff --git a/docs/database/scenarios.md b/docs/database/scenarios.md
+new file mode 100644
+index 0000000..81867d7
+--- /dev/null
++++ b/docs/database/scenarios.md
+@@ -0,0 +1,38 @@
++# Retrieval scenarios
++
++Status: synthetic reasoning cases under the [provisional model](model.md).
++Date: 2026-10-02. Revision: 1.
++
++All identifiers and names here are fabricated. Expected answers exercise assumptions, not SQL or runtime behavior.
++
++## Ordinary case: shared participation and coverage
++
++Inputs: organisation O-1 “Example Amber” and organisation O-2 “Example Birch” both participate in agreement A-1. O-1 also participates in A-2. A-1 and A-2 each cover service S-1 “Example inspection”. Organisation O-3 “Example Cedar” has no agreements. Service S-2 “Example cataloguing” has no agreements.
++
++- Given O-1, retrieve A-1 and A-2 exactly once each. Given O-2, retrieve A-1. Path: organisation → participation → agreement. This exercises A1 and A3.
++- For A-1 and A-2, retrieve S-1 for each. Path: agreement → coverage → service. This exercises A2, including one service shared by agreements.
++- Given O-3, retrieve no agreements. S-2 appears in no agreement's coverage result. These exercise the optional ends of A1–A2.
++
++## Identity counterexample
++
++Inputs: rename O-1 to “Example Birch”, retaining its identifier and participation. O-2 still has that same label and its own identifier.
++
++Expected: the results for O-1 and O-2 remain as above. Name-only lookup is ambiguous and must not merge them. Path: identified organisation → participation → agreement. This exercises A4; name search and disambiguation behavior remain outside scope.
++
++## Missing participant counterexample
++
++Input: proposed A-3 covers S-1 but has no organisation.
++
++Expected under A1: A-3 cannot be represented as an admissible agreement. Whether the domain must allow this case is unresolved. The organisation → participation → agreement path cannot discover it from any organisation. This case challenges the agreement's minimum participation, rather than proving empty agreements are forbidden in the actual domain.
++
++## Several services counterexample
++
++Input: proposed A-4 involves O-1 and covers both S-1 and S-2.
++
++Expected under A2: this case violates the single-service assumption; there is no justified choice of just one result. If the domain permits it, agreement → coverage → service must return both, and the canonical model must change. Real-domain acceptance remains unresolved.
++
++## Multiple participant roles counterexample
++
++Input: O-1 participates in A-1 in two proposed, unnamed capacities.
++
++Expected for the supplied retrieval question: A-1 still appears once for O-1 under A3. Whether the capacities are valid or need separate relationships cannot be answered until roles are defined. Path: organisation → participation → distinct agreement. Role-specific retrieval is not supported by this proposal.
+diff --git a/docs/project/glossary.md b/docs/project/glossary.md
+new file mode 100644
+index 0000000..f66c7cb
+--- /dev/null
++++ b/docs/project/glossary.md
+@@ -0,0 +1,15 @@
++# Domain glossary
++
++Status: provisional meanings for the bounded trial.
++Date: 2026-10-02. Revision: 1.
++
++The [model](../database/model.md) owns relationships, assumptions and blocking choices.
++
++- **Organisation:** An identifiable organisational participant that may be linked to an agreement. A shared or changed name does not establish shared or changed identity. Its legal form is unspecified.
++- **Agreement:** An identifiable arrangement involving organisations and covering a service under the provisional model. No legal status, validity period or document format is implied.
++- **Service:** The identifiable subject covered by an agreement. Its granularity and classification are undecided.
++- **Participation / involvement:** A direct relationship between an organisation and an agreement. Its role meaning remains open; it is not an operational permission or a claim that the organisation supplies the service.
++- **Coverage:** The relationship saying which service an agreement concerns. Multiplicity belongs to the model's provisional assumptions.
++- **Identifier:** A reference that distinguishes an entity independently of its label. Example identifiers are synthetic notation, not a storage or generation decision.
++
++Participation and coverage are relationship terms, not additional adopted entities or database tables.

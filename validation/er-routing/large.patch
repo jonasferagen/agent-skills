@@ -1,0 +1,115 @@
+diff --git a/docs/database/model.md b/docs/database/model.md
+new file mode 100644
+index 0000000..5807f34
+--- /dev/null
++++ b/docs/database/model.md
+@@ -0,0 +1,109 @@
++# Atlas conceptual model
++
++This canonical diagram set explains the supplied synthetic model in
++[the brief](../../brief.md). It describes conceptual relationships; no schema or
++application implementation exists. The three ownership roots are ORGANISATION,
++AGREEMENT and SERVICE. No relationships exist beyond those shown here.
++
++## Root overview
++
++How do the roots relate? Each agreement belongs to exactly one organisation and
++covers exactly one service. Organisations and services may each have no agreements.
++
++```mermaid
++erDiagram
++    ORGANISATION ||--o{ AGREEMENT : "has"
++    SERVICE ||--o{ AGREEMENT : "is covered by"
++```
++
++Read `||` as exactly one and `o{` as zero or more at the adjacent entity.
++The lines express the supplied associations and ownership; they do not specify
++keys or deletion behavior.
++
++Each root has compact detail in this document:
++
++- [ORGANISATION](#organisation) opens its owned detail.
++- [AGREEMENT](#agreement) opens its owned detail.
++- [SERVICE](#service) opens its owned detail.
++
++The detail views omit the root-to-root links already owned by this overview.
++
++## ORGANISATION
++
++What detail does an ORGANISATION own? Every child has exactly one ORGANISATION;
++an ORGANISATION may have zero or more of each child type.
++
++```mermaid
++erDiagram
++    ORGANISATION ||--o{ ADDRESS : "owns"
++    ORGANISATION ||--o{ CONTACT : "owns"
++    ORGANISATION ||--o{ IDENTIFIER : "owns"
++    ORGANISATION ||--o{ MEMBERSHIP : "owns"
++    ORGANISATION ||--o{ NOTE : "owns"
++```
++
++[Return to root overview](#root-overview).
++
++## AGREEMENT
++
++What detail does an AGREEMENT own? Every child has exactly one AGREEMENT;
++an AGREEMENT may have zero or more of each child type.
++
++```mermaid
++erDiagram
++    AGREEMENT ||--o{ CLAUSE : "owns"
++    AGREEMENT ||--o{ AMENDMENT : "owns"
++    AGREEMENT ||--o{ ATTACHMENT : "owns"
++    AGREEMENT ||--o{ MILESTONE : "owns"
++    AGREEMENT ||--o{ SIGNATURE : "owns"
++```
++
++[Return to root overview](#root-overview).
++
++## SERVICE
++
++What detail does a SERVICE own? Every child has exactly one SERVICE;
++a SERVICE may have zero or more of each child type.
++
++```mermaid
++erDiagram
++    SERVICE ||--o{ CATEGORY_ASSIGNMENT : "owns"
++    SERVICE ||--o{ OFFERING : "owns"
++    SERVICE ||--o{ REGION_ASSIGNMENT : "owns"
++    SERVICE ||--o{ SERVICE_NOTE : "owns"
++    SERVICE ||--o{ SERVICE_IDENTIFIER : "owns"
++```
++
++[Return to root overview](#root-overview).
++
++## Synthetic reasoning checks
++
++These examples exercise the supplied relationships without executing a schema.
++
++- **Find the service covered by an organisation's agreements.** Given organisation
++  O1 with agreements A1 and A2, both covering service S1, following
++  ORGANISATION → AGREEMENT → SERVICE returns S1 through both agreements. Multiple
++  agreements may cover the same service. An organisation O2 with no agreements
++  returns no services along this path.
++- **Find owned detail.** Given agreement A1 with clauses C1 and C2, following
++  AGREEMENT → CLAUSE returns both clauses. A2 with no clauses returns none.
++  Assigning C1 to both A1 and A2 would violate its exactly-one-owner rule. The
++  same cardinality check applies to every child type in the three detail views.
++- **Reject a missing root.** An agreement without an organisation or without a
++  service contradicts the overview. A service with no agreements is permitted.
++
++## Scope and verification
++
++The views account for all 18 entities and all 17 supplied relationships: two
++between roots and five owned-child relationships per root. All three overview
++roots are opened here, with each relationship drawn once. No attributes, keys,
++data types or lifecycle rules have been inferred.
++
++Source cardinalities, entity names, view sizes and local navigation were checked
++against the brief. No project renderer configuration or local `mmdc` command was
++found. Mermaid parsing, rendered readability and theme checks remain unperformed.
++No network, installation, application runtime or schema execution was used.
++
++PostgreSQL is selected in [project guidance](../../AGENTS.md); its representation
++is outside this conceptual task. A later implementation task would need explicit
++identity, attribute, key and lifecycle decisions before choosing that representation.
