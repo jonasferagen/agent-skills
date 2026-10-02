@@ -117,3 +117,39 @@ made no policy review or revision change. This supports the warm-context route;
 a cold-start everyday task has not yet been tested. No substantive instruction
 conflict was reported. The parent did not independently reproduce each behavioral
 check, and one trial does not establish reliable discovery or general savings.
+
+## Table-route rerun — 2 October 2026
+
+A fresh subagent repeated the same bootstrap and routine-edit task against
+`de05d8f31ba8fb52dab187a8cb40ed167647c40d`, without the previous reports or real
+Atlas documents. The source change moved table guidance to its own reference and
+put initial form selection in the visual skill entrypoint. The extracted table
+rules were checked against the previous source and preserved unchanged.
+
+Artifacts: `/tmp/atlas-bootstrap-trial-two-iCW2L2/atlas`; local trial commit
+`7c42345`. The parent reviewed the generated README, AGENTS, foundation documents
+and provenance. The subagent reported 88 valid links/anchors, 34 collection files
+matching the pinned source exactly, no leftover project placeholders and clean
+whitespace. Stack, storage, interface and product details remained open; the
+agreement slice stayed proposed. No application, runtime validation or network
+activity was introduced. Real Atlas was unchanged.
+
+| Reading measure | Previous trial | Table-route trial |
+| --- | ---: | ---: |
+| Initial instruction/template files | 17 | 17 |
+| Initial words | 8,496 | 6,908 |
+| Routine-edit reread words | 254 | 296 |
+
+The second trial read the 505-word tables reference instead of the 2,221-word
+composition reference. Total initial reading fell by 1,588 words, about 19%.
+These are observed whitespace-word counts from two separate runs, not a controlled
+estimate of context tokens or execution time. Counts exclude generated-file review
+and machine-only scans. Both routine edits reused warm-context guidance and loaded
+no new skill files or foundation documents.
+
+Remaining observed friction: project-docs still explicitly routes this table-only
+bootstrap to its diagram-placement reference. Consider making that read conditional
+on an actual diagram or diagram ownership question. No new operational conflict
+was reported. Broader guidance reading remains material; a cold-context ordinary
+task and an actual policy transition still need trials. No additional skill change
+was made in response to this run.
