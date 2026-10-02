@@ -161,3 +161,12 @@ edits do not automatically trigger trials.
 Measure actual reads and their relevance, missed obligations and preserved task
 constraints. Compare equivalent tasks rather than imposing a universal word
 budget. Source-authoring and installed-consumer routes need separate checks.
+
+### Friction capture available in the collection — adopted
+
+Include a conditional reference and generated project-instruction trigger for
+observed friction. Capture task, obstacle, consequence and disposition in existing
+project notes; ordinary successful work needs no report. Reusable guidance still
+requires assessment, through pattern-capture when available. The first continuation
+trial is recorded with the Atlas experiment and does not yet prove spontaneous
+capture without an explicit evaluation request.

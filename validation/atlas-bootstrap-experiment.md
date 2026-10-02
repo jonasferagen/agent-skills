@@ -188,3 +188,25 @@ renderer was found, so syntax/render and visual readability remain unverified.
 No renderer was installed and no network was used. The agent noted irrelevant ER
 material in composition and drawing. That prompted the later ER reference
 extraction; this trial predates it and does not validate its selection behavior.
+
+## Continue into first-slice design — 2 October 2026
+
+Continuation exposed an installation gap: Atlas still had the initial draft, and
+friction capture had no route in the collection. Added a small conditional
+`references/friction.md` and bootstrap hook at `63be469`, then updated the complete
+Atlas installation and provenance. No new discoverable skill was introduced.
+
+A fresh agent in `/tmp/atlas-next-slice-askn6vka/atlas` produced an informal
+agreement record/retrieve/correct proposal. Parent review preserved its proposed
+status and transferred it to real Atlas with an overview link. It identified
+persistence across restart and retention of corrected values as decisions before
+stack selection. No implementation, policy transition or environment validation
+was performed. The real project's experiment note records the actual reads and
+limits. The agent stayed inside project and installed collection guidance.
+
+Reported friction was untracked fixture files limiting Git diff checks; explicit
+file checks supplied coverage. Treat this as fixture setup, not a reusable skill
+rule. Future rerun fixtures should establish a tracked baseline before editing.
+The task explicitly requested reporting friction, so it does not prove unsolicited
+capture from the new project hook. Ordinary no-friction behavior was not separately
+retested. Package validation and source/installed-copy link checks passed.
