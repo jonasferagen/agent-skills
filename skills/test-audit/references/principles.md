@@ -5,6 +5,7 @@ It is the standard [`test-audit`](../SKILL.md)'s lenses judge against, and the
 one to apply when writing tests rather than auditing them. For runner specifics
 and commands, see the owning repository's own testing guide.
 
+<!-- Package-boundary copy: test-writing/references/unit-tests.md and test-writing/references/integration-tests.md restate these rules for an author writing tests. Keep them aligned. -->
 Tests are executable evidence: they prove **observable behavior and named
 invariants**, not the implementation inventory the source already exposes.
 

@@ -12,6 +12,7 @@ requirements and existing test commands; preserve an explicit gate until its
 owner changes it. A fast edit loop, a milestone gate and a production release
 may need different evidence.
 
+<!-- Package-boundary copy: test-writing/references/integration-tests.md opens with the same boundary questions for an author writing the test. Keep both aligned. -->
 ## Match each claim to an observable boundary
 
 For each important claim, name the failure that would disprove it and the

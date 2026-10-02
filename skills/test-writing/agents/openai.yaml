@@ -1,0 +1,4 @@
+interface:
+  display_name: "Test Writing"
+  short_description: "Write unit tests, integration tests and fixtures with made-up data"
+  default_prompt: "Use $test-writing to write this test and the fixtures it needs."

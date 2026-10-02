@@ -47,6 +47,7 @@ Baselining an existing database also requires evidence that its schema matches
 the baseline. A new empty test database cannot supply that evidence. Similarly,
 bootstrap success does not prove an upgrade preserves existing rows.
 
+<!-- Package-boundary copy: test-writing/references/integration-tests.md (Give each test its own state) states this lifecycle for any boundary. Keep both passages aligned. -->
 ## Give each test run a complete lifecycle
 
 1. Allocate a fresh in-memory database or isolated disposable native instance.

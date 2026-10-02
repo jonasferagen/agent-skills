@@ -165,6 +165,7 @@ Check live service state only when relevant; documentation is not live evidence.
 Do not widen permissions merely to make a test or operation pass.
 
 <!-- Package-boundary copy: node-patterns/SKILL.md (Report a check's result) applies this denominator rule to check scripts. Keep both passages aligned. -->
+<!-- Package-boundary copy: test-writing/SKILL.md (Rules for every test) applies this denominator rule to test runs. Keep both passages aligned. -->
 A verdict names its denominator: what was compared, run or counted. When that
 denominator is empty, the honest output is a refusal, not a pass. Examples of an
 empty denominator: nothing compared, no tests collected, no archive matched, or
