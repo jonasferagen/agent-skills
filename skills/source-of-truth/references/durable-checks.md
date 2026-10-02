@@ -16,6 +16,7 @@ rungs 1 to 4 make disagreement impossible, while a check only makes it fail. The
 project's own policy decides whether a check is worth its recurring cost.
 Examples are synthetic.
 
+<!-- Package-boundary copy: test-writing/references/fixtures.md (Prefer derived references to stored goldens) states this rule for ordinary tests. Keep both passages aligned. -->
 ## Compute the invariant live
 
 Compute the answer when the check runs, by reading the homes as they stand. If
@@ -80,6 +81,7 @@ drifts exactly as any other restatement does.
   already reads, or its members from the manifest that declares them. Topology
   has one declaration: resolve through it, never through a constructed path.
 
+<!-- Package-boundary copy: test-writing/references/fixtures.md (Keep fixtures small and inside the test) states this rule for ordinary tests. Keep both passages aligned. -->
 ## Fabricate the fixture
 
 A check's own test creates its own fixtures. It must not depend on which

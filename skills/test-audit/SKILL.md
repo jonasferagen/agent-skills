@@ -7,6 +7,7 @@ metadata:
 
 # Test Audit
 
+<!-- Package-boundary copy: test-writing/SKILL.md opens with the same repository authority rule. Keep both aligned. -->
 **Local docs own the testing standard; this package supplies the lenses.** The
 standard covers which frameworks, layers and commands a repository uses, and
 what it has decided to test thinly on purpose. Read the nearest

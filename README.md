@@ -49,6 +49,7 @@ as a manual review; automation can grow from actual transitions.
 | [change-workflow](skills/change-workflow/SKILL.md) | Taking a change from an isolated worktree through synchronization, verification, merge and cleanup. |
 | [containerization](skills/containerization/SKILL.md) | Building independent local service containers with explicit interfaces, repeatable migrations, disposable database tests and test runs that remove exactly what they create. |
 | [verification-design](skills/verification-design/SKILL.md) | Choose evidence for a change or milestone and consolidate checks by the failures they detect. |
+| [test-writing](skills/test-writing/SKILL.md) | Writing unit tests, integration tests and their fixtures, with made-up data and state each test owns. |
 | [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
 | [pattern-capture](skills/pattern-capture/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
 | [runtime-operations](skills/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
@@ -212,6 +213,27 @@ independent of them.
   boundaries worth testing, and add a row to the table above.
 
 ## Origins
+
+**test-writing** 0.1.0 fills the gap between verification-design, which chooses
+the checks a change needs, and test-audit, which judges a settled suite. No
+package was selected at the moment a test or a fixture is written, although
+rules for that moment sat in four packages under other triggers. The lesson
+that prompted it came from a project that keeps real personal data in an
+ignored directory. A test about unlabelled numbers was written with a phone
+number and an identity-like number copied from that data into a tracked file.
+The entrypoint gives a workflow and routes to three references: unit tests,
+integration tests and fixtures. Its new rule is that every value in a test is
+made up, and that a test reproduces the shape of a real value, never its
+content or a part of it. The bundled `copiedValues.py` finds numbers and mail
+addresses that a tracked file shares with the private data, without printing
+them. In the trials the instructions alone did not hold on every model, and a
+project test that runs the helper did, so the fixtures reference recommends
+that test wherever private data is at hand. A review before the first release
+scoped the workflow's check to the files an author changed, and made the
+helper refuse rather than pass when it cannot check. Example requests: "Use
+$test-writing to add a regression test for this parser fix", "Use $test-writing
+to build sample records for the importer tests." See
+[validation](validation/test-writing.md).
 
 **verification-design** and **shared-code-design** capture two architecture
 decisions exposed by a review of the local Atlas/Work proof of concept in
