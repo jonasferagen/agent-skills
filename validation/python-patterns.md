@@ -78,3 +78,55 @@ Python version remain untested. The package is an unreleased starting set.
 The entrypoint tables were rendered in a temporary 830-pixel content column
 and inspected in external Chrome; text remained readable without horizontal
 clipping. This was a local preview, not a check of every hosting renderer.
+
+## Consumer evidence and testing techniques — 2026-10-02
+
+Intake-spike's slice 5 supplies two useful checks for the existing resource
+ownership guidance and explicit UTF-8 example in
+[Errors and resources](../skills/languages/python-patterns/references/errors-and-resources.md).
+Its alignment record reports a regression test for partial acquisition cleanup
+and 15 corpus errors under an ASCII locale before text reads and writes named
+their encoding. The fixes are recorded at `8b44994` (connections) and `6133929`
+(encoding) in that repository. The source was inspected at `bbff3fc`; the
+historical failures and full consumer suites were not rerun for this entry.
+
+### Assert that cleanup emits no resource warning
+
+In `tests/synthetic/test_cache.py`,
+`Resources.test_a_build_that_cannot_open_an_input_closes_what_it_opened` makes a
+later SQLite input fail to open. It captures warnings with
+`warnings.catch_warnings(record=True)`, enables `ResourceWarning` with an
+`always` filter, and calls `gc.collect()` inside the capture scope. It asserts
+both the expected acquisition error and an empty list of resource warnings.
+This makes an unclosed connection observable after the failure path runs.
+
+Use this technique when the runtime emits a warning for the resource being
+tested. A deliberately leaked resource must trigger the check; silence alone
+does not establish cleanup. A temporary SQLite probe on CPython 3.14.4 on Linux
+recorded one `ResourceWarning` for an unclosed connection and none after explicit
+closure. This checks the warning mechanism, not the consumer regression test.
+For a resource or interpreter without that warning, verify cleanup through
+another observable effect. Borrowed resources remain their owner's to close.
+
+### Run text-reading tests with an ASCII default encoding
+
+For code whose file contract is UTF-8, run relevant tests with non-ASCII fixtures
+under an ASCII locale. On Linux, this invocation disables both UTF-8 mode and
+locale coercion so they cannot mask an omitted encoding:
+
+```sh
+LC_ALL=C PYTHONUTF8=0 PYTHONCOERCECLOCALE=0 python3 -m unittest <test_module>
+```
+
+Check `sys.flags.utf8_mode` and `locale.getencoding()` in that environment before
+interpreting the result. A temporary CPython 3.14.4 probe reported mode `0` and
+`ANSI_X3.4-1968`: reading a UTF-8 fixture containing a non-ASCII character without
+an encoding raised `UnicodeDecodeError`; `encoding="utf-8"` read it correctly.
+An ASCII-only fixture passed both ways, showing why fixture content matters.
+These probes covered reads; they did not exercise writes or other platforms.
+
+This check applies when an ambient encoding must not change the file contract.
+It does not establish the correct encoding for arbitrary input files, and it
+should not reject intentionally locale-dependent text handling. Both techniques
+remain validation options here; this entry adds no mandatory consumer test lane
+or interpreter requirement and changes no installed skill.
