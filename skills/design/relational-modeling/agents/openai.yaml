@@ -1,0 +1,3 @@
+interface:
+  display_name: "Relational modeling"
+  short_description: "Model relationships from retrieval questions"
