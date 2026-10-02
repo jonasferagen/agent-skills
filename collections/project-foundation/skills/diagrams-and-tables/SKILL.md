@@ -2,7 +2,7 @@
 name: diagrams-and-tables
 description: "Choose prose, tables or diagram types for an explanation, and route construction or review to the relevant visual guidance. Use when selecting a form or creating or reviewing a visual."
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # Diagrams and tables
@@ -17,10 +17,16 @@ another copy. Document ownership and navigation belong to project-docs.
 | --- | --- |
 | A fact, reason, decision, caveat or convention | Brief prose |
 | Cases sharing fields, options, obligations or changes | A table; shared fields matter more than item count |
-| Steps, branches or a lifecycle | A flowchart |
+| Work steps and conditional branches | A flowchart |
+| One object's states and allowed transitions | A state diagram |
 | Ordered interactions between participants | A sequence diagram |
-| Components and their connections or ownership | A component or relationship view |
+| System parts, ownership and dependencies | A component or context view |
 | Entities and their relationships | An ER diagram; add a field table only when field details matter |
+
+Choose by the question, not the nouns: a database request can need a sequence
+view of callers, an ER view of stored relationships, or a flowchart of validation
+steps. A workflow describes work moving; a state diagram describes what one
+object may become. Show several views only when they answer distinct questions.
 
 Use a diagram when the relationships are the explanation. Do not add one merely
 because the document describes a system. Keep each form on one reader question
@@ -35,6 +41,8 @@ when the task is only form selection.
 - To design or restructure a table, read [tables](references/tables.md).
 - To create or restructure a diagram, read [composition](references/composition.md)
   and [verification](references/verification.md) for detail, grounding and visual checks.
+- For an ER diagram, also read [ER guidance](references/er-diagrams.md); other
+  diagram tasks need not load schema decomposition rules.
 - If implementing that diagram in Mermaid, also read [drawing](references/drawing.md).
 - To review an existing diagram, read verification; add composition when its
   structure needs work and drawing when Mermaid syntax or layout is involved.

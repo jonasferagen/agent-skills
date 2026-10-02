@@ -153,3 +153,38 @@ on an actual diagram or diagram ownership question. No new operational conflict
 was reported. Broader guidance reading remains material; a cold-context ordinary
 task and an actual policy transition still need trials. No additional skill change
 was made in response to this run.
+
+## Selection-only routing trial — 2 October 2026
+
+A fresh subagent bootstrapped against `948796ac75fd72bce0a0952c26a3f63bc1ba6fe4`.
+It skipped table construction, diagram placement, composition, drawing and visual
+verification references. It produced the intended scoped foundation with stack,
+interface and storage open; the proposed slice remained unadopted. Parent review
+covered README, AGENTS, policy and overview. The agent reported 86 valid links,
+34 exact imported files, no placeholders and clean whitespace. Artifacts remain
+at `/tmp/atlas-bootstrap-three-3vpxyse7/Atlas`, local commit `bd2b00c`.
+
+Its instruction/template subtotal was 6,262 words across 16 files, including a
+new 365-word short-text read. This is below the preceding 6,908-word subtotal,
+but not evidence of lower total reading: the agent also read 2,485 counted words
+of repository catalog and an earlier truncated full catalog of unknown delivered
+length. Total exact accounting was 9,011 words including 264 words of target
+instructions on the routine edit, plus that unknown truncated read. Repository
+catalog loading is now an observed source of overhead. The routine wording edit
+reused existing skill/foundation context; target README inspection was excluded
+from its reread subtotal, so do not compare it directly with earlier edit counts.
+
+### Diagram countercheck at the same revision
+
+A second agent created a proposed import flow at
+`/tmp/import-flow-countercheck-6gib_hjo/docs/import-flow.md`. It loaded project-docs,
+visual selection, authority, authoring, diagram placement, composition,
+verification, Mermaid drawing and clear-writing: nine guidance files. The parent
+inspected the output. All seven edges match the supplied validation/review/approval
+flow; invalid and cancelled paths perform no writes. Whitespace checks passed.
+
+The conditional route reached construction guidance when needed. No local Mermaid
+renderer was found, so syntax/render and visual readability remain unverified.
+No renderer was installed and no network was used. The agent noted irrelevant ER
+material in composition and drawing. That prompted the later ER reference
+extraction; this trial predates it and does not validate its selection behavior.

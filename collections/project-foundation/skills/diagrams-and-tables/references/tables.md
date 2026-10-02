@@ -50,3 +50,17 @@ believe it.
 
 For an actual diagram, use [composition](composition.md) for layout and detail.
 A table-only task needs no diagram composition or rendering guidance.
+
+## Drawing a table or matrix
+
+- **Fill every cell.** A blank reads as "not applicable" and hides an
+  unanswered question — write `none`, `n/a`, or `unknown` on purpose.
+- **Keep cells short.** A cell that wants a paragraph means the table is at the
+  wrong altitude: shrink the cell to a verdict and link to the prose.
+- **Watch the width.** A table that scrolls sideways in a rendered doc has the
+  same problem as a diagram that is too wide. Drop a column, or transpose the
+  axes.
+- **One row per case, and say what the rows are.** A table whose rows mix two
+  kinds of thing should be two tables.
+- **Put the axis in the header**, not in the surrounding sentence, so the table
+  still reads when it is quoted into an issue without its paragraph.

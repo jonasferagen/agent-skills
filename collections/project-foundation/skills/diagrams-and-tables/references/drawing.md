@@ -144,94 +144,10 @@ when they differ in something the diagram is read for — cardinality, direction
 or condition. Give a different *kind* of reference its own edge style instead of
 adding it to the count, so one number never mixes two meanings.
 
-## `erDiagram`
+## Other forms
 
-Use `erDiagram` for entities and their relationships, and a Markdown table for
-the field-level detail.
-
-```mermaid
-erDiagram
-  LEVEL ||--o{ PLACEMENT : contains
-  MESH_DEFINITION ||--o{ PLACEMENT : instantiated_by
-  PLACEMENT {
-    uuid id PK
-    uuid level_id FK
-    uuid mesh_id FK
-    numeric x
-    numeric y
-  }
-```
-
-**Each end's symbol describes the entity beside it:** in
-`LEVEL ||--o{ PLACEMENT`, each placement belongs to exactly one level, and a
-level contains zero or more placements. `||--o{` is the common one-to-many. The
-symbols mirror across the line:
-
-| Meaning | Left end | Right end |
-| --- | --- | --- |
-| exactly one | `\|\|` | `\|\|` |
-| zero or one | `\|o` | `o\|` |
-| zero or more | `}o` | `o{` |
-| one or more | `}\|` | `\|{` |
-
-- **Every relationship needs a label** — a bare `A ||--o{ B` is still a parse
-  error on current Mermaid. Write `: ""` when there is genuinely nothing to
-  say. Quote a label that is a cardinality word, such as `: "one"` or
-  `: "many"`; unquoted, Mermaid reads it as cardinality and fails to parse.
-- **Never leave a space in an unquoted entity name.** `MESH DEFINITION` does not
-  fail — it silently becomes *two* entities, `MESH` and `DEFINITION`, and the
-  diagram renders as if that were intended. Use `MESH_DEFINITION`, or quote the
-  name. Uppercase is the convention.
-- **Use the storage's real types** in attribute lines, and mark `PK` / `FK` /
-  `UK`; a trailing quoted string on the line is a comment. An ER diagram whose
-  types are invented is worse than none.
-- **Show the delta, not the whole schema.** Draw the entities the change
-  touches plus their immediate neighbours; link to the schema's canonical home
-  for the rest.
-- **ER direction and subgraphs depend on the target Mermaid renderer.** Current
-  [Mermaid ER syntax](https://mermaid.js.org/syntax/entityRelationshipDiagram.html)
-  supports both, but ER subgraphs require version 11.17.0 or newer. Check the
-  project's preview or publishing renderer before using them, and read the
-  version of the Mermaid package it runs, not of a CLI wrapped around it. An
-  older renderer does not reject an ER subgraph: Mermaid 11.16.1 draws
-  `subgraph` and `end` as two extra entities. With or without those controls,
-  split past roughly 10–12 entities, or a comparable edge count, even when
-  every attribute block is already keys-only. Attribute trimming reduces width;
-  it does not make a crowded relationship layout tractable.
-- **Split by aggregate cluster.** Start with one root-only overview naming every
-  aggregate root and only the edges directly between roots, with no children.
-  Then open each non-atomic root in its own compact detail `erDiagram`, showing
-  its owned children and join tables. This is the ER form of the
-  overview/detail black-box pattern in `SKILL.md`, not flowchart-style staging.
-- **Elide cross-family stubs unless their cardinality carries information.** A
-  target earns a drawn entity and edge only when the relationship distinguishes
-  one-to-one from one-to-many for this diagram's own question. For a single
-  incoming FK already named in prose or the column table, keep the target
-  discoverable as an attribute comment instead:
-  `text race_key FK "-> game_races.key"`. That costs no extra entity or
-  edge.
-- **A target reached by many entities is a fan-in table, not a drawn hub.**
-  Shared dependency is the one shape an ER layout cannot absorb: a node with a
-  dozen incoming edges crosses every other edge in the block, and it is
-  routinely what makes an otherwise splittable diagram unsplittable. When fan-in
-  *is* the shape worth showing, tabulate it — one row per referencing entity or
-  group, the target named once in the heading — and leave the hub out of the
-  graph entirely. Table rows do not cross. `SKILL.md` carries the fan-in shape
-  beside the other table shapes.
-
-## Drawing a table or matrix
-
-- **Fill every cell.** A blank reads as "not applicable" and hides an
-  unanswered question — write `none`, `n/a`, or `unknown` on purpose.
-- **Keep cells short.** A cell that wants a paragraph means the table is at the
-  wrong altitude: shrink the cell to a verdict and link to the prose.
-- **Watch the width.** A table that scrolls sideways in a rendered doc has the
-  same problem as a diagram that is too wide. Drop a column, or transpose the
-  axes.
-- **One row per case, and say what the rows are.** A table whose rows mix two
-  kinds of thing should be two tables.
-- **Put the axis in the header**, not in the surrounding sentence, so the table
-  still reads when it is quoted into an issue without its paragraph.
+For Mermaid ER syntax, read [ER guidance](er-diagrams.md#erdiagram).
+For Markdown tables, read [tables](tables.md).
 
 ## Conservative syntax
 

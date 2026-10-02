@@ -114,40 +114,8 @@ lifecycle or sequence diagram separate when it answers _in what order_ rather
 than _who owns what_ — it is a different question, not another level of the
 overview.
 
-An `erDiagram` has its own, lower split threshold: **past roughly 10–12
-entities, or a comparable number of relationship edges, split the block**.
-Current Mermaid supports ER direction and subgraphs, but subgraphs require
-Mermaid 11.17.0 or newer; check the target renderer before using them. Neither
-control makes a crowded relationship map easy to read. Trimming attributes to
-keys and moving column detail to a companion table makes entities narrower, but
-it does not raise this ceiling because it fixes width, not the number of
-relationships a reader must trace.
-
-Split a large ER model by **aggregate cluster**, as the ER-specific instance of
-the same overview/detail black-box pattern above. The root-only overview names
-every aggregate root and draws only relationships directly between roots; it
-does not open their children. One compact detail diagram per non-atomic root
-then opens that root's owned children and join tables. Apply the black-box
-disposition inventory to roots too: a root with no load-bearing internal shape
-may stay intentionally atomic, while detail owned elsewhere is linked rather
-than redrawn.
-
-**When the root-only overview is itself over threshold, raise the altitude
-instead of splitting again.** A schema with dozens of aggregate roots has no
-useful ER split left beneath it. Group by ownership — one node per document,
-page, or migration family that owns the entities — and label each edge with the
-number of references crossing that boundary. The nodes stop being tables, so the
-block becomes a `flowchart`, showing ownership groups and their dependencies.
-Use layout features supported by the target renderer. The flowchart answers a
-different question from the diagram it replaces — which groups depend on which,
-and the layer order that implies — while each group's own page keeps every
-individual relationship at full cardinality.
-
-See [the worked ER split](worked-examples.md#a-large-er-family-split-by-aggregate-cluster)
-for the matching stub-elision rule on an aggregate-sized family, and
-[the whole-schema overview](worked-examples.md#an-over-threshold-overview-raised-to-its-owning-documents)
-for the ownership grouping and the fan-in tables that keep its hubs from being
-drawn as table-level nodes.
+For an ER view, use [ER diagrams](er-diagrams.md) for entity grouping and
+large-schema decomposition.
 
 A subgraph is the right tool when the grouping is a handful of nodes the reader
 must see in place. **When a subgraph grows past roughly five nodes, it should

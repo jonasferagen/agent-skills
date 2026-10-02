@@ -133,3 +133,17 @@ origin. It has one recorded reproduction; a second case and the legitimate
 provenance-based counterexample still need evaluation. No reusable rule is adopted
 yet. The candidate belongs with definition consumers even if check-design guidance
 later moves. Delete `ideas.md` after preserving its evidence and open work there.
+
+### Visual selection before construction — adopted
+
+Keep one visual skill, with a small entrypoint choosing prose, tables and diagram
+families by reader question. Existing scaffold tables need no construction guide.
+Project-docs owns document placement and freshness, loading diagram-specific
+placement only when needed. ER composition and syntax now have a separate
+reference; flowchart work need not load them. No extra skill dependency is added.
+
+Remaining observed friction: authoring repository instructions can lead agents to
+read much of the catalog during consumption, and Mermaid rendering currently lacks
+an available local tool in the trial environment. Address those separately from
+form selection. The latest trials do not establish cold-start everyday behavior
+or a reduction in total session context.

@@ -209,3 +209,22 @@ conditional on the selected task. No diagram sources or rendering mechanics chan
 Package validation and whitespace checks passed. The follow-up bootstrap trial
 is recorded in `validation/atlas-bootstrap-experiment.md`; no reading reduction
 is claimed from the reference split alone.
+
+## Selection and conditional construction — 2 October 2026
+
+Version 0.4.0 shortened the entrypoint to form selection and task-specific routes.
+Filling existing tables needs no construction references; actual diagrams still
+require composition, grounding and visual verification. Project-docs 2.1.0 reads
+its diagram-placement reference only for diagram tasks. Independent bootstrap and
+diagram outcomes, including their limits, are recorded in
+[the experiment](atlas-bootstrap-experiment.md#selection-only-routing-trial--2-october-2026).
+
+Version 0.5.0 adds the distinction between workflow, participant interactions,
+object state transitions and entity relationships. It moves ER composition and
+Mermaid ER syntax to `references/er-diagrams.md`, and moves the remaining table
+syntax from drawing to tables. Existing ER examples and rules are preserved;
+new framing distinguishes conceptual/proposed models from implemented schema.
+Author review checked that a validation pipeline selects flowchart, request/reply
+ordering selects sequence, one object's allowed transitions select state, and
+stored entity relationships select ER. These are author-reviewed selection cases,
+not additional agent trials. No changed diagram was rendered.
