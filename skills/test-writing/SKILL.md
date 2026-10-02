@@ -58,7 +58,7 @@ easier rule.
    from the repository root:
 
    ```sh
-   python3 <this skill's directory>/scripts/copiedValues.py --private <path to the real data> --term "<a name you saw there>" <the files you added or changed>
+   python3 <this skill's directory>/scripts/copiedValues.py --private <the directory that holds the real data, all of it> --term "<a name you saw there>" <the files you added or changed>
    ```
 
    Repeat `--term` for each name you saw, and add `--allow-file` with the
@@ -71,8 +71,8 @@ easier rule.
    A finding in a file you created, or on a line that `git diff` shows you
    added, is yours. Replace each of yours with a made-up value and run the
    check again, until no finding of yours is left. A finding on a line you
-   did not write was there before you: report it and leave it to the
-   project. Only exit status 0 is a pass. Status 2 means the real data was
+   did not write was there before you: leave it, and name its file and line
+   in your report so that the project can decide. Only exit status 0 is a pass. Status 2 means the real data was
    not found, and 3 that the check could not run. If the project has a test
    that runs the check, run that test too. Without Python 3, search the files
    you changed for each identifier you saw in the real data.
