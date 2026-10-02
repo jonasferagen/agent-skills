@@ -99,3 +99,12 @@ import rules already have policy and instruction owners. A new project receives
 only the core table and a scope comment, with no mandatory historical section or
 Forge-specific ownership rows. This is a focused editorial review and package
 check, not an independent bootstrap trial.
+
+## Overview output scope — 3 October 2026
+
+Focused author review against Forge: overview retains six technical-choice rows;
+next-task details move to workspace notes, skill routes stay in AGENTS, and the
+existing workspace index locates evidence. The scaffold no longer includes First
+useful slice, which invited a work queue into the definition. Unknown technical
+options remain valid table content; a next implementation task belongs elsewhere.
+Package/link checks apply; no independent behavioral trial was run for this edit.

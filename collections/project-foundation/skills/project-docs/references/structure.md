@@ -26,6 +26,11 @@ in their existing owners. Preserve useful facts when trimming, and remove copies
 already covered elsewhere. Generalize additional fields only as recurring use
 establishes a need; one project's table does not extend the shared template.
 
+Overview holds current technical choices and unresolved options in its table.
+Task queues and next steps belong in work notes; skill routes in project
+instructions; procedures and evidence in their existing owners. Remove duplicate
+sections instead of archiving them merely because they once appeared in overview.
+
 ## Glossary and semantics
 
 Use the reader's term first, followed by a compact definition and an implementation

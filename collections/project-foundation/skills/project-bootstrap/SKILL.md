@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Bootstrap a new project or a fresh repository with project boundaries, policy and a project overview, plus a README that links them. Use when establishing this starting foundation; ordinary implementation and documentation maintenance belong to their own workflows."
 metadata:
-  version: "2.1.1"
+  version: "2.1.2"
 ---
 
 # Project bootstrap
@@ -39,7 +39,7 @@ The default starter has three project definitions and an entry README:
 | --- | --- |
 | `docs/project/boundaries.md` | Purpose, responsibilities, exclusions and ownership |
 | `docs/project/policy.md` | Concise operating facts and adopted decisions by axis |
-| `docs/project/overview.md` | Environment, resources, application choices and the first useful slice |
+| `docs/project/overview.md` | Current environment, resources, application choices and unresolved options |
 | `README.md` | Brief orientation and links to the definitions and available setup |
 
 Adapt the bundled [README](../../templates/README.md),
@@ -55,6 +55,11 @@ Keep boundaries to the core template table, with its title, date/revision and
 scope comment. Add a concise project-specific table only when it clarifies actual
 ownership or scope. Keep history, implementation status and procedures in their
 own documents; do not expand the template with project-specific sections.
+
+Keep overview to its current-choice table and scope comment. Open options name
+unresolved technical decisions; task queues, next steps, skill-selection notes,
+procedures and evidence have their own owners. Do not add a first-slice work plan
+to overview.
 
 Keep policy to its title, date/revision and the axis table; preserve its scope
 comment. Project-policy interprets those facts alongside boundaries. Put working

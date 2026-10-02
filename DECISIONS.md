@@ -224,3 +224,10 @@ implementation details around its ownership tables. Keep the shared template to
 Purpose, Responsibilities, Outside the scope and Ownership. Project-specific
 boundary tables may remain local; history, status and procedures stay in their
 existing owners. Tighten the common structure as recurring patterns emerge.
+
+## Keep overview as current technical choices — 2026-10-03
+
+Forge's overview accumulated a next-task queue, skill-selection notes and evidence
+summaries. Keep its table focused on current choices and unresolved options.
+Remove the template's First useful slice row; work notes own proposed slices and
+acceptance work. Existing instructions and evidence records own the other material.
