@@ -42,22 +42,32 @@ package, follow the repository and report both passages to the user.
    Run the new test against the code without the change, or against a
    temporary copy with the behavior broken, and check that it fails for the
    reason you named. If you could not, say so in the report.
-6. **Check for copied values.** If real data was within reach, run the bundled
-   [copiedValues.py](scripts/copiedValues.py) from the repository root before
-   you report:
+6. **Check for copied values.** If real data was within reach, check every
+   file you added or changed before you report. That means the tests,
+   fixtures and helpers, and also production code, docstrings, comments and
+   documentation, where copied values end up too. `git status --short` lists
+   them. Run the bundled [copiedValues.py](scripts/copiedValues.py) on them
+   from the repository root:
 
    ```sh
-   python3 <this skill's directory>/scripts/copiedValues.py --private <path to the real data> --term "<a name you saw there>"
+   python3 <this skill's directory>/scripts/copiedValues.py --private <path to the real data> --term "<a name you saw there>" <the files you added or changed>
    ```
 
-   It names the file and line of every number and mail address that also
-   occurs in the real data, in whole or in part, and never prints the value.
-   It finds names only when you list them, so repeat `--term` for each name
-   you saw. Give it no file arguments: it then covers every file Git would
-   track, and copied values also end up in docstrings, comments and READMEs.
-   Replace what it finds with made-up values and run it again. The work is not
-   finished while it reports a finding. Without Python 3, search the files you
-   changed for each identifier you saw in the real data.
+   Repeat `--term` for each name you saw, and add `--allow-file` with the
+   project's allow file if it keeps one. The check reports the file and line
+   of each number of six or more digits and each mail address that also
+   occurs in the real data, whole or as part of a longer number, and of each
+   name you listed. It never prints the value, and it does not see free text, so
+   read what you wrote for phrases too.
+
+   A finding in a file you created, or on a line that `git diff` shows you
+   added, is yours. Replace each of yours with a made-up value and run the
+   check again, until no finding of yours is left. A finding on a line you
+   did not write was there before you: report it and leave it to the
+   project. Only exit status 0 is a pass. Status 2 means the real data was
+   not found, and 3 that the check could not run. If the project has a test
+   that runs the check, run that test too. Without Python 3, search the files
+   you changed for each identifier you saw in the real data.
 7. **Report what ran:** the command, how many tests ran and how many were
    skipped. A run that skipped tests, or ran a chosen subset, is a partial
    result. Say so instead of reporting it as passed.
