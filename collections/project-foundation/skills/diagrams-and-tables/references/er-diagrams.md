@@ -128,4 +128,3 @@ symbols mirror across the line:
   group, the target named once in the heading — and leave the hub out of the
   graph entirely. Table rows do not cross. `SKILL.md` carries the fan-in shape
   beside the other table shapes.
-
