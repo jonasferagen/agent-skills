@@ -1,5 +1,10 @@
 # Repository guidance
 
+These maintenance instructions govern changes to this authoring repository.
+When only using an installed skill or collection for another project, start at
+that installation's entry point and the consuming project's instructions. Source
+provenance is not a required reading list for ordinary consumption.
+
 [README](README.md) owns the catalog, package format, naming and release rules.
 Standalone packages must work alone. Collection members may use shared resources
 inside their collection; copy the complete collection as one installation unit.
@@ -29,6 +34,12 @@ README's [authoring skills](README.md#authoring-skills) section recommends these
 passes before a skill release and says what to record.
 
 ## Verification
+
+- For trigger, entrypoint, shared-guidance or packaging changes, meet the
+  [routing acceptance requirement](README.md#routing-quality) using the practical
+  trials in [discovery validation](validation/discovery.md#routing-trial-method).
+  Repeat applicable trials before a collection release; prose-only edits need no
+  automatic discovery trial.
 
 - Run `python3 scripts/validate-packages.py` and `git diff --check`.
 - Review the affected scenarios under `validation/`; record actual results and

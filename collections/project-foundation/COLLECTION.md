@@ -1,5 +1,10 @@
 # Project foundation
 
+For project work, start with this collection and the project's instructions.
+Its source repository's catalog and release/authoring rules are not prerequisites
+for consumption. Follow provenance to the source only when the task needs source
+maintenance, an upgrade or investigation of a concrete source issue.
+
 Install this directory as one dependency. It contains the bootstrap workflow,
 project documentation and policy skills, source-of-truth, their authoring skills,
 and the templates they interpret. Preserve the directory layout so relative

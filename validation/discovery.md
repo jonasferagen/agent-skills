@@ -1,4 +1,52 @@
-# Discovery review — 2026-09-30
+# Discovery and routing validation
+
+## Routing trial method
+
+The [routing requirement](../README.md#routing-quality) owns acceptance. Use this
+method when triggers, entrypoints, shared guidance or packaging change, and before
+a collection release. Routine prose edits do not require repeating it.
+
+Select realistic cases for the changed routes:
+
+| Case | Observe |
+| --- | --- |
+| Cold entry into ordinary consumer work | Reads before useful work and irrelevant activation |
+| Work requiring deeper guidance | Whether required references are reached and obligations preserved |
+| Nearby work outside the changed skill's scope | Whether the agent avoids unrelated guidance |
+| Source authoring when consumption/authoring routes change | Whether relevant maintenance rules still apply |
+
+Use a fresh agent context when available. Place the consumer fixture outside the
+authoring repository with an installed copy, a realistic project instruction hook
+and provenance. Start from that hook or normal discovery metadata; do not provide
+the expected route. Record whether entry was explicit invocation, supplied metadata
+or project instructions. A source-authoring trial instead starts in an isolated
+copy of this repository. Keep live systems outside the trial.
+
+Have the evaluator record files actually read, approximate whitespace words,
+repeated reads, truncation and reused context. Distinguish instruction/template
+reads from catalogs, generated output review and mechanical checks. Do not call a
+partial subtotal total context use. For each material read, classify it as required,
+useful or irrelevant with a reason; also report required guidance missed and the
+output constraints preserved or violated. An unexercised case is a limitation.
+
+The reviewer checks artifacts and routing evidence. A consumer reaching source
+maintenance material without a task reason is a finding. Missing necessary deeper
+guidance is also a finding, even if reading falls. Compare equivalent tasks across
+revisions; use no universal word threshold. Record the smallest supported fix and
+remaining gaps. A single successful run demonstrates a route, not its reliability.
+
+The Atlas catalog incident is an initial failure case: the third bootstrap trial
+read a large source README while consuming a collection. Its 6,262-word
+instruction subtotal excluded an additional catalog read, including truncated
+output. See [the trial](atlas-bootstrap-experiment.md#selection-only-routing-trial--2-october-2026).
+Installation location and authoring instructions were part of the trial setup;
+this does not establish that an installed collection necessarily causes those reads.
+
+Keep observations from ordinary usage between trials. Capture a demonstrated
+problem or candidate in its existing validation record; do not turn every
+observation into another mandatory instruction.
+
+# Earlier discovery review — 2026-09-30
 
 ## Scope and measured context
 

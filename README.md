@@ -134,6 +134,31 @@ and links, then update provenance in the same commit. No automatic tracking of
 
 ## Discovery and lesson capture
 
+### Routing quality
+
+A consumer must be able to find the relevant guidance without reading this
+authoring repository's maintenance material. Additional reading must follow a
+concrete task need, and required deeper guidance must remain reachable. Apply this
+standard to our own catalog, instructions and collections as well as their output.
+
+Routing is an acceptance requirement when changing triggers, entrypoints, shared
+guidance or packaging, and before releasing a collection. Run proportionate
+practical trials using the [routing trial method](validation/discovery.md#routing-trial-method).
+Preserve task constraints and check missed obligations as well as unnecessary
+reading. Package validation alone cannot establish routing quality.
+
+Do not set a universal word budget. Compare equivalent tasks and explain which
+reads were unnecessary. Record remaining gaps; do not claim the requirement is
+verified from word-count reductions alone. Ordinary prose edits need no new trial
+unless they change routing or reveal concrete friction.
+
+When authoring here, use the catalog and maintenance sections relevant to the
+change. When consuming an installed collection, use its entrypoint and project
+routes. Do not follow provenance back to this README unless the task needs source
+maintenance, upgrade information or investigation of a concrete source issue.
+
+### Selection and capture
+
 Skill descriptions name the task or observed symptom that should select the
 package. Keep them concise and put the main trigger first. The selected
 `SKILL.md` supplies essential guidance and routes to conditional references;
