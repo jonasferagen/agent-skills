@@ -197,3 +197,15 @@ prose against them.
 ## Discovery routing — 2026-09-30
 
 The description was shortened and conditional entrypoint guidance moved to references. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.
+
+## Table reading route — 2 October 2026
+
+Version 0.3.0 addresses observed bootstrap reading overhead. The entrypoint now
+contains the form-choice table and routes simple tables to `references/tables.md`.
+The existing table guidance moved there without changing its rules. Diagram
+composition, relationship verification, Mermaid drawing and worked examples remain
+conditional on the selected task. No diagram sources or rendering mechanics changed.
+
+Package validation and whitespace checks passed. The follow-up bootstrap trial
+is recorded in `validation/atlas-bootstrap-experiment.md`; no reading reduction
+is claimed from the reference split alone.

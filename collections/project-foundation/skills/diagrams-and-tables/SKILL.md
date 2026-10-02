@@ -2,7 +2,7 @@
 name: diagrams-and-tables
 description: "Choose, draw or review diagrams and tables for relationships, flows, schemas and comparisons. Use when structure is hard to follow in prose or an existing visual needs simplification, grounding or readability checks."
 metadata:
-  version: "0.2.1"
+  version: "0.3.0"
 ---
 
 # Diagrams and tables
@@ -34,12 +34,26 @@ A repository-specific _diagram catalog_ is different again: it indexes the
 diagrams a repository owns and points at their canonical docs. This skill holds
 the conventions; the catalog holds the inventory.
 
-## Read for the visual task
+## Choose the form
 
-- For form choice, tables, reuse, scope, or splitting a large view, read
+| Subject | Form to reach for first |
+| --- | --- |
+| Flow, sequence, lifecycle, component wiring | Flowchart — before/after when it changes |
+| Schema, storage, or data-model change | ER diagram, plus a table-and-column overview of the delta |
+| Tables, columns, indexes, or migration steps | Table: name, type, nullability, what changes |
+| Options, states, tiers, per-surface obligations | Ordinary table, one row per case |
+| Why, gotchas, decisions, trade-offs, conventions | Prose — no diagram carries these |
+
+For a simple table, read [tables](references/tables.md) and stop there. Reuse a
+suitable existing form; filling the project scaffold does not require inventing
+a diagram. Ground table entries in the available facts and preserve unknowns.
+
+## Read for the selected task
+
+- For a selected diagram's reuse, layout, detail or splitting, read
   [composition](references/composition.md).
-- Before asserting relationships or reviewing a render, read
+- Before asserting diagram relationships or reviewing a diagram render, read
   [verification](references/verification.md).
 - Before writing Mermaid, read [drawing](references/drawing.md).
 - Open [worked examples](references/worked-examples.md) when a chosen form needs
-  an example; do not load every reference for an ordinary prose edit.
+  an example; do not load every reference for an ordinary prose or table edit.
