@@ -19,6 +19,8 @@ procedures or report format.
 | --- | --- |
 | Small edit in a Git repository, with unrelated work in the base | Edit in a separate task worktree; preserve unrelated changes. Being the only active agent is not an exception. |
 | Worktree already assigned to the task | Reuse it after inspecting its Git state; do not create nested worktrees. |
+| Repository specifies a worktree location | Follow that convention when creating a worktree. |
+| No repository location convention, with a tool-configured location | Use the tool's configured location. |
 | Repository policy explicitly chooses the main checkout for a single-agent project | Follow that exception and preserve it during foundation updates. |
 | Spike in a directory outside Git | Edit there without initializing Git to satisfy the workflow. |
 | A subdirectory inside a repository | Discover the parent repository and apply its policy. |
@@ -116,6 +118,14 @@ exclude platform context and mechanical reads and are not total context usage.
 These checks cover the source draft. No release tag or existing downstream
 installation was changed. Trial fixtures included the complete collection; a
 final source reflow in COLLECTION.md changed line wrapping only.
+
+## Location fallback correction
+
+The sibling-directory fallback was replaced with the tool's configured location
+when the repository has no location convention. Review covered both location
+cases and reuse of an assigned worktree. Package validation, Skill Creator's
+validator and whitespace checks passed. No fresh client-level placement trial
+was run; the sibling locations in earlier trials reflect the previous wording.
 
 ## Authoring
 

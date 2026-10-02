@@ -22,7 +22,8 @@ Before editing, inspect the branch, working changes and registered worktrees.
 Reuse the worktree assigned to this task, or create a task branch and worktree
 from the intended base. Include required local commits when selecting that base;
 do not assume the remote tracking ref contains them. Follow the repository's
-location convention or choose an unoccupied sibling directory.
+worktree location convention when present; otherwise use the tool's configured
+location.
 
 A repository without a first commit still uses a task worktree. Git supports
 `git worktree add --orphan -b <branch> <path>` for this case; check support in the
