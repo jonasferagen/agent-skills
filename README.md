@@ -228,7 +228,9 @@ content or a part of it. The bundled `copiedValues.py` finds numbers and mail
 addresses that a tracked file shares with the private data, without printing
 them. In the trials the instructions alone did not hold on every model, and a
 project test that runs the helper did, so the fixtures reference recommends
-that test wherever private data is at hand. Example requests: "Use
+that test wherever private data is at hand. A review before the first release
+scoped the workflow's check to the files an author changed, and made the
+helper refuse rather than pass when it cannot check. Example requests: "Use
 $test-writing to add a regression test for this parser fix", "Use $test-writing
 to build sample records for the importer tests." See
 [validation](validation/test-writing.md).
