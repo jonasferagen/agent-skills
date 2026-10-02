@@ -216,3 +216,11 @@ tables. Keep the policy body to Axis and Current fact or decision. Project-polic
 interprets those entries alongside boundaries and records consequences in their
 affected owners. Worktree exceptions belong in repository instructions. Preserve
 obligations when moving them; a document cleanup does not relax requirements.
+
+## Keep boundary templates minimal — 2026-10-03
+
+Forge's boundary document accumulated prior-repository narrative and current
+implementation details around its ownership tables. Keep the shared template to
+Purpose, Responsibilities, Outside the scope and Ownership. Project-specific
+boundary tables may remain local; history, status and procedures stay in their
+existing owners. Tighten the common structure as recurring patterns emerge.

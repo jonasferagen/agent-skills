@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Bootstrap a new project or a fresh repository with project boundaries, policy and a project overview, plus a README that links them. Use when establishing this starting foundation; ordinary implementation and documentation maintenance belong to their own workflows."
 metadata:
-  version: "2.1.0"
+  version: "2.1.1"
 ---
 
 # Project bootstrap
@@ -50,6 +50,11 @@ is a starting convention; honor a requested smaller set or existing document
 homes. This applies to spikes and maintained projects; record their actual
 intent in policy. Add a glossary later when ambiguous terminology needs its own
 home. Merge useful routes into an existing README rather than replacing it.
+
+Keep boundaries to the core template table, with its title, date/revision and
+scope comment. Add a concise project-specific table only when it clarifies actual
+ownership or scope. Keep history, implementation status and procedures in their
+own documents; do not expand the template with project-specific sections.
 
 Keep policy to its title, date/revision and the axis table; preserve its scope
 comment. Project-policy interprets those facts alongside boundaries. Put working

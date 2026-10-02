@@ -89,3 +89,13 @@ axis table. Bootstrap now routes interpretation to project-policy and assigns
 working rules and impact records to their own homes. Forge provided the observed
 failure: working rules and three transition reports accumulated despite the sparse
 template. This change does not constitute a fresh independent bootstrap trial.
+
+## Boundary output scope — 3 October 2026
+
+Author review against Forge: preserve the core template table and its local
+ownership table; remove earlier-work narrative and duplicated lifecycle/status
+prose. Current Library uncertainties belong in overview; source-preservation and
+import rules already have policy and instruction owners. A new project receives
+only the core table and a scope comment, with no mandatory historical section or
+Forge-specific ownership rows. This is a focused editorial review and package
+check, not an independent bootstrap trial.

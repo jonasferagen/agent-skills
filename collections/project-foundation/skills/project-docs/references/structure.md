@@ -17,6 +17,15 @@ For a small library, one README may answer most questions. An existing docs site
 may already provide the right homes. Add a glossary when terminology carries real
 ambiguity, not merely because a project has nouns.
 
+## Foundation definitions
+
+Keep foundation definitions slim and structured. Boundaries starts with the core
+scope/ownership table; a project may add a concise table for its own boundary
+model. History, migration narratives, implementation status and procedures belong
+in their existing owners. Preserve useful facts when trimming, and remove copies
+already covered elsewhere. Generalize additional fields only as recurring use
+establishes a need; one project's table does not extend the shared template.
+
 ## Glossary and semantics
 
 Use the reader's term first, followed by a compact definition and an implementation
