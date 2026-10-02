@@ -1,0 +1,13 @@
+diff --git a/skills/workflow/pattern-capture/SKILL.md b/skills/workflow/pattern-capture/SKILL.md
+index b98b505..f71d261 100644
+--- a/skills/workflow/pattern-capture/SKILL.md
++++ b/skills/workflow/pattern-capture/SKILL.md
+@@ -24,4 +24,4 @@ does not register a native slash command.
+-State the mechanism, the conditions where it applies, and a case where it does
+-not. Distinguish a reproduced defect or demonstrated improvement from a proposed
+-change. One well-supported mechanism can justify guidance; recurrence adds
+-confidence but is not a prerequisite. Preserve uncertainty and local tradeoffs.
++Describe the mechanism, when it applies, and a case where it does not.
++Distinguish a reproduced defect or demonstrated improvement from a proposed
++change. One well-supported mechanism can justify guidance. Recurrence adds
++confidence but is not required. Preserve uncertainty and local tradeoffs.

@@ -245,8 +245,9 @@ version bump when one skill is released.
 
 Skills in this repository should meet the standards they teach. Apply relevant
 guidance to the packages, helpers and documentation we maintain here. Start
-with the catalog and the task's actual trigger; load only the selected guidance
-and needed references. For example, use source-of-truth when reconciling copied
+with the named package when one is known; use the catalog to select additional
+guidance from the task's actual trigger. Load only needed references. For example,
+use source-of-truth when reconciling copied
 rules, verification-design when selecting evidence, and pattern-capture when
 assessing a reusable finding or an explicit capture request. Its simplicity
 test also applies to our own rules and exceptions. Report a relevant conflict

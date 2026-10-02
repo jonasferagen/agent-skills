@@ -1,0 +1,50 @@
+diff --git a/docs/database/retrieval-options.md b/docs/database/retrieval-options.md
+new file mode 100644
+index 0000000..85abba5
+--- /dev/null
++++ b/docs/database/retrieval-options.md
+@@ -0,0 +1,44 @@
++# Retrieval options
++
++Revision 1 — 2026-10-02.
++
++This comparison supports a future experiment with read-only retrieval of synthetic
++local data, with no UI. PostgreSQL is selected; application language and interface
++remain deferred. The entries below are planning assumptions, not measured results.
++Production suitability and performance remain unverified.
++
++## Compare the options
++
++Each row describes one way to exercise retrieval after the
++[open model decisions](model.md#decisions-blocking-implementation) are settled.
++
++| Option | What it exposes | What it requires | What needs maintenance |
++| --- | --- | --- | --- |
++| Saved SQL queries | Queries and joins directly | A SQL-capable caller | Query definitions as the schema changes |
++| Command-line application | Repeatable, named retrieval operations | Application language and packaging choices | Query code as the schema changes |
++| HTTP endpoint | Retrieval through requests from separate callers | Transport, access and hosting decisions, plus operational work | Request contracts and query code |
++
++There is no present requirement for separate callers. The HTTP option therefore
++adds decisions and operational work without a current need for that capability.
++A command-line application would make named operations repeatable, but its
++language and packaging choices remain open.
++
++## Recommendation for the next experiment
++
++First resolve the domain decisions owned by the
++[provisional database model](model.md#decisions-blocking-implementation). Once
++those decisions are settled, use saved SQL queries for a small, proposed retrieval
++experiment: their direct view of joins suits checking how the model answers the
++retrieval questions, and they require no application language choice.
++
++Limit that experiment to the model's two questions on a small synthetic local
++dataset: which agreements involve an organisation, and which services each
++agreement covers. Compare the returned identities with expected results and
++record whether the query definitions are understandable and maintainable. Those
++observations would inform whether named command-line operations are useful later;
++separate callers would need a concrete requirement before reconsidering HTTP.
++
++This recommendation selects no application stack and creates no implementation.
++Provisioning, migrations, seed loading, runtime checks and container packaging
++remain outside this documentation task. A successful small retrieval experiment
++would establish neither production suitability nor performance at other scales.

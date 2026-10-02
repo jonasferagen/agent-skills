@@ -108,3 +108,9 @@ A separate semantic-review-only task, a successful project renderer path, a fres
 relationship-correction handoff and collection dependency discovery remain
 untested. Source-authoring behavior was exercised by the parent under repository
 instructions rather than another independent trial.
+
+## Authoring follow-up — 2 October 2026
+
+The [authoring routing trials](authoring-routing.md) address the remaining
+lookup/edit activation and check substantive authoring, policy changes and source
+maintenance. They record both improvements and remaining search overreading.

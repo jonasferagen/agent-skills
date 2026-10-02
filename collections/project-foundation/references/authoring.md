@@ -1,17 +1,22 @@
 # Authoring project documents
 
-Use [clear-writing](../skills/clear-writing/SKILL.md) when drafting or editing
-project prose. For agent instructions, also use its
+Use this reference when composing or restructuring project explanations and
+instructions. Reading to answer a question and applying an exact wording change
+that preserves meaning need no further authoring references. Check the answer
+against its source or the edit against the requested replacement. A short edit
+that changes policy, scope or domain meaning still needs that subject's workflow.
+
+When choosing or improving wording, use
+[clear-writing](../skills/clear-writing/SKILL.md). For agent instructions, also use its
 [instruction guidance](../skills/clear-writing/references/instructions.md).
 
-Before a substantive explanation, use
-[diagrams-and-tables](../skills/diagrams-and-tables/SKILL.md) to choose whether
-prose, a table or a diagram carries the information best. Follow its references
-when constructing the selected form. When the task already selects a form,
-use that route directly; an ER task needs the ER reference, not a new comparison
-of diagram types. Filling an existing scaffold table needs
-only the entrypoint; diagram composition and rendering are conditional on actual
-diagram work. Ordinary table edits need no Mermaid tooling.
+Use [diagrams-and-tables](../skills/diagrams-and-tables/SKILL.md) when choosing
+how to explain relationships, sequences or comparable cases, or when creating or
+restructuring a visual. A factual answer or ordinary prose rewrite needs no
+visual-selection pass. When the task already selects a form, use that route
+directly; an ER task goes to the ER reference. Preserve the structure of an
+existing scaffold table when filling it. Load construction and rendering guidance
+only for the form being built or reviewed.
 
 Preserve adopted decisions and uncertainty. The scaffold's blank cells mean
 unknown. Populate only what the user's decisions or repository evidence supports;

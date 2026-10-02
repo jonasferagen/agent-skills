@@ -1,6 +1,7 @@
 # Project foundation
 
-For project work, start with this collection and the project's instructions.
+Start with the project's instructions and existing document routes. Use this
+entrypoint when choosing a workflow.
 Its source repository's catalog and release/authoring rules are not prerequisites
 for consumption. Follow provenance to the source only when the task needs source
 maintenance, an upgrade or investigation of a concrete source issue.
@@ -21,10 +22,15 @@ references work.
 | Record an observed obstacle during work | [Friction capture](references/friction.md) |
 
 Project work follows [foundation authority guidance](references/foundation-authority.md).
-The project skills also use [shared authoring guidance](references/authoring.md).
-Read only the guidance needed for the task; installation does not require loading
-every entry point. Tool-specific references, including Mermaid rendering guidance,
-remain with the visual skill and are loaded when needed.
+For a question about an existing document, consult its owner and relevant terms.
+A literal wording edit that preserves meaning needs a focused edit check. Neither
+task needs an authoring workflow merely because it involves prose. A replacement
+that changes a decision or obligation still needs its governing workflow.
+
+Use [shared authoring guidance](references/authoring.md) when composing or
+restructuring explanations and instructions. Read only what the task needs;
+installation does not require loading every entry point. Tool-specific references,
+including Mermaid rendering guidance, are conditional on the selected work.
 
 The [templates](templates/README.md) hold project facts and decisions. Use them
 through these skills. They deliberately omit the procedure for interpreting or

@@ -287,3 +287,10 @@ provides evidence of deeper routing at its named revision, not a new trial here.
 No policy-transition or automatic-host-selection trial was run. These results
 support the scoped routing change but do not establish collection-wide efficiency
 or reliability. No release is being declared ready from these two runs.
+
+## Focused authoring routes — 2 October 2026
+
+The [authoring routing trials](authoring-routing.md) test lighter consumer entry
+and direct source-maintenance sections. The source rerun avoided full catalog and
+validation-history reads but still exposed historical snippets through a broad
+search; its isolation limit remains explicit.

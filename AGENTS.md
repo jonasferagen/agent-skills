@@ -9,6 +9,12 @@ provenance is not a required reading list for ordinary consumption.
 Standalone packages must work alone. Collection members may use shared resources
 inside their collection; copy the complete collection as one installation unit.
 
+For a named skill, start at that package. Use the catalog when selecting additional
+guidance. Read the relevant maintenance section directly: [package use](README.md#using-a-skill),
+[routing quality](README.md#routing-quality), [releases](README.md#skill-releases)
+or [adding a skill](README.md#adding-a-skill). A focused edit needs no full README
+or provenance-history read.
+
 Apply the [authoring principle](README.md#authoring-skills) to this repository's
 own changes: select relevant guidance from the catalog, then read only what
 the task needs. This includes Pattern capture for a reusable finding or an
@@ -43,7 +49,8 @@ passes before a skill release and says what to record.
 
 - Run `python3 scripts/validate-packages.py` and `git diff --check`.
 - Review the affected scenarios under `validation/`; record actual results and
-  remaining limits when evaluating a skill.
+  remaining limits when evaluating a skill. For a narrow edit, read the applicable
+  behavior cases; load dated trial history only when revisiting those results.
 - Run bundled helper tests when helper behavior changes. Render changed
   diagrams and inspect them at their intended reading width.
 - On a rename, update the directory, manifest, UI metadata, validation page,
