@@ -36,8 +36,10 @@ project. Work outside Git proceeds directly. Bootstrap places this default and
 the Git skill route in project instructions; existing installations receive it
 when their collection and instruction hook are deliberately updated.
 
-The project policy owns requirements; procedures and evidence live in their
-existing guides and records. Every policy change receives an impact assessment.
+The policy file holds only concise operating facts and adopted decisions by axis.
+Project-policy interprets it alongside boundaries; downstream requirements,
+working rules, impact assessments and evidence live in their own documents.
+Every policy change receives an impact assessment.
 Stricter requirements can create substantial downstream work, tracked with owners
 and acceptance evidence before the changed use is considered ready. This starts
 as a manual review; automation can grow from actual transitions.

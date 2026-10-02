@@ -81,3 +81,11 @@ Checks run on 2 October 2026:
 
 Behavioral scenarios above are expectations, not independent agent trials.
 The Atlas repository has not adopted the foundation as part of this skill draft.
+
+## Policy output scope — 3 October 2026
+
+Author review: the policy scaffold retains a scope comment and a single blank
+axis table. Bootstrap now routes interpretation to project-policy and assigns
+working rules and impact records to their own homes. Forge provided the observed
+failure: working rules and three transition reports accumulated despite the sparse
+template. This change does not constitute a fresh independent bootstrap trial.

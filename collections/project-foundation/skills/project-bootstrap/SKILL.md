@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Bootstrap a new project or a fresh repository with project boundaries, policy and a project overview, plus a README that links them. Use when establishing this starting foundation; ordinary implementation and documentation maintenance belong to their own workflows."
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # Project bootstrap
@@ -38,7 +38,7 @@ The default starter has three project definitions and an entry README:
 | File | Owns |
 | --- | --- |
 | `docs/project/boundaries.md` | Purpose, responsibilities, exclusions and ownership |
-| `docs/project/policy.md` | Operating circumstances and the requirements they imply |
+| `docs/project/policy.md` | Concise operating facts and adopted decisions by axis |
 | `docs/project/overview.md` | Environment, resources, application choices and the first useful slice |
 | `README.md` | Brief orientation and links to the definitions and available setup |
 
@@ -51,7 +51,11 @@ homes. This applies to spikes and maintained projects; record their actual
 intent in policy. Add a glossary later when ambiguous terminology needs its own
 home. Merge useful routes into an existing README rather than replacing it.
 
-Policy owns operating constraints and required guarantees. Overview owns the
+Keep policy to its title, date/revision and the axis table; preserve its scope
+comment. Project-policy interprets those facts alongside boundaries. Put working
+rules in project instructions and impact records in existing work notes.
+
+Policy owns operating facts and adopted constraints. Overview owns the
 chosen mechanisms and open implementation options. For example, put a no-network
 constraint in policy and a selected local database in overview, linking to the
 constraint when relevant. A possible future mechanism does not adopt the policy
@@ -94,7 +98,8 @@ It must also route:
 - Before edits in a Git repository, use a task worktree and consult
   [Git worktrees](../git-worktrees/SKILL.md). Put the default itself in `AGENTS.md`,
   alongside the concrete installed-skill link. Only repository-local instructions
-  can opt out; link any existing policy exception instead of overwriting it.
+  can opt out; link any existing exception in those instructions instead of
+  overwriting it.
   State that work outside Git proceeds directly and needs no repository merely
   to satisfy this rule. An upgrade must add or reconcile this hook explicitly.
 - Initial scaffolding to this skill and document organization to project-docs.

@@ -1,8 +1,8 @@
 ---
 name: git-worktrees
-description: "Start or resume repository edits in a task worktree, move existing changes into one, and preserve work when finishing. Use before edits in foundation projects; repository policy owns exceptions."
+description: "Start or resume repository edits in a task worktree, move existing changes into one, and preserve work when finishing. Use before edits in foundation projects; repository instructions own exceptions."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Git worktrees
@@ -10,7 +10,8 @@ metadata:
 ## Choose where to work
 
 Use a separate task worktree for edits in a Git repository unless repository-local
-instructions explicitly allow working in the main checkout. A deliberately
+instructions (`AGENTS.md` or its linked contributor guide) explicitly allow
+working in the main checkout. A deliberately
 single-agent project can record that exception. Task size, a spike label or the
 absence of another active agent does not establish one.
 

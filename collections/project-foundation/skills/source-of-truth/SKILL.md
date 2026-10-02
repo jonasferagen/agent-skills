@@ -2,7 +2,7 @@
 name: source-of-truth
 description: "Reconcile a rule, vocabulary or shape defined in several places. Use when copies drift, a change requires coordinated edits, or a consistency check needs to survive restructuring."
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
 ---
 
 # Authoritative definitions
@@ -29,7 +29,8 @@ existing code or changing a schema. Examples below are synthetic.
 Use the project's policy to judge the consequence of disagreement and the
 evidence worth maintaining. A policy change can alter that consequence: revisit
 affected copies and checks, and record unmet requirements in the active queue.
-Keep project policy authoritative for requirements and implementation owners
+Keep project policy authoritative for its facts and adopted decisions, downstream
+owners authoritative for derived requirements, and implementation owners
 authoritative for observed behavior; one cannot prove the other. A prototype
 label does not by itself waive an existing guarantee. Missing policy facts remain
 explicit unknowns.

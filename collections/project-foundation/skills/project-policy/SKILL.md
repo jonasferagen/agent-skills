@@ -2,7 +2,7 @@
 name: project-policy
 description: "Establish or revise engineering requirements when users, data, exposure, lifetime, compatibility or recovery needs change. Assess the impact and track prerequisites; ordinary edits do not require a policy review."
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
 ---
 
 # Project policy
@@ -28,20 +28,31 @@ record transition work and evidence without duplicating the policy in each guide
 Use its [shared authoring guidance](../../references/authoring.md) when producing
 or changing project documents.
 
-Read policy for operating facts and adopted requirements, boundaries when scope
+Read policy for current facts and adopted decisions, boundaries when scope
 or responsibility matters, and overview for affected implementation choices.
 Consult a glossary for project meanings when one exists and the task needs it. Interpret the sparse
 scaffold: an empty cell is unknown, not a default guarantee or permission. Keep
 facts, proposals, adopted obligations and verified behavior distinct. Do not
 recreate a manual inside each document.
 
-Derive requirements from established facts and the owner's decisions. Record
-material adopted requirements in the policy, adding a compact requirements table
-or a linked existing owner only when there is something to record. Do not leave
-consequential requirements solely in a conversation or infer that they have been
-adopted from a proposed profile. Put evidence and open work in their existing
-homes. Use project-docs for document organization; preserve existing domain
-meanings and surface ambiguous changes for resolution.
+Keep `policy.md` to its title, date/revision and one two-column table:
+`Axis | Current fact or decision`. Use short, formal entries; separate facts with
+semicolons and state unknowns explicitly. Preserve the template's scope comment.
+Record operating circumstances and adopted constraints, such as offline-only use
+or a recovery target. Exclude repository procedures, implementation reports,
+impact assessments and change history.
+
+Interpret that table together with the established boundaries to derive downstream
+requirements. Record durable requirements in their affected design or operational
+owner; repository working rules belong in `AGENTS.md` or its linked contributor
+guide. Put transition tasks and impact assessments in existing work notes, and
+verification results in evidence records. Create another document only when no
+existing owner serves the reader. Do not add a requirements table to `policy.md`.
+Keep the originating policy axis and boundary traceable from downstream decisions.
+
+When reconciling an expanded policy, relocate useful rules and evidence before
+removing their sections. Preserve adopted obligations and repair consumers; moving
+a requirement does not relax it. Use project-docs to choose appropriate homes.
 
 ## Establish the policy
 
@@ -85,8 +96,9 @@ nobody has edited policy.md. Update only the affected decisions and their
 consequences; a terminology correction need not reconstruct the full profile.
 These are task-based review triggers, not a background monitoring service.
 
-Every policy edit needs an impact assessment. A wording-only change may record
-that it changes no obligations. For a substantive change, including relaxing a
+Every policy edit needs an impact assessment, recorded outside `policy.md` in
+the existing task notes or hand-back. A wording-only change may record that it
+changes no obligations. For a substantive change, including relaxing a
 rule, read [policy changes](references/policy-changes.md) and examine downstream
 requirements across the project. A change in real circumstances also triggers
 this review even if nobody has edited the policy yet.
@@ -108,6 +120,8 @@ protect. Changes to policy are not a reason to halt unaffected authorized work.
 - When establishing or substantively revising policy, check that each axis has
   evidence, a decision or an explicit unknown. For wording-only edits, verify
   that obligations are unchanged without reconstructing the profile.
+- Check that the policy body contains only the axis table, with concise facts,
+  decisions and explicit unknowns; keep consequences and evidence in their owners.
 - Trace changed requirements to their consumers, work items and acceptance
   evidence. For unaffected areas, record a short reason when reviewing a change.
 - Confirm that existing commitments and live state were preserved unless their

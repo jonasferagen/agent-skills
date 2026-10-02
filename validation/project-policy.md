@@ -7,15 +7,19 @@ The current entry point belongs to the project-foundation collection. See
 required authoring guidance and policy review behavior. Earlier standalone-package
 and template-copy results below describe the previous structure.
 
+A policy body contains only the current axis table; historical trials below may
+reflect earlier document placement.
+
 These cases describe observable outcomes. Recorded executions below distinguish
 actual trials from author review.
 
 | Request and context | Expected outcome |
 | --- | --- |
-| Bootstrap a short-lived CLI with synthetic inputs | A small profile and concrete requirements; no production operating machinery inferred from the template. |
+| Bootstrap a short-lived CLI with synthetic inputs | A concise axis table; necessary downstream requirements in their owners; no production operating machinery inferred from the template. |
 | An experiment processes real customer data | Data and authority assessed separately from lifetime; “experiment” does not waive protection or retained-state obligations. |
 | A local prototype is moving to an internal pilot with real notes | Separate current scope from planned use; identify downstream work, decision gaps and readiness gates; do not deploy. |
 | A tool with retained records and dependent clients is relabelled a prototype | Retain existing guarantees unless deliberately changed; inspect effects on consumers and state. |
+| Policy contains working rules and import impact reports | Relocate useful rules and history, preserve obligations, repair consumers and retain only concise axis entries. |
 | Correct one typo in a policy | Make the correction and record no obligation change; no full test run or operational audit. |
 | An exposure change was already made before the policy caught up | Record the observed condition, unmet requirements and authorized containment/remediation; do not call it only a future risk. |
 | A stricter recovery policy is adopted without a restore test | Separate adoption from verified compliance; track restore evidence and the use it gates. |
@@ -77,3 +81,27 @@ does not change their required outcomes.
 ## Discovery routing — 2026-09-30
 
 The description was shortened. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.
+
+## Table-only policy trial — 3 October 2026
+
+Forge exposed a document ownership defect: project-policy invited requirements
+sections, and its consumer accumulated working rules and bootstrap/import/upgrade
+assessments. Version 2.0.0 restricts policy to current facts and adopted decisions
+by axis; consequences retain separate owners. The template carries a scope
+comment and bootstrap preserves it. Forge's existing obligations were relocated,
+not relaxed.
+
+An independent agent received the revised skill and a synthetic local notebook
+project, then the decision to adopt a hosted pilot for three colleagues with real
+research notes. No expected document placement or prior diagnosis was supplied
+with the initial task. It produced a six-axis policy table, updated boundaries,
+an operational requirements owner, role-owned transition tasks, and separate
+evidence. Retention and recovery targets stayed unknown; no services were
+contacted and adoption remained distinct from readiness. Parent review checked
+the actual table and downstream artifacts. A later status request asked the agent
+to report table scope and preservation explicitly.
+
+The same agent exercised a separate typo-only case with a literal diff check and
+no operational audit. Manifests, local links and whitespace passed. Artifacts:
+`/tmp/policy-trial-tIWNp9/`. This is a supplied-skill behavioral trial, not a fresh
+metadata-discovery test, runtime validation or a repeated reliability estimate.

@@ -22,7 +22,7 @@ exceptions.
 
 The collection's [Git worktrees skill](collections/project-foundation/skills/git-worktrees/SKILL.md)
 owns the short shared procedure. Bootstrap installs a visible rule and concrete
-skill route in each project's instructions. Local policy owns exceptions, and
+skill route in each project's instructions. Repository instructions own exceptions, and
 existing installations adopt the rule through an explicit collection and hook
 update. The authoring repository uses the same route.
 
@@ -207,3 +207,12 @@ guidance as a reference rather than another discoverable skill.
 This pass defines responsibilities only. No Atlas schema, new skill package or
 second collection has been implemented. Cross-collection dependency installation
 and pinning remain unresolved and must be made concrete before packaging.
+
+## Keep policy as an input table — 2026-10-03
+
+Forge's policy accumulated working rules and bootstrap/import/upgrade reports.
+The template was sparse, but project-policy explicitly invited extra requirements
+tables. Keep the policy body to Axis and Current fact or decision. Project-policy
+interprets those entries alongside boundaries and records consequences in their
+affected owners. Worktree exceptions belong in repository instructions. Preserve
+obligations when moving them; a document cleanup does not relax requirements.

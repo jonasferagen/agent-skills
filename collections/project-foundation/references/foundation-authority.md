@@ -4,6 +4,10 @@ The project's adopted boundaries and policy govern scope and engineering
 obligations. The overview records current implementation choices and open options.
 A glossary can own domain meanings once one is needed.
 
+Policy is a compact table of current facts and adopted decisions. Project-policy
+interprets it with boundaries; downstream requirements, repository working rules,
+impact assessments and evidence retain their own document owners.
+
 Keep a short operating summary in project instructions, with each constraint
 linked to its authoritative foundation document. Read that summary at task entry.
 Consult policy for changes to data, access, environment, reliability or maintained

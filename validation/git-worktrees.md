@@ -21,7 +21,7 @@ procedures or report format.
 | Worktree already assigned to the task | Reuse it after inspecting its Git state; do not create nested worktrees. |
 | Repository specifies a worktree location | Follow that convention when creating a worktree. |
 | No repository location convention, with a tool-configured location | Use the tool's configured location. |
-| Repository policy explicitly chooses the main checkout for a single-agent project | Follow that exception and preserve it during foundation updates. |
+| Repository instructions explicitly choose the main checkout for a single-agent project | Follow that exception and preserve it during foundation updates. |
 | Spike in a directory outside Git | Edit there without initializing Git to satisfy the workflow. |
 | A subdirectory inside a repository | Discover the parent repository and apply its policy. |
 | New Git repository with no commit | Use a task worktree, including an unborn branch when supported; do not invent a main-checkout exemption. |
