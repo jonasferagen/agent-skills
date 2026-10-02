@@ -37,9 +37,12 @@ name.
 | --- | --- |
 | A customer's phone number | Digits of the same length that are plainly not a number in use, such as `00000000` |
 | An identity number with a birth date in it | The same length with no real date in it, such as `00000000000` |
-| An invoice number the code must find | A number of that format that you chose, such as `INV-1000001` |
+| An invoice number the code must find | A number of that format that you chose, such as `INV-1234567` |
 | A person's name and address | `Example Person`, `1 Example Street` |
 | A mailbox | `someone@example.test` |
+
+A made-up value can still match real data by chance. If the check below
+reports one, change the made-up value; do not allow it.
 
 The rule covers everything a test writes down: test names, comments, assertion
 messages, snapshots, recorded responses, and failure output that lands in a
@@ -117,25 +120,37 @@ out of tracked files and the data is at hand, give the project a check. The
 bundled [copiedValues.py](../scripts/copiedValues.py) is one:
 
 - At run time it collects numbers of six or more digits and mail addresses
-  from the private data.
-- It searches the files Git tracks, and those it would track, for them, and
-  for numbers that contain a private number or are contained in one.
+  from every file of the private data, including the text inside database
+  files. A number made of one repeated digit identifies nothing and is left
+  out.
+- It searches the files Git tracks, and those it would track, for them, for
+  numbers that contain a private number or are contained in one, and for the
+  names you list.
 - It reports the file, the line and the kind of value, never the value.
-- When the private data is absent it exits with its own status, which is not
-  a pass.
+- Only exit status 0 is a pass. Status 1 means copied values were found, 2
+  that none of the private paths exists, and 3 that the check could not run.
 
-Run it before you report work that touched tests or fixtures. Better, have
-one test in the project's own suite run it: fail on status 1, and skip with
-the reason on status 2. A run with copied values then fails for whoever made
-them, whether or not they read this skill. A value the project has decided may
-be public, such as an identifier its documentation uses on purpose, goes in an
-allow file that the project owns. Do not add a value there to make a finding
-go away.
+Run it before you report work that touched tests or fixtures, as step 6 of
+the [workflow](../SKILL.md#workflow) says. Better, have one test in the
+project's own suite run it over every tracked file. Let that test look for
+the private data itself, and skip with the reason only when the data is
+absent. Fail on every other status than 0: a broken check that skips reports
+success for files it never read. A run with copied values then fails for
+whoever made them, whether or not they read this skill.
 
-The helper does not see names or free text. Give it known ones with `--term`,
-and read fixtures for the rest. A scan for shapes, such as anything that looks
-like a phone number, is a useful advisory signal. It cannot tell a made-up
-value from a real one, so do not let it fail a build.
+A value the project has decided may be public, such as an identifier its
+documentation uses on purpose, goes in an allow file that the project owns,
+passed with `--allow-file`. Do not add a value there to make a finding go
+away. Names go in a file kept with the private data, passed with
+`--term-file`. A test that lists them itself puts them in a tracked file.
+
+The helper does not see free text, a name you did not list, a name inside a
+file name, a number written in groups such as `555 01 000`, a number with one
+digit changed, a number a database stores in binary, or text inside an
+encoded mail part. Read fixtures for those.
+A scan for shapes, such as anything that looks like a phone number, is a
+useful advisory signal. It cannot tell a made-up value from a real one, so do
+not let it fail a build.
 
 If a private value has already been committed, replacing it in the working
 tree does not remove it from history. Report it. The project's policy decides

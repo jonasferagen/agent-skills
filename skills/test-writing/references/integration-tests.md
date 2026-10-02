@@ -36,8 +36,11 @@ boundary real, and use doubles only outside it.
 - Create a fresh temporary directory, database, queue or namespace for the
   test. Use unique names so that parallel runs cannot collide.
 - Dispose of it even when setup or an assertion fails. Keep the original
-  failure as the result, and report a failed cleanup as well.
-- If setup fails, fail or skip with the reason. Never fall back to a
+  failure as the result, and report a failed cleanup as well. If only cleanup
+  fails, fail the run.
+- If setup fails, fail with the reason. Skip, saying what is missing, only
+  when the test needs something optional that this environment does not
+  offer, such as a live service that nobody set up here. Never fall back to a
   developer's, a shared or a production resource.
 - Depend on no other test having run first.
 - Share only what no test changes, such as a built artifact or a read-only
@@ -91,8 +94,8 @@ values as [fixtures](fixtures.md) describes.
 
 ## Say what ran
 
-- A test that cannot run here, for lack of data, a service or a tool, reports
-  itself as skipped with the reason. That is neither a pass nor a failure.
-- The verdict of a run names the command, the number of tests that ran and the
-  number skipped. A run with skips is partial.
-- A fast subset gives feedback during the work. It is not the completed check.
+A test that needs something optional that this environment lacks, such as
+local data or a live service, skips with the reason. That is neither a pass
+nor a failure. Report the run as step 7 of the [workflow](../SKILL.md#workflow)
+says: a run with skips, or a fast subset run for feedback during the work, is
+partial.

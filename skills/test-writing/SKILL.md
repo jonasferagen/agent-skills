@@ -16,10 +16,13 @@ out of the repository.
 the nearest agent-instruction file and the repository's own testing guidance
 first. They decide the framework, the layers, the commands, the naming and what
 the project tests thinly on purpose. Where that guidance contradicts this
-package, follow the repository and report both passages to the user.
+package, follow the repository. Report the contradiction to the user, quoting
+both passages, and edit neither side. Do not use it as permission to pick the
+easier rule.
 
 ## Workflow
 
+<!-- Package-boundary copy: verification-design/SKILL.md (Match each claim to an observable boundary) states the rule behind step 1. Keep both passages aligned. -->
 <!-- Package-boundary copy: runtime-operations/SKILL.md (Verification) states the denominator rule behind step 7. Keep both passages aligned. -->
 1. **State the claim.** Say in one sentence what behavior the test protects
    and which failure would disprove it. A test whose failure you cannot name is
@@ -37,6 +40,11 @@ package, follow the repository and report both passages to the user.
    no part of one. A value made by trimming a real one or changing a digit
    still carries it, and so does a file name built around a real name. This
    holds for tests, fixtures, test names, comments and assertion messages.
+   The exception is a value that is public or that the code itself fixes,
+   such as a provider's name that a rule matches, or a code from a public
+   standard. The project's policy decides what is private. Where it is
+   silent, treat anything that identifies a person, an account, a contract
+   or a payment as private, and ask.
 4. **Write the test** by the rules below.
 5. **See it fail.** A test that has never failed has not shown that it can.
    Run the new test against the code without the change, or against a
@@ -70,7 +78,8 @@ package, follow the repository and report both passages to the user.
    you changed for each identifier you saw in the real data.
 7. **Report what ran:** the command, how many tests ran and how many were
    skipped. A run that skipped tests, or ran a chosen subset, is a partial
-   result. Say so instead of reporting it as passed.
+   result. Say so instead of reporting it as passed. When no test ran at all,
+   the honest report is a refusal, not a pass.
 
 ## Start by task
 
@@ -90,13 +99,17 @@ Most work needs two of these: the kind of test, and fixtures.
   file, a response, a message sent. Private fields, incidental calls and
   internal order can change while the behavior stays correct.
 - **Same result on every run.** Pass in the clock, the random seed, the locale
-  and anything else that varies. Use no network, no sleeps and no dependence on
-  the order of tests.
+  and anything else that varies. Use no sleeps and no dependence on the order
+  of tests. Reach no service from outside the test; one the test starts for
+  itself, such as a disposable database, is part of the test.
 - **Made-up data only.** When the shape of a real value matters, make up a
   value with that shape: the same length and kind of characters, different
-  content.
-- **Own your state.** Create what the test needs in a place no other test
-  uses, and remove it afterwards. Depend on nothing another test left behind.
+  content. Public values and values the code itself fixes are the exception
+  that step 3 names.
+- **Own your state.** Create what the test changes in a place no other test
+  uses, and remove it afterwards. Tests may share what none of them changes,
+  such as a read-only fixture built once. Depend on nothing another test left
+  behind.
 
 ## When a test is hard to write
 
