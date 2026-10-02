@@ -58,3 +58,62 @@ The reading and glossary issues were already corrected. The network question
 remains local and open until needed. No additional skill was created. The Atlas
 collection remains its recorded draft snapshot; this source-only clarification
 was not installed downstream.
+
+## Independent rerun — 2 October 2026
+
+After committing the source as `13771b91ef0c6634aee23455032ec157ab36ac4b`
+and the original Atlas foundation as `7ee11d3`, a subagent without conversation
+history received the collection and the original project intent. It used a fresh
+temporary repository and did not read the earlier Atlas documents or trial report.
+
+It produced seven project files, including provenance, plus the complete 33-file
+collection matching the committed source. The parent inspected README, AGENTS,
+overview, policy, boundaries and provenance. Stack, interface, storage and product
+scope remained open; the agreement slice stayed proposed. No glossary, network
+calls, application dependencies or environment validation were introduced.
+
+The subagent reported 83 valid local links/anchors, no unresolved template prompts
+and clean whitespace. The source repository and real Atlas were left unchanged.
+Artifacts remain at `/tmp/atlas-bootstrap-trial-tpJIPJ/`; this record preserves
+the results if the temporary directory is later removed.
+
+### Reading and friction
+
+The subagent reported 8,496 whitespace-delimited words across 17 instruction and
+template files emitted to its context. This excludes metadata, authored drafts,
+mechanical verification reads and generated-file review; it is not a token or
+whole-session context measurement.
+
+| File read | Words |
+| --- | ---: |
+| `AGENTS.md` | 286 |
+| `collections/project-foundation/skills/project-bootstrap/SKILL.md` | 847 |
+| `collections/project-foundation/COLLECTION.md` | 288 |
+| `collections/project-foundation/references/authoring.md` | 162 |
+| `collections/project-foundation/references/foundation-authority.md` | 339 |
+| `collections/project-foundation/skills/project-policy/SKILL.md` | 1,012 |
+| `collections/project-foundation/skills/project-docs/SKILL.md` | 783 |
+| `collections/project-foundation/skills/clear-writing/SKILL.md` | 549 |
+| `collections/project-foundation/skills/clear-writing/references/instructions.md` | 506 |
+| `collections/project-foundation/skills/diagrams-and-tables/SKILL.md` | 364 |
+| `collections/project-foundation/skills/project-docs/references/structure.md` | 600 |
+| `collections/project-foundation/skills/project-docs/references/diagrams.md` | 371 |
+| `collections/project-foundation/templates/README.md` | 7 |
+| `collections/project-foundation/templates/docs/project/boundaries.md` | 39 |
+| `collections/project-foundation/templates/docs/project/policy.md` | 49 |
+| `collections/project-foundation/templates/docs/project/overview.md` | 73 |
+| `collections/project-foundation/skills/diagrams-and-tables/references/composition.md` | 2,221 |
+
+The clearest friction was table authoring routing through the 2,221-word visual
+composition reference, including substantial diagram detail unrelated to the
+output. The next candidate is a smaller form-selection/table route with diagram
+composition loaded only when a diagram is selected. This is a proposed follow-up;
+no guidance was changed during the rerun.
+
+For a routine follow-up, the subagent shortened “A personal project, currently at
+the planning stage” to “A personal project in the planning stage.” It reread only
+AGENTS and README: 254 words. It reused authoring guidance already in context and
+made no policy review or revision change. This supports the warm-context route;
+a cold-start everyday task has not yet been tested. No substantive instruction
+conflict was reported. The parent did not independently reproduce each behavioral
+check, and one trial does not establish reliable discovery or general savings.
