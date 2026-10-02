@@ -48,7 +48,10 @@ use it as permission to pick the easier rule.
 5. **See it fail.** A test that has never failed has not shown that it can.
    Run the new or changed test against the code without the change, or
    against a temporary copy with the behavior broken, and check that it fails
-   for the reason you named. If you could not, say so in the report.
+   for the reason you named. Break the behavior, not one line that serves it.
+   If the test still passes, look for a second guard that gives the same
+   behavior, such as the same check on another path, before you call the
+   test weak. If you could not see it fail, say so in the report.
 6. **Run the project's checks and report what ran.** Run the tests and any
    check the project's testing guide names for test changes, such as a check
    for values copied from real data. Report each command, how many tests ran
