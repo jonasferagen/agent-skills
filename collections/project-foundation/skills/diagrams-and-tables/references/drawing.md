@@ -1,6 +1,6 @@
 # Drawing conventions
 
-**Read this before writing a Mermaid block or an overview table.** `SKILL.md`
+**Read this when implementing or correcting a Mermaid diagram.** `SKILL.md`
 decides *which* form carries a subject; this file covers *how* to draw it so it
 renders the same on GitHub, in editor previews, and in the live editor. For a
 model to copy, see [worked-examples.md](worked-examples.md).
@@ -22,7 +22,7 @@ to fit, switch it to `TB`.**
 
 `TB` alone does not save a diagram carrying too much. When the block is still
 too wide after switching, the problem is altitude rather than direction: split
-it, per the black-box rule in `SKILL.md`.
+it, using the [composition guidance](composition.md#keep-it-vertical-and-keep-it-at-one-altitude).
 
 ## Subgraphs: always declare `direction TB`
 

@@ -2,7 +2,7 @@
 name: project-docs
 description: "Establish, review, or reconcile repository documentation, including domain glossaries, document ownership, project instructions, and high-level relationship diagrams. Use for project documentation structure and consistency work; not standalone office documents, generic copyediting, or application implementation."
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # Project documentation
@@ -35,13 +35,16 @@ changing them is part of the task.
   guidance from historical evidence, and remove superseded active instructions.
   Preserve durable evidence and unresolved questions.
 
-For structure, prose and instruction design, read
-[structure and ownership](references/structure.md). For which document owns
-which view, and how to keep a view accurate, read
-[diagrams in a documentation set](references/diagrams.md). Choosing a diagram
-form and drawing it well belongs to the collection's diagrams-and-tables skill. The [worked example](references/worked-example.md)
-illustrates the method with a synthetic domain; it is not a schema or template
-to impose on other projects.
+For decisions about document homes and reader routes, read
+[structure and ownership](references/structure.md). Use the
+[worked example](references/worked-example.md) only when that method needs an
+example; it is not a schema or template to impose.
+
+When an explanation needs a form decision, use the collection's
+[diagrams-and-tables](../diagrams-and-tables/SKILL.md) entrypoint. Only when the
+task adds, moves or reviews a diagram, read
+[diagrams in a documentation set](references/diagrams.md) for its home and
+freshness. Plain prose and scaffold tables do not need that reference.
 
 ## Ground the content
 
@@ -90,11 +93,9 @@ rewrite for every task. It does not authorize publishing or external writes.
 
 - Check changed local links and heading anchors. On moves or renames, search for
   the old path and name and reconcile affected references.
-- Trace diagram relationships to evidence and render changed diagrams. Inspect
-  them at a normal reading width, in the target renderer and the themes readers
-  use where those are available; check labels, crossings, contrast and
-  readability. Report any rendering limits rather than claiming visual
-  verification.
+- When diagrams changed, verify their source and placement through the diagram
+  ownership reference and their rendered result through the visual skill's
+  verification guidance. Report limits to what was checked.
 - Review examples for private information and unsupported behavior.
 - Run the repository's relevant checks, including `git diff --check` where Git
   is available. Install dependencies only when a necessary check needs them;
