@@ -170,3 +170,15 @@ project notes; ordinary successful work needs no report. Reusable guidance still
 requires assessment, through pattern-capture when available. The first continuation
 trial is recorded with the Atlas experiment and does not yet prove spontaneous
 capture without an explicit evaluation request.
+
+### Scope the next data-design stage — proposed
+
+The [data-foundations proposal](docs/data-foundations.md) maps tasks to guidance.
+The likely new entry point is relational-modeling: structure known entities around
+retrieval questions and iterate toward an implementation-ready model. Reuse
+PostgreSQL, migration, authoring and ER guidance; start synthetic scenario/seed
+guidance as a reference rather than another discoverable skill.
+
+This pass defines responsibilities only. No Atlas schema, new skill package or
+second collection has been implemented. Cross-collection dependency installation
+and pinning remain unresolved and must be made concrete before packaging.

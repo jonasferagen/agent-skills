@@ -6,6 +6,9 @@ one installable collection under `collections/<name>/`.
 
 [Decision log](DECISIONS.md) records structural decisions and ideas for follow-up.
 
+[Data foundations](docs/data-foundations.md) proposes the skills for the next
+database-modeling stage; it is not an installed collection yet.
+
 Categories group skills by their main task. A collection is an installation unit;
 its individual skills remain task entry points loaded when needed.
 
