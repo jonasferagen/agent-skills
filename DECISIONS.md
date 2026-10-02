@@ -147,3 +147,17 @@ read much of the catalog during consumption, and Mermaid rendering currently lac
 an available local tool in the trial environment. Address those separately from
 form selection. The latest trials do not establish cold-start everyday behavior
 or a reduction in total session context.
+
+### Routing quality as an acceptance requirement — adopted
+
+Consumers must reach relevant guidance without source-maintenance reading unless
+their task needs it. Deeper guidance must still be reached when required. Apply
+this standard to the repository's own instructions and collections. The
+[requirement](README.md#routing-quality) owns acceptance; the
+[trial method](validation/discovery.md#routing-trial-method) defines practical
+evidence for meaningful routing changes and collection releases. Ordinary wording
+edits do not automatically trigger trials.
+
+Measure actual reads and their relevance, missed obligations and preserved task
+constraints. Compare equivalent tasks rather than imposing a universal word
+budget. Source-authoring and installed-consumer routes need separate checks.

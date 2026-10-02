@@ -219,3 +219,71 @@ The next proposed specialization is runtime-operations: credential handling,
 local service control, and database backup/recovery. Containerization and
 source-of-truth are subsequent candidates. Those remain proposals; directory
 placement alone does not resolve their overlapping responsibilities.
+
+## Consumer and authoring route trials — 2 October 2026
+
+Two fresh subagents tested revision `617af2a` in isolated fixtures under
+`/tmp/routing-trials-7ayu3ssm/`. Entry was through project/repository instructions,
+not host automatic discovery. They received ordinary tasks rather than expected
+routes. Source repositories and real Atlas were unchanged. The parent inspected
+both edits.
+
+### Cold consumer: shorten a README introduction
+
+The installed collection lived outside the authoring repository. The agent changed
+“A local planning project, currently at the planning stage” to “A local project
+currently in planning.” It read no source catalog or maintenance material and
+preserved local scope and planning status.
+
+| Guidance read | Words | Agent's reason |
+| --- | ---: | --- |
+| Project AGENTS | 31 | Project constraints and route |
+| Installed COLLECTION | 332 | Find writing entrypoint |
+| Foundation authority | 339 | Interpret consultation rules |
+| Clear-writing entrypoint | 549 | Preserve meaning during edit |
+| Shared authoring | 171 | Collection authoring and revision rules |
+| Short-text reference | 365 | Explicit route for brief descriptions |
+
+Total displayed guidance was 1,787 whitespace words, once per file, without
+truncation. Machine reads for counting and README inspection were excluded.
+The agent classified all six as required by current instructions. Parent review
+agrees that they follow the routes, but necessity to follow a route is not evidence
+that every read helped this small edit. Authority and revision guidance had low
+marginal value here. A narrower routine-writing route remains a candidate; no
+further rule was added during this trial.
+
+Exact-content and whitespace checks passed. The fixture lacked Git, so its first
+`git diff --check` attempt failed, and `python` was absent so the agent used
+`python3`. These are fixture/tooling limitations, not evidence of a collection
+routing defect. No network or dependencies were used.
+
+### Source authoring: clarify proposed versus completed action
+
+The agent worked in an isolated Git clone and added “proposed or” to the existing
+short-status instruction in clear-writing. It avoided duplicating the rule and
+ran package validation (22 entries, one collection) and `git diff --check`.
+The resulting edit remains only in the trial fixture.
+
+It requested approximately 6,906 words across AGENTS (362), README (4,751),
+clear-writing (549), instruction guidance (506), the target short-text reference
+(365), and the first 20 lines of its validation page (373). The combined read was
+truncated in README history, so 6,906 is requested content, not measured delivered
+context. The agent identified unrelated origins and release history as unnecessary.
+A heading search also exposed prior verification snippets, which it reported as a
+minor departure from the instruction to avoid prior trial reports.
+
+This demonstrates that authoring obligations remain reachable. It also shows
+continued source-catalog overreading on a narrow authoring task. The next candidate
+is clearer section-level routing or separating maintained catalog/authoring rules
+from long historical material; this trial alone does not select that design.
+
+### Acceptance and remaining evidence
+
+The consumer/source boundary worked in this cold-entry case; appropriate writing
+rules and authoring checks remained reachable. Neither task activated diagram
+construction, policy-transition work or unrelated source maintenance. The earlier
+[diagram countercheck](atlas-bootstrap-experiment.md#diagram-countercheck-at-the-same-revision)
+provides evidence of deeper routing at its named revision, not a new trial here.
+No policy-transition or automatic-host-selection trial was run. These results
+support the scoped routing change but do not establish collection-wide efficiency
+or reliability. No release is being declared ready from these two runs.
