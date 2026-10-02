@@ -41,8 +41,8 @@ name.
 | A person's name and address | `Example Person`, `1 Example Street` |
 | A mailbox | `someone@example.test` |
 
-A made-up value can still match real data by chance. If the check below
-reports one, change the made-up value; do not allow it.
+A made-up value can still match real data by chance. If a check for copied
+values reports one, change the made-up value; do not allow it.
 
 The rule covers everything a test writes down: test names, comments, assertion
 messages, snapshots, recorded responses, and failure output that lands in a
@@ -116,41 +116,27 @@ production. Do this only where the project's policy allows it.
 
 A rule that depends on every author remembering it gets broken. A check that
 fails does not depend on anyone's memory. So where a policy keeps private data
-out of tracked files and the data is at hand, give the project a check. The
-bundled [copiedValues.py](../scripts/copiedValues.py) is one:
+out of tracked files and the data is at hand, the project needs a check that
+fails when a tracked file holds a value from that data. A test in the
+project's own suite is the strongest form, because it fails for whoever made
+the copy, whether or not they read this skill. The check, its allow list and
+when it runs belong to the project and its testing guide. A useful check:
 
-- At run time it collects numbers of six or more digits and mail addresses
-  from every file of the private data, including the text inside database
-  files. A number made of one repeated digit identifies nothing and is left
-  out.
-- It searches the files Git tracks, and those it would track, for them, for
-  numbers that contain a private number or are contained in one, and for the
-  names you list.
-- It reports the file, the line and the kind of value, never the value.
-- Only exit status 0 is a pass. Status 1 means copied values were found, 2
-  that none of the private paths exists, and 3 that the check could not run.
+- reads the private data at run time and keeps the values it collects out of
+  every tracked file, the check's own code and test included;
+- searches the files the project tracks, and those it would track, for those
+  values, whole and as part of a longer value;
+- names the file, the line and the kind of value, and never prints the value;
+- fails when it cannot read the data, checked nothing or hit an error, and
+  lets its test skip, with the reason, only when the data is absent;
+- reads an allow list that the project owns, for values it has decided are
+  public. Do not add a value there to make a finding go away.
 
-Run it before you report work that touched tests or fixtures, as step 6 of
-the [workflow](../SKILL.md#workflow) says. Better, have one test in the
-project's own suite run it over every tracked file. Let that test look for
-the private data itself, and skip with the reason only when the data is
-absent. Fail on every other status than 0: a broken check that skips reports
-success for files it never read. A run with copied values then fails for
-whoever made them, whether or not they read this skill.
-
-A value the project has decided may be public, such as an identifier its
-documentation uses on purpose, goes in an allow file that the project owns,
-passed with `--allow-file`. Do not add a value there to make a finding go
-away. Names go in a file kept with the private data, passed with
-`--term-file`. A test that lists them itself puts them in a tracked file.
-
-The helper does not see free text, a name you did not list, a name inside a
-file name, a number written in groups such as `555 01 000`, a number with one
-digit changed, a number a database stores in binary, or text inside an
-encoded mail part. Read fixtures for those.
-A scan for shapes, such as anything that looks like a phone number, is a
-useful advisory signal. It cannot tell a made-up value from a real one, so do
-not let it fail a build.
+No such check sees everything. One that looks for numbers and addresses
+misses names, free text and values written another way. Read fixtures for
+those. A scan for shapes, such as anything that looks like a phone number, is
+a useful advisory signal. It cannot tell a made-up value from a real one, so
+do not let it fail a build.
 
 If a private value has already been committed, replacing it in the working
 tree does not remove it from history. Report it. The project's policy decides
