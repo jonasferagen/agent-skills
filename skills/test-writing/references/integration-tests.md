@@ -96,6 +96,6 @@ values as [fixtures](fixtures.md) describes.
 
 A test that needs something optional that this environment lacks, such as
 local data or a live service, skips with the reason. That is neither a pass
-nor a failure. Report the run as step 7 of the [workflow](../SKILL.md#workflow)
+nor a failure. Report the run as step 6 of the [workflow](../SKILL.md#workflow)
 says: a run with skips, or a fast subset run for feedback during the work, is
 partial.

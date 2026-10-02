@@ -224,13 +224,11 @@ number and an identity-like number copied from that data into a tracked file.
 The entrypoint gives a workflow and routes to three references: unit tests,
 integration tests and fixtures. Its new rule is that every value in a test is
 made up, and that a test reproduces the shape of a real value, never its
-content or a part of it. The bundled `copiedValues.py` finds numbers and mail
-addresses that a tracked file shares with the private data, without printing
-them. In the trials the instructions alone did not hold on every model, and a
-project test that runs the helper did, so the fixtures reference recommends
-that test wherever private data is at hand. A review before the first release
-scoped the workflow's check to the files an author changed, and made the
-helper refuse rather than pass when it cannot check. Example requests: "Use
+content or a part of it. In the trials the instructions alone did not hold on
+every model, and a project test that checks for copied values did. So the
+fixtures reference says what such a check needs. The check itself belongs to
+the project: the first versions bundled one, which now lives in the project
+that prompted the skill, with the workflow around it. Example requests: "Use
 $test-writing to add a regression test for this parser fix", "Use $test-writing
 to build sample records for the importer tests." See
 [validation](validation/test-writing.md).

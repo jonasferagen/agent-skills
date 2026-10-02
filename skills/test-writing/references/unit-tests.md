@@ -10,7 +10,9 @@ test](integration-tests.md).
 ## Shape
 
 Arrange the input, act once, assert the outcome. If a test needs a second
-action to make its point, it is two tests.
+action to make its point, it is usually two tests. A test of repetition is the
+exception, such as one that runs an import twice to show that the second run
+changes nothing.
 
 Name the test for the behavior and its condition, such as "rejects an order
 without lines", in the form the repository already uses. Where a behavior has
