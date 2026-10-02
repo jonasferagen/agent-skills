@@ -18,6 +18,7 @@ references work.
 | Keep authoritative decisions and their consumers aligned | [Source of truth](skills/source-of-truth/SKILL.md) |
 | Write clear prose | [Clear writing](skills/clear-writing/SKILL.md) |
 | Choose and design visual explanations | [Diagrams and tables](skills/diagrams-and-tables/SKILL.md) |
+| Record an observed obstacle during work | [Friction capture](references/friction.md) |
 
 Project work follows [foundation authority guidance](references/foundation-authority.md).
 The project skills also use [shared authoring guidance](references/authoring.md).

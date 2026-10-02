@@ -91,6 +91,10 @@ It must also route:
 - Relevant facts and decisions to overview, boundaries and policy, with links
   from each operating-summary statement to its authoritative owner.
 - Repeated definitions, inconsistent consumers and drift checks to source-of-truth.
+- Observed obstacles or repeated workarounds to [friction capture](../../references/friction.md)
+  at a natural checkpoint, using existing project notes. Ordinary successful work
+  needs no capture pass. Put this trigger in project instructions so it is visible
+  before the reference is loaded.
 
 These routes are part of bootstrap's output: the sparse documents rely on the
 skills to interpret them. Review triggers apply during authorized project work;
