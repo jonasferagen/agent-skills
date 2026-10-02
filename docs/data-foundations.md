@@ -1,7 +1,10 @@
 # Proposed data-foundations collection
 
-Status: scope proposal, 2 October 2026. This defines the guidance needed for the
-next experiment; it does not establish an Atlas model or implement a collection.
+Status: scope proposal, 2 October 2026. A
+[relational-modeling draft](../skills/design/relational-modeling/SKILL.md) has completed
+a bounded document trial with explicitly supplied dependencies. This does not establish an
+Atlas model or implement the proposed collection. See
+[trial evidence](../validation/relational-modeling.md).
 
 ## Starting situation
 
@@ -76,13 +79,13 @@ Keep container runtime setup, application patterns/languages, API transports,
 query tuning and broad operational audits outside the initial modeling route.
 Select them when a concrete task reaches those subjects.
 
-## Next bounded experiment
+## First bounded experiment
 
-Draft only the relational-modeling workflow and scenario reference. Use a small
-supplied entity list and two retrieval questions, with assumptions clearly marked.
-Try an initial model pass, one relationship correction and a nearby task that
-does not need modeling. Record unnecessary reads, missing guidance, unresolved
-decisions and whether the artifacts give implementation a coherent starting point.
+The [trial record](../validation/relational-modeling.md) covers an initial model,
+a relationship correction and a nearby wording task. The documents stayed aligned
+while keeping unresolved decisions visible. The initial reading cost exposed a
+broad visual-guidance route; the record proposes a focused comparison before
+changing it.
 
-No database server, schema implementation or environment validation is needed for
-that trial. A later task can test migrations, seeds and runtime setup separately.
+The trial did not implement a database or validate an environment. PostgreSQL
+representation, migrations, seed loading and runtime setup remain later work.
