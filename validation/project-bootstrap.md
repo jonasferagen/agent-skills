@@ -1,0 +1,73 @@
+# Validation — Project bootstrap
+
+## Collection adoption — 2 October 2026
+
+The current entry point belongs to the project-foundation collection. See
+[collection validation](project-foundation-collection.md) for the shared templates,
+required authoring guidance and policy review behavior. Earlier standalone-package
+and template-copy results below describe the previous structure.
+
+## Draft scope — 2 October 2026
+
+The first draft captures starting a local repository and establishing three
+project definitions, with a README linking them. The package location and bundled
+templates are the maintained home. User-wide installation and reorganization of the
+companion skills remain separate decisions.
+
+The assets are copied from the local `project-foundation` repository's
+`templates/` tree at commit `800398dbddb09d80ce2b0cc4275becb2b5e4c691`.
+On 2 October 2026 the owner authorized retiring the source repository after
+verification of the port. All four template files matched byte for byte. The
+source's template directory was removed and its README now points here. Its Git
+history, adoption review, project-docs trial and Atlas sample remain as historical
+evidence in the retired repository. Maintain reusable templates in this package.
+
+## Responsibilities to review
+
+Bootstrap owns the starting layout and coordinates available guidance.
+Project-policy retains the requirements workflow; project-docs retains document
+organization and reconciliation. Clear-writing and diagrams-and-tables remain
+general authoring skills. Their presence is optional for this package.
+
+The policy asset is an initial profile and unknowns scaffold. The fuller
+project-policy template remains useful for that skill's independent operation;
+using both skills must populate one project policy owner. Whether to consolidate
+template maintenance belongs in the subsequent packaging review.
+
+The existing repository instructions recommend project-local imports. This draft
+leaves installation scope to the user's request and changes no installation.
+
+## Behavioral scenarios
+
+| Request and context | Expected outcome |
+| --- | --- |
+| Bootstrap a new project with only a name and target directory | Establish the requested foundation with explicit unknowns; invent no stack or product scope. |
+| Apply the foundation to a fresh repository that already has a README and initial commit | Preserve history and useful README content; add the definitions and routes. |
+| Target directory is inside another repository | Establish whether a separate nested repository is intended before initializing it. |
+| Earlier implementations exist beside the target | Treat them as references within the requested scope; copy no application or private data automatically. |
+| Bootstrap is installed without its companions | Produce an honest initial foundation from bundled resources, without broken external links or claims of specialist review. |
+| Bootstrap and project-policy are both available | Establish one policy at the chosen path; avoid a competing root policy file. |
+| User requests README only | Honor the narrower output; do not impose three additional files. |
+| User requests foundation plus selected project-local skill imports | Import complete packages from known revisions with provenance; keep project decisions outside them. |
+| User mentions possible user-wide installation later | Keep that as a pending decision; do not install globally. |
+| Fix a typo in an established README | Use ordinary editing guidance; do not bootstrap the project again. |
+
+## Evidence and limits
+
+Author review applied clear-writing, including its instruction guidance, to keep
+defaults distinct from requirements and selection distinct from installation.
+Diagrams-and-tables guidance informed the file ownership and companion tables.
+No diagram was needed. Pattern-capture informed the scope: this has its own
+starting-project trigger, while existing specialist workflows retain their homes.
+
+Checks run on 2 October 2026:
+
+- Repository package validation passed for all 21 packages.
+- The skill-creator manifest validator passed for project-bootstrap.
+- An isolated copy contained the four expected files and four working local
+  links. It matched the source templates byte for byte, staged cleanly in a
+  temporary Git repository and passed the staged whitespace check.
+- `git diff --check` passed for the authoring repository.
+
+Behavioral scenarios above are expectations, not independent agent trials.
+The Atlas repository has not adopted the foundation as part of this skill draft.

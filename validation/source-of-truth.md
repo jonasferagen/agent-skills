@@ -216,3 +216,60 @@ require a check where a consumer must keep a literal. It does not require a new
 table when configuration already owns the value, or rewrite historical pins. The
 cases above were reviewed against that branch's generated plugin build, not
 against anything on main; no independent discovery trial was run.
+
+## Candidate: record meaning versus storage origin
+
+Proposed on 2 October 2026, from a pattern-capture review in the intake-spike
+project. Proposed home: [Authoritative definitions](../collections/project-foundation/skills/source-of-truth/SKILL.md).
+
+**The point.** When code decides what a record means from where it came from,
+such as its table, file or assertion kind, moving that kind of record to another
+home changes the code's behavior without any error. Giving each fact one home is
+exactly such a move, so check consumers for this before the move.
+
+**Mechanism.** A consumer branches on provenance to decide meaning. That works
+only while each kind of record lives in one store, so consolidating the stores
+breaks it silently. A catch-all branch makes it worse: in the case below, any key
+that is not one of the project's own assertions counts as an identity, which is
+the silent fallback that [definitions](../collections/project-foundation/skills/source-of-truth/references/definitions.md)
+already warns about.
+
+**Evidence.** The intake project's lookup calls an address match an alias when
+its key came from intake's own assertions and an identity otherwise, and only an
+identity leads to task candidates. On the project's made-up test data, the same
+sender fact stored as a source-system row gave the identity rule and two task
+candidates. Stored as one of intake's own assertions, it gave the alias rule and
+none. The planned consolidation would have renamed 21 matches in the project's
+corpus, and no existing check would have failed. One reproduced case; no second
+case yet.
+
+**Where it applies.** Records that carry provenance, such as an origin, a source
+system or an assertion kind, read by code that uses it to decide what the record
+is. It matters most before moving a kind of record to another home.
+
+**Where it does not.** Provenance can itself be the meaning. A review status that
+decides whether a value needs review, or a trust level that decides whether
+evidence may resolve something, is a correct branch on provenance and should
+stay.
+
+**Simplest rule.** Store the kind of record as data and branch on that. Keep
+provenance for reporting and for decisions about trust. Before moving a concept's
+home, search its consumers for branches on origin, source or assertion fields.
+
+**Validation still needed.**
+
+- Reproduce the mechanism in an unrelated case, such as configuration that
+  behaves differently depending on whether a value came from a file or from the
+  environment.
+- Check a case outside the rule, such as branching on review status, and confirm
+  that the guidance does not discourage it.
+- Then choose between a short addition to the definitions reference, beside the
+  passage on silent fallbacks, and one line in the skill's review list.
+
+This concerns consumers of a definition, not consistency checks. It stays with
+source-of-truth even if consistency-check design moves out, as
+[Decisions](../DECISIONS.md) proposes.
+
+Preserved from `ideas.md` on 2 October 2026. The intake observations above are
+the recorded evidence from that review; this pass did not reproduce them or run
+the outstanding trials. No new reusable rule has been adopted.

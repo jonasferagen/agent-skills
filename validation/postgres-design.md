@@ -94,7 +94,7 @@ agent evaluation or live-service checks were performed.
 
 ## Pooled transactions reference — 2026-09-30
 
-Version 1.1.0 adds [pooled transactions](../skills/postgres-design/references/pooled-transactions.md)
+Version 1.1.0 adds [pooled transactions](../skills/design/postgres-design/references/pooled-transactions.md)
 and widens the description to include application transactions on pooled
 connections. The guidance comes from the transaction runner, statement policy and
 serving pool of the local atlas-work-dev services at `fb61765`, which run every

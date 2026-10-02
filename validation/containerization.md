@@ -1,5 +1,28 @@
 # Validation — Containerization
 
+## Scope extraction — 2 October 2026
+
+Version 1.0.0 narrows this package to container images, local stacks, startup and
+container resource lifecycle. Migration history and database-testing guidance now
+live in [database-migrations](database-migrations.md). Service ownership and shared
+HTTP/MCP application behavior now live in [service-boundaries](service-boundaries.md).
+The scenarios and results below describe earlier versions; extracted subjects
+are no longer selected through containerization alone.
+
+Author review checked that platform bootstrap, baseline provenance, transaction
+and ledger atomicity, checksums, runner locking, service identities and retry
+identity survived the extraction. Container cleanup kept its own reference;
+the migration reference states resource ownership without a package dependency.
+Clear-writing and instruction guidance informed scope wording. Diagrams-and-tables
+guidance informed the ownership table in the decision log; no diagram was needed.
+
+Checks passed: repository validation for all 22 active packages, skill-creator
+validation for the three affected packages, 247 local Markdown link targets and
+`git diff --check`. Both extracted core sections matched their original text
+verbatim. The retired package is absent and no active skill links to it.
+No application behavior changed and no container, database or transport
+implementation was run for this extraction.
+
 ## Behavioral scenarios
 
 These scenarios define expected behavior for the initial package. The author
@@ -76,7 +99,7 @@ and local links, not the quality of generated container implementations.
 
 ## Owned test resources — 2026-09-30
 
-Version 0.2.0 adds [owned test resources](../skills/containerization/references/owned-resources.md)
+Version 0.2.0 adds [owned test resources](../skills/operations/containerization/references/owned-resources.md)
 and links it from the manifest and the database-tests lifecycle. It was drawn
 from three Docker harnesses in the local atlas-work-dev repository at `fb61765`:
 the shared native-database helper copied into both services, and the integration

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Containerization"
+  short_description: "Build local service images and isolated stacks"
+  default_prompt: "Use $containerization to build this service image and verify its local stack lifecycle."

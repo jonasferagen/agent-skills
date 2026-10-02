@@ -1,7 +1,8 @@
 # Repository guidance
 
 [README](README.md) owns the catalog, package format, naming and release rules.
-Each skill directory must remain usable when copied on its own.
+Standalone packages must work alone. Collection members may use shared resources
+inside their collection; copy the complete collection as one installation unit.
 
 Apply the [authoring principle](README.md#authoring-skills) to this repository's
 own changes: select relevant guidance from the catalog, then read only what
@@ -13,16 +14,17 @@ trigger applies; routine successful use needs no capture pass.
 
 ## Writing
 
-Use [Clear Writing](skills/clear-writing/SKILL.md) when authoring or revising
+Use [Clear Writing](collections/project-foundation/skills/clear-writing/SKILL.md) when authoring or revising
 prose here. For skill instructions, also read its [instruction
-guidance](skills/clear-writing/references/instructions.md). Use [Diagrams and
-tables](skills/diagrams-and-tables/SKILL.md) when adding or changing a diagram
+guidance](collections/project-foundation/skills/clear-writing/references/instructions.md). Use [Diagrams and
+tables](collections/project-foundation/skills/diagrams-and-tables/SKILL.md) when adding or changing a diagram
 or table, or when a passage might explain better as one. These skills own their
 reusable rules; keep repository-specific package and release rules in the
 README.
 
-This is an authoring convention. Other skill packages do not require
-`clear-writing` or `diagrams-and-tables` to be installed beside them. The
+The project-foundation collection includes these authoring skills and routes its
+project skills to shared authoring guidance. Standalone packages outside that
+collection use them here as an authoring convention. The
 README's [authoring skills](README.md#authoring-skills) section recommends these
 passes before a skill release and says what to record.
 

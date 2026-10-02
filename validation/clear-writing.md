@@ -35,12 +35,12 @@ the expected answers:
 | A successful backup command, no restore test, and an upload timeout of uncertain cause | Kept command success distinct from recovery verification and retained uncertainty about the timeout's cause. |
 
 The procedural prose trial revised
-[Bash Patterns](../skills/bash-patterns/SKILL.md). An independent comparison with
+[Bash Patterns](../skills/languages/bash-patterns/SKILL.md). An independent comparison with
 its prior text found the requirements, exceptions and literal code preserved.
 That review checked wording; it did not execute Bash examples.
 
 An independent author also used the skill to revise the conceptual
-[Source of Truth](../skills/source-of-truth/SKILL.md) entrypoint. Review preserved
+[Source of Truth](../collections/project-foundation/skills/source-of-truth/SKILL.md) entrypoint. Review preserved
 its six ordered options, structural exceptions and project authority; all ten
 section headings and fourteen link targets remained intact. The author flagged
 an existing contradiction: verification claimed that drift must become

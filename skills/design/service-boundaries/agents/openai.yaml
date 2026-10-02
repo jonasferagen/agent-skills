@@ -1,0 +1,3 @@
+interface:
+  display_name: "Service boundaries"
+  short_description: "Define ownership and align HTTP and MCP operations"

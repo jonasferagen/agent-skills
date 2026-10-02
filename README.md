@@ -1,27 +1,30 @@
 # Jonas’s agent skills
 
-Jonas's reusable, project-agnostic agent skills. Each skill is one directory
-under `skills/` with a `SKILL.md` manifest; that directory is the installable
-unit.
+Jonas's reusable, project-agnostic agent skills. Standalone packages live under
+`skills/<category>/<name>/`. Related skills and shared resources can instead form
+one installable collection under `collections/<name>/`.
 
-## Project foundations
+[Decision log](DECISIONS.md) records structural decisions and ideas for follow-up.
 
-Use these independent skills together when bootstrapping a project or revisiting
-its engineering expectations. Their display names describe their jobs.
+Categories group skills by their main task. A collection is an installation unit;
+its individual skills remain task entry points loaded when needed.
 
-| Display name / skill | Responsibility |
+## Projects
+
+Part of the [project-foundation collection](collections/project-foundation/COLLECTION.md).
+
+| Skill | Use it for |
 | --- | --- |
-| [Project policy](skills/project-policy/SKILL.md) (`project-policy`) | Establish which requirements apply from users, data, exposure, lifetime, compatibility and recovery needs; assess changes to those requirements. |
-| [Project documentation](skills/project-docs/SKILL.md) (`project-docs`) | Decide where knowledge belongs and keep it current. |
-| [Diagrams and tables](skills/diagrams-and-tables/SKILL.md) (`diagrams-and-tables`) | Choose and verify useful visual explanations of relationships and comparisons. |
-| [Clear writing](skills/clear-writing/SKILL.md) (`clear-writing`) | Express facts and instructions clearly without changing their meaning. |
-| [Authoritative definitions](skills/source-of-truth/SKILL.md) (`source-of-truth`) | Give each rule a home and derive or check its other appearances. |
+| [Project bootstrap](collections/project-foundation/skills/project-bootstrap/SKILL.md) (`project-bootstrap`, draft) | Start a repository and establish boundaries, policy and overview, with an entry README. |
+| [Project policy](collections/project-foundation/skills/project-policy/SKILL.md) (`project-policy`) | Establish which requirements apply from users, data, exposure, lifetime, compatibility and recovery needs; assess changes to those requirements. |
+| [Project documentation](collections/project-foundation/skills/project-docs/SKILL.md) (`project-docs`) | Decide where knowledge belongs and keep it current. |
+| [Authoritative definitions](collections/project-foundation/skills/source-of-truth/SKILL.md) (`source-of-truth`) | Give each rule a home and derive or check its other appearances. |
 
-Start with the project's existing decisions. Establish a project-owned policy
-using the policy skill's template when useful, then apply the other skills where
-their subjects arise. This is a recommended set, not a dependency chain or an
-automatic installer. Each package works alone; a small project may need only a
-short policy and README. Existing projects keep their established document homes.
+Project bootstrap establishes sparse, dated tables for boundaries, policy and
+overview, plus README and agent routes. Project-policy interprets those facts and
+reviews their consequences when circumstances change. The collection supplies
+the authoring guidance; the templates are not standalone manuals. Existing
+projects keep their established document homes.
 
 The project policy owns requirements; procedures and evidence live in their
 existing guides and records. Every policy change receives an impact assessment.
@@ -29,33 +32,71 @@ Stricter requirements can create substantial downstream work, tracked with owner
 and acceptance evidence before the changed use is considered ready. This starts
 as a manual review; automation can grow from actual transitions.
 
-## Code and design
+## Authoring
+
+Included in the project-foundation collection and available for other authoring tasks.
 
 | Skill | Use it for |
 | --- | --- |
-| [typescript-patterns](skills/typescript-patterns/SKILL.md) | TypeScript types, narrowing, generics, absence, module syntax and enforcement. |
-| [typescript-design](skills/typescript-design/SKILL.md) | Class-based TypeScript house style: operations, naming, ownership, ports, barrels and directory layout. |
-| [python-patterns](skills/python-patterns/SKILL.md) | Python types, runtime boundaries, defaults, exceptions, resource cleanup and async tasks. |
-| [python-design](skills/python-design/SKILL.md) | Class-based Python house style: operations, domain values, dependency protocols, naming and modules. |
-| [bash-patterns](skills/bash-patterns/SKILL.md) | Preserving arguments, command failures, query results and cleanup ownership in Bash scripts. |
-| [node-patterns](skills/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
-| [postgres-design](skills/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries, and transactions on pooled connections. |
-| [shared-code-design](skills/shared-code-design/SKILL.md) | Decide when copied implementation should remain checked copies, be generated or become a versioned dependency. |
+| [Clear writing](collections/project-foundation/skills/clear-writing/SKILL.md) (`clear-writing`) | Express facts and instructions clearly without changing their meaning. |
+| [Diagrams and tables](collections/project-foundation/skills/diagrams-and-tables/SKILL.md) (`diagrams-and-tables`) | Choose and verify useful visual explanations of relationships and comparisons. |
 
-## Changes and operations
+## Design
+
+Source directory: `skills/design/`.
 
 | Skill | Use it for |
 | --- | --- |
-| [change-workflow](skills/change-workflow/SKILL.md) | Taking a change from an isolated worktree through synchronization, verification, merge and cleanup. |
-| [containerization](skills/containerization/SKILL.md) | Building independent local service containers with explicit interfaces, repeatable migrations, disposable database tests and test runs that remove exactly what they create. |
-| [verification-design](skills/verification-design/SKILL.md) | Choose evidence for a change or milestone and consolidate checks by the failures they detect. |
-| [test-writing](skills/test-writing/SKILL.md) | Writing unit tests, integration tests and their fixtures, with made-up data and state each test owns. |
-| [test-audit](skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
-| [pattern-capture](skills/pattern-capture/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
-| [runtime-operations](skills/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
+| [service-boundaries](skills/design/service-boundaries/SKILL.md) | Define service ownership and shared behavior across HTTP and MCP adapters. |
+| [postgres-design](skills/design/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries, and transactions on pooled connections. |
 
-These groups organize the catalog. Packages remain directly under `skills/`, so
-changing a group does not change a skill's installation path.
+## Verification
+
+Source directory: `skills/verification/`.
+
+| Skill | Use it for |
+| --- | --- |
+| [verification-design](skills/verification/verification-design/SKILL.md) | Choose evidence for a change or milestone and consolidate checks by the failures they detect. |
+| [test-writing](skills/verification/test-writing/SKILL.md) | Writing unit tests, integration tests and their fixtures, with made-up data and state each test owns. |
+| [test-audit](skills/verification/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
+
+## Operations
+
+Source directory: `skills/operations/`.
+
+| Skill | Use it for |
+| --- | --- |
+| [containerization](skills/operations/containerization/SKILL.md) | Build service images, configure local stacks and manage isolated container test resources. |
+| [database-migrations](skills/operations/database-migrations/SKILL.md) | Preserve migration history, review baselines and verify database bootstrap and upgrades. |
+| [runtime-operations](skills/operations/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
+
+## Workflow
+
+Source directory: `skills/workflow/`.
+
+| Skill | Use it for |
+| --- | --- |
+| [change-workflow](skills/workflow/change-workflow/SKILL.md) | Taking a change from an isolated worktree through synchronization, verification, merge and cleanup. |
+| [pattern-capture](skills/workflow/pattern-capture/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
+
+## Languages and runtimes
+
+Source directory: `skills/languages/`.
+
+| Skill | Use it for |
+| --- | --- |
+| [typescript-patterns](skills/languages/typescript-patterns/SKILL.md) | TypeScript types, narrowing, generics, absence, module syntax and enforcement. |
+| [typescript-design](skills/languages/typescript-design/SKILL.md) | Class-based TypeScript house style: operations, naming, ownership, ports, barrels and directory layout. |
+| [python-patterns](skills/languages/python-patterns/SKILL.md) | Python types, runtime boundaries, defaults, exceptions, resource cleanup and async tasks. |
+| [python-design](skills/languages/python-design/SKILL.md) | Class-based Python house style: operations, domain values, dependency protocols, naming and modules. |
+| [bash-patterns](skills/languages/bash-patterns/SKILL.md) | Preserving arguments, command failures, query results and cleanup ownership in Bash scripts. |
+| [node-patterns](skills/languages/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
+
+Install each standalone package by its existing name, for example
+`skills/languages/python-patterns/` to `.agents/skills/python-patterns/`.
+Names, invocation examples and release tags are unchanged by source grouping.
+Existing imports retain their pinned source paths; use the new path when importing
+a revision after the move.
 
 ## Using a skill
 
@@ -67,11 +108,13 @@ pin. Imported files should match that commit; keep project-specific rules outsid
 the imported directory and document any necessary local modifications in the
 provenance file.
 
-Each package must work when installed alone. Keep links and required resources
-inside its directory. If two skills both need a short rule, repeat it in each
-package and add a source comment in both places naming the other copy, so edits
-find both. A shared directory would change the installation unit and is not part
-of this repository's package format.
+For project-foundation, copy the complete
+[collection](collections/project-foundation/COLLECTION.md) with its relative layout
+intact. Its installation instructions define provenance and project routing.
+Collection members may link to each other and shared references or templates.
+Standalone packages keep required resources inside their own directory. Links
+must stay inside the applicable installation unit; do not duplicate guidance just
+to make each collection entry point independently installable.
 
 The entrypoint carries the purpose, essential constraints and links to details.
 Put mode-specific procedures and longer examples in `references/` and link them
@@ -81,7 +124,7 @@ when those helpers need offline verification. The entire directory, including
 those resources, is installed together.
 
 Run `python3 scripts/validate-packages.py` after editing a package. It checks
-frontmatter, local link targets and package containment; behavioral scenarios in
+frontmatter, local link targets and installation-unit containment; behavioral scenarios in
 `validation/` and any bundled helper tests still need their own review.
 
 Updates are deliberate: select a release, review its changes and local exceptions,
@@ -139,6 +182,10 @@ about selection. See [the discovery review](validation/discovery.md).
 
 ## Skill releases
 
+Collections are currently pinned as a whole by source commit. Their member
+versions describe changed skill behavior; individual member tags do not establish
+a compatible collection release. No collection release has been published.
+
 Version each skill independently. Its `SKILL.md` declares a string under
 `metadata.version`, such as `"1.0.0"`. Publish an annotated Git tag named
 `<skill-name>/v<version>` on the committed release; never move a published tag.
@@ -180,8 +227,8 @@ During authoring, AGENTS.md requires writing and visual guidance where relevant.
 Before tagging a release, also apply these skills to the content changed since the skill's
 last tag, or to the whole package for a first release:
 
-- [Clear writing](skills/clear-writing/SKILL.md), to the prose.
-- [Diagrams and tables](skills/diagrams-and-tables/SKILL.md), to existing
+- [Clear writing](collections/project-foundation/skills/clear-writing/SKILL.md), to the prose.
+- [Diagrams and tables](collections/project-foundation/skills/diagrams-and-tables/SKILL.md), to existing
   diagrams and tables and to passages a diagram or table would explain better.
 
 This additional release pass is a recommendation, not a release requirement. Clear Writing does not yet
@@ -192,8 +239,8 @@ When you apply them, record on the skill's validation page which skills were
 applied and what they changed; "no change needed" is a valid result. When a pass
 rewrites wording, an independent comparison of each changed passage with the
 prior text is recommended: the first Clear Writing sweep found four meaning
-changes that way. These skills guide authors; installed packages remain
-independent of them.
+changes that way. Project-foundation includes these skills as dependencies. Other standalone
+packages use them as authoring guidance without acquiring that dependency.
 
 ## Adding a skill
 
@@ -201,8 +248,10 @@ independent of them.
   identifiers or private domain records. A skill about one project's systems
   does not belong here. Skills about Jonas himself, such as his email style,
   live in his separate local `personal-skills` repository.
-- Put the manifest at `skills/<name>/SKILL.md`, with references and helper
-  files beside it. `agents/openai.yaml` carries the display name for tools that
+- Put standalone manifests at `skills/<category>/<name>/SKILL.md` and collection
+  members at `collections/<collection>/skills/<name>/SKILL.md`. Keep skill names
+  unique across both layouts. Put shared resources inside their collection.
+  `agents/openai.yaml` carries the display name for tools that
   read it.
 - Choose a short lowercase hyphenated name for the activity or subject readers
   will seek. Use familiar terms and the actual language or tool when it narrows
@@ -232,6 +281,9 @@ that prompted the skill, with the workflow around it. Example requests: "Use
 $test-writing to add a regression test for this parser fix", "Use $test-writing
 to build sample records for the importer tests." See
 [validation](validation/test-writing.md).
+
+Historical note: **shared-code-design** is now retired; see the
+[decision log](DECISIONS.md).
 
 **verification-design** and **shared-code-design** capture two architecture
 decisions exposed by a review of the local Atlas/Work proof of concept in
@@ -451,8 +503,8 @@ acceptance. Its subject is the seam between media — a concept authored in a
 schema, a setting or a document and restated in application code, another
 language or prose, where no single search finds both sides and the restatement
 falls behind silently. It deliberately excludes code shape, which belongs to
-[typescript-design](skills/typescript-design/SKILL.md), and schema design,
-which belongs to [postgres-design](skills/postgres-design/SKILL.md). The
+[typescript-design](skills/languages/typescript-design/SKILL.md), and schema design,
+which belongs to [postgres-design](skills/design/postgres-design/SKILL.md). The
 installable package is synthetic throughout and names no language, framework or
 toolchain as a requirement. Several of its false-positive tests — a complete copy
 versus a deliberate subset, a test that states its expectations being a third

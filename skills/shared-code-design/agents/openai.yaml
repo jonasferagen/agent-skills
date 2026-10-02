@@ -1,4 +1,0 @@
-interface:
-  display_name: "Shared Code Design"
-  short_description: "Choose between checked copies, generation and a package"
-  default_prompt: "Use $shared-code-design to review this copied service code and decide whether a shared dependency would help."

@@ -1,5 +1,12 @@
 # Validation scenarios — Project policy
 
+## Collection adoption — 2 October 2026
+
+The current entry point belongs to the project-foundation collection. See
+[collection validation](project-foundation-collection.md) for the shared templates,
+required authoring guidance and policy review behavior. Earlier standalone-package
+and template-copy results below describe the previous structure.
+
 These cases describe observable outcomes. Recorded executions below distinguish
 actual trials from author review.
 

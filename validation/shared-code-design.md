@@ -1,5 +1,8 @@
 # Validation — Shared code design
 
+Retired on 2 October 2026. This page preserves historical evidence. See the
+[decision log](../DECISIONS.md) for the decision and possible future homes.
+
 ## Behavioral scenarios
 
 These scenarios were reviewed against the instructions. No independent agent

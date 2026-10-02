@@ -129,3 +129,45 @@ Checks on main's tree: `python3 scripts/validate-packages.py` passed for 19
 packages; 252 relative links and anchors in 96 Markdown files resolved; and
 `git diff --check` against main was clean. No Mermaid source changed, and no helper
 script changed.
+
+## Source grouping — 2 October 2026
+
+Moved the six TypeScript, Python, Bash and Node packages under
+`skills/languages/`. Package names, metadata, invocation names and contents are
+unchanged; all moved files matched their previous HEAD versions byte for byte.
+The catalog now separates languages and runtimes from code and data design.
+Existing consumers keep their pinned provenance; future imports use the new
+source paths and retain the same installed package names.
+
+Package validation now descends through category directories and rejects duplicate
+package names. All 21 packages passed. Isolated validator trials covered a mixed
+flat/grouped layout, duplicate names, a directory missing its manifest, and a
+cross-package link. The invalid cases were rejected. Catalog, agent instructions
+and validation-page local link targets passed, as did `git diff --check`.
+
+Clear-writing guidance informed the installation and layout wording;
+diagrams-and-tables guidance retained the catalog tables for comparing skill
+responsibilities. Python-patterns guided the validator change. No skill content
+or runtime helper changed. These checks establish source-package integrity;
+client discovery and user-wide installation were not exercised.
+
+## Full catalog grouping — 2 October 2026
+
+Moved the remaining 15 packages into `projects/`, `authoring/`, `design/`,
+`verification/`, `operations/` and `workflow/` under `skills/`. Together with
+`languages/`, these are browsing categories based on the task that selects a skill.
+The catalog, agent instruction links and affected validation links and commands
+now use the grouped source paths. Installed names and pinned consumer provenance
+remain unchanged.
+
+Compared every moved package file against a snapshot taken immediately before
+this move: all contents were byte-for-byte unchanged. All 21 packages passed
+package validation, 86 local link targets in the catalog, agent instructions and
+validation pages resolved, and `git diff --check` passed. The stale-path search
+found no remaining old paths for these packages in those current references.
+No behavioral skill split or client installation was performed.
+
+The next proposed specialization is runtime-operations: credential handling,
+local service control, and database backup/recovery. Containerization and
+source-of-truth are subsequent candidates. Those remain proposals; directory
+placement alone does not resolve their overlapping responsibilities.
