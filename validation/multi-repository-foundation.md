@@ -144,3 +144,34 @@ one root literal. Final real-main checks and the installed pin are recorded in
 Forge's adoption notes. No URL or container access, automatic client discovery,
 context-efficiency improvement or runtime compliance is claimed. Final source
 changes after the trial snapshot only wrapped text and added helper tests.
+
+## Workspace entry discovery — 2026-10-03
+
+The user found that an agent entering above member repositories lacked a route
+to the shared collection. Bootstrap 4.1.0 now checks workspace entry within the
+authorized setup scope. Multi-repository guidance defines parent routing, explicit
+membership, tracked entry ownership, symlink link bases and missing dependencies.
+No second collection, root foundation or parent Git repository is required.
+
+The existing Skill Creator, Clear Writing/instruction, project-docs and
+source-of-truth guidance informed this focused change. A fresh consumer began at
+an exposed root AGENTS in an isolated fixture. It reached Primary, Tools and
+project-policy for future operating-circumstance work; an unrelated project did
+not inherit Forge policy. All 15 exposed entry routes resolved under the declared
+workspace base. Missing-collection and whole-Primary absence were simulated and
+restored; the latter confirmed that symlinked root hooks also disappear. The
+setup record preserves that limitation. See [trial evidence](workspace-entry-trial.md)
+for reads, repeated inspection, overread limits and actual results.
+
+Package validation (23 entries), bootstrap quick_validate and git diff --check
+passed. Before deployment, the author checked 60 link/anchor destinations plus
+member symbolic routes with the proposed Primary worktree substituted for main.
+The archived root README hash matches the original. No helper behavior changed.
+Final deployment and main/task routes are recorded in Forge's adoption notes.
+The added general warning about whole-owner symlink absence records the trial's
+observation; no consumer behavior was changed after its snapshot.
+
+This checks explicit filesystem routing, not automatic instruction discovery in
+every client. Workspace-source links use a declared exposed base and are not
+portable source-directory Markdown links. No container or runtime behavior was
+verified; the fresh trial did not create task worktrees or alter policy.

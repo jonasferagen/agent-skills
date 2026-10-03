@@ -271,3 +271,13 @@ It does not fetch targets or implement inheritance. Existing separate document
 homes remain valid until deliberately migrated. Bootstrap 4.0.0, project-policy
 3.0.0 and project-docs 3.0.0 reflect the changed authoring contract; all remain
 unreleased and pinned by collection commit. No tag is published.
+
+## 3 October 2026 — Workspace discovery entry
+
+Bootstrap now checks the agent's entry directory when authorized setup includes
+a shared workspace. The workspace hook routes to the shared owner and installed
+collection, then target repository instructions; it neither copies the collection
+nor grants project membership through filesystem ancestry. Untracked parents can
+expose versioned entry files by symlink, with the exposed link base stated and
+existing files preserved. Whole-owner absence also removes symlinked hooks; this
+dependency is explicit. Bootstrap 4.1.0 is unreleased; no tag is created.

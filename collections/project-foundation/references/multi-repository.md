@@ -26,6 +26,37 @@ Each independently usable repository declares its external root once. If an
 existing configuration owner already holds the value, reconcile that ownership
 before adopting this format; do not silently create a second authority.
 
+## Workspace entry
+
+When agents start above the member repositories, give that workspace an AGENTS
+entry and a short README within the authorized setup scope. Route to the shared
+owner's instructions and installed collection for workflow selection, then to the
+target repository's instructions before repository-specific work. Reading a route
+does not require loading every skill. Keep existing member entry hooks usable
+for agents that start directly in a repository.
+
+Name participating repositories and the authority for membership. Filesystem
+ancestry alone does not adopt shared policy for legacy or unrelated repositories.
+Do not copy foundation decisions, skill catalogs or installations into the parent.
+A routing-only workspace needs no separate foundation or Git repository.
+
+If the parent is untracked, keep entry files in a selected tracked repository and
+expose them with symlinks when supported. State the base for relative links:
+workspace-facing entries resolve from the exposed workspace root, even when an
+agent reads their tracked source. Keep source maintenance instructions beside
+them. Other clients may need concrete files; derive or check those copies and
+record the mechanism instead of claiming automatic discovery. A symlink into an
+absent owner also removes the entry hook; record that dependency, and use derived
+concrete hooks if offline entry instructions are a requirement.
+
+Inspect existing parent files before installation. Preserve useful facts and
+historical evidence, and do not replace an unrelated instruction owner. Install
+links only after their tracked targets are available. Verify exposed paths,
+symlinks and relative routes from the workspace and the tracked source context,
+plus ordinary member and task-worktree entry. Keep missing-authority behavior
+locally readable; defer only work needing the unavailable owner. Report which
+filesystem routes were checked separately from actual client discovery.
+
 ## Collection and access
 
 Document ownership and skill distribution are separate choices. One complete

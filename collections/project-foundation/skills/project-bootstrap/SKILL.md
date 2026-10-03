@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Bootstrap a new project or a fresh repository with project boundaries, policy and a project overview, plus a README that links them. Use when establishing this starting foundation; ordinary implementation and documentation maintenance belong to their own workflows."
 metadata:
-  version: "4.0.0"
+  version: "4.1.0"
 ---
 
 # Project bootstrap
@@ -119,6 +119,12 @@ It must also route:
   at a natural checkpoint, using existing project notes. Ordinary successful work
   needs no capture pass. Put this trigger in project instructions so it is visible
   before the reference is loaded.
+
+For a shared project, check where agents enter the workspace. When the authorized
+setup includes a parent directory used for cross-repository work, establish its
+[workspace entry](../../references/multi-repository.md#workspace-entry) as well
+as repository hooks. A standalone repository bootstrap does not authorize changing
+unrelated parent instructions. Do not rely on automatic discovery of child skills.
 
 These routes are part of bootstrap's output: the sparse documents rely on the
 skills to interpret them. Review triggers apply during authorized project work;
