@@ -65,3 +65,46 @@ Outputs: renderer README, AGENTS and one local foundation; no duplicate full fou
 Behavior: shared authority preserved; Blender delegation recognized without approval invention; unknown concrete version retained. Absolute shared routes pass in real main checkout and nested Git worktree. Missing-owner probe fails visibly; no stale fallback. Git initialized only after files were authored outside Git; no source or live-service mutation.
 
 Limitations: source-authoring maintenance route not exercised (no source edit requested); no automatic host discovery or runtime inheritance claim. Initial fixture owner documents deliberately minimal prose, not bootstrap outputs. The missing-owner behavior is a controlled probe and authored assessment, not another fresh-agent execution. No separate fresh agent for Pebble. No substantive policy edit adopted, so downstream consequence implementation remains out of scope. No required deeper guidance identified as missed.
+
+## Unified foundation and indirect references — 2026-10-03
+
+The user's follow-up identified repeated external-root literals and inconsistent
+member entry shapes. The source-of-truth lookup principle already covered the
+mechanism; multi-repository guidance now applies it to foundation roots. Bootstrap
+3.0.0 changes the default to one three-section foundation. Policy 2.2.0 and docs
+2.3.0 support section ownership and inherited local differences. All are unreleased.
+
+Skill Creator, Clear Writing (including instruction guidance), Diagrams and
+Tables, project-policy, project-docs and source-of-truth informed this change.
+The table pass kept the existing fields, made template unknowns explicit and
+kept procedures outside the tables. Pattern capture required no new general
+indirection rule: the existing definition owner is linked instead.
+
+A fresh consumer started from a fixture AGENTS hook and an installed draft,
+without reading source maintenance material. It built Orchard/Renderer and
+independent Pebble, plus a sibling for isolation, in actual Git task worktrees.
+The parent inspected foundations, instructions, proposal assessment, supplemental
+interpretation and result records. See the [trial report](foundation-reference-trial.md)
+for artifacts, reading classification, costs and limits.
+
+The trial passed 94 fixture assertions plus six targeted unknown-value checks:
+one-binding relocation, main/nested-worktree routes, inherited policy change,
+local-choice isolation, explicit unknowns, proposed conflicting policy and
+missing authority with unrelated work continuing. These are manual document
+interpretation and fixture checks, not an automatic inheritance engine. Known
+parent values do not silently fill explicit local unknowns, and unknown readiness
+does not waive a known shared obligation.
+
+Package validation passed for 23 entries; quick_validate passed for bootstrap,
+policy and docs; git diff --check passed. A separate template adaptation resolved
+all placeholders and retained three sections with explicit recovery uncertainty.
+Pre-landing Forge checks resolved 176 local destinations, including 21 symbolic
+routes, against the proposed owner worktree; adopted policy rows compare verbatim.
+Final main-checkout access and provenance are recorded in Forge's adoption notes.
+
+No URL, container, Windows or reference-cycle execution was exercised. The
+wording-only negative case reused the bootstrap context; no cold negative or
+fresh source-authoring trial was run. Source maintenance was exercised by this
+author under source AGENTS. The trial predates final line wrapping only; no
+behavior changed after its installed snapshot. No context-efficiency improvement
+or runtime compliance is claimed.

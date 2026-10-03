@@ -2,7 +2,7 @@
 name: project-docs
 description: "Establish, review, or reconcile repository documentation, including domain glossaries, document ownership, project instructions, and high-level relationship diagrams. Use for project documentation structure and consistency work; not standalone office documents, generic copyediting, or application implementation."
 metadata:
-  version: "2.2.2"
+  version: "2.3.0"
 ---
 
 # Project documentation
@@ -30,7 +30,8 @@ changing them is part of the task.
   diagram construction or renderer discovery.
 - **Establish:** identify readers and their tasks, inspect the project, and create
   the smallest useful documentation set. When using the collection scaffold,
-  retain blank tables for unknown facts; do not invent prose to fill them.
+  record explicit unknowns for missing facts; member tables retain only local
+  differences from their declared parent. Do not invent prose to fill them.
 - **Review:** compare documentation with available implementation and records.
   Report concrete discrepancies, reader impact, and proposed fixes with file
   references. Separate observed faults from editorial preferences.

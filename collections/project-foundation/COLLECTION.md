@@ -41,14 +41,17 @@ restructuring explanations and instructions. Read only what the task needs;
 installation does not require loading every entry point. Tool-specific references,
 including Mermaid rendering guidance, are conditional on the selected work.
 
-The [templates](templates/README.md) hold project facts and decisions. Use them
+The [foundation template](templates/docs/foundation.md) holds Boundaries, Overview
+and Policy in one document; the [README template](templates/README.md) links it.
+Members declare inheritance and keep only local differences. Use the templates
 through these skills. They deliberately omit the procedure for interpreting or
 maintaining those facts. Blank cells mean unknown, never permission or a waiver.
 
 For a project-local adoption, copy this whole directory to
 `.agents/collections/project-foundation/`, record the source and full commit in
 `.agents/collections/UPSTREAM.md`, and have bootstrap add explicit routes to the
-entry points in the project's `AGENTS.md`. If using an uncommitted draft, identify
+entry points from the project's `AGENTS.md`, through its local foundation when
+using a shared installation. If using an uncommitted draft, identify
 it as a draft and record its base revision and local changes. Do not claim it
 matches a committed release.
 

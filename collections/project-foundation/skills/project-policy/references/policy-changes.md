@@ -4,7 +4,7 @@ A change to a project's assumptions can invalidate decisions made throughout
 the system. Review the full range of consequences, then scope execution to the
 areas affected. This is a manual starting point that can grow from experience.
 
-Keep the policy file as the current axis table. Record this assessment in existing
+Keep the policy section or separate policy file as the current axis table. Record this assessment in existing
 work notes, downstream requirements in their owners, and verification in evidence
 records. Link back to the affected policy axes and boundaries.
 

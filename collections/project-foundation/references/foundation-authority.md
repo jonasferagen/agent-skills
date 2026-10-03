@@ -1,7 +1,9 @@
 # Consult and preserve the foundation
 
-The project's adopted boundaries and policy govern scope and engineering
-obligations. The overview records current implementation choices and open options
+Start at the local foundation, normally `docs/foundation.md`. Resolve declared
+parent references before relying on inherited decisions; use the section anchors
+for targeted consultation. The project's adopted boundaries and policy govern
+scope and engineering obligations. The overview records current implementation choices and open options
 in a compact table; work queues, skill routes and evidence retain separate owners.
 A glossary can own domain meanings once one is needed.
 

@@ -240,3 +240,18 @@ exceptions. Independent projects and deliberately separate pinned installations
 remain supported. The Forge bootstrap exposed duplicated policy and installation
 copies; this change separates project ownership from Git repository boundaries.
 See [validation](validation/multi-repository-foundation.md). No release tag created.
+
+## 3 October 2026 — Unified foundation and named references
+
+Default bootstrap output is one `docs/foundation.md` with Boundaries, Overview
+and Policy tables. Existing document homes remain supported. Shared members use
+the same sections, declare inheritance and retain only local differences.
+The source-of-truth lookup rule already owns indirect external identifiers;
+multi-repository guidance now applies it to parent roots and documents resolution,
+unknowns, exceptions and missing authority. This is an agent-read convention;
+no runtime resolver or automatic Markdown expansion is introduced.
+
+Project-bootstrap becomes unreleased 3.0.0 because its default scaffold changes;
+project-policy 2.2.0 and project-docs 2.3.0 support both section and existing-file
+owners. The collection is pinned by commit; no release tag is created.
+See [validation](validation/multi-repository-foundation.md).

@@ -2,7 +2,7 @@
 name: project-policy
 description: "Establish or revise engineering requirements when users, data, exposure, lifetime, compatibility or recovery needs change. Assess the impact and track prerequisites; ordinary edits do not require a policy review."
 metadata:
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # Project policy
@@ -40,7 +40,8 @@ scaffold: an empty cell is unknown, not a default guarantee or permission. Keep
 facts, proposals, adopted obligations and verified behavior distinct. Do not
 recreate a manual inside each document.
 
-Keep `policy.md` to its title, date/revision and one two-column table:
+Keep the Policy section of `docs/foundation.md` (or an established separate
+policy owner) to one two-column table:
 `Axis | Current fact or decision`. Use short, formal entries; separate facts with
 semicolons and state unknowns explicitly. Preserve the template's scope comment.
 Record operating circumstances and adopted constraints, such as offline-only use
@@ -52,7 +53,7 @@ requirements. Record durable requirements in their affected design or operationa
 owner; repository working rules belong in `AGENTS.md` or its linked contributor
 guide. Put transition tasks and impact assessments in existing work notes, and
 verification results in evidence records. Create another document only when no
-existing owner serves the reader. Do not add a requirements table to `policy.md`.
+existing owner serves the reader. Do not add a requirements table to the policy section.
 Keep the originating policy axis and boundary traceable from downstream decisions.
 
 When reconciling an expanded policy, relocate useful rules and evidence before
@@ -63,7 +64,10 @@ a requirement does not relax it. Use project-docs to choose appropriate homes.
 
 Read project instructions, the active plan, architecture and relevant operations
 guidance. Reuse an existing policy owner; otherwise adapt the bundled
-[project policy template](../../templates/docs/project/policy.md) into the repository. Keep the
+[foundation template’s Policy section](../../templates/docs/foundation.md#policy)
+into the repository. A member inherits shared axes and records only local facts
+and adopted exceptions; explicit unknowns remain unresolved without waiving shared
+obligations. Keep the
 populated policy outside the imported skill. Link it from the project's agent
 instructions and entry page.
 
@@ -97,11 +101,11 @@ policy grants permission to contact users, access production or deploy.
 During project work, review affected foundation facts when purpose,
 responsibility, terminology, users, data, exposure, lifetime, compatibility or
 recovery changes. Compare the affected documents with the new evidence even if
-nobody has edited policy.md. Update only the affected decisions and their
+nobody has edited the policy section. Update only the affected decisions and their
 consequences; a terminology correction need not reconstruct the full profile.
 These are task-based review triggers, not a background monitoring service.
 
-Every policy edit needs an impact assessment, recorded outside `policy.md` in
+Every policy edit needs an impact assessment, recorded outside the foundation tables in
 the existing task notes or hand-back. A wording-only change may record that it
 changes no obligations. For a substantive change, including relaxing a
 rule, read [policy changes](references/policy-changes.md) and examine downstream

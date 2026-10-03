@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Bootstrap a new project or a fresh repository with project boundaries, policy and a project overview, plus a README that links them. Use when establishing this starting foundation; ordinary implementation and documentation maintenance belong to their own workflows."
 metadata:
-  version: "2.2.0"
+  version: "3.0.0"
 ---
 
 # Project bootstrap
@@ -33,42 +33,40 @@ remote, install dependencies or add a runtime only when the task calls for it.
 
 ## Establish the foundation
 
-First determine the project boundary. If this repository is part of a project
-with a shared foundation, use [multi-repository foundations](../../references/multi-repository.md):
-link shared owners and establish only the local facts and routes. The starter
-below applies to the shared owner or an independent project.
+Determine whether this is an independent project, a shared foundation owner or
+one of its members. Bootstrap each repository's entry point; members use
+[multi-repository foundations](../../references/multi-repository.md) to declare
+the parent, reference binding and local scope.
 
-The default starter has three project definitions and an entry README:
+The default starter is `docs/foundation.md` with three sections, each containing
+a compact table, plus a `README.md` that links it:
 
-| File | Owns |
+| Section | Owns |
 | --- | --- |
-| `docs/project/boundaries.md` | Purpose, responsibilities, exclusions and ownership |
-| `docs/project/policy.md` | Concise operating facts and adopted decisions by axis |
-| `docs/project/overview.md` | Current environment, resources, application choices and unresolved options |
-| `README.md` | Brief orientation and links to the definitions and available setup |
+| Boundaries | Purpose, responsibilities, exclusions and ownership |
+| Overview | Current environment, resources, application choices and unresolved options |
+| Policy | Concise operating facts and adopted decisions by axis |
 
-Adapt the bundled [README](../../templates/README.md),
-[boundaries](../../templates/docs/project/boundaries.md),
-[policy](../../templates/docs/project/policy.md) and
-[overview](../../templates/docs/project/overview.md). The three-definition layout
-is a starting convention; honor a requested smaller set or existing document
-homes. This applies to spikes and maintained projects; record their actual
-intent in policy. Add a glossary later when ambiguous terminology needs its own
-home. Merge useful routes into an existing README rather than replacing it.
+Adapt the [foundation](../../templates/docs/foundation.md) and
+[README](../../templates/README.md) templates. Preserve existing document homes
+unless restructuring is requested; the three sections can also route to established
+owners. Add a glossary only when ambiguous terminology needs its own home.
+Merge useful routes into an existing README rather than replacing it.
 
-Keep boundaries to the core template table, with its title, date/revision and
-scope comment. Add a concise project-specific table only when it clarifies actual
-ownership or scope. Keep history, implementation status and procedures in their
-own documents; do not expand the template with project-specific sections.
+A shared owner or independent project records its decisions in all three tables.
+A member declares section inheritance and keeps only local rows; retain a header-only
+table with “No local differences” when all values inherit. Remove unused template
+rows from members: a present unknown is not the same as an omitted inherited row.
+Keep detailed role assignments in their existing architecture owner and reference
+them from boundaries. State the repository or environment scope of technical
+choices so a shared owner's own implementation is not inherited by every member.
 
-Keep overview to its current-choice table and scope comment. Open options name
-unresolved technical decisions; task queues, next steps, skill-selection notes,
-procedures and evidence have their own owners. Do not add a first-slice work plan
-to overview.
-
-Keep policy to its title, date/revision and the axis table; preserve its scope
-comment. Project-policy interprets those facts alongside boundaries. Put working
-rules in project instructions and impact records in existing work notes.
+Keep the title, date/revision and section scope comments. Boundaries may add a
+concise project-specific table when needed for actual ownership. Overview keeps
+current choices and open options; policy keeps operating facts and adopted
+constraints. Put procedures, work queues, skill routes, impact records and evidence
+in their existing owners. The foundation may declare references and inheritance;
+it does not contain the procedure for interpreting policy.
 
 Policy owns operating facts and adopted constraints. Overview owns the
 chosen mechanisms and open implementation options. For example, put a no-network
@@ -100,11 +98,14 @@ scope and existing project instructions.
 Read the [shared authoring guidance](../../references/authoring.md) and use
 [project-policy](../project-policy/SKILL.md) to assess the initial facts and
 [project-docs](../project-docs/SKILL.md) to establish reader routes. Keep the
-initial result small: mostly empty tables are valid where facts are not known.
+initial result small: explicit unknowns are valid where facts are not known.
 Do not reproduce those skills' instructions in the documents.
 
-Merge a short foundation section into the project's `AGENTS.md`, using concrete
-links to the chosen installation and project files. Include the consultation and
+Merge a short foundation section into the project's `AGENTS.md`, routing through
+the local foundation to the chosen installation and project files.
+For external owners, bind a named reference once and use it as specified in the
+multi-repository guidance. Keep the local entry link usable without that owner.
+Include the consultation and
 conflict rules from [foundation authority](../../references/foundation-authority.md):
 keep a short operating summary visible, consult the relevant foundation owner
 when a task depends on it, and check affected decisions before completion. Keep
@@ -113,7 +114,8 @@ It must also route:
 
 - Before edits in a Git repository, use a task worktree and consult
   [Git worktrees](../git-worktrees/SKILL.md). Put the default itself in `AGENTS.md`,
-  alongside the concrete installed-skill link. Only repository-local instructions
+  alongside the installed-skill route (through the local reference when shared).
+  Only repository-local instructions
   can opt out; link any existing exception in those instructions instead of
   overwriting it.
   State that work outside Git proceeds directly and needs no repository merely
@@ -137,7 +139,10 @@ they do not start a watcher, scheduled task or full-project audit on every edit.
 ## Verify and hand back
 
 Check the generated files for unsupported claims, leftover prompts and duplicate
-owners. Verify local links and run applicable documentation checks, including
+owners. For members, verify reference resolution, inherited changes, explicit
+unknowns, local scope, conflicts and missing authority as described in the
+multi-repository guidance. Verify local links and run applicable documentation
+checks, including
 `git diff --check` when Git is available. Review the actual staged files before
 any initial commit; include only the bootstrap's intended content.
 

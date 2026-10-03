@@ -1,3 +1,3 @@
 # {{project_name}}
 
-[Overview](docs/project/overview.md) · [Boundaries](docs/project/boundaries.md) · [Policy](docs/project/policy.md)
+[Foundation](docs/foundation.md) — boundaries, overview and policy.

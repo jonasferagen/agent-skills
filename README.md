@@ -24,9 +24,10 @@ Part of the [project-foundation collection](collections/project-foundation/COLLE
 | [Project documentation](collections/project-foundation/skills/project-docs/SKILL.md) (`project-docs`) | Decide where knowledge belongs and keep it current. |
 | [Authoritative definitions](collections/project-foundation/skills/source-of-truth/SKILL.md) (`source-of-truth`) | Give each rule a home and derive or check its other appearances. |
 
-Project bootstrap establishes sparse, dated tables for boundaries, policy and
-overview, plus README and agent routes. Project-policy interprets those facts and
-reviews their consequences when circumstances change. The collection supplies
+Project bootstrap establishes `docs/foundation.md` with sparse, dated tables for
+boundaries, overview and policy, plus README and agent routes. Members bind their
+shared owner once and retain only local differences. Project-policy interprets
+those facts and reviews their consequences when circumstances change. The collection supplies
 the authoring guidance; the templates are not standalone manuals. Existing
 projects keep their established document homes.
 
@@ -36,7 +37,7 @@ project. Work outside Git proceeds directly. Bootstrap places this default and
 the Git skill route in project instructions; existing installations receive it
 when their collection and instruction hook are deliberately updated.
 
-The policy file holds only concise operating facts and adopted decisions by axis.
+The policy section holds only concise operating facts and adopted decisions by axis.
 Project-policy interprets it alongside boundaries; downstream requirements,
 working rules, impact assessments and evidence live in their own documents.
 Every policy change receives an impact assessment.
