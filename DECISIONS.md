@@ -321,3 +321,23 @@ diagrams-and-tables; policy consequences remain with project-policy. The standal
 service-boundaries skill retains its narrower HTTP/MCP implementation scope and
 is not added as a dependency. A separate architecture rename, provider skill or
 contract template needs further use evidence. These revisions are unreleased.
+
+## 2026-10-03 — Contract tasks and obligation discovery
+
+Project-contracts 0.2.0 separates reading, applying, designing and reviewing an
+agreement. The entrypoint keeps interpretation and application short; design and
+review load conditional references. Contract type alone does not select a design
+workflow. Existing identity, interruption and compatibility obligations remain in
+the design reference and are reachable from focused review.
+
+Design discovers obligations by tracing participants' decisions and looking for
+cases where they can follow the terms yet disagree about the valid outcome.
+Named subjects are starting points, not a completeness checklist. Missing project
+terms stay with the contract; observed failures of guidance or routing use friction
+capture and, when warranted, pattern-capture. Shared friction guidance now includes
+consequential omissions discovered after otherwise smooth work.
+
+This applies the distinction to contracts first. It does not impose four modes
+on every skill or add a subject reference for every possible contract type.
+Validation belongs in [project-contracts](validation/project-contracts.md).
+No release or downstream adoption is implied.

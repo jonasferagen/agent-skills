@@ -10,6 +10,10 @@ notes. Include the source path when it helps reproduce the problem. Create a
 small friction note only when an observation needs a durable home. Keep private
 input out of examples. Mention material friction in the hand-back.
 
+A necessary question omitted by the guidance can be friction even when the task
+ran smoothly. Record the concrete missed case and its consequence when discovered;
+absence of a topic heading alone does not establish a guidance defect.
+
 Separate observation from diagnosis and a proposed fix. Fix a clear, in-scope
 local problem when authorized; keep uncertain generalizations as candidates.
 Do not interrupt useful work to reorganize the skill library or create a new rule
