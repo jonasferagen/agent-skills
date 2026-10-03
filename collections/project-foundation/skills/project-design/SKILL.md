@@ -2,7 +2,7 @@
 name: project-design
 description: "Shape system architecture, responsibilities, conceptual models, workflows and integration choices before or during implementation. Use for operating design across people, agents, tools or services; literal edits, provider setup and runtime implementation have separate workflows."
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Project design
@@ -46,6 +46,10 @@ When establishing how this slice's views connect to their explanations and
 surrounding detail, use project-docs'
 [connected-view guidance](../project-docs/references/view-structure.md). Ordinary
 model reading or a focused boundary change needs no browsing-format adoption.
+
+For a new design, model or process page without an adequate existing structure,
+use the [document-home map](../../references/document-homes.md) and its default
+templates. Existing pages retain their homes until deliberately migrated.
 
 ## Select the design question
 

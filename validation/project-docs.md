@@ -102,3 +102,37 @@ See [collection validation](project-foundation-collection.md#conditional-authori
 for source review, fresh consumer cases, findings and limitations. Those tests
 exercise representative routes; they do not establish every entrypoint or native
 discovery behavior. No release or downstream installation was performed.
+
+## Managed technical explanations — 2026-10-03
+
+Unreleased collection 0.3.0 adds design, architecture, models, process descriptions
+and handoff contracts to the closed home map. Project-docs 5.0.0 changes the
+placement default; existing layouts migrate deliberately. Commands, setup,
+implementation references, creative content and technical evidence keep local
+homes. Design, model and contract templates supplement the existing view/process
+templates. Semantic/template enforcement and a procedure template are deferred.
+
+Clear writing and instruction guidance were applied to the changed scope and
+routes; diagram/table guidance informed the type map. The map keeps placement,
+content ownership and workflow ownership distinct. No diagram source changed.
+The unchanged path helper reads the expanded map. Its fixture now accepts indexed
+technical explanations and continues to reject operating-procedure categories,
+attachments and a missing model index.
+
+A bounded fresh consumer trial used an installed draft outside this source tree
+at `/tmp/managed-doc-routing-xnyj4hdn`. Entry was through project instructions. It
+created a proposed source/session/finding model using the model template and its
+required index, answered the process/procedure boundary, then corrected one typo
+in a local command guide. The output preserved proposal status, contextual
+findings and the distinction between content identity and byte retention. It
+selected no runtime, serialization or browsing convention. No source-maintenance,
+installation or bootstrap guidance was read. The evaluator reused context for
+its second and third requests; those are not separate cold trials.
+
+The actual read list and artifacts remain in that temporary trial's report. The
+connected-view reference was also read for association/template guidance despite
+no diagram being drawn; this trial does not establish minimal context use.
+Design and contract template use were reviewed as source, not exercised by this
+consumer trial. No broad reliability, parser or structural-completeness claim is
+made. Package validation, all 15 foundation/path helper tests, affected skill
+manifest checks, collection links/anchors and whitespace checks passed.

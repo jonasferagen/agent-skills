@@ -1,6 +1,6 @@
 # Project foundation
 
-Version: 0.2.0
+Version: 0.3.0
 
 Start with project instructions and their existing document routes. Use this
 entrypoint to choose needed guidance; if the owner and workflow are already known,
@@ -42,4 +42,6 @@ For adoption, upgrades or installation locations, use
 [installation guidance](references/installation.md). Bootstrap owns foundation
 scaffolding and its templates; project-docs owns view and process templates.
 Reusing an installed documentation template needs no installation workflow.
+The [document-home map](references/document-homes.md) owns managed types and their
+default templates, including architecture, models, processes and handoff contracts.
 Routine use of an installed collection needs neither setup nor every skill loaded.

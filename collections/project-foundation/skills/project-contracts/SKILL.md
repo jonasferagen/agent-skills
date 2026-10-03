@@ -2,7 +2,7 @@
 name: project-contracts
 description: "Read, apply, design or review obligations at a handoff between people, agents, files or services. Use for interpreting terms, assessing an exchange, finding missing obligations or changing compatibility; legal agreements and overall architecture have separate workflows."
 metadata:
-  version: "0.2.1"
+  version: "0.3.0"
 ---
 
 # Project contracts
@@ -54,3 +54,7 @@ the agreement; reusable guidance follows the collection's capture route.
 For authored or restructured explanations, use
 [authoring guidance](../../references/authoring.md). A focused answer from existing
 terms needs no authoring workflow.
+For a new contract page without an adequate existing structure, start from the
+[contract template](../../templates/project-docs/contract.md) in the
+[mapped home](../../references/document-homes.md). It supplements contract design;
+its headings do not establish completeness or supply missing terms.

@@ -33,11 +33,23 @@ class ProjectDocsTests(unittest.TestCase):
         self.assertTrue(any(e.startswith('planning/README.md:') and 'index' in e for e in module.validate(self.root)))
 
     def test_unmanaged_types_and_nested_output_are_rejected(self):
-        for name in ['policy.md', 'architecture/design.md', 'records/images/render.png']:
+        for name in ['policy.md', 'operations/command.md', 'records/images/render.png']:
             self.write(name)
         errors = module.validate(self.root)
-        for name in ['policy.md', 'architecture', 'records/images']:
+        for name in ['policy.md', 'operations', 'records/images']:
             self.assertTrue(any(name in e for e in errors))
+
+    def test_managed_design_and_indexed_explanations(self):
+        for name in ['design.md', 'architecture/README.md', 'architecture/data-flows.md',
+                     'architecture/proposals/storage.md', 'architecture/examples/exchange.md',
+                     'models/README.md', 'models/identity.md',
+                     'processes/README.md', 'processes/review.md',
+                     'contracts/README.md', 'contracts/delivery.md']:
+            self.write(name)
+        self.assertEqual(module.validate(self.root), [])
+        (self.root / 'models/README.md').unlink()
+        self.assertTrue(any(e.startswith('models/README.md:') and 'index' in e
+                            for e in module.validate(self.root)))
 
     def test_layout_is_read_from_document_homes(self):
         homes = self.root / 'homes.md'
