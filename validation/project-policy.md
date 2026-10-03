@@ -135,3 +135,11 @@ Package validation passed for 25 entries including one collection; all five
 foundation-format tests and Git whitespace checks passed. The new phase row keeps
 the strict five-table format. Forge application separately records its policy delta
 and preserved obligations. No release tag or runtime infrastructure was created.
+
+## Canonical document homes — 2026-10-03
+
+Policy stays in the foundation table under project-docs/. Governance decisions and impact evidence use the managed record types; technical consequences keep their repository owners.
+
+This changes placement defaults and is reflected in a major member version.
+The ten collection helper tests cover foundation shape and allowed document paths.
+No runtime or external authority changes are implied.

@@ -85,3 +85,11 @@ bumped.
   in the default and dark themes and read clearly in both.
 - Handoff: "links to its remaining checks" did not say whose → it links to the
   release record for acceptance checks still outstanding.
+
+## Canonical document homes — 2026-10-03
+
+The collection owns a closed document-type map under project-docs/. Repository technical documentation keeps its own homes. Governance records and technical evidence are classified separately.
+
+This changes placement defaults and is reflected in a major member version.
+The ten collection helper tests cover foundation shape and allowed document paths.
+No runtime or external authority changes are implied.

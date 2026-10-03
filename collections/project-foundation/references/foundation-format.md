@@ -6,7 +6,7 @@ operating facts, obligations or their consequences change.
 
 ## Fixed document shape
 
-The [template](../templates/docs/foundation.md) defines the format: `# Foundation`,
+The [template](../templates/project-docs/foundation.md) defines the format: `# Foundation`,
 a `Date: YYYY-MM-DD · Revision: N` line, then References, Inheritance, Boundaries,
 Overview and Policy in that order. Each section has exactly one table with the
 template's column names. Keep empty tables as their header and separator only.
@@ -54,7 +54,7 @@ raw file directory. Snapshots need a revision and update mechanism.
 
 Each Inheritance row names one of Boundaries, Overview or Policy and the authority
 for that section, including its anchor. For example, the Policy authority may be
-`$orchard/docs/foundation.md#policy`. Rows may select different owners. An absent
+`$orchard/project-docs/foundation.md#policy`. Rows may select different owners. An absent
 row means that section has no parent; an empty Inheritance table means all three
 sections are locally owned. Do not infer an authority from the References table.
 

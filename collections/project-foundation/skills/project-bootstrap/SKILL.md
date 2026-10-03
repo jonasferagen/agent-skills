@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Bootstrap a new project or a fresh repository with project boundaries, policy and a project overview, plus a README that links them. Use when establishing this starting foundation; ordinary implementation and documentation maintenance belong to their own workflows."
 metadata:
-  version: "4.2.0"
+  version: "5.0.0"
 ---
 
 # Project bootstrap
@@ -33,14 +33,18 @@ remote, install dependencies or add a runtime only when the task calls for it.
 
 ## Establish the foundation
 
+Use [canonical document homes](../../references/document-homes.md) for managed
+project documents and existing-layout migrations. Create only the starter files
+needed by this task; the document map is not a checklist of files to generate.
+
 Determine whether this is an independent project, a shared foundation owner or
 one of its members. Bootstrap each repository's entry point; members use
 [multi-repository foundations](../../references/multi-repository.md) to declare
 the parent, reference binding and local scope.
 
-The default starter is `docs/foundation.md` in the strict
+The default starter is `project-docs/foundation.md` in the strict
 [foundation format](../../references/foundation-format.md), plus a README that
-links it. Adapt the [foundation](../../templates/docs/foundation.md) and
+links it. Adapt the [foundation](../../templates/project-docs/foundation.md) and
 [README](../../templates/README.md) templates. Preserve all five sections and
 column names. References and Inheritance declare bindings and section owners;
 Boundaries, Overview and Policy hold project facts. Keep header-only tables
@@ -112,6 +116,8 @@ It must also route:
 - Shaping responsibilities, repository boundaries and handoffs to
   [project-design](../project-design/SKILL.md); use it when developing architecture
   or choosing the next design step, not for routine literal document edits.
+- Plans, sequencing and progress maintenance to
+  [project-planning](../project-planning/SKILL.md).
 - Prose and visual explanations to the collection's shared authoring guidance.
 - Changes to purpose, responsibilities, terminology or operating circumstances to
   project-policy for a review of affected foundation decisions and consequences.
@@ -134,6 +140,9 @@ skills to interpret them. Review triggers apply during authorized project work;
 they do not start a watcher, scheduled task or full-project audit on every edit.
 
 ## Verify and hand back
+
+Run `python3 <collection>/scripts/validate-project-docs.py <project-docs-root>`
+for the managed directory and review the content against its document types.
 
 Run `python3 <collection>/scripts/validate-foundation.py <foundation-path>`
 for each file adopting the standard format. Check unsupported claims, leftover

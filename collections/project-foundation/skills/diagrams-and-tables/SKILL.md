@@ -2,7 +2,7 @@
 name: diagrams-and-tables
 description: "Read or explain diagrams and tables, check their meaning, choose a visual form, or construct and visually review one. Route by the task so interpreting an existing view does not require authoring or renderer guidance."
 metadata:
-  version: "0.8.0"
+  version: "0.9.0"
 ---
 
 # Diagrams and tables
@@ -36,6 +36,7 @@ zero, absence or permission. For diagrams, explain the relevant nodes and edge
 ends, direction and labels. Do not infer chronology, ownership, cardinality or
 network access from an arrow whose meaning is unspecified.
 
+- Workflow steps and branches: [read a flowchart](references/flowchart/read.md).
 - ER notation: [read an ER](references/er/read.md).
 - Data movement: [read a data-flow view](references/data-flow/read.md).
 - For other forms, use the declared notation and project definitions. Seek an
@@ -48,6 +49,7 @@ changing data or executing the process it describes.
 
 ## Construct only when needed
 
+- Flowcharts: [family guide](references/flowchart/guide.md).
 - ER: [family guide](references/er/guide.md).
 - Data flow: [family guide](references/data-flow/guide.md).
 - Other diagrams: [composition](references/composition.md) and

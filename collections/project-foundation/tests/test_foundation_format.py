@@ -12,7 +12,7 @@ spec.loader.exec_module(checker)
 
 class FoundationFormatTests(unittest.TestCase):
     def setUp(self):
-        self.text = (ROOT / 'templates/docs/foundation.md').read_text().replace('{{date}}', '2026-10-03').replace('{{revision}}', '1')
+        self.text = (ROOT / 'templates/project-docs/foundation.md').read_text().replace('{{date}}', '2026-10-03').replace('{{revision}}', '1')
 
     def test_owner_and_sparse_member(self):
         self.assertEqual(checker.validate(self.text), [])

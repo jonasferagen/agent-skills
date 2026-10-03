@@ -6,6 +6,9 @@ foundation owner, or a member of an existing project. Preserve an existing choic
 
 ## Shared owners and local facts
 
+Use [canonical document homes](document-homes.md) for managed project documents.
+Members retain their own technical documentation outside that reserved directory.
+
 Use the [foundation format and interpretation](foundation-format.md) for the
 five-table shape, reference bindings and section inheritance. Bootstrap each
 repository's local entry point. Shared owners hold project-wide decisions;

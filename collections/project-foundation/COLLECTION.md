@@ -6,6 +6,9 @@ Its source repository's catalog and release/authoring rules are not prerequisite
 for consumption. Follow provenance to the source only when the task needs source
 maintenance, an upgrade or investigation of a concrete source issue.
 
+For canonical locations of managed project documents, use
+[document homes](references/document-homes.md).
+
 For a project spanning repositories, read [multi-repository foundations](references/multi-repository.md)
 before selecting document owners or installation locations.
 
@@ -19,6 +22,7 @@ layout so relative references work.
 | Interpret foundation declarations and inherited values | [Foundation format](references/foundation-format.md) |
 | Start the project foundation | [Project bootstrap](skills/project-bootstrap/SKILL.md) |
 | Shape architecture, responsibilities, workflows and integration choices | [Project design](skills/project-design/SKILL.md) |
+| Create, sequence or maintain project plans and next steps | [Project planning](skills/project-planning/SKILL.md) |
 | Read, apply, design or review handoff obligations | [Project contracts](skills/project-contracts/SKILL.md) |
 | Start or resume edits and preserve repository work | [Git worktrees](skills/git-worktrees/SKILL.md) |
 | Set phase-appropriate scope and review policy changes | [Project policy](skills/project-policy/SKILL.md) |
@@ -49,7 +53,7 @@ restructuring explanations and instructions. Read only what the task needs;
 installation does not require loading every entry point. Tool-specific references,
 including Mermaid rendering guidance, are conditional on the selected work.
 
-The [foundation template](templates/docs/foundation.md) has five fixed tables:
+The [foundation template](templates/project-docs/foundation.md) has five fixed tables:
 References, Inheritance, Boundaries, Overview and Policy. The
 [format and interpretation](references/foundation-format.md) reference owns their
 meaning; foundation files contain data only. The [README template](templates/README.md)

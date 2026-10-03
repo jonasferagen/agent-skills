@@ -1,7 +1,10 @@
 # Structure and ownership
 
-Choose document boundaries by reader task. These are possible homes, not required
-filenames or a minimum number of files.
+For documents maintained by project-foundation, follow
+[canonical document homes](../../../references/document-homes.md). Its reserved
+directory and document types govern placement. For repository-specific technical
+docs, choose boundaries by reader task; the following are possible homes, not
+required filenames or a minimum number of files.
 
 | Reader question | Useful home | Keep elsewhere |
 | --- | --- | --- |
@@ -21,7 +24,7 @@ ambiguity, not merely because a project has nouns.
 
 For one project spanning repositories, follow [multi-repository foundations](../../../references/multi-repository.md).
 Choose owners at project scope and preserve only local differences in members.
-The default entry is `docs/foundation.md` in the
+The default entry is `project-docs/foundation.md` in the
 [foundation format](../../../references/foundation-format.md). Preserve its five
 sections and table columns. References and Inheritance are declarations;
 Boundaries, Overview and Policy hold facts. Keep empty tables as headers only.

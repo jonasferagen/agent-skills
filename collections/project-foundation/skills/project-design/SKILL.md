@@ -2,7 +2,7 @@
 name: project-design
 description: "Shape system architecture, responsibilities, workflows and integration choices before or during implementation. Use for operating design across people, agents, tools or services; literal edits, provider setup and runtime implementation have separate workflows."
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # Project design
@@ -46,7 +46,7 @@ are decisions, procedures and artifacts. A workflow step need not become code.
 - For obligations at an established handoff, use
   [project-contracts](../project-contracts/SKILL.md).
 - For sequencing design, experiments and implementation, use
-  [next-step planning](references/next-step.md).
+  [project planning](../project-planning/SKILL.md).
 
 Load only the reference needed by the current decision. A boundary review does
 not require a service-selection pass.
@@ -96,7 +96,7 @@ reconciliation. For authored output follow
 [authoring guidance](../../references/authoring.md).
 
 When selecting the next task or staging implementation, read
-[next-step planning](references/next-step.md). Design readiness means the important
+[project planning](../project-planning/SKILL.md). Design readiness means the important
 cases have clear owners and remaining unknowns have explicit consequences. Report
 which cases were traced and which behavior still needs implementation evidence.
 A document walkthrough cannot establish working commands, recovery or isolation.

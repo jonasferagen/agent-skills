@@ -6,7 +6,7 @@ from datetime import date
 from pathlib import Path
 import re
 
-TEMPLATE = Path(__file__).resolve().parents[1] / 'templates/docs/foundation.md'
+TEMPLATE = Path(__file__).resolve().parents[1] / 'templates/project-docs/foundation.md'
 
 
 def cells(line):

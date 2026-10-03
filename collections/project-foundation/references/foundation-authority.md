@@ -1,6 +1,6 @@
 # Consult and preserve the foundation
 
-Start at the local foundation, normally `docs/foundation.md`. Use
+Start at the local foundation, normally `project-docs/foundation.md`. Use
 [foundation format and interpretation](foundation-format.md) for its declarations
 and inherited values; reuse current readings. The format contains project data;
 this collection owns how to interpret it. The project's adopted boundaries and

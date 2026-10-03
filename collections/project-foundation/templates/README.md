@@ -1,3 +1,3 @@
 # {{project_name}}
 
-[Foundation](docs/foundation.md) — boundaries, overview and policy.
+[Foundation](project-docs/foundation.md) — boundaries, overview and policy.

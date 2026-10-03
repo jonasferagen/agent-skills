@@ -19,3 +19,8 @@ object may become. Show several views only when they answer distinct questions.
 Use a diagram when the relationships are the explanation. Do not add one merely
 because the document describes a system. Keep each form on one reader question
 and distinguish established facts, proposals and unknowns.
+
+Mermaid's `flowchart` is a rendering syntax that can also draw component/context
+views and data-flow views. Select guidance by what the nodes and arrows mean,
+not by that keyword. A repository handoff arrow does not by itself state the
+order in which work executes.

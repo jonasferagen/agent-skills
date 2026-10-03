@@ -315,3 +315,34 @@ implementation status matched the fixture; no clipping or overlap was observed.
 Existing package diagram blocks were mechanically checked unchanged. Package
 validation, skill quick validation, 156 collection links/anchors and diff checks
 passed before integration. No runtime or client-native discovery claim is made.
+
+## Flowchart family — 2026-10-03
+
+Added conditional reading, construction and example guidance for action flow,
+branch conditions, loops, meaningful outcomes and actor responsibility. Form
+selection distinguishes Mermaid's flowchart syntax from the semantics of a
+component/context view. Existing family routes remain available.
+
+The synthetic review-loop example rendered with Mermaid CLI 11.16.0 at 800px
+in light and dark themes and was visually inspected. Labels and outcomes are
+readable; ordering the pause branch before the repeat branch removed an edge
+crossing in the tested renderer. No target
+GitHub/editor preview was available, so cross-renderer parity is unverified.
+Mermaid's official flowchart documentation was consulted for syntax; the workflow
+semantics are explicitly collection conventions, not formal BPMN/UML compliance.
+
+The planning consumer trial correctly interpreted a flowchart-syntax repository
+map as handoff responsibilities without loading construction or renderer guidance.
+See project-planning validation for its read log and limitations. Clear Writing
+kept branch requirements scoped to depicted behavior; no provider retry guarantee
+is implied by the synthetic loop.
+
+A second fresh consumer trial created the proposed review workflow and inspected
+light/dark renders at 760px. Its output preserved acceptance, revision and pause,
+left unspecified feasibility ownership/resumption visible, and did not add
+publishing. It reached the flowchart family and required construction references.
+The recorded read log counted 7,259 words across 16 files, with no repeated or
+truncated reads; foundation-format was avoidable with the missing foundation.
+The trial render retained a visible crossing; the separately verified bundled
+example removes it. No source-repository instructions or live systems were used.
+The trial used the family before the example's final layout-only adjustment.

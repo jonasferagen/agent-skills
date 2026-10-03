@@ -2,7 +2,7 @@
 name: project-policy
 description: "Establish or revise engineering requirements when project phase, delivery scope, users, data, exposure, lifetime, compatibility or recovery needs change. Assess the impact and track prerequisites; ordinary edits do not require a policy review."
 metadata:
-  version: "3.1.0"
+  version: "4.0.0"
 ---
 
 # Project policy
@@ -40,6 +40,10 @@ constraints, without treating the draft architecture as a build list.
 
 ## Interpret the foundation
 
+Use [canonical document homes](../../references/document-homes.md) for foundation
+facts, governance decisions and impact records. Technical consequences retain
+their repository owners. Follow existing-layout transition rules before moving files.
+
 For a member of a multi-repository project, interpret the shared policy together
 with its declared local facts and adopted exceptions. Use
 [multi-repository foundations](../../references/multi-repository.md) for scope and
@@ -61,7 +65,7 @@ scaffold: an empty cell is unknown, not a default guarantee or permission. Keep
 facts, proposals, adopted obligations and verified behavior distinct. Do not
 recreate a manual inside each document.
 
-Keep the Policy section of `docs/foundation.md` (or an established separate
+Keep the Policy section of `project-docs/foundation.md` (or an established separate
 policy owner) to one two-column table:
 `Axis | Current fact or decision`. Use short, formal entries; separate facts with
 semicolons and state unknowns explicitly. The
@@ -87,7 +91,7 @@ a requirement does not relax it. Use project-docs to choose appropriate homes.
 
 Read project instructions, the active plan, architecture and relevant operations
 guidance. Reuse an existing policy owner; otherwise adapt the bundled
-[foundation template’s Policy section](../../templates/docs/foundation.md#policy)
+[foundation template’s Policy section](../../templates/project-docs/foundation.md#policy)
 into the repository. A member inherits shared axes and records only local facts
 and adopted exceptions; explicit unknowns remain unresolved without waiving shared
 obligations. Keep the

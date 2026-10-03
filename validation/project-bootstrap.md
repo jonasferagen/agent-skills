@@ -108,3 +108,11 @@ existing workspace index locates evidence. The scaffold no longer includes First
 useful slice, which invited a work queue into the definition. Unknown technical
 options remain valid table content; a next implementation task belongs elsewhere.
 Package/link checks apply; no independent behavioral trial was run for this edit.
+
+## Canonical document homes — 2026-10-03
+
+New foundations use the reserved project-docs directory; the template and validator template path moved together. Existing consumers need a deliberate migration.
+
+This changes placement defaults and is reflected in a major member version.
+The ten collection helper tests cover foundation shape and allowed document paths.
+No runtime or external authority changes are implied.
