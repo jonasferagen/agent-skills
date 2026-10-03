@@ -1,5 +1,21 @@
 # Reviewing a policy change
 
+Use this for proposed, adopted or already-observed changes to operating facts or
+obligations. Assess the affected delta; a proposal does not require rebuilding
+unaffected axes or adopting the proposal. When the new circumstances leave needed
+decisions unclear, use [requirement discovery](requirements.md).
+
+During project work, review affected foundation facts when purpose,
+responsibility, phase, delivery scope, terminology, users, data, exposure, lifetime, compatibility or
+recovery changes, even if nobody has edited the policy. A wording-only edit may
+record that it changes no obligations; every policy edit needs an impact assessment
+outside the policy table. Substantive changes, including relaxation, need the
+consequence review below. These task-based triggers do not start a watcher.
+
+When the task includes writing or reconciling policy facts, use
+[writing policy](writing-policy.md) for document shape, ownership and checks.
+An assessment alone preserves the policy and records findings outside it.
+
 A change to a project's assumptions can invalidate decisions made throughout
 the system. Review the full range of consequences, then scope execution to the
 areas affected. This is a manual starting point that can grow from experience.
@@ -105,3 +121,8 @@ verified compliance.
 For now, this review and linked queue are the mechanism. Broader automation can
 later detect policy changes, find consumers or select checks. Add it from actual
 transitions rather than inventing a universal suite before the project needs one.
+
+Keep the initial mechanism manual and proportional. A broad impact review does
+not mean running every test or making every possible change on each edit.
+Automate repeated checks after actual policy transitions show what they need to
+protect. Changes to policy are not a reason to halt unaffected authorized work.

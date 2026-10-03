@@ -1,9 +1,11 @@
 # Consult and preserve the foundation
 
-Start at the local foundation, normally `project-docs/foundation.md`. Use
-[foundation format and interpretation](foundation-format.md) for its declarations
-and inherited values; reuse current readings. The format contains project data;
-this collection owns how to interpret it. The project's adopted boundaries and
+Start with the relevant owners named by project instructions, normally the local
+`project-docs/foundation.md`. Read [foundation format](foundation-format.md) when resolving
+foundation declarations or inherited values. Established separate document owners
+need no format or template reading merely to interpret their terms. Reuse current
+readings. Foundation files contain project data; this collection owns their
+interpretation. The project's adopted boundaries and
 policy govern scope and engineering obligations. The overview records current
 implementation choices and open options in a compact table; work queues, skill routes and evidence retain separate owners.
 A glossary can own domain meanings once one is needed.

@@ -26,7 +26,7 @@ actual trials from author review.
 | A policy is relaxed | Identify guarantees removed and dependencies; do not silently delete tests, history or data. |
 | Recovery expectations are unknown | Keep them unknown and identify the use they block; do not invent numerical loss/downtime targets. |
 | Production and local tests have different data/lifetime profiles | Keep scopes distinct and preserve shared obligations; local disposability does not propagate to production. |
-| A copied package has no other foundation skills installed | The policy skill works using its own template and reference; optional companions do not become dependencies. |
+| A complete collection is copied into a project | Policy routes and shared references resolve within that installation; no source-maintenance reading is required for consumption. |
 | Existing architecture and tests exceed the required minimum | Consider simpler mechanisms, distinguish choices from explicit commitments, and preserve required outcomes with evidence; do not freeze every mechanism into policy. |
 | Synthetic local testing will start using a local copy of production data | Review sensitivity, permitted copying, access, logs, retention/deletion and source isolation; local deployment does not make the data synthetic or authorize import. |
 | The owner specifies a one-time frozen-source import and explicitly defers backups and restore rehearsal | Preserve that scoped decision and verify import integrity; do not add cloud connectivity or a backup/rehearsal gate. Record that the freeze does not prove ongoing recovery coverage. |
@@ -143,3 +143,95 @@ Policy stays in the foundation table under project-docs/. Governance decisions a
 This changes placement defaults and is reflected in a major member version.
 The ten collection helper tests cover foundation shape and allowed document paths.
 No runtime or external authority changes are implied.
+
+## Task routing and gap discovery — 3.1.0, 3 October 2026
+
+The [collection authoring convention](../docs/project-foundation-authoring.md)
+now governs source maintenance through AGENTS and README. It distinguishes tasks
+by needed context, output and authority, and project/evidence/guidance gaps by their
+owning work. It does not become an installed-consumer dependency or require a fixed
+mode taxonomy. Project-policy is the next application after contracts and diagrams.
+
+The policy entrypoint separates interpretation, compliance assessment,
+establishment/change and adequacy review. The latter routes to concrete-use
+obligation discovery. Format, axes, establishment, change and verification detail
+move to a conditional reference. Existing establishment, change and verification
+sections were mechanically compared with the prior version and preserved verbatim
+apart from relative link adjustments. Policy-change consequence guidance is
+unchanged. The entrypoint explicitly preserves review of changed circumstances
+even when no policy document has been edited.
+
+The obsolete scenario describing a policy-only installation was corrected to the
+existing complete-collection installation contract. No new installation unit,
+foundation format, automatic watcher or authorization requirement is introduced.
+
+### Consumer evidence
+
+[Retained fixtures, answers and read logs](project-policy-routing-trial/README.md)
+record two fresh and two reused-context trials:
+
+- Read: interpreted the 24-hour loss limit and distinguished it from proven
+  recovery. No establishment, change or authoring references loaded. 1,813
+  displayed input words, including project evidence and collection routing.
+- Apply: identified compliance as unverified, without claiming failure or changing
+  the requirement. No establishment, change or authoring references loaded. 1,824
+  displayed input words.
+- Change: discovered successor decryption/access, departure, custody and end-of-life
+  decisions for a ten-year handoff. Preserved identifiers, offline scope,
+  irreplaceable files and loss limit; proposed choices and missing evidence remained
+  explicit. 2,529 newly displayed words; prior authority, authoring, writing and
+  policy-change guidance was reused, so that count is not total context use.
+- Wording: byte-for-byte comparison confirmed only the requested phrase changed.
+  The obligation assessment stayed outside the copied policy. The policy skill
+  itself was not needed. Previous contract wording-trial context was reused.
+
+The author inspected all answers and logs. Installed guidance and adopted policy
+were preserved. No displayed content reads were reported repeated or truncated.
+Tests show routes, not selection reliability or lower total context cost. They do
+not establish runtime recovery or compliance. Cold policy establishment, adequacy
+review and an already-observed transition were not independently exercised here.
+The final observed-transition trigger clarification was source-reviewed. Capture
+was prompted; spontaneous identification of guidance defects remains unproven.
+
+### Remaining coherence work
+
+All narrow trials still read broad collection/authority instructions. The change
+trial also read establishment/table-format material it did not need. These are
+concrete candidates for further routing work; mandatory transition obligations
+must stay reachable when narrowing reads. A single shared startup document should
+not become a prerequisite for every interpretation task.
+
+The diagram/table split was assessed from current routes and the recorded diagram
+trials. Keep the skill together for now: shared form selection and semantic reading
+remain useful, while family directories defer diagram detail. No new diagram-family
+trial or independent-adoption test was run in this round. The decision and criteria
+for reconsideration are in DECISIONS; no split benefit is claimed as measured.
+
+Authoring used skill-creator, clear-writing and its instruction/short-text guidance,
+diagrams-and-tables for existing tables and form choice, and pattern-capture to
+place the generalized convention in source maintenance. No diagram source changed.
+
+Package validation passed for 25 skills and one collection; policy quick validation,
+all five foundation helper tests and whitespace checks passed. No release or
+downstream adoption is part of this change.
+
+### Source review disposition
+
+A separate [source reviewer](project-policy-routing-trial/source-review.md) started
+from repository AGENTS and inspected the diff, new convention, policy references
+and diagram entrypoint. It reused earlier contract-trial context, so it is not a
+cold source-authoring trial. It found no blocking defect and confirmed the main
+policy obligations survived. Its preservation concern was addressed by restoring
+an explicit entrypoint instruction to verify affected behavior when changing a
+mechanism. This restores prior wording's requirement; no new operational gate is
+introduced. The review preceded the new validation write-up; its note that trial
+records were still needed is satisfied by the consumer evidence above.
+
+## Conditional collection routing — 3.2.0, 3 October 2026
+
+Establishment, requirement discovery, policy-change assessment and document-writing now have separate references. Existing consequence and readiness obligations are retained.
+
+See [collection validation](project-foundation-collection.md#conditional-authority-and-setup-routes--3-october-2026)
+for source review, fresh consumer cases, findings and limitations. Those tests
+exercise representative routes; they do not establish every entrypoint or native
+discovery behavior. No release or downstream installation was performed.

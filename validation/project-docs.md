@@ -93,3 +93,12 @@ The collection owns a closed document-type map under project-docs/. Repository t
 This changes placement defaults and is reflected in a major member version.
 The ten collection helper tests cover foundation shape and allowed document paths.
 No runtime or external authority changes are implied.
+
+## Conditional collection routing — 3.0.1, 3 October 2026
+
+Authority reads are conditional for existing known terms; establishment, reconciliation, conflicts and changed circumstances retain the authority route.
+
+See [collection validation](project-foundation-collection.md#conditional-authority-and-setup-routes--3-october-2026)
+for source review, fresh consumer cases, findings and limitations. Those tests
+exercise representative routes; they do not establish every entrypoint or native
+discovery behavior. No release or downstream installation was performed.

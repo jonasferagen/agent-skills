@@ -19,16 +19,15 @@ Part of the [project-foundation collection](collections/project-foundation/COLLE
 | Skill | Use it for |
 | --- | --- |
 | [Project bootstrap](collections/project-foundation/skills/project-bootstrap/SKILL.md) (`project-bootstrap`, draft) | Start a repository and establish boundaries, policy and overview, with an entry README. |
-| [Project design](collections/project-foundation/skills/project-design/SKILL.md) (`project-design`, draft) | Shape architecture, responsibilities, conceptual models, workflows and integration choices; select the next useful step. |
+| [Project design](collections/project-foundation/skills/project-design/SKILL.md) (`project-design`, draft) | Shape architecture, conceptual models, workflows and integration choices. |
 | [Project planning](collections/project-foundation/skills/project-planning/SKILL.md) (`project-planning`, draft) | Structure and maintain plans, dependencies and shared or local next steps. |
 | [Project contracts](collections/project-foundation/skills/project-contracts/SKILL.md) (`project-contracts`, draft) | Read, apply, design and review handoff obligations and compatibility. |
-| [Project policy](collections/project-foundation/skills/project-policy/SKILL.md) (`project-policy`) | Set phase-appropriate scope and requirements from users, data, exposure, lifetime, compatibility and recovery needs; assess changes. |
+| [Project policy](collections/project-foundation/skills/project-policy/SKILL.md) (`project-policy`) | Interpret obligations, assess compliance, and establish or review phase, scope and requirements. |
 | [Project documentation](collections/project-foundation/skills/project-docs/SKILL.md) (`project-docs`) | Decide where knowledge belongs and keep it current. |
 | [Authoritative definitions](collections/project-foundation/skills/source-of-truth/SKILL.md) (`source-of-truth`) | Give each rule a home and derive or check its other appearances. |
 
 The [collection entry point](collections/project-foundation/COLLECTION.md) routes
-to the foundation scaffold, installation and default project routes, including
-task worktrees. Its skills and references own how project facts are interpreted
+to the foundation scaffold, installation and project routes. Its skills and references own how project facts are interpreted
 and maintained; this catalog only helps select an entry point.
 
 ## Authoring
@@ -218,9 +217,10 @@ about selection. See [the discovery review](validation/discovery.md).
 
 ## Skill releases
 
-Collections are currently pinned as a whole by source commit. Their member
-versions describe changed skill behavior; individual member tags do not establish
-a compatible collection release. No collection release has been published.
+Collections are pinned as a whole by source commit and annotated release tag.
+Project foundation releases use `project-foundation/v<version>`; the version is
+recorded in its `COLLECTION.md`. Member versions describe changed skill behavior;
+individual member tags do not establish a compatible collection release.
 
 Before a collection release is tagged, the whole collection must pass a
 [self-conformance review](validation/self-conformance.md): it must meet the
@@ -254,6 +254,9 @@ names, not an integrity guarantee. Other skills in the repository need no
 version bump when one skill is released.
 
 ### Authoring skills
+
+For project-foundation source maintenance, follow the
+[collection authoring convention](docs/project-foundation-authoring.md).
 
 Skills in this repository should meet the standards they teach. Apply relevant
 guidance to the packages, helpers and documentation we maintain here. Start

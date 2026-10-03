@@ -48,8 +48,7 @@ the owner; the linked steps are the checklist, so they are not repeated here.
 A collection gaining a rule owner adds a row here in the same change.
 
 Members that govern projects, such as bootstrap, policy and planning, apply to
-this repository where its instructions adopt them, as AGENTS.md adopts task
-worktrees. Whether this repository adopts a project foundation is a separate
+this repository where its instructions adopt them, as AGENTS.md adopts authoring and verification guidance. Whether this repository adopts a project foundation is a separate
 decision; until then, the review does not treat its absence as a finding.
 
 ## Findings and exceptions

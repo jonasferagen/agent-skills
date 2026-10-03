@@ -12,7 +12,7 @@ Its broad workflow is not needed. Preserve the [validation and retirement
 review](validation/change-workflow.md) and Git history; do not transfer its merge,
 publishing, tracker or reporting requirements into another package.
 
-### Make task worktrees a foundation default — adopted
+### Make task worktrees a foundation default — superseded by retirement below
 
 Use a separate task worktree for edits in Git repositories. Only repository-local
 instructions can opt out, for example for a deliberately single-agent project.
@@ -20,7 +20,7 @@ Work outside Git proceeds directly; a spike needs no repository merely to
 satisfy this rule. Small tasks and an agent working alone do not create implicit
 exceptions.
 
-The collection's [Git worktrees skill](collections/project-foundation/skills/git-worktrees/SKILL.md)
+The collection's former `git-worktrees` skill (preserved in Git history)
 owns the short shared procedure. Bootstrap installs a visible rule and concrete
 skill route in each project's instructions. Repository instructions own exceptions, and
 existing installations adopt the rule through an explicit collection and hook
@@ -363,6 +363,69 @@ This applies the distinction to contracts first. It does not impose four modes
 on every skill or add a subject reference for every possible contract type.
 Validation belongs in [project-contracts](validation/project-contracts.md).
 No release or downstream adoption is implied.
+
+
+## 2026-10-03 — Foundation task routing and family growth
+
+Adopt the [collection authoring convention](docs/project-foundation-authoring.md)
+for project-foundation maintenance. Task distinctions follow each skill's work;
+project, evidence and guidance gaps have different owners. Design and adequacy
+review discover necessary decisions beyond listed examples. Keep this convention
+in source maintenance and each consumer's useful behavior in its skill.
+
+Project-policy 3.1.0 applies the convention next. Interpretation and compliance
+assessment stay in the entrypoint; establishment, adequacy discovery and changes
+use conditional guidance. Existing six axes, format rules, impact assessment,
+policy relaxation and observed-transition requirements are preserved. No other
+member receives a mandatory mode taxonomy.
+
+Keep diagrams-and-tables together for this iteration. Both forms answer visual
+explanation questions, share semantic reading/review and need a common form-choice
+route. The current family directories allow diagram growth without loading all
+construction guidance for tables. Splitting now would require another selection
+owner and new caller routes without evidence that it improves the tasks.
+
+Reconsider separate diagram and table skills if realistic trials expose persistent
+misrouting or unnecessary reads that internal routing cannot solve, or independent
+adoption becomes useful. The present decision does not claim those possibilities
+have been ruled out. More diagram types alone are insufficient evidence.
+
+Use a directory per diagram family as substantial guidance is added, keeping
+shared rendering/layout rules outside the families. Contracts can use the same
+structure for distinct exchange semantics; cross-cutting properties may require
+several references and keep shared owners. Do not duplicate concurrency or retry
+rules into every type, introduce empty family directories, or prescribe a fixed
+set of files per family. No diagrams or contract families are added in this round.
+
+## 2026-10-03 — Narrow collection entry and policy task references
+
+Continue the foundation coherence work on the existing task branch. The collection
+entrypoint selects work; installation, provenance and template setup move to a
+conditional reference reached by bootstrap and adoption tasks. Preserve the visible
+Git worktree default and the distinction between unknowns, proposals, adopted
+obligations and evidence. Known terms can be read or applied through their owners.
+
+Foundation-authority remains the owner of consultation and reconciliation guidance.
+Load it for establishing/reconciling decisions, conflicting authority or changed
+scope/circumstances. Narrow known-scope work need not load it. Inherited scope still
+routes through foundation format and shared-owner resolution when the answer needs
+it; unknowns or missing authority grant no permission. Policy, contracts and docs
+entrypoints make those task conditions explicit.
+
+Project-policy 3.2.0 separates establishment, requirement discovery, policy-change
+assessment and document-writing references. The existing policy-change consequence
+workflow is preserved, including already-observed changes, relaxation, readiness
+and authorized work. Adequacy review can discover omissions without reconstructing
+a new policy. Assessments that preserve policy need no document-format workflow.
+
+Bootstrap 4.2.1 follows the relocated installation route; contracts 0.2.1 and docs
+3.0.1 clarify conditional authority reads. No client discovery behavior, automatic
+installation or authorization changes are claimed. No new skill is introduced.
+
+A direct-contract trial exposed an additional authority-to-format read for projects
+with established separate document owners. Authority now loads format guidance
+when resolving declarations or inherited values. Its rules for consulting affected
+owners, handling conflicts and preserving adopted obligations remain unchanged.
 
 ## 2026-10-03 — Retire git-worktrees from project-foundation
 

@@ -9,10 +9,12 @@ metadata:
 
 Make clear what participants can rely on at a handoff. Start with the user's
 question, the authoritative agreement and the revision applicable to the exchange.
-Keep proposed terms, adopted obligations and observed behavior distinct, as
-[status and evidence](../../references/status-and-evidence.md) describes. Follow
-[foundation authority](../../references/foundation-authority.md) for adopted
-constraints and conflicts; reuse current readings.
+Keep proposed terms, adopted obligations and observed behavior distinct using
+[status and evidence](../../references/status-and-evidence.md). Use
+[foundation authority](../../references/foundation-authority.md) when establishing
+or reconciling obligations, resolving conflicting authority or assessing changed
+scope or operating circumstances. Reading or applying known terms within unchanged
+constraints needs only their relevant owners; reuse current readings.
 
 ## Select the task
 

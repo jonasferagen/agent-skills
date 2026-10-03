@@ -73,7 +73,8 @@ setup commands, architecture or a work queue to fill the template.
 Use the complete [project-foundation collection](../../COLLECTION.md). The
 scaffold and its interpreting skills are one dependency. A member may route to an
 accessible shared installation; do not require a copy per repository. For a new project-local
-adoption, copy the whole collection as described there; use an existing complete
+adoption, follow [installation guidance](../../references/installation.md) and
+copy the whole collection; use an existing complete
 installation when one is already selected. Preserve the user's chosen installation
 scope and existing project instructions. Preserve project working agreements;
 do not copy personal global preferences into project instructions unless requested.

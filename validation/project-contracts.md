@@ -142,3 +142,12 @@ passed for project-contracts. All five foundation helper tests passed. Whitespac
 checks passed. The moved identity, timeout, cancellation and compatibility block
 was mechanically compared with 0.1.0 and is unchanged. No helper behavior changed.
 No collection release, downstream installation or native-discovery claim is made.
+
+## Conditional collection routing — 0.2.1, 3 October 2026
+
+Authority reads are conditional for known terms. Changed scope or operating circumstances remain explicit triggers even on direct entry to contract application.
+
+See [collection validation](project-foundation-collection.md#conditional-authority-and-setup-routes--3-october-2026)
+for source review, fresh consumer cases, findings and limitations. Those tests
+exercise representative routes; they do not establish every entrypoint or native
+discovery behavior. No release or downstream installation was performed.
