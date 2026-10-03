@@ -1,5 +1,30 @@
 # Validation — Project foundation collection
 
+## Release 0.1.0 — 3 October 2026
+
+The full [self-conformance review](project-foundation-v0.1.0/README.md) covers
+collection content `e63aaf2`, every member, shared reference, template and helper,
+and the source catalog/instructions. Three independent fresh reviewers and the
+coordinator applied the declared rule owners. All material findings are fixed;
+no exception was needed. This is the first collection release.
+
+Consolidation preserves both the conditional task-routing work and the newer
+phase/scope, managed document homes, planning, conceptual modelling and shared
+status guidance. Review corrected unsupported Mermaid layout and numeric-cast
+claims, unreadable visual examples, stale navigation and a whitespace failure.
+Independent comparisons checked meaning after each correction.
+
+Package validation, 14 helper tests, 314 current relative paths/heading anchors,
+and whole-collection whitespace pass. Three fresh consumer trials cover policy
+assessment plus planning, domain modelling beyond the bundled example, and a
+literal spelling edit. Local diagram and table rendering is recorded with its
+renderer and theme scope. GitHub/editor rendering and native automatic skill
+discovery are unverified; the collection makes no claim of either.
+
+The annotated release tag is `project-foundation/v0.1.0`. Forge adoption records
+its full source commit and release label in its existing provenance owner.
+
+
 ## Worktree skill retirement — 3 October 2026
 
 The collection no longer includes `git-worktrees` or imposes its worktree default.
