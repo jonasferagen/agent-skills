@@ -18,4 +18,3 @@ workflow can be sufficient. Early phase does not relax obligations for real data
 external effects or existing consumers. Use
 [project-design](../../project-design/SKILL.md) to choose the mechanism within those
 constraints, without treating the draft architecture as a build list.
-

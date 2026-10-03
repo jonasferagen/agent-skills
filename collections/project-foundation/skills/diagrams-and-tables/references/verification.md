@@ -10,8 +10,9 @@ evidence, not from memory of how the system probably works.
 2. Verify each relationship against whatever owns it: the schema for a stored
    link, the implementation for behavior, the configuration for what is deployed,
    and an explicit decision for anything planned.
-3. Label each edge with its meaning — *belongs to*, *supports*, *creates after
-   approval* — not with a column name. Distinguish owner, payer, actor, identity
+3. Make each edge's meaning explicit through its label or a shared caption or
+   legend. Use meanings such as *belongs to*, *supports* or *creates after approval*,
+   rather than a column name. Distinguish owner, payer, actor, identity
    and permission wherever the domain distinguishes them, and never collapse them
    to tidy the picture.
 4. Mark optionality, uncertainty and proposed behavior where leaving them out

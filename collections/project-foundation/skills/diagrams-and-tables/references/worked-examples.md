@@ -1,10 +1,14 @@
 # Worked examples
 
 **Read this when you know which form you need and want a model to copy.**
-`SKILL.md` decides the form; [mermaid.md](mermaid.md) covers the syntax. Each
+[Form selection](select.md) decides the form; [mermaid.md](mermaid.md) covers the syntax. Each
 example below names the failure it replaces, so it is clear what the shape is
 buying. ER-specific models live in [ER examples](er/examples.md);
 data movement has [data-flow examples](data-flow/examples.md).
+
+These are synthetic design examples. References to storage or delivery contracts
+name illustrative owners, not supplied documents or verified systems. In a real
+project, link the actual owner before marking that detail as available elsewhere.
 
 ## An overview and its detail, instead of one wide block
 
@@ -95,7 +99,7 @@ flowchart TB
   D2 --> E["edge router"]
 ```
 
-The artifact registry links to its canonical storage detail instead of being
+The artifact registry would link to the real storage contract instead of being
 redrawn, and the edge router stays closed for a stated reason. If the reader
 also needs request order or retry behavior, draw a separate lifecycle diagram;
 that question does not belong inside this ownership set.
@@ -131,7 +135,9 @@ The black-box inventory applies just as it does to a component overview:
 Each focused detail answers one stage-level question and repeats the overview
 label exactly.
 
-Candidate inputs converge on candidate preparation.
+Candidate inputs converge on candidate preparation. For this synthetic case,
+authored values override imported values for the same candidate field; other
+imported values remain. The arrows show fan-in; this sentence owns precedence.
 
 ```mermaid
 flowchart TB
@@ -194,82 +200,49 @@ flowchart TB
   end
 ```
 
-The two unconnected subgraphs sit **side by side**; `direction TB` is what keeps
-each lane running top to bottom inside its own box. Omit those two lines and the
-same block renders as two horizontal chains several times the column width. When
-a pair this size no longer fits, stack it — see `mermaid.md`.
+The two unconnected subgraphs request vertical internal flows. Their placement
+and width still need a rendered check. If the pair does not fit, stack it using
+[the Mermaid guidance](mermaid.md#side-by-side-lanes-and-how-to-stack-when-they-do-not-fit).
 
 The lanes are **comparable on purpose**: three stages each, identical first and
 last node, so the single differing stage is the change. A before lane drawn in
 six nodes against an after lane of three would hide exactly what it exists to
 show.
 
-## A layered overview as parallel vertical lanes
+## A layered overview with separate detail
 
 **Source shape:** a content platform's outer dependency map, generalized from a
-real repository.
+real repository. Cross-group edges in a left-to-right chart can make internal
+nodes form wide rows, even with `direction TB` inside each group.
 
-The representative slice below keeps the cross-layer fan-out that determines the
-layout; the original owns the complete node and edge inventory.
-
-**Replaces:** the same three dependency-ordered groups stacked in a top-level
-`flowchart TB`. Each group was locally readable, but cross-group fan-out met in
-one crowded horizontal band and forced readers to trace long diagonal edges.
-
-The crowded layout used vertical subgraphs inside a vertical chart:
-
-```mermaid
-flowchart TB
-  subgraph Surfaces [consumer surfaces]
-    direction TB
-    E0["level editor"]
-    E1["content browser"]
-    E2["runtime"]
-  end
-  subgraph Services [repository services]
-    direction TB
-    S0["static host"]
-    S1["read-only projector"]
-    S2["writer lane"]
-  end
-  subgraph Backbone [durable backbone]
-    direction TB
-    B0["catalog"]
-    B1["files"]
-  end
-  E0 --> S0
-  E0 --> S1
-  E1 --> S0
-  E1 --> S1
-  E2 --> S1
-  S1 --> B0
-  S1 --> B1
-  S2 --> B0
-  S2 --> B1
-```
-
-Changing only the top-level direction makes the dependency groups parallel
-lanes while preserving each lane's vertical node order:
+At overview level, show the three dependency groups as single nodes. Each arrow
+means that at least one part of the first group depends on a part of the next;
+it does not claim every member connects to every other member.
 
 ```mermaid
 flowchart LR
-  subgraph Surfaces [consumer surfaces]
-    direction TB
+  Surfaces["consumer surfaces"] -->|"depend on"| Services["repository services"]
+  Services -->|"depend on"| Backbone["durable backbone"]
+```
+
+Open those groups in a separate detail view when the particular dependencies are
+the question. This representative slice keeps the cross-group fan-out; the
+original owns the complete inventory. Use top-to-bottom layout here to keep the
+individual nodes and labels legible in a document column. Level editor, content
+browser and runtime are consumer surfaces. Static host, read-only projector and
+writer lane are repository services; catalog and files form the durable backbone.
+The ungrouped nodes keep each dependency's endpoint visible.
+
+```mermaid
+flowchart TB
     E0["level editor"]
     E1["content browser"]
     E2["runtime"]
-  end
-  subgraph Services [repository services]
-    direction TB
     S0["static host"]
     S1["read-only projector"]
     S2["writer lane"]
-  end
-  subgraph Backbone [durable backbone]
-    direction TB
     B0["catalog"]
     B1["files"]
-  end
   E0 --> S0
   E0 --> S1
   E1 --> S0
@@ -281,11 +254,11 @@ flowchart LR
   S2 --> B1
 ```
 
-This is a layout change, not an altitude change: the groups already pass the
-overview black-box disposition inventory and whole-diagram split tests. If a
-lane hides important internals, or the chart also makes readers understand
-independent lifecycle phases, open or split those questions first. Use this
-wide form only where the actual render gives its lanes enough horizontal room.
+The overview and detail answer different questions. Do not switch the detailed
+view to `LR` on the assumption that inner directions preserve vertical lanes;
+external node links override those directions. Verify the actual render and
+split further if the detail stops fitting the reader's column.
+
 
 ## A coverage matrix
 

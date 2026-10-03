@@ -30,8 +30,12 @@ erDiagram
 | --- | --- | --- | --- |
 | `placement.mesh_id` | `text`, the mesh's name | `uuid`, FK to `mesh_definition.id` | backfill by name, then drop the text column |
 | `placement.seat_id` | absent | `text`, nullable | added empty; nullable until the backfill lands |
-| `placement.x` / `.y` | `float` | `numeric(9,3)` | in-place cast, no data loss |
+| `placement.x` / `.y` | `float` | `numeric(9,3)` | validate range and rounding before casting; precision may be lost |
 | `placement.legacy_ref` | `text` | dropped | none — unread since the archive cut |
+
+For this PostgreSQL example, [numeric precision and scale](https://www.postgresql.org/docs/current/datatype-numeric.html)
+can cause rounding or reject an out-of-range value. The table names a proposed
+migration check; it is not evidence that existing data passes it.
 
 ## A large ER family split by aggregate cluster
 
@@ -78,10 +82,14 @@ open:
 
 ```mermaid
 erDiagram
+  GAME_CHARACTERS["characters"]
+  GAME_PARTY_MEMBERS["party members"]
+  GAME_CREATURES["creatures"]
+  GAME_NATURAL_ATTACKS["natural attacks"]
+  GAME_PARTY_XP_AWARD["party XP awards"]
+  GAME_WORLD_STATE["world state"]
   GAME_CHARACTERS ||--o| GAME_PARTY_MEMBERS : occupies_slot
   GAME_CREATURES }o--o{ GAME_NATURAL_ATTACKS : uses
-  GAME_PARTY_XP_AWARD
-  GAME_WORLD_STATE
 ```
 
 Then open one aggregate at a time. The character detail keeps its three owned
@@ -91,6 +99,7 @@ fields and cross-family FK targets:
 
 ```mermaid
 erDiagram
+  GAME_CHARACTERS["characters"]
   GAME_CHARACTER_EQUIPMENT["equipment"]
   GAME_CHARACTER_INVENTORY["inventory"]
   GAME_CHARACTER_LEVELS["levels"]
@@ -104,7 +113,7 @@ erDiagram
 
 | Diagram label | Entity and selected fields |
 | --- | --- |
-| `GAME_CHARACTERS` | `game_characters`: `text key` PK; `text race_key` FK → `game_races.key` |
+| `characters` | `game_characters`: `text key` PK; `text race_key` FK → `game_races.key` |
 | `equipment` | `game_character_equipment`: `text character_key` PK, FK; `text slot` PK; `text item_key` FK → `game_items.key` |
 | `inventory` | `game_character_inventory`: `text character_key` PK, FK; `text item_key` PK, FK → `game_items.key` |
 | `levels` | `game_character_levels`: `text character_key` PK, FK; `integer char_level` PK; `text class_key` FK → `game_classes.key` |
@@ -118,6 +127,7 @@ example shows.
 
 ```mermaid
 erDiagram
+  GAME_CREATURES["creatures"]
   GAME_CREATURE_CONDITION_IMMUNITY["immunity"]
   GAME_CREATURE_DROP["drops"]
   GAME_CREATURE_NATURAL_ATTACK["attack assignment"]
@@ -135,7 +145,7 @@ erDiagram
 
 | Diagram label | Entity and selected fields |
 | --- | --- |
-| `GAME_CREATURES` | `game_creatures`: `text key` PK; `text class_key` FK → `game_classes.key`; `text template_key` FK → `game_templates.key`; `text dice_material_appearance_ref` FK → `material_appearances.ref` |
+| `creatures` | `game_creatures`: `text key` PK; `text class_key` FK → `game_classes.key`; `text template_key` FK → `game_templates.key`; `text dice_material_appearance_ref` FK → `material_appearances.ref` |
 | `immunity` | `game_creature_condition_immunity`: `text creature_key` PK, FK; `text condition_key` PK, FK → `game_conditions.key` |
 | `drops` | `game_creature_drop`: `text creature_key` PK, FK; `text item_key` PK, FK → `game_items.key` |
 | `attack assignment` | `game_creature_natural_attack`: `text creature_key` PK, FK; `text natural_attack_key` PK, FK |

@@ -1,8 +1,8 @@
 # Drawing conventions
 
-**Read this when implementing or correcting a Mermaid diagram.** `SKILL.md`
-decides *which* form carries a subject; this file covers *how* to draw it so it
-renders the same on GitHub, in editor previews, and in the live editor. For a
+**Read this when implementing or correcting a Mermaid diagram.** [Form selection](select.md)
+decides which form carries a subject; this file covers Mermaid syntax and layout.
+Check the intended renderer because versions and layout engines can differ. For a
 model to copy, see [worked-examples.md](worked-examples.md).
 
 ## Default direction: TB
@@ -26,10 +26,10 @@ it, using the [composition guidance](composition.md#keep-it-vertical-and-keep-it
 
 ## Subgraphs: always declare `direction TB`
 
-A subgraph with **no** explicit `direction` can lay its chain out left-to-right
-regardless of the parent flowchart's direction — a Mermaid quirk that makes
-nested flows render inconsistently across renderers. Always make the first line
-inside a subgraph `direction TB`:
+Put `direction TB` first inside a subgraph to express the intended vertical
+layout. Mermaid's [documented limitation](https://mermaid.js.org/syntax/flowchart.html#direction-in-subgraphs)
+is that links from internal nodes to outside nodes cause the subgraph to inherit
+the parent's direction. The declaration cannot guarantee vertical placement.
 
 ```mermaid
 flowchart TB
@@ -41,14 +41,13 @@ flowchart TB
   end
 ```
 
-Without that line, the same subgraph may render horizontally and overflow the
-page.
+Verify the actual render; change the layout or split the view if labels no
+longer fit at the target width.
 
 ## Side-by-side lanes, and how to stack when they do not fit
 
-Two sibling subgraphs with **no connecting edge** between them render side by
-side — whatever the parent direction, and whatever order they appear in the
-source. That is the natural form for a before/after pair and it is fine to use,
+Two sibling subgraphs with no connecting edge can render side by side.
+Source order and parent direction do not guarantee their placement. That is the natural form for a before/after pair and it is fine to use,
 provided **each lane declares `direction TB`** and the finished block still fits
 the target column.
 
@@ -111,9 +110,10 @@ flowchart LR
   P1 --> D1
 ```
 
-Only the dependency layers move side by side; each layer remains a vertical
-lane. Unlike unconnected side-by-side lanes, connecting edges make the
-left-to-right layer order meaningful. A before/after pair has no connecting
+The connecting edges make the left-to-right dependency order meaningful.
+Because they join internal nodes across groups, the inner `direction TB` is
+ignored; any vertical stacking in a particular render comes from its layout
+engine, not that declaration. A before/after pair has no connecting
 edge, so this pattern does not apply to it. Use side-by-side lanes, or stack
 them, as above, when they do not fit or reading order must be guaranteed.
 
@@ -123,7 +123,7 @@ in a full-width README or architecture document. Test the actual render
 context: a diagram that wraps or shrinks in a narrow diff, preview, or sidebar
 should return to `TB` or split at the correct altitude. Direction does not
 override the overview/detail disposition inventory or the lifecycle split
-thresholds in `SKILL.md`; classify or split an overfull diagram before choosing
+thresholds in [composition](composition.md); classify or split an overfull diagram before choosing
 its layout.
 
 ## Parallel edges: one edge, labelled with the count

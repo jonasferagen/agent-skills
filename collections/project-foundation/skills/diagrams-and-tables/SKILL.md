@@ -2,7 +2,7 @@
 name: diagrams-and-tables
 description: "Read or explain diagrams and tables, check their meaning, choose a visual form, or construct and visually review one. Route by the task so interpreting an existing view does not require authoring or renderer guidance."
 metadata:
-  version: "0.9.0"
+  version: "0.9.1"
 ---
 
 # Diagrams and tables

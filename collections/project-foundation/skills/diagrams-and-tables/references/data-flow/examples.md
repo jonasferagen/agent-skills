@@ -18,7 +18,7 @@ flowchart TB
 The whole archive is one process. This view intentionally hides its storage and
 review internals. The detail below opens that same process.
 
-## Detail: where is the information retained?
+## Submission archive detail: where is the information retained?
 
 ```mermaid
 flowchart TB

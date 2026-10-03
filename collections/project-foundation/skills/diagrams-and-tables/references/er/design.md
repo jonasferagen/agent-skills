@@ -15,8 +15,8 @@ When the view exceeds roughly 10–12 entities or relationship edges, or becomes
 hard to trace during construction, read [large ER views](large-models.md) for decomposition and
 shared targets. Small views need no decomposition inventory.
 
-Give every relationship a meaning label after `:`; quote labels to avoid keyword
-collisions. Use identifiers without spaces, such as `MESH_DEFINITION`, so one
+Give every relationship a meaning label after `:`. Quote labels containing
+spaces or reserved words to avoid parsing ambiguity. Use identifiers without spaces, such as `MESH_DEFINITION`, so one
 entity cannot be interpreted as two. When showing schema attributes, use the
 schema’s actual types and key markers. Omit them for a conceptual view when they
 are undecided.

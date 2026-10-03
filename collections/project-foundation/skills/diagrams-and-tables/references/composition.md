@@ -20,7 +20,7 @@ It follows that **a paragraph describing what a structured form would have shown
 makes the reader reconstruct that form.** Prefer the structured form wherever
 one fits:
 
-Choose the initial form using the [skill entrypoint](../SKILL.md). For a
+Choose the initial form using the [form-selection guidance](select.md). For a
 comparison or registry alongside a diagram, use [table guidance](tables.md).
 
 **Two forms, never three.** When an ER diagram and a column table both apply,
@@ -68,15 +68,13 @@ set that still duplicates every fact.
 
 ## Keep it vertical, and keep it at one altitude
 
-**Vertical is the default** — `flowchart TB`, and **`direction TB` as the first
-line inside every subgraph**. The inner declaration is the one that decides
-readability: without it a subgraph lays its chain out left to right whatever the
-parent chart says, and the block overflows the column, shrinking its label text
-until the reader is worse off than with no diagram at all. A before/after pair
-may sit side by side once each lane is vertical and the pair still fits the
-target column; stack it when it does not. Make the two lanes **comparable** —
-same granularity, same vocabulary, one node per surviving stage — so the delta
-is what differs between them.
+**Vertical is the default** — use `flowchart TB` and put `direction TB` first
+inside each subgraph to express the intended layout. Renderer and graph structure
+still affect placement; [Mermaid guidance](mermaid.md#subgraphs-always-declare-direction-tb)
+explains when the inner direction is ignored. Verify the rendered width before
+relying on this arrangement. A before/after pair may sit side by side when both
+lanes and their labels fit the target column; stack it otherwise. Keep the lanes
+comparable: same granularity, vocabulary and one node per surviving stage.
 
 **When the delta is per-item rather than per-stage** — fields, options, flags,
 permissions — neither lane layout is right. Use a before/after table.
