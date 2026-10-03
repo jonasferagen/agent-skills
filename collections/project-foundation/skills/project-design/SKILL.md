@@ -1,8 +1,8 @@
 ---
 name: project-design
-description: "Shape system architecture, responsibilities, workflows and integration choices before or during implementation. Use for operating design across people, agents, tools or services; literal edits, provider setup and runtime implementation have separate workflows."
+description: "Shape system architecture, responsibilities, conceptual models, workflows and integration choices before or during implementation. Use for operating design across people, agents, tools or services; literal edits, provider setup and runtime implementation have separate workflows."
 metadata:
-  version: "0.5.0"
+  version: "0.6.0"
 ---
 
 # Project design
@@ -32,12 +32,24 @@ A document-only coordinator need not acquire a runtime, and a repository does no
 imply a service, container or separate database. State any necessary mapping and
 why the workflow requires it.
 
+## Place the slice in its surrounding design
+
+For a modelling or design slice, identify which part of the overall design it
+opens, where its detailed model belongs and which surrounding owners could change
+because of what it reveals. Use existing overview and document routes; if they
+are missing, add only enough context to locate the slice. Work may start inside
+an owner and reshape the design around it. A complete top-down model is not a
+prerequisite. Reconcile affected owners as findings become decisions, or leave
+an explicit question with the work that depends on it.
+
 ## Select the design question
 
 These questions also apply to process-oriented repositories whose main outputs
 are decisions, procedures and artifacts. A workflow step need not become code.
 
 - For ownership and boundaries, trace the representative case below.
+- For internal domain meaning, identities, relationships and lifecycles, read
+  [conceptual modelling](references/conceptual-models.md).
 - For triggers, human/agent responsibilities, state transitions and handoffs, read
   [workflow design](references/workflows.md).
 - For selecting a service capability or its integration mechanism, read
