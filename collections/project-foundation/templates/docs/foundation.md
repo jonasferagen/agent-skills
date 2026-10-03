@@ -36,6 +36,7 @@ Date: {{date}} · Revision: {{revision}}
 
 | Axis | Current fact or decision |
 | --- | --- |
+| Phase and scope | Unknown |
 | Lifetime | Unknown |
 | Users and reliance | Unknown |
 | Data | Unknown |

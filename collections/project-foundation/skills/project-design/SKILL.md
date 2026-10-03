@@ -2,7 +2,7 @@
 name: project-design
 description: "Shape system architecture, responsibilities, workflows and integration choices before or during implementation. Use for operating design across people, agents, tools or services; literal edits, provider setup and runtime implementation have separate workflows."
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Project design
@@ -19,6 +19,12 @@ explicitly deferred. A focused boundary change needs only its affected owners an
 consumers. Preserve established repository choices unless changing them is in scope.
 Use retained implementations as evidence; distinguish useful behavior from the
 infrastructure that happened to accompany it.
+
+Read the current phase and delivery scope in policy before choosing design depth.
+If they are missing, changing or contradicted by the proposed work, use
+[project-policy](../project-policy/SKILL.md) to reconcile them. Applying an already
+clear scope does not need a new policy review. Architecture can describe future
+relationships without committing to their implementation in the current phase.
 
 Keep responsibility, repository, process and deployment boundaries distinct.
 Designing for a possible environment does not select or provision that environment.

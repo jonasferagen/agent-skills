@@ -1,8 +1,8 @@
 ---
 name: project-policy
-description: "Establish or revise engineering requirements when users, data, exposure, lifetime, compatibility or recovery needs change. Assess the impact and track prerequisites; ordinary edits do not require a policy review."
+description: "Establish or revise engineering requirements when project phase, delivery scope, users, data, exposure, lifetime, compatibility or recovery needs change. Assess the impact and track prerequisites; ordinary edits do not require a policy review."
 metadata:
-  version: "3.0.0"
+  version: "3.1.0"
 ---
 
 # Project policy
@@ -16,6 +16,27 @@ its existing architecture, abstractions and test inventory do not automatically
 become policy requirements. Consider simpler designs that preserve required
 outcomes. Distinguish an implementation choice from an explicit commitment before
 removing it, and verify the affected behavior when changing the mechanism.
+
+## Match requirements to the current phase
+
+Establish the current phase, the next useful outcome and the scope deliberately
+left for later. Record phase and delivery scope as policy facts; project boundaries
+still own overall purpose and responsibilities. A maturity label alone cannot
+replace the separate facts about reliance, data, exposure and recovery.
+
+Derive what the current outcome requires before expanding the architecture. Keep
+future possibilities distinct from present obligations. A draft may leave choices
+open when they do not block the current outcome. Put a concrete revisit condition
+with deferred work, such as a second independent consumer or a need to reproduce
+an earlier result; do not make every open question the next task.
+
+Design for growth by preserving useful boundaries, retained evidence and choices
+that would be costly to reverse. Add history systems, automation or generalized
+interfaces when a current requirement warrants them. Manual records or one scoped
+workflow can be sufficient. Early phase does not relax obligations for real data,
+external effects or existing consumers. Use
+[project-design](../project-design/SKILL.md) to choose the mechanism within those
+constraints, without treating the draft architecture as a build list.
 
 ## Interpret the foundation
 
@@ -78,6 +99,7 @@ a concrete requirement; avoid collapsing them into one maturity label or score.
 
 | Axis | Establish | Requirements it can change |
 | --- | --- | --- |
+| Phase and scope | Current phase, immediate outcome and deferred capabilities | Depth of design, present implementation scope and conditions for revisiting deferrals |
 | Intended lifetime | Experiment, evolving product or maintained system; expected disposal or handoff | Investment in reuse, maintenance and documentation |
 | Users and reliance | Who uses it and what failure prevents them doing | Release evidence, availability and support |
 | Data | Synthetic or real, sensitivity, ownership and replaceability | Access, retention, deletion, migrations and recovery |
@@ -101,8 +123,8 @@ policy grants permission to contact users, access production or deploy.
 ## Change the policy
 
 During project work, review affected foundation facts when purpose,
-responsibility, terminology, users, data, exposure, lifetime, compatibility or
-recovery changes. Compare the affected documents with the new evidence even if
+responsibility, phase, delivery scope, terminology, users, data, exposure, lifetime,
+compatibility or recovery changes. Compare the affected documents with the new evidence even if
 nobody has edited the policy section. Update only the affected decisions and their
 consequences; a terminology correction need not reconstruct the full profile.
 These are task-based review triggers, not a background monitoring service.

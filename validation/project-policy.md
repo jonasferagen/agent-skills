@@ -105,3 +105,33 @@ The same agent exercised a separate typo-only case with a literal diff check and
 no operational audit. Manifests, local links and whitespace passed. Artifacts:
 `/tmp/policy-trial-tIWNp9/`. This is a supplied-skill behavioral trial, not a fresh
 metadata-discovery test, runtime validation or a repeated reliability estimate.
+
+## Phase and scope — 2026-10-03
+
+Forge exposed a sequencing problem: after a useful source inspection, the next
+queue item escalated to independent variant histories although the project was
+still exploring one asset. Existing policy preserved minimum guarantees but did
+not explicitly bound design investment by phase and delivery scope. Policy now
+records those facts; design leaves nonblocking questions open with revisit
+conditions. This adds no universal maturity score or mandatory history system.
+
+A fresh consumer evaluator started from an isolated AGENTS hook and the complete
+draft collection. For a personal sound-effects experiment it proposed one protected
+manual clip workflow and deferred history, branching, concurrency and storage. For
+an internal service relabelled a prototype it preserved two consumers, customer
+data, promised rollback and daily backups. For a spelling correction it returned
+only the requested replacement without policy work. The author reviewed the outputs.
+
+The evaluator read 12 guidance files, approximately 7,163 whitespace words, with
+no displayed rereads or truncation. It reached policy-change review and design's
+next-step guidance without source maintenance or old validation reports. It judged
+source-of-truth and foundation-format partly excessive in the empty-project fixture.
+All three cases shared one fresh context; this is not three independent discovery
+runs. The fixture had no actual project documents or runtime, so downstream tracing
+and operational guarantees were not demonstrated. The report remains at
+`/tmp/phase-scope-trial/result.md`; outcomes are summarized here for durability.
+
+Package validation passed for 25 entries including one collection; all five
+foundation-format tests and Git whitespace checks passed. The new phase row keeps
+the strict five-table format. Forge application separately records its policy delta
+and preserved obligations. No release tag or runtime infrastructure was created.

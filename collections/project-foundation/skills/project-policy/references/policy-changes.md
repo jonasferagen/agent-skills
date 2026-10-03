@@ -55,6 +55,11 @@ and the acceptance evidence needed for the new use. Use available specialist
 skills when useful; a missing specialist does not remove the review requirement.
 Keep proposed hosting or stricter use distinct from approved and verified use.
 
+Review phase and delivery scope as well as minimum guarantees. Remove future-only
+design questions from the immediate queue when they do not block the current
+outcome; keep their revisit conditions visible. A reduction in planned scope is
+not evidence that retained data or current consumer obligations have disappeared.
+
 Review simplification opportunities as well as missing safeguards. Record what
 guarantee a mechanism protects, whether policy requires it, what a simpler design
 would preserve or remove, and what evidence could establish that result. Higher

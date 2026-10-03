@@ -97,3 +97,12 @@ workflow shaping and integration choices remain here. Existing callers retain a
 route to handoff design. See [contract validation](project-contracts.md) for the
 focused routing trial and its limitations. Earlier trials above describe their
 respective draft versions.
+
+## Phase-bounded sequencing — 2026-10-03
+
+Design now consults the current policy phase and scope before choosing depth;
+missing or changing scope routes to project-policy. The next-step reference keeps
+nonblocking future questions deferred rather than automatically advancing through
+the draft model. The [policy trial](project-policy.md#phase-and-scope--2026-10-03)
+records the synthetic manual-workflow case, retained-obligation countercase and
+routing limits. No diagram or runtime behavior changed.
