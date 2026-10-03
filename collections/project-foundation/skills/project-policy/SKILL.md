@@ -2,7 +2,7 @@
 name: project-policy
 description: "Interpret project engineering obligations, assess evidence against them, or establish and review policy as users, data, exposure, lifetime, compatibility or recovery change. A focused policy question needs only the relevant facts and requirements."
 metadata:
-  version: "3.1.0"
+  version: "3.2.0"
 ---
 
 # Project policy
@@ -29,15 +29,16 @@ behavior when changing a mechanism.
   evidence is not proof of failure or compliance. Report the affected claim and
   evidence needed; do not rewrite policy to fit implementation or start a wider
   audit merely to answer the question.
-- **Establish or assess change:** Use [establishment and change](references/establish-and-change.md)
-  for a new policy, proposed changes or changed operating circumstances. Assess
-  the affected delta and consequences; proposals remain proposals until adopted.
+- **Establish:** Use [establishment](references/establish.md) to determine a new
+  policy's facts, axes and derived requirements.
+- **Assess or make a change:** Use [policy changes](references/policy-changes.md)
+  for proposed, adopted or already-observed changes. Assess the affected delta
+  and consequences; proposals remain proposals until adopted. Load document
+  writing guidance only when the task includes updating policy facts.
 - **Review policy adequacy:** Compare the policy with the requested use and
-  available facts. Use the discovery guidance in
-  [establishment and change](references/establish-and-change.md#discover-what-the-circumstances-require)
-  to find missing decisions. Report omissions, contradictions and their
-  consequences separately from missing implementation evidence. If circumstances
-  have changed, follow that reference's change workflow for the affected scope.
+  available facts. Use [requirement discovery](references/requirements.md) to find
+  missing decisions. Report omissions and contradictions separately from missing
+  implementation evidence. Changed circumstances also need the change workflow.
 
 Infer the task from the request and load only what it needs. If evidence reveals
 changed operating circumstances, use the affected change route even when nobody
@@ -58,8 +59,10 @@ For members of a shared project, use
 [multi-repository foundations](../../references/multi-repository.md) to resolve
 inherited policy, local facts and exception authority. A closer file does not
 silently override shared obligations. Follow
-[foundation authority](../../references/foundation-authority.md) when consultation
-or a conflict requires it; reuse current readings. Use
+[foundation authority](../../references/foundation-authority.md) when establishing or reconciling
+decisions, resolving conflicting authority or assessing changed circumstances.
+A focused interpretation or compliance assessment within known constraints needs
+only the relevant owners and evidence; reuse current readings. Use
 [source-of-truth](../source-of-truth/SKILL.md) when competing definitions or
 inconsistent consumers require reconciliation.
 

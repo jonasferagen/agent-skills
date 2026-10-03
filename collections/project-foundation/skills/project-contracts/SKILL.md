@@ -2,16 +2,18 @@
 name: project-contracts
 description: "Read, apply, design or review obligations at a handoff between people, agents, files or services. Use for interpreting terms, assessing an exchange, finding missing obligations or changing compatibility; legal agreements and overall architecture have separate workflows."
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Project contracts
 
 Make clear what participants can rely on at a handoff. Start with the user's
 question, the authoritative agreement and the revision applicable to the exchange.
-Keep proposed terms, adopted obligations and observed behavior distinct. Follow
-[foundation authority](../../references/foundation-authority.md) for adopted
-constraints and conflicts; reuse current readings.
+Keep proposed terms, adopted obligations and observed behavior distinct. Use
+[foundation authority](../../references/foundation-authority.md) when establishing
+or reconciling obligations, resolving conflicting authority or assessing changed
+scope or operating circumstances. Reading or applying known terms within unchanged
+constraints needs only their relevant owners; reuse current readings.
 
 ## Select the task
 

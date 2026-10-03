@@ -188,3 +188,12 @@ an explicit entrypoint instruction to verify affected behavior when changing a
 mechanism. This restores prior wording's requirement; no new operational gate is
 introduced. The review preceded the new validation write-up; its note that trial
 records were still needed is satisfied by the consumer evidence above.
+
+## Conditional collection routing — 3.2.0, 3 October 2026
+
+Establishment, requirement discovery, policy-change assessment and document-writing now have separate references. Existing consequence and readiness obligations are retained.
+
+See [collection validation](project-foundation-collection.md#conditional-authority-and-setup-routes--3-october-2026)
+for source review, fresh consumer cases, findings and limitations. Those tests
+exercise representative routes; they do not establish every entrypoint or native
+discovery behavior. No release or downstream installation was performed.

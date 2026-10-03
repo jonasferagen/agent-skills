@@ -85,3 +85,12 @@ bumped.
   in the default and dark themes and read clearly in both.
 - Handoff: "links to its remaining checks" did not say whose → it links to the
   release record for acceptance checks still outstanding.
+
+## Conditional collection routing — 3.0.1, 3 October 2026
+
+Authority reads are conditional for existing known terms; establishment, reconciliation, conflicts and changed circumstances retain the authority route.
+
+See [collection validation](project-foundation-collection.md#conditional-authority-and-setup-routes--3-october-2026)
+for source review, fresh consumer cases, findings and limitations. Those tests
+exercise representative routes; they do not establish every entrypoint or native
+discovery behavior. No release or downstream installation was performed.

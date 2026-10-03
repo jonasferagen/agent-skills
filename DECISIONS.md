@@ -395,3 +395,33 @@ structure for distinct exchange semantics; cross-cutting properties may require
 several references and keep shared owners. Do not duplicate concurrency or retry
 rules into every type, introduce empty family directories, or prescribe a fixed
 set of files per family. No diagrams or contract families are added in this round.
+
+## 2026-10-03 — Narrow collection entry and policy task references
+
+Continue the foundation coherence work on the existing task branch. The collection
+entrypoint selects work; installation, provenance and template setup move to a
+conditional reference reached by bootstrap and adoption tasks. Preserve the visible
+Git worktree default and the distinction between unknowns, proposals, adopted
+obligations and evidence. Known terms can be read or applied through their owners.
+
+Foundation-authority remains the owner of consultation and reconciliation guidance.
+Load it for establishing/reconciling decisions, conflicting authority or changed
+scope/circumstances. Narrow known-scope work need not load it. Inherited scope still
+routes through foundation format and shared-owner resolution when the answer needs
+it; unknowns or missing authority grant no permission. Policy, contracts and docs
+entrypoints make those task conditions explicit.
+
+Project-policy 3.2.0 separates establishment, requirement discovery, policy-change
+assessment and document-writing references. The existing policy-change consequence
+workflow is preserved, including already-observed changes, relaxation, readiness
+and authorized work. Adequacy review can discover omissions without reconstructing
+a new policy. Assessments that preserve policy need no document-format workflow.
+
+Bootstrap 4.2.1 follows the relocated installation route; contracts 0.2.1 and docs
+3.0.1 clarify conditional authority reads. No client discovery behavior, automatic
+installation or authorization changes are claimed. No new skill is introduced.
+
+A direct-contract trial exposed an additional authority-to-format read for projects
+with established separate document owners. Authority now loads format guidance
+when resolving declarations or inherited values. Its rules for consulting affected
+owners, handling conflicts and preserving adopted obligations remain unchanged.

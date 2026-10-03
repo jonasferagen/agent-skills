@@ -108,3 +108,12 @@ existing workspace index locates evidence. The scaffold no longer includes First
 useful slice, which invited a work queue into the definition. Unknown technical
 options remain valid table content; a next implementation task belongs elsewhere.
 Package/link checks apply; no independent behavioral trial was run for this edit.
+
+## Conditional collection routing — 4.2.1, 3 October 2026
+
+The adoption workflow now points to the relocated installation reference. Whole-collection copying, provenance, draft identification and generated project hooks remain required.
+
+See [collection validation](project-foundation-collection.md#conditional-authority-and-setup-routes--3-october-2026)
+for source review, fresh consumer cases, findings and limitations. Those tests
+exercise representative routes; they do not establish every entrypoint or native
+discovery behavior. No release or downstream installation was performed.

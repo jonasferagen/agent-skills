@@ -1,0 +1,10 @@
+# Setup checklist
+
+- Copy the entire `project-foundation/` collection into the new repository at `.agents/collections/project-foundation/`. Preserve its directory layout, including skills, references, templates and scripts.
+- Record its source location and full source commit in `.agents/collections/UPSTREAM.md`. For this uncommitted draft, label it **draft**, record the full base revision and describe the local changes; do not describe it as a committed release. The actual source and revision still need to be supplied.
+- When carrying out setup, use `skills/project-bootstrap/SKILL.md` from that installation. Establish `docs/foundation.md` from the supplied template and link it from the README. Keep its five tables: References, Inheritance, Boundaries, Overview and Policy. Record project facts and adopted decisions there; keep procedures and agent routes in project instructions.
+- Merge explicit routes into the repository’s `AGENTS.md`: the local foundation, `references/foundation-format.md#entry-instructions`, `COLLECTION.md`, and bootstrap. Include routes for documentation, design, policy review, source-of-truth checks, shared authoring guidance and observed friction. State that agents consult the relevant authoritative owner, distinguish proposals and evidence from adopted requirements, resolve conflicting authority and check affected decisions before completion.
+- Put the worktree default directly in `AGENTS.md`: before Git edits, consult `skills/git-worktrees/SKILL.md` and use a task worktree unless repository-local instructions explicitly opt out. Work outside Git proceeds directly. Copying the collection alone does not establish these hooks; nested skills are not guaranteed to be discovered automatically.
+- Verify instruction links and run `python3 .agents/collections/project-foundation/scripts/validate-foundation.py docs/foundation.md`, applicable documentation checks and `git diff --check` during actual setup. Review intended files before committing.
+
+This checklist makes no repository or installation changes.

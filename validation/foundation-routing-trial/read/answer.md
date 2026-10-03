@@ -1,0 +1,3 @@
+The adopted recovery requirement in `policy.md` means recovery must preserve accepted archive additions with no more than 24 hours of additions lost. The maintainer is responsible for recovery.
+
+No, the text does not say recovery has been verified. `evidence.md` reports that a backup job succeeded yesterday, but supplies neither a restore result nor a measurement of recoverable accepted additions. Recovery and the 24-hour loss limit therefore remain unverified. Checking them requires a restore and comparison against accepted additions. This conclusion is based on the supplied documents; no recovery test was performed.
