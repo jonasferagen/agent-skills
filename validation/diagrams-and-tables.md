@@ -242,7 +242,8 @@ is renamed mermaid.md. Data-flow has its own guide and context/detail examples.
 Deployment remains future work; no empty family is introduced.
 
 All existing example diagram blocks were compared with the prior commit and are
-verbatim. The extracted ER example sections are also verbatim; guide edits adjust
+verbatim. The extracted ER example sections preserve their content, with the trailing blank
+line removed; guide edits adjust
 relative links and add an official syntax source/convention distinction. Old active
 reference paths were checked and updated; dated trial records preserve their original
 paths. Consumers must update the whole collection when adopting these moved paths.

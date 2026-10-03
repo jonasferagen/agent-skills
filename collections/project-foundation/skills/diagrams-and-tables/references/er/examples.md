@@ -287,4 +287,3 @@ an empty cell would have read as an oversight rather than as a real asymmetry.
 Nothing was lost in the deletion, because the overview owned no fact of its own.
 The family pages still own every one of the 122 relationships at full
 cardinality; this altitude owns only the shapes no single family page can see.
-
