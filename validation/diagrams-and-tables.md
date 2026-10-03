@@ -276,3 +276,42 @@ and says prose outlines use semantic guidance only. This targeted correction was
 author-reviewed after the trial; no reduced-read claim or fresh rerun is made. The
 ER question was in the same context; diagram construction and native discovery were
 not exercised by the trial.
+
+## Task routing — 2026-10-03
+
+Version 0.8.0 routes reading/application, semantic review, form selection,
+construction and visual review separately. ER and data-flow families now have
+read.md and design.md behind their existing guide.md entry points. Interpretation
+retains cardinalities, role meanings, explicit unknowns and observed/proposed
+distinctions. Construction retains grounding, syntax, decomposition and rendering.
+
+Form selection moved to select.md; semantic review has a focused review.md. Table
+reading uses headers, units and missing-value meanings without loading table
+authoring. Literal label corrections retain a focused meaning/render check; they
+do not trigger system redesign. No existing Mermaid example source changed.
+
+The task pattern was read from the separate project-contracts 0.2.0 worktree at
+484daf8. The user subsequently authorized landing both branches. Its existing five
+mode trials and validation record remain that change's evidence.
+
+Two fresh evaluators used isolated installed fixtures based on 289f852 plus this
+draft. Neither received an expected route. [Read answer/log](diagram-task-routing-trial/read/reads.md)
+shows direct entry-to-ER-reading routing: correct zero-or-more interpretation and
+no inferred database constraint, with no construction, review or renderer reads.
+[Construction answer/log](diagram-task-routing-trial/create/reads.md) shows family
+guide, design, notation and verification routes while omitting examples, large-model
+and flowchart guidance. The author inspected both complete answers and read logs.
+
+No content reads were repeated or truncated. Construction reported about 3,876
+input words; foundation-authority and prose guidance included some unnecessary
+material for the small fixture. These different tasks are not a before/after
+context-cost comparison. One case per route does not establish discovery reliability.
+Table application, semantic review, visual-review-only and the new data-flow reading
+route were source-reviewed but not independently trialled in this round.
+
+The parent rendered the construction output with Mermaid CLI 12.0.0 and external
+Google Chrome, inspecting light/dark output. Cardinalities, labels and unknown
+implementation status matched the fixture; no clipping or overlap was observed.
+Existing package diagram blocks were mechanically checked unchanged. Package
+validation, skill quick validation, 156 collection links/anchors and diff checks
+passed before integration. No runtime or client-native discovery claim is made.

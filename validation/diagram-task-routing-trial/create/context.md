@@ -1,0 +1,1 @@
+This proposed model says every Line belongs to exactly one Order; an Order can have zero or more Lines. Each Line optionally references one Product; a Product can appear in many Lines or none. No attributes or implementation have been specified.

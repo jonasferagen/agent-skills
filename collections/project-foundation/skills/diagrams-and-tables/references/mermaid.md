@@ -146,7 +146,7 @@ adding it to the count, so one number never mixes two meanings.
 
 ## Other forms
 
-For Mermaid ER syntax, read [ER guidance](er/guide.md#erdiagram).
+For Mermaid ER syntax, read [ER guidance](er/read.md#mermaid-cardinality).
 For Markdown tables, read [tables](tables.md).
 
 ## Conservative syntax

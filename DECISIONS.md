@@ -334,3 +334,12 @@ Historical validation records retain the paths used in their trials.
 Family guides distinguish official source scope, collection conventions and
 renderer constraints. Deployment guidance remains a future addition; this round
 creates no empty family directories. No release tag is created.
+
+## 2026-10-03 — Route diagrams by task before form
+
+Diagrams-and-tables 0.8.0 applies the task distinction from the project-contracts
+0.2.0 worktree: reading/application, semantic review, selection, construction and
+visual review have separate routes. Family read.md files retain interpretation;
+design.md files own authoring obligations. Family guide paths remain entry points.
+No project-contracts draft content is merged by this change. Existing diagrams
+remain unchanged.

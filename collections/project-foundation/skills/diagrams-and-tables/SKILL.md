@@ -1,60 +1,63 @@
 ---
 name: diagrams-and-tables
-description: "Choose prose, tables or diagram types for an explanation, and route construction or review to the relevant visual guidance. Use when selecting a form or creating or reviewing a visual."
+description: "Read or explain diagrams and tables, check their meaning, choose a visual form, or construct and visually review one. Route by the task so interpreting an existing view does not require authoring or renderer guidance."
 metadata:
-  version: "0.7.0"
+  version: "0.8.0"
 ---
 
 # Diagrams and tables
 
-Choose the smallest useful form for the reader's question. Reuse an existing
-explanation when it answers that question; link its owner instead of maintaining
-another copy. Document ownership and navigation belong to project-docs.
+Start with the user's question and the existing view, caption, legend and source.
+Keep what the view states separate from what the underlying system proves.
+Document ownership and navigation belong to project-docs.
 
-## When to use what
+## Select the task
 
-| Reader needs to understand | Start with |
+| Task | Guidance to load |
 | --- | --- |
-| A fact, reason, decision, caveat or convention | Brief prose |
-| Cases sharing fields, options, obligations or changes | A table; shared fields matter more than item count |
-| Work steps and conditional branches | A flowchart |
-| One object's states and allowed transitions | A state diagram |
-| Ordered interactions between participants | A sequence diagram |
-| Information sources, transformations, stores and destinations | A data-flow diagram |
-| System parts, ownership and dependencies | A component or context view |
-| Entities and their relationships | An ER diagram; add a field table only when field details matter |
+| Read or explain an existing view | Use the reading guidance below; load family reading notes only for relevant notation |
+| Apply a view to a particular case | Trace the case through its stated relationships and report matches, conflicts or unknowns; use reading notes as needed |
+| Review meaning or accuracy | Use [semantic review](references/review.md) and relevant reading notes |
+| Choose a form or outline a proposed view in prose | Use [form selection](references/select.md); family reading notes supply meanings without drawing rules |
+| Create, restructure or change diagram source | Use the family's guide below, or shared construction guidance when no family guide exists |
+| Review visual readability | Use [verification](references/verification.md); load construction guidance only if repairing the view |
 
-Choose by the question, not the nouns: a database request can need a sequence
-view of callers, an ER view of stored relationships, or a flowchart of validation
-steps. A workflow describes work moving; a state diagram describes what one
-object may become. Show several views only when they answer distinct questions.
+Infer the route from the request. Reading does not imply an accuracy audit, redraw
+or renderer search. A missing relationship stays unresolved when explaining a
+view; proposing one belongs to authorized design work. A literal label correction
+needs a focused meaning check and, if it changes a diagram, a rendered check of
+that change; it does not require redesigning the system.
 
-Use a diagram when the relationships are the explanation. Do not add one merely
-because the document describes a system. Keep each form on one reader question
-and distinguish established facts, proposals and unknowns.
+## Read the relevant meaning
 
-## Load construction guidance only when needed
+Follow the supplied legend and scope before assuming a notation. For tables, use
+row/column headers, units, footnotes and explicit unknowns; a blank does not prove
+zero, absence or permission. For diagrams, explain the relevant nodes and edge
+ends, direction and labels. Do not infer chronology, ownership, cardinality or
+network access from an arrow whose meaning is unspecified.
 
-Filling an existing scaffold table or making an ordinary wording edit needs no
-construction references. Preserve its columns, meaning and uncertainty. Stop here
-when the task is only form selection.
+- ER notation: [read an ER](references/er/read.md).
+- Data movement: [read a data-flow view](references/data-flow/read.md).
+- For other forms, use the declared notation and project definitions. Seek an
+  authoritative notation reference only if the answer depends on an unfamiliar
+  symbol; a routine reading task needs no construction manual.
 
-- To design or restructure a table, read [tables](references/tables.md).
-- When the form is already ER, go directly to [ER guidance](references/er/guide.md).
-  It separates reading, semantic review, construction and large-view work; do not
-  also load general composition or Mermaid drawing guidance by default.
-- For a data-flow view, go directly to [data-flow guidance](references/data-flow/guide.md).
-  It distinguishes reading from construction and routes to shared rendering guidance.
-- For other diagram construction, read [composition](references/composition.md)
-  and [verification](references/verification.md); add
-  [Mermaid drawing](references/mermaid.md) when implementing in Mermaid.
-- For visual review, read verification; add the relevant construction reference
-  only when structure or notation needs work.
-- Family guides own their notation, examples and external source links. Shared
-  composition and renderer conventions stay at the reference root.
-- Use [worked examples](references/worked-examples.md) only when the chosen form
-  needs an example.
+Cite the portion that supports the answer. Distinguish explicit statements,
+interpretation and missing information. Applying a view does not itself authorize
+changing data or executing the process it describes.
 
-A diagram must be grounded in its source and visually inspected in the target
-renderer. A successful parse alone does not establish readability. Report any
-rendering limitation rather than claiming visual verification.
+## Construct only when needed
+
+- ER: [family guide](references/er/guide.md).
+- Data flow: [family guide](references/data-flow/guide.md).
+- Other diagrams: [composition](references/composition.md) and
+  [verification](references/verification.md); add [Mermaid](references/mermaid.md)
+  when using that renderer syntax.
+- Designing or restructuring a table: [tables](references/tables.md). Filling an
+  existing scaffold preserves its columns, meaning and uncertainty without loading
+  construction references.
+
+Family guides own notation, examples and external source links. Shared layout and
+rendering conventions stay at the reference root. Use examples only when useful.
+New or changed diagrams require grounding and visual inspection in the target
+renderer. Report unavailable checks separately; parsing does not prove readability.
