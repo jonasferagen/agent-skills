@@ -68,6 +68,9 @@ State what must be retained before reporting completion, and who can release it.
 An operation that hands off a result may complete before the receiving actor
 accepts its quality; use the project's contract to preserve that distinction.
 
+For operations needing retained stage outcomes, input identities or publication
+evidence, use [run records](references/run-records.md).
+
 ## Exercise the boundary and choose the increment
 
 Trace a successful case and a failure or change that could invalidate the design.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Godot and GDScript"
+  short_description: "Typed scripts, probes, imports and scene measurements"
+  default_prompt: "Use $godot-gdscript to review this Godot change and its technical checks."
