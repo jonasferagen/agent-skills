@@ -10,7 +10,7 @@ For a project spanning repositories, read [multi-repository foundations](referen
 before selecting document owners or installation locations.
 
 Install this directory as one dependency. It contains the bootstrap workflow,
-Git worktree guidance, project documentation and policy skills, source-of-truth,
+Git worktree guidance, project design, documentation and policy skills, source-of-truth,
 their authoring skills and the templates they interpret. Preserve the directory
 layout so relative references work.
 
@@ -18,6 +18,7 @@ layout so relative references work.
 | --- | --- |
 | Interpret foundation declarations and inherited values | [Foundation format](references/foundation-format.md) |
 | Start the project foundation | [Project bootstrap](skills/project-bootstrap/SKILL.md) |
+| Shape responsibilities, repository boundaries and handoffs | [Project design](skills/project-design/SKILL.md) |
 | Start or resume edits and preserve repository work | [Git worktrees](skills/git-worktrees/SKILL.md) |
 | Interpret policy facts and review changed circumstances | [Project policy](skills/project-policy/SKILL.md) |
 | Organize and reconcile project documents | [Project documentation](skills/project-docs/SKILL.md) |

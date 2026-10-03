@@ -281,3 +281,15 @@ nor grants project membership through filesystem ancestry. Untracked parents can
 expose versioned entry files by symlink, with the exposed link base stated and
 existing files preserved. Whole-owner absence also removes symlinked hooks; this
 dependency is explicit. Bootstrap 4.1.0 is unreleased; no tag is created.
+
+## 3 October 2026 — Project design draft
+
+Add project-design to project-foundation for shaping responsibilities, repository
+boundaries and handoffs. Start next-step planning as a conditional reference.
+Keep repository, process and deployment choices distinct; future packaging does
+not select current infrastructure. Reuse policy, documentation and authority
+guidance without restoring retired change-workflow or shared-code-design rules.
+
+Project-design starts at unreleased 0.1.0; bootstrap 4.2.0 adds its discovery hook.
+Behavioral trials and limitations belong in [validation](validation/project-design.md).
+No release tag is created. Forge adoption is a separately recorded consumer update.

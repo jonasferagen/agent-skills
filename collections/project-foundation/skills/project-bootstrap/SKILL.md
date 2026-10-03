@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Bootstrap a new project or a fresh repository with project boundaries, policy and a project overview, plus a README that links them. Use when establishing this starting foundation; ordinary implementation and documentation maintenance belong to their own workflows."
 metadata:
-  version: "4.1.0"
+  version: "4.2.0"
 ---
 
 # Project bootstrap
@@ -109,6 +109,9 @@ It must also route:
   State that work outside Git proceeds directly and needs no repository merely
   to satisfy this rule. An upgrade must add or reconcile this hook explicitly.
 - Initial scaffolding to this skill and document organization to project-docs.
+- Shaping responsibilities, repository boundaries and handoffs to
+  [project-design](../project-design/SKILL.md); use it when developing architecture
+  or choosing the next design step, not for routine literal document edits.
 - Prose and visual explanations to the collection's shared authoring guidance.
 - Changes to purpose, responsibilities, terminology or operating circumstances to
   project-policy for a review of affected foundation decisions and consequences.
