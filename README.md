@@ -19,7 +19,7 @@ Part of the [project-foundation collection](collections/project-foundation/COLLE
 | Skill | Use it for |
 | --- | --- |
 | [Project bootstrap](collections/project-foundation/skills/project-bootstrap/SKILL.md) (`project-bootstrap`, draft) | Start a repository and establish boundaries, policy and overview, with an entry README. |
-| [Project design](collections/project-foundation/skills/project-design/SKILL.md) (`project-design`, draft) | Shape responsibilities and handoffs; identify the next design or implementation step. |
+| [Project design](collections/project-foundation/skills/project-design/SKILL.md) (`project-design`, draft) | Shape responsibilities, workflows, handoffs and integration choices; select the next useful step. |
 | [Git worktrees](collections/project-foundation/skills/git-worktrees/SKILL.md) (`git-worktrees`) | Use task worktrees for repository edits, with exceptions owned by repository policy. |
 | [Project policy](collections/project-foundation/skills/project-policy/SKILL.md) (`project-policy`) | Establish which requirements apply from users, data, exposure, lifetime, compatibility and recovery needs; assess changes to those requirements. |
 | [Project documentation](collections/project-foundation/skills/project-docs/SKILL.md) (`project-docs`) | Decide where knowledge belongs and keep it current. |

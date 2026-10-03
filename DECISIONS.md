@@ -293,3 +293,16 @@ guidance without restoring retired change-workflow or shared-code-design rules.
 Project-design starts at unreleased 0.1.0; bootstrap 4.2.0 adds its discovery hook.
 Behavioral trials and limitations belong in [validation](validation/project-design.md).
 No release tag is created. Forge adoption is a separately recorded consumer update.
+
+## 3 October 2026 — Workflow and integration design
+
+Extend project-design for projects whose primary work is decisions, procedures
+and artifacts. Conditional workflow guidance covers triggers, acting roles,
+artifact ownership, acceptance and interruption. Integration guidance starts from
+the needed capability and compares manual/local and service mechanisms using
+concrete constraints and evidence. Setup, external execution and provider-specific
+procedures remain with their owners; design does not expand authorization.
+
+Project-design 0.2.0 is unreleased. The existing Forge wall-texture exercise informs
+its application; the real brief, source and operation remain prerequisites. No
+new standalone integration skill or runtime framework is introduced.

@@ -1,8 +1,8 @@
 ---
 name: project-design
-description: "Shape or review project responsibilities, repository boundaries and handoffs before or during implementation. Use when deciding how parts work together or what design uncertainty to resolve next; literal document edits and container builds have separate workflows."
+description: "Shape project responsibilities, workflows, handoffs and integration choices before or during implementation. Use for operating design across people, agents, tools or services; literal edits, provider setup and runtime implementation have separate workflows."
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Project design
@@ -25,6 +25,23 @@ Designing for a possible environment does not select or provision that environme
 A document-only coordinator need not acquire a runtime, and a repository does not
 imply a service, container or separate database. State any necessary mapping and
 why the workflow requires it.
+
+## Select the design question
+
+These questions also apply to process-oriented repositories whose main outputs
+are decisions, procedures and artifacts. A workflow step need not become code.
+
+- For ownership and boundaries, trace the representative case below.
+- For triggers, human/agent responsibilities, state transitions and handoffs, read
+  [workflow design](references/workflows.md).
+- For selecting a service capability or its integration mechanism, read
+  [integration choices](references/integrations.md). Provider-specific setup and
+  execution stay with their owning procedures.
+- For sequencing design, experiments and implementation, use
+  [next-step planning](references/next-step.md).
+
+Load only the reference needed by the current decision. A boundary review does
+not require a service-selection pass.
 
 ## Trace work through owners
 

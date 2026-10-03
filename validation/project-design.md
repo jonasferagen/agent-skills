@@ -61,3 +61,31 @@ context. No read-cost reduction or native automatic discovery is claimed.
 
 No new helper code or runtime dependency is introduced. Bootstrap's new output
 hook is source-reviewed; a fresh bootstrap-output trial is not yet run.
+
+## Workflow and integration design, 0.2.0
+
+On 2026-10-03, a fresh consumer started from a fixture AGENTS hook and the
+complete draft collection. The request covered a brief, local execution, review,
+delivery and adoption, with remote execution deferred. The fixture had no real
+source data, credentials or approved cloud spending.
+
+The [retained design](project-design-workflow-trial/operating-design.md) separates
+execution, acceptance and adoption. It preserves originals and earlier selections,
+checks applicability after a changed brief, and treats an interrupted remote
+attempt as unknown instead of automatically retrying. It proposes local/manual
+execution without inventing provider capabilities or mandatory human approval.
+The [report](project-design-workflow-trial/trial-report.md) records the reads and
+limits; the adjacent foundation is fixture input, not repository policy.
+
+The evaluator read 13 files once, totaling 6,307 input words. No definite missed
+route was found. Some format and policy-establishment guidance was unused. The
+nearby owner-only case was assessed in the same context, not a separate cold
+negative trial. This demonstrates one instruction-hook route, not native client
+discovery reliability or runtime integration behavior.
+
+The author also applied the draft to Forge's proposed asset workflow and Tools
+integration design. Package validation (24 entries, one collection), skill quick
+validation and diff whitespace checks pass. Local path/anchor and symbolic owner
+checks pass against the staged owner and consumer trees (208 references). Policy
+tables remain unchanged. A real brief, source, exact operation and acting authority
+remain prerequisites for implementation; no jobs or provider calls were made.

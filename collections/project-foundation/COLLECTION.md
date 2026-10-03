@@ -18,7 +18,7 @@ layout so relative references work.
 | --- | --- |
 | Interpret foundation declarations and inherited values | [Foundation format](references/foundation-format.md) |
 | Start the project foundation | [Project bootstrap](skills/project-bootstrap/SKILL.md) |
-| Shape responsibilities, repository boundaries and handoffs | [Project design](skills/project-design/SKILL.md) |
+| Shape responsibilities, workflows, handoffs and integration choices | [Project design](skills/project-design/SKILL.md) |
 | Start or resume edits and preserve repository work | [Git worktrees](skills/git-worktrees/SKILL.md) |
 | Interpret policy facts and review changed circumstances | [Project policy](skills/project-policy/SKILL.md) |
 | Organize and reconcile project documents | [Project documentation](skills/project-docs/SKILL.md) |
