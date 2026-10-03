@@ -3,10 +3,14 @@
 
 import argparse
 from datetime import date
+import os
 from pathlib import Path
 import re
+from urllib.parse import urlsplit
 
 TEMPLATE = Path(__file__).resolve().parents[1] / 'templates/project-docs/foundation.md'
+SYMBOL = re.compile(r'`\$([^/#`\s]*)')
+AUTHORITY = re.compile(r'`\$([a-z][a-z0-9_-]*)/([^`#\s]+)#([^`\s]+)`')
 
 
 def cells(line):
@@ -20,8 +24,9 @@ def blocks(text):
     return preamble.strip(), [section.strip().splitlines() for section in sections]
 
 
-def validate(text):
+def validate(text, path=None):
     errors = []
+    tables = {}
     preamble, sections = blocks(text)
     template_preamble, template_sections = blocks(TEMPLATE.read_text())
     title = template_preamble.splitlines()[0]
@@ -49,6 +54,7 @@ def validate(text):
             if len(separator) != len(header) or any(not re.fullmatch(r':?-{3,}:?', cell) for cell in separator):
                 raise ValueError('invalid table separator')
             seen = set()
+            rows = []
             for line in lines[2:]:
                 row = cells(line)
                 if len(row) != len(header) or any(not cell for cell in row):
@@ -62,9 +68,40 @@ def validate(text):
                     raise ValueError('invalid reference key: ' + row[0])
                 if name == 'Inheritance' and row[0] not in expected[2:]:
                     raise ValueError('unknown inherited section: ' + row[0])
+                rows.append(row)
+            tables[name] = rows
         except ValueError as error:
             errors.append(f'{name}: {error}')
+    if 'References' in tables:
+        errors.extend(check_references(tables, path))
     return errors
+
+
+def check_references(tables, path):
+    """Check symbolic references against this file's own bindings, without reading targets."""
+    errors = []
+    targets = dict(tables['References'])
+    for name, rows in tables.items():
+        for key in sorted({key for row in rows for key in SYMBOL.findall(' | '.join(row[1:]))}):
+            if key not in targets:
+                errors.append(f'{name}: undeclared reference key: ${key}')
+    for section, authority in tables.get('Inheritance', []):
+        match = AUTHORITY.fullmatch(authority)
+        if authority == 'Unknown':
+            continue
+        if not match:
+            errors.append(f'Inheritance: {section} authority must be one `$key/path#anchor` reference or Unknown')
+        elif path is not None and match[1] in targets and inherits_from_itself(path, targets[match[1]], match[2]):
+            errors.append(f'Inheritance: {section} inherits from its own foundation')
+    return errors
+
+
+def inherits_from_itself(path, target, suffix):
+    """Compare paths lexically; a target is resolved against the declaring file's directory."""
+    if urlsplit(target).scheme:
+        return False
+    own = os.path.normpath(Path(path).absolute())
+    return own == os.path.normpath((Path(path).parent / target / suffix).absolute())
 
 
 def main():
@@ -74,7 +111,7 @@ def main():
     failed = False
     for path in args.files:
         try:
-            errors = validate(path.read_text())
+            errors = validate(path.read_text(), path)
         except (OSError, UnicodeError) as error:
             errors = [str(error)]
         if errors:

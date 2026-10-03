@@ -8,11 +8,18 @@ ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('foundation_format', ROOT / 'scripts/validate-foundation.py')
 checker = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(checker)
+REFERENCES = '| Key | Target |\n| --- | --- |'
+INHERITANCE = '| Section | Authority |\n| --- | --- |'
+BOUND = '| orchard | /workspaces/orchard |'
 
 
 class FoundationFormatTests(unittest.TestCase):
     def setUp(self):
         self.text = (ROOT / 'templates/project-docs/foundation.md').read_text().replace('{{date}}', '2026-10-03').replace('{{revision}}', '1')
+
+    def declare(self, reference, inheritance):
+        text = self.text.replace(REFERENCES, REFERENCES + '\n' + reference) if reference else self.text
+        return text.replace(INHERITANCE, INHERITANCE + '\n' + inheritance) if inheritance else text
 
     def test_owner_and_sparse_member(self):
         self.assertEqual(checker.validate(self.text), [])
@@ -46,6 +53,37 @@ class FoundationFormatTests(unittest.TestCase):
         ):
             with self.subTest(new=new):
                 self.assertTrue(checker.validate(self.text.replace(old, new)))
+
+    def test_symbolic_references_need_declared_keys(self):
+        typo = '| Policy | `$orhcard/docs/foundation.md#policy` |'
+        self.assertIn('Inheritance: undeclared reference key: $orhcard', checker.validate(self.declare(BOUND, typo)))
+        self.assertIn('Inheritance: undeclared reference key: $orchard', checker.validate(self.declare('', typo.replace('orhcard', 'orchard'))))
+        cell = self.declare(BOUND, '').replace('| Purpose | Unknown |', '| Purpose | Roles: `$orhcard/docs/architecture.md#roles` |')
+        self.assertIn('Boundaries: undeclared reference key: $orhcard', checker.validate(cell))
+
+    def test_authority_is_one_anchored_reference_or_unknown(self):
+        self.assertEqual(checker.validate(self.declare(BOUND, '| Policy | Unknown |')), [])
+        for authority in (
+            'None',
+            '`$orchard/docs/foundation.md`',
+            '/workspaces/orchard/docs/foundation.md#policy',
+            '[Policy](../orchard/docs/foundation.md#policy)',
+            '`$orchard/docs/foundation.md#policy` or `$orchard/docs/other.md#policy`',
+        ):
+            with self.subTest(authority=authority):
+                self.assertTrue(checker.validate(self.declare(BOUND, f'| Policy | {authority} |')))
+
+    def test_inheritance_from_own_file_rejected(self):
+        # Paths are compared lexically, so this fixture needs no files.
+        path = Path('/repo/project-docs/foundation.md')
+        authority = '| Policy | `$own/project-docs/foundation.md#policy` |'
+        for target in ('..', '/repo', '../../repo'):
+            with self.subTest(target=target):
+                errors = checker.validate(self.declare(f'| own | {target} |', authority), path)
+                self.assertIn('Inheritance: Policy inherits from its own foundation', errors)
+        for target in ('../../orchard', 'https://example.test/repo/raw/main'):
+            with self.subTest(target=target):
+                self.assertEqual(checker.validate(self.declare(f'| own | {target} |', authority), path), [])
 
     def test_literal_reference_and_escaped_pipe(self):
         # A target is never opened, fetched or executed by the checker.
