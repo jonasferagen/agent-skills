@@ -19,7 +19,7 @@ Part of the [project-foundation collection](collections/project-foundation/COLLE
 | Skill | Use it for |
 | --- | --- |
 | [Project bootstrap](collections/project-foundation/skills/project-bootstrap/SKILL.md) (`project-bootstrap`, draft) | Start a repository and establish boundaries, policy and overview, with an entry README. |
-| [Project design](collections/project-foundation/skills/project-design/SKILL.md) (`project-design`, draft) | Shape architecture, responsibilities, workflows and integration choices; select the next useful step. |
+| [Project design](collections/project-foundation/skills/project-design/SKILL.md) (`project-design`, draft) | Shape architecture, responsibilities, conceptual models, workflows and integration choices; select the next useful step. |
 | [Project planning](collections/project-foundation/skills/project-planning/SKILL.md) (`project-planning`, draft) | Structure and maintain plans, dependencies and shared or local next steps. |
 | [Project contracts](collections/project-foundation/skills/project-contracts/SKILL.md) (`project-contracts`, draft) | Read, apply, design and review handoff obligations and compatibility. |
 | [Project policy](collections/project-foundation/skills/project-policy/SKILL.md) (`project-policy`) | Set phase-appropriate scope and requirements from users, data, exposure, lifetime, compatibility and recovery needs; assess changes. |

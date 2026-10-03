@@ -106,3 +106,36 @@ nonblocking future questions deferred rather than automatically advancing throug
 the draft model. The [policy trial](project-policy.md#phase-and-scope--2026-10-03)
 records the synthetic manual-workflow case, retained-obligation countercase and
 routing limits. No diagram or runtime behavior changed.
+
+## Conceptual modelling and surrounding design, 0.6.0 — 2026-10-03
+
+Forge's retained alignment notes describe the original gap: detailed contracts,
+models and inspections lacked an overview placing them. Source inspection confirmed
+that design had no explicit prompt for that context and no conceptual-model route.
+The addition asks for the opened part, model home and affected surrounding owners;
+it preserves bottom-up work and uses one short conditional reference for meaning.
+Forge's brass inspection supplies a concrete next question without adopting its
+revision machinery as general guidance.
+
+A [fresh consumer trial](conceptual-modelling-trial/setup.md) reached conceptual
+modelling from the collection hook, distinguished equipment/model and loan/condition,
+exercised a damaged return and reconciled the model, overview and existing queue.
+The reviewer inspected those outputs. Observations and assumptions stay separate;
+storage, automation and general history stay deferred. The spelling case was an
+assessment after the main trial, not a second cold trial. The retained
+[report](conceptual-modelling-trial/trial-report.md) records about 4,449 instruction
+words without repeated or truncated guidance reads. Its fixture has no standard
+foundation and resembles the bundled example; it demonstrates the route, not
+cross-domain reliability or a measured improvement over the previous version.
+Catalog/UI wording was aligned after the trial; the tested reference and entrypoint
+instructions are unchanged.
+
+Integrated the existing worktree-retirement commit onto the newer planning base;
+its historical trial records retain their original source context. The current
+collection has no retired worktree route, bootstrap retains project agreements,
+and local agent configuration owns personal worktree preferences. No unrelated
+policy-routing branch changes were imported.
+
+Checks: package validator (25 entries, one collection), project-design quick
+validation, 191 collection relative link paths and Git whitespace checks passed.
+These checks establish document/package integrity, not implemented Forge behavior.

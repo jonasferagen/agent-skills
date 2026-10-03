@@ -21,7 +21,7 @@ layout so relative references work.
 | --- | --- |
 | Interpret foundation declarations and inherited values | [Foundation format](references/foundation-format.md) |
 | Start the project foundation | [Project bootstrap](skills/project-bootstrap/SKILL.md) |
-| Shape architecture, responsibilities, workflows and integration choices | [Project design](skills/project-design/SKILL.md) |
+| Shape architecture, responsibilities, conceptual models, workflows and integration choices | [Project design](skills/project-design/SKILL.md) |
 | Create, sequence or maintain project plans and next steps | [Project planning](skills/project-planning/SKILL.md) |
 | Read, apply, design or review handoff obligations | [Project contracts](skills/project-contracts/SKILL.md) |
 | Set phase-appropriate scope and review policy changes | [Project policy](skills/project-policy/SKILL.md) |
