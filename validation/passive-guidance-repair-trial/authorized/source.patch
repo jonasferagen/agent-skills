@@ -1,0 +1,72 @@
+diff --git a/collections/project-foundation/skills/project-contracts/SKILL.md b/collections/project-foundation/skills/project-contracts/SKILL.md
+index 274a8db..2c72cc2 100644
+--- a/collections/project-foundation/skills/project-contracts/SKILL.md
++++ b/collections/project-foundation/skills/project-contracts/SKILL.md
+@@ -17 +17 @@ Keep proposed terms, adopted obligations and observed behavior distinct using
+-[status and evidence](../../references/status-and-evidence-note.md). Use
++[status and evidence](../../references/status-and-evidence.md). Use
+diff --git a/validation/notes.md b/validation/notes.md
+index 4ecafb3..f5cd476 100644
+--- a/validation/notes.md
++++ b/validation/notes.md
+@@ -2,0 +3,60 @@
++## 2026-10-03: Repair the project-contracts evidence link
++
++Consumer task: explain who can accept a synthetic delivery, whether copying alone
++establishes acceptance, and correct one spelling error. The installed
++`project-contracts` skill at source revision
++`960ababc1a5a1ef7ae23361df5df13e25ad28d9c` linked to the nonexistent
++`../../references/status-and-evidence-note.md`. The same defect exists in source;
++`references/status-and-evidence.md` is the existing owner of the intended guidance.
++Consumer project instructions authorize narrow source repair and local landing.
++
++Changed one link in `collections/project-foundation/skills/project-contracts/SKILL.md`
++in the isolated `.worktrees/contracts-evidence` worktree. No wording, task-selection
++rules, metadata, agreement, consumer installation or pin changed.
++
++Actual checks:
++
++- Reproduced the missing installed target with `cat`; the source collection's
++  `check_local_links` reported the same single missing target before the edit.
++  An initial direct helper invocation used a relative path and failed; rerunning
++  with the absolute collection path reproduced the defect.
++- Exercised the existing validator functions before and after the repair: all
++  nine skill metadata checks passed both times; collection-local link errors
++  decreased from one to zero. Four missing cross-package-copy counterparts in
++  the omitted standalone packages were identical before and after.
++- Ran `python3 scripts/validate-packages.py` on the unmodified source: it failed
++  before checking the collection because the fixture omits the top-level
++  `skills/` directory. A run in the repaired worktree with a temporary empty
++  `skills/` directory reached the collection and reported that empty root as a
++  missing skill manifest plus the same four missing counterpart records. The
++  temporary directory was removed. The full entrypoint has not passed in this
++  fixture; no validator or companion-package repair was made.
++- `git diff --check` passed for the link edit and the complete final diff
++  including this validation record.
++
++Route walkthroughs and observed limits:
++
++- Original reading case: use the agreement's Delivery and Acceptance sections.
++  Mira accepts only when revision and receipt identity match; copying establishes
++  transfer, and a different revision remains pending. The repaired evidence
++  reference keeps adopted obligations distinct from a successful operation. The
++  answer was written and the agreement's SHA-256 stayed
++  `3356125903061fbe8a67dde2c164fddc41fa3470cc65c66f622040404e1dd51e`.
++  Reading did not require designing or reviewing the agreement.
++- Nearby spelling-only case: the skill routes literal wording corrections to
++  ordinary editing guidance. `clear-writing` preserves facts and commitments;
++  changing `recieve` to `receive` changes no acceptance term and requires no
++  handoff-design, review or authoring workflow. The requested edit was completed.
++- Deeper case: a focused review asks whether the sender can treat a successful
++  copy of a different revision as accepted. Follow the explicit Review route to
++  `references/review.md`, trace sender and receiver decision points, and retain
++  the current terms. Delivery proves transfer only; Acceptance leaves that
++  revision pending and forbids sender acceptance. There is no disagreement in
++  this examined case. This document walkthrough establishes consistency only,
++  not runtime compliance or broader agreement completeness.
++
++Consumer adoption is separate and was not authorized or performed. The installed
++broken link remains at its recorded pin; the consumer's work notes preserve the
++finding and source repair. Validation is limited to the provided synthetic
++collection and these document routes, with the omitted standalone-package scope
++unverified.

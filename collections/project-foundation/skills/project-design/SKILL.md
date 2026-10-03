@@ -2,10 +2,14 @@
 name: project-design
 description: "Shape system architecture, responsibilities, conceptual models, workflows and integration choices before or during implementation. Use for operating design across people, agents, tools or services; literal edits, provider setup and runtime implementation have separate workflows."
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Project design
+
+If execution exposes a consequential guidance or routing problem, use
+[friction capture and repair](../../references/friction.md). Successful work needs
+no capture pass.
 
 Develop a design that supports a concrete workflow and makes the next decision
 clear. Start from the project's existing foundation, architecture and relevant

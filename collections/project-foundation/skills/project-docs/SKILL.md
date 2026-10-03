@@ -2,10 +2,14 @@
 name: project-docs
 description: "Establish, review, or reconcile repository documentation, including domain glossaries, document ownership, project instructions, and high-level relationship diagrams. Use for project documentation structure and consistency work; not standalone office documents, generic copyediting, or application implementation."
 metadata:
-  version: "4.1.0"
+  version: "4.2.0"
 ---
 
 # Project documentation
+
+If execution exposes a consequential guidance or routing problem, use
+[friction capture and repair](../../references/friction.md). Successful work needs
+no capture pass.
 
 Use [foundation authority](../../references/foundation-authority.md) when
 establishing or reconciling project decisions, resolving conflicting authority or

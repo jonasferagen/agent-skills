@@ -1,0 +1,3 @@
+The agreement leaves this unresolved: it neither explicitly permits nor prohibits retrying a failed transfer under the same request ID.
+
+The [Delivery section](docs/agreement.md#delivery) requires a request ID, immutable revision and receiving team, and says successful-copy evidence establishes transfer only. The [Acceptance section](docs/agreement.md#acceptance) defines who accepts a delivery and the required revision and receipt. Neither section defines retries or request-ID reuse after failure. Permission to retry with the same ID cannot be inferred from these terms; that decision remains unspecified.

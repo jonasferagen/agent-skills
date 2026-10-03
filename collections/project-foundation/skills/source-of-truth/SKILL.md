@@ -2,10 +2,14 @@
 name: source-of-truth
 description: "Reconcile a rule, vocabulary or shape defined in several places. Use when copies drift, a change requires coordinated edits, or a consistency check needs to survive restructuring."
 metadata:
-  version: "2.0.1"
+  version: "2.1.0"
 ---
 
 # Authoritative definitions
+
+If execution exposes a consequential guidance or routing problem, use
+[friction capture and repair](../../references/friction.md). Successful work needs
+no capture pass.
 
 Give each concept one authoritative home: the place that decides its value or
 rule. Derive every other appearance from that home, or make a check fail when the

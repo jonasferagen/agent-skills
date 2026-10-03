@@ -2,10 +2,14 @@
 name: diagrams-and-tables
 description: "Read or explain diagrams and tables, check their meaning, choose a visual form, or construct and visually review one. Route by the task so interpreting an existing view does not require authoring or renderer guidance."
 metadata:
-  version: "0.9.1"
+  version: "0.10.0"
 ---
 
 # Diagrams and tables
+
+If execution exposes a consequential guidance or routing problem, use
+[friction capture and repair](../../references/friction.md). Successful work needs
+no capture pass.
 
 Start with the user's question and the existing view, caption, legend and source.
 Keep what the view states separate from what the underlying system proves.
