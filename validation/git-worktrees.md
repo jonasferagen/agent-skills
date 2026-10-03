@@ -1,5 +1,19 @@
 # Validation — Git worktrees
 
+## Retirement — 3 October 2026
+
+The skill has been removed from project-foundation at the owner's request.
+Personal worktree preferences now live in global agent instructions; repository
+instructions retain local placement conventions. Bootstrap 5.0.0 removes the
+mandatory skill route and generated worktree default. Installation guidance
+preserves adopted project working agreements when removing obsolete routes.
+
+The evidence below records the former skill's behavior. It does not establish
+that a separate skill improves on native support plus global instructions.
+Current removal checks are recorded in [bootstrap validation](project-bootstrap.md).
+
+## Historical validation
+
 Date: 3 October 2026. Unreleased version 0.1.0 in project-foundation.
 
 ## Contract

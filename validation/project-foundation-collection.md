@@ -1,5 +1,13 @@
 # Validation — Project foundation collection
 
+## Worktree skill retirement — 3 October 2026
+
+The collection no longer includes `git-worktrees` or imposes its worktree default.
+Bootstrap 5.0.0 preserves project working agreements and omits the retired route.
+See [bootstrap validation](project-bootstrap.md) for current removal checks.
+The earlier worktree adoption and trial results below are historical.
+
+
 ## Git worktree default — 3 October 2026
 
 Git worktrees joins the collection at unreleased version 0.1.0. Project bootstrap

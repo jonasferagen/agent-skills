@@ -363,3 +363,18 @@ This applies the distinction to contracts first. It does not impose four modes
 on every skill or add a subject reference for every possible contract type.
 Validation belongs in [project-contracts](validation/project-contracts.md).
 No release or downstream adoption is implied.
+
+## 2026-10-03 — Retire git-worktrees from project-foundation
+
+Remove `git-worktrees` and its active catalog, collection and bootstrap routes.
+The owner has moved personal worktree preferences into global agent instructions.
+Keep repository placement conventions in repository instructions. The collection
+continues to preserve project working agreements without imposing a worktree
+policy or reproducing personal preferences in generated instructions.
+
+This supersedes the earlier collection worktree default. Project-bootstrap becomes
+5.0.0 because its mandatory startup and generated-instruction behavior changes.
+Upgrades remove retired skill links while preserving adopted working agreements.
+Historical validation remains available; this change does not establish a measured
+comparison with native worktree support. No downstream installation or release tag
+is changed.

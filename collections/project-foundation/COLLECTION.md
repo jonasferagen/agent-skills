@@ -24,7 +24,6 @@ layout so relative references work.
 | Shape architecture, responsibilities, workflows and integration choices | [Project design](skills/project-design/SKILL.md) |
 | Create, sequence or maintain project plans and next steps | [Project planning](skills/project-planning/SKILL.md) |
 | Read, apply, design or review handoff obligations | [Project contracts](skills/project-contracts/SKILL.md) |
-| Start or resume edits and preserve repository work | [Git worktrees](skills/git-worktrees/SKILL.md) |
 | Set phase-appropriate scope and review policy changes | [Project policy](skills/project-policy/SKILL.md) |
 | Organize and reconcile project documents | [Project documentation](skills/project-docs/SKILL.md) |
 | Keep authoritative decisions and their consumers aligned | [Source of truth](skills/source-of-truth/SKILL.md) |
@@ -38,10 +37,6 @@ either task. These are separate entry points, not a mandatory sequence; use only
 the guidance the question needs.
 
 Project work follows [foundation authority guidance](references/foundation-authority.md).
-Edits in Git repositories use task worktrees unless repository-local instructions
-explicitly opt out. Work outside Git proceeds directly. Bootstrap puts this rule
-and the [Git worktrees route](skills/git-worktrees/SKILL.md) in project instructions
-so it is visible before the first edit; installation alone does not activate it.
 
 For a question about an existing document, consult its owner and relevant terms.
 A literal wording edit that preserves meaning needs a focused edit check. Neither
@@ -74,3 +69,7 @@ This layout supports explicit file routing from project instructions; it does no
 claim that a client automatically discovers nested skills. A user-wide adoption
 can use its chosen location and equivalent routing. This task establishes the
 collection; it does not install it globally.
+
+When upgrading from a version containing `git-worktrees`, remove routes to that
+retired skill while preserving adopted project working agreements. Worktree
+preferences remain with local agent configuration and repository instructions.
