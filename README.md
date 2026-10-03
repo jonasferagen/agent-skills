@@ -22,7 +22,7 @@ Part of the [project-foundation collection](collections/project-foundation/COLLE
 | [Project design](collections/project-foundation/skills/project-design/SKILL.md) (`project-design`, draft) | Shape architecture, responsibilities, workflows and integration choices; select the next useful step. |
 | [Project contracts](collections/project-foundation/skills/project-contracts/SKILL.md) (`project-contracts`, draft) | Read, apply, design and review handoff obligations and compatibility. |
 | [Git worktrees](collections/project-foundation/skills/git-worktrees/SKILL.md) (`git-worktrees`) | Use task worktrees for repository edits, with exceptions owned by repository policy. |
-| [Project policy](collections/project-foundation/skills/project-policy/SKILL.md) (`project-policy`) | Establish which requirements apply from users, data, exposure, lifetime, compatibility and recovery needs; assess changes to those requirements. |
+| [Project policy](collections/project-foundation/skills/project-policy/SKILL.md) (`project-policy`) | Interpret engineering obligations, assess compliance evidence, and establish or review requirements as circumstances change. |
 | [Project documentation](collections/project-foundation/skills/project-docs/SKILL.md) (`project-docs`) | Decide where knowledge belongs and keep it current. |
 | [Authoritative definitions](collections/project-foundation/skills/source-of-truth/SKILL.md) (`source-of-truth`) | Give each rule a home and derive or check its other appearances. |
 
@@ -259,6 +259,10 @@ names, not an integrity guarantee. Other skills in the repository need no
 version bump when one skill is released.
 
 ### Authoring skills
+
+For project-foundation maintenance, follow the [collection authoring convention](docs/project-foundation-authoring.md)
+for task routing, gap handling and growth of subject references. It applies to
+source maintenance; installed consumers use their collection entrypoints.
 
 Skills in this repository should meet the standards they teach. Apply relevant
 guidance to the packages, helpers and documentation we maintain here. Start

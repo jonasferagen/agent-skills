@@ -363,3 +363,35 @@ This applies the distinction to contracts first. It does not impose four modes
 on every skill or add a subject reference for every possible contract type.
 Validation belongs in [project-contracts](validation/project-contracts.md).
 No release or downstream adoption is implied.
+
+## 2026-10-03 — Foundation task routing and family growth
+
+Adopt the [collection authoring convention](docs/project-foundation-authoring.md)
+for project-foundation maintenance. Task distinctions follow each skill's work;
+project, evidence and guidance gaps have different owners. Design and adequacy
+review discover necessary decisions beyond listed examples. Keep this convention
+in source maintenance and each consumer's useful behavior in its skill.
+
+Project-policy 3.1.0 applies the convention next. Interpretation and compliance
+assessment stay in the entrypoint; establishment, adequacy discovery and changes
+use conditional guidance. Existing six axes, format rules, impact assessment,
+policy relaxation and observed-transition requirements are preserved. No other
+member receives a mandatory mode taxonomy.
+
+Keep diagrams-and-tables together for this iteration. Both forms answer visual
+explanation questions, share semantic reading/review and need a common form-choice
+route. The current family directories allow diagram growth without loading all
+construction guidance for tables. Splitting now would require another selection
+owner and new caller routes without evidence that it improves the tasks.
+
+Reconsider separate diagram and table skills if realistic trials expose persistent
+misrouting or unnecessary reads that internal routing cannot solve, or independent
+adoption becomes useful. The present decision does not claim those possibilities
+have been ruled out. More diagram types alone are insufficient evidence.
+
+Use a directory per diagram family as substantial guidance is added, keeping
+shared rendering/layout rules outside the families. Contracts can use the same
+structure for distinct exchange semantics; cross-cutting properties may require
+several references and keep shared owners. Do not duplicate concurrency or retry
+rules into every type, introduce empty family directories, or prescribe a fixed
+set of files per family. No diagrams or contract families are added in this round.

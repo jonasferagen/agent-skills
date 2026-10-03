@@ -21,7 +21,7 @@ layout so relative references work.
 | Shape architecture, responsibilities, workflows and integration choices | [Project design](skills/project-design/SKILL.md) |
 | Read, apply, design or review handoff obligations | [Project contracts](skills/project-contracts/SKILL.md) |
 | Start or resume edits and preserve repository work | [Git worktrees](skills/git-worktrees/SKILL.md) |
-| Interpret policy facts and review changed circumstances | [Project policy](skills/project-policy/SKILL.md) |
+| Interpret policy, assess compliance or review changed circumstances | [Project policy](skills/project-policy/SKILL.md) |
 | Organize and reconcile project documents | [Project documentation](skills/project-docs/SKILL.md) |
 | Keep authoritative decisions and their consumers aligned | [Source of truth](skills/source-of-truth/SKILL.md) |
 | Write clear prose | [Clear writing](skills/clear-writing/SKILL.md) |

@@ -36,6 +36,9 @@ trigger applies; routine successful use needs no capture pass.
 
 ## Writing
 
+When changing project-foundation skills or shared routes, follow the
+[collection authoring convention](docs/project-foundation-authoring.md).
+
 Use [Clear Writing](collections/project-foundation/skills/clear-writing/SKILL.md) when authoring or revising
 prose here. For skill instructions, also read its [instruction
 guidance](collections/project-foundation/skills/clear-writing/references/instructions.md). Use [Diagrams and
