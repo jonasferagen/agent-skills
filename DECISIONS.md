@@ -306,3 +306,18 @@ procedures remain with their owners; design does not expand authorization.
 Project-design 0.2.0 is unreleased. The existing Forge wall-texture exercise informs
 its application; the real brief, source and operation remain prerequisites. No
 new standalone integration skill or runtime framework is introduced.
+
+## 2026-10-03 — Separate architecture questions from contracts
+
+Project-design 0.3.0 remains the entry for system responsibilities, workflows and
+integration choices. Project-contracts 0.1.0 owns obligations at an established
+exchange, including process and document handoffs. The collection routes directly
+to either; project-design also routes existing callers to contracts when needed.
+This keeps the design entry compatible while extracting detailed handoff work.
+Neither skill forces a service, schema or mandatory phase sequence.
+
+This small round adds one collection member. Diagram construction remains with
+diagrams-and-tables; policy consequences remain with project-policy. The standalone
+service-boundaries skill retains its narrower HTTP/MCP implementation scope and
+is not added as a dependency. A separate architecture rename, provider skill or
+contract template needs further use evidence. These revisions are unreleased.

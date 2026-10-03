@@ -18,10 +18,10 @@ or evidence. Use existing delegation; do not invent mandatory human approvals or
 infer execution permission from a proposed procedure. Leave consequential unknown
 actors or criteria visible and state which step depends on resolving them.
 
-For each consequential handoff, record the producing owner, required input,
-result identity, accepting owner and evidence needed to proceed. Choose the
-smallest record that makes those facts traceable. A checklist or document may
-serve; a database, formal state machine or universal job schema is not implied.
+Identify consequential handoffs and their producing and accepting owners. Use
+[project-contracts](../../project-contracts/SKILL.md) when input/result identity,
+acceptance conditions or failure obligations need definition. Keep the overall
+workflow focused on how work moves through those exchanges.
 
 ## Artifacts and state changes
 
@@ -43,12 +43,9 @@ rejected result, interrupted execution, a duplicate request, a late output or a
 consumer's conflicting edit. For each, identify the diagnosing owner, retained
 state, next allowed action and evidence needed to resume.
 
-A timeout can leave an external operation running or already complete. Separate
-an unknown outcome from a confirmed failure. Before resubmission, establish how
-the existing request can be located and whether another attempt would duplicate
-writes or spending. Cancellation of interest in a result is distinct from confirmed
-cancellation by a tool or service. Preserve request identity and evidence even when
-no output is accepted. Follow project policy for retention and deletion decisions.
+Use the contract for the affected exchange to determine repeat, interruption and
+cancellation behavior. Missing terms are contract-design work; do not infer safe
+retry from a workflow arrow or treat withdrawal as confirmed cancellation.
 
 ## Record and exercise the design
 

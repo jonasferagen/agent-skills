@@ -34,7 +34,9 @@ sets the permitted scope; writing this design grants no new access or spending.
 Use project-policy when a proposed integration changes exposure, retained state,
 recovery, compatibility or authority, and preserve unresolved prerequisites.
 
-Define request and attempt identity, provider job lookup when available, unknown
+Use [project-contracts](../../project-contracts/SKILL.md) to specify the exchange
+between requesting and executing owners. For a provider integration, establish
+request and attempt identity, provider job lookup when available, unknown
 outcome handling, retry/resume, cancellation and partial-output behavior for the
 chosen operation. Do not assume a provider supports idempotency or cancellation.
 A retry policy needs evidence about the provider's actual behavior and how local

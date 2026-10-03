@@ -10,7 +10,7 @@ For a project spanning repositories, read [multi-repository foundations](referen
 before selecting document owners or installation locations.
 
 Install this directory as one dependency. It contains the bootstrap workflow,
-Git worktree guidance, project design, documentation and policy skills, source-of-truth,
+Git worktree guidance, project design and contracts, documentation and policy skills, source-of-truth,
 their authoring skills and the templates they interpret. Preserve the directory
 layout so relative references work.
 
@@ -18,7 +18,8 @@ layout so relative references work.
 | --- | --- |
 | Interpret foundation declarations and inherited values | [Foundation format](references/foundation-format.md) |
 | Start the project foundation | [Project bootstrap](skills/project-bootstrap/SKILL.md) |
-| Shape responsibilities, workflows, handoffs and integration choices | [Project design](skills/project-design/SKILL.md) |
+| Shape architecture, responsibilities, workflows and integration choices | [Project design](skills/project-design/SKILL.md) |
+| Define handoff obligations, acceptance and compatibility | [Project contracts](skills/project-contracts/SKILL.md) |
 | Start or resume edits and preserve repository work | [Git worktrees](skills/git-worktrees/SKILL.md) |
 | Interpret policy facts and review changed circumstances | [Project policy](skills/project-policy/SKILL.md) |
 | Organize and reconcile project documents | [Project documentation](skills/project-docs/SKILL.md) |
@@ -26,6 +27,11 @@ layout so relative references work.
 | Write clear prose | [Clear writing](skills/clear-writing/SKILL.md) |
 | Choose and design visual explanations | [Diagrams and tables](skills/diagrams-and-tables/SKILL.md) |
 | Record an observed obstacle during work | [Friction capture](references/friction.md) |
+
+Design selects responsibilities and relationships. Contracts define what participants
+can rely on at a selected handoff. Diagrams and tables supplies the visual form for
+either task. These are separate entry points, not a mandatory sequence; use only
+the guidance the question needs.
 
 Project work follows [foundation authority guidance](references/foundation-authority.md).
 Edits in Git repositories use task worktrees unless repository-local instructions

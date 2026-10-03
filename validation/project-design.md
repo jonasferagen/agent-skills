@@ -89,3 +89,11 @@ validation and diff whitespace checks pass. Local path/anchor and symbolic owner
 checks pass against the staged owner and consumer trees (208 references). Policy
 tables remain unchanged. A real brief, source, exact operation and acting authority
 remain prerequisites for implementation; no jobs or provider calls were made.
+
+## Architecture and contract split, 0.3.0
+
+Detailed exchange obligations now route to project-contracts while architecture,
+workflow shaping and integration choices remain here. Existing callers retain a
+route to handoff design. See [contract validation](project-contracts.md) for the
+focused routing trial and its limitations. Earlier trials above describe their
+respective draft versions.

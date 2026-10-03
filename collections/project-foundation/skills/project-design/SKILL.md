@@ -1,8 +1,8 @@
 ---
 name: project-design
-description: "Shape project responsibilities, workflows, handoffs and integration choices before or during implementation. Use for operating design across people, agents, tools or services; literal edits, provider setup and runtime implementation have separate workflows."
+description: "Shape system architecture, responsibilities, workflows and integration choices before or during implementation. Use for operating design across people, agents, tools or services; literal edits, provider setup and runtime implementation have separate workflows."
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Project design
@@ -37,6 +37,8 @@ are decisions, procedures and artifacts. A workflow step need not become code.
 - For selecting a service capability or its integration mechanism, read
   [integration choices](references/integrations.md). Provider-specific setup and
   execution stay with their owning procedures.
+- For obligations at an established handoff, use
+  [project-contracts](../project-contracts/SKILL.md).
 - For sequencing design, experiments and implementation, use
   [next-step planning](references/next-step.md).
 
@@ -57,10 +59,11 @@ and disposable scratch where relevant. Identify external dependencies, required
 reads and writes, configuration and hidden assumptions about paths or host tools.
 Describe needed capabilities before selecting their packaging.
 
-For each handoff that matters, establish enough input/output identity, revision,
-failure and retry behavior to make the case unambiguous. Do not invent a universal
-schema or API when a file or human review already serves the workflow. Mark example
-records as examples; they do not prove real assets, successful jobs or approvals.
+Identify the consequential handoffs and what each side must be able to rely on.
+Use project-contracts when those obligations need definition or review. Architecture
+chooses the parts and their relationships; contracts make a selected exchange
+precise. A drawing-board review can leave contracts as named open work. Mark
+examples explicitly; they do not prove real assets, successful jobs or approvals.
 
 ## Challenge the boundary
 
