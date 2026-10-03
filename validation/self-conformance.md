@@ -43,6 +43,7 @@ the owner; the linked steps are the checklist, so they are not repeated here.
 | Diagrams and tables | Each diagram and table, and passages that would explain better as one | [Semantic review](../collections/project-foundation/skills/diagrams-and-tables/references/review.md) and [visual verification](../collections/project-foundation/skills/diagrams-and-tables/references/verification.md) |
 | Project documentation | Links, document ownership, and current versus historical text | [Verify and finish](../collections/project-foundation/skills/project-docs/SKILL.md#verify-and-finish) |
 | Routing quality | Entry points, triggers and conditional references | [Routing trial method](discovery.md#routing-trial-method) |
+| Application design | Application designs and runtime helpers produced by a collection, when present | [Exercise the boundary and choose the increment](../collections/application-foundation/skills/application-design/SKILL.md#exercise-the-boundary-and-choose-the-increment) |
 | Other skills in this repository | Helpers and tests, such as Python scripts and their test suites | Select from the [catalog](../README.md) by trigger |
 
 A collection gaining a rule owner adds a row here in the same change.

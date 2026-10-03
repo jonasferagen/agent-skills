@@ -1,0 +1,1 @@
+We need a local Assets command that receives one candidate output set and returns an acknowledgement. Use the supplied handoff terms and sample delivery to design its internal application responsibilities and how it behaves if interrupted. Put the proposal and the next implementation step in design.md.

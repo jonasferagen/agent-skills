@@ -1,0 +1,15 @@
+# Project instructions
+
+Work only in this isolated project. This is a design fixture with synthetic
+inputs; no provider execution or modification of live repositories is in scope.
+Read project.md for the local context needed by the request.
+
+Available project guidance:
+- Application operations, internal state and dependencies:
+  [.agents/collections/application-foundation/COLLECTION.md](.agents/collections/application-foundation/COLLECTION.md).
+- Broader responsibilities, handoffs and project documents:
+  [.agents/collections/project-foundation/COLLECTION.md](.agents/collections/project-foundation/COLLECTION.md).
+
+Use the route relevant to the task. Existing document owners remain the starting
+point for questions and literal edits. Language, runtime and testing packages
+are not installed in this fixture.

@@ -1,0 +1,1 @@
+Propose the first local application structure for Tools to generate the sound-effect candidate described in brief.md using ElevenLabs. Work out the operation boundary, state and dependencies, and walk through an interruption. Keep it a design proposal and identify the smallest useful implementation step. Put the result in design.md. Do not execute generation.

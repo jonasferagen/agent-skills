@@ -232,8 +232,9 @@ about selection. See [the discovery review](validation/discovery.md).
 ## Skill releases
 
 Collections are pinned as a whole by source commit and annotated release tag.
-Project foundation releases use `project-foundation/v<version>`; the version is
-recorded in its `COLLECTION.md`. Member versions describe changed skill behavior;
+Collection releases use `<collection-name>/v<version>`, such as
+`project-foundation/v<version>` or `application-foundation/v<version>`; the version
+is recorded in the collection's `COLLECTION.md`. Member versions describe changed skill behavior;
 individual member tags do not establish a compatible collection release.
 
 Before a collection release is tagged, the whole collection must pass a

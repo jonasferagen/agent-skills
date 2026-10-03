@@ -1,6 +1,7 @@
 # Application foundation scope
 
-Status: initial package and bounded validation in progress, 3 October 2026.
+Status: initial draft package with bounded design trials, 3 October 2026.
+No release tag or consumer adoption is claimed.
 
 The [application-foundation collection](../collections/application-foundation/COLLECTION.md)
 connects an established workflow to application operations, state ownership,
@@ -50,16 +51,21 @@ and task routes. This source change does not install or update any consumer.
 
 ## First trials
 
-Use isolated consumers with project-instruction discovery, a copied installation
-and synthetic inputs. Trace one provider operation representative of forge-tools,
-one local candidate-receipt operation representative of forge-assets, and a literal
-wording edit. The two application cases test differing state and dependency needs;
-the wording case tests unnecessary activation. No real provider operation or asset
-acceptance is authorized by the fixtures.
+Three isolated consumers exercised project-instruction discovery with copied
+installations and synthetic inputs: provider execution representative of
+forge-tools, local candidate receipt representative of forge-assets, and a literal
+wording edit. The two designs preserved their different state and dependency needs;
+the wording edit left application-design unopened. The provider trial used the
+core without reading project-foundation; receipt also used contract and authoring
+guidance. The [validation record](../validation/application-design.md) retains the
+actual proposals, reading evidence and remaining coverage limits.
 
-Inspect the produced designs for ownership, interruption handling and useful next
-implementation decisions, as well as which guidance was read. Record outcomes and
-limits in [application-design validation](../validation/application-design.md).
-Provider-specific claims need current official evidence; synthetic provider facts
-establish only the design behavior under those facts. Package checks establish
+The useful guidance fits one application-design workflow with conditional provider
+detail. The trials supplied no evidence for a second member, a generic provider
+framework or moving existing specialist packages into this collection.
+
+Further adoption can pin this complete draft in a consuming project and exercise a
+real implementation slice after its brief and operating prerequisites are known.
+Provider-specific claims need current official evidence. A supplied contract
+supports reasoning about the design; it does not establish live provider behavior. Package checks establish
 installation structure, not runtime behavior or reliable automatic discovery.
