@@ -343,3 +343,23 @@ visual review have separate routes. Family read.md files retain interpretation;
 design.md files own authoring obligations. Family guide paths remain entry points.
 No project-contracts draft content is merged by this change. Existing diagrams
 remain unchanged.
+
+## 2026-10-03 — Contract tasks and obligation discovery
+
+Project-contracts 0.2.0 separates reading, applying, designing and reviewing an
+agreement. The entrypoint keeps interpretation and application short; design and
+review load conditional references. Contract type alone does not select a design
+workflow. Existing identity, interruption and compatibility obligations remain in
+the design reference and are reachable from focused review.
+
+Design discovers obligations by tracing participants' decisions and looking for
+cases where they can follow the terms yet disagree about the valid outcome.
+Named subjects are starting points, not a completeness checklist. Missing project
+terms stay with the contract; observed failures of guidance or routing use friction
+capture and, when warranted, pattern-capture. Shared friction guidance now includes
+consequential omissions discovered after otherwise smooth work.
+
+This applies the distinction to contracts first. It does not impose four modes
+on every skill or add a subject reference for every possible contract type.
+Validation belongs in [project-contracts](validation/project-contracts.md).
+No release or downstream adoption is implied.

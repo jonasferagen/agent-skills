@@ -19,7 +19,7 @@ layout so relative references work.
 | Interpret foundation declarations and inherited values | [Foundation format](references/foundation-format.md) |
 | Start the project foundation | [Project bootstrap](skills/project-bootstrap/SKILL.md) |
 | Shape architecture, responsibilities, workflows and integration choices | [Project design](skills/project-design/SKILL.md) |
-| Define handoff obligations, acceptance and compatibility | [Project contracts](skills/project-contracts/SKILL.md) |
+| Read, apply, design or review handoff obligations | [Project contracts](skills/project-contracts/SKILL.md) |
 | Start or resume edits and preserve repository work | [Git worktrees](skills/git-worktrees/SKILL.md) |
 | Interpret policy facts and review changed circumstances | [Project policy](skills/project-policy/SKILL.md) |
 | Organize and reconcile project documents | [Project documentation](skills/project-docs/SKILL.md) |

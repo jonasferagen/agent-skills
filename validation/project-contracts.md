@@ -63,3 +63,82 @@ were not exercised. No runtime or compatibility implementation was tested.
 - Forge's proposed collection and working-agreement entry routes: 41 resolve.
 
 No release tag or remote push is part of this adoption.
+
+## Task routing and obligation discovery — 0.2.0, 2026-10-03
+
+The entrypoint now separates reading, applying, designing and reviewing. Design
+and review have conditional references. Reading uses the authoritative terms and
+applicable revision; application distinguishes satisfied, violated and undecidable
+conditions. Neither silently invents missing acceptance criteria.
+
+Design traces participants' decisions and asks where they could obey the written
+terms yet disagree on the valid outcome. The named obligation subjects are
+starting points. Missing terms receive an owner, consequence and dependent work;
+recommendations remain distinct from adopted terms. Existing request/attempt
+identity, timeout, cancellation and compatibility guidance moved verbatim to the
+design reference. Review routes to it when those questions arise.
+
+The entrypoint routes observed guidance failures to existing friction capture.
+The shared reference now includes consequential omissions found after work that
+otherwise ran smoothly. Missing project terms alone do not establish a skill
+fault. This is a scoped application of the pattern, not a required mode taxonomy
+for all skills. No concurrency-specific reference or universal contract template
+was added.
+
+Authoring used skill-creator, clear-writing and instruction/short-text guidance.
+Diagrams-and-tables supported preserving the catalog tables and using prose for
+the workflow; no diagram was needed. Pattern-capture located project decisions
+in contracts and reusable guidance shortcomings in the existing capture route.
+
+### Consumer trials
+
+Fresh evaluators started from separate synthetic fixtures outside the source
+repository, each with a complete installed draft based on `634df2e` and a minimal
+AGENTS hook to the collection. Task prompts supplied no expected skill route or
+answer. Retained fixture inputs, answers and read logs are under
+[project-contracts-modes-trial](project-contracts-modes-trial/README.md).
+
+- Read: answered from the completion term, with a compliance qualifier; loaded
+  neither design nor review nor authoring guidance. Total input: 1,565 words.
+- Apply: distinguished satisfied content conditions from unconfirmed Editorial
+  acceptance. It did not infer rejection, violation or authorization to act.
+  Loaded neither design nor review nor authoring guidance. Total: 1,592 words.
+- Design: discovered post-acceptance permission and downstream cache obligations,
+  which the skill does not enumerate as a topic. Proposed separate content and
+  distribution decisions, propagation evidence, owners, unresolved business choices
+  and a transition. Preserved the adopted agreement. Total: 5,145 words.
+- Review: found missing selection authority, supersession and distributor adoption
+  obligations. It did not invent a latest-revision-wins rule or rewrite the
+  agreement. Loaded review and relevant design guidance. Total: 2,670 words.
+- Wording: preserved every byte except the requested heading replacement; no
+  contract-design or review workflow was needed.
+
+The author inspected all answers and read logs. Existing agreements and installed
+skill copies were unchanged. All displayed substantive reads were reported as
+untruncated and unrepeated. Totals include project inputs and collection routing,
+not only skill prose; mechanical word-count reads are excluded from displayed
+reading totals.
+
+Remaining limits: one case per mode does not establish routing reliability or
+native discovery. The fixtures lacked a full foundation, runtime and real consumers.
+The design task supplied permission facts; the result is an operational proposal,
+not a verified legal interpretation. No provider guarantees, compatibility
+implementation or live recovery were tested. Legal-agreement exclusion remains
+unexercised. Missing-guidance reporting was prompted, so spontaneous capture of a
+skill defect is not established.
+
+The read/apply trials still loaded broad collection and authority guidance.
+Design additionally loaded policy establishment and transition material beyond
+what its proposal needed. Review loaded authoring guidance without following its
+writing route; its read log marked that load unnecessary. These remain routing
+observations, not claims of reduced context use. The candidate improvement belongs
+in conditional collection/authority/policy routing and needs a focused trial before
+changing those shared obligations.
+
+### Checks
+
+Package validation passed for 25 skills and one collection. Skill quick validation
+passed for project-contracts. All five foundation helper tests passed. Whitespace
+checks passed. The moved identity, timeout, cancellation and compatibility block
+was mechanically compared with 0.1.0 and is unchanged. No helper behavior changed.
+No collection release, downstream installation or native-discovery claim is made.

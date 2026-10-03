@@ -1,73 +1,53 @@
 ---
 name: project-contracts
-description: "Define or review obligations at an established handoff: inputs, outputs, acceptance, failure behavior and compatibility. Use for file, document, human/agent or service exchanges; legal agreements and choosing the overall architecture are separate tasks."
+description: "Read, apply, design or review obligations at a handoff between people, agents, files or services. Use for interpreting terms, assessing an exchange, finding missing obligations or changing compatibility; legal agreements and overall architecture have separate workflows."
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Project contracts
 
-Make explicit what each side of a handoff can rely on. Start with the existing
-architecture, participating owners and an actual exchange or labelled example.
-Use [foundation authority](../../references/foundation-authority.md) for adopted
-constraints; reuse current readings. For authored output follow
-[authoring guidance](../../references/authoring.md).
+Make clear what participants can rely on at a handoff. Start with the user's
+question, the authoritative agreement and the revision applicable to the exchange.
+Keep proposed terms, adopted obligations and observed behavior distinct. Follow
+[foundation authority](../../references/foundation-authority.md) for adopted
+constraints and conflicts; reuse current readings.
 
-If the open question is which responsibilities or components should exist, use
-[project-design](../project-design/SKILL.md). A focused contract change need not
-reopen settled architecture. A contract can govern a document review or file
-handoff; it does not require an API, service or machine-readable schema.
+## Select the task
 
-## Define the agreement
+- **Read or explain:** Answer from the relevant terms and linked definitions.
+  Distinguish explicit obligations, interpretation and ambiguity. Cite the terms
+  that support the answer. A missing answer stays unresolved; a reading question
+  does not require designing the agreement or reviewing all its terms.
+- **Apply:** Compare a particular request, result or action with the applicable
+  terms. Identify conditions satisfied, violated or undecidable from available
+  evidence. Missing terms cannot supply acceptance criteria. Applying a contract
+  does not itself authorize execution or adoption of a result.
+- **Design or change:** Use [contract design](references/design.md) to discover
+  needed obligations, propose terms and assess changes to existing agreements.
+- **Review:** Use [contract review](references/review.md) to assess an existing
+  agreement for the requested purpose and report findings.
 
-Identify the producing and consuming owners, the contract's authoritative home
-and whether it is proposed or adopted. Link existing definitions. If several
-copies disagree, use [source-of-truth](../source-of-truth/SKILL.md) to reconcile
-them. Keep local implementation steps in their procedures.
+Infer the task from the request. Load only the relevant reference; reading a
+contract does not automatically trigger review. A literal wording correction
+uses ordinary editing guidance. If the question is which responsibilities or
+components should exist, use [project-design](../project-design/SKILL.md).
+A document or file handoff does not require an API or machine-readable schema.
 
-Specify the obligations that matter for this exchange:
+## Handle missing information
 
-- Preconditions: required inputs, identity/revision, permitted effects and
-  existing authority to act. Unresolved prerequisites remain visible.
-- Result: what is returned or retained, who owns it, and the evidence linking it
-  to the exact request and inputs.
-- Acceptance: who checks which conditions, and what makes rejection or completion
-  observable. Execution success, acceptance and downstream adoption may have
-  different owners and criteria.
-- Failure: incomplete output, interruption or invalid input; what remains valid,
-  who diagnoses the issue and which action can follow.
+When the task exposes a missing term, identify the decision it leaves unresolved,
+its consequence and the work that depends on it. During reading or application,
+report that limit without silently supplying a rule. During design, propose or
+establish terms within the user's authorized scope and existing constraints.
+Continue unaffected work; ask only when the current task needs the missing answer.
 
-Choose enough precision for each side to act without guessing. A short table may
-suffice. Define fields, formats or status values only when participants need them;
-do not impose a universal record template or turn every internal step into a
-separate contract. Refer to policy for retention and authority. Changed obligations
-or operating circumstances use [project-policy](../project-policy/SKILL.md).
+A missing project term is not automatically a defect in this skill. If guidance
+or routing caused an omission, an undocumented workaround or repeated difficulty,
+use [friction capture](../../references/friction.md) to record the observation
+and candidate improvement at a natural checkpoint. Keep project decisions in
+the agreement; reusable guidance follows the collection's capture route.
 
-## Preserve identity through failure and change
-
-For repeatable operations, distinguish a request from its attempts. State whether
-repetition returns an existing result, creates a new attempt or refuses, and how
-participants detect conflicting content under the same identity.
-
-A timeout may leave an operation running or complete. Separate an unknown outcome
-from confirmed failure; establish how it can be reconciled before resubmission
-that may duplicate writes or spending. Withdrawing interest does not prove actual
-cancellation. Preserve required evidence and earlier accepted state. Provider
-lookup, retry and cancellation guarantees need evidence from that provider.
-
-When a brief or input changes, assess whether an earlier result still satisfies
-it. When the contract changes, name affected consumers and compare their actual
-expectations: can they still use old and new records? State any transition or
-version distinction needed. Adding a field alone does not prove compatibility.
-Do not silently rewrite historical decisions to fit a new contract.
-
-## Exercise and record
-
-Trace one valid exchange and a consequential rejection, interruption or revision.
-Show what each side observes and which obligation the case checks. Synthetic
-records establish design consistency; implementation and actual runs supply
-separate evidence that participants honor the contract.
-
-Keep the agreement in its existing document owner and link it from the architecture.
-Report unresolved terms and the work they block. A schema, successful operation
-or diagram alone does not demonstrate fulfillment of all obligations.
+For authored or restructured explanations, use
+[authoring guidance](../../references/authoring.md). A focused answer from existing
+terms needs no authoring workflow.

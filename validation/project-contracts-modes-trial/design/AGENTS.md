@@ -1,0 +1,1 @@
+For project foundation guidance, select the task at [.agents/collections/project-foundation/COLLECTION.md](.agents/collections/project-foundation/COLLECTION.md). The agreement in exchange.md owns this exchange. Work here is synthetic and document-only. Write requested output to answer.md.
