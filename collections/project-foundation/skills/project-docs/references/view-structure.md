@@ -16,7 +16,7 @@ being worked on; a complete documentation migration is not a prerequisite.
 
 For a new view-owning page, use the collection's
 [view template](../../../templates/views/view.md); for a process-owning page, use
-the [process template](../../../templates/views/process.md). They provide a
+the [process template](../../../templates/project-docs/process/README.md). They provide a
 default structure for purpose, scope, ownership, the view and its explanation,
 constraints or decisions, and evidence and open questions. Preserve an existing
 structure that supplies those associations; omit irrelevant sections and do not
@@ -25,7 +25,10 @@ when their questions and explanations stay identifiable.
 
 The [document homes](../../../references/document-homes.md) map owns placement and
 routes to design, model and contract templates as well. New managed views and
-processes use its allowed types. Existing pages retain their declared routes
+processes use its allowed types. A new named process starts with one README in
+its process directory, linked from the process index; supporting explanations
+are optional direct Markdown pages. A process can use prose or numbered steps
+without a diagram. Existing pages retain their declared routes
 until deliberately migrated; template use or an installation upgrade alone does
 not relocate them. Commands and implementation evidence remain with their local
 owners and are linked from the managed explanation.

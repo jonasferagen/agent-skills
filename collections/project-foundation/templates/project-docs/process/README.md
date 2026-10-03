@@ -2,6 +2,12 @@
 
 Status: {{decision_or_evidence_state_and_scope}}, {{date}}.
 
+<!-- Place a new named process at project-docs/processes/<process>/README.md
+and link it from project-docs/processes/README.md. This one page is sufficient.
+Add direct topic Markdown pages only for explanations that need their own home;
+link them from this entry. Keep commands, contracts and run records in their
+existing homes. Do not create nested stage folders or copy execution artifacts. -->
+
 ## Purpose and scope
 
 {{trigger_and_reader_question}}
@@ -19,15 +25,14 @@ Link participants' internal design rather than redefining their responsibilities
 
 ## Process and decisions
 
-{{flowchart_or_other_selected_process_view}}
+{{prose_or_numbered_steps_with_responsibilities_and_explicit_decision_conditions}}
 
-{{caption_declaring_step_branch_and_arrow_meanings}}
+{{links_to_any_supporting_process_explanations}}
 
-{{stage_explanations_using_the_views_names_and_explicit_decision_conditions}}
-
-<!-- Follow diagrams-and-tables for the form. Numbered steps can accompany a
-flowchart; message order belongs to a linked sequence view when needed. Declare
-stable view/occurrence IDs only through a selected browsing-input convention. -->
+<!-- A diagram is optional. When useful, follow diagrams-and-tables for its
+form, state step/branch/arrow meanings, and connect its names to the explanation.
+Message order can use a linked sequence view when needed. Declare stable
+view/occurrence IDs only through a selected browsing-input convention. -->
 
 ## Interruptions and changes
 

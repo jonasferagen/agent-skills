@@ -13,6 +13,7 @@ they are not claims that an independent agent has passed them.
 | Request and context | Expected outcome |
 | --- | --- |
 | Establish docs for a tiny CLI with one README and no complex domain | Preserve the simple layout; add only missing reader guidance, without mandatory glossary or history scaffolding. |
+| Describe a new proposed process beside an existing flat process page | Create one named-process README linked from the process index; keep the existing owner in place, proposal status explicit, diagrams optional and commands/evidence in their local homes. |
 | Review docs that disagree about whether a release is deployed | Cite the discrepancy and available evidence; do not edit or call production merely to settle it. |
 | Reconcile a completed deployment with login acceptance still pending | Update the owning status record, repair summaries, and retain the unresolved acceptance check. |
 | Draw domain relationships where a member and login are separate | Keep distinct concepts, label relationships, and avoid inferring access rights from membership. |
@@ -143,3 +144,63 @@ are preserved; this migration supplies no new external repair authorization.
 The consumer trial used the preceding 0.3.0 draft. The merged 0.4.0 collection
 passed package, path-helper, link and whitespace checks; passive-repair behavior
 retains its separate validation record and was not rerun here.
+
+## Named process directories — 2026-10-04
+
+Unreleased collection 1.0.0 and project-docs 6.0.0 change the default for a new
+named process to `project-docs/processes/<process>/README.md`. The existing
+process template moved to `templates/project-docs/process/README.md`; active
+routes use that owner. Historical read logs retain the original template name.
+One process entry is sufficient, with optional direct supporting Markdown pages.
+Existing flat process pages remain accepted until deliberate migration; keeping
+both forms for the same name is rejected. No release tag or downstream adoption
+is part of this source change.
+
+Clear-writing and its instruction guidance were applied to the default,
+compatibility and migration wording. The existing document-home table columns
+were retained, adding the entry and supporting-page paths without inventing a
+new document type. The template now makes prose or numbered steps sufficient
+and a diagram optional. Commands, contracts and run evidence retain their
+existing homes. No diagram changed, so no rendering check applied.
+
+The path helper derives the bounded `<process>` family from the map. Its ten
+new synthetic filesystem cases cover a README-only process, direct supporting
+pages alongside a distinct flat process, the required parent index and entry, conflicting
+owners, names, nesting, artifacts, symlinks and a changed map root. Eight cases
+failed against the old helper for the intended missing behavior. The remaining
+two caught in-memory mutations that accepted arbitrary process descendants or
+linked external process directories. All 25 foundation/path tests passed with
+no skips after restoring the real helper. This checks paths, not process
+semantics, headings, link completeness or implementation status.
+
+`python3 scripts/validate-packages.py` passed for 27 skill entries and two
+collections, including installation-unit links and manifest versions. The helper
+suite ran with `python3 -m unittest discover -s collections/project-foundation/tests`.
+`git diff --check` passed. A collection release's full self-conformance review
+has not been performed; this revision remains unreleased.
+
+A consumer subagent used a copied draft, provenance and project instruction hook
+outside the authoring repository at `/tmp/forge-process-consumer-20261004`.
+Without supplied route hints, it wrote a proposed process as a 297-word README
+with four numbered stages, added its process index, and linked an 86-word
+supporting explanation for a tied decision. It also refined the existing command
+guide in `docs/` and linked it to the process. Review of all five changed pages
+confirmed one process owner, scoped proposal status, explicit revision/selection
+responsibilities, retained state on interruptions and no copied runtime or run
+artifacts. The process contained no diagram. Path validation, seven local links
+and whitespace checks passed; a synthetic walkthrough checked textual consistency,
+not implemented behavior.
+
+The evaluator recorded its reads and results in
+`/tmp/forge-process-consumer-20261004-report.md`: approximately 7,464 words of
+instructions/templates, 184 words of initial project inputs and 512 words of
+output review. It reached workflow design, the document map, new template,
+writing/status guidance and only the shared-template excerpt of connected views.
+It read no source maintenance, installation, bootstrap or generated-browser
+guidance; no required read was identified as missed. No guidance was reread into
+context or truncated. The supporting-page and adjacent-guide requests reused
+the initial context, so they do not establish independent cold routing. The
+subagent shared the parent's conversation/tool environment; this was not a
+blinded external installation. This is one practical trial; it establishes
+neither reliable discovery across projects
+nor minimal context use.

@@ -20,7 +20,7 @@ derivation choices, and existing status/evidence and foundation reference rules
 remain authoritative. No new discoverable skill or parser dependency is needed.
 
 The collection supplies starting [view](../collections/project-foundation/templates/views/view.md)
-and [process](../collections/project-foundation/templates/views/process.md)
+and [process](../collections/project-foundation/templates/project-docs/process/README.md)
 templates. Existing adequate structures remain usable; irrelevant sections are
 omitted. Machine browsing requires a separately selected, versioned input
 convention. Ordinary reading and prose edits need neither metadata nor migration.

@@ -25,7 +25,9 @@ evidence retain repository-declared homes outside this reserved directory.
 | Conceptual model index | `project-docs/models/README.md` | Project documentation |
 | Domain concepts, relationships and constraints | `project-docs/models/<topic>.md` | Project design |
 | Process index | `project-docs/processes/README.md` | Project documentation |
-| Process triggers, participants, decisions, interruptions and handoffs | `project-docs/processes/<topic>.md` | Project design; the responsible repository maintains local meaning |
+| Named process entry: triggers, participants, decisions, interruptions and handoffs | `project-docs/processes/<process>/README.md` | Project design; the responsible repository maintains local meaning |
+| Supporting explanations of that process | `project-docs/processes/<process>/<topic>.md` | Project design; linked from the process entry |
+| Existing flat process descriptions, retained until deliberate migration | `project-docs/processes/<topic>.md` | Project design; the responsible repository maintains local meaning |
 | Handoff contract index | `project-docs/contracts/README.md` | Project documentation |
 | Exchange obligations, identity, acceptance and compatibility | `project-docs/contracts/<topic>.md` | Project contracts |
 
@@ -49,7 +51,7 @@ project documents must remain outside the vendored skill files.
 
 Start repository design pages from the [design template](../templates/project-docs/design.md),
 conceptual models from the [model template](../templates/project-docs/model.md),
-process descriptions from the [process template](../templates/views/process.md),
+process entries from the [process template](../templates/project-docs/process/README.md),
 and handoff contracts from the [contract template](../templates/project-docs/contract.md).
 Use the [view template](../templates/views/view.md) for architecture views.
 Each index links its owners with a brief reader question; it need not repeat
@@ -59,10 +61,31 @@ is synthetic or observed and links the model or terms it exercises.
 These are starting structures. Preserve an existing page that already supplies
 purpose, scope, ownership, status, explanations, relevant constraints and evidence
 or open questions. Omit irrelevant sections rather than inventing content. A
-contract or model need not contain a diagram. Several identifiable views can
-remain in one page. The templates establish readable associations; a parser
+process, contract or model need not contain a diagram. Several identifiable views
+can remain in one page. The templates establish readable associations; a parser
 syntax, comprehensive structural validation and an operating-procedure template
 require a separately selected scope.
+
+### Named processes
+
+For a new named process, use `project-docs/processes/<process>/README.md` and
+link it from `project-docs/processes/README.md`. One process README is sufficient;
+do not create supporting pages or empty directories in anticipation of future
+work. Prose or numbered steps can explain the workflow without a diagram.
+
+When one part needs its own explanation, add a direct `<topic>.md` page in that
+process directory and link it from the entry. Keep one canonical process owner;
+supporting pages elaborate it rather than restating its workflow. This is one
+named directory level, not permission for nested stage directories or arbitrary
+files. Commands, implementation artifacts and run records stay in their existing
+repository-owned homes; contracts and models retain their mapped homes. Link them
+where the process needs them.
+
+Existing flat `processes/<topic>.md` pages remain valid until deliberate migration.
+Do not keep both `processes/<name>.md` and `processes/<name>/README.md`: they create
+ambiguous owners. A process's location describes its reader question, while its
+status states whether the described work is proposed, adopted or evidenced. A
+proposed process can use the same structure without implying implementation.
 
 ## Repository-owned documentation
 
@@ -87,15 +110,19 @@ runbook remains implementation documentation even when policy requires it.
 
 Before creating a document, identify its type and owner. Reuse the existing
 owner when one exists. Within the reserved directory, use only the mapped files
-and Markdown topic documents directly within the mapped subdirectories;
-keep technical attachments, generated output and scratch outside it. Topic names
-use lowercase words separated by hyphens, optionally prefixed by a date.
+and Markdown topic documents directly within the mapped subdirectories, including
+the one named process level above. Keep technical attachments, generated output
+and scratch outside it. Process and topic names use lowercase words separated by
+hyphens, optionally prefixed by a date.
 This restriction governs document placement, not permission to undertake work.
 
 Run `python3 <collection>/scripts/validate-project-docs.py <project-docs-root>`
 after changing the managed directory. It reads the allowed paths from the table
-above, so the two cannot disagree, and requires a mapped index when that directory
-contains topic documents. This remains a path check: it does not enforce headings,
+above, including the explicit `<process>` directory placeholder. It requires a
+mapped parent index when a directory contains topic documents or named processes,
+a README for each named process, and distinct flat and directory process names.
+Symlinks, additional directory levels and non-Markdown artifacts are rejected.
+This remains a path check: it does not enforce headings,
 template fields, semantic completeness or browser input. Review content against
 the type map as well; a filename check cannot tell whether a command guide was
 misfiled as a process. Validate the foundation format separately when its facts

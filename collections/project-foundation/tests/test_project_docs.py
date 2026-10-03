@@ -68,6 +68,86 @@ class ProjectDocsTests(unittest.TestCase):
         (self.root / 'foundation.md').symlink_to('/tmp/nonexistent-project-doc-fixture')
         self.assertTrue(any('symlink' in e for e in module.validate(self.root)))
 
+    def test_named_process_needs_only_its_entry_and_parent_index(self):
+        for name in ['processes/README.md', 'processes/sample-review/README.md']:
+            self.write(name)
+        self.assertEqual(module.validate(self.root), [])
+
+    def test_process_supporting_pages_and_distinct_legacy_process_can_coexist(self):
+        for name in ['processes/README.md', 'processes/sample-review/README.md',
+                     'processes/sample-review/revision-path.md', 'processes/sample-intake.md']:
+            self.write(name)
+        self.assertEqual(module.validate(self.root), [])
+
+    def test_process_directory_requires_parent_index_without_flat_topics(self):
+        self.write('processes/sample-review/README.md')
+        self.assertTrue(any(e.startswith('processes/README.md:') and 'index' in e
+                            for e in module.validate(self.root)))
+
+    def test_empty_process_directory_requires_entry(self):
+        self.write('processes/README.md')
+        (self.root / 'processes/sample-review').mkdir()
+        self.assertTrue(any(e.startswith('processes/sample-review/README.md:') and 'entry' in e
+                            for e in module.validate(self.root)))
+
+    def test_supporting_page_cannot_replace_process_entry(self):
+        for name in ['processes/README.md', 'processes/sample-review/decision.md']:
+            self.write(name)
+        self.assertTrue(any(e.startswith('processes/sample-review/README.md:') and 'entry' in e
+                            for e in module.validate(self.root)))
+
+    def test_same_name_flat_and_directory_process_is_ambiguous(self):
+        for name in ['processes/README.md', 'processes/sample-review.md',
+                     'processes/sample-review/README.md']:
+            self.write(name)
+        self.assertTrue(any('sample-review.md' in e and 'ambiguous' in e
+                            for e in module.validate(self.root)))
+
+    def test_process_directory_and_supporting_names_remain_lowercase_hyphenated(self):
+        for name in ['processes/README.md', 'processes/Bad_Name/README.md',
+                     'processes/sample-review/README.md', 'processes/sample-review/Bad_Name.md']:
+            self.write(name)
+        errors = module.validate(self.root)
+        for name in ['processes/Bad_Name', 'processes/sample-review/Bad_Name.md']:
+            self.assertTrue(any(e.startswith(name + ':') and 'lowercase hyphenated' in e for e in errors))
+
+    def test_process_directory_rejects_nested_pages_and_runtime_artifacts(self):
+        for name in ['processes/README.md', 'processes/sample-review/README.md',
+                     'processes/sample-review/stages/first.md', 'processes/sample-review/output.json']:
+            self.write(name)
+        errors = module.validate(self.root)
+        for name in ['processes/sample-review/stages', 'processes/sample-review/output.json']:
+            self.assertTrue(any(e.startswith(name + ':') for e in errors))
+
+    def test_process_symlink_cannot_import_an_external_process(self):
+        self.write('processes/README.md')
+        external = tempfile.TemporaryDirectory()
+        self.addCleanup(external.cleanup)
+        (Path(external.name) / 'README.md').write_text('Synthetic fixture\n')
+        (self.root / 'processes/sample-review').symlink_to(external.name, target_is_directory=True)
+        self.assertTrue(any(e.startswith('processes/sample-review:') and 'symlink' in e
+                            for e in module.validate(self.root)))
+
+    def test_named_directory_patterns_are_read_from_document_homes(self):
+        homes = self.root / 'homes.md'
+        homes.write_text('| Type | Home | Workflow |\n| --- | --- | --- |\n'
+                         '| Index | `project-docs/flows/README.md` | Synthetic |\n'
+                         '| Entry | `project-docs/flows/<process>/README.md` | Synthetic |\n'
+                         '| Detail | `project-docs/flows/<process>/<topic>.md` | Synthetic |\n')
+        original = module.HOMES
+        module.HOMES = homes
+        self.addCleanup(setattr, module, 'HOMES', original)
+        docs = self.root / 'project-docs'
+        for name in ['flows/README.md', 'flows/sample-review/README.md',
+                     'flows/sample-review/decision.md']:
+            path = docs / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text('Synthetic fixture\n')
+        self.assertEqual(module.validate(docs), [])
+        (docs / 'flows/README.md').unlink()
+        self.assertTrue(any(e.startswith('flows/README.md:') and 'index' in e
+                            for e in module.validate(docs)))
+
 
 if __name__ == '__main__':
     unittest.main()
