@@ -19,6 +19,9 @@ ambiguity, not merely because a project has nouns.
 
 ## Foundation definitions
 
+For one project spanning repositories, follow [multi-repository foundations](../../../references/multi-repository.md).
+Choose owners at project scope and preserve only local differences in members.
+
 Keep foundation definitions slim and structured. Boundaries starts with the core
 scope/ownership table; a project may add a concise table for its own boundary
 model. History, migration narratives, implementation status and procedures belong

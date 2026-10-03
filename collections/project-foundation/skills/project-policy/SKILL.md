@@ -2,7 +2,7 @@
 name: project-policy
 description: "Establish or revise engineering requirements when users, data, exposure, lifetime, compatibility or recovery needs change. Assess the impact and track prerequisites; ordinary edits do not require a policy review."
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # Project policy
@@ -18,6 +18,11 @@ outcomes. Distinguish an implementation choice from an explicit commitment befor
 removing it, and verify the affected behavior when changing the mechanism.
 
 ## Interpret the foundation
+
+For a member of a multi-repository project, interpret the shared policy together
+with its declared local facts and adopted exceptions. Use
+[multi-repository foundations](../../references/multi-repository.md) for scope and
+exception authority; do not infer that a closer file wins.
 
 This skill is part of the [project-foundation collection](../../COLLECTION.md).
 Follow [foundation authority](../../references/foundation-authority.md) for

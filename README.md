@@ -123,6 +123,11 @@ provenance file.
 For project-foundation, copy the complete
 [collection](collections/project-foundation/COLLECTION.md) with its relative layout
 intact. Its installation instructions define provenance and project routing.
+For one project spanning repositories, use the collection's
+[multi-repository guidance](collections/project-foundation/references/multi-repository.md)
+to choose shared owners and local facts. One accessible installation can serve
+members; independent installations remain an explicit distribution choice.
+
 Collection members may link to each other and shared references or templates.
 Standalone packages keep required resources inside their own directory. Links
 must stay inside the applicable installation unit; do not duplicate guidance just

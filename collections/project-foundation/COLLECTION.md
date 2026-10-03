@@ -6,6 +6,9 @@ Its source repository's catalog and release/authoring rules are not prerequisite
 for consumption. Follow provenance to the source only when the task needs source
 maintenance, an upgrade or investigation of a concrete source issue.
 
+For a project spanning repositories, read [multi-repository foundations](references/multi-repository.md)
+before selecting document owners or installation locations.
+
 Install this directory as one dependency. It contains the bootstrap workflow,
 Git worktree guidance, project documentation and policy skills, source-of-truth,
 their authoring skills and the templates they interpret. Preserve the directory

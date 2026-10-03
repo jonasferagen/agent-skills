@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Bootstrap a new project or a fresh repository with project boundaries, policy and a project overview, plus a README that links them. Use when establishing this starting foundation; ordinary implementation and documentation maintenance belong to their own workflows."
 metadata:
-  version: "2.1.2"
+  version: "2.2.0"
 ---
 
 # Project bootstrap
@@ -32,6 +32,11 @@ rules for the files actually expected, including local credentials. Configure a
 remote, install dependencies or add a runtime only when the task calls for it.
 
 ## Establish the foundation
+
+First determine the project boundary. If this repository is part of a project
+with a shared foundation, use [multi-repository foundations](../../references/multi-repository.md):
+link shared owners and establish only the local facts and routes. The starter
+below applies to the shared owner or an independent project.
 
 The default starter has three project definitions and an entry README:
 
@@ -86,7 +91,8 @@ setup commands, architecture or a work queue to fill the template.
 ## Establish the collection and its routes
 
 Use the complete [project-foundation collection](../../COLLECTION.md). The
-scaffold and its interpreting skills are one dependency. For a new project-local
+scaffold and its interpreting skills are one dependency. A member may route to an
+accessible shared installation; do not require a copy per repository. For a new project-local
 adoption, copy the whole collection as described there; use an existing complete
 installation when one is already selected. Preserve the user's chosen installation
 scope and existing project instructions.

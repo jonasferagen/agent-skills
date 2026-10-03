@@ -231,3 +231,12 @@ Forge's overview accumulated a next-task queue, skill-selection notes and eviden
 summaries. Keep its table focused on current choices and unresolved options.
 Remove the template's First useful slice row; work notes own proposed slices and
 acceptance work. Existing instructions and evidence records own the other material.
+
+## 3 October 2026 — Multi-repository foundations
+
+A project spanning repositories can share one authoritative foundation and one
+accessible collection installation. Members retain local facts and explicit
+exceptions. Independent projects and deliberately separate pinned installations
+remain supported. The Forge bootstrap exposed duplicated policy and installation
+copies; this change separates project ownership from Git repository boundaries.
+See [validation](validation/multi-repository-foundation.md). No release tag created.
