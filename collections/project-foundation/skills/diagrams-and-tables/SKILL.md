@@ -2,7 +2,7 @@
 name: diagrams-and-tables
 description: "Choose prose, tables or diagram types for an explanation, and route construction or review to the relevant visual guidance. Use when selecting a form or creating or reviewing a visual."
 metadata:
-  version: "0.6.0"
+  version: "0.7.0"
 ---
 
 # Diagrams and tables
@@ -20,6 +20,7 @@ another copy. Document ownership and navigation belong to project-docs.
 | Work steps and conditional branches | A flowchart |
 | One object's states and allowed transitions | A state diagram |
 | Ordered interactions between participants | A sequence diagram |
+| Information sources, transformations, stores and destinations | A data-flow diagram |
 | System parts, ownership and dependencies | A component or context view |
 | Entities and their relationships | An ER diagram; add a field table only when field details matter |
 
@@ -39,14 +40,18 @@ construction references. Preserve its columns, meaning and uncertainty. Stop her
 when the task is only form selection.
 
 - To design or restructure a table, read [tables](references/tables.md).
-- When the form is already ER, go directly to [ER guidance](references/er-diagrams.md).
+- When the form is already ER, go directly to [ER guidance](references/er/guide.md).
   It separates reading, semantic review, construction and large-view work; do not
   also load general composition or Mermaid drawing guidance by default.
+- For a data-flow view, go directly to [data-flow guidance](references/data-flow/guide.md).
+  It distinguishes reading from construction and routes to shared rendering guidance.
 - For other diagram construction, read [composition](references/composition.md)
   and [verification](references/verification.md); add
-  [drawing](references/drawing.md) when implementing in Mermaid.
+  [Mermaid drawing](references/mermaid.md) when implementing in Mermaid.
 - For visual review, read verification; add the relevant construction reference
   only when structure or notation needs work.
+- Family guides own their notation, examples and external source links. Shared
+  composition and renderer conventions stay at the reference root.
 - Use [worked examples](references/worked-examples.md) only when the chosen form
   needs an example.
 

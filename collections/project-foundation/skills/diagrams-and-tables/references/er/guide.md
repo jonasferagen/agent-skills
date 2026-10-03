@@ -12,7 +12,7 @@ reference owns their representation.
   needs no redraw, renderer discovery or construction references.
 - To review semantics, compare entities, role scope and both ends of each relevant
   relationship with its source. Keep proposals and unknowns visible. Use
-  [verification](verification.md) for a visual review or changed diagram.
+  [verification](../verification.md) for a visual review or changed diagram.
 - To create or change an ER, keep one canonical view focused on the reader’s
   question, using established terms. Read verification and the notation below.
   General flowchart drawing guidance is unnecessary for an ER-only task.
@@ -24,7 +24,7 @@ cardinalities stay explicit in the model and diagram framing; an illustrative
 assumption is not an adopted constraint.
 
 When the view exceeds roughly 10–12 entities or relationship edges, or becomes
-hard to trace, read [large ER views](large-er-diagrams.md) for decomposition and
+hard to trace, read [large ER views](large-models.md) for decomposition and
 shared targets. Small views need no decomposition inventory.
 
 ## `erDiagram`
@@ -51,3 +51,10 @@ canonical model for the rest. Preserve relationships that matter to the question
 Use layout features supported by the project’s renderer; check compatibility
 before relying on optional ER direction or grouping features. Verification owns
 renderer discovery and reporting limits.
+
+## Sources and conventions
+
+[Mermaid's ER documentation](https://mermaid.js.org/syntax/entityRelationshipDiagram.html)
+owns renderer syntax and cardinality notation. This collection's decomposition
+thresholds and document placement are authoring conventions, not ER standards.
+Read [examples](examples.md) only when a worked model would help.

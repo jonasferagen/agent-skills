@@ -2,8 +2,8 @@
 
 Read this when an ER view exceeds roughly 10–12 entities or relationship edges,
 or when crowding makes relationships hard to trace. Use
-[composition](composition.md) for overview/detail ownership and
-[verification](verification.md) for rendered checks.
+[composition](../composition.md) for overview/detail ownership and
+[verification](../verification.md) for rendered checks.
 
 ## Split a large ER view
 
@@ -17,7 +17,7 @@ it does not raise this ceiling because it fixes width, not the number of
 relationships a reader must trace.
 
 Split a large ER model by **aggregate cluster**, as the ER-specific instance of
-the overview/detail pattern in [composition](composition.md). The root-only overview names
+the overview/detail pattern in [composition](../composition.md). The root-only overview names
 every aggregate root and draws only relationships directly between roots; it
 does not open their children. One compact detail diagram per non-atomic root
 then opens that root's owned children and join tables. Apply the black-box
@@ -36,9 +36,9 @@ different question from the diagram it replaces — which groups depend on which
 and the layer order that implies — while each group's own page keeps every
 individual relationship at full cardinality.
 
-See [the worked ER split](worked-examples.md#a-large-er-family-split-by-aggregate-cluster)
+See [the worked ER split](examples.md#a-large-er-family-split-by-aggregate-cluster)
 for the matching stub-elision rule on an aggregate-sized family, and
-[the whole-schema overview](worked-examples.md#an-over-threshold-overview-raised-to-its-owning-documents)
+[the whole-schema overview](examples.md#an-over-threshold-overview-raised-to-its-owning-documents)
 for the ownership grouping and the fan-in tables that keep its hubs from being
 drawn as table-level nodes.
 
@@ -49,4 +49,4 @@ Keep cross-family targets in a detail view when their cardinality matters to its
 question. Otherwise link their owner or identify them in the field detail. When
 a shared target creates a dense hub, a companion table can list its referencing
 entities; preserve each relationship’s meaning and cardinality there. Use
-[table guidance](tables.md) when designing that companion.
+[table guidance](../tables.md) when designing that companion.

@@ -114,7 +114,7 @@ lifecycle or sequence diagram separate when it answers _in what order_ rather
 than _who owns what_ — it is a different question, not another level of the
 overview.
 
-For an ER view, use [ER diagrams](er-diagrams.md) for entity grouping and
+For an ER view, use [ER diagrams](er/guide.md) for entity grouping and
 large-schema decomposition.
 
 A subgraph is the right tool when the grouping is a handful of nodes the reader

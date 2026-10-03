@@ -233,3 +233,45 @@ not additional agent trials. No changed diagram was rendered.
 
 The [ER routing trial](er-routing.md) tests a direct ER route, conditional
 large-model guidance, and reading an existing model without diagram construction.
+
+## Diagram reference families — 2026-10-03
+
+Version 0.7.0 moves ER guidance to references/er/guide.md, decomposition to
+er/large-models.md, and ER worked models to er/examples.md. Shared drawing syntax
+is renamed mermaid.md. Data-flow has its own guide and context/detail examples.
+Deployment remains future work; no empty family is introduced.
+
+All existing example diagram blocks were compared with the prior commit and are
+verbatim. The extracted ER example sections are also verbatim; guide edits adjust
+relative links and add an official syntax source/convention distinction. Old active
+reference paths were checked and updated; dated trial records preserve their original
+paths. Consumers must update the whole collection when adopting these moved paths.
+
+The data-flow guide distinguishes information movement from timing, control flow,
+connectivity and ownership. It labels the compact Mermaid shapes as collection
+conventions, links OWASP's system-modeling scope and official Mermaid syntax, and
+does not impose threat modeling on ordinary diagram work. Source pages were read
+on 2026-10-03. Skill-creator, clear-writing, instruction guidance and diagram/table
+guidance were applied to the new text and entry routes.
+
+Package validation (25 skills, one collection), skill quick validation, diff checks
+and 135 collection local links/anchors passed. Both new examples were rendered
+with Mermaid CLI 12.0.0 using external Google Chrome and visually inspected in
+light and dark themes. The tall detail was rechecked at natural dimensions after
+an 840px maximum-height export reduced its text size; natural labels are readable
+without clipping. Existing diagram source was unchanged and was not rerendered.
+Target client rendering remains untested.
+
+A fresh fixture trial selected the data-flow guide from the installed collection
+and interpreted both ER endpoints through the moved ER guide. The reviewer read
+the complete [result](diagram-family-trial/result.md) and
+[report](diagram-family-trial/report.md). It preserved unknown byte retention and
+delivery mechanics rather than inventing them. The report records about 4,303
+guidance/request words, no repeated content reads and no truncation.
+
+The evaluator unnecessarily read composition and verification for a prose outline.
+The guide now explicitly reserves those routes for creating/changing diagram source
+and says prose outlines use semantic guidance only. This targeted correction was
+author-reviewed after the trial; no reduced-read claim or fresh rerun is made. The
+ER question was in the same context; diagram construction and native discovery were
+not exercised by the trial.

@@ -321,3 +321,16 @@ diagrams-and-tables; policy consequences remain with project-policy. The standal
 service-boundaries skill retains its narrower HTTP/MCP implementation scope and
 is not added as a dependency. A separate architecture rename, provider skill or
 contract template needs further use evidence. These revisions are unreleased.
+
+## 2026-10-03 — Diagram reference families
+
+Diagrams-and-tables 0.7.0 groups ER guide, large-model guidance and examples under
+references/er, and adds references/data-flow. Shared composition, verification,
+tables and mixed layout examples remain at the root. Drawing guidance is named
+mermaid.md to distinguish renderer syntax from view semantics. All active internal
+callers move together in the complete collection; old reference paths are removed.
+Historical validation records retain the paths used in their trials.
+
+Family guides distinguish official source scope, collection conventions and
+renderer constraints. Deployment guidance remains a future addition; this round
+creates no empty family directories. No release tag is created.
