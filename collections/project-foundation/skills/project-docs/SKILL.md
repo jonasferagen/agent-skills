@@ -7,6 +7,10 @@ metadata:
 
 # Project documentation
 
+If execution exposes a consequential guidance or routing problem, use
+[friction capture and repair](../../references/friction.md). Successful work needs
+no capture pass.
+
 Use [foundation authority](../../references/foundation-authority.md) when
 establishing or reconciling project decisions, resolving conflicting authority or
 assessing changed circumstances. Reading known terms needs their relevant owners

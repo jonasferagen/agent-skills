@@ -2,10 +2,14 @@
 name: project-planning
 description: "Create, review or maintain project plans, sequence bounded work, and reconcile shared and local next steps. Use for planning outcomes and dependencies; architecture decisions and execution procedures retain their own owners."
 metadata:
-  version: "0.1.1"
+  version: "0.2.0"
 ---
 
 # Project planning
+
+If execution exposes a consequential guidance or routing problem, use
+[friction capture and repair](../../references/friction.md). Successful work needs
+no capture pass.
 
 Start from the project's current scope, planning owner and relevant design or
 implementation evidence. Use [foundation authority](../../references/foundation-authority.md)

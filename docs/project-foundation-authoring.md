@@ -47,12 +47,19 @@ Distinguish three cases:
 - An **evidence gap** is missing support for a behavior or compliance claim. Its
   home is the verification work and evidence record; it does not amend obligations.
 - A **guidance gap** is a consequential omission, misleading instruction or costly
-  route in the skill itself. Use the collection's existing friction capture and
-  pattern-capture when available to assess a reusable improvement.
+  route in the skill itself. Use the collection's
+  [friction capture and repair](../collections/project-foundation/references/friction.md)
+  to record it and repair a demonstrated defect within existing authorization.
+  Use pattern-capture when further assessment of a reusable lesson is needed.
 
 Keep capture conditional on an observed problem. Ordinary missing project terms
 and successful work do not require a skill-maintenance report. Do not claim that
 an omitted topic heading proves the instructions inadequate.
+
+Keep the discovery trigger reachable during ordinary consumption, including
+direct skill entry. Entry hooks route to the shared friction owner; keep the
+repair procedure there. Project instructions own standing source-maintenance
+delegation. Source fixes and consumer pin adoption remain separate work.
 
 ## Grow families without duplicating shared rules
 

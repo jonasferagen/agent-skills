@@ -2,10 +2,14 @@
 name: project-contracts
 description: "Read, apply, design or review obligations at a handoff between people, agents, files or services. Use for interpreting terms, assessing an exchange, finding missing obligations or changing compatibility; legal agreements and overall architecture have separate workflows."
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Project contracts
+
+If execution exposes a consequential guidance or routing problem, use
+[friction capture and repair](../../references/friction.md). Successful work needs
+no capture pass.
 
 Make clear what participants can rely on at a handoff. Start with the user's
 question, the authoritative agreement and the revision applicable to the exchange.
@@ -45,11 +49,9 @@ report that limit without silently supplying a rule. During design, propose or
 establish terms within the user's authorized scope and existing constraints.
 Continue unaffected work; ask only when the current task needs the missing answer.
 
-A missing project term is not automatically a defect in this skill. If guidance
-or routing caused an omission, an undocumented workaround or repeated difficulty,
-use [friction capture](../../references/friction.md) to record the observation
-and candidate improvement at a natural checkpoint. Keep project decisions in
-the agreement; reusable guidance follows the collection's capture route.
+A missing project term is not automatically a defect in this skill. Keep project
+decisions in the agreement; guidance defects follow the collection's capture
+and repair route.
 
 For authored or restructured explanations, use
 [authoring guidance](../../references/authoring.md). A focused answer from existing

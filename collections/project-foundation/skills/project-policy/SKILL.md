@@ -2,10 +2,14 @@
 name: project-policy
 description: "Interpret project engineering obligations, assess evidence against them, or establish and review policy as users, data, exposure, lifetime, compatibility or recovery change. A focused policy question needs only the relevant facts and requirements."
 metadata:
-  version: "4.1.0"
+  version: "4.2.0"
 ---
 
 # Project policy
+
+If execution exposes a consequential guidance or routing problem, use
+[friction capture and repair](../../references/friction.md). Successful work needs
+no capture pass.
 
 Make the project's circumstances determine its engineering requirements. Keep
 operating facts, proposed requirements, adopted obligations and evidence of
@@ -81,8 +85,6 @@ what depends on resolving it. Missing proof of an established requirement is an
 evidence gap: identify the claim that remains unverified and the necessary check.
 Ask only when the current task depends on an answer; continue unaffected work.
 
-If the instructions or routing caused a consequential omission or unnecessary
-work, use [friction capture](../../references/friction.md) at a natural checkpoint.
 A project or evidence gap alone does not establish a defect in the skill.
 
 For authored or restructured documents, use

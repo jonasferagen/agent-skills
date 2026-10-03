@@ -2,10 +2,14 @@
 name: project-bootstrap
 description: "Bootstrap a new project or a fresh repository with project boundaries, policy and a project overview, plus a README that links them. Use when establishing this starting foundation; ordinary implementation and documentation maintenance belong to their own workflows."
 metadata:
-  version: "5.0.1"
+  version: "5.1.0"
 ---
 
 # Project bootstrap
+
+If execution exposes a consequential guidance or routing problem, use
+[friction capture and repair](../../references/friction.md). Successful work needs
+no capture pass.
 
 Establish a small project foundation from the user's intent and available
 evidence. The outcome is a repository ready for its next design or implementation
@@ -111,10 +115,18 @@ It must also route:
 - Relevant facts and decisions to overview, boundaries and policy, with links
   from each operating-summary statement to its authoritative owner.
 - Repeated definitions, inconsistent consumers and drift checks to source-of-truth.
-- Observed obstacles or repeated workarounds to [friction capture](../../references/friction.md)
-  at a natural checkpoint, using existing project notes. Ordinary successful work
-  needs no capture pass. Put this trigger in project instructions so it is visible
-  before the reference is loaded.
+- Consequential guidance or routing problems and observed obstacles to
+  [friction capture and repair](../../references/friction.md). Surface effects on
+  the current task promptly, continue unaffected work and record observations in
+  existing notes. Ordinary successful work needs no capture pass. Put this trigger
+  in project instructions so it is visible before the reference is loaded.
+
+If the user authorizes automatic source repair, record the standing delegation
+beside that trigger: the covered collection, authoring home or provenance route,
+permitted corrections and checks, and whether local landing or consumer adoption
+is included. Reuse an existing delegation; do not infer one from installation.
+Keep source repair and pin updates distinct. A bootstrap without that authorization
+still establishes discovery and capture.
 
 For a shared project, check where agents enter the workspace. When the authorized
 setup includes a parent directory used for cross-repository work, establish its

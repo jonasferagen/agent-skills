@@ -105,7 +105,7 @@ discovery behavior. No release or downstream installation was performed.
 
 ## Managed technical explanations — 2026-10-03
 
-Unreleased collection 0.3.0 adds design, architecture, models, process descriptions
+Unreleased collection 0.4.0 adds design, architecture, models, process descriptions
 and handoff contracts to the closed home map. Project-docs 5.0.0 changes the
 placement default; existing layouts migrate deliberately. Commands, setup,
 implementation references, creative content and technical evidence keep local
@@ -136,3 +136,10 @@ Design and contract template use were reviewed as source, not exercised by this
 consumer trial. No broad reliability, parser or structural-completeness claim is
 made. Package validation, all 15 foundation/path helper tests, affected skill
 manifest checks, collection links/anchors and whitespace checks passed.
+
+The source was reconciled with the concurrent passive-guidance update at
+`7bcf89dc41ad3c22fc1198995123f5bfb2be6c7b`. Its conditional discovery/repair routes
+are preserved; this migration supplies no new external repair authorization.
+The consumer trial used the preceding 0.3.0 draft. The merged 0.4.0 collection
+passed package, path-helper, link and whitespace checks; passive-repair behavior
+retains its separate validation record and was not rerun here.

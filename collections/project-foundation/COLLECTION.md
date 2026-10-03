@@ -1,11 +1,16 @@
 # Project foundation
 
-Version: 0.3.0
+Version: 0.4.0
 
 Start with project instructions and their existing document routes. Use this
 entrypoint to choose needed guidance; if the owner and workflow are already known,
 follow them directly. Source-maintenance guidance and provenance are needed only
 for source changes, upgrades or investigation of a concrete source issue.
+
+When execution exposes a consequential guidance or routing problem, use
+[friction capture and repair](references/friction.md). Surface effects on the
+current task promptly and continue unaffected work. Successful work needs no
+capture pass.
 
 | Task | Entry point |
 | --- | --- |
@@ -20,7 +25,7 @@ for source changes, upgrades or investigation of a concrete source issue.
 | Keep authoritative decisions and their consumers aligned | [Source of truth](skills/source-of-truth/SKILL.md) |
 | Write clear prose | [Clear writing](skills/clear-writing/SKILL.md) |
 | Read, review or construct diagrams and tables | [Diagrams and tables](skills/diagrams-and-tables/SKILL.md) |
-| Record an observed obstacle during work | [Friction capture](references/friction.md) |
+| Capture an observed obstacle or repair a demonstrated guidance defect | [Friction capture and repair](references/friction.md) |
 
 Load only the route needed by the question. For reading or applying an existing
 document, use its authoritative owner, relevant terms and available evidence.

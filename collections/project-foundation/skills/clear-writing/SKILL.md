@@ -2,10 +2,14 @@
 name: clear-writing
 description: "Draft or edit explanatory and instructional prose for clarity, including technical explanations, documentation, skills, project instructions and concise labels. Preserve the requested voice, factual meaning and level of certainty."
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Clear writing
+
+If execution exposes a consequential guidance or routing problem, use
+[friction capture and repair](../../references/friction.md). Successful work needs
+no capture pass.
 
 Help the reader understand the point and use it without having to decode the
 wording. Adapt to the audience, purpose and requested voice; these defaults do not

@@ -295,3 +295,13 @@ Whitespace checks passed. Authoring reused skill-creator, clear-writing, the sou
 collection convention and relevant visual guidance for preserved tables; no diagrams
 or helper code changed. No release, global installation or downstream adoption was
 performed.
+
+## Passive guidance discovery and repair — 3 October 2026
+
+Unreleased collection revision 0.3.0 adds conditional discovery hooks to all nine
+members and a shared capture/source-repair procedure. Standing source-maintenance
+scope belongs to consuming project instructions; source correction and pin
+adoption remain separate. Bootstrap records that delegation only when authorized.
+[Validation](passive-guidance-repair.md) retains five fresh consumer trials,
+independent meaning review, mechanical checks and limits. Real-task reliability
+and overhead remain to be established through use.
