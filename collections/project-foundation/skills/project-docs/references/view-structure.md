@@ -23,12 +23,12 @@ structure that supplies those associations; omit irrelevant sections and do not
 invent content to complete a template. Several views can remain in one document
 when their questions and explanations stay identifiable.
 
-Collection ownership of these templates is independent of where project pages
-live. Keep the current [document homes](../../../references/document-homes.md):
-technical views and processes remain in their declared repository homes.
-Managing them under `project-docs/` would require an explicit collection change
-to document types, ownership, templates and validation, followed by deliberate
-consumer migration. Using these templates does not adopt that relocation.
+The [document homes](../../../references/document-homes.md) map owns placement and
+routes to design, model and contract templates as well. New managed views and
+processes use its allowed types. Existing pages retain their declared routes
+until deliberately migrated; template use or an installation upgrade alone does
+not relocate them. Commands and implementation evidence remain with their local
+owners and are linked from the managed explanation.
 
 ## Locate the view and its explanation
 

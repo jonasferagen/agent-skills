@@ -2,7 +2,7 @@
 name: project-docs
 description: "Establish, review, or reconcile repository documentation, including domain glossaries, document ownership, project instructions, and high-level relationship diagrams. Use for project documentation structure and consistency work; not standalone office documents, generic copyediting, or application implementation."
 metadata:
-  version: "4.2.0"
+  version: "5.0.0"
 ---
 
 # Project documentation
@@ -26,8 +26,10 @@ when producing or revising documentation. The collection supplies the writing an
 visual skills; their references are loaded only for the work at hand.
 
 Managed project documents use [canonical document homes](../../references/document-homes.md).
-Use that map when creating or relocating them; technical documentation keeps its
-repository-owned layout.
+Use that map when creating or relocating them, including architecture, models,
+process descriptions and handoff contracts. Command-level procedures and
+implementation references retain repository-owned homes. Existing layouts change
+only through deliberate migration.
 
 ## Select the work
 
