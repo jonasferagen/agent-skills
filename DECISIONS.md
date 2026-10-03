@@ -470,3 +470,18 @@ comes from. Skills link to it where they restated the general rule and keep
 domain-specific cautions, such as what a flowchart arrow does not prove, and
 their existing state terms. The catalog no longer restates the
 collection's rules. Edited members take patch versions; no release tag is created.
+
+## 2026-10-03 — Application foundation first package
+
+Create [application-foundation](docs/application-foundation.md) with one
+application-design member and a conditional external-integration reference. The
+user approved drafting this workflow, exercising it on Tools and a different
+application case, and packaging the useful guidance. Keep project-design's system
+and workflow authority and service-boundaries' HTTP/MCP scope intact.
+
+The core is self-contained. Existing language, runtime and verification skills
+remain independently installable companions selected through project instructions.
+This avoids requiring cross-collection dependency resolution for the first package;
+it does not implement that mechanism for other collections. No consumer adoption,
+provider runtime or release tag is part of this source change. Bounded trial
+evidence belongs in [application-design validation](validation/application-design.md).

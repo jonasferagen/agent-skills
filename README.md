@@ -9,6 +9,9 @@ one installable collection under `collections/<name>/`.
 [Data foundations](docs/data-foundations.md) proposes the skills for the next
 database-modeling stage; it is not an installed collection yet.
 
+[Application foundation](docs/application-foundation.md) defines the application
+design collection and its relationship to the existing specialist packages.
+
 Categories group skills by their main task. A collection is an installation unit;
 its individual skills remain task entry points loaded when needed.
 
@@ -40,6 +43,13 @@ Included in the project-foundation collection and available for other authoring 
 | [Diagrams and tables](collections/project-foundation/skills/diagrams-and-tables/SKILL.md) (`diagrams-and-tables`) | Choose and verify useful visual explanations of relationships and comparisons. |
 
 ## Design
+
+The [application-foundation collection](collections/application-foundation/COLLECTION.md)
+contains language-neutral application guidance:
+
+| Skill | Use it for |
+| --- | --- |
+| [application-design](collections/application-foundation/skills/application-design/SKILL.md) (draft) | Shape operations, state ownership and dependency interfaces inside an application, including external operation boundaries. |
 
 Source directory: `skills/design/`.
 
@@ -113,6 +123,10 @@ For one project spanning repositories, use the collection's
 [multi-repository guidance](collections/project-foundation/references/multi-repository.md)
 to choose shared owners and local facts. One accessible installation can serve
 members; independent installations remain an explicit distribution choice.
+
+Application-foundation also installs as a complete collection. Its
+[installation guidance](collections/application-foundation/references/installation.md)
+defines its self-contained core and project routing to separately pinned companions.
 
 Collection members may link to each other and shared references or templates.
 Standalone packages keep required resources inside their own directory. Links
