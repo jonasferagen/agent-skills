@@ -11,6 +11,8 @@ ROOT = Path(__file__).resolve().parent.parent
 SKILLS = ROOT / "skills"
 COLLECTIONS = ROOT / "collections"
 LINK = re.compile(r"!?(?:\[[^\]]*\])\(([^)]+)\)")
+COPY_RECORD = re.compile(r"<!-- Package-boundary copy: (.*?)-->")
+COPY_TARGET = re.compile(r"\b([a-z][a-z0-9-]*)/((?:[\w.-]+/)*[\w.-]+\.md)\b")
 VERSION = re.compile(
     r'^  version: "(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)'
     r'(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?"$'
@@ -60,6 +62,32 @@ def check_local_links(unit: Path) -> list[str]:
     return errors
 
 
+def check_copy_records(packages: list[Path]) -> list[str]:
+    """Each recorded cross-package copy names an existing counterpart that records it back."""
+    by_name = {package.name: package for package in packages}
+    records: dict[Path, tuple[tuple[str, str], list[tuple[int, str, str]]]] = {}
+    for package in packages:
+        for page in sorted(package.rglob("*.md")):
+            entries = [
+                (line_number, name, path)
+                for line_number, line in enumerate(page.read_text().splitlines(), 1)
+                for record in COPY_RECORD.finditer(line)
+                for name, path in COPY_TARGET.findall(record.group(1))
+            ]
+            if entries:
+                records[page] = ((package.name, page.relative_to(package).as_posix()), entries)
+    errors = []
+    for page, (own, entries) in records.items():
+        for line_number, name, path in entries:
+            location = f"{page.relative_to(ROOT)}:{line_number}"
+            counterpart = by_name[name] / path if name in by_name else None
+            if counterpart is None or not counterpart.is_file():
+                errors.append(f"{location}: recorded copy names a missing counterpart: {name}/{path}")
+            elif own not in {(n, p) for _, n, p in records.get(counterpart, (None, []))[1]}:
+                errors.append(f"{location}: {name}/{path} does not record this copy back")
+    return errors
+
+
 def find_packages(directory: Path) -> list[Path]:
     """Descend through categories, stopping at a package or an invalid leaf."""
     if (directory / "SKILL.md").is_file():
@@ -92,6 +120,7 @@ def main() -> int:
                 f"{names[package.name].relative_to(ROOT)} and {package.relative_to(ROOT)}"
             )
         names[package.name] = package
+    errors.extend(check_copy_records(packages))
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1

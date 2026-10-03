@@ -30,7 +30,7 @@ class ProjectDocsTests(unittest.TestCase):
 
     def test_detailed_plan_without_active_index(self):
         self.write('planning/import.md')
-        self.assertTrue(any('active plan index' in e for e in module.validate(self.root)))
+        self.assertTrue(any(e.startswith('planning/README.md:') and 'index' in e for e in module.validate(self.root)))
 
     def test_unmanaged_types_and_nested_output_are_rejected(self):
         for name in ['policy.md', 'architecture/design.md', 'records/images/render.png']:
@@ -38,6 +38,19 @@ class ProjectDocsTests(unittest.TestCase):
         errors = module.validate(self.root)
         for name in ['policy.md', 'architecture', 'records/images']:
             self.assertTrue(any(name in e for e in errors))
+
+    def test_layout_is_read_from_document_homes(self):
+        homes = self.root / 'homes.md'
+        homes.write_text('| Type | Home | Workflow |\n| --- | --- | --- |\n| Notes | `project-docs/notes/<topic>.md` | Synthetic |\n')
+        original = module.HOMES
+        module.HOMES = homes
+        self.addCleanup(setattr, module, 'HOMES', original)
+        docs = self.root / 'project-docs'
+        (docs / 'notes').mkdir(parents=True)
+        (docs / 'notes' / 'first-note.md').write_text('Synthetic fixture\n')
+        self.assertEqual(module.validate(docs), [])
+        (docs / 'foundation.md').write_text('Synthetic fixture\n')
+        self.assertTrue(any('foundation.md' in e for e in module.validate(docs)))
 
     def test_external_symlink_is_rejected(self):
         (self.root / 'foundation.md').symlink_to('/tmp/nonexistent-project-doc-fixture')

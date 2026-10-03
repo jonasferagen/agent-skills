@@ -121,6 +121,12 @@ Standalone packages keep required resources inside their own directory. Links
 must stay inside the applicable installation unit; do not duplicate guidance just
 to make each collection entry point independently installable.
 
+When two installation units must each state one rule, record the copy in both
+places with a comment naming the counterpart, such as
+`<!-- Package-boundary copy: test-writing/references/fixtures.md states this rule
+for ordinary tests. Keep both passages aligned. -->`. Paths start with the
+counterpart's package name.
+
 The entrypoint carries the purpose, essential constraints and links to details.
 Put mode-specific procedures and longer examples in `references/` and link them
 where they become useful; a short skill can stay in one file. A skill can bundle
@@ -129,8 +135,9 @@ when those helpers need offline verification. The entire directory, including
 those resources, is installed together.
 
 Run `python3 scripts/validate-packages.py` after editing a package. It checks
-frontmatter, local link targets and installation-unit containment; behavioral scenarios in
-`validation/` and any bundled helper tests still need their own review.
+frontmatter, local link targets, installation-unit containment and that each
+recorded copy names an existing counterpart that records it back. Behavioral
+scenarios in `validation/` and any bundled helper tests still need their own review.
 
 Updates are deliberate: select a release, review its changes and local exceptions,
 replace the complete directory, compare it with the source, validate the manifest
@@ -216,6 +223,11 @@ Collections are currently pinned as a whole by source commit. Their member
 versions describe changed skill behavior; individual member tags do not establish
 a compatible collection release. No collection release has been published.
 
+Before a collection release is tagged, the whole collection must pass a
+[self-conformance review](validation/self-conformance.md): it must meet the
+standards its own members teach. This is a release requirement, alongside the
+routing trials.
+
 Version each skill independently. Its `SKILL.md` declares a string under
 `metadata.version`, such as `"1.0.0"`. Publish an annotated Git tag named
 `<skill-name>/v<version>` on the committed release; never move a published tag.
@@ -262,7 +274,9 @@ last tag, or to the whole package for a first release:
 - [Diagrams and tables](collections/project-foundation/skills/diagrams-and-tables/SKILL.md), to existing
   diagrams and tables and to passages a diagram or table would explain better.
 
-This additional release pass is a recommendation, not a release requirement. Clear Writing does not yet
+For a skill release, this additional pass is a recommendation, not a release
+requirement; a collection release includes it in its required self-conformance
+review. Clear Writing does not yet
 cover every kind of prose a skill package contains, such as trigger
 descriptions, defined terms, worked examples, pattern catalogs and templates.
 

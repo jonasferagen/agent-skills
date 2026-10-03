@@ -1,5 +1,84 @@
 # Validation — Project foundation collection
 
+## Self-conformance gate and status reference — 3 October 2026
+
+Base: `4edb9c4`, with uncommitted changes in a task worktree. This change adds the
+[self-conformance review](self-conformance.md) as a collection release requirement,
+a shared [status and evidence](../collections/project-foundation/references/status-and-evidence.md)
+reference, and three mechanical checks. The full review itself has not been run;
+the first collection release requires it.
+
+### Mechanical evidence
+
+- The new foundation-checker tests were run against the previous checker and
+  failed on each new case, while every earlier case still passed. The `Unknown`
+  authority case was later changed to be accepted, after review finding 2 below.
+- Package validation's new copy-record check failed on test-audit's ledger record,
+  which still named source-of-truth's entry point after the report-only rule moved
+  to check design. Repointing the record made it pass.
+- The project-docs checker now reads the document-homes table. The paths it derives
+  equal the previous hard-coded set. A test with a fabricated map shows a new home
+  becoming valid and an old one invalid; an unreadable map is reported as such.
+- All four Forge foundations and `project-docs/` directories pass both checkers.
+  Package validation, 14 collection tests and `git diff --check` pass.
+
+### Independent meaning comparison
+
+A fresh-context reviewer compared each rewritten passage with its prior text and
+the linked targets. It found four material and ten minor problems; all were
+addressed before the trials below were recorded.
+
+| Finding | Disposition |
+| --- | --- |
+| The new authority section named adopted decisions as a source of authority | Authority comes from the user and their delegation; documents record it without expanding it. The removed "expand execution permissions" clause is restored. |
+| Requiring known declaration values made an unidentified parent read as "no parent" | Reverted. `Unknown` is again a valid authority, and the format says so. |
+| The method implied ordinary edits need only mechanical checks | It now defers to AGENTS.md for ordinary edits. |
+| A reviewer could accept their own exception, and trials only had to be recorded | The owner accepts exceptions; trials must meet the routing requirement. |
+| Ten minor wording, scope and link issues | Fixed, including restoring "design agreement" and "selected design" and limiting "seen to fail" to consistency checks as its source does. |
+
+The reviewer confirmed that every deleted README statement is still stated in
+the collection.
+
+### Routing trials
+
+Two fresh contexts worked in a synthetic consumer project outside this repository,
+with the draft collection installed, provenance and a project hook modelled on
+Forge's. Entry was through project instructions. The status trial ran before the
+review fixes above; its route was unchanged by them.
+
+| Case | Outcome | Reads |
+| --- | --- | --- |
+| Update the plan after implementing a backup whose test passes | Recorded "Implemented, not verified" with the reason, kept the dependent timer blocked, and told the owner that the restore rehearsal the policy requires is missing. It also showed the test fails without an archive. No private data was read. | 10 files, about 3,890 words |
+| Fix a README spelling mistake | Fixed one word; read no skill or the new reference | 4 files, about 1,250 words |
+
+Reading classification:
+
+- The status reference (about 560 words) was useful rather than strictly required:
+  the foundation's recovery row and the plan also implied the result.
+- Its link to source-of-truth reached all of `durable-checks.md` (about 1,230 words)
+  for a one-sentence rule. The link now points to that rule's section.
+- Both trials read `foundation-format.md` (about 860 words) because the hook says to
+  read the foundation through it, although the fixture's declarations were empty.
+  This is an existing hook pattern, not part of this change; see the candidates
+  below.
+
+One run per case shows that the routes work, not that they are reliable.
+
+### Candidates for the first full review
+
+- Entry hooks send every task through `foundation-format.md`; a project without
+  declarations, or a literal edit, may not need it.
+- State terms still vary across skills, for example "design agreement", "selected
+  design" and "approved use". Unifying them needs a decision on their meanings.
+- Status and evidence limits "seen to fail" to consistency checks, as its source
+  does. Applying it to all tests would be a deliberate tightening; the status trial
+  did this unprompted and found it useful.
+- The prose has many negative caveats; a clear-writing pass could state more rules
+  positively.
+- Whether this repository adopts a project foundation of its own.
+- The unmerged `foundation-task-conventions` branch rewrites several files this
+  change also edits; whichever lands second reconciles them.
+
 ## Git worktree default — 3 October 2026
 
 Git worktrees joins the collection at unreleased version 0.1.0. Project bootstrap
