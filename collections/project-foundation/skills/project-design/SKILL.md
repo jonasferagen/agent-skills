@@ -111,4 +111,5 @@ When selecting the next task or staging implementation, read
 [project planning](../project-planning/SKILL.md). Design readiness means the important
 cases have clear owners and remaining unknowns have explicit consequences. Report
 which cases were traced and which behavior still needs implementation evidence.
-A document walkthrough cannot establish working commands, recovery or isolation.
+A document walkthrough establishes only the consistency of the traced cases; see
+[what evidence establishes](../../references/status-and-evidence.md#what-evidence-establishes).

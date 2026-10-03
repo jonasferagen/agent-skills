@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Bootstrap a new project or a fresh repository with project boundaries, policy and a project overview, plus a README that links them. Use when establishing this starting foundation; ordinary implementation and documentation maintenance belong to their own workflows."
 metadata:
-  version: "5.0.0"
+  version: "5.0.1"
 ---
 
 # Project bootstrap
@@ -56,8 +56,8 @@ constraint in policy and a selected local database in overview, linking to the
 constraint when relevant. A possible future mechanism does not adopt the policy
 for that future use. Keep detailed architecture elsewhere once it is needed.
 
-Fill from established decisions. Distinguish adopted scope, proposals and unknowns
-where that difference matters. For a consequential unknown, explain what depends
+Fill from established decisions. Distinguish adopted, proposed and unknown
+[states](../../references/status-and-evidence.md#states) where that difference matters. For a consequential unknown, explain what depends
 on it and when it needs a decision. Ask now only if the current work depends on
 the answer. A short statement that the subject is undecided is sufficient when
 there is little evidence. Remove template prompts, example rows and unused

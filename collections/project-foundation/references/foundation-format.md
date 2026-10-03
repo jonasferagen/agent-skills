@@ -15,9 +15,9 @@ Store project-specific facts in rows; link detailed owners or exception records
 from cells. Procedures, skill routes, interpretation rules and evidence belong
 in project instructions, the collection or their existing document owners.
 
-References and Inheritance are declarations. Boundaries defines purpose, scope
-and responsibility; Overview records technical choices and open options; Policy
-records operating facts and adopted constraints. Use the same columns for owners
+References and Inheritance are declarations. Boundaries defines purpose, scope and responsibility;
+Overview records technical choices and open options; Policy records operating
+facts and adopted constraints. Use the same columns for owners
 and members. Members retain only local differences in the three fact tables.
 Use `Unknown` for an unresolved value and `None` for an established absence;
 remove unused inherited rows rather than filling them with unknowns. Row names
@@ -26,8 +26,11 @@ are unique within a table; scope distinct cases in their row names or values.
 The format applies to new foundations and requested migrations. Existing separate
 document homes remain valid until deliberately migrated; do not reformat a project
 just to answer a question. The [format checker](../scripts/validate-foundation.py)
-checks files using this format against the template. It does not assess truth,
-resolve references, infer permissions or establish implementation compliance.
+checks files using this format against the template. It also checks that each
+symbolic reference uses a key declared in the same file, that each authority is
+one anchored reference or `Unknown`, and, comparing paths as text, that no section
+inherits from its own file. It opens no targets: it does not follow inheritance,
+assess truth, infer permissions or establish implementation compliance.
 
 ## References
 
@@ -53,9 +56,10 @@ raw file directory. Snapshots need a revision and update mechanism.
 ## Inheritance
 
 Each Inheritance row names one of Boundaries, Overview or Policy and the authority
-for that section, including its anchor. For example, the Policy authority may be
-`$orchard/project-docs/foundation.md#policy`. Rows may select different owners. An absent
-row means that section has no parent; an empty Inheritance table means all three
+for that section: one `$key/path#anchor` reference using a key from References,
+or `Unknown` while the parent is not yet identified. For example, the Policy authority may be
+`$orchard/project-docs/foundation.md#policy`. Rows may select different owners.
+An absent row means that section has no parent; an empty Inheritance table means all three
 sections are locally owned. Do not infer an authority from the References table.
 
 Read the selected section before relying on inherited decisions. Follow further

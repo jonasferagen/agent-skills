@@ -54,6 +54,8 @@ passes before a skill release and says what to record.
   automatic discovery trial.
 
 - Run `python3 scripts/validate-packages.py` and `git diff --check`.
+- Before tagging a collection release, complete its
+  [self-conformance review](validation/self-conformance.md).
 - Review the affected scenarios under `validation/`; record actual results and
   remaining limits when evaluating a skill. For a narrow edit, read the applicable
   behavior cases; load dated trial history only when revisiting those results.

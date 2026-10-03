@@ -4,9 +4,21 @@ import argparse
 from pathlib import Path
 import re
 
-ROOT_FILES = {'foundation.md', 'working-agreements.md'}
-TOPIC_DIRS = {'planning', 'decisions', 'records'}
+HOMES = Path(__file__).resolve().parents[1] / 'references/document-homes.md'
+HOME = re.compile(r'^\|[^|\n]+\| `project-docs/([^`]+)` \|', re.MULTILINE)
 TOPIC_NAME = re.compile(r'[a-z0-9]+(?:-[a-z0-9]+)*\.md\Z')
+
+
+def managed_homes():
+    """Read fixed files and topic directories from the document-homes map."""
+    files, topic_dirs = set(), set()
+    for home in HOME.findall(HOMES.read_text()):
+        directory, _, name = home.rpartition('/')
+        if name == '<topic>.md':
+            topic_dirs.add(directory)
+        else:
+            files.add(home)
+    return files, topic_dirs
 
 
 def validate(root: Path) -> list[str]:
@@ -14,27 +26,32 @@ def validate(root: Path) -> list[str]:
         return [f'{root}: managed document root must not be a symlink']
     if not root.is_dir():
         return [f'{root}: managed document directory is missing']
+    files, topic_dirs = managed_homes()
+    if not files and not topic_dirs:
+        return [f'{HOMES}: no managed homes found in its document type table']
+    directories = topic_dirs | {str(Path(name).parent) for name in files} - {'.'}
     errors = []
     for path in sorted(root.rglob('*')):
         relative = path.relative_to(root)
-        parts = relative.parts
         if path.is_symlink():
             errors.append(f'{relative}: managed documents must live in this directory, not behind symlinks')
         elif path.is_dir():
-            if len(parts) != 1 or parts[0] not in TOPIC_DIRS:
+            if relative.as_posix() not in directories:
                 errors.append(f'{relative}: unrecognized managed document directory')
-        elif len(parts) == 1 and parts[0] in ROOT_FILES:
+        elif relative.as_posix() in files:
             continue
-        elif len(parts) == 2 and parts[0] in TOPIC_DIRS:
-            if parts == ('planning', 'README.md') or TOPIC_NAME.fullmatch(parts[1]):
+        elif relative.parent.as_posix() in topic_dirs:
+            if TOPIC_NAME.fullmatch(relative.name):
                 continue
             errors.append(f'{relative}: expected a lowercase hyphenated Markdown topic name')
         else:
             errors.append(f'{relative}: no managed document type owns this path')
-    planning = root / 'planning'
-    if planning.is_dir() and any(p.is_file() for p in planning.iterdir()):
-        if not (planning / 'README.md').is_file():
-            errors.append('planning/README.md: detailed plans need an active plan index')
+    # A mapped file inside a topic directory is that directory's index; its topics link from it.
+    for index in sorted(files):
+        directory = root / Path(index).parent
+        if Path(index).parent.as_posix() in topic_dirs and directory.is_dir() and not (root / index).is_file():
+            if any(p.is_file() for p in directory.iterdir()):
+                errors.append(f'{index}: topic documents in {directory.name}/ need this index')
     return errors
 
 

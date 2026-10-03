@@ -54,8 +54,9 @@ use lowercase words separated by hyphens, optionally prefixed by a date.
 This restriction governs document placement, not permission to undertake work.
 
 Run `python3 <collection>/scripts/validate-project-docs.py <project-docs-root>`
-after changing the managed directory. It checks allowed paths and requires the
-active plan index when detailed plans exist. Review content against the type map
+after changing the managed directory. It reads the allowed paths from the table
+above, so the two cannot disagree, and requires the active plan index when
+detailed plans exist. Review content against the type map
 as well: a filename check cannot tell whether a technical manual was misfiled as
 a plan. Validate the foundation format separately when its facts change.
 

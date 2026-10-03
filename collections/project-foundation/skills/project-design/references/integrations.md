@@ -50,8 +50,8 @@ and acceptance evidence. Implementation belongs to the capability owner;
 creative acceptance and consumer adoption retain their own owners. Provider-specific
 setup and commands belong in its procedures, linked from the design.
 
-Keep decisions scoped: proposed mechanism, selected design, implemented behavior
-and verified operation are distinct. Preserve unselected alternatives only when
+Keep decisions scoped: a proposed mechanism, a selected design, implemented
+behavior and verified operation are separate [states](../../../references/status-and-evidence.md#states). Preserve unselected alternatives only when
 they explain a meaningful tradeoff. A successful local experiment does not establish
 paid-provider retry safety or production readiness. Broaden reusable integration
 guidance after a concrete operation exposes a repeated need.

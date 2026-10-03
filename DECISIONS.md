@@ -378,3 +378,32 @@ Upgrades remove retired skill links while preserving adopted working agreements.
 Historical validation remains available; this change does not establish a measured
 comparison with native worktree support. No downstream installation or release tag
 is changed.
+
+## 2026-10-03 — Self-conformance before collection releases
+
+This repository follows the rules its skills teach. A collection release now
+requires a [self-conformance review](validation/self-conformance.md) of the whole
+collection against its members' own review steps, recorded on its validation page.
+Skill releases keep the lighter recommended pass. The method selects rule owners
+and links their checklists rather than restating them; a recurring finding can
+become a mechanical check.
+
+Three mechanical checks now apply rules that were previously followed by hand.
+Package validation checks that each recorded package-boundary copy names an
+existing counterpart that records it back; its first run found test-audit's ledger
+record still pointing to source-of-truth's entry point after the report-only rule
+moved to check design. The foundation checker checks, without reading targets,
+that symbolic references use declared keys, that each authority is one anchored
+reference or `Unknown`, and that no section inherits from its own file. The
+project-docs checker reads its allowed paths from the
+document-homes table instead of a copied list.
+
+## 2026-10-03 — One home for status, evidence and authority
+
+[Status and evidence](collections/project-foundation/references/status-and-evidence.md)
+is the shared home for the unknown, proposed, adopted, implemented and verified
+states, what common kinds of evidence can establish, and where authority to act
+comes from. Skills link to it where they restated the general rule and keep
+domain-specific cautions, such as what a flowchart arrow does not prove, and
+their existing state terms. The catalog no longer restates the
+collection's rules. Edited members take patch versions; no release tag is created.
