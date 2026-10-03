@@ -21,7 +21,6 @@ Part of the [project-foundation collection](collections/project-foundation/COLLE
 | [Project bootstrap](collections/project-foundation/skills/project-bootstrap/SKILL.md) (`project-bootstrap`, draft) | Start a repository and establish boundaries, policy and overview, with an entry README. |
 | [Project design](collections/project-foundation/skills/project-design/SKILL.md) (`project-design`, draft) | Shape architecture, responsibilities, workflows and integration choices; select the next useful step. |
 | [Project contracts](collections/project-foundation/skills/project-contracts/SKILL.md) (`project-contracts`, draft) | Read, apply, design and review handoff obligations and compatibility. |
-| [Git worktrees](collections/project-foundation/skills/git-worktrees/SKILL.md) (`git-worktrees`) | Use task worktrees for repository edits, with exceptions owned by repository policy. |
 | [Project policy](collections/project-foundation/skills/project-policy/SKILL.md) (`project-policy`) | Interpret engineering obligations, assess compliance evidence, and establish or review requirements as circumstances change. |
 | [Project documentation](collections/project-foundation/skills/project-docs/SKILL.md) (`project-docs`) | Decide where knowledge belongs and keep it current. |
 | [Authoritative definitions](collections/project-foundation/skills/source-of-truth/SKILL.md) (`source-of-truth`) | Give each rule a home and derive or check its other appearances. |
@@ -33,12 +32,6 @@ Members bind their shared owner once and retain only local differences. Project-
 those facts and reviews their consequences when circumstances change. The
 collection supplies the authoring guidance; the templates are not standalone manuals. Existing
 projects keep their established document homes.
-
-The foundation uses task worktrees for edits in Git repositories unless local
-instructions explicitly opt out, for example for a deliberately single-agent
-project. Work outside Git proceeds directly. Bootstrap places this default and
-the Git skill route in project instructions; existing installations receive it
-when their collection and instruction hook are deliberately updated.
 
 The policy section holds only concise operating facts and adopted decisions by axis.
 Project-policy interprets it alongside boundaries; downstream requirements,
@@ -405,6 +398,11 @@ absent dependency as absent rather than as a failing test. Forge Project Policy
 citations were redirected as in test-audit — two carried substance now stated in
 place, and whether a check earns its recurring cost defers to the reading
 project's own policy.
+
+**git-worktrees** was retired on 3 October 2026. Personal worktree preferences
+belong in global agent instructions; repository placement conventions belong in
+project instructions. Bootstrap preserves existing working agreements. The
+[validation history](validation/git-worktrees.md) remains available.
 
 **change-workflow** was retired on 3 October 2026. It combined Git worktree
 operations with verification, document maintenance, tracker procedures and

@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Bootstrap a new project or a fresh repository with project boundaries, policy and a project overview, plus a README that links them. Use when establishing this starting foundation; ordinary implementation and documentation maintenance belong to their own workflows."
 metadata:
-  version: "4.2.1"
+  version: "5.0.0"
 ---
 
 # Project bootstrap
@@ -17,13 +17,6 @@ Resolve the target directory and read applicable project instructions. Inspect
 existing files and Git state before writing. A fresh start does not imply copying
 an earlier implementation or adopting its technology and obligations. Use prior
 projects as evidence only to the extent the user intends.
-
-Use [Git worktrees](../git-worktrees/SKILL.md) before editing in a Git repository.
-Outside Git, work directly unless repository creation is part of the task. If
-creating a repository, initialize it and select a task worktree before writing
-the foundation; the Git skill covers repositories without a first commit.
-Honor an explicit repository-local worktree exception, including one for a
-deliberately single-agent project. Do not infer an exception from the task's size.
 
 Create a local Git repository when requested or included in the bootstrap scope.
 Check whether the target already belongs to a repository before initializing one;
@@ -79,7 +72,8 @@ accessible shared installation; do not require a copy per repository. For a new 
 adoption, follow [installation guidance](../../references/installation.md) and
 copy the whole collection; use an existing complete
 installation when one is already selected. Preserve the user's chosen installation
-scope and existing project instructions.
+scope and existing project instructions. Preserve project working agreements;
+do not copy personal global preferences into project instructions unless requested.
 
 Read the [shared authoring guidance](../../references/authoring.md) and use
 [project-policy](../project-policy/SKILL.md) to assess the initial facts and
@@ -101,14 +95,6 @@ when a task depends on it, and check affected decisions before completion. Keep
 proposals and implementation evidence distinct from adopted requirements.
 It must also route:
 
-- Before edits in a Git repository, use a task worktree and consult
-  [Git worktrees](../git-worktrees/SKILL.md). Put the default itself in `AGENTS.md`,
-  alongside the installed-skill route (through the local reference when shared).
-  Only repository-local instructions
-  can opt out; link any existing exception in those instructions instead of
-  overwriting it.
-  State that work outside Git proceeds directly and needs no repository merely
-  to satisfy this rule. An upgrade must add or reconcile this hook explicitly.
 - Initial scaffolding to this skill and document organization to project-docs.
 - Shaping responsibilities, repository boundaries and handoffs to
   [project-design](../project-design/SKILL.md); use it when developing architecture

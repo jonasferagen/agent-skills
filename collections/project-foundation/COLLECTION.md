@@ -11,7 +11,6 @@ for source changes, upgrades or investigation of a concrete source issue.
 | Start the project foundation | [Project bootstrap](skills/project-bootstrap/SKILL.md) |
 | Shape architecture, responsibilities, workflows and integration choices | [Project design](skills/project-design/SKILL.md) |
 | Read, apply, design or review handoff obligations | [Project contracts](skills/project-contracts/SKILL.md) |
-| Start or resume edits and preserve repository work | [Git worktrees](skills/git-worktrees/SKILL.md) |
 | Interpret policy, assess compliance or review changed circumstances | [Project policy](skills/project-policy/SKILL.md) |
 | Organize and reconcile project documents | [Project documentation](skills/project-docs/SKILL.md) |
 | Keep authoritative decisions and their consumers aligned | [Source of truth](skills/source-of-truth/SKILL.md) |
@@ -33,9 +32,7 @@ loading that reference. Follow declared inheritance through
 it; unavailable owners or unknown terms do not grant permission or waive obligations.
 
 For authored or restructured explanations, use
-[shared authoring guidance](references/authoring.md). Edits in Git repositories use task
-worktrees unless repository-local instructions explicitly opt out. Work outside
-Git proceeds directly.
+[shared authoring guidance](references/authoring.md).
 
 For adoption, upgrades, installation locations or templates, use
 [installation guidance](references/installation.md) and bootstrap. Routine use

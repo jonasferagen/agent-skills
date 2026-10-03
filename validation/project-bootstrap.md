@@ -1,5 +1,33 @@
 # Validation — Project bootstrap
 
+## Worktree skill retirement — 3 October 2026
+
+Bootstrap 5.0.0 removes the mandatory worktree skill read and generated default.
+It preserves project working agreements and keeps personal global preferences
+out of generated instructions unless requested. This supersedes the worktree
+default described below.
+
+A fresh consumer agent used an installed draft outside the authoring repository,
+starting from a project AGENTS hook. The request was to establish a household
+equipment inventory foundation, with storage and interface undecided, using the
+existing installation and without Git, dependencies or implementation.
+
+The result preserved the existing British English and `notes/` agreements,
+created README and foundation routes, and left storage and interface unresolved.
+Generated instructions contain no worktree default or retired skill route. The
+foundation validator passed. Retained [trial artifacts](worktree-retirement-trial/)
+include generated files, the setup and the evaluator's read report.
+
+Package validation passed for 24 skill entries and one collection, including
+installation-unit links. Whitespace checks passed. Source review found no active
+route to the removed skill; historical trial records remain unchanged. Legitimate
+multi-repository guidance for accessing shared owners from worktrees remains.
+
+Limits: one bootstrap run establishes this path, not routing reliability. It did
+not exercise an existing-Git bootstrap, downstream upgrade or comparative native
+worktree behaviour. No helper code changed or downstream installation was updated.
+
+
 ## Git worktree default — 3 October 2026
 
 Unreleased version 2.0.0 applies the collection's Git worktree rule before

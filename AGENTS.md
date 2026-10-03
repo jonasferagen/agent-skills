@@ -7,12 +7,7 @@ provenance is not a required reading list for ordinary consumption.
 
 ## Git
 
-Use a separate task worktree before editing this repository. Follow
-[Git worktrees](collections/project-foundation/skills/git-worktrees/SKILL.md)
-when starting or resuming edits, moving existing changes, or cleaning up.
 This repository keeps task worktrees under `.worktrees/` in the main checkout.
-Worktree exceptions must be stated in repository-local instructions; a task's size or
-an agent working alone does not create one.
 
 ## Package maintenance
 

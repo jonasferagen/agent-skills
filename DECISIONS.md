@@ -12,7 +12,7 @@ Its broad workflow is not needed. Preserve the [validation and retirement
 review](validation/change-workflow.md) and Git history; do not transfer its merge,
 publishing, tracker or reporting requirements into another package.
 
-### Make task worktrees a foundation default — adopted
+### Make task worktrees a foundation default — superseded by retirement below
 
 Use a separate task worktree for edits in Git repositories. Only repository-local
 instructions can opt out, for example for a deliberately single-agent project.
@@ -20,7 +20,7 @@ Work outside Git proceeds directly; a spike needs no repository merely to
 satisfy this rule. Small tasks and an agent working alone do not create implicit
 exceptions.
 
-The collection's [Git worktrees skill](collections/project-foundation/skills/git-worktrees/SKILL.md)
+The collection's former `git-worktrees` skill (preserved in Git history)
 owns the short shared procedure. Bootstrap installs a visible rule and concrete
 skill route in each project's instructions. Repository instructions own exceptions, and
 existing installations adopt the rule through an explicit collection and hook
@@ -425,3 +425,18 @@ A direct-contract trial exposed an additional authority-to-format read for proje
 with established separate document owners. Authority now loads format guidance
 when resolving declarations or inherited values. Its rules for consulting affected
 owners, handling conflicts and preserving adopted obligations remain unchanged.
+
+## 2026-10-03 — Retire git-worktrees from project-foundation
+
+Remove `git-worktrees` and its active catalog, collection and bootstrap routes.
+The owner has moved personal worktree preferences into global agent instructions.
+Keep repository placement conventions in repository instructions. The collection
+continues to preserve project working agreements without imposing a worktree
+policy or reproducing personal preferences in generated instructions.
+
+This supersedes the earlier collection worktree default. Project-bootstrap becomes
+5.0.0 because its mandatory startup and generated-instruction behavior changes.
+Upgrades remove retired skill links while preserving adopted working agreements.
+Historical validation remains available; this change does not establish a measured
+comparison with native worktree support. No downstream installation or release tag
+is changed.

@@ -6,7 +6,7 @@ layout so internal references work. A project spanning repositories uses
 [multi-repository foundations](multi-repository.md) to choose shared owners and
 installation locations before copying files.
 
-The collection contains bootstrap, Git worktrees, design and contracts,
+The collection contains bootstrap, design and contracts,
 documentation and policy, source-of-truth, authoring skills and shared templates.
 The [foundation template](../templates/docs/foundation.md) has five fixed tables:
 References, Inheritance, Boundaries, Overview and Policy. Their meaning belongs to
@@ -27,7 +27,7 @@ claim that a client automatically discovers nested skills. A user-wide adoption
 can use its chosen location and equivalent routing. Global installation requires
 that scope to be part of the user's request.
 
-Edits in Git repositories use task worktrees unless repository-local instructions
-explicitly opt out. Work outside Git proceeds directly. Bootstrap puts this rule
-and the Git worktrees route in project instructions so it is visible before the
-first edit; copying the collection alone does not activate project hooks.
+When upgrading from a version containing `git-worktrees`, remove routes to that
+retired skill. Preserve adopted project working agreements; retiring the skill
+does not revoke them. Personal worktree preferences belong in global agent
+instructions and need no collection route.
