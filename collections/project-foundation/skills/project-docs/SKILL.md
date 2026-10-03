@@ -2,7 +2,7 @@
 name: project-docs
 description: "Establish, review, or reconcile repository documentation, including domain glossaries, document ownership, project instructions, and high-level relationship diagrams. Use for project documentation structure and consistency work; not standalone office documents, generic copyediting, or application implementation."
 metadata:
-  version: "4.0.0"
+  version: "4.0.1"
 ---
 
 # Project documentation
@@ -76,8 +76,8 @@ keys, cardinalities, permissions or workflows to make a diagram look complete.
 An implemented table does not establish an available UI feature.
 
 Distinguish intended behavior, implementation, recorded verification and live
-verification. A documentation edit proves neither implementation nor
-verification, recorded or live. Conflicting or missing evidence should remain
+verification; [status and evidence](../../references/status-and-evidence.md) says what a documentation
+edit and other evidence can establish. Conflicting or missing evidence should remain
 explicit until resolved. Do not inspect live accounts or change services solely
 to make a documentation claim look current.
 

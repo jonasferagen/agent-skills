@@ -363,3 +363,13 @@ This applies the distinction to contracts first. It does not impose four modes
 on every skill or add a subject reference for every possible contract type.
 Validation belongs in [project-contracts](validation/project-contracts.md).
 No release or downstream adoption is implied.
+
+## 2026-10-03 — One home for status, evidence and authority
+
+[Status and evidence](collections/project-foundation/references/status-and-evidence.md)
+is the shared home for the unknown, proposed, adopted, implemented and verified
+states, what common kinds of evidence can establish, and where authority to act
+comes from. Skills link to it where they restated the general rule and keep
+domain-specific cautions, such as what a flowchart arrow does not prove, and
+their existing state terms. The catalog no longer restates the
+collection's rules. Edited members take patch versions; no release tag is created.

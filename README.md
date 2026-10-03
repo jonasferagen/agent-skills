@@ -27,27 +27,10 @@ Part of the [project-foundation collection](collections/project-foundation/COLLE
 | [Project documentation](collections/project-foundation/skills/project-docs/SKILL.md) (`project-docs`) | Decide where knowledge belongs and keep it current. |
 | [Authoritative definitions](collections/project-foundation/skills/source-of-truth/SKILL.md) (`source-of-truth`) | Give each rule a home and derive or check its other appearances. |
 
-Project bootstrap establishes `project-docs/foundation.md` with five fixed tables:
-References, Inheritance, Boundaries, Overview and Policy. The file holds data only.
-The collection owns interpretation and project instructions own workflow routes.
-Members bind their shared owner once and retain only local differences. Project-policy interprets
-those facts and reviews their consequences when circumstances change. The
-collection supplies the authoring guidance; the templates are not standalone manuals. Existing
-projects keep their established document homes.
-
-The foundation uses task worktrees for edits in Git repositories unless local
-instructions explicitly opt out, for example for a deliberately single-agent
-project. Work outside Git proceeds directly. Bootstrap places this default and
-the Git skill route in project instructions; existing installations receive it
-when their collection and instruction hook are deliberately updated.
-
-The policy section holds only concise operating facts and adopted decisions by axis.
-Project-policy interprets it alongside boundaries; downstream requirements,
-working rules, impact assessments and evidence live in their own documents.
-Every policy change receives an impact assessment.
-Stricter requirements can create substantial downstream work, tracked with owners
-and acceptance evidence before the changed use is considered ready. This starts
-as a manual review; automation can grow from actual transitions.
+The [collection entry point](collections/project-foundation/COLLECTION.md) routes
+to the foundation scaffold, installation and default project routes, including
+task worktrees. Its skills and references own how project facts are interpreted
+and maintained; this catalog only helps select an entry point.
 
 ## Authoring
 

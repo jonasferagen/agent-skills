@@ -29,15 +29,14 @@ before completion. Reuse current readings; a link to a skill is not an instructi
 to load every skill. Update the summary in the same change when its source changes.
 Treat it as a derived copy and keep it to constraints that routinely affect work.
 
-Apply established decisions within their stated scope. A proposal is not adopted
-policy, and an empty cell is unknown. Current user decisions can change the
-foundation; record those changes and their consequences so later work has the
-same authority. The documents do not override the user's instructions or expand
-execution permissions.
+Apply established decisions within their stated scope. [Status, evidence and
+authority](status-and-evidence.md) defines the unknown, proposed, adopted,
+implemented and verified states and where authority to act comes from. Current
+user decisions can change the foundation; record those changes and their
+consequences so later work has the same authority. The documents do not override
+the user's instructions or expand execution permissions.
 
-Implementation and tests provide evidence of actual behavior. They do not
-silently amend an adopted requirement. Conversely, a policy statement does not
-prove that the implementation meets it. When they disagree, identify the owner,
+When implementation and an adopted requirement disagree, identify the owner,
 the requirement, the observed behavior and the affected work. Preserve the gap
 until a deliberate decision or implementation change resolves it; do not edit the
 policy merely to make the discrepancy disappear.

@@ -2,7 +2,7 @@
 name: project-design
 description: "Shape system architecture, responsibilities, workflows and integration choices before or during implementation. Use for operating design across people, agents, tools or services; literal edits, provider setup and runtime implementation have separate workflows."
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
 ---
 
 # Project design
@@ -99,4 +99,5 @@ When selecting the next task or staging implementation, read
 [project planning](../project-planning/SKILL.md). Design readiness means the important
 cases have clear owners and remaining unknowns have explicit consequences. Report
 which cases were traced and which behavior still needs implementation evidence.
-A document walkthrough cannot establish working commands, recovery or isolation.
+A document walkthrough establishes only the consistency of the traced cases; see
+[what evidence establishes](../../references/status-and-evidence.md#what-evidence-establishes).

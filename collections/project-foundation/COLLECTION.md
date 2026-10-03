@@ -20,6 +20,7 @@ layout so relative references work.
 | Task | Entry point |
 | --- | --- |
 | Interpret foundation declarations and inherited values | [Foundation format](references/foundation-format.md) |
+| Record or report the status of a decision or behavior | [Status and evidence](references/status-and-evidence.md) |
 | Start the project foundation | [Project bootstrap](skills/project-bootstrap/SKILL.md) |
 | Shape architecture, responsibilities, workflows and integration choices | [Project design](skills/project-design/SKILL.md) |
 | Create, sequence or maintain project plans and next steps | [Project planning](skills/project-planning/SKILL.md) |
@@ -60,7 +61,8 @@ meaning; foundation files contain data only. The [README template](templates/REA
 links the foundation.
 Members declare inheritance and keep only local differences. Use the templates
 through these skills. They deliberately omit the procedure for interpreting or
-maintaining those facts. Blank cells mean unknown, never permission or a waiver.
+maintaining those facts. A blank or `Unknown` value means
+[unknown](references/status-and-evidence.md#states), never permission or a waiver.
 
 For a project-local adoption, copy this whole directory to
 `.agents/collections/project-foundation/`, record the source and full commit in

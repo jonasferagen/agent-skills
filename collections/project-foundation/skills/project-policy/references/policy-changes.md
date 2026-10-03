@@ -98,8 +98,9 @@ concrete follow-ups, and continue unaffected work under its existing policy.
 ## Record the outcome
 
 Record date, old/new requirements, assessed areas, linked work and evidence,
-remaining gaps and the gate for the changed use. Adopted policy, implementation
-and verified compliance are separate states. Report which one was reached.
+remaining gaps and the gate for the changed use. Report which
+[state](../../../references/status-and-evidence.md#states) was reached: adopted policy, implementation or
+verified compliance.
 
 For now, this review and linked queue are the mechanism. Broader automation can
 later detect policy changes, find consumers or select checks. Add it from actual

@@ -2,7 +2,7 @@
 name: project-planning
 description: "Create, review or maintain project plans, sequence bounded work, and reconcile shared and local next steps. Use for planning outcomes and dependencies; architecture decisions and execution procedures retain their own owners."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Project planning
@@ -62,8 +62,8 @@ home for their definitions.
 ## Maintain the plan as evidence changes
 
 On completion, record the result and relevant evidence, then update dependent
-items. Distinguish design agreement, implemented behavior and verified behavior;
-a completed design task does not complete its implementation task. Partial work
+items. Distinguish design agreement, implemented behavior and verified behavior
+([states](../../references/status-and-evidence.md#states)); a completed design task does not complete its implementation task. Partial work
 retains its remaining action and any usable evidence.
 
 When a discovery changes scope or dependencies, revise the affected sequence and
@@ -78,7 +78,8 @@ for a routine progress update.
 Trace one active item from inputs to completion evidence, including its dependent
 consumer when relevant. Check that it has one status owner, its next action is
 possible or its blocker explicit, and deferred choices have not become accidental
-gates. Report proposed sequencing separately from authorized execution. Follow
-existing authority; a plan does not itself permit paid jobs, migration or deployment.
+gates. Report proposed sequencing separately from authorized execution. A plan
+grants no [authority to act](../../references/status-and-evidence.md#authority-to-act), such as running
+paid jobs, migrating or deploying.
 
 For authored plans use [authoring guidance](../../references/authoring.md).

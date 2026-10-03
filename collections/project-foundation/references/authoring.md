@@ -18,8 +18,8 @@ directly; an ER task goes to the ER reference. Preserve the structure of an
 existing scaffold table when filling it. Load construction and rendering guidance
 only for the form being built or reviewed.
 
-Preserve adopted decisions and uncertainty. The scaffold's blank cells mean
-unknown. Populate only what the user's decisions or repository evidence supports;
+Preserve adopted decisions and uncertainty. The scaffold's `Unknown` values are
+[unknown](status-and-evidence.md#states), not defaults. Populate only what the user's decisions or repository evidence supports;
 mark consequential unknowns explicitly with what depends on them. Keep reusable
 instructions in the collection and project facts in the project documents.
 

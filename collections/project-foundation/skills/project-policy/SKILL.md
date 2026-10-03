@@ -2,7 +2,7 @@
 name: project-policy
 description: "Establish or revise engineering requirements when project phase, delivery scope, users, data, exposure, lifetime, compatibility or recovery needs change. Assess the impact and track prerequisites; ordinary edits do not require a policy review."
 metadata:
-  version: "4.0.0"
+  version: "4.0.1"
 ---
 
 # Project policy
@@ -61,9 +61,9 @@ or changing project documents.
 Read policy for current facts and adopted decisions, boundaries when scope
 or responsibility matters, and overview for affected implementation choices.
 Consult a glossary for project meanings when one exists and the task needs it. Interpret the sparse
-scaffold: an empty cell is unknown, not a default guarantee or permission. Keep
-facts, proposals, adopted obligations and verified behavior distinct. Do not
-recreate a manual inside each document.
+scaffold using [status and evidence](../../references/status-and-evidence.md): an unknown value is
+neither a default guarantee nor permission. Keep facts, proposals, adopted
+obligations and verified behavior distinct. Do not recreate a manual inside each document.
 
 Keep the Policy section of `project-docs/foundation.md` (or an established separate
 policy owner) to one two-column table:
@@ -122,7 +122,8 @@ check. Link existing procedures rather than copying their details. Retain
 explicit project commitments until deliberately changed: a lighter profile
 cannot silently waive tests, migration rules or authorization boundaries.
 Follow the user's existing authorization; neither the template nor a stricter
-policy grants permission to contact users, access production or deploy.
+policy grants [authority to act](../../references/status-and-evidence.md#authority-to-act), such as contacting
+users, accessing production or deploying.
 
 ## Change the policy
 
