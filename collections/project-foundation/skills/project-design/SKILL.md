@@ -2,7 +2,7 @@
 name: project-design
 description: "Shape system architecture, responsibilities, conceptual models, workflows and integration choices before or during implementation. Use for operating design across people, agents, tools or services; literal edits, provider setup and runtime implementation have separate workflows."
 metadata:
-  version: "0.8.0"
+  version: "0.9.0"
 ---
 
 # Project design
@@ -90,6 +90,15 @@ and disposable scratch where relevant. Identify external dependencies, required
 reads and writes, configuration and hidden assumptions about paths or host tools.
 Describe needed capabilities before selecting their packaging.
 
+When a workflow should reuse an execution environment across authored content
+sets, identify runtime code, content, configuration and derived preparation state
+separately. State who authors each, what selects a content revision, what the
+consumer needs to load it and where preparation may write. Content can include
+executable scripts or native project resources; placing it in a file volume does
+not make it passive data or define its compatibility contract. Repository ownership,
+delivery format and runtime packaging are separate decisions. Co-location during
+exploration can be deliberate; identify which coupling a later split must remove.
+
 Identify the consequential handoffs and what each side must be able to rely on.
 Use project-contracts when those obligations need definition or review. Architecture
 chooses the parts and their relationships; contracts make a selected exchange
@@ -102,6 +111,14 @@ Exercise a relevant failure or change: rejected output, missing input, a repeate
 request, a revised dependency or an unavailable owner. Ask who diagnoses it, which
 state remains valid and how work continues without overwriting another owner's work.
 Choose cases from actual risks rather than running a fixed exhaustive checklist.
+
+For a proposed runtime/content split, trace a content-only revision and a change
+that needs new runtime behavior. Identify which code, configuration, prepared
+resources and retained records change in each case. Compare direct use of authored
+files with an assembled or prepared delivery where relevant, including missing or
+incompatible dependencies and an edit to shared source. Choose the smallest
+experiment that could distinguish the options; a generic runtime, extra repository
+or container is justified by the workflow rather than by the split alone.
 
 Look for competing writers, ambiguous acceptance, accidental dependency cycles and
 changes that force unrelated owners to move together. Compare a simpler arrangement

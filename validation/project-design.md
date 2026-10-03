@@ -139,3 +139,43 @@ policy-routing branch changes were imported.
 Checks: package validator (25 entries, one collection), project-design quick
 validation, 191 collection relative link paths and Git whitespace checks passed.
 These checks establish document/package integrity, not implemented Forge behavior.
+
+
+## Runtime and authored content, 0.9.0 — 2026-10-03
+
+Forge's four fixtures provide a concrete distinction: selection and player code
+can be shared while scene construction and review behavior remain authored
+content. The existing local pipeline copies selected PNGs, retains Game imports
+and adaptations, then imports a fresh assembled project. A proposed content volume
+does not decide these owners, Godot preparation, or whether a bundle includes code.
+The earlier guidance separated repository and deployment boundaries but did not
+explicitly exercise content-only and runtime-dependent revisions.
+
+The compatible addition to project-design asks for runtime, authored content,
+configuration and generated preparation state when a workflow needs that split.
+It compares direct source use with prepared delivery and preserves deliberate
+co-location. It prescribes neither a generic runtime nor containers. Clear-writing
+and instruction guidance were applied; no diagram or table changed.
+
+A fresh consumer began from a synthetic project instruction hook with the complete
+uncommitted collection draft based on `b55f464`. Its report-rendering example has
+executable SQL/Python definitions and source-adjacent compilation. The
+[retained result](runtime-content-boundary-trial/result.md) identifies preparation
+writes that conflict with a read-only source volume, separates content-only and
+runtime changes, and keeps ownership and implementation proposals explicit.
+[The read log](runtime-content-boundary-trial/reads.md) records 3,924 guidance words
+and 111 project-input words without initial truncation. The nearby factual question
+and literal title edit selected no wider workflow, but reused the same context;
+they are not independent cold trials.
+
+This demonstrates one instruction-hook route and a consistent non-Forge design
+case, not runtime feasibility, native discovery reliability or a measured context
+improvement. Package validation (25 entries, one collection), project-design quick
+validation and whitespace checks pass. Collection `0.5.0` remains unreleased; no
+release tag or collection-wide release-readiness claim is made.
+
+
+Reconciled concurrent source commits through `1499873`, preserving passive repair
+hooks and managed-document defaults. The runtime/content paragraphs exercised by
+the trial remain unchanged. Its raw records still name the original 0.7.0/0.3.0
+draft context; the integrated versions are design 0.9.0 and collection 0.5.0.
