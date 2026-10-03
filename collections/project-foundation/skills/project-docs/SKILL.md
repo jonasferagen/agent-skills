@@ -2,7 +2,7 @@
 name: project-docs
 description: "Establish, review, or reconcile repository documentation, including domain glossaries, document ownership, project instructions, and high-level relationship diagrams. Use for project documentation structure and consistency work; not standalone office documents, generic copyediting, or application implementation."
 metadata:
-  version: "4.0.1"
+  version: "4.1.0"
 ---
 
 # Project documentation
@@ -49,6 +49,14 @@ For decisions about document homes and reader routes, read
 [structure and ownership](references/structure.md). Use the
 [worked example](references/worked-example.md) only when that method needs an
 example; it is not a schema or template to impose.
+
+When establishing or reviewing links between architecture/design views, their
+explanations and detail owners, or preparing generated documentation browsing,
+read [connected views](references/view-structure.md). Ordinary reading and prose
+edits need no browsing format or metadata migration.
+For a new view or process page without an adequate existing structure, start at
+its [shared-template guidance](references/view-structure.md#start-from-a-shared-template).
+Template use alone needs no generated-browsing guidance.
 
 When an explanation needs a form decision, use the collection's
 [diagrams-and-tables](../diagrams-and-tables/SKILL.md) entrypoint. Only when the

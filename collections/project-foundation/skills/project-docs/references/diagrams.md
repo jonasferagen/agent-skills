@@ -19,6 +19,10 @@ One view has one home. Other documents link to it rather than redrawing it, so a
 correction is made in one place. An index may name a view and point at the
 document that owns it; it does not carry a second copy.
 
+For associations between a view, its explanation and detail destinations, use
+[connected views](view-structure.md). That guidance also covers a generated
+browser displaying the canonical view while preserving its source ownership.
+
 Across the set as a whole, not only inside one document, put a useful overview
 before implementation detail. Where a crowded overview has to split, link the
 focused views from the glossary or index so a reader can still find the whole

@@ -2,7 +2,7 @@
 name: project-design
 description: "Shape system architecture, responsibilities, conceptual models, workflows and integration choices before or during implementation. Use for operating design across people, agents, tools or services; literal edits, provider setup and runtime implementation have separate workflows."
 metadata:
-  version: "0.6.0"
+  version: "0.6.1"
 ---
 
 # Project design
@@ -41,6 +41,11 @@ are missing, add only enough context to locate the slice. Work may start inside
 an owner and reshape the design around it. A complete top-down model is not a
 prerequisite. Reconcile affected owners as findings become decisions, or leave
 an explicit question with the work that depends on it.
+
+When establishing how this slice's views connect to their explanations and
+surrounding detail, use project-docs'
+[connected-view guidance](../project-docs/references/view-structure.md). Ordinary
+model reading or a focused boundary change needs no browsing-format adoption.
 
 ## Select the design question
 

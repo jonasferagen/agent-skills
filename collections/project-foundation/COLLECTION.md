@@ -1,6 +1,6 @@
 # Project foundation
 
-Version: 0.1.0
+Version: 0.2.0
 
 Start with project instructions and their existing document routes. Use this
 entrypoint to choose needed guidance; if the owner and workflow are already known,
@@ -38,6 +38,8 @@ it; unavailable owners or unknown terms do not grant permission or waive obligat
 For authored or restructured explanations, use
 [shared authoring guidance](references/authoring.md).
 
-For adoption, upgrades, installation locations or templates, use
-[installation guidance](references/installation.md) and bootstrap. Routine use
-of an installed collection needs neither setup nor every skill loaded.
+For adoption, upgrades or installation locations, use
+[installation guidance](references/installation.md). Bootstrap owns foundation
+scaffolding and its templates; project-docs owns view and process templates.
+Reusing an installed documentation template needs no installation workflow.
+Routine use of an installed collection needs neither setup nor every skill loaded.
