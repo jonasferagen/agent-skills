@@ -255,3 +255,19 @@ Project-bootstrap becomes unreleased 3.0.0 because its default scaffold changes;
 project-policy 2.2.0 and project-docs 2.3.0 support both section and existing-file
 owners. The collection is pinned by commit; no release tag is created.
 See [validation](validation/multi-repository-foundation.md).
+
+## 3 October 2026 — Foundation declarations only
+
+The user requested a strict format with interpretation owned by the collection.
+The template now defines the fixed title, date/revision and five table sections:
+References, Inheritance, Boundaries, Overview and Policy. No instructional prose,
+comments, YAML or workflow routes belong in populated foundations. The shared
+format reference owns resolution and section inheritance; AGENTS provides the
+minimal lookup and unavailable-owner hook needed before shared guidance is read.
+Project-policy remains responsible for changed facts and obligations.
+
+A format-only checker derives table headings and columns from the template.
+It does not fetch targets or implement inheritance. Existing separate document
+homes remain valid until deliberately migrated. Bootstrap 4.0.0, project-policy
+3.0.0 and project-docs 3.0.0 reflect the changed authoring contract; all remain
+unreleased and pinned by collection commit. No tag is published.

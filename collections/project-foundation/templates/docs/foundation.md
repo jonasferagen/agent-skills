@@ -1,15 +1,18 @@
-# {{project_name}} foundation
+# Foundation
 
 Date: {{date}} · Revision: {{revision}}
 
-<!-- Shared owners and independent projects fill these tables. Members declare a
-parent using the multi-repository reference and retain only local rows in each
-section. An omitted member row inherits; a present blank cell is unknown. -->
+## References
+
+| Key | Target |
+| --- | --- |
+
+## Inheritance
+
+| Section | Authority |
+| --- | --- |
 
 ## Boundaries
-
-<!-- Purpose, responsibility, exclusions and ownership. Detailed handoffs belong
-in architecture; procedures, history and implementation status have other owners. -->
 
 | Subject | Current fact or decision |
 | --- | --- |
@@ -19,9 +22,6 @@ in architecture; procedures, history and implementation status have other owners
 | Ownership | Unknown |
 
 ## Overview
-
-<!-- Current technical choices and unresolved options. State each choice's scope;
-keep task queues, skill routes, procedures and evidence in their own owners. -->
 
 | Area | Current choice | Open or future consideration |
 | --- | --- | --- |
@@ -33,9 +33,6 @@ keep task queues, skill routes, procedures and evidence in their own owners. -->
 | Packaging and startup | Unknown | Unknown |
 
 ## Policy
-
-<!-- Operating facts and adopted constraints only. Project-policy interprets these
-with boundaries; requirements, impact assessments and evidence retain their owners. -->
 
 | Axis | Current fact or decision |
 | --- | --- |

@@ -21,22 +21,13 @@ ambiguity, not merely because a project has nouns.
 
 For one project spanning repositories, follow [multi-repository foundations](../../../references/multi-repository.md).
 Choose owners at project scope and preserve only local differences in members.
-The default entry is `docs/foundation.md`, with Boundaries, Overview and Policy
-tables. Members declare a named parent reference and use the same sections.
-Preserve established homes unless restructuring is requested. Keep procedures
-and detailed architecture in their existing owners.
-
-Keep foundation definitions slim and structured. Boundaries starts with the core
-scope/ownership table; a project may add a concise table for its own boundary
-model. History, migration narratives, implementation status and procedures belong
-in their existing owners. Preserve useful facts when trimming, and remove copies
-already covered elsewhere. Generalize additional fields only as recurring use
-establishes a need; one project's table does not extend the shared template.
-
-Overview holds current technical choices and unresolved options in its table.
-Task queues and next steps belong in work notes; skill routes in project
-instructions; procedures and evidence in their existing owners. Remove duplicate
-sections instead of archiving them merely because they once appeared in overview.
+The default entry is `docs/foundation.md` in the
+[foundation format](../../../references/foundation-format.md). Preserve its five
+sections and table columns. References and Inheritance are declarations;
+Boundaries, Overview and Policy hold facts. Keep empty tables as headers only.
+Do not add prose, comments, tutorials, routes or extra sections. Link detailed
+architecture, procedures, evidence and exception records from the relevant cells
+or project instructions. Preserve established homes unless migration is requested.
 
 ## Glossary and semantics
 

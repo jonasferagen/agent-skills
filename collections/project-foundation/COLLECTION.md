@@ -16,6 +16,7 @@ layout so relative references work.
 
 | Task | Entry point |
 | --- | --- |
+| Interpret foundation declarations and inherited values | [Foundation format](references/foundation-format.md) |
 | Start the project foundation | [Project bootstrap](skills/project-bootstrap/SKILL.md) |
 | Start or resume edits and preserve repository work | [Git worktrees](skills/git-worktrees/SKILL.md) |
 | Interpret policy facts and review changed circumstances | [Project policy](skills/project-policy/SKILL.md) |
@@ -41,8 +42,11 @@ restructuring explanations and instructions. Read only what the task needs;
 installation does not require loading every entry point. Tool-specific references,
 including Mermaid rendering guidance, are conditional on the selected work.
 
-The [foundation template](templates/docs/foundation.md) holds Boundaries, Overview
-and Policy in one document; the [README template](templates/README.md) links it.
+The [foundation template](templates/docs/foundation.md) has five fixed tables:
+References, Inheritance, Boundaries, Overview and Policy. The
+[format and interpretation](references/foundation-format.md) reference owns their
+meaning; foundation files contain data only. The [README template](templates/README.md)
+links the foundation.
 Members declare inheritance and keep only local differences. Use the templates
 through these skills. They deliberately omit the procedure for interpreting or
 maintaining those facts. Blank cells mean unknown, never permission or a waiver.

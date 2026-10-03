@@ -108,3 +108,39 @@ fresh source-authoring trial was run. Source maintenance was exercised by this
 author under source AGENTS. The trial predates final line wrapping only; no
 behavior changed after its installed snapshot. No context-efficiency improvement
 or runtime compliance is claimed.
+
+## Strict declarations and shared interpretation — 2026-10-03
+
+The user required a standardized foundation containing data only. The template
+now owns five fixed headings and table columns. Foundation format and
+interpretation is a shared collection reference; bootstrap installs a minimal
+AGENTS lookup hook before that shared guidance is available. Project-policy
+continues to own changed obligations. Repeated prose, YAML declarations, format
+comments and workflow routes were removed from Forge's four foundations.
+
+Skill Creator, Clear Writing/instruction guidance, Diagrams and Tables,
+project-policy, project-docs and source-of-truth informed the pass. The template
+owns structure; the new checker derives headings/columns from it. Five helper
+tests cover valid owner/member forms, prose/comments/YAML/extra sections and tables,
+ambiguous columns/rows, invalid dates/keys/sections, literal targets and escaped
+pipes. They passed, as did package validation (23 entries), quick_validate for
+three changed skills and git diff --check. The checker validates shape only and
+performs no target reads or automatic inheritance.
+
+A fresh consumer entered from fixture Assets AGENTS, consulted inherited recovery
+and retention, then bootstrapped a Renderer member. The parent inspected the
+actual foundation, AGENTS and trial report. The strict format and shared-guidance
+lookup worked, and unknown store choice did not waive source preservation.
+An actual shared-directory outage allowed a literal README correction while
+shared-dependent decisions stayed deferred; the owner was restored. A binding
+change and shared-policy lookup probe also passed. See the
+[trial report](strict-foundation-trial.md) for input reads, output review and limits.
+
+The consumer did not create Git or exercise nested worktrees, cycles, runtime or
+restore behavior. The parent separately checked all four actual Forge task
+worktrees against the proposed Primary owner: 188 paths/anchors, including 21
+symbolic routes, passed. Shared policy rows compare verbatim; every member has
+one root literal. Final real-main checks and the installed pin are recorded in
+Forge's adoption notes. No URL or container access, automatic client discovery,
+context-efficiency improvement or runtime compliance is claimed. Final source
+changes after the trial snapshot only wrapped text and added helper tests.

@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Bootstrap a new project or a fresh repository with project boundaries, policy and a project overview, plus a README that links them. Use when establishing this starting foundation; ordinary implementation and documentation maintenance belong to their own workflows."
 metadata:
-  version: "3.0.0"
+  version: "4.0.0"
 ---
 
 # Project bootstrap
@@ -38,35 +38,20 @@ one of its members. Bootstrap each repository's entry point; members use
 [multi-repository foundations](../../references/multi-repository.md) to declare
 the parent, reference binding and local scope.
 
-The default starter is `docs/foundation.md` with three sections, each containing
-a compact table, plus a `README.md` that links it:
+The default starter is `docs/foundation.md` in the strict
+[foundation format](../../references/foundation-format.md), plus a README that
+links it. Adapt the [foundation](../../templates/docs/foundation.md) and
+[README](../../templates/README.md) templates. Preserve all five sections and
+column names. References and Inheritance declare bindings and section owners;
+Boundaries, Overview and Policy hold project facts. Keep header-only tables
+where there are no entries. Remove unused inherited rows from members; a present
+unknown is not the same as an omitted row.
 
-| Section | Owns |
-| --- | --- |
-| Boundaries | Purpose, responsibilities, exclusions and ownership |
-| Overview | Current environment, resources, application choices and unresolved options |
-| Policy | Concise operating facts and adopted decisions by axis |
-
-Adapt the [foundation](../../templates/docs/foundation.md) and
-[README](../../templates/README.md) templates. Preserve existing document homes
-unless restructuring is requested; the three sections can also route to established
-owners. Add a glossary only when ambiguous terminology needs its own home.
+The foundation contains no explanatory prose, comments, instructions or skill
+routes. Keep procedures, detailed architecture, impact records and evidence in
+their existing owners. Preserve established document homes unless migration is
+requested. Add a glossary only when ambiguous terminology needs its own home.
 Merge useful routes into an existing README rather than replacing it.
-
-A shared owner or independent project records its decisions in all three tables.
-A member declares section inheritance and keeps only local rows; retain a header-only
-table with “No local differences” when all values inherit. Remove unused template
-rows from members: a present unknown is not the same as an omitted inherited row.
-Keep detailed role assignments in their existing architecture owner and reference
-them from boundaries. State the repository or environment scope of technical
-choices so a shared owner's own implementation is not inherited by every member.
-
-Keep the title, date/revision and section scope comments. Boundaries may add a
-concise project-specific table when needed for actual ownership. Overview keeps
-current choices and open options; policy keeps operating facts and adopted
-constraints. Put procedures, work queues, skill routes, impact records and evidence
-in their existing owners. The foundation may declare references and inheritance;
-it does not contain the procedure for interpreting policy.
 
 Policy owns operating facts and adopted constraints. Overview owns the
 chosen mechanisms and open implementation options. For example, put a no-network
@@ -79,7 +64,7 @@ where that difference matters. For a consequential unknown, explain what depends
 on it and when it needs a decision. Ask now only if the current work depends on
 the answer. A short statement that the subject is undecided is sufficient when
 there is little evidence. Remove template prompts, example rows and unused
-sections from the project output.
+rows from the project output; retain the five required sections.
 
 Keep implementation status separate from intended behavior. A local repository
 does not establish local-only deployment, synthetic data or disposable state.
@@ -101,10 +86,13 @@ Read the [shared authoring guidance](../../references/authoring.md) and use
 initial result small: explicit unknowns are valid where facts are not known.
 Do not reproduce those skills' instructions in the documents.
 
-Merge a short foundation section into the project's `AGENTS.md`, routing through
-the local foundation to the chosen installation and project files.
-For external owners, bind a named reference once and use it as specified in the
-multi-repository guidance. Keep the local entry link usable without that owner.
+Merge a short foundation section into the project's `AGENTS.md`, with a concrete
+link to the local foundation and an accessible route to
+[format and interpretation](../../references/foundation-format.md#entry-instructions).
+For shared guidance, include the minimal named-key lookup instruction and the
+locally readable missing-owner rule there. Bind the external root once in the
+foundation's References table. Keep working-agreement and skill routes in AGENTS
+or its linked instruction owner, never in foundation tables.
 Include the consultation and
 conflict rules from [foundation authority](../../references/foundation-authority.md):
 keep a short operating summary visible, consult the relevant foundation owner
@@ -138,9 +126,10 @@ they do not start a watcher, scheduled task or full-project audit on every edit.
 
 ## Verify and hand back
 
-Check the generated files for unsupported claims, leftover prompts and duplicate
-owners. For members, verify reference resolution, inherited changes, explicit
-unknowns, local scope, conflicts and missing authority as described in the
+Run `python3 <collection>/scripts/validate-foundation.py <foundation-path>`
+for each file adopting the standard format. Check unsupported claims, leftover
+prompts and duplicate owners. For members, verify reference resolution, inherited
+changes, explicit unknowns, local scope, conflicts and missing authority as described in the
 multi-repository guidance. Verify local links and run applicable documentation
 checks, including
 `git diff --check` when Git is available. Review the actual staged files before

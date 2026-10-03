@@ -24,11 +24,12 @@ Part of the [project-foundation collection](collections/project-foundation/COLLE
 | [Project documentation](collections/project-foundation/skills/project-docs/SKILL.md) (`project-docs`) | Decide where knowledge belongs and keep it current. |
 | [Authoritative definitions](collections/project-foundation/skills/source-of-truth/SKILL.md) (`source-of-truth`) | Give each rule a home and derive or check its other appearances. |
 
-Project bootstrap establishes `docs/foundation.md` with sparse, dated tables for
-boundaries, overview and policy, plus README and agent routes. Members bind their
-shared owner once and retain only local differences. Project-policy interprets
-those facts and reviews their consequences when circumstances change. The collection supplies
-the authoring guidance; the templates are not standalone manuals. Existing
+Project bootstrap establishes `docs/foundation.md` with five fixed tables:
+References, Inheritance, Boundaries, Overview and Policy. The file holds data only.
+The collection owns interpretation and project instructions own workflow routes.
+Members bind their shared owner once and retain only local differences. Project-policy interprets
+those facts and reviews their consequences when circumstances change. The
+collection supplies the authoring guidance; the templates are not standalone manuals. Existing
 projects keep their established document homes.
 
 The foundation uses task worktrees for edits in Git repositories unless local

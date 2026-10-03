@@ -2,7 +2,7 @@
 name: project-policy
 description: "Establish or revise engineering requirements when users, data, exposure, lifetime, compatibility or recovery needs change. Assess the impact and track prerequisites; ordinary edits do not require a policy review."
 metadata:
-  version: "2.2.0"
+  version: "3.0.0"
 ---
 
 # Project policy
@@ -43,7 +43,9 @@ recreate a manual inside each document.
 Keep the Policy section of `docs/foundation.md` (or an established separate
 policy owner) to one two-column table:
 `Axis | Current fact or decision`. Use short, formal entries; separate facts with
-semicolons and state unknowns explicitly. Preserve the template's scope comment.
+semicolons and state unknowns explicitly. The
+[foundation format](../../references/foundation-format.md) owns document shape
+and inheritance; keep interpretation instructions out of the foundation.
 Record operating circumstances and adopted constraints, such as offline-only use
 or a recovery target. Exclude repository procedures, implementation reports,
 impact assessments and change history.
