@@ -2,7 +2,7 @@
 name: runtime-operations
 description: "Design or change credential handling, local service controls and encrypted database backups. Use for secret custody, execution identities, lifecycle or recovery tooling, and their child-process and verification behavior."
 metadata:
-  version: "1.3.0"
+  version: "1.4.0"
 ---
 
 # Runtime operations
@@ -104,9 +104,24 @@ senders.
 
 [serviceControl.py](scripts/serviceControl.py) implements Linux user-systemd
 control. Project entrypoints supply unit names, non-secret settings and commands.
-Transient HTTP services must expose `/health` with their PID as plain text after
-startup validation; the helper verifies cgroup membership. It does not install
-units, dependencies or credentials.
+Use the same controller for installed and transient services; each project
+binding selects the unit, expected checkout, command and optional prerequisite
+startup. An active `start` checks readiness without replacing or stopping that
+instance. HTTP `status` includes readiness, not merely process existence. A
+configured checkout mismatch is refused before changing runtime state.
+
+For a new HTTP binding, set `Service.health_service` and expose `/health` using
+[ServiceHealth](scripts/serviceHealth.py)'s `service-health/v1` JSON envelope:
+`schema`, `service`, `pid`, `checkout`, `status` and `details`. Return HTTP 200 for
+`ready` and 503 for `degraded`; include only bounded, non-sensitive diagnostics.
+The application owns meaningful dependency checks and its detail fields. The
+controller verifies the service name, ready status, PID against the unit MainPID,
+cgroup membership and both reported and configured checkout. This is readiness
+of the named instance, not a continuous availability guarantee.
+
+Existing bindings without `health_service` retain the plain-PID `/health` probe
+until deliberately migrated. The helper does not install units, dependencies or
+credentials. Keep automatic-start and restart policy with the unit owner.
 If launch or readiness times out after starting an attempt, it stops only the
 selected unit. A failed cleanup reports separately and preserves the primary
 startup or readiness error.

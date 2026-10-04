@@ -109,3 +109,38 @@ Open questions, not changed:
 ## Discovery routing — 2026-09-30
 
 The description was shortened. See [the discovery review](discovery.md) for the measured sizes, scope and verification. Earlier behavioral results do not establish the new discovery behavior.
+
+## Shared HTTP service control and health — 2026-10-04
+
+Unreleased service-foundation 0.3.0 / runtime-operations 1.4.0 extends the existing
+controller to structured HTTP identity/readiness for both installed and transient
+units. ServiceHealth owns `service-health/v1`; the configured binding verifies
+service, MainPID, cgroup, reported/configured checkout, readiness and details shape.
+Legacy PID health remains compatible for bindings that have not selected the new
+contract. Installed release/startup policy stays in the unit; transient startup
+stays explicit. Status now includes HTTP readiness. A repeated start of an active
+but degraded instance fails readiness while preserving that instance. Checkout
+mismatch refuses before dependency callbacks or mutation.
+
+The complete source checker passed four checks: 21 skill entries/five collections,
+39 runtime tests, 11 collection tests and 16 script tests, with zero skips. New
+checks exercise structured identity, wrong checkout, active degraded preservation
+and degraded status. A disposable mutation bypassing checkout verification made
+the real HTTP probe regression fail as expected. The collection inventory and
+whitespace checks passed. Sandboxed GnuPG checks could not run; the complete suite
+rerun with local execution access passed.
+
+Disposable real user-systemd installed and transient units independently exercised
+start/stop/restart/status/logs, idempotent start, PID replacement on restart,
+wrong-checkout stop refusal, degraded status/start preservation and occupied-port
+startup refusal while leaving the unrelated listener alive. Only these synthetic
+units were linked/stopped/removed. A first harness run hit socket TIME_WAIT when
+rebinding the test listener; the fixture was corrected to reuse that address and
+both complete lifecycle traces passed.
+
+A fresh-context design trial through project-foundation reused the common controller
+and health helper while retaining distinct unit lifetimes and valuable-state custody.
+The companion [framework validation](https://github.com/jonasferagen/project-foundation/blob/main/validation/repository-services.md)
+records its full read audit and the status/wording routing controls. Consumer
+readiness checks remain necessary; these synthetic checks establish helper behavior,
+not the health of every bound application.

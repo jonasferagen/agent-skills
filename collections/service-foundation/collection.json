@@ -1,20 +1,22 @@
 {
   "name": "service-foundation",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "members": [
     "service-boundaries",
     "runtime-operations"
   ],
   "files": {
-    "COLLECTION.md": "66429931f14557baf154e7ffcac3ceecdbaf0b105bdb727d2c5a369d3095352a",
+    "COLLECTION.md": "940589294ae8e415f4e862327e39b2d0d2f9d50db488d741dd5c07dba3355b38",
     "references/installation.md": "26c041702194099c989a7d6f9b03d0ce26e04c5aad099c439875287dd419c632",
     "scripts/check_installation.py": "ab1dd5c66b2cce5d53a4d52f56f6005f5926d1118f0f457518afe74cb83b4594",
-    "skills/runtime-operations/SKILL.md": "5a703c689550b1cb079643126b8d5f517ddb6b4df65c456deeed1e8942459809",
+    "skills/runtime-operations/SKILL.md": "00393e761f21bafb6a801d617fd1619023265413e740ee0052ef65d61e1ac900",
     "skills/runtime-operations/agents/openai.yaml": "58b1af26167369e5853e790b9e66fabb0c29219da14e09eb0f2ca0add8045a1e",
     "skills/runtime-operations/scripts/credentialStore.py": "4587d90a84606ae870e187ed5cad9c88e4041cbb3f3071538e49daf4b846d0b9",
     "skills/runtime-operations/scripts/databaseBackup.py": "e4b133675daa1f102f1c3ed1c38c2751777226ae6772b57e125a0989fe725b0f",
-    "skills/runtime-operations/scripts/serviceControl.py": "c78b6c59409e7240ad8f6a31f274c84b437726559a69bac6a188b06af7157ab1",
+    "skills/runtime-operations/scripts/serviceControl.py": "98520e76d5ac8424858e0d24cb5a6dba2b2c3f91853d1afb100a0a43ca8714f5",
+    "skills/runtime-operations/scripts/serviceHealth.py": "fac43a199d1bf26f5e267c6fb8c7588858b6b2beaa80af2f648878576440c73f",
     "skills/runtime-operations/tests/test_runtime.py": "953f474adf5a8977b0519cd2c149904ef2e6c0d2f942cf4bdc9e798906747fb8",
+    "skills/runtime-operations/tests/test_service_health.py": "1ce97f562c858a1a4386fd48ccae3a32a3aadbc53455ed5ab45231dab80b7dd0",
     "skills/service-boundaries/SKILL.md": "a7118527217c0c9481a60ea5f5eddac2f2bb06d0c3f50f1dd37b214a3eb75a85",
     "skills/service-boundaries/agents/openai.yaml": "d015c7108bf4f9784e9a3fd153faa03f077f061272a69303343ad692323d22fa",
     "tests/test_installation.py": "9b122c3655e1034b934cbe100697141edb23c6ff4278417c8aa5ff5accc2a2ec"
