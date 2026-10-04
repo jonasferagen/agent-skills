@@ -1,5 +1,9 @@
 # Project-foundation sweep — 4 October 2026
 
+Current follow-up evidence: [collection sweep](collection-sweep.md), including
+executable example checks, locale-sensitive helpers and independent consumer trials.
+The dated results below retain their original scope and limits.
+
 This review covered the source collection in the isolated `collection-sweep`
 worktree. Individual skill quality was reviewed first; collection consistency
 was reviewed afterward. These source edits have not been released or adopted by

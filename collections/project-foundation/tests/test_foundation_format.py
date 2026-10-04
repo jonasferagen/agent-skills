@@ -15,7 +15,7 @@ BOUND = '| orchard | /workspaces/orchard |'
 
 class FoundationFormatTests(unittest.TestCase):
     def setUp(self):
-        self.text = (ROOT / 'templates/project-docs/foundation.md').read_text().replace('{{date}}', '2026-10-03').replace('{{revision}}', '1')
+        self.text = (ROOT / 'templates/project-docs/foundation.md').read_text(encoding='utf-8').replace('{{date}}', '2026-10-03').replace('{{revision}}', '1')
 
     def declare(self, reference, inheritance):
         text = self.text.replace(REFERENCES, REFERENCES + '\n' + reference) if reference else self.text

@@ -1,5 +1,9 @@
 # Validation scenarios — TypeScript patterns
 
+Current follow-up evidence: [collection sweep](collection-sweep.md), including
+executable example checks, locale-sensitive helpers and independent consumer trials.
+The dated results below retain their original scope and limits.
+
 These scenarios cover the language package from 2.0.0. The class-based design
 scenarios now live in [TypeScript design](typescript-design.md). Earlier records
 below describe the combined 1.x package under its historical name and paths.

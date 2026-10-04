@@ -1,6 +1,6 @@
 # Project foundation
 
-Version: 1.3.0
+Version: 1.3.1
 
 Start with project instructions and their existing document routes. Use this
 entrypoint to choose needed guidance; if the owner and workflow are already known,

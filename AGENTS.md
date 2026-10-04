@@ -56,7 +56,8 @@ passes before a skill release and says what to record.
   Repeat applicable trials before a collection release; prose-only edits need no
   automatic discovery trial.
 
-- Run `python3 scripts/validate-packages.py` and `git diff --check`.
+- Run `python3 scripts/check.py` and `git diff --check`; the README's
+  [verification](README.md#verification) section owns prerequisites.
 - Before tagging a collection release, complete its
   [self-conformance review](validation/self-conformance.md).
 - Review the affected scenarios under `validation/`; record actual results and

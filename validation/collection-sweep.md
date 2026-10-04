@@ -158,3 +158,57 @@ suite (11 tests) and repaired runtime suite (34 tests) were unchanged by integra
 A separate Markdown scan checked 568 local destinations and heading fragments
 in 138 files, with no missing targets. No material finding remains for local
 landing; this review does not tag a release or update consumer installations.
+
+
+## Follow-up sweep — 4 October 2026
+
+The follow-up adds one maintained source command, `python3 scripts/check.py`,
+and CI using that command on Python 3.11 and 3.14 with Node 24. Its declared
+prerequisites include GnuPG and the locked TypeScript 5.9.3 compiler; missing
+prerequisites, empty suites, failures, skips and timeouts cannot report success.
+The command discovers nested helper suites rather than maintaining a duplicate
+list. It checks every collection inventory through package validation.
+
+The example probes extract the published tuple and `outcomeOf` code blocks,
+compile the tuple with strict checking and `noUncheckedIndexedAccess`, and execute
+valid, short, long, sparse, non-number and non-finite inputs. Real Node child
+processes cover successful and failed exits, missing executables, timeout,
+overflow, abort, EOF, external signals and a child that exits zero after wrapper
+cancellation. The wrapper's decision remains separate from the child's outcome.
+These source dependencies do not change consuming projects' selected toolchains.
+
+Running the complete check under an ASCII locale exposed default-encoding reads
+in the project foundation fixture and both project validators. Their Markdown
+inputs now specify UTF-8, and project-foundation is patched to 1.3.1 with a reviewed
+inventory. All 82 tests and package checks passed under that locale on Python
+3.14.4, Node 24.15.0 and TypeScript 5.9.3, including the real GnuPG round trip.
+The configured GitHub workflow has not run remotely; Python 3.11 is unavailable
+locally. Action configuration was checked against the official
+[checkout](https://github.com/actions/checkout/blob/v5/README.md),
+[Python](https://github.com/actions/setup-python/blob/v6/README.md) and
+[Node](https://github.com/actions/setup-node/blob/v6/README.md) documentation.
+
+Three independent agents evaluated fresh consumer contexts with complete copied
+collections and minimal project inputs. They received realistic requests without
+expected routes, prior conclusions or proposed fixes. Retained raw requests,
+reads, commands and answers are [focused Python](collection-followup-trials/focused.md),
+[maintained service](collection-followup-trials/boundary.md) and
+[literal wording](collection-followup-trials/literal.md). Their distinct guidance
+read counts and whitespace-delimited word totals were 12/5,969, 19/8,924 and
+6/1,550, including local instructions/foundation. No guidance was reread or
+truncated; all consulted routes resolved. The focused task reproduced its bug,
+verified UTF-8 receipt bytes and avoided class redesign. The service plan reached
+both members and preserved review-only scope and unselected infrastructure.
+The wording change preserved the actual exit behavior without a service or
+language implementation pass. It read two additional collection indexes to
+check task fit; this is reading cost, not a missing boundary route.
+
+[Prepare fresh fixtures](collection-followup-trials/prepare.py) in a new directory
+outside the authoring repository, for example
+`python3 validation/collection-followup-trials/prepare.py /tmp/new-consumer-trials`.
+Preparation was executed successfully. Input fixtures preserve the starting state;
+result artifacts are retained separately. Future evaluators should receive only
+their prepared input, request and scope. These three trials are a bounded sample,
+not coverage of all skill routes, live systems or artistic acceptance. No further
+routing correction is supported by this pass. Forge installation and consumer
+alignment evidence belong to Primary's adoption record.

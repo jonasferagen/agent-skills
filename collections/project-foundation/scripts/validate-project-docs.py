@@ -13,7 +13,7 @@ PROCESS_NAME = re.compile(r'[a-z0-9]+(?:-[a-z0-9]+)*\Z')
 def managed_homes():
     """Read file and topic-directory patterns from the document-homes map."""
     files, topic_dirs = set(), set()
-    for home in HOME.findall(HOMES.read_text()):
+    for home in HOME.findall(HOMES.read_text(encoding='utf-8')):
         directory, _, name = home.rpartition('/')
         if name == '<topic>.md':
             topic_dirs.add(directory)

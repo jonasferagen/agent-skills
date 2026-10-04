@@ -1,5 +1,9 @@
 # Validation and alignment — Node Patterns
 
+Current follow-up evidence: [collection sweep](collection-sweep.md), including
+executable example checks, locale-sensitive helpers and independent consumer trials.
+The dated results below retain their original scope and limits.
+
 ## Behavioral scenarios
 
 These describe expected outcomes. Unless a trial below records otherwise, they

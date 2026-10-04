@@ -75,6 +75,14 @@ Source directory: `skills/design/`.
 
 ## Verification
 
+For source maintenance, install Node 24, Python 3.11 or later and GnuPG, run
+`npm ci --ignore-scripts`, then `python3 scripts/check.py`. This command checks
+packages and discovers helper suites under `scripts/` and `collections/`, including
+the real GnuPG round trip and examples extracted from the TypeScript and Node
+guidance. Empty, failed, skipped and incomplete suites fail the command. Missing
+prerequisites fail explicitly. CI runs the same command. These local checks do
+not establish live service or database acceptance.
+
 The [verification-foundation collection](collections/verification-foundation/COLLECTION.md)
 installs evidence selection, test authoring and suite audit together. Choose its
 member by the requested task; new regression work does not require a suite audit.

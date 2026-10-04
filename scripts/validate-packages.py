@@ -125,7 +125,7 @@ def main() -> int:
             else:
                 try:
                     result = subprocess.run([sys.executable, str(checker)],
-                        stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=20)
+                        stdin=subprocess.DEVNULL, capture_output=True, text=True, encoding='utf-8', timeout=20)
                     if result.returncode:
                         errors.append(f"{collection.relative_to(ROOT)}: inventory check failed: {result.stderr.strip()}")
                 except (OSError, subprocess.SubprocessError) as error:

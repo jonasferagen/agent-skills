@@ -28,7 +28,7 @@ def validate(text, path=None):
     errors = []
     tables = {}
     preamble, sections = blocks(text)
-    template_preamble, template_sections = blocks(TEMPLATE.read_text())
+    template_preamble, template_sections = blocks(TEMPLATE.read_text(encoding='utf-8'))
     title = template_preamble.splitlines()[0]
     match = re.fullmatch(re.escape(title) + r'\n\nDate: (\d{4}-\d{2}-\d{2}) · Revision: ([1-9]\d*)', preamble)
     if not match:
@@ -111,7 +111,7 @@ def main():
     failed = False
     for path in args.files:
         try:
-            errors = validate(path.read_text(), path)
+            errors = validate(path.read_text(encoding='utf-8'), path)
         except (OSError, UnicodeError) as error:
             errors = [str(error)]
         if errors:
