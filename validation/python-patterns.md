@@ -83,7 +83,7 @@ clipping. This was a local preview, not a check of every hosting renderer.
 
 Intake-spike's slice 5 supplies two useful checks for the existing resource
 ownership guidance and explicit UTF-8 example in
-[Errors and resources](../skills/languages/python-patterns/references/errors-and-resources.md).
+[Errors and resources](../collections/python-foundation/skills/python-patterns/references/errors-and-resources.md).
 Its alignment record reports a regression test for partial acquisition cleanup
 and 15 corpus errors under an ASCII locale before text reads and writes named
 their encoding. The fixes are recorded at `8b44994` (connections) and `6133929`

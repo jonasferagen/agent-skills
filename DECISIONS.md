@@ -509,3 +509,30 @@ dependency resolver or automatic host registration is selected. Python, TypeScri
 and verification grouping remain candidates after the pilot; containerization is
 not moved without an exercised consumer need. Forge adoption is a separate consumer
 commit after this source change lands.
+
+## 2026-10-04 — Python, TypeScript and verification collections
+
+Group the remaining selected companions as complete collections:
+`python-foundation` 0.1.0 (python-design, python-patterns),
+`typescript-foundation` 0.1.0 (typescript-design, typescript-patterns, node-patterns),
+and `verification-foundation` 0.1.0 (verification-design, test-writing, test-audit).
+Each member keeps its name, version, resources and existing behavior. There is
+one source home per member, with current catalog and validation routes reconciled.
+
+Node belongs in the TypeScript tooling group conditionally: its process-wrapper
+and CLI guidance also serves JavaScript tooling. Browser JavaScript alone selects
+neither Node process guidance nor TypeScript type/design conventions. Verification
+routes distinguish active evidence selection, test authoring and settled-suite
+review; installing the group does not make audits mandatory for regression work.
+Python language-boundary fixes need not trigger class reorganization.
+
+The pilot's installation checker is now maintained once at
+`scripts/collection_installation.py` and distributed into the four inventoried
+collections by `scripts/sync-collection-tools.py`. The package validator rejects
+unsynchronized copies as well as inventory drift. Service-foundation 0.1.1 retains
+its member behavior and updates only this tooling/maintenance mechanism.
+Application-foundation 0.1.2 routes ordinary work to project language and verification
+owners as well as its existing service route. No remote resolver or global client
+registration is selected. The [validation record](validation/companion-collections.md)
+owns checks and task-routing evidence. Source landing and project-local adoption
+remain separate commits; no release tag is implied.

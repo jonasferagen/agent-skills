@@ -1,0 +1,25 @@
+{
+  "name": "verification-foundation",
+  "version": "0.1.0",
+  "members": [
+    "verification-design",
+    "test-writing",
+    "test-audit"
+  ],
+  "files": {
+    "COLLECTION.md": "149ef5f41a75e9bdbe0444a7ca918dd805f81476c1ec00473f4609fa9b501531",
+    "references/installation.md": "618de65d93c6c6046456b7f3c2bb02859db67516e30b3c3d7a7cef0cec9794be",
+    "scripts/check_installation.py": "0f00ba32dc605fbe760e0a6ae7dcdf0a0d1701b0e91918678983a58b98c76ec6",
+    "skills/test-audit/SKILL.md": "c896a670ec0ce3721db983dbd346f20f0e1beaa3cc41a711aee5d675b60665ca",
+    "skills/test-audit/agents/openai.yaml": "1e58597cc067dc93a8c003a17136c27e65d8d5d3f578f4ac1a7e752201526bf6",
+    "skills/test-audit/references/principles.md": "87d7f35498c237e9b5e8ecaf9bd931b2c6fd97b3ddfe988064f0002ce297d083",
+    "skills/test-audit/references/triage.md": "f7ebdd2439b2bfebf4f4ca71ce951a72d6220ed1280de17ae3a0f4b18b8a30ea",
+    "skills/test-writing/SKILL.md": "f71d8bb4423e6b56da768d2de0eeabe3ce1d57c7fd41554c6ec52e3f04f68350",
+    "skills/test-writing/agents/openai.yaml": "c24ad1676eab1b4d835e063073769e5d4214f09224eebbdbe9549e5b5b22a034",
+    "skills/test-writing/references/fixtures.md": "92044f1937da8f559949659f477c926efe4982f99970de8f271c1c4d4ba9b3bc",
+    "skills/test-writing/references/integration-tests.md": "9c820a50f54146bf7768523455a393c206378487195ff77d41e97f84ef789bbe",
+    "skills/test-writing/references/unit-tests.md": "5ad651fc755ed269639689ac4c66776977f016874f46c86419142e0879214e85",
+    "skills/verification-design/SKILL.md": "561c1e533eb786d4c3f61caa2dd6ebf78091243dd7a2aa1c0c8c19d3c8c931a1",
+    "skills/verification-design/agents/openai.yaml": "52d084b6a44a3e66b6bc62d1a4e020a1fe6bfaad68bc38994ecedee4a9297735"
+  }
+}

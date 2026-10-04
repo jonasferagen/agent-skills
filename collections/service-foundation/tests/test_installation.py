@@ -79,3 +79,30 @@ class InstallationTests(unittest.TestCase):
         (self.target / 'alias').symlink_to(self.source / 'COLLECTION.md')
         with self.assertRaisesRegex(ValueError, 'Symlink'):
             checker.check(self.target, self.source)
+
+
+class CollectionNameTests(unittest.TestCase):
+    def test_each_collection_name_has_a_valid_installation(self):
+        for name in ('python-foundation', 'typescript-foundation', 'verification-foundation'):
+            with self.subTest(collection=name):
+                fixture = InstallationTests()
+                fixture.setUp()
+                try:
+                    p = fixture.source / 'collection.json'
+                    data = json.loads(p.read_text()); data['name'] = name
+                    p.write_text(json.dumps(data)); checker.write(fixture.source)
+                    shutil.rmtree(fixture.target); shutil.copytree(fixture.source, fixture.target)
+                    self.assertEqual(checker.check(fixture.target, fixture.source), 3)
+                finally:
+                    fixture.doCleanups()
+
+    def test_different_collection_manifest_is_rejected(self):
+        fixture = InstallationTests(); fixture.setUp()
+        try:
+            p = fixture.target / 'collection.json'
+            data = json.loads(p.read_text()); data['name'] = 'example-other'
+            p.write_text(json.dumps(data))
+            with self.assertRaisesRegex(ValueError, 'manifest differs'):
+                checker.check(fixture.target, fixture.source)
+        finally:
+            fixture.doCleanups()

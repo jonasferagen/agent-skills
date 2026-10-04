@@ -1,0 +1,36 @@
+{
+  "name": "typescript-foundation",
+  "version": "0.1.0",
+  "members": [
+    "typescript-design",
+    "typescript-patterns",
+    "node-patterns"
+  ],
+  "files": {
+    "COLLECTION.md": "79807569e73ae49133e4e3040ad7d5373c6fc9e32777b1dc5f8ea1aa8da75359",
+    "references/installation.md": "3c459b4e0de3f78fa3c4b4a6e3237e3decbf78cc6d2de490768e9380426c3ee9",
+    "scripts/check_installation.py": "0f00ba32dc605fbe760e0a6ae7dcdf0a0d1701b0e91918678983a58b98c76ec6",
+    "skills/node-patterns/SKILL.md": "7ee1474f5f8e17d929befb6cfe9bb00dc2f75160815128d8c8786e48c35fc935",
+    "skills/node-patterns/agents/openai.yaml": "ba792712da9af4498881af255551cd7cc5bac89a5e6a115092e54a76e2038939",
+    "skills/typescript-design/SKILL.md": "f74c3419c928a137d38dbd5bd1e047a81fe5d6154c65bdd918ebcdf7b0ea7ff4",
+    "skills/typescript-design/agents/openai.yaml": "49b973da6b0383049da5d50450cfa0c4afbdf3018c1cf2d7fe606dc6d49c3162",
+    "skills/typescript-design/references/class-shape.md": "4fa6efa6e6880dd149548dbda9e0ef14be8bb43742c84b2c1bbf0603d2ad8dbb",
+    "skills/typescript-design/references/conventions.md": "055b0387d1740087c7c6d9301ed8e6c9a6135802f7ff96e16d7157ce5698323b",
+    "skills/typescript-design/references/dependency-ports.md": "10592bfedf4e17c89cabd783c2cf52336f709b9cb3ec0e09e0de4c60046aab02",
+    "skills/typescript-design/references/directories.md": "b48694a8b249be0dedaf1ae2a31bc383d5bafdc6f2558117670ef7d077812a20",
+    "skills/typescript-design/references/domain-primitives.md": "b372fd0a4b15177a53d5c0959eec8c9ef21b67d339954388f538ee8bebd261e5",
+    "skills/typescript-design/references/imports-and-barrels.md": "af816034ad1c81692c87d0048b271f68348028fe91ea868671d508859991d6b4",
+    "skills/typescript-design/references/naming-and-placement.md": "0224e25c686ee88e25aa54d9b0a1ce439cbcceda34895137383e02f691010f4d",
+    "skills/typescript-design/references/orchestration.md": "7b5a2ffcbb11a75a2e1a39040e2ace9465d95d68ac84ecadc12d2bd61a305f0b",
+    "skills/typescript-design/references/resolution.md": "0cada968096c2e6401c558918d3015214bf76badc644ddedf079224234048d9c",
+    "skills/typescript-design/references/review-heuristics.md": "ca3e6fa3328e9153b0435035e20842854702b7f80aaf4e0564ab59f1f978b3da",
+    "skills/typescript-design/references/utilities-and-data.md": "1aa7cb1a1ef1798fec823701115806ab6f4c16fd9fd19591526684f181044deb",
+    "skills/typescript-patterns/SKILL.md": "0e8b223484004c0d76efbca8cf9d6a83ffa4c1327c634d7c58be34a21dc49716",
+    "skills/typescript-patterns/agents/openai.yaml": "370919c904b2d84a058982b5ef7f8a65769d2fa6730afd5a0b2015f63fe70d56",
+    "skills/typescript-patterns/references/enforcement.md": "9a8dd09b9e59aad2fe87bc7d14bdb63339d0a1d7926fa281544a6a15f48e6a27",
+    "skills/typescript-patterns/references/imports.md": "0db9fdb869a20440076d6a2e8b3f3aa7e54644f1972b49c8b4ae31228f6f8902",
+    "skills/typescript-patterns/references/review-heuristics.md": "0e095c1e7e4cc6f0d44f8ca13626eedad92a5d712c1a587c501659828f2f1e27",
+    "skills/typescript-patterns/references/types-and-generics.md": "136034eac245df2777922712ca6946ca124bcf3e15d6518719154faded877479",
+    "skills/typescript-patterns/references/typescript.md": "487d8d66e268f842c836b1b434f679f18b8efd2fab3b838e1a56525edff846a0"
+  }
+}

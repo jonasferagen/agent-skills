@@ -1,6 +1,6 @@
 # Application foundation
 
-Version: 0.1.1
+Version: 0.1.2
 
 Design the inside of an application from a concrete operation: behavior, state,
 dependencies and the boundaries that need verification. Start from project
@@ -26,3 +26,8 @@ maintained service use, follow the project's service-guidance route before
 implementation. If that route or installation is missing, identify the gap and
 its consequence; do not silently treat core application design as service/runtime
 coverage. Pure application logic and literal edits do not need this route.
+
+Use project-selected language and verification routes when implementation reaches
+those tasks. A collection installed without an ordinary project route can still
+be missed. Report absent required guidance specifically; do not treat this core
+as language conventions or test-writing coverage.

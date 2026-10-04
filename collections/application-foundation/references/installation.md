@@ -23,9 +23,9 @@ installed companions when their tasks apply:
 | Task | Companion candidates |
 | --- | --- |
 | Project responsibilities, handoffs and document ownership | project-foundation |
-| Language-specific implementation | typescript-design and typescript-patterns, or python-design and python-patterns |
+| Language-specific implementation | typescript-foundation or python-foundation collection |
 | Service boundaries, HTTP/MCP behavior, lifecycle or promotion to maintained use | service-foundation collection |
-| Evidence selection and writing tests | verification-design and test-writing |
+| Evidence selection and writing tests | verification-foundation collection |
 
 Pin each selected installation independently in project provenance. Give it a
 concrete local route in project instructions; do not put cross-installation

@@ -28,7 +28,7 @@ def metadata(root: Path) -> dict:
     if not isinstance(data, dict) or set(data) != {'name', 'version', 'members', 'files'}:
         raise ValueError('Invalid collection manifest fields')
     members = data['members']
-    if (data['name'] != 'service-foundation' or not isinstance(members, list)
+    if (not isinstance(data['name'], str) or not re.fullmatch(r'[a-z][a-z0-9-]*', data['name']) or not isinstance(members, list)
             or not members or any(not isinstance(name, str) or not re.fullmatch(r'[a-z][a-z0-9-]*', name) for name in members)
             or len(set(members)) != len(members)):
         raise ValueError('Invalid or empty collection membership')
@@ -82,7 +82,7 @@ def main() -> int:
                 raise ValueError('--write only operates on this checker\'s source collection')
             write(SOURCE)
         count = check(args.root)
-        print(f'Validated service-foundation: {count} files and {len(metadata(args.root)["members"])} declared members')
+        print(f'Validated {metadata(args.root)["name"]}: {count} files and {len(metadata(args.root)["members"])} declared members')
     except (OSError, ValueError) as error:
         print(str(error), file=sys.stderr)
         return 1

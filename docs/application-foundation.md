@@ -22,7 +22,8 @@ Python. Service-boundaries retains its HTTP/MCP and service-ownership scope.
 Runtime-operations owns its credential and process procedures. Verification-design
 selects evidence; test-writing owns test and fixture construction. Service boundaries
 and runtime operations ship together in service-foundation.
-Language and verification packages remain separately installed; task routing
+Python, TypeScript and verification guidance each ships as a complete companion
+collection; task routing
 selects the guidance the work needs.
 
 | Guidance | First package treatment | Reason |

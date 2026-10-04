@@ -50,6 +50,9 @@ for one member. Other standalone skills remain independently installed.
 
 ## Authoring the collection
 
+The repository owns the canonical installation checker at
+`scripts/collection_installation.py`. Synchronize distributed copies with
+`python3 scripts/sync-collection-tools.py` from the authoring repository.
 The two moved member packages retain their existing names and behavior. Change
 members in this collection only; do not maintain a second standalone source copy.
 After authorized edits, regenerate the inventory with:

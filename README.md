@@ -74,13 +74,15 @@ Source directory: `skills/design/`.
 
 ## Verification
 
-Source directory: `skills/verification/`.
+The [verification-foundation collection](collections/verification-foundation/COLLECTION.md)
+installs evidence selection, test authoring and suite audit together. Choose its
+member by the requested task; new regression work does not require a suite audit.
 
 | Skill | Use it for |
 | --- | --- |
-| [verification-design](skills/verification/verification-design/SKILL.md) | Choose evidence for a change or milestone and consolidate checks by the failures they detect. |
-| [test-writing](skills/verification/test-writing/SKILL.md) | Writing unit tests, integration tests and their fixtures, with made-up data and state each test owns. |
-| [test-audit](skills/verification/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
+| [verification-design](collections/verification-foundation/skills/verification-design/SKILL.md) | Choose evidence for a change or milestone and consolidate checks by the failures they detect. |
+| [test-writing](collections/verification-foundation/skills/test-writing/SKILL.md) | Writing unit tests, integration tests and their fixtures, with made-up data and state each test owns. |
+| [test-audit](collections/verification-foundation/skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
 
 ## Operations
 
@@ -102,20 +104,23 @@ Source directory: `skills/workflow/`.
 
 ## Languages and runtimes
 
-Source directory: `skills/languages/`.
+The [Python foundation](collections/python-foundation/COLLECTION.md) pairs Python
+design and language patterns. [TypeScript foundation](collections/typescript-foundation/COLLECTION.md)
+pairs TypeScript design and language patterns with conditional Node tooling guidance.
+Godot and Bash remain standalone packages under `skills/languages/`.
 
 | Skill | Use it for |
 | --- | --- |
 | [godot-gdscript](skills/languages/godot-gdscript/SKILL.md) (draft) | Typed Godot scripts, headless probes, imports and scene measurements. |
-| [typescript-patterns](skills/languages/typescript-patterns/SKILL.md) | TypeScript types, narrowing, generics, absence, module syntax and enforcement. |
-| [typescript-design](skills/languages/typescript-design/SKILL.md) | Class-based TypeScript house style: operations, naming, ownership, ports, barrels and directory layout. |
-| [python-patterns](skills/languages/python-patterns/SKILL.md) | Python types, runtime boundaries, defaults, exceptions, resource cleanup and async tasks. |
-| [python-design](skills/languages/python-design/SKILL.md) | Class-based Python house style: operations, domain values, dependency protocols, naming and modules. |
+| [typescript-patterns](collections/typescript-foundation/skills/typescript-patterns/SKILL.md) | TypeScript types, narrowing, generics, absence, module syntax and enforcement. |
+| [typescript-design](collections/typescript-foundation/skills/typescript-design/SKILL.md) | Class-based TypeScript house style: operations, naming, ownership, ports, barrels and directory layout. |
+| [python-patterns](collections/python-foundation/skills/python-patterns/SKILL.md) | Python types, runtime boundaries, defaults, exceptions, resource cleanup and async tasks. |
+| [python-design](collections/python-foundation/skills/python-design/SKILL.md) | Class-based Python house style: operations, domain values, dependency protocols, naming and modules. |
 | [bash-patterns](skills/languages/bash-patterns/SKILL.md) | Preserving arguments, command failures, query results and cleanup ownership in Bash scripts. |
-| [node-patterns](skills/languages/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
+| [node-patterns](collections/typescript-foundation/skills/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
 
 Install each standalone package by its existing name, for example
-`skills/languages/python-patterns/` to `.agents/skills/python-patterns/`.
+`skills/languages/bash-patterns/` to `.agents/skills/bash-patterns/`.
 Names, invocation examples and release tags are unchanged by source grouping.
 Existing imports retain their pinned source paths; use the new path when importing
 a revision after the move.
@@ -559,7 +564,7 @@ acceptance. Its subject is the seam between media — a concept authored in a
 schema, a setting or a document and restated in application code, another
 language or prose, where no single search finds both sides and the restatement
 falls behind silently. It deliberately excludes code shape, which belongs to
-[typescript-design](skills/languages/typescript-design/SKILL.md), and schema design,
+[typescript-design](collections/typescript-foundation/skills/typescript-design/SKILL.md), and schema design,
 which belongs to [postgres-design](skills/design/postgres-design/SKILL.md). The
 installable package is synthetic throughout and names no language, framework or
 toolchain as a requirement. Several of its false-positive tests — a complete copy
