@@ -7,6 +7,8 @@ import subprocess
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
+from collection_installation import VERSION as SEMANTIC_VERSION
+
 
 ROOT = Path(__file__).resolve().parent.parent
 SKILLS = ROOT / "skills"
@@ -14,10 +16,7 @@ COLLECTIONS = ROOT / "collections"
 LINK = re.compile(r"!?(?:\[[^\]]*\])\(([^)]+)\)")
 COPY_RECORD = re.compile(r"<!-- Package-boundary copy: (.*?)-->")
 COPY_TARGET = re.compile(r"\b([a-z][a-z0-9-]*)/((?:[\w.-]+/)*[\w.-]+\.md)\b")
-VERSION = re.compile(
-    r'^  version: "(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)'
-    r'(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?"$'
-)
+VERSION = re.compile(r'^  version: "([^"]+)"$')
 
 
 def check_package(package: Path, check_links: bool = True) -> list[str]:
@@ -26,8 +25,8 @@ def check_package(package: Path, check_links: bool = True) -> list[str]:
     if not manifest.is_file():
         return [f"{package.name}: missing SKILL.md"]
 
-    content = manifest.read_text()
-    parts = content.split("---", 2)
+    content = manifest.read_text(encoding='utf-8')
+    parts = re.split(r"^---[ \t]*$", content, maxsplit=2, flags=re.MULTILINE)
     if len(parts) != 3 or parts[0] != "" or "\n" not in parts[1]:
         errors.append(f"{manifest.relative_to(ROOT)}: invalid frontmatter")
     else:
@@ -35,8 +34,9 @@ def check_package(package: Path, check_links: bool = True) -> list[str]:
         for field in (f"name: {package.name}", "metadata:"):
             if field not in frontmatter:
                 errors.append(f"{manifest.relative_to(ROOT)}: missing {field}")
-        if not any(VERSION.fullmatch(line) for line in frontmatter):
-            errors.append(f"{manifest.relative_to(ROOT)}: missing string metadata.version")
+        if not any((match := VERSION.fullmatch(line)) and SEMANTIC_VERSION.fullmatch(match.group(1))
+                   for line in frontmatter):
+            errors.append(f"{manifest.relative_to(ROOT)}: missing or invalid string metadata.version")
         if not any(line.startswith("description: ") for line in frontmatter):
             errors.append(f"{manifest.relative_to(ROOT)}: missing description")
 
@@ -48,7 +48,7 @@ def check_package(package: Path, check_links: bool = True) -> list[str]:
 def check_local_links(unit: Path) -> list[str]:
     errors = []
     for page in unit.rglob("*.md"):
-        for line_number, line in enumerate(page.read_text().splitlines(), 1):
+        for line_number, line in enumerate(page.read_text(encoding='utf-8').splitlines(), 1):
             for match in LINK.finditer(line):
                 destination = match.group(1).strip().split()[0].strip("<>")
                 parsed = urlsplit(destination)
@@ -71,7 +71,7 @@ def check_copy_records(packages: list[Path]) -> list[str]:
         for page in sorted(package.rglob("*.md")):
             entries = [
                 (line_number, name, path)
-                for line_number, line in enumerate(page.read_text().splitlines(), 1)
+                for line_number, line in enumerate(page.read_text(encoding='utf-8').splitlines(), 1)
                 for record in COPY_RECORD.finditer(line)
                 for name, path in COPY_TARGET.findall(record.group(1))
             ]
@@ -113,7 +113,9 @@ def main() -> int:
         packages.extend(members)
         errors.extend(error for package in members for error in check_package(package, check_links=False))
         errors.extend(check_local_links(collection))
-        if (collection / "collection.json").is_file():
+        if not (collection / "collection.json").is_file():
+            errors.append(f"{collection.relative_to(ROOT)}: missing collection.json")
+        else:
             checker = collection / "scripts/check_installation.py"
             canonical = ROOT / "scripts/collection_installation.py"
             if checker.is_file() and checker.read_bytes() != canonical.read_bytes():
@@ -140,7 +142,7 @@ def main() -> int:
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print(f"Validated {len(packages)} skill entries, including {len(collections)} collections")
+    print(f"Validated {len(packages)} skill entries, including {len(collections)} collections at {ROOT}")
     return 0
 
 

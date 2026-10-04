@@ -6,6 +6,9 @@ one installable collection under `collections/<name>/`.
 
 [Decision log](DECISIONS.md) records structural decisions and ideas for follow-up.
 
+The [collection sweep](validation/collection-sweep.md) records the 4 October 2026
+skill-quality and collection-consistency review, its checks and remaining limits.
+
 [Data foundations](docs/data-foundations.md) proposes the skills for the next
 database-modeling stage; it is not an installed collection yet.
 
@@ -48,8 +51,6 @@ The [service-foundation collection](collections/service-foundation/COLLECTION.md
 installs service ownership and runtime guidance together. Promotion from a spike
 to maintained service use selects both members; narrow tasks select only what they
 need. Its manifest and checker detect incomplete or locally changed installations.
-The repository package validator also checks declared collection inventories, so
-member edits require a reviewed inventory update before validation passes.
 
 | Member | Use it for |
 | --- | --- |
@@ -146,6 +147,29 @@ members; independent installations remain an explicit distribution choice.
 Application-foundation also installs as a complete collection. Its
 [installation guidance](collections/application-foundation/references/installation.md)
 defines its self-contained core and project routing to separately pinned companions.
+
+Every collection declares its members, version and shipped file hashes in
+`collection.json`. Before adopting a staged copy, run the checker from the selected
+source revision against it:
+
+```sh
+python3 /selected/source/<collection>/scripts/check_installation.py /staged/<collection>
+```
+
+The installed checker's self-check detects accidental drift; checking against the
+trusted source also compares the manifest. Neither replaces review of changed
+guidance or proves native client discovery. Each collection's installation
+reference owns its project routing and update procedure.
+
+For source edits, maintain the declared membership deliberately. The shared
+checker is owned by `scripts/collection_installation.py`; after changing it, run
+`python3 scripts/sync-collection-tools.py` to distribute it and
+`python3 -m unittest discover -s scripts/tests -q` to exercise its metadata and
+staged-copy behavior. After reviewing a collection's edits, regenerate that
+collection's inventory with its checker and `--write`, then run package validation.
+The inventory identifies the selected artifact; it is not a stored expected
+answer for a behavioral test. Do not regenerate a consumer inventory to accept
+local drift.
 
 Collection members may link to each other and shared references or templates.
 Standalone packages keep required resources inside their own directory. Links

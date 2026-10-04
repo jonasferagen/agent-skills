@@ -79,15 +79,15 @@ def validate(root: Path) -> list[str]:
         legacy = root / f'{directory}.md'
         if legacy.is_file():
             errors.append(f'{directory}.md: ambiguous process owner; keep either this flat page or {directory}/README.md')
-    # Mapped parent indexes cover direct topics and named processes, even when
-    # there are no flat topics. A process entry is required even if empty.
+    # Mapped parent indexes cover descendant topics and named processes, even
+    # when there are no direct topics. A process entry is required even if empty.
     for index in sorted(files):
         directory = root / Path(index).parent
         parent = Path(index).parent.as_posix()
         if parent in process_dirs:
             continue
         if parent in topic_dirs | process_parents and directory.is_dir() and not (root / index).is_file():
-            if any(p.is_file() or p.relative_to(root).as_posix() in process_dirs for p in directory.iterdir()):
+            if any(p.is_file() or p.relative_to(root).as_posix() in process_dirs for p in directory.rglob('*')):
                 errors.append(f'{index}: documents in {directory.name}/ need this index')
     return errors
 

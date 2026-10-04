@@ -49,8 +49,11 @@ retry from a workflow arrow or treat withdrawal as confirmed cancellation.
 
 ## Record and exercise the design
 
-Keep workflow and handoff contracts in their architecture owner, performing steps
-in the responsible repository's procedures, and actual runs/reviews in work records.
+Keep workflow explanations and handoff contracts in their
+[mapped process and contract homes](../../../references/document-homes.md), linked
+from the architecture. Performing steps belong in the responsible repository's
+procedures, and actual runs/reviews in work records. Preserve existing homes until
+a deliberate migration.
 Foundation tables hold concise adopted facts; they do not become workflow manuals.
 Design options and reasons belong beside the choice or in an existing decision
 record when the explanation warrants one. Keep unresolved tasks in one active queue.

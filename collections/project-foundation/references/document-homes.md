@@ -119,8 +119,9 @@ This restriction governs document placement, not permission to undertake work.
 Run `python3 <collection>/scripts/validate-project-docs.py <project-docs-root>`
 after changing the managed directory. It reads the allowed paths from the table
 above, including the explicit `<process>` directory placeholder. It requires a
-mapped parent index when a directory contains topic documents or named processes,
-a README for each named process, and distinct flat and directory process names.
+mapped parent index for direct or descendant topic documents and named processes,
+including architecture topics in `proposals/` and `examples/`. Each named process
+needs its own README and a name distinct from existing flat process pages.
 Symlinks, additional directory levels and non-Markdown artifacts are rejected.
 This remains a path check: it does not enforce headings,
 template fields, semantic completeness or browser input. Review content against

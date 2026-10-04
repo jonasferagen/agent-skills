@@ -2,7 +2,7 @@
 name: application-design
 description: "Turn a workflow into application operations, state ownership and dependency interfaces, or revise those boundaries. Use when deciding where behavior belongs inside an application; provider selection, language idioms and literal document edits have separate routes."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Application design
@@ -83,10 +83,11 @@ boundary. Use the project's verification guidance when available. A fake depende
 can exercise the application's decision; it cannot establish a real provider's
 contract. Keep design traces, implemented behavior and execution evidence distinct.
 
-Leave a compact design in the repository's existing owner: operation and rules,
-responsibilities and dependencies, relevant state transitions, traced cases, and
-the smallest next implementation with its unresolved prerequisites. A table or
-short explanation may suffice; create separate documents only when they have
-distinct readers or owners. A review request can end with findings and needs no
-rewrite. Add language conventions, transport setup and deployment guidance only
+Present a compact design: operation and rules, responsibilities and dependencies,
+relevant state transitions, traced cases, and
+the smallest next implementation with its unresolved prerequisites. When the task
+calls for a repository artifact, use its existing design owner. A table or short
+explanation may suffice; create separate documents only when they have distinct
+readers or owners. A review request can end with findings and needs no rewrite.
+Add language conventions, transport setup and deployment guidance only
 when the requested implementation reaches them.

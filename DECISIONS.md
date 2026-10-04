@@ -536,3 +536,22 @@ owners as well as its existing service route. No remote resolver or global clien
 registration is selected. The [validation record](validation/companion-collections.md)
 owns checks and task-routing evidence. Source landing and project-local adoption
 remain separate commits; no release tag is implied.
+
+## 2026-10-04 — Consistent collection integrity and quality sweep
+
+Review the five new foundation collections and project-foundation in two passes:
+individual skill quality, then collection consistency. Keep their distinct task
+owners and conditional loading; repairs belong in the existing owner rather than
+adding another workflow for the same decision.
+
+Application-foundation and project-foundation now use the same declared membership,
+file inventory and source-based installation checker as the four companion
+collections. Package validation requires an inventory for every collection and
+checks the distributed checker against its canonical source. Shared tests exercise
+staged copies without a fixed catalog list, reject missing inventories and malformed
+versions, and name the measured root in verdicts. Artifact identity remains distinct
+from behavioral evidence and live parity between current authoritative owners.
+
+The [sweep record](validation/collection-sweep.md) links per-collection findings,
+consumer trials, helper verification and further improvements. Version updates
+describe source revisions; this sweep creates no release tag or consumer pin update.

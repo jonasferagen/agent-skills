@@ -1,8 +1,8 @@
 ---
 name: test-writing
-description: "Write or change unit tests, integration tests and the fixtures they use. Use whenever a test, a test helper, a fixture or any example input is added or edited, especially with real records at hand; choosing which checks a change needs and auditing a settled suite are separate tasks."
+description: "Write or change unit tests, integration tests and the fixtures they use. Use when adding or editing a test, test helper, fixture or test input, especially with real records at hand; evidence selection and settled-suite audits are separate tasks."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Test writing
@@ -28,7 +28,9 @@ use it as permission to pick the easier rule.
    and which failure would disprove it. A test whose failure you cannot name is
    not ready to be written. Whether a change needs a test at all, and at which
    layer, is a question of evidence. Settle that first; this skill starts once
-   a test is to be written.
+   a test is to be written. Use
+   [verification design](../verification-design/SKILL.md) if the evidence is
+   still undecided.
 2. **Open the references the work needs,** from the table below: the one for
    your kind of test, and fixtures. Do this before you look at real records.
 3. **Make up every value.** Real records show the shape of the input: a data
@@ -38,6 +40,9 @@ use it as permission to pick the easier rule.
    test name, a comment or an assertion message: no number, name, address or
    phrase, and no part of one. A value made by trimming a real one or changing
    a digit still carries it, and so does a file name built around a real name.
+   A test deliberately reading policy-approved real data uses the
+   [real-data rules](references/fixtures.md#real-data-as-test-input); this does
+   not permit copying those values into tracked test artifacts.
    Values that are public, or that the code itself fixes, such as a provider's
    name that a rule matches, may stay as they are. The project's policy
    decides what is private. Where it is silent, treat anything that identifies
@@ -47,8 +52,9 @@ use it as permission to pick the easier rule.
 4. **Write the test** by the rules below.
 5. **See it fail.** A test that has never failed has not shown that it can.
    Run the new or changed test against the code without the change, or
-   against a temporary copy with the behavior broken, and check that it fails
-   for the reason you named. Break the behavior, not one line that serves it.
+   against an isolated temporary copy with the behavior broken, and check that
+   it fails for the reason you named. Break the behavior, not one line that
+   serves it.
    If the test still passes, look for a second guard that gives the same
    behavior, such as the same check on another path, before you call the
    test weak. If you could not see it fail, say so in the report.
@@ -78,12 +84,15 @@ Most work needs two of these: the kind of test, and fixtures.
   internal order can change while the behavior stays correct.
 - **Same result on every run.** Pass in the clock, the random seed, the locale
   and anything else that varies. Use no sleeps and no dependence on the order
-  of tests. Reach no service from outside the test; one the test starts for
-  itself, such as a disposable database, is part of the test.
-- **Made-up data only.** When the shape of a real value matters, make up a
+  of tests. Prefer a service the test starts for itself, such as a disposable
+  database. Use an externally provisioned test service only when the project's
+  testing guidance provides isolated state and permits it; never fall back to a
+  developer's, shared or production resource when setup fails.
+- **Make up stored data.** When the shape of a real value matters, make up a
   value with that shape: the same length and kind of characters, different
-  content. Public values and values the code itself fixes are the exception
-  that step 3 names.
+  content. Public values and values the code itself fixes are exceptions.
+  Policy-approved real-data tests keep that data in its untracked home, as
+  step 3 and the fixtures reference describe.
 - **Own your state.** Create what the test changes in a place no other test
   uses, and remove it afterwards. Tests may share what none of them changes,
   such as a read-only fixture built once. Depend on nothing another test left
@@ -99,8 +108,10 @@ asking.
 
 ## Scope
 
-This skill covers writing tests and their fixtures. It does not choose which
-checks a change or a milestone needs, audit a suite that is already settled,
-pick a framework or set a coverage threshold. It supplies no check for copied
+This skill covers writing tests and their fixtures. Use
+[verification design](../verification-design/SKILL.md) to choose checks for a
+change or milestone, and [test audit](../test-audit/SKILL.md) to assess a settled
+suite. This skill does not pick a framework or set a coverage threshold. It
+supplies no check for copied
 values: a project that keeps real data at hand owns one, and the fixtures
 reference says what it needs.

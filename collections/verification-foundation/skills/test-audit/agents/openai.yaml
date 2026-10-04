@@ -1,4 +1,4 @@
 interface:
   display_name: "Test Audit"
-  short_description: "Audit a settled test suite for brittleness, gaps and unfalsifiable assertions"
+  short_description: "Audit settled tests for weak evidence, gaps and brittleness"
   default_prompt: "Use $test-audit to assess whether these tests actually protect behavior."

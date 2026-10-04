@@ -2,7 +2,7 @@
 name: node-patterns
 description: "Write or review Node child-process wrappers and command-line checks. Use for exit status, timeouts, inherited environment, pipe output or failures reported as success."
 metadata:
-  version: "0.1.2"
+  version: "0.1.3"
 ---
 
 # Node Patterns
@@ -57,6 +57,13 @@ function outcomeOf(error) {
   return { kind: 'not_completed', reason: error.code ?? error.message };
 }
 ```
+
+The callback describes the child's reported outcome, not every reason the wrapper
+may have stopped waiting. Track a deadline or cancellation decision separately
+when it determines the wrapper's result. A child can catch a termination signal
+and exit 0, leaving `error` null even after a timeout or `child.kill()`; that does
+not undo the wrapper's timeout or cancellation. `killed` alone does not identify
+the cause or prove that the process has terminated.
 
 Name the outcome in the error message: "timed out after 120 s", "docker was not
 found", "output exceeded 64 MiB". A message built only from the child's stderr

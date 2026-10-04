@@ -1,25 +1,25 @@
 {
   "name": "python-foundation",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "members": [
     "python-design",
     "python-patterns"
   ],
   "files": {
-    "COLLECTION.md": "737d1ba5dd29f43897c00e633d96d6c7efad501ec3cf7755f7245023bde9492e",
+    "COLLECTION.md": "34dd1c334476bc58b7c16079aef4598ab2d5d732980aad376b0f4c7883d22bfc",
     "references/installation.md": "a36657b53ed337c61ff0f44c800ae41107eb08457ea186e99d3114f0d884bc99",
-    "scripts/check_installation.py": "0f00ba32dc605fbe760e0a6ae7dcdf0a0d1701b0e91918678983a58b98c76ec6",
+    "scripts/check_installation.py": "ab1dd5c66b2cce5d53a4d52f56f6005f5926d1118f0f457518afe74cb83b4594",
     "skills/python-design/SKILL.md": "e6560f8e0abf62edfe31edffb1c7c2504952f44596288e25279a243a4bf204f7",
     "skills/python-design/agents/openai.yaml": "ae9b207750baf28f79238b7ea9a0deac12d92854aee65005e61dc1da7bd8cd93",
     "skills/python-design/references/class-shape.md": "b1bdad1070b32902aedb4a99f209b2f9590499c829ee4df3552af2a3a6ac4956",
     "skills/python-design/references/dependency-boundaries.md": "ac1a66265bbcb8076ed9c54c62612931ad53f9070edb6e57d20b8b17f5d4a890",
     "skills/python-design/references/names-and-modules.md": "854f47ccca17c87308d6fbf7c4d93362c055937d300f65f79b0f24fe917a4b51",
     "skills/python-design/references/values-and-call-sites.md": "0d56ba496fbf61af9db0e34b13800f2abb98cd40714a805f2c91b1cb4ac8c3c3",
-    "skills/python-patterns/SKILL.md": "0cf263dea2b4627bba138c37657b4d6cccd686598b89ec9c5096e4040dc4c959",
+    "skills/python-patterns/SKILL.md": "fcb20b45284a814b933c5e697893c6eebc189c03228442eb857bc77afbcbf974",
     "skills/python-patterns/agents/openai.yaml": "98a162a90f8b416a873364bac991e5142847e76881d5759d5c034b4506474a70",
     "skills/python-patterns/references/async-work.md": "636a50993f32ce1cd109df40cfc2909bc3ee5a368f2904cdd9813e1a1f1c0ff8",
-    "skills/python-patterns/references/errors-and-resources.md": "47cfc19ec280ced956e56920402d3d06961612c518d4490f4d7ef8efe8c33b68",
+    "skills/python-patterns/references/errors-and-resources.md": "c54886ac4e086f88df4451685c237d179e820b0b9769d6246d7a5fc14fbc395a",
     "skills/python-patterns/references/types-and-boundaries.md": "7802cc248cc005aaa748f91e115156270835a4984ce55bcf539cc04244bb098d",
-    "skills/python-patterns/references/values-and-collections.md": "e0437b3564c8fa4d4225ad262ddc131b33ab7a172ef95fdac3b37f2d33a4ee88"
+    "skills/python-patterns/references/values-and-collections.md": "1ade98d3929a7fcbb9f18d64c83d62ac549ef4fb94188dc295eae4f829fb1519"
   }
 }

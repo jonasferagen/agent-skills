@@ -8,6 +8,13 @@ import re
 import sys
 
 SOURCE = Path(__file__).resolve().parents[1]
+NUMBER = r'(?:0|[1-9][0-9]*)'
+PRERELEASE = rf'(?:{NUMBER}|[0-9]*[A-Za-z-][0-9A-Za-z-]*)'
+VERSION = re.compile(
+    rf'{NUMBER}\.{NUMBER}\.{NUMBER}'
+    rf'(?:-{PRERELEASE}(?:\.{PRERELEASE})*)?'
+    r'(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?'
+)
 
 
 def inventory(root: Path) -> dict[str, str]:
@@ -24,9 +31,11 @@ def inventory(root: Path) -> dict[str, str]:
 
 
 def metadata(root: Path) -> dict:
-    data = json.loads((root / 'collection.json').read_text())
+    data = json.loads((root / 'collection.json').read_text(encoding='utf-8'))
     if not isinstance(data, dict) or set(data) != {'name', 'version', 'members', 'files'}:
         raise ValueError('Invalid collection manifest fields')
+    if not isinstance(data['version'], str) or not VERSION.fullmatch(data['version']):
+        raise ValueError('Collection version must be a semantic-version string')
     members = data['members']
     if (not isinstance(data['name'], str) or not re.fullmatch(r'[a-z][a-z0-9-]*', data['name']) or not isinstance(members, list)
             or not members or any(not isinstance(name, str) or not re.fullmatch(r'[a-z][a-z0-9-]*', name) for name in members)
@@ -34,7 +43,7 @@ def metadata(root: Path) -> dict:
         raise ValueError('Invalid or empty collection membership')
     if not isinstance(data['files'], dict):
         raise ValueError('Invalid file inventory')
-    entry = (root / 'COLLECTION.md').read_text()
+    entry = (root / 'COLLECTION.md').read_text(encoding='utf-8')
     if f"Version: {data['version']}\n" not in entry:
         raise ValueError('Collection version differs from entrypoint')
     actual = {p.parent.name for p in (root / 'skills').glob('*/SKILL.md')}
@@ -68,7 +77,7 @@ def write(root: Path) -> None:
     data['files'] = inventory(root)
     if not data['files']:
         raise ValueError('Refusing an empty inventory')
-    (root / 'collection.json').write_text(json.dumps(data, indent=2) + '\n')
+    (root / 'collection.json').write_text(json.dumps(data, indent=2) + '\n', encoding='utf-8')
 
 
 def main() -> int:
@@ -82,7 +91,8 @@ def main() -> int:
                 raise ValueError('--write only operates on this checker\'s source collection')
             write(SOURCE)
         count = check(args.root)
-        print(f'Validated {metadata(args.root)["name"]}: {count} files and {len(metadata(args.root)["members"])} declared members')
+        print(f'Validated {metadata(args.root)["name"]} at {args.root.resolve()}: '
+              f'{count} files and {len(metadata(args.root)["members"])} declared members')
     except (OSError, ValueError) as error:
         print(str(error), file=sys.stderr)
         return 1

@@ -6,14 +6,20 @@ The check added at rung 5 can itself become a restatement if it hard-codes the
 structure it checks. A durable check must:
 
 - Protect a named consequence at a cost proportionate to that consequence.
-- Compute its answer when it runs, instead of comparing with a committed
-  baseline, or "golden", that copies structural facts.
+- For parity between current owners, compute its answer when it runs instead of
+  comparing with a committed baseline, or "golden", that copies structural facts.
 - Read each structural fact from the home that declares it.
 - Resolve its location from its own file or module.
 - Use tests that create their own fixtures.
 - Fail only when the homes disagree.
 
 A check built this way survives the next restructure without changes.
+
+A selected artifact's identity is a different invariant: which exact files and
+bytes were reviewed for that revision? A release manifest or hash inventory can
+record that selection and compare a staged installation with the trusted source.
+It does not replace a live parity check between current owners or prove behavior.
+See [artifact identity](durable-checks.md#compute-the-invariant-live) for that boundary.
 
 Hard-coded directory sets, member lists and expected counts copy facts that
 already have a home. Failures caused by an absent tool can create the same

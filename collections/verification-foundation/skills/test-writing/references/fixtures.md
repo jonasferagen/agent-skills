@@ -79,9 +79,10 @@ a binary format, a large document, a recorded exchange.
 - Keep the smallest file that exercises the behavior.
 - Put a note beside it: what it stands for, how it was produced, and that it is
   synthetic.
-- For a response recorded from a real service, remove tokens, identifiers and
-  personal data before storing it, and note its date and source. It pins what
-  was observed, once.
+- For a response recorded from a real service, replace private values with
+  synthetic ones, remove tokens, and check nested content and metadata before
+  storing it. Preserve public contract values that the test needs, and note
+  its date and source. It pins what was observed, once.
 
 <!-- Package-boundary copy: source-of-truth/references/durable-checks.md (the invariant computed live, and its note that a literal expectation is not a golden) states this rule for consistency checks. Keep both passages aligned. -->
 ## Prefer derived references to stored goldens

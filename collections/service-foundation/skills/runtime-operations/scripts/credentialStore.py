@@ -27,13 +27,19 @@ def item_fields(vault, item, *, account=None, directory=None):
     env = clean_environment()
     if account:
         env['OP_SERVICE_ACCOUNT_TOKEN'] = service_token(directory, account)
+    identity = account or 'owner'
     try:
         result = subprocess.run(['op', 'item', 'get', item, '--vault', vault, '--format=json'],
-                                capture_output=True, text=True, env=env, timeout=45)
-        # op output holds the item's secret fields; report only the identity.
-        if result.returncode:
-            raise ValueError('Credential read failed')
+                                stdin=subprocess.DEVNULL, capture_output=True,
+                                text=True, env=env, timeout=45)
+    except subprocess.TimeoutExpired:
+        raise ValueError(f'op item get timed out for {identity} after 45 s; output withheld.') from None
+    except OSError:
+        raise ValueError(f'Unable to run op item get for {identity}; output withheld.') from None
+    # op output holds the item's secret fields; report only command, identity and status.
+    if result.returncode:
+        raise ValueError(f'op item get failed for {identity} (exit {result.returncode}); output withheld.')
+    try:
         return json.loads(result.stdout)['fields']
-    except (subprocess.TimeoutExpired, OSError, ValueError, KeyError, TypeError):
-        identity = account or 'owner'
+    except (ValueError, KeyError, TypeError):
         raise ValueError(f'Unable to read the {identity} connection from 1Password; output withheld.') from None

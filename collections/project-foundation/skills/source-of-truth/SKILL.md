@@ -2,7 +2,7 @@
 name: source-of-truth
 description: "Reconcile a rule, vocabulary or shape defined in several places. Use when copies drift, a change requires coordinated edits, or a consistency check needs to survive restructuring."
 metadata:
-  version: "2.1.0"
+  version: "2.1.1"
 ---
 
 # Authoritative definitions
@@ -60,7 +60,7 @@ and consistency checks. For authored explanations, use the collection's
 Read the relevant reference when that decision arises; these are not a startup
 reading list.
 
-The numbered “rungs” below are the [options for deriving or checking a copy](references/definitions.md#derive-instead-of-restate).
+The numbered “rungs” are the [options for deriving or checking a copy](references/definitions.md#derive-instead-of-restate).
 
 ## Review and verification
 

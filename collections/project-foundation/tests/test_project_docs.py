@@ -51,6 +51,18 @@ class ProjectDocsTests(unittest.TestCase):
         self.assertTrue(any(e.startswith('models/README.md:') and 'index' in e
                             for e in module.validate(self.root)))
 
+    def test_architecture_subtopics_need_their_owning_index(self):
+        for category in ('proposals', 'examples'):
+            with self.subTest(category=category):
+                topic = f'architecture/{category}/sample.md'
+                self.write(topic)
+                self.assertTrue(any(e.startswith('architecture/README.md:') and 'index' in e
+                                    for e in module.validate(self.root)))
+                self.write('architecture/README.md')
+                self.assertEqual(module.validate(self.root), [])
+                (self.root / 'architecture/README.md').unlink()
+                (self.root / topic).unlink()
+
     def test_layout_is_read_from_document_homes(self):
         homes = self.root / 'homes.md'
         homes.write_text('| Type | Home | Workflow |\n| --- | --- | --- |\n| Notes | `project-docs/notes/<topic>.md` | Synthetic |\n')

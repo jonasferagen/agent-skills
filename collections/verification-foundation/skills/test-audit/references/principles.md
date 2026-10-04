@@ -1,9 +1,8 @@
 # Testing principles
 
-Universal testing advice, independent of runner, framework, or project layout.
-It is the standard [`test-audit`](../SKILL.md)'s lenses judge against, and the
-one to apply when writing tests rather than auditing them. For runner specifics
-and commands, see the owning repository's own testing guide.
+Testing lenses, independent of runner, framework, or project layout. Apply them
+within the local testing standard described in [`test-audit`](../SKILL.md).
+For runner specifics and commands, see the owning repository's own testing guide.
 
 <!-- Package-boundary copy: test-writing/references/unit-tests.md and test-writing/references/integration-tests.md restate these rules for an author writing tests. Keep them aligned. -->
 Tests are executable evidence: they prove **observable behavior and named
@@ -72,24 +71,18 @@ name, the fixture name, or a short comment.
 The goal: a failing test points to a real regression, not to a mock drifting away
 from the thing it stands in for.
 
-**A double cannot falsify the request you make of it.** Drift is the double
-becoming wrong; this is the double never having been independently right.
-Whatever the code asks, the fake answers in the shape it was written to answer,
-and agrees. That holds for a label name, a `--format` template, a flag, a
-response field, or an expected exit code. So the request is the one part such a
-suite structurally cannot check, and no number of cases changes that: they all
-ask the same wrong question.
+**A double does not establish the real system's contract.** A strict fake can
+reject a wrong field, flag or request relative to its expectation. If that
+expectation was guessed, it may reject the right request or accept the wrong
+one. This differs from drift: the expectation was never independently checked.
 
-Two things contain it, and the first matters more because it survives being
-forgotten:
-
-- **Design so nothing load-bearing depends on the guessable name.** Key the
-  behavior on something that cannot be absent, and let the guessable field add
-  detail to the diagnosis. A wrong name then degrades a message instead
-  of inverting an answer.
-- **Read the answer off the real system once, and pin what you observed.** The
-  suite is the regression net. It is not evidence that the first observation was
-  right, and treating a green run as that evidence is the mistake.
+Check the expectation against an authoritative contract or a controlled
+observation of the real system, within the task's permissions. Pin its source
+and date when useful. The fake then protects the verified expectation against
+regression; a green run alone does not verify the external contract. If the
+evidence is unavailable, report that limit rather than silently reaching a live
+service. Where a field is only diagnostic, keep core behavior independent of it;
+where it is required by the contract, test its absence or failure explicitly.
 
 Watch for the consequence as well as the cause: a request that is wrong usually
 produces a degenerate value, such as an empty field or a missing key. A fixture
@@ -97,16 +90,17 @@ that only builds well-formed input can never express that value. That is the
 *helpers that cannot express absence* smell with its cause upstream, in the
 request, so fixing only the fixture leaves the wrong question being asked.
 
-**Configure the no-leak guarantee at the runner; do not ask every file to
-remember it.** Where the runner can reset mock state itself, turn that on and
-delete the per-file boilerplate. **A rule each new test file has to opt into
-gets forgotten over time.** Per-file cleanup then belongs only where the
-runner's setting genuinely does not reach — restoring a replaced implementation,
-unstubbing environment variables.
+Prefer a runner setting that resets mock state when it covers the required
+cleanup, rather than relying on every file to opt in. Per-file cleanup remains
+necessary where the setting does not reach, such as restoring a replaced
+implementation or environment variables. During an audit, report a missing
+reset guarantee; change configuration or tests only within authorized edit scope.
 
 ## Keep tests deterministic
 
-- No network calls.
+- Unit tests replace network dependencies. Integration tests may use a real
+  network boundary when the claim requires it, with isolated resources and a
+  bounded wait. Do not depend on an unrelated live service.
 - No dependence on wall-clock timing.
 - No random values without fixed seeds.
 - Prefer in-memory fixtures over real filesystem reads where feasible.

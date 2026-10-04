@@ -2,7 +2,7 @@
 name: project-design
 description: "Shape system architecture, responsibilities, conceptual models, workflows and integration choices before or during implementation. Use for operating design across people, agents, tools or services; literal edits, provider setup and runtime implementation have separate workflows."
 metadata:
-  version: "0.9.0"
+  version: "0.9.1"
 ---
 
 # Project design

@@ -57,14 +57,11 @@ local cast. Do not widen the production contract just to make a stub compile.
 
 ## Optional coverage
 
-Use coverage **only to locate untested branches, never as a target number.** Run
-it through the repository's own test runner on its full lane, not a fail-fast or
-fast-subset lane: such a lane is non-certifying under the audit-run rule in
-[SKILL.md](../SKILL.md), so it can report only a partial run.
-
-For a complete coverage claim, run the complete selected suite. A fail-fast or
-fast-subset lane reports only partial coverage under the run rule in
-[SKILL.md](../SKILL.md).
+Use coverage to locate untested branches, rather than inventing a target number.
+Preserve any threshold the repository already requires. Run through its own test
+runner; a complete coverage claim needs the complete selected suite. A
+fail-fast run that stops early or a fast subset reports only partial coverage
+under the run rule in [SKILL.md](../SKILL.md).
 
 Scope the coverage report to the surface under audit, not the test selection. A
 test elsewhere, such as an integration test, may cover that surface.

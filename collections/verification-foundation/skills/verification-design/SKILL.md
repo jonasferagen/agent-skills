@@ -2,7 +2,7 @@
 name: verification-design
 description: "Choose proportionate checks for a change or milestone and consolidate overlapping validation by the failure each check can detect. Use when deciding which test layers to run, what evidence a claim needs, or whether repeated suites and setup can be combined."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Verification design
@@ -57,5 +57,7 @@ the same verdict. Broaden checks when the change crosses a boundary or a focused
 run reveals a concrete unresolved risk; stop repeating unaffected tiers once
 the required evidence is in hand.
 
-This skill designs evidence for active work. An audit of whether a settled suite
-has weak assertions, mock drift or missing cases is a separate activity.
+When the selected evidence requires writing a test, use
+[test writing](../test-writing/SKILL.md). For weak assertions, mock drift or
+missing cases in a settled suite, use [test audit](../test-audit/SKILL.md).
+Load those skills only when the requested work reaches their task.

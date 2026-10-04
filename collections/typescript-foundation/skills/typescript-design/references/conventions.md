@@ -74,11 +74,12 @@ The review-time diagnostic lives in
 
 ## Cross-References In Comments
 
-When a comment points at a symbol, use TSDoc `{@link}` instead of a handwritten
-file path. Symbol links stay navigable and survive file moves.
+When a comment points at a symbol, use a supported `{@link}` reference instead
+of a handwritten file path. Prefer the symbol name, such as
+`{@link InvoiceState}`, when the repository's editor or documentation tool can
+resolve it.
 
-- Link an in-scope symbol as `{@link invoiceState}`.
-- Link another module as
-  `{@link import('./InvoiceState').InvoiceState}`.
-- Keep a path only when no symbol exists, such as a config file, asset, or
-  route.
+Cross-module declaration-reference syntax and rename support vary by tool.
+Follow the repository's proven syntax and verify that the link resolves; do not
+assume a TypeScript `import(...)` expression is a portable TSDoc link. Keep a
+path only when no symbol exists, such as a config file, asset, or route.

@@ -19,6 +19,11 @@ An unavailable service is not evidence that a search found no matches. Catch
 `Exception` broadly only at an intentional reporting or isolation boundary;
 do not turn interrupts, process exit or cancellation into success.
 
+For text I/O, specify the encoding required by the file contract on both reads
+and writes. Preserve locale-dependent handling when the locale is part of that
+contract; do not assume every external file is UTF-8. Keep decoding failures
+distinct from file acquisition errors and format syntax errors.
+
 ## Close what you acquire
 
 Use `with` or `async with` for owned resources. Use `ExitStack` or
@@ -31,9 +36,9 @@ A class context manager suppresses a body exception if `__exit__` returns a
 truthy value. Suppress only an explicitly handled failure. Do not use `return`
 in `finally`, which can replace a pending return or exception.
 
-This example translates only decoding failure; missing files and permission
-errors retain their own meanings. It promises a decoded value, not validation
-against an application schema:
+This example translates only JSON syntax failure. Missing files, permission
+errors and text-decoding failures retain their own meanings. It promises a
+decoded JSON value, not validation against an application schema:
 
 ```python
 import json
@@ -65,5 +70,6 @@ kill and drain after timeout, unlike `run`, which handles the direct child.
 Neither promise implies that all descendants have been stopped.
 
 Sources: [exceptions](https://docs.python.org/3/tutorial/errors.html),
+[text file encoding](https://docs.python.org/3/library/functions.html#open),
 [context managers](https://docs.python.org/3/library/contextlib.html),
 [subprocess](https://docs.python.org/3/library/subprocess.html).

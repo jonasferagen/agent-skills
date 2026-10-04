@@ -2,7 +2,7 @@
 name: typescript-patterns
 description: "Write or review TypeScript types, narrowing, generics, absence, tuples, brands and module syntax. Use also for compiler strictness and lint enforcement; class organization and naming belong to adopted design guidance."
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
 ---
 
 # TypeScript patterns

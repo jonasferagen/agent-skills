@@ -70,7 +70,9 @@ silently not carried / not rendered / not handled", the mirror is fail-open.
 `readonly T[]`, `ReadonlySet<T>`, `Partial<Record<T, …>>`, and
 `as Record<T, …>` all compile with a member **missing**: a subset of a `T[]` is
 a valid `T[]`. Reviewers read these as forcing every member to be present. They
-do not. Only `satisfies Record<Union, …>` is total.
+do not. A checked `Record<Union, …>` is total for a closed union, whether
+written as an annotation or with `satisfies`. An assertion with `as` skips that
+check; `satisfies` keeps the literal's more specific inferred shape.
 
 **Action prompt:** invert the mirror per [Fail-Closed
 Mirrors](typescript.md#fail-closed-mirrors): derive the union from the table, or

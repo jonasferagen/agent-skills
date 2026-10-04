@@ -1,6 +1,6 @@
 # Python foundation
 
-Version: 0.1.0
+Version: 0.2.0
 
 Use this collection for Python implementation. Start with repository instructions,
 its supported interpreter and existing design. Install both members together;
@@ -9,7 +9,8 @@ load only the guidance the current change needs.
 | Task | Guidance |
 | --- | --- |
 | Shape operations, state, dependency protocols, naming or module boundaries | [Python design](skills/python-design/SKILL.md) |
-| Change types, data boundaries, defaults, exceptions or resource cleanup | [Python patterns](skills/python-patterns/SKILL.md) |
+| Change types, data boundaries or defaults | [Python patterns](skills/python-patterns/SKILL.md) |
+| Handle exceptions, text I/O, resource cleanup or async tasks | [Python patterns](skills/python-patterns/SKILL.md) |
 | Add an operation with ownership and language-boundary decisions | Read both members, then their relevant references |
 | Install, update or check this collection | [Installation](references/installation.md) |
 

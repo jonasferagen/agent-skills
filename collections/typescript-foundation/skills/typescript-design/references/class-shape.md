@@ -42,9 +42,10 @@ exemption**: a stateless, side-effect-free operation is still an operation and
 gets a static-method class (`PolygonFaces.resolveUp`, `InvoiceTotal.of`), not a
 bare `export function`. The naming benefit, a `Domain.operation()` call that is
 legible at the call site, applies whether or not the operation holds state. A
-pure geometry or math kernel is exactly where the static-class shape justifies
-its costs: no tree-shaking and no direct use as higher-order functions, both
-acceptable at typical project scale. Do not use
+pure geometry or math kernel still gets the static-class shape. It can limit
+elimination of unused members compared with separate function exports, and a
+method that uses `this` needs its receiver preserved when passed as a callback.
+Accept those tradeoffs at typical project scale for the naming benefit. Do not use
 `export const X = { method(), method() }` either: that is a static class spelled
 oddly, with the same costs and worse tooling support.
 

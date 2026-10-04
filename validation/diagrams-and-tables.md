@@ -11,7 +11,7 @@ of an independent agent evaluation or a live render.
 | A subject is a decision, a trade-off, a gotcha or a convention | Stays prose; no diagram is drawn for it. |
 | A change alters fields, options, flags or permissions per item | A before/after table, not before/after lanes; neither lane layout suits a per-item delta. |
 | A change alters stages in a flow | Before/after lanes, made comparable: same granularity, same vocabulary, one node per surviving stage. |
-| A subgraph is added without an inner direction declaration | Flagged: without `direction TB` the subgraph lays out left to right whatever the parent says, overflowing the column and shrinking labels. |
+| A subgraph is added without an inner direction declaration | Add `direction TB` to express the intended layout, then inspect the target render. Links from internal nodes to outside nodes can cause the subgraph to inherit its parent's direction; the declaration does not guarantee placement or readability. |
 | One block tries to show both how a system fits together and what happens inside its most complex part | Split by altitude: the overview keeps that part as a deliberate black box; the detail opens it. |
 | A subject appears to need a third altitude | Redirected to a document with sections rather than a diagram with deeper nesting. |
 | A form change is reported as a line-count reduction | Rejected as a measure: a line count after a form change describes cell width more than reader load. Words are measured instead. |

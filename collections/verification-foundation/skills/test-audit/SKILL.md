@@ -2,7 +2,7 @@
 name: test-audit
 description: "Audit a settled test suite for weak assertions, gaps, brittle cases, mock drift, non-determinism and misleading coverage claims. Use when asking whether existing tests actually protect behavior; choosing evidence for an active change is a separate task."
 metadata:
-  version: "0.3.0"
+  version: "0.3.1"
 ---
 
 # Test Audit
@@ -25,8 +25,9 @@ that the audit surfaces where the fix is mechanical, such as a renamed path or
 command. **A focused-test marker is a hard finding:** it silently skips every
 unfocused test in its scope (its file in some runners, the whole run in others),
 so the suite can still report green over a denominator it never names. Report it
-prominently and remove it only with user approval. Writing tests for discovered
-gaps is follow-up work, not part of the audit.
+prominently and remove it only when the user's request authorizes test edits.
+Writing tests for discovered gaps is follow-up work; use
+[test writing](../test-writing/SKILL.md) when that work is authorized.
 
 Three neighbouring passes are not this one. Tests inside a change under review
 belong to that review. A finding whose subject is the production contract behind
@@ -44,11 +45,13 @@ on rather than settling them here.
 
 An audit can inspect files without running the suite. If it reports suite timing
 or complete coverage, run the complete selected suite and name what it measured.
-A fail-fast or fast-subset lane excludes tests by design; report its result as
-partial feedback, not as a complete verification result. The reading project's
+A fail-fast run that stops early or a fast subset leaves tests unrun; report its
+result as partial feedback, not as complete verification. The reading project's
 own policy decides which runs are required for a change or release.
 When a fast lane lists its members, the full lane must still select every
 listed test; membership is a performance classification, not a coverage exception.
+Use [verification design](../verification-design/SKILL.md) when the task asks
+which checks an active change needs.
 
 ## Workflow
 
@@ -94,12 +97,12 @@ listed test; membership is a performance classification, not a coverage exceptio
      the stub members supplied. **A mismatch can hide a live branch defect** —
      this is correctness evidence, not style noise. Triage in
      [references/triage.md](references/triage.md#cast-shaped-stub-triage).
-   - **Unfalsifiable requests:** a double answers whatever the code asks it, so
-     the request — label and field names, format templates, flags, expected exit
-     codes — is unverified by every suite built on that double. Ask what the code
-     *claims about an external contract*, and whether anything has ever checked
-     that claim against the real thing. This is not drift: there was nothing to
-     drift from. See [references/principles.md](references/principles.md#mocking).
+   - **Unverified external contracts:** a strict double can reject a request that
+     differs from its programmed expectation. It cannot establish whether that
+     expectation matches the real system's fields, flags, format or exit codes.
+     Ask where the expectation came from and what independently checked it.
+     When it was never checked, distinguish that missing evidence from later
+     drift. See [references/principles.md](references/principles.md#mocking).
    - **Fixtures:** prefer fixture factories from the package that owns the
      type, and branded values; flag duplication, over-building, inaccessible
      existing fixtures, and helpers that cannot express absence.
@@ -121,6 +124,7 @@ evidence yet**.
 
 Lead with the highest-signal findings. For each give the path, the concrete
 smell, the failure it permits or the refactor it blocks, the evidence, and the
-smallest useful fix. Include an asymmetry map, intentional thin tests with their
-rationale, the commands run and their caveats, and any verified stale-prose
-cleanup.
+smallest useful fix. For a suite audit, include the source-to-test asymmetry map;
+for a focused audit, include only relevant gaps and peers. Record intentional
+thin tests with their rationale, the commands run and their caveats, and any
+verified stale-prose cleanup.

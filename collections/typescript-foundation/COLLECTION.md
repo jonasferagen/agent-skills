@@ -1,6 +1,6 @@
 # TypeScript foundation
 
-Version: 0.1.0
+Version: 0.1.1
 
 Use this collection for TypeScript implementation and Node command-line tooling.
 Start with repository instructions, actual runtime and existing tooling. Install

@@ -2,7 +2,7 @@
 name: runtime-operations
 description: "Design or change credential handling, local service controls and encrypted database backups. Use for secret custody, execution identities, lifecycle or recovery tooling, and their child-process and verification behavior."
 metadata:
-  version: "1.2.1"
+  version: "1.3.0"
 ---
 
 # Runtime operations
@@ -107,6 +107,9 @@ control. Project entrypoints supply unit names, non-secret settings and commands
 Transient HTTP services must expose `/health` with their PID as plain text after
 startup validation; the helper verifies cgroup membership. It does not install
 units, dependencies or credentials.
+If launch or readiness times out after starting an attempt, it stops only the
+selected unit. A failed cleanup reports separately and preserves the primary
+startup or readiness error.
 
 ## Arguments
 
@@ -121,7 +124,9 @@ two scripts taking an archive should not call it `--file` and `--archive`.
 - Reject an unknown argument. Ignoring a misspelled flag performs a different act
   than the operator asked for and gives them no way to tell.
 - Require an explicit target for a job that acts on a named thing. A default
-  target lets a rehearsal run against the wrong archive.
+  target lets a rehearsal run against the wrong archive. The configured viewer
+  default described under Services is the narrow exception; it does not justify
+  a default archive, worker or outbound sender.
 - Offer a resolve-and-report mode before a destructive act, so the operator
   authorizes a specific list rather than a pattern.
 - Spell options out, and give nothing destructive a single-letter alias; an alias
@@ -148,6 +153,18 @@ scope, credential references, prerequisite roles and snapshot/access checks.
 Preserve object ownership where SECURITY DEFINER commands depend on it. The
 helper never chooses a production restore destination; rehearsals have no network,
 published port, persistent data volume or production passwords.
+
+The bundled implementation validates a Supabase pooler credential profile and
+uses a pinned Supabase PostgreSQL container image. Other PostgreSQL targets need
+a reviewed project binding; importing the method does not select a provider.
+Configure at least one schema explicitly. `BackupConfig.command_timeout` sets a
+positive finite limit for each backup command, defaulting to 900 seconds; review
+that bound against the project's expected archive size before adoption.
+Client and rehearsal container cleanup identifies each attempt by its generated
+name and unique label, including after failed or timed-out startup or an attached
+command. An operational crypto failure is not
+evidence that a wrong key was denied; the helper requires GnuPG's bad-passphrase
+status before recording that check.
 
 Keys stay separate from archives; archives, metadata and receipts stay outside
 Git. Publish without overwriting retained files. Verify archive identity, checksum

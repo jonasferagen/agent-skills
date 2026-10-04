@@ -2,7 +2,7 @@
 name: typescript-design
 description: "Apply the class-based TypeScript house style when shaping operations, domain values, dependency ports, naming, directories, barrels, resolution or orchestration. Use for code organization and ownership decisions."
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # TypeScript design

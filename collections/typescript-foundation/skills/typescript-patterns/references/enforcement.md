@@ -52,8 +52,9 @@ type-level guarantee that had no runtime behavior to fail. See
 [nominal class instances](typescript.md#nominal-class-instances) for the shape
 that keeps the guarantee and satisfies the flag.
 
-So: delete what the flag finds, once you have said what each finding *was for*.
-A finding you cannot explain is a finding you have not finished reading.
+Remove bindings that serve no purpose. Preserve a type-level guarantee by
+changing its representation when needed, rather than deleting it to clear the
+finding. A finding you cannot explain is a finding you have not finished reading.
 
 ## Enforce or review
 

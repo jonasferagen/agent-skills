@@ -14,6 +14,9 @@ evidence. Distinguish direct responses, streamed bytes and durable provider jobs
 Check only the capabilities needed by the trace, such as lookup, output retrieval,
 idempotency, cancellation and retention. An unavailable capability constrains the
 design; it must not be invented to satisfy a shared interface.
+If current evidence cannot be obtained, label the uncertain contract as an
+assumption and retain verification as an implementation prerequisite. Continue
+design work that does not depend on resolving it.
 
 Keep common bookkeeping separate from capability-specific inputs and outcomes.
 Share a request identity or output manifest when their meanings agree. Give a
@@ -51,19 +54,23 @@ facts; a late output still needs an owner.
 
 ## Secure the result
 
-Retain the output bytes and required companion files before claiming a complete
-deliverable. A provider URL with an expiry is a retrieval mechanism, not durable
-custody. Record output identities and completeness, actual operation/model and
-parameters where available, and enough provider evidence to diagnose failure.
-Keep unavailable facts explicit and remove secrets from retained responses.
+When the operation promises a retained deliverable, retain its output bytes and
+required companion files before claiming completion. A provider URL with an
+expiry is a retrieval mechanism, not durable custody. Record output identities
+and completeness, actual operation/model and parameters where available, and
+enough provider evidence to diagnose failure. Keep unavailable facts explicit
+and remove secrets from retained responses. An ordinary lookup or status read
+needs only the result and retention the project's contract requires.
 
-Choose a completion boundary for publication of the result and its record.
-Downloads and partial writes must not appear as complete outputs. Describe recovery
+For a retained result, choose a completion boundary for publication of the result
+and its record. Downloads and partial writes must not appear as complete outputs.
+Describe recovery
 after the provider finishes but local capture fails, using only retrieval behavior
 the provider supports. Retention and receiver acknowledgement follow the project's
 handoff agreement; successful execution does not make a creative acceptance decision.
 
-Exercise the most consequential uncertainty window before implementation. Name
-which checks are local, which need an authenticated provider, and which incur a
-new effect. Local doubles establish application decisions only; live execution
-and paid retries need their own authorized scope and evidence.
+Trace the most consequential uncertainty window during design. Name which checks
+are local, which need an authenticated provider, and which incur a new effect.
+Execute those checks only when the requested work authorizes them; a design trace
+is not runtime evidence. Local doubles establish application decisions only;
+live execution and paid retries need their own authorized scope and evidence.

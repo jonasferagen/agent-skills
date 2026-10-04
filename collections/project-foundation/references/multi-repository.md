@@ -15,11 +15,12 @@ five-table shape, reference bindings and section inheritance. Bootstrap each
 repository's local entry point. Shared owners hold project-wide decisions;
 members declare section authorities and retain only local differences.
 
-Detailed role assignments and handoffs remain in their architecture owner,
-linked from boundaries. Internal design and commands belong to the implementing
-repository's architecture and procedures. Plans, evidence and status retain their
-own homes. Scope shared technical choices explicitly; a coordinator's own stack
-or packaging is not automatically a choice for its members.
+Detailed role assignments and relationships remain in their architecture owner,
+linked from boundaries. Processes and exchange obligations use their mapped
+process and contract owners, linked from architecture. Internal design and commands
+belong to the implementing repository's design and procedures. Plans, evidence and
+status retain their own homes. Scope shared technical choices explicitly; a
+coordinator's own stack or packaging is not automatically a choice for its members.
 
 ## Instructions and access
 

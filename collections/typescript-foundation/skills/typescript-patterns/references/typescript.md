@@ -277,28 +277,32 @@ Re-proving it at each read is the outcome this rule exists to prevent.
 
 ## Narrowing `unknown[]` To A Typed Tuple
 
-Give `Array.prototype.every` an explicit predicate so TypeScript narrows the
-elements:
+Validate the length and each position, then return the checked tuple. An array
+element predicate does not prove a fixed length to the compiler, and `every`
+skips empty slots in sparse arrays:
 
 ```ts
 function assertVec3(value: unknown, context: string): [number, number, number] {
-  if (
-    !Array.isArray(value) ||
-    value.length !== 3 ||
-    !value.every(
-      (item): item is number =>
-        typeof item === "number" && Number.isFinite(item),
-    )
-  ) {
+  if (!Array.isArray(value) || value.length !== 3) {
     throw new Error(`${context}: expected three finite numbers`);
   }
 
-  return [value[0], value[1], value[2]];
+  const [x, y, z]: unknown[] = value;
+  if (!isFiniteNumber(x) || !isFiniteNumber(y) || !isFiniteNumber(z)) {
+    throw new Error(`${context}: expected three finite numbers`);
+  }
+
+  return [x, y, z];
+}
+
+function isFiniteNumber(value: unknown): value is number {
+  return typeof value === "number" && Number.isFinite(value);
 }
 ```
 
-Without the predicate, `every` returns `boolean` and the element type remains
-unsafe.
+Each local value is narrowed independently, including under
+`noUncheckedIndexedAccess`. Missing positions, non-numbers and non-finite numbers
+are rejected before constructing the tuple.
 
 ## Tuple Aliases
 
@@ -336,9 +340,11 @@ satisfies it. For a class whose whole contract is "a validating factory produced
 this", that gap defeats the point — the unvalidated literal is exactly what the
 factory existed to exclude.
 
-Only a private or protected **instance member** makes the instance type nominal.
-Prefer the type-only form: it costs no emitted field, and an unused-locals check
-cannot report it, because it declares no value to be unread.
+A private or protected **instance member** gives classes nominal compatibility.
+A required property keyed by an unexported `unique symbol` also prevents ordinary
+object literals outside its owner from fabricating the value. The type-only form
+below costs no emitted field, and an unused-locals check cannot report it, because
+it declares no value to be unread.
 
 ```ts
 declare const orderBrand: unique symbol;

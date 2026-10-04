@@ -2,7 +2,7 @@
 name: python-patterns
 description: "Write or review Python types, data boundaries, defaults, exceptions, resource cleanup and async tasks. Use for language correctness and failure handling; class organization belongs to adopted design guidance."
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Python patterns
@@ -35,6 +35,7 @@ rather than silently changing either owner. Follow the user's explicit decision.
 | Defaults leak between calls, or an empty value triggers a fallback | [Values and collections](references/values-and-collections.md) |
 | A dataclass, iterator or collection has unclear mutation or ownership | [Values and collections](references/values-and-collections.md) |
 | A failure becomes empty output, or cleanup is skipped | [Errors and resources](references/errors-and-resources.md) |
+| Text I/O depends on the machine's default encoding | [Errors and resources](references/errors-and-resources.md) |
 | An async task outlives its owner or hides failure | [Async work](references/async-work.md) |
 
 ## Scope and output

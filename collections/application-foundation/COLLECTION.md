@@ -1,6 +1,6 @@
 # Application foundation
 
-Version: 0.1.2
+Version: 0.2.0
 
 Design the inside of an application from a concrete operation: behavior, state,
 dependencies and the boundaries that need verification. Start from project
@@ -10,8 +10,9 @@ language, framework or companion collection.
 | Task | Entry point |
 | --- | --- |
 | Turn a workflow into application operations, or change their responsibilities | [Application design](skills/application-design/SKILL.md) |
-| Design an operation that calls an external provider | Application design, then its [external integration reference](skills/application-design/references/external-integrations.md) |
-| Install or update this collection and select companion guidance | [Installation](references/installation.md) |
+| Design an operation that calls an external provider | [Application design](skills/application-design/SKILL.md), then its [external integration reference](skills/application-design/references/external-integrations.md) |
+| Design retained stage outcomes, input identity or publication evidence | [Application design](skills/application-design/SKILL.md), then [run records](skills/application-design/references/run-records.md) |
+| Install, update or check this collection and select companion guidance | [Installation](references/installation.md) |
 
 Use existing document owners for questions and literal wording edits; they need
 no application-design pass. Project-wide responsibilities and handoff agreements

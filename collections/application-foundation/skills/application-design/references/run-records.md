@@ -11,7 +11,9 @@ Identify the attempt separately from the input revision and result. For stages
 whose partial completion matters, distinguish not started, running, passed and
 failed. An interrupted running stage has an unknown outcome until reconciled;
 absence of a failure record does not mean success. Preserve relevant diagnostics
-and earlier attempts. Record technical completion separately from acceptance.
+and earlier attempts within the project's data and retention policy; keep secrets
+and prohibited input content out of records and logs. Record technical completion
+separately from acceptance.
 
 When byte identity matters, record SHA-256 and byte length for the bytes actually
 consumed, with paths relative to an identified input root. Include relevant

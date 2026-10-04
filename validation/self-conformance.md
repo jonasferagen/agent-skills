@@ -20,8 +20,13 @@ Run these first. They must pass before the review is recorded.
   containment within each installation unit, and recorded package-boundary copies.
   It does not check heading anchors or links outside packages; the project
   documentation row below covers those.
-- `python3 -m unittest discover -s collections/<name>/tests`: the collection's
-  bundled helper tests.
+- Run each bundled helper's tests, including member-owned test directories.
+  Use `python3 -m unittest discover -s <test-directory>` for Python helpers;
+  top-level discovery does not necessarily descend into member packages.
+  Collections without such tests report that coverage as absent or not applicable
+  rather than treating a zero-test run as evidence. The shared installation
+  checker is exercised by `python3 -m unittest discover -s scripts/tests`, including
+  staged copies of every inventoried collection.
 - `git diff --check $(git hash-object -t tree /dev/null) HEAD -- collections/<name>`:
   whitespace errors in every committed file of the collection, not only recent
   changes.

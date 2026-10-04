@@ -61,17 +61,13 @@ same shape of result, and the same ways of failing, including absence and
 errors. Reset doubles between tests, and prefer one runner setting to cleanup
 code that every file has to remember.
 
-**A double answers whatever it is asked.** The request your code makes of it,
-such as a field name, a flag, a format string or an expected exit status, is
-therefore the one thing that no test built on that double can check. Two
-defences:
-
-- Design so that nothing essential depends on a name you guessed. Key the
-  behavior on something that cannot be absent, and let the guessable field
-  only add detail.
-- Read the answer off the real system once, and pin what you observed, with a
-  note of where and when. The suite then guards against regression. It was
-  never proof that the first observation was right.
+**A double does not establish the real system's contract.** A strict fake can
+reject a request that differs from its expected fields, flags or format, but
+the expectation itself needs independent evidence. Check it against an
+authoritative contract or a controlled observation of the real system within
+the task's permissions, and pin the source when useful. If that evidence is
+unavailable, report the limit. Keep core behavior independent of fields that
+are only diagnostic; for a required field, test its absence or failure.
 
 ## Keep it deterministic
 

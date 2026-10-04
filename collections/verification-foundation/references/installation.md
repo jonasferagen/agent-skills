@@ -1,13 +1,15 @@
 # Install and maintain verification-foundation
 
-Copy the complete `verification-foundation/` directory from one selected source commit into
-`.agents/collections/verification-foundation/`. Record its source repository, source directory,
-full SHA, collection version and any release tag in project provenance. This
-unreleased draft may be pinned without a tag. verification design, test writing and test audit are members of
-one installation and upgrade unit; preserve their names and conditional routes.
+Copy the complete `verification-foundation/` directory from one selected source
+commit into `.agents/collections/verification-foundation/`. Record its source
+repository, source directory, full SHA, collection version and any release tag
+in project provenance. This unreleased draft may be pinned without a tag.
+Verification design, test writing and test audit are members of one installation
+and upgrade unit; preserve their names and conditional routes.
 
-Add a concrete project route to `COLLECTION.md` for the tasks it owns. One shared
-installation may serve several repositories under their existing access rules.
+Route the consuming project's agent instructions to the installed `COLLECTION.md`
+for the tasks it owns. One shared installation may serve several repositories
+under their existing access rules.
 This is project file routing, not native client auto-registration. Keep adoption
 choices and local constraints outside the imported files.
 

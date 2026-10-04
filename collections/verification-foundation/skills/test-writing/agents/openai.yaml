@@ -1,4 +1,4 @@
 interface:
   display_name: "Test Writing"
-  short_description: "Write unit tests, integration tests and fixtures with made-up data"
+  short_description: "Write unit and integration tests with synthetic fixtures"
   default_prompt: "Use $test-writing to write this test and the fixtures it needs."

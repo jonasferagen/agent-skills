@@ -56,4 +56,5 @@ unequal lengths are a defect, and ordinary `zip` when truncation is intended.
 Sources: [defaults](https://docs.python.org/3/faq/programming.html#why-are-default-values-shared-between-objects),
 [dataclasses](https://docs.python.org/3/library/dataclasses.html),
 [zip](https://docs.python.org/3/library/functions.html#zip),
-[closing generators](https://docs.python.org/3/library/contextlib.html#contextlib.aclosing).
+[closing](https://docs.python.org/3/library/contextlib.html#contextlib.closing),
+[closing async generators](https://docs.python.org/3/library/contextlib.html#contextlib.aclosing).

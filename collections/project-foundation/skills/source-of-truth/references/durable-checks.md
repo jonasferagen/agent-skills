@@ -41,6 +41,14 @@ goes stale is a committed copy of a *structural* fact, such as a count, a file
 list or an inventory, that is meant to track the home and can only be kept
 current by hand.
 
+A reviewed release's file hash inventory answers a different question: whether
+an installation contains the exact selected artifact. Generate it from the reviewed
+source revision and compare the staged copy with that trusted source, including
+the manifest. A source update creates a newly reviewed selection; regenerating a
+consumer's inventory merely accepts its drift. Artifact identity does not establish
+current structural parity or correct behavior. Keep behavioral expectations and
+live consistency invariants separate from this installation check.
+
 <!-- Package-boundary copy: test-audit/references/triage.md applies this ledger rule to test scanners. Keep both passages aligned. -->
 A **shrink-only ledger** is a bounded exception rather than a golden. It names
 known debt being paid down and belongs to the tree whose files it lists rather

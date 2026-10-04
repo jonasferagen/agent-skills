@@ -75,7 +75,12 @@ template maintenance belongs in the subsequent packaging review.
 The existing repository instructions recommend project-local imports. This draft
 leaves installation scope to the user's request and changes no installation.
 
-## Behavioral scenarios
+## Behavioral scenarios — initial standalone draft, 2 October 2026
+
+These expectations describe the standalone draft before collection adoption.
+Current bootstrap requires the complete project-foundation collection or an
+accessible shared installation; use the [current skill](../collections/project-foundation/skills/project-bootstrap/SKILL.md)
+and [collection sweep](project-foundation-sweep.md) for its maintained contract.
 
 | Request and context | Expected outcome |
 | --- | --- |

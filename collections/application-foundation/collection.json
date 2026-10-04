@@ -1,0 +1,16 @@
+{
+  "name": "application-foundation",
+  "version": "0.2.0",
+  "members": [
+    "application-design"
+  ],
+  "files": {
+    "COLLECTION.md": "44f9ccdc568aefe4ca9ba14e10e0abc8207bc678dc59ad747c2ee86035e85483",
+    "references/installation.md": "9e76f8402a6b73249dca63bc1018e1f659066760c29af83de49cfd743a8a13b2",
+    "scripts/check_installation.py": "ab1dd5c66b2cce5d53a4d52f56f6005f5926d1118f0f457518afe74cb83b4594",
+    "skills/application-design/SKILL.md": "e9a09ec95adc40e1f86437bd22b738e1315871d606c3dd86cd6e8a67dac38ca3",
+    "skills/application-design/agents/openai.yaml": "e3dcb532c65dedb190693cd6524da52ebf0cf09fc872c06b23f9a671a2f70ac4",
+    "skills/application-design/references/external-integrations.md": "9cfb19c8cf618f50ec6db03758bf284a08597918daeaecee169ac6faef288051",
+    "skills/application-design/references/run-records.md": "be52282f52a503ae9442458cd464936d024ee3e5133303969757855b08353f24"
+  }
+}
