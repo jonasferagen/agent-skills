@@ -2,6 +2,8 @@
 
 Status: {{proposal_adoption_or_observation_and_applicable_scope}}, {{date_or_revision}}.
 
+Owner: {{repository_or_component_that_decides_this_representation}}.
+
 {{what_this_representation_is_for_and_which_use_or_revision_it_covers}}
 
 ### Structure and meaning

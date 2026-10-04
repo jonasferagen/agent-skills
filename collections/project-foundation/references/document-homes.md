@@ -118,6 +118,14 @@ Keep an adequate existing section; the template adds no document type or require
 headings. A linked format alone does not establish adoption or contract
 conformance.
 
+For a format used across repositories, identify the owner that decides its
+representation. Consumer guides link that definition and explain their own
+checks, adaptations or narrower support instead of maintaining another
+complete field list. When one guide defines records with distinct identities
+or uses, give each a directly linkable section and scoped status; this does
+not require separate files. Use [source-of-truth](../skills/source-of-truth/SKILL.md)
+if competing definitions have already appeared.
+
 Before creating a document, identify its type and owner. Reuse the existing
 owner when one exists. Within the reserved directory, use only the mapped files
 and Markdown topic documents directly within the mapped subdirectories, including
