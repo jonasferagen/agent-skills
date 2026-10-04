@@ -142,3 +142,19 @@ skips. The sandbox initially prevented GnuPG's temporary agent from starting;
 the isolated runtime suite passed outside the sandbox. Database, credential and
 service boundaries remained mocked. This adds no live Docker, systemd, provider
 or database recovery evidence and does not remove the trial limits above.
+
+Integration preserves main's optional repository-format template and shared-format
+ownership guidance. Project-foundation is `1.3.0`, combining that newer `1.2.0`
+content with the sweep's installation capability; project-docs is `6.2.1` rather
+than reverting main's `6.2.0`. Its regenerated inventory contains 83 files and
+nine members. The staged whitespace check also caught and removed one trailing
+space in the newly tracked verification-trial transcript.
+
+The combined tree passed `python3 -B scripts/validate-packages.py` (27 skills,
+six collections), the shared packaging suite (five tests), and the project helper
+suite (26 tests). Package validation also passed with `LC_ALL=C`,
+`PYTHONUTF8=0` and `PYTHONCOERCECLOCALE=0`. The previously passed installation
+suite (11 tests) and repaired runtime suite (34 tests) were unchanged by integration.
+A separate Markdown scan checked 568 local destinations and heading fragments
+in 138 files, with no missing targets. No material finding remains for local
+landing; this review does not tag a release or update consumer installations.

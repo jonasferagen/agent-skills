@@ -108,6 +108,24 @@ A design proposal belongs beside its design owner; the task to resolve it belong
 in planning. A plan may link the proposal without reproducing it. A runtime
 runbook remains implementation documentation even when policy requires it.
 
+For a repository-owned message, record or package format, use the optional
+[format-section template](../templates/repository-docs/format-section.md) when
+it helps distinguish the representation from the steps that produce or consume
+it. Place the section in the existing implementing guide. State its applicable
+revision and scoped status beside the definition, link the governing process or
+contract where one exists, and point to the operating procedure and evidence.
+Keep an adequate existing section; the template adds no document type or required
+headings. A linked format alone does not establish adoption or contract
+conformance.
+
+For a format used across repositories, identify the owner that decides its
+representation. Consumer guides link that definition and explain their own
+checks, adaptations or narrower support instead of maintaining another
+complete field list. When one guide defines records with distinct identities
+or uses, give each a directly linkable section and scoped status; this does
+not require separate files. Use [source-of-truth](../skills/source-of-truth/SKILL.md)
+if competing definitions have already appeared.
+
 Before creating a document, identify its type and owner. Reuse the existing
 owner when one exists. Within the reserved directory, use only the mapped files
 and Markdown topic documents directly within the mapped subdirectories, including

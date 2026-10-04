@@ -10,6 +10,8 @@ Owner: {{agreement_owner}}
 
 {{relevant_exclusions_and_links_to_surrounding_process_and_models}}
 
+{{links_to_repository_owned_format_sections_for_scoped_implementations_when_relevant}}
+
 ## Inputs and obligations
 
 {{what_the_sender_supplies_and_what_the_receiver_can_rely_on}}
@@ -36,4 +38,5 @@ Owner: {{agreement_owner}}
 
 <!-- Use project-contracts to discover relevant obligations. A filled template
 does not prove completeness. Omit irrelevant sections; link exact commands and
-implementation formats rather than maintaining a second operating procedure. -->
+implementation formats rather than maintaining a second operating procedure.
+A linked format does not by itself prove that the contract is implemented. -->
