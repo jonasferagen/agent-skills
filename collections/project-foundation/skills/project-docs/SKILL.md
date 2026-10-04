@@ -2,7 +2,7 @@
 name: project-docs
 description: "Establish, review, or reconcile repository documentation, including domain glossaries, document ownership, project instructions, and high-level relationship diagrams. Use for project documentation structure and consistency work; not standalone office documents, generic copyediting, or application implementation."
 metadata:
-  version: "6.0.0"
+  version: "6.1.0"
 ---
 
 # Project documentation
@@ -30,6 +30,10 @@ Use that map when creating or relocating them, including architecture, models,
 process descriptions and handoff contracts. Command-level procedures and
 implementation references retain repository-owned homes. Existing layouts change
 only through deliberate migration.
+For a repository-owned message, record or package format, the map links an
+optional section template. Use it when a focused definition would help readers
+find the format's scope, governing context and operating evidence; retain an
+existing section that already answers those questions.
 
 ## Select the work
 

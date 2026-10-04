@@ -44,8 +44,11 @@ view/occurrence IDs only through a selected browsing-input convention. -->
 
 {{links_to_applicable_exchange_contracts_and_domain_meanings}}
 
+{{links_to_repository_owned_format_and_procedure_sections_used_by_this_process_when_relevant}}
+
 <!-- Name open terms and affected work explicitly. A process description does
-not establish runtime behavior or authorize executing it. -->
+not establish runtime behavior or authorize executing it. A linked format does
+not by itself establish process adoption or contract conformance. -->
 
 ## Evidence and open questions
 
