@@ -25,4 +25,7 @@ covered prose uncertainty, a repeated definition and diagram meaning; it read
 and no output constraint was violated. This establishes those bounded document
 cases, not runtime behavior, historical ownership or native client discovery.
 The framework's separate trial and release review are owned by its migration
-record. Publication and consumer cutover are recorded after they complete.
+record. The independent private repository is published with filtered native history,
+the dependency lock and its own source checks. Agent-skills source retirement
+lands after that publication; first-release tagging and Forge's consumer cutover
+are recorded by the new repository when complete.
