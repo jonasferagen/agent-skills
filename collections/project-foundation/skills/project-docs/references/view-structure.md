@@ -29,7 +29,9 @@ processes use its allowed types. A new named process starts with one README in
 its process directory, linked from the process index; supporting explanations
 are optional direct Markdown pages. A process can use prose or numbered steps
 without a diagram. Existing pages retain their declared routes
-until deliberately migrated; template use or an installation upgrade alone does
+until deliberately migrated; the [process format](../../../references/process-format.md)
+selects structured facts and stable step/handoff keys for new pages and deliberate
+migrations. Template use or an installation upgrade alone does
 not relocate them. Commands and implementation evidence remain with their local
 owners and are linked from the managed explanation.
 

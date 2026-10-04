@@ -204,3 +204,9 @@ subagent shared the parent's conversation/tool environment; this was not a
 blinded external installation. This is one practical trial; it establishes
 neither reliable discovery across projects
 nor minimal context use.
+
+## Structured process adoption — 4 October 2026
+
+[Process-format validation](process-format.md) records the versioned template,
+parser/checker coverage and fresh consumer routing trials. Existing prose pages
+remain valid until deliberate migration.

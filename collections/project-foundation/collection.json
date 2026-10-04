@@ -1,6 +1,6 @@
 {
   "name": "project-foundation",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "members": [
     "clear-writing",
     "diagrams-and-tables",
@@ -13,7 +13,7 @@
     "source-of-truth"
   ],
   "files": {
-    "COLLECTION.md": "94d7d1c08e7a610fc747d5d85c70ecb97c7c8fbc1289e006202d107af280cab2",
+    "COLLECTION.md": "d295d3ca63789b36af6ce51e1732c5cbb6fd2e6c186900e4fcacc0f0d33ea8a0",
     "references/authoring.md": "cfe75762a5d96ba86ef70f96d5ac1e64f037fb6b6f01944c51ef6ed5da1eef18",
     "references/document-homes.md": "5899eeab3879fdacc5ad7d21b20469f5d3cb9fc28222c57cffea8c1f64c78e01",
     "references/foundation-authority.md": "ed1e606a2ad7cb16fbdfd1a82f4849556df301ee46d45200fab96d0f1b54c993",
@@ -21,12 +21,14 @@
     "references/friction.md": "add5fb4e044f12e7fa8693e2794d769313edff54dd5a272e34a1260cee633d7d",
     "references/installation.md": "7482367b87904ceec10e136bebddb94b2c2e3e2266827e3562a89fb5818fa19c",
     "references/multi-repository.md": "f595774b74596dc3095d5414f0562f754cad8c0bae3f283569947eea395a68cb",
+    "references/process-format.md": "92a37820390ac4af43d55bf81194806beda5154bfd386f609a54e9655d195fb7",
     "references/repository-services.md": "747acfa0deede7f5268403dd4f7dc52081b1054894b20398745f5533491a41df",
     "references/status-and-evidence.md": "ff9f0055b33b5bcdc04afaa3ed2620efb73eb4fae0733cba2736393e0d67a110",
     "scripts/check_installation.py": "ab1dd5c66b2cce5d53a4d52f56f6005f5926d1118f0f457518afe74cb83b4594",
+    "scripts/process_format.py": "a3a09a9d724b6beefcbfa4300e0d82875244810ec74deff523188529b9b2d3f5",
     "scripts/test_service_dispatcher.py": "4cd7cb28cc4f0ac99d2b1b4921cc9ab7c9c561206ab7079c331371168d8ad18f",
     "scripts/validate-foundation.py": "527f9787d1ded56c4040f1bb9d0173bafcc2a769a0f18def385e65aee871326a",
-    "scripts/validate-project-docs.py": "da8fa0b2e6e3a8da4a90450d7f845534715995a1355cd6918ae3083aa9fb2db2",
+    "scripts/validate-project-docs.py": "182101b48c9ec7e8fba261a9f8ba8357f362ff4d0b9a881a825431ad0ec2afd1",
     "skills/clear-writing/SKILL.md": "0c9d7d824f7da065f700054f34008ef734077d0e55e44e52a5acfdfa698d936c",
     "skills/clear-writing/agents/openai.yaml": "342d87b6dd03e46cb16f0af7118223783c2f82b2917904a94338cccf05cf4201",
     "skills/clear-writing/references/instructions.md": "dc48145645975e83f3f3b7e46677804c5106e645b19c1c535cf5836021cf579e",
@@ -65,11 +67,11 @@
     "skills/project-design/references/integrations.md": "8c4cf44e2c442d2827e3c728ebaf277ba75ebdf8c08e4337989a95eff2fae5b0",
     "skills/project-design/references/next-step.md": "cd6ef9f2e777c8af461f53a32a7ced2a9d0e2eacd2a7f32bf9b47a93c47d054c",
     "skills/project-design/references/workflows.md": "f0e591dc0e31c9be54f170c49e48f4e739b561ad3423c231e56b39fc0590b841",
-    "skills/project-docs/SKILL.md": "9ad52f024d20a4a81e39088c43ec0c084507cd20d920820f885b1da7a3d84449",
+    "skills/project-docs/SKILL.md": "c5e0d236386414df409f514f1b8992383e1edc147b78bf5b82fa2f38a261b9fb",
     "skills/project-docs/agents/openai.yaml": "b20d427f09ece77c6a22cb86fc29a61cd5da8109a07bd0f427cd345c654e8096",
     "skills/project-docs/references/diagrams.md": "cde065eb248b069feedb08f793adb338ba909a3af553e2bb73a28e777ca74ef6",
     "skills/project-docs/references/structure.md": "b53a4c3cbf182b9a4945e4f5e668ba0c9de98517a4a56c96685ae7ea6967a1d7",
-    "skills/project-docs/references/view-structure.md": "8da7fb260e14edf6a8650525d907039caf66339c4491d0a609dbc74c24668f0e",
+    "skills/project-docs/references/view-structure.md": "21e3e32e465a7bf1b5e896e0e48e325d3f8c5302c8d930e11d0889a731d051e4",
     "skills/project-docs/references/worked-example.md": "3a23b367ac7de203771d1b3c2780ef35fba94d10e41807752ba3f9f63f29dce4",
     "skills/project-planning/SKILL.md": "d92d5e74f2b2cf1e7af6c7ba55f751a6d74cd12657736bd107d91602bf63ae50",
     "skills/project-planning/agents/openai.yaml": "5200352aa2f1c3847f608ff2f8f59bcbfde540080ebe7943041b633a48f05f46",
@@ -93,13 +95,14 @@
     "templates/project-docs/design.md": "f85ae36be7f15c4ada930f6cbe8db8115b2a0373b4b5ff6f5d0c07f866e9242e",
     "templates/project-docs/foundation.md": "f9ed510d922ce2c199131d8efbe7d2071dca699da067c2a1d0ffdd40169f90e2",
     "templates/project-docs/model.md": "3db517ea588ef9f43fd12a118bdad788e0a6ea223cd895b2cfbaae81c5b358a8",
-    "templates/project-docs/process/README.md": "836ab2a598a223ac8e1bef3c7ea7ac751cdc2cdda8e596857573f8a02d8d8d7d",
+    "templates/project-docs/process/README.md": "510513e1f95a066f7d93ecb9d9b950d6277c80f6bdefa9ce952eba4c4cf0ee6c",
     "templates/repository-docs/format-section.md": "95ec0d79b0c8cf5c9501bfad87099ef3fa7a0f8b4b17434dcbb7170d747176b5",
     "templates/repository-docs/services/README.md": "030e81b5022e3a0cdbf9e1e958c5c66c4dac9df9c7130ce3f20f2422d12aaf81",
     "templates/repository-docs/services/control": "a8b584d28ff0acc986b907930c3f97beb240d80e5b4bba47b372899086fe4736",
     "templates/repository-docs/services/service/README.md": "479e3819315f2e9322e8b5320dc0b559285fcf6fdb0448064763e41f7aa70aea",
     "templates/views/view.md": "97f40960d31acb2540a572b5ddf9ceffff9ab47c0459df6c0f91029c4de94063",
     "tests/test_foundation_format.py": "1a9748c997c59ca0d4e83c995f5df4772b9ad70fd0aa3300de4e64c0a223a525",
-    "tests/test_project_docs.py": "ee3cf0be32b936b93e7f13fb3b7b8321b0330e3fc5832c1f7bac8c0b51777b70"
+    "tests/test_process_format.py": "8eb8557664cce4aa801b8e2b3ef865ec6b3f2507d426d3b5ef498c3c1b0b6c63",
+    "tests/test_project_docs.py": "e7624c83f9e01d577f4d414ebe82057abeba1fe494d3317c7c8fad42cdff847c"
   }
 }
