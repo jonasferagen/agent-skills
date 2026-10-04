@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Bootstrap a new project or a fresh repository with project boundaries, policy and a project overview, plus a README that links them. Use when establishing this starting foundation; ordinary implementation and documentation maintenance belong to their own workflows."
 metadata:
-  version: "5.1.0"
+  version: "5.2.0"
 ---
 
 # Project bootstrap
@@ -109,6 +109,9 @@ It must also route:
   or choosing the next design step, not for routine literal document edits.
 - Plans, sequencing and progress maintenance to
   [project-planning](../project-planning/SKILL.md).
+- Named runtime discovery and service scaffolding to
+  [repository services](../../references/repository-services.md), only when the
+  project defines services. Do not create an empty `services/` tree by default.
 - Prose and visual explanations to the collection's shared authoring guidance.
 - Changes to purpose, responsibilities, terminology or operating circumstances to
   project-policy for a review of affected foundation decisions and consequences.

@@ -2,7 +2,7 @@
 name: project-design
 description: "Shape system architecture, responsibilities, conceptual models, workflows and integration choices before or during implementation. Use for operating design across people, agents, tools or services; literal edits, provider setup and runtime implementation have separate workflows."
 metadata:
-  version: "0.9.1"
+  version: "0.10.0"
 ---
 
 # Project design
@@ -35,6 +35,12 @@ Designing for a possible environment does not select or provision that environme
 A document-only coordinator need not acquire a runtime, and a repository does not
 imply a service, container or separate database. State any necessary mapping and
 why the workflow requires it.
+
+When defining a named runtime that needs predictable discovery and controls, use
+[repository services](../../references/repository-services.md). It owns the
+default `services/` home and routes to the project's service/runtime guidance.
+Reading an existing service guide or changing an ordinary command needs no new
+scaffold.
 
 ## Place the slice in its surrounding design
 

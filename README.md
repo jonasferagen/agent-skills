@@ -36,6 +36,9 @@ The [collection entry point](collections/project-foundation/COLLECTION.md) route
 to the foundation scaffold, installation and project routes. Its skills and references own how project facts are interpreted
 and maintained; this catalog only helps select an entry point.
 
+The [repository-services pilot](validation/repository-services.md) records the
+service scaffold, dispatcher checks and consumer routing trials.
+
 ## Authoring
 
 Included in the project-foundation collection and available for other authoring tasks.

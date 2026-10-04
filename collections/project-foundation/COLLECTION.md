@@ -1,6 +1,6 @@
 # Project foundation
 
-Version: 1.3.1
+Version: 1.4.0
 
 Start with project instructions and their existing document routes. Use this
 entrypoint to choose needed guidance; if the owner and workflow are already known,
@@ -18,6 +18,7 @@ capture pass.
 | Record or report decision and behavior status | [Status and evidence](references/status-and-evidence.md) |
 | Start the project foundation | [Project bootstrap](skills/project-bootstrap/SKILL.md) |
 | Shape architecture, responsibilities, conceptual models, workflows and integration choices | [Project design](skills/project-design/SKILL.md) |
+| Define predictable repository service homes and operating routes | [Repository services](references/repository-services.md) |
 | Create, sequence or maintain plans and next steps | [Project planning](skills/project-planning/SKILL.md) |
 | Read, apply, design or review handoff obligations | [Project contracts](skills/project-contracts/SKILL.md) |
 | Interpret policy, assess compliance or review changed circumstances | [Project policy](skills/project-policy/SKILL.md) |
