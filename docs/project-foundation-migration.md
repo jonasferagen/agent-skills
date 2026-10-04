@@ -1,12 +1,13 @@
-# Prepare the project foundation repository migration
+# Project foundation repository migration plan
 
-Extract project-foundation into its own repository after the pending iteration
-has landed. The new repository owns the project conventions, templates, workflows
-and checks. Forge remains a consumer and practical source of improvements.
-Clear-writing, diagrams-and-tables and source-of-truth remain owned by
-agent-skills; the new repository imports and depends on explicit revisions of
-those skills. This plan prepares the migration without extracting the current
-payload or changing any consumer installation.
+This is the retained preparation plan. Execution began after project-foundation
+1.5.0 and its declaration hardening landed at
+`9093cfca4ffa93df1be35b1bb7ebffaef0baac65`. The
+[extraction record](../validation/framework-extraction.md) owns actual results;
+the destination repository owns current framework maintenance and release rules.
+The steps below preserve the original proposal and its preparation baseline.
+Private cross-repository CI uses locked artifact checks; local adoption and
+release checks also compare the imports with actual upstream Git objects.
 
 ## Preparation status
 
