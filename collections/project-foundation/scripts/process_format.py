@@ -31,7 +31,7 @@ def _visible_lines(text):
             if '-->' in stripped:
                 comment = False
             continue
-        if '<!--' in stripped and not re.fullmatch(r'<!-- process-section: [a-z-]+ -->', stripped):
+        if '<!--' in stripped and not stripped.startswith('<!-- process-section:'):
             comment = '-->' not in stripped
             lines.append('')
             continue
@@ -109,7 +109,12 @@ def parse_process(text):
     if 'handoffs' in roles:
         handoff = roles['handoffs']
         body = '\n'.join(lines[handoff['start']:handoff['stop']])
-        if not re.search(r'^Handoffs: (?:None\.|Unknown\b.+)$', body, re.M):
+        declarations = re.findall(r'^Handoffs: (?:None\.|Unknown\b.+)$', body, re.M)
+        tables = any(line.strip().startswith('|') and tuple(_cells(line)) == HANDOFFS
+                     for line in lines[handoff['start']:handoff['stop']])
+        if len(declarations) > 1 or declarations and tables:
+            raise ValueError('process handoffs: use a table or one explicit None/Unknown declaration, not both')
+        if not declarations:
             handoffs = _table(lines, handoff['start'], handoff['stop'], HANDOFFS, 'process handoffs')
     for label, rows in [('steps', steps), ('handoffs', handoffs)]:
         seen = set()
