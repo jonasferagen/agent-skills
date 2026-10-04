@@ -111,6 +111,6 @@ instructions rather than another independent trial.
 
 ## Authoring follow-up — 2 October 2026
 
-The [authoring routing trials](authoring-routing.md) address the remaining
+The [authoring routing trials](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/authoring-routing.md) address the remaining
 lookup/edit activation and check substantive authoring, policy changes and source
 maintenance. They record both improvements and remaining search overreading.

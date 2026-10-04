@@ -41,12 +41,12 @@ the owner; the linked steps are the checklist, so they are not repeated here.
 
 | Rule owner | Apply to | Review steps |
 | --- | --- | --- |
-| Source of truth | Rules, vocabularies, paths and counts stated in more than one collection file or in the catalog | [Review and verification](../collections/project-foundation/skills/source-of-truth/SKILL.md#review-and-verification) |
-| Source of truth, check design | Bundled scripts and their tests | [Keep the check durable](../collections/project-foundation/skills/source-of-truth/references/check-design.md#keep-the-check-durable) |
-| Status and evidence | Validation records, examples and claims about what a skill or check proves | Compare each claim with the [states](../collections/project-foundation/references/status-and-evidence.md#states) and [evidence table](../collections/project-foundation/references/status-and-evidence.md#what-evidence-establishes) |
-| Clear writing | All prose, including descriptions, templates and examples | [Check the result](../collections/project-foundation/skills/clear-writing/SKILL.md#check-the-result), plus [instruction guidance](../collections/project-foundation/skills/clear-writing/references/instructions.md) for instructions |
-| Diagrams and tables | Each diagram and table, and passages that would explain better as one | [Semantic review](../collections/project-foundation/skills/diagrams-and-tables/references/review.md) and [visual verification](../collections/project-foundation/skills/diagrams-and-tables/references/verification.md) |
-| Project documentation | Links, document ownership, and current versus historical text | [Verify and finish](../collections/project-foundation/skills/project-docs/SKILL.md#verify-and-finish) |
+| Source of truth | Rules, vocabularies, paths and counts stated in more than one collection file or in the catalog | [Review and verification](../skills/design/source-of-truth/SKILL.md#review-and-verification) |
+| Source of truth, check design | Bundled scripts and their tests | [Keep the check durable](../skills/design/source-of-truth/references/check-design.md#keep-the-check-durable) |
+| Status and evidence | Validation records, examples and claims about what a skill or check proves | Compare each claim with the [states](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/collections/project-foundation/references/status-and-evidence.md#states) and [evidence table](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/collections/project-foundation/references/status-and-evidence.md#what-evidence-establishes) |
+| Clear writing | All prose, including descriptions, templates and examples | [Check the result](../skills/authoring/clear-writing/SKILL.md#check-the-result), plus [instruction guidance](../skills/authoring/clear-writing/references/instructions.md) for instructions |
+| Diagrams and tables | Each diagram and table, and passages that would explain better as one | [Semantic review](../skills/authoring/diagrams-and-tables/references/review.md) and [visual verification](../skills/authoring/diagrams-and-tables/references/verification.md) |
+| Project documentation | Links, document ownership, and current versus historical text | [Verify and finish](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/collections/project-foundation/skills/project-docs/SKILL.md#verify-and-finish) |
 | Routing quality | Entry points, triggers and conditional references | [Routing trial method](discovery.md#routing-trial-method) |
 | Application design | Application designs and runtime helpers produced by a collection, when present | [Exercise the boundary and choose the increment](../collections/application-foundation/skills/application-design/SKILL.md#exercise-the-boundary-and-choose-the-increment) |
 | Other skills in this repository | Helpers and tests, such as Python scripts and their test suites | Select from the [catalog](../README.md) by trigger |
@@ -73,7 +73,7 @@ an obligation, condition or level of certainty.
 ## Record and release
 
 Add a dated section to the collection's validation page, such as
-[project-foundation-collection](project-foundation-collection.md), with:
+[project-foundation-collection](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/project-foundation-collection.md), with:
 
 - the commit reviewed and whether the reviewer had a fresh context;
 - the rules applied and the files each covered;

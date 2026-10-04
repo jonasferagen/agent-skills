@@ -1,1 +1,0 @@
-Use the installed project-foundation collection at .agents/collections/project-foundation/COLLECTION.md to select guidance when relevant. policy.md owns adopted policy; evidence.md records observations. This synthetic fixture permits document work only. Preserve adopted policy unless the task requests an edit. Write the requested response to answer.md.

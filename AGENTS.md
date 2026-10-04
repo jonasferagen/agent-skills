@@ -31,22 +31,17 @@ trigger applies; routine successful use needs no capture pass.
 
 ## Writing
 
-When changing project-foundation skills or shared routes, follow the
-[collection authoring convention](docs/project-foundation-authoring.md).
-
-Use [Clear Writing](collections/project-foundation/skills/clear-writing/SKILL.md) when authoring or revising
+Use [Clear Writing](skills/authoring/clear-writing/SKILL.md) when authoring or revising
 prose here. For skill instructions, also read its [instruction
-guidance](collections/project-foundation/skills/clear-writing/references/instructions.md). Use [Diagrams and
-tables](collections/project-foundation/skills/diagrams-and-tables/SKILL.md) when adding or changing a diagram
+guidance](skills/authoring/clear-writing/references/instructions.md). Use [Diagrams and
+tables](skills/authoring/diagrams-and-tables/SKILL.md) when adding or changing a diagram
 or table, or when a passage might explain better as one. These skills own their
 reusable rules; keep repository-specific package and release rules in the
 README.
 
-The project-foundation collection includes these authoring skills and routes its
-project skills to shared authoring guidance. Standalone packages outside that
-collection use them here as an authoring convention. The
-README's [authoring skills](README.md#authoring-skills) section recommends these
-passes before a skill release and says what to record.
+These standalone skills are owned here and work without a project scaffold.
+Project-foundation imports them from selected source commits. The README's
+[authoring skills](README.md#authoring-skills) section owns release guidance.
 
 ## Verification
 

@@ -20,33 +20,21 @@ its individual skills remain task entry points loaded when needed.
 
 ## Projects
 
-Part of the [project-foundation collection](collections/project-foundation/COLLECTION.md).
+[Project foundation](https://github.com/jonasferagen/project-foundation) owns the project framework: foundation formats,
+document homes, templates, bootstrap, design, planning, contracts, policy and
+documentation workflows. Install its complete collection from a selected commit;
+its installation guide owns dependency pins, routing and updates.
+
+## Authoring and authoritative definitions
+
+These standalone packages are maintained here. Project-foundation imports checked,
+pinned copies rather than maintaining another source version.
 
 | Skill | Use it for |
 | --- | --- |
-| [Project bootstrap](collections/project-foundation/skills/project-bootstrap/SKILL.md) (`project-bootstrap`, draft) | Start a repository and establish boundaries, policy and overview, with an entry README. |
-| [Project design](collections/project-foundation/skills/project-design/SKILL.md) (`project-design`, draft) | Shape architecture, conceptual models, workflows and integration choices. |
-| [Project planning](collections/project-foundation/skills/project-planning/SKILL.md) (`project-planning`, draft) | Structure and maintain plans, dependencies and shared or local next steps. |
-| [Project contracts](collections/project-foundation/skills/project-contracts/SKILL.md) (`project-contracts`, draft) | Read, apply, design and review handoff obligations and compatibility. |
-| [Project policy](collections/project-foundation/skills/project-policy/SKILL.md) (`project-policy`) | Interpret obligations, assess compliance, and establish or review phase, scope and requirements. |
-| [Project documentation](collections/project-foundation/skills/project-docs/SKILL.md) (`project-docs`) | Decide where knowledge belongs and keep it current. |
-| [Authoritative definitions](collections/project-foundation/skills/source-of-truth/SKILL.md) (`source-of-truth`) | Give each rule a home and derive or check its other appearances. |
-
-The [collection entry point](collections/project-foundation/COLLECTION.md) routes
-to the foundation scaffold, installation and project routes. Its skills and references own how project facts are interpreted
-and maintained; this catalog only helps select an entry point.
-
-The [repository-services pilot](validation/repository-services.md) records the
-service scaffold, dispatcher checks and consumer routing trials.
-
-## Authoring
-
-Included in the project-foundation collection and available for other authoring tasks.
-
-| Skill | Use it for |
-| --- | --- |
-| [Clear writing](collections/project-foundation/skills/clear-writing/SKILL.md) (`clear-writing`) | Express facts and instructions clearly without changing their meaning. |
-| [Diagrams and tables](collections/project-foundation/skills/diagrams-and-tables/SKILL.md) (`diagrams-and-tables`) | Choose and verify useful visual explanations of relationships and comparisons. |
+| [Clear writing](skills/authoring/clear-writing/SKILL.md) (`clear-writing`) | Express facts and instructions clearly without changing their meaning. |
+| [Diagrams and tables](skills/authoring/diagrams-and-tables/SKILL.md) (`diagrams-and-tables`) | Choose and verify useful visual explanations of relationships and comparisons. |
+| [Authoritative definitions](skills/design/source-of-truth/SKILL.md) (`source-of-truth`) | Give each rule a home and derive or check its other appearances. |
 
 ## Services
 
@@ -147,13 +135,8 @@ pin. Imported files should match that commit; keep project-specific rules outsid
 the imported directory and document any necessary local modifications in the
 provenance file.
 
-For project-foundation, copy the complete
-[collection](collections/project-foundation/COLLECTION.md) with its relative layout
-intact. Its installation instructions define provenance and project routing.
-For one project spanning repositories, use the collection's
-[multi-repository guidance](collections/project-foundation/references/multi-repository.md)
-to choose shared owners and local facts. One accessible installation can serve
-members; independent installations remain an explicit distribution choice.
+For project-foundation, follow the separate [framework repository](https://github.com/jonasferagen/project-foundation)'s
+installation guidance. Its generic dependencies are maintained here.
 
 Application-foundation also installs as a complete collection. Its
 [installation guidance](collections/application-foundation/references/installation.md)
@@ -324,8 +307,7 @@ version bump when one skill is released.
 
 ### Authoring skills
 
-For project-foundation source maintenance, follow the
-[collection authoring convention](docs/project-foundation-authoring.md).
+Project-foundation source maintenance belongs in its [own repository](https://github.com/jonasferagen/project-foundation).
 
 Skills in this repository should meet the standards they teach. Apply relevant
 guidance to the packages, helpers and documentation we maintain here. Start
@@ -341,8 +323,8 @@ During authoring, AGENTS.md requires writing and visual guidance where relevant.
 Before tagging a release, also apply these skills to the content changed since the skill's
 last tag, or to the whole package for a first release:
 
-- [Clear writing](collections/project-foundation/skills/clear-writing/SKILL.md), to the prose.
-- [Diagrams and tables](collections/project-foundation/skills/diagrams-and-tables/SKILL.md), to existing
+- [Clear writing](skills/authoring/clear-writing/SKILL.md), to the prose.
+- [Diagrams and tables](skills/authoring/diagrams-and-tables/SKILL.md), to existing
   diagrams and tables and to passages a diagram or table would explain better.
 
 For a skill release, this additional pass is a recommendation, not a release
@@ -355,8 +337,8 @@ When you apply them, record on the skill's validation page which skills were
 applied and what they changed; "no change needed" is a valid result. When a pass
 rewrites wording, an independent comparison of each changed passage with the
 prior text is recommended: the first Clear Writing sweep found four meaning
-changes that way. Project-foundation includes these skills as dependencies. Other standalone
-packages use them as authoring guidance without acquiring that dependency.
+changes that way. Project-foundation imports these skills as pinned dependencies. Other packages
+use them here as authoring guidance without acquiring that dependency.
 
 ## Adding a skill
 
@@ -452,7 +434,7 @@ reconciling it after changes, and adapts to the project's existing layout
 rather than prescribing a stack, access model, merge policy or folder tree.
 Example requests: "Use $project-docs to establish documentation for this
 repository", "Use $project-docs to reconcile the docs after this release." See
-[its validation scenarios](validation/project-docs.md); it still needs
+[its validation scenarios](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/project-docs.md); it still needs
 experience in a second real project.
 
 The owner's Forge Agent Kit `selfcheck-guard` skill was folded into

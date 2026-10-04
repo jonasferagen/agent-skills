@@ -40,7 +40,7 @@ its prior text found the requirements, exceptions and literal code preserved.
 That review checked wording; it did not execute Bash examples.
 
 An independent author also used the skill to revise the conceptual
-[Source of Truth](../collections/project-foundation/skills/source-of-truth/SKILL.md) entrypoint. Review preserved
+[Source of Truth](../skills/design/source-of-truth/SKILL.md) entrypoint. Review preserved
 its six ordered options, structural exceptions and project authority; all ten
 section headings and fourteen link targets remained intact. The author flagged
 an existing contradiction: verification claimed that drift must become
@@ -116,3 +116,12 @@ receiving the expected answers:
 
 These three cases do not establish that the checks prevent the sweep's errors in
 longer documents, where most of them occurred.
+
+
+## Standalone source after framework extraction — 4 October 2026
+
+Version `0.4.0` is owned at `skills/authoring/clear-writing`. Package-local references,
+examples and UI metadata remain together. The entrypoint now follows declared
+project authority and repair routes instead of requiring project-foundation.
+Earlier dated records retain their original tested source identities.
+Migration routing evidence is recorded in [the extraction review](framework-extraction.md).

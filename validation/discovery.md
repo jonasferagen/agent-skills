@@ -38,7 +38,7 @@ remaining gaps. A single successful run demonstrates a route, not its reliabilit
 The Atlas catalog incident is an initial failure case: the third bootstrap trial
 read a large source README while consuming a collection. Its 6,262-word
 instruction subtotal excluded an additional catalog read, including truncated
-output. See [the trial](atlas-bootstrap-experiment.md#selection-only-routing-trial--2-october-2026).
+output. See [the trial](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/atlas-bootstrap-experiment.md#selection-only-routing-trial--2-october-2026).
 Installation location and authoring instructions were part of the trial setup;
 this does not establish that an installed collection necessarily causes those reads.
 
@@ -282,7 +282,7 @@ from long historical material; this trial alone does not select that design.
 The consumer/source boundary worked in this cold-entry case; appropriate writing
 rules and authoring checks remained reachable. Neither task activated diagram
 construction, policy-transition work or unrelated source maintenance. The earlier
-[diagram countercheck](atlas-bootstrap-experiment.md#diagram-countercheck-at-the-same-revision)
+[diagram countercheck](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/atlas-bootstrap-experiment.md#diagram-countercheck-at-the-same-revision)
 provides evidence of deeper routing at its named revision, not a new trial here.
 No policy-transition or automatic-host-selection trial was run. These results
 support the scoped routing change but do not establish collection-wide efficiency
@@ -290,7 +290,7 @@ or reliability. No release is being declared ready from these two runs.
 
 ## Focused authoring routes — 2 October 2026
 
-The [authoring routing trials](authoring-routing.md) test lighter consumer entry
+The [authoring routing trials](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/authoring-routing.md) test lighter consumer entry
 and direct source-maintenance sections. The source rerun avoided full catalog and
 validation-history reads but still exposed historical snippets through a broad
 search; its isolation limit remains explicit.

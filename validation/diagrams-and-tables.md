@@ -217,7 +217,7 @@ Filling existing tables needs no construction references; actual diagrams still
 require composition, grounding and visual verification. Project-docs 2.1.0 reads
 its diagram-placement reference only for diagram tasks. Independent bootstrap and
 diagram outcomes, including their limits, are recorded in
-[the experiment](atlas-bootstrap-experiment.md#selection-only-routing-trial--2-october-2026).
+[the experiment](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/atlas-bootstrap-experiment.md#selection-only-routing-trial--2-october-2026).
 
 Version 0.5.0 adds the distinction between workflow, participant interactions,
 object state transitions and entity relationships. It moves ER composition and
@@ -346,3 +346,12 @@ truncated reads; foundation-format was avoidable with the missing foundation.
 The trial render retained a visible crossing; the separately verified bundled
 example removes it. No source-repository instructions or live systems were used.
 The trial used the family before the example's final layout-only adjustment.
+
+
+## Standalone source after framework extraction — 4 October 2026
+
+Version `0.11.0` is owned at `skills/authoring/diagrams-and-tables`. Package-local references,
+examples and UI metadata remain together. The entrypoint now follows declared
+project authority and repair routes instead of requiring project-foundation.
+Earlier dated records retain their original tested source identities.
+Migration routing evidence is recorded in [the extraction review](framework-extraction.md).

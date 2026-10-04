@@ -1,1 +1,0 @@
-For this handoff use .agents/collections/project-foundation/skills/project-contracts/SKILL.md directly. exchange.md owns the contract and policy.md owns project policy. Synthetic assessment only: preserve inputs and installed guidance, perform no external actions, and write answer.md.

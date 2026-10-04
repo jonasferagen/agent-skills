@@ -1,1 +1,0 @@
-Assess this candidate against the current agreement. The input revision matches, all attachments are present, and Publishing returned a successful build. There is no record of an Editorial acceptance decision. State whether completion is established and what remains unresolved. Do not modify the agreement or execute work.

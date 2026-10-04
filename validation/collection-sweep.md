@@ -17,7 +17,7 @@ reviews and cross-evaluations.
 | Python | python-design, python-patterns and all eight references | Text-file contracts, async/text-I/O routes and generator source links | [Python sweep](python-foundation-sweep.md) |
 | TypeScript | typescript-design, typescript-patterns, node-patterns and all sixteen references | Strict/sparse tuple validation, record completeness, nominal markers, symbol links and process outcomes | [TypeScript sweep](typescript-foundation-sweep.md) |
 | Verification | verification-design, test-writing, test-audit and all references | Evidence/task handoffs, strict-double limits, isolated integration boundaries and preserved privacy/gates | [Verification sweep](verification-foundation-sweep.md) |
-| Project | All nine members, references, templates and helpers | Mapped document owners, descendant-index enforcement, complete installation checking and artifact identity | [Project sweep](project-foundation-sweep.md) |
+| Project | All nine members, references, templates and helpers | Mapped document owners, descendant-index enforcement, complete installation checking and artifact identity | [Project sweep](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/project-foundation-sweep.md) |
 
 The shared packaging change adds inventories and installation checkers to
 application-foundation and project-foundation. All six now use the canonical
@@ -191,9 +191,9 @@ locally. Action configuration was checked against the official
 Three independent agents evaluated fresh consumer contexts with complete copied
 collections and minimal project inputs. They received realistic requests without
 expected routes, prior conclusions or proposed fixes. Retained raw requests,
-reads, commands and answers are [focused Python](collection-followup-trials/focused.md),
-[maintained service](collection-followup-trials/boundary.md) and
-[literal wording](collection-followup-trials/literal.md). Their distinct guidance
+reads, commands and answers are [focused Python](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/collection-followup-trials/focused.md),
+[maintained service](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/collection-followup-trials/boundary.md) and
+[literal wording](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/collection-followup-trials/literal.md). Their distinct guidance
 read counts and whitespace-delimited word totals were 12/5,969, 19/8,924 and
 6/1,550, including local instructions/foundation. No guidance was reread or
 truncated; all consulted routes resolved. The focused task reproduced its bug,
@@ -203,7 +203,7 @@ The wording change preserved the actual exit behavior without a service or
 language implementation pass. It read two additional collection indexes to
 check task fit; this is reading cost, not a missing boundary route.
 
-[Prepare fresh fixtures](collection-followup-trials/prepare.py) in a new directory
+[Prepare fresh fixtures](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/collection-followup-trials/prepare.py) in a new directory
 outside the authoring repository, for example
 `python3 validation/collection-followup-trials/prepare.py /tmp/new-consumer-trials`.
 Preparation was executed successfully. Input fixtures preserve the starting state;

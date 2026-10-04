@@ -21,7 +21,7 @@ Supplied-metadata independent routing outcomes are recorded below after review.
 
 ## Independent draft trial
 
-The [combined trial record](run-records.md#independent-draft-trial) retains method,
+The [combined trial record](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/run-records.md#independent-draft-trial) retains method,
 reads and outcomes. The Godot cases preserved exit-status, sidecar and transformed
 geometry distinctions; no demonstrated guidance defect was found. This was a
 supplied-metadata draft exercise, not engine execution or automatic discovery.

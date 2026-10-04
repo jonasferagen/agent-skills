@@ -136,7 +136,7 @@ to their owners and update them with changed decisions. Authority remains with
 the foundation; reading frequency depends on the task.
 
 Applied this draft to `personal/atlas` on 2 October 2026. See the
-[experiment record](validation/atlas-bootstrap-experiment.md). The application
+[experiment record](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/atlas-bootstrap-experiment.md). The application
 slice, language, storage and interface remain unchosen. The trial produced project
 documents and installed one collection locally; no application or environment
 validation was performed.
@@ -239,7 +239,7 @@ accessible collection installation. Members retain local facts and explicit
 exceptions. Independent projects and deliberately separate pinned installations
 remain supported. The Forge bootstrap exposed duplicated policy and installation
 copies; this change separates project ownership from Git repository boundaries.
-See [validation](validation/multi-repository-foundation.md). No release tag created.
+See [validation](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/multi-repository-foundation.md). No release tag created.
 
 ## 3 October 2026 — Unified foundation and named references
 
@@ -254,7 +254,7 @@ no runtime resolver or automatic Markdown expansion is introduced.
 Project-bootstrap becomes unreleased 3.0.0 because its default scaffold changes;
 project-policy 2.2.0 and project-docs 2.3.0 support both section and existing-file
 owners. The collection is pinned by commit; no release tag is created.
-See [validation](validation/multi-repository-foundation.md).
+See [validation](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/multi-repository-foundation.md).
 
 ## 3 October 2026 — Foundation declarations only
 
@@ -291,7 +291,7 @@ not select current infrastructure. Reuse policy, documentation and authority
 guidance without restoring retired change-workflow or shared-code-design rules.
 
 Project-design starts at unreleased 0.1.0; bootstrap 4.2.0 adds its discovery hook.
-Behavioral trials and limitations belong in [validation](validation/project-design.md).
+Behavioral trials and limitations belong in [validation](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/project-design.md).
 No release tag is created. Forge adoption is a separately recorded consumer update.
 
 ## 3 October 2026 — Workflow and integration design
@@ -361,13 +361,13 @@ consequential omissions discovered after otherwise smooth work.
 
 This applies the distinction to contracts first. It does not impose four modes
 on every skill or add a subject reference for every possible contract type.
-Validation belongs in [project-contracts](validation/project-contracts.md).
+Validation belongs in [project-contracts](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/project-contracts.md).
 No release or downstream adoption is implied.
 
 
 ## 2026-10-03 — Foundation task routing and family growth
 
-Adopt the [collection authoring convention](docs/project-foundation-authoring.md)
+Adopt the [collection authoring convention](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/docs/project-foundation-authoring.md)
 for project-foundation maintenance. Task distinctions follow each skill's work;
 project, evidence and guidance gaps have different owners. Design and adequacy
 review discover necessary decisions beyond listed examples. Keep this convention
@@ -463,7 +463,7 @@ document-homes table instead of a copied list.
 
 ## 2026-10-03 — One home for status, evidence and authority
 
-[Status and evidence](collections/project-foundation/references/status-and-evidence.md)
+[Status and evidence](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/collections/project-foundation/references/status-and-evidence.md)
 is the shared home for the unknown, proposed, adopted, implemented and verified
 states, what common kinds of evidence can establish, and where authority to act
 comes from. Skills link to it where they restated the general rule and keep
@@ -555,3 +555,15 @@ from behavioral evidence and live parity between current authoritative owners.
 The [sweep record](validation/collection-sweep.md) links per-collection findings,
 consumer trials, helper verification and further improvements. Version updates
 describe source revisions; this sweep creates no release tag or consumer pin update.
+
+
+## 4 October 2026 — Extract project-foundation
+
+Project-foundation is maintained in [its own repository](https://github.com/jonasferagen/project-foundation). Its project
+conventions and workflows remain one complete installation. Clear-writing,
+diagrams-and-tables and source-of-truth remain owned here as standalone packages;
+the framework imports selected committed revisions. Old installed collections
+retain their historical source pins until deliberately replaced.
+
+Keep the shared collection installation checker owned here. The framework
+imports its selected implementation and records that dependency with its skills.

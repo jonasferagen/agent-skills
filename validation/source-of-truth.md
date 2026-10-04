@@ -220,7 +220,7 @@ against anything on main; no independent discovery trial was run.
 ## Candidate: record meaning versus storage origin
 
 Proposed on 2 October 2026, from a pattern-capture review in the intake-spike
-project. Proposed home: [Authoritative definitions](../collections/project-foundation/skills/source-of-truth/SKILL.md).
+project. Proposed home: [Authoritative definitions](../skills/design/source-of-truth/SKILL.md).
 
 **The point.** When code decides what a record means from where it came from,
 such as its table, file or assertion kind, moving that kind of record to another
@@ -231,7 +231,7 @@ exactly such a move, so check consumers for this before the move.
 only while each kind of record lives in one store, so consolidating the stores
 breaks it silently. A catch-all branch makes it worse: in the case below, any key
 that is not one of the project's own assertions counts as an identity, which is
-the silent fallback that [definitions](../collections/project-foundation/skills/source-of-truth/references/definitions.md)
+the silent fallback that [definitions](../skills/design/source-of-truth/references/definitions.md)
 already warns about.
 
 **Evidence.** The intake project's lookup calls an address match an alias when
@@ -273,3 +273,12 @@ source-of-truth even if consistency-check design moves out, as
 Preserved from `ideas.md` on 2 October 2026. The intake observations above are
 the recorded evidence from that review; this pass did not reproduce them or run
 the outstanding trials. No new reusable rule has been adopted.
+
+
+## Standalone source after framework extraction — 4 October 2026
+
+Version `3.0.0` is owned at `skills/design/source-of-truth`. Package-local references,
+examples and UI metadata remain together. The entrypoint now follows declared
+project authority and repair routes instead of requiring project-foundation.
+Earlier dated records retain their original tested source identities.
+Migration routing evidence is recorded in [the extraction review](framework-extraction.md).

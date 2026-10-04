@@ -1,1 +1,0 @@
-Start with project-docs/foundation.md. Relevant workflows are in .agents/collections/project-foundation/COLLECTION.md. This is a synthetic read-only design exercise; write only the requested result and read log at this fixture root.
