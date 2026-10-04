@@ -355,3 +355,42 @@ examples and UI metadata remain together. The entrypoint now follows declared
 project authority and repair routes instead of requiring project-foundation.
 Earlier dated records retain their original tested source identities.
 Migration routing evidence is recorded in [the extraction review](framework-extraction.md).
+
+## Agent-led work and swimlane activities — 2026-10-04
+
+Version 0.12.0 adds a responsibility-oriented form-selection route, separate
+reading and construction references, and a method-labelled synthetic example.
+The observed need came from a repository browser whose dependency map was useful
+but did not explain agent instructions as a mechanism for doing work. The generic
+addition applies when responsibility and method explain the handoff; it does not
+select orchestration or turn every process into an API. Exact interaction order
+still routes to sequence diagrams. Native project workflow guidance is integrated
+in project-foundation; generic notation stays here.
+
+Consulted Mermaid's official swimlane and flowchart documentation and OMG BPMN
+2.0.2 for notation boundaries. Swimlanes are documented from Mermaid 11.16.0 with
+evolving swimlane-beta syntax. Actor-labelled flowcharts provide a compatible
+alternative. Agent instruction-following does not imply BPMN Manual Task semantics.
+No custom standard agent symbol, mandatory human gate or fixed method taxonomy is
+introduced. Clear Writing and pattern-capture informed the scoped wording.
+
+Both bundled examples rendered using cached Mermaid 11.16.0, in light and dark
+themes. The swimlane render was inspected at 1000px, the fallback at document
+width (760/900px); labels, lane headers and conditional handoffs were readable
+without clipping. An initial back-edge put the review before preparation in the
+layout. The retained example separates accepted and revision outcomes, with the
+repeat point stated explicitly in the caption. These are detail views, not a
+claim that a full process diagram fits a compact landing page. No runtime
+renderer dependency was added; Forge's custom renderer remains unverified for
+swimlane-beta.
+
+[Three fresh routing trials](agent-workflow-trial/README.md) exercise interpretation,
+deeper design and a nearby sequence question. The reading trial retained proposed
+status and delegated authority without inventing APIs or services. The sequence
+trial avoided swimlane construction and kept missing protocol ordering explicit.
+The design artifact and its limits are retained with the trial evidence.
+
+Required source checks passed: package validation and all four maintained helper
+suites (92 tests), plus git diff --check. Rendered inspection is separate from
+structural validation. This source revision is not a published tag or consumer
+installation.

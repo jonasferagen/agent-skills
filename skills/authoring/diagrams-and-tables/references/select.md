@@ -5,6 +5,7 @@
 | A fact, reason, decision, caveat or convention | Brief prose |
 | Cases sharing fields, options, obligations or changes | A table; shared fields matter more than item count |
 | Work steps and conditional branches | A flowchart |
+| Who performs work, how, and what crosses responsibilities | A [swimlane activity view](swimlane/read.md), including human/agent/tool workflows |
 | One object's states and allowed transitions | A state diagram |
 | Ordered interactions between participants | A sequence diagram |
 | Information sources, transformations, stores and destinations | A data-flow diagram |
@@ -24,3 +25,9 @@ Mermaid's `flowchart` is a rendering syntax that can also draw component/context
 views and data-flow views. Select guidance by what the nodes and arrows mean,
 not by that keyword. A repository handoff arrow does not by itself state the
 order in which work executes.
+
+For agent-led work, choose by the same reader question. A swimlane activity view
+can expose responsibility and method without implying that every handoff is an
+API. Use a sequence diagram when the exact calls, messages and replies matter.
+Use formal BPMN when its defined process/collaboration semantics are needed;
+ordinary activity boxes with method labels do not claim BPMN conformance.
