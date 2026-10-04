@@ -38,6 +38,10 @@ pinned copies rather than maintaining another source version.
 
 ## Services
 
+Service-foundation also owns the [optional service extension](collections/service-foundation/references/extension.md):
+repository service homes, templates, discovery and structural validation. Projects
+adopt it explicitly; project-foundation is not a runtime or tooling dependency.
+
 The [service-foundation collection](collections/service-foundation/COLLECTION.md)
 installs service ownership and runtime guidance together. Promotion from a spike
 to maintained service use selects both members; narrow tasks select only what they

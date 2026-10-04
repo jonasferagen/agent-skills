@@ -1,14 +1,18 @@
 {
   "name": "service-foundation",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "members": [
     "service-boundaries",
     "runtime-operations"
   ],
   "files": {
-    "COLLECTION.md": "940589294ae8e415f4e862327e39b2d0d2f9d50db488d741dd5c07dba3355b38",
-    "references/installation.md": "26c041702194099c989a7d6f9b03d0ce26e04c5aad099c439875287dd419c632",
+    "COLLECTION.md": "433d85acdf4883eefefb533502a7756d003a32b2037f7bdc8006d21157db9669",
+    "references/extension.md": "100facd941c7d0100bf58cd092fb55798ab516036113503ded005fe3954fc76d",
+    "references/installation.md": "f8aba21388d3b230041a45ef5a779a713808cc0856f6b60fdc20eb46e8dc5b1f",
+    "references/repository-services.md": "cedf8ec68a9a23d742c6677e3e76549999b56be36a8bebce1f7a0ea688cfde94",
     "scripts/check_installation.py": "ab1dd5c66b2cce5d53a4d52f56f6005f5926d1118f0f457518afe74cb83b4594",
+    "scripts/test_service_dispatcher.py": "4cd7cb28cc4f0ac99d2b1b4921cc9ab7c9c561206ab7079c331371168d8ad18f",
+    "scripts/validate-services.py": "aa6f79d48b76d2f379c0c898beac50bd86bc21499d6675d3d3f25c53e284bf2d",
     "skills/runtime-operations/SKILL.md": "00393e761f21bafb6a801d617fd1619023265413e740ee0052ef65d61e1ac900",
     "skills/runtime-operations/agents/openai.yaml": "58b1af26167369e5853e790b9e66fabb0c29219da14e09eb0f2ca0add8045a1e",
     "skills/runtime-operations/scripts/credentialStore.py": "4587d90a84606ae870e187ed5cad9c88e4041cbb3f3071538e49daf4b846d0b9",
@@ -19,6 +23,10 @@
     "skills/runtime-operations/tests/test_service_health.py": "1ce97f562c858a1a4386fd48ccae3a32a3aadbc53455ed5ab45231dab80b7dd0",
     "skills/service-boundaries/SKILL.md": "a7118527217c0c9481a60ea5f5eddac2f2bb06d0c3f50f1dd37b214a3eb75a85",
     "skills/service-boundaries/agents/openai.yaml": "d015c7108bf4f9784e9a3fd153faa03f077f061272a69303343ad692323d22fa",
-    "tests/test_installation.py": "9b122c3655e1034b934cbe100697141edb23c6ff4278417c8aa5ff5accc2a2ec"
+    "templates/repository-docs/services/README.md": "030e81b5022e3a0cdbf9e1e958c5c66c4dac9df9c7130ce3f20f2422d12aaf81",
+    "templates/repository-docs/services/control": "a8b584d28ff0acc986b907930c3f97beb240d80e5b4bba47b372899086fe4736",
+    "templates/repository-docs/services/service/README.md": "479e3819315f2e9322e8b5320dc0b559285fcf6fdb0448064763e41f7aa70aea",
+    "tests/test_installation.py": "9b122c3655e1034b934cbe100697141edb23c6ff4278417c8aa5ff5accc2a2ec",
+    "tests/test_services.py": "ce55a7e351e35ba43a2e3cebdfb03de2e67f510f1043dc741a6c954b5c680dc8"
   }
 }

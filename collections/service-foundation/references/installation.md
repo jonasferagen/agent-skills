@@ -8,8 +8,10 @@ a release tag. Its member versions do not select independent upgrade units.
 
 ## Route ordinary work
 
-Add a project-instruction route to `COLLECTION.md` for service boundaries, lifecycle
-and promotion from an experiment to maintained use. Keep that trigger reachable
+Add a project-instruction route to `COLLECTION.md` for service definitions, boundaries,
+lifecycle and promotion from an experiment to maintained use. Declare the selected
+repositories, homes and checks through the [service extension](extension.md);
+installation alone does not adopt the convention. Keep that trigger reachable
 from ordinary design work, not only installation instructions. Existing known
 member routes may remain direct when they fit the task; a service transition needs
 the collection's combined route. This is file-based project routing, not automatic

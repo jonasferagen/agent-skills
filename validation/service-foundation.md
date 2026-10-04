@@ -77,3 +77,29 @@ drift; restoring the bytes returned all 27 entries/three collections to passing.
 This makes the authoring check catch forgotten inventory updates without relying
 on an agent remembering the collection-specific command. It never rewrites an
 inventory automatically.
+
+## Optional service document extension — 2026-10-04
+
+The user selected service-foundation as the single owner of repository-service
+documentation and controls conventions. Version 0.4.0 moves the reference,
+index/guide/dispatcher templates, structural validator and two scaffold test suites
+from project-foundation `82aa3f4`. Their executable bytes and modes are unchanged.
+Core 5.0.0 retains general extension adoption; the service extension has no core
+runtime/tooling dependency. Existing projects can declare equivalent instruction
+routes without adopting core. The collection's extension and installation guides
+own migration; existing service paths, commands and guarantees are preserved.
+
+Source `scripts/check.py` passed all five groups with 82 tests. Three fresh-context
+consumer trials reached the service checker and its limits, both members for a
+maintained-service transition, and local docs without service scaffolding for a
+finite CLI. Unique displayed reads were 2,515, 14,104 and 3,120 words respectively;
+no truncation or repeated content displays, and no live controls or source catalog
+reads. The transition loaded unnecessary authoring guidance and unused sections
+of broad references; ordinary-service entry loaded avoidable collection indexes.
+Those limits remain; no context-reduction or routing-reliability claim is made.
+Detailed evaluator accounting is retained by project-foundation's
+`validation/service-extension.md` for the coordinated source migration.
+
+The collection inventory was regenerated only in source. Forge separately records
+committed pins, complete-copy adoption and repository validation. No release tag
+or remote publication is selected by this task.
