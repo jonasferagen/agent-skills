@@ -1,6 +1,6 @@
 # Project foundation repository migration plan
 
-This is the retained preparation plan. Execution began after project-foundation
+This is the retained preparation plan. Execution completed after project-foundation
 1.5.0 and its declaration hardening landed at
 `9093cfca4ffa93df1be35b1bb7ebffaef0baac65`. The
 [extraction record](../validation/framework-extraction.md) owns actual results;
@@ -9,7 +9,7 @@ The steps below preserve the original proposal and its preparation baseline.
 Private cross-repository CI uses locked artifact checks; local adoption and
 release checks also compare the imports with actual upstream Git objects.
 
-## Preparation status
+## Preparation record
 
 Prepared on 4 October 2026 against local agent-skills commit
 `71b6aa0bea6b72517eff908a2f355fb3ed1f4183`. At inspection, `main` was clean and 18
@@ -18,9 +18,9 @@ migration base; cloning the remote alone would miss required commits.
 The collection at this preparation baseline is unreleased version `1.4.0`.
 These facts describe preparation, not the eventual migration baseline.
 
-The isolated preparation branch is `prep/project-foundation-migration`, in
-`.worktrees/project-foundation-migration`. It contains this plan and a read-only
-inventory command. It does not alter the collection, its inventory, or main.
+At preparation, the isolated branch was `prep/project-foundation-migration`, in
+`.worktrees/project-foundation-migration`. At that time it contained this plan and a read-only
+inventory command. It did not alter the collection, its inventory, or main.
 The next iteration's completed commit must be selected explicitly before moving
 source files. An inventory run against a new commit does not establish that
 the iteration has finished.
