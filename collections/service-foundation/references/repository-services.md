@@ -104,6 +104,14 @@ exercised and what remains unverified. Existing layouts retain their routes unti
 deliberately migrated; preserve consumers and retained state when adopting this
 default.
 
+## Structured definitions
+
+Projects can opt individual guides into [service-definition/v1](service-definition.md)
+when they need comparable facts and browser inspection. Keep these facts in the
+same guide and link the operating details and evidence. Unversioned guides remain
+valid and discoverable; they have not adopted the structured format. The extension
+owns the format; each repository owns its values and additional local documentation.
+
 ## Check an adopted service home
 
 Run the bundled structural validator after creating or changing service definitions:
@@ -125,5 +133,6 @@ inspection. Findings identify the affected path. The checker never invokes contr
 reads credential sources or follows links to external roots. It checks only direct
 inline index-to-guide routes, not reference-style links, anchors or arbitrary guide
 links. Guide wording, action support, checkout enforcement, readiness and recovery
-still need the selected review and runtime evidence above. Adapted guides need no
-fixed headings, and a structural pass cannot establish operational compliance.
+still need the selected review and runtime evidence above. Unversioned guides need no fixed headings. Declared structured definitions must
+pass their format checks, including unique identities within the selected home.
+A structural pass cannot establish operational compliance.

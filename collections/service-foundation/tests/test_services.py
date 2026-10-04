@@ -24,6 +24,23 @@ class ServiceTests(unittest.TestCase):
             path.write_text("#!/bin/sh\ntouch " + str(self.root / "executed") + "\n")
             path.chmod(0o755)
 
+    def test_declared_format_is_checked_without_requiring_migration(self):
+        self.assertEqual(validate(self.home), [])
+        guide = self.home / 'preview/README.md'
+        guide.write_text('# Preview\nService format: service-definition/v99\n')
+        self.assertTrue(any('supported Service format' in e for e in validate(self.home)))
+
+    def test_duplicate_structured_identities_fail(self):
+        fixture = runpy.run_path(str(Path(__file__).with_name('test_service_format.py')))['example']()
+        (self.home / 'preview/README.md').write_text(fixture)
+        other = self.home / 'reader'
+        other.mkdir()
+        (other / 'README.md').write_text(fixture)
+        (other / 'control').write_text('#!/bin/sh\nexit 1\n')
+        (other / 'control').chmod(0o755)
+        (self.home / 'README.md').write_text('[Preview](preview/README.md)\n[Reader](reader/README.md)\n')
+        self.assertTrue(any('duplicate service Identity' in e for e in validate(self.home)))
+
     def test_valid_structure_never_executes_controls(self):
         result = subprocess.run([sys.executable, str(SCRIPT), str(self.home)],
                                 cwd="/", capture_output=True, text=True, timeout=5)

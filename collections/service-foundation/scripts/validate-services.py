@@ -4,7 +4,10 @@ import argparse
 import os
 from pathlib import Path
 import re
+import runpy
 from urllib.parse import unquote, urlsplit
+
+ServiceDefinition = runpy.run_path(str(Path(__file__).with_name("service_format.py")))["ServiceDefinition"]
 
 NAME = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
 LINK = re.compile(r"(?<!!)\[[^]\n]+\]\(<?([^\s)>]+)>?\)")
@@ -37,6 +40,19 @@ def validate(home: Path) -> list[str]:
                 errors.append(f"{child}: expected a lowercase hyphenated service name")
             required(child / "README.md")
             required(child / "control", True)
+    identities = set()
+    for service in services:
+        guide = service / "README.md"
+        if guide.is_symlink() or not guide.is_file():
+            continue
+        try:
+            definition = ServiceDefinition.parse(guide.read_text(encoding="utf-8"))
+            if definition:
+                if definition["id"] in identities:
+                    raise ValueError("duplicate service Identity: " + definition["id"])
+                identities.add(definition["id"])
+        except (OSError, UnicodeError, ValueError) as error:
+            errors.append(f"{guide}: {error}")
     if not services:
         errors.append(f"{home}: selected service home has no service definitions")
     if index_ok:
@@ -81,8 +97,8 @@ def main():
         print(error)
     if not errors:
         print(f"Service structure valid: {args.home}")
-    print("Scope: files, names, executable permissions and inline index-to-guide links; "
-          "controls were not executed. Runtime behavior and guide content are unverified.")
+    print("Scope: files, names, executable permissions and inline index-to-guide links and declared service formats; "
+          "controls were not executed. Runtime behavior, route targets and guide meaning are unverified.")
     return int(bool(errors))
 
 

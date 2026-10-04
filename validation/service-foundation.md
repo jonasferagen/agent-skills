@@ -103,3 +103,28 @@ Detailed evaluator accounting is retained by project-foundation's
 The collection inventory was regenerated only in source. Forge separately records
 committed pins, complete-copy adoption and repository validation. No release tag
 or remote publication is selected by this task.
+
+
+## 2026-10-04 — opt-in structured definitions
+
+Unreleased collection revision 0.5.0 adds `service-definition/v1` inside existing
+service guides, a standalone parser, and bounded discovery of selected homes.
+The format owns field shape and routes; repositories own the values and local
+operating prose. Existing guides need no migration. No runtime control changed.
+
+Verification: `python3 scripts/check.py` passed all five check groups with no
+skips; 32 collection tests include eight parser/discovery cases and two new
+validator cases. An isolated mutation removing the version guard made
+`test_unknown_or_duplicate_versions_are_rejected` fail; the intact suite passed.
+The reviewed source inventory contains 25 files and two members. `git diff
+--check` passed. These checks establish format/discovery behavior, not the truth
+of consumer service claims or live readiness. No release tag was created.
+
+Fresh-context routing trial `structured_routing` began with only the collection
+entrypoint and a synthetic existing-guide/browser scenario. Actual reads:
+`COLLECTION.md` → `references/extension.md` →
+`references/service-definition.md` and `references/repository-services.md`.
+The trial correctly identified per-guide opt-in, the extension format owner,
+project adoption authority, repository prose/fact ownership, and the checker’s
+structural limits. It did not load boundary/runtime skills, source history or
+unrelated guidance, and operated no services. No routing finding remained.

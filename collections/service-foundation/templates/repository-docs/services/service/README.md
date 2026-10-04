@@ -3,6 +3,9 @@
 <!-- Identify implemented/proposed status, capability, repository owner and
 application-code home. Remove all prompts and unused sections before adoption. -->
 
+<!-- Optional structured facts: follow references/service-definition.md in the
+installed collection. Keep facts here and link these operating sections. -->
+
 ## Lifetime and dependencies
 
 <!-- Explain maintained/session lifetime, selected runtime dependencies and

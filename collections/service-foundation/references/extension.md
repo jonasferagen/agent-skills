@@ -58,6 +58,7 @@ prerequisites remain service-specific. The convention explains the exact check
 limits and required operational review/evidence. Collection installation checks
 verify the distributed package, not a consumer's service definitions.
 
-This declaration supplies reading and validation routes. It does not install a
-browser adapter, automatically register services or define a structured service
-facts schema. Browsers retain their selected discovery until support is implemented.
+The optional [structured definition](service-definition.md) adds versioned facts
+inside the owning guide. Service-foundation owns its format and parser; a browser
+adapter selects adopted homes explicitly and projects these sources. Installation
+alone does not register services or establish runtime readiness.

@@ -1,18 +1,20 @@
 {
   "name": "service-foundation",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "members": [
     "service-boundaries",
     "runtime-operations"
   ],
   "files": {
-    "COLLECTION.md": "433d85acdf4883eefefb533502a7756d003a32b2037f7bdc8006d21157db9669",
-    "references/extension.md": "100facd941c7d0100bf58cd092fb55798ab516036113503ded005fe3954fc76d",
+    "COLLECTION.md": "57afd79b7121f9ff128f1147955f8edca9d7cb1c34745d6c9d267a7921a1ac5d",
+    "references/extension.md": "cbd7d22d445ae4de9226ceec8f5013be03861935017a3cc64f4d89fa13dac8b1",
     "references/installation.md": "f8aba21388d3b230041a45ef5a779a713808cc0856f6b60fdc20eb46e8dc5b1f",
-    "references/repository-services.md": "cedf8ec68a9a23d742c6677e3e76549999b56be36a8bebce1f7a0ea688cfde94",
+    "references/repository-services.md": "03b1c86110ca68c5ce96f1017478d8640b8b82d71a2ff9cfe2a86d77c4e2e621",
+    "references/service-definition.md": "ba7058fc7a0b744dddaaaab1ca12ba60b6fbedf7066e3381241f25b64aac6237",
     "scripts/check_installation.py": "ab1dd5c66b2cce5d53a4d52f56f6005f5926d1118f0f457518afe74cb83b4594",
+    "scripts/service_format.py": "779c58c6c84732927a8c67c902fe9c8e77644789f7698106ec80a0cdc5d67304",
     "scripts/test_service_dispatcher.py": "4cd7cb28cc4f0ac99d2b1b4921cc9ab7c9c561206ab7079c331371168d8ad18f",
-    "scripts/validate-services.py": "aa6f79d48b76d2f379c0c898beac50bd86bc21499d6675d3d3f25c53e284bf2d",
+    "scripts/validate-services.py": "b3b0633c8072cdb5916dfde2793e9f64473b27152d3a4fb5db10f9cfa692cee4",
     "skills/runtime-operations/SKILL.md": "00393e761f21bafb6a801d617fd1619023265413e740ee0052ef65d61e1ac900",
     "skills/runtime-operations/agents/openai.yaml": "58b1af26167369e5853e790b9e66fabb0c29219da14e09eb0f2ca0add8045a1e",
     "skills/runtime-operations/scripts/credentialStore.py": "4587d90a84606ae870e187ed5cad9c88e4041cbb3f3071538e49daf4b846d0b9",
@@ -25,8 +27,9 @@
     "skills/service-boundaries/agents/openai.yaml": "d015c7108bf4f9784e9a3fd153faa03f077f061272a69303343ad692323d22fa",
     "templates/repository-docs/services/README.md": "030e81b5022e3a0cdbf9e1e958c5c66c4dac9df9c7130ce3f20f2422d12aaf81",
     "templates/repository-docs/services/control": "a8b584d28ff0acc986b907930c3f97beb240d80e5b4bba47b372899086fe4736",
-    "templates/repository-docs/services/service/README.md": "479e3819315f2e9322e8b5320dc0b559285fcf6fdb0448064763e41f7aa70aea",
+    "templates/repository-docs/services/service/README.md": "10ec0877ef9349a1358bdf001fc0f17e79093b00b90d33298c70d2f080ed6dcb",
     "tests/test_installation.py": "9b122c3655e1034b934cbe100697141edb23c6ff4278417c8aa5ff5accc2a2ec",
-    "tests/test_services.py": "ce55a7e351e35ba43a2e3cebdfb03de2e67f510f1043dc741a6c954b5c680dc8"
+    "tests/test_service_format.py": "5f43dfcaa8869c9209de352d0753ee77a6fca2a903e52f7889d35d43f43d0f1a",
+    "tests/test_services.py": "dbf2cbc0546108c860e1ba6ac006b964d63da9998644f18bd4bbba7485d3e0f9"
   }
 }
