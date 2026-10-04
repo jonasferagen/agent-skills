@@ -99,6 +99,14 @@ class ProcessFormatTests(unittest.TestCase):
     def test_schema_marker_in_longer_fence_does_not_end_example(self):
         self.assertIsNone(module.parse_process('````markdown\n```\n' + DOCUMENT + '\n````'))
 
+    def test_malformed_extra_marker_is_not_silently_dropped(self):
+        with self.assertRaisesRegex(ValueError, 'unsupported process-section'):
+            module.parse_process(DOCUMENT + '\n<!-- process-section: INVALID -->\n## Extra\n')
+
+    def test_none_declaration_cannot_hide_a_handoff_table(self):
+        with self.assertRaisesRegex(ValueError, 'not both'):
+            module.parse_process(DOCUMENT + '\nHandoffs: None.\n')
+
 
 if __name__ == '__main__':
     unittest.main()

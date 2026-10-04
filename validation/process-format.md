@@ -14,13 +14,14 @@ must resolve links and retain parser provenance and scoped statuses.
 
 ## Verification
 
-The complete `python3 scripts/check.py` run passed all six package/helper suites,
+The complete `python3 scripts/check.py` run passed all six package/helper checks,
 with no failed or skipped tests. Package checks cover all declared installations;
-the complete project-foundation inventory has 91 files and nine members. Ten new
+the complete project-foundation inventory has 91 files and nine members. Twelve new
 parser tests cover source locations, legacy/fenced/commented examples, unsupported
 versions, exact facts, missing/duplicate/unattached roles, keys, incomplete rows,
 Detail links, relation kinds, explicit unknown/no-handoff cases and duplicate
-tables. A document-check regression confirms selected-format rejection reaches
+tables. Further negative controls reject malformed extra role markers and
+None/Unknown declarations that would otherwise hide a handoff table. A document-check regression confirms selected-format rejection reaches
 the public managed-home check. Existing layout tests remain passing.
 
 The first full run found two unresolved Markdown template placeholder links;

@@ -25,7 +25,7 @@
     "references/repository-services.md": "747acfa0deede7f5268403dd4f7dc52081b1054894b20398745f5533491a41df",
     "references/status-and-evidence.md": "ff9f0055b33b5bcdc04afaa3ed2620efb73eb4fae0733cba2736393e0d67a110",
     "scripts/check_installation.py": "ab1dd5c66b2cce5d53a4d52f56f6005f5926d1118f0f457518afe74cb83b4594",
-    "scripts/process_format.py": "a3a09a9d724b6beefcbfa4300e0d82875244810ec74deff523188529b9b2d3f5",
+    "scripts/process_format.py": "579ebb253e621ada9c2f61a458647fa862875fdabf54ebce9892bc02566a8b53",
     "scripts/test_service_dispatcher.py": "4cd7cb28cc4f0ac99d2b1b4921cc9ab7c9c561206ab7079c331371168d8ad18f",
     "scripts/validate-foundation.py": "527f9787d1ded56c4040f1bb9d0173bafcc2a769a0f18def385e65aee871326a",
     "scripts/validate-project-docs.py": "182101b48c9ec7e8fba261a9f8ba8357f362ff4d0b9a881a825431ad0ec2afd1",
@@ -102,7 +102,7 @@
     "templates/repository-docs/services/service/README.md": "479e3819315f2e9322e8b5320dc0b559285fcf6fdb0448064763e41f7aa70aea",
     "templates/views/view.md": "97f40960d31acb2540a572b5ddf9ceffff9ab47c0459df6c0f91029c4de94063",
     "tests/test_foundation_format.py": "1a9748c997c59ca0d4e83c995f5df4772b9ad70fd0aa3300de4e64c0a223a525",
-    "tests/test_process_format.py": "8eb8557664cce4aa801b8e2b3ef865ec6b3f2507d426d3b5ef498c3c1b0b6c63",
+    "tests/test_process_format.py": "a9405b8aec519d12c7969ed46fb96acb899bbae6fd12c16e26a3c333c2681722",
     "tests/test_project_docs.py": "e7624c83f9e01d577f4d414ebe82057abeba1fe494d3317c7c8fad42cdff847c"
   }
 }
