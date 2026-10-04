@@ -2,7 +2,7 @@
 name: project-docs
 description: "Establish, review, or reconcile repository documentation, including domain glossaries, document ownership, project instructions, and high-level relationship diagrams. Use for project documentation structure and consistency work; not standalone office documents, generic copyediting, or application implementation."
 metadata:
-  version: "6.2.1"
+  version: "6.3.0"
 ---
 
 # Project documentation
@@ -69,6 +69,10 @@ its [shared-template guidance](references/view-structure.md#start-from-a-shared-
 New named processes default to a process directory with one README; existing flat
 pages remain valid until deliberate migration. Template use alone needs no
 generated-browsing guidance.
+For a new named process or deliberate structured-process migration, read the
+[process format](../../references/process-format.md). Its versioned facts and
+stable step/handoff keys let consumers derive navigation while preserving
+existing headings and scoped status. Existing unversioned processes stay valid.
 
 When an explanation needs a form decision, use the collection's
 [diagrams-and-tables](../diagrams-and-tables/SKILL.md) entrypoint. Only when the

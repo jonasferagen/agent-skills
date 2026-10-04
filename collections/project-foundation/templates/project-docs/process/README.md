@@ -2,59 +2,61 @@
 
 Status: {{decision_or_evidence_state_and_scope}}, {{date}}.
 
-<!-- Place a new named process at project-docs/processes/<process>/README.md
-and link it from project-docs/processes/README.md. This one page is sufficient.
-Add direct topic Markdown pages only for explanations that need their own home;
-link them from this entry. Keep commands, contracts and run records in their
-existing homes. Do not create nested stage folders or copy execution artifacts. -->
+Process format: project-process/v1
 
+<!-- Place new named processes at project-docs/processes/<process>/README.md
+and link from the process index. See references/process-format.md in the collection
+for field rules. Supporting topics are optional; procedures and records retain
+their existing homes. Omit optional sections without content. -->
+
+<!-- process-section: purpose -->
 ## Purpose and scope
 
-{{trigger_and_reader_question}}
+| Fact | Value |
+| --- | --- |
+| Reader question | {{question_this_page_answers}} |
+| Trigger | {{request_or_event}} |
+| Owner | {{process_owner_and_canonical_source}} |
+| Inputs | {{required_source_context_and_authority}} |
+| Completion | {{scoped_result_or_unresolved_outcome}} |
 
-Owner: {{process_owner_and_canonical_source}}
+{{scope_and_relevant_exclusions}}
 
-{{inputs_completion_outcomes_and_relevant_exclusions}}
-
+<!-- process-section: participants -->
 ## Participants and responsibilities
 
 {{who_performs_decides_accepts_and_receives_the_relevant_work}}
 
-<!-- Distinguish successful execution from acceptance where their owners differ.
-Link participants' internal design rather than redefining their responsibilities. -->
-
+<!-- process-section: stages -->
 ## Process and decisions
 
-{{prose_or_numbered_steps_with_responsibilities_and_explicit_decision_conditions}}
+| Step | Action | Owner | Input | Result / condition | Detail |
+| --- | --- | --- | --- | --- | --- |
+| {{stable_step_key}} | {{action}} | {{responsible_owner}} | {{required_input}} | {{result_and_condition}} | {{markdown_link_to_owning_detail}} |
 
-{{links_to_any_supporting_process_explanations}}
+{{explanation_of_decisions_and_steps_or_links_to_their_owners}}
 
-<!-- A diagram is optional. When useful, follow diagrams-and-tables for its
-form, state step/branch/arrow meanings, and connect its names to the explanation.
-Message order can use a linked sequence view when needed. Declare stable
-view/occurrence IDs only through a selected browsing-input convention. -->
+<!-- A diagram is optional; state its node/arrow meanings and relationship to
+these steps. Project-specific view IDs follow the selected browsing convention. -->
 
+<!-- process-section: interruptions -->
 ## Interruptions and changes
 
-{{relevant_failure_rejection_revision_or_unavailable_input_and_how_work_continues}}
+{{failure_rejection_revision_or_missing_input_next_owner_and_preserved_state}}
 
-{{who_resolves_it_and_which_existing_state_or_evidence_remains_valid}}
-
+<!-- process-section: handoffs -->
 ## Handoffs and definitions
 
-{{links_to_applicable_exchange_contracts_and_domain_meanings}}
+| Handoff | From | To | Result | Kind | Detail |
+| --- | --- | --- | --- | --- | --- |
+| {{stable_handoff_key}} | {{sender}} | {{receiver}} | {{exchanged_result}} | {{transfer_feedback_or_specialization}} | {{markdown_link_to_governing_detail}} |
 
-{{links_to_repository_owned_format_and_procedure_sections_used_by_this_process_when_relevant}}
+{{links_to_applicable_contracts_and_domain_meanings}}
 
-<!-- Name open terms and affected work explicitly. A process description does
-not establish runtime behavior or authorize executing it. A linked format does
-not by itself establish process adoption or contract conformance. -->
-
+<!-- process-section: evidence -->
 ## Evidence and open questions
 
-{{scoped_implementation_or_verification_evidence_and_its_limits}}
+{{scoped_evidence_limits_and_consequential_unknowns_with_owners}}
 
-{{consequential_unknowns_their_owners_and_dependent_work}}
-
-<!-- Omit sections without content; preserve unresolved consequential terms.
-Link the active queue rather than maintaining another work list. -->
+<!-- Link the active queue; do not maintain another work list. Linked formats
+and process descriptions do not authorize execution or establish adoption. -->

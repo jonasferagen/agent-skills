@@ -19,6 +19,13 @@ class ProjectDocsTests(unittest.TestCase):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text('Synthetic fixture\n')
 
+    def test_selected_process_validation_is_part_of_document_check(self):
+        self.write('processes/README.md')
+        self.write('processes/sample-review/README.md')
+        path = self.root / 'processes/sample-review/README.md'
+        path.write_text('# Example\n\nProcess format: project-process/v9\n')
+        self.assertTrue(any('project-process/v1' in error for error in module.validate(self.root)))
+
     def test_minimal_foundation_does_not_require_unused_categories(self):
         self.write('foundation.md')
         self.assertEqual(module.validate(self.root), [])

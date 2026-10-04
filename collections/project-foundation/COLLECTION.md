@@ -1,6 +1,6 @@
 # Project foundation
 
-Version: 1.4.0
+Version: 1.5.0
 
 Start with project instructions and their existing document routes. Use this
 entrypoint to choose needed guidance; if the owner and workflow are already known,
@@ -22,6 +22,7 @@ capture pass.
 | Create, sequence or maintain plans and next steps | [Project planning](skills/project-planning/SKILL.md) |
 | Read, apply, design or review handoff obligations | [Project contracts](skills/project-contracts/SKILL.md) |
 | Interpret policy, assess compliance or review changed circumstances | [Project policy](skills/project-policy/SKILL.md) |
+| Create or deliberately migrate a structured process page | [Process format](references/process-format.md) |
 | Organize and reconcile project documents | [Project documentation](skills/project-docs/SKILL.md) |
 | Keep authoritative decisions and their consumers aligned | [Source of truth](skills/source-of-truth/SKILL.md) |
 | Write clear prose | [Clear writing](skills/clear-writing/SKILL.md) |

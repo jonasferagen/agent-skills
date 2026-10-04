@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""Check the reserved project-document layout, not its semantic ownership."""
+"""Check document homes and opt-in process structure, not semantic ownership."""
 import argparse
 from pathlib import Path
 import re
+import runpy
+
+parse_process = runpy.run_path(str(Path(__file__).with_name("process_format.py")))["parse_process"]
 
 HOMES = Path(__file__).resolve().parents[1] / 'references/document-homes.md'
 HOME = re.compile(r'^\|[^|\n]+\| `project-docs/([^`]+)` \|', re.MULTILINE)
@@ -89,6 +92,18 @@ def validate(root: Path) -> list[str]:
         if parent in topic_dirs | process_parents and directory.is_dir() and not (root / index).is_file():
             if any(p.is_file() or p.relative_to(root).as_posix() in process_dirs for p in directory.rglob('*')):
                 errors.append(f'{index}: documents in {directory.name}/ need this index')
+    process_entries = {root / directory / 'README.md' for directory in process_dirs}
+    process_entries.update(root / parent / name.name
+                           for parent in process_parents
+                           for name in (root / parent).glob('*.md')
+                           if name.name != 'README.md')
+    for path in sorted(process_entries):
+        if not path.is_file() or path.is_symlink():
+            continue
+        try:
+            parse_process(path.read_text(encoding='utf-8'))
+        except (ValueError, UnicodeError) as error:
+            errors.append(f'{path.relative_to(root)}: {error}')
     return errors
 
 
@@ -100,7 +115,7 @@ def main() -> int:
     for error in errors:
         print(error)
     if not errors:
-        print(f'Validated managed document paths: {args.root}')
+        print(f'Validated managed document paths and selected process structure: {args.root}')
     return bool(errors)
 
 
