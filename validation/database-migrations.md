@@ -23,3 +23,24 @@ historical context, not a behavioral trial of this new package.
 These scenarios received author review. No independent agent trial or live
 database test was run. Package and link checks are recorded with the extraction
 in the containerization validation page.
+
+## Development environments — 4 October 2026
+
+The Forge request identified a missing lifecycle outcome: dev setup should create
+isolated storage, apply migrations and supply useful synthetic data before a full
+test suite exists. Inspection of Forge's asset-catalog operating guide showed
+existing migration and synthetic-trial capabilities; no live database was read.
+The new guidance specifies the reusable outcome without prescribing Laravel,
+PostgreSQL, a custom runner or immediate staging provisioning. Retained dev state
+is not a reset target. Adding or repurposing an environment requires reassessment.
+
+Postgres-design now includes development lifecycle in implementation design;
+database-migrations owns setup and seed mechanics. Relational-modeling remains
+scoped to conceptual questions. These are unreleased source changes; no consumer
+pin or Forge runtime was changed.
+
+Validation: `python3 scripts/check.py` passed all four checks after installing the
+locked TypeScript dependency and rerunning outside the sandbox. The initial
+sandbox run failed GPG and Node child-process checks; the unrestricted rerun
+passed. `git diff --check` passed. No database runtime test was performed.
+Practical routing evidence is retained in `database-environment-routing.md`.

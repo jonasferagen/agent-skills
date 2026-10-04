@@ -2,7 +2,7 @@
 name: postgres-design
 description: "Design or review PostgreSQL schemas, migrations and transaction boundaries, including pooled connections. Use for keys, relationships, types, state and integrity; query tuning follows project guidance."
 metadata:
-  version: "1.1.1"
+  version: "2.0.0"
 ---
 
 # Postgres design
@@ -190,6 +190,21 @@ When application code runs transactions through a connection pool under
 restricted roles, read [pooled transactions](references/pooled-transactions.md).
 It covers binding each transaction to a role, read-only transactions, refusing a
 commit after a failed statement, and resetting a connection before reuse.
+
+## Development lifecycle
+
+For a new database implementation or an environment change, include the operating
+lifecycle in the design: isolated development storage, canonical migrations and a
+repeatable synthetic seed routine, even if automated tests come later. Keep a
+conceptual model review scoped to its question. Use database-migrations when
+available for setup, migration and seed implementation; otherwise preserve these
+outcomes in the project's operating guide and implementation work.
+
+Treat dev and a shared validation environment such as staging as separate roles.
+State which environments exist and which are only planned; do not provision a
+second environment merely to complete a pair. Adding or repurposing one calls for
+reviewing credentials, external effects, retained data and recovery as well as
+configuration. Follow the project's policy/design change route when available.
 
 ## Review and verification
 

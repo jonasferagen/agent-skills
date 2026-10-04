@@ -1,3 +1,3 @@
 interface:
   display_name: "Database migrations"
-  short_description: "Preserve migration history and verify upgrades"
+  short_description: "Reproduce dev data and preserve migration history"

@@ -1,8 +1,8 @@
 ---
 name: database-migrations
-description: "Design or review database migration history, runners, baselines and upgrade verification. Use when changing how schema changes are applied or testing migration behavior; container packaging and ordinary query design are separate tasks."
+description: "Design or review database migration history, runners, baselines, reproducible development setup and seed routines. Use when establishing a development database, changing how schema changes are applied or testing migration behavior; container packaging and ordinary query design are separate tasks."
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Database migrations
@@ -17,6 +17,41 @@ Scope work to the requested database and environment. Retained development data
 is not disposable by default, and migration design does not authorize applying a
 change to a live database. Keep migration credentials separate from ordinary
 runtime credentials when their required privileges differ.
+
+## Reproduce development state
+
+When establishing or changing a development database workflow, provide checked-in
+commands to create its isolated storage, apply the canonical migrations and load
+small synthetic examples. This capability belongs to development setup even when
+automated tests are deferred. Reuse the existing migration tool and application
+write boundary; command names such as `db:setup`, `db:migrate`, `db:seed` and
+`db:reset` illustrate the interface, not a required framework or custom runner.
+
+Keep normal migration and seed operations separate from destructive reset. Define
+whether repeated seeding is idempotent or requires a fresh disposable database;
+never silently truncate retained data. Separate required reference data from
+optional dummy records. Synthetic fixtures should exercise useful relationships
+and retrieval cases, use stable identities or a repeatable generator, and include
+needed local payloads without importing retained assets or contacting live services.
+
+Resolve and display the selected target without exposing secrets. Scope creation
+and reset to a known disposable dev instance or path; reject unknown, shared,
+staging or retained targets for the dev reset routine. An environment label alone
+is not proof that the selected database or associated files are disposable.
+Keep storage, credentials and output paths isolated from other environments.
+For file databases, distinct owned paths can supply isolation without a server.
+
+Document prerequisites and the commands a fresh checkout needs. Exercise setup
+from empty storage, a representative seeded read and the declared repeat behavior.
+Check that reset rejects a non-dev target without changing it. These smoke checks
+establish the setup routine; they do not require a full test suite or establish
+upgrade, staging or production readiness. Report unavailable execution explicitly.
+
+When an environment is added or repurposed, reassess its isolation, data retention,
+migration delivery and recovery before reusing the dev routine. Keep one canonical
+migration history across environments, with explicit platform prerequisites.
+Shared environments need their own data and recovery policy; never carry dev's
+reset or dummy-seed defaults into them implicitly.
 
 ## Preserve migration history
 
@@ -39,9 +74,10 @@ Use the project's migration tool when it supplies these guarantees:
   migrations merely to make a new engine accept them.
 
 An empty-database bootstrap and an existing-database upgrade are different
-paths. Verify the path being changed and name any path not exercised. Read
+paths. Verify the path being changed and name any path not exercised. For PostgreSQL, read
 [database tests](references/database-tests.md) when selecting an embedded engine,
-adapting platform bootstrap or checking migration behavior.
+adapting platform bootstrap or checking migration behavior. Other engines use
+their own disposable instances and project verification guidance.
 
 ## Verify and report
 
