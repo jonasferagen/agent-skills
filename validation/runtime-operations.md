@@ -25,7 +25,7 @@ The skill must preserve these decisions in realistic applications:
 | A capture's restore check fails | Nothing is published; a capture test makes that step fail and confirms it. |
 
 Run the helper tests with `python3 -B -m unittest discover -s
-skills/operations/runtime-operations/tests`. Validate the manifest with the skill-creator
+collections/service-foundation/skills/runtime-operations/tests`. Validate the manifest with the skill-creator
 validator. Consumer repositories verify their own project bindings and launchers.
 
 Verification: helper failure-path tests pass, and both consumer adapters restored

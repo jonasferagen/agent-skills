@@ -1,0 +1,22 @@
+{
+  "name": "service-foundation",
+  "version": "0.1.0",
+  "members": [
+    "service-boundaries",
+    "runtime-operations"
+  ],
+  "files": {
+    "COLLECTION.md": "0e5a68979b3a7b3e200de99db6b9f9b9bbb9868f657320094ab364f3e4eafd2f",
+    "references/installation.md": "a5ee0c262940c5883ba8bd1a4e4fefbb38d2a75945b02dbf5538cfbfb7b4358f",
+    "scripts/check_installation.py": "eb265a24509a7f24a025cab4992d1932ddf241426382932875a29a093d4d946d",
+    "skills/runtime-operations/SKILL.md": "76bfc6e4875984410480792163ec218b8160ec15cfa93ddd83f2338b5ae32fbd",
+    "skills/runtime-operations/agents/openai.yaml": "58b1af26167369e5853e790b9e66fabb0c29219da14e09eb0f2ca0add8045a1e",
+    "skills/runtime-operations/scripts/credentialStore.py": "4e8f328a02e23a92eff110b7a0000373ad8353cc57b802302ac21f8e7c1e5069",
+    "skills/runtime-operations/scripts/databaseBackup.py": "3b2daa2286afc8ee837719b5388f9a1e3f901497d2f77ea15bc65085c3c0bb23",
+    "skills/runtime-operations/scripts/serviceControl.py": "b8b643529d1bfa41e3d281161d7fb68e88cf98c6c2bd9b84d4acbe5075f326ab",
+    "skills/runtime-operations/tests/test_runtime.py": "4332d6f52db70baede49fbad5ae810a20ca247e361bfe30c29c7dbd718818ff8",
+    "skills/service-boundaries/SKILL.md": "a7118527217c0c9481a60ea5f5eddac2f2bb06d0c3f50f1dd37b214a3eb75a85",
+    "skills/service-boundaries/agents/openai.yaml": "d015c7108bf4f9784e9a3fd153faa03f077f061272a69303343ad692323d22fa",
+    "tests/test_installation.py": "e7c7be37c06b09f0922757788dca339de3ed62fd8a4d9d081ec35b476f5521a6"
+  }
+}

@@ -1,0 +1,9 @@
+# Collection update assessment
+
+Do not replace the installation yet. The candidate validates against its own manifest (12 files, 2 members), but this is not independent verification of a selected source commit. The installed copy fails the candidate checker solely for `skills/runtime-operations/SKILL.md`; there are no missing or extra files. Both manifests declare version 0.1.0 and identical membership and hashes.
+
+Preserve the installed runtime file, whose complete local content is `# Local change to preserve`, before replacement. Retain the old installation and provenance for rollback; resolve any intended project-specific rule into a project owner rather than silently discarding it or modifying the candidate inventory. The candidate restores the full runtime guidance. Preserve `project.md`'s maintained installed user-service choice, session startup, localhost scope and absence of credentials/database; the collection explicitly permits project choices over member defaults. The manual-only description in `docs/service.md` is not evidence that the chosen maintained lifecycle is implemented.
+
+No route changes are required: `AGENTS.md` already routes service ownership, lifecycle and promotion to the installed `COLLECTION.md`, and both collection routers and member paths are unchanged. No active standalone member routes were found in the project instructions, scope, operational docs or provenance.
+
+Before adoption, record the candidate's source repository, directory and full selected commit SHA in `.agents/collections/UPSTREAM.md`; its current draft note expressly includes uncommitted source changes and is not an exact pin. A release tag is optional. Verify a complete staged copy against that selected source, replace the entire directory only after preserving local edits, update provenance with the replacement, and run project link/guidance checks. Do not overlay or use `--write` to bless drift. The installation was left unchanged.

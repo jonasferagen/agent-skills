@@ -20,14 +20,16 @@ silently change that owner's decision.
 Language-design skills own how those responsibilities appear in TypeScript or
 Python. Service-boundaries retains its HTTP/MCP and service-ownership scope.
 Runtime-operations owns its credential and process procedures. Verification-design
-selects evidence; test-writing owns test and fixture construction. These remain
-standalone packages, selected when the task needs them.
+selects evidence; test-writing owns test and fixture construction. Service boundaries
+and runtime operations ship together in service-foundation.
+Language and verification packages remain separately installed; task routing
+selects the guidance the work needs.
 
 | Guidance | First package treatment | Reason |
 | --- | --- | --- |
 | Application-design workflow | New collection member | Language-neutral internal design has a distinct trigger and outcome |
 | External operation boundaries | Conditional reference | Provider mechanics refine the same operation trace |
-| Language, runtime, service and test guidance | Separately pinned companions | Existing tasks and installation units remain useful alone |
+| Language, service and test guidance | Separately pinned companion packages or collections | Existing tasks and installation units remain useful alone |
 | Project-foundation | Optional project-routed companion | Reuse established owners without copying the collection |
 | Provider-specific commands and contracts | Consuming repository | Product facts and executable behavior need local owners |
 
@@ -40,7 +42,7 @@ within the current package validator's installation-unit containment rule; it ad
 no resolver and does not settle mandatory dependency packaging for data-foundations.
 
 One core member is deliberate: packaging establishes an extensible installation
-boundary without moving existing standalone skills or inventing another workflow
+boundary without initially moving existing standalone skills or inventing another workflow
 merely to populate a collection. Add a member only when a separate recognizable
 task needs its own outcome. Required shared resources can then remain inside this
 installation unit.

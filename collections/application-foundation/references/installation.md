@@ -24,8 +24,7 @@ installed companions when their tasks apply:
 | --- | --- |
 | Project responsibilities, handoffs and document ownership | project-foundation |
 | Language-specific implementation | typescript-design and typescript-patterns, or python-design and python-patterns |
-| Shared behavior across HTTP and MCP, or service ownership | service-boundaries |
-| Runtime credentials, processes and service controls | runtime-operations |
+| Service boundaries, HTTP/MCP behavior, lifecycle or promotion to maintained use | service-foundation collection |
 | Evidence selection and writing tests | verification-design and test-writing |
 
 Pin each selected installation independently in project provenance. Give it a
@@ -38,3 +37,7 @@ implementation task.
 Updates replace the complete collection and reconcile its project routes. This
 scheme uses explicit installations and project routing; it provides no automatic
 dependency resolution, version compatibility solver or tracking of upstream main.
+
+When installing service-foundation, add its task route to the project instructions
+used for ordinary design work. A companion listed only here will not be discovered
+by an agent correctly skipping installation guidance during implementation.

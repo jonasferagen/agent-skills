@@ -64,7 +64,7 @@ installation migration from this cleanup.
 | --- | --- |
 | [Containerization](skills/operations/containerization/SKILL.md) | Images, stack configuration, startup and container resource cleanup |
 | [Database migrations](skills/operations/database-migrations/SKILL.md) | History, runners, baselines, bootstrap, upgrades and migration verification |
-| [Service boundaries](skills/design/service-boundaries/SKILL.md) | Service ownership, caller identities and shared application behavior across HTTP/MCP |
+| [Service boundaries](collections/service-foundation/skills/service-boundaries/SKILL.md) | Service ownership, caller identities and shared application behavior across HTTP/MCP |
 
 These tasks can arise independently of containers. The database-testing reference
 moves with migrations; container cleanup mechanics stay with containerization.
@@ -485,3 +485,27 @@ This avoids requiring cross-collection dependency resolution for the first packa
 it does not implement that mechanism for other collections. No consumer adoption,
 provider runtime or release tag is part of this source change. Bounded trial
 evidence belongs in [application-design validation](validation/application-design.md).
+
+## 2026-10-04 — Service foundation pilot
+
+Move `service-boundaries` and `runtime-operations` into one complete
+[service-foundation collection](collections/service-foundation/COLLECTION.md),
+version 0.1.0. Member names, versions, helper APIs and behavior are unchanged;
+there is one source home per member. Earlier standalone pins remain historical
+identities, not alternate current sources. Application-foundation 0.1.1 adds a
+normal-work route to project-selected service guidance and flags its absence.
+
+The pilot addresses a demonstrated consumer omission: the application collection
+was installed while service companions remained separately selected in an
+installation-only table. A maintained-service transition now selects both members
+through the ordinary project hook. Narrow work still selects only what it needs.
+An explicit manifest and source-based installation checker detect missing members,
+local changes and stale overlay files; adoption and upgrades replace the whole
+collection and reconcile provenance and project routes.
+
+[Validation](validation/service-foundation.md) owns the synthetic routing trials,
+package tests, preservation comparisons and limitations. No release tag, universal
+dependency resolver or automatic host registration is selected. Python, TypeScript
+and verification grouping remain candidates after the pilot; containerization is
+not moved without an exercised consumer need. Forge adoption is a separate consumer
+commit after this source change lands.

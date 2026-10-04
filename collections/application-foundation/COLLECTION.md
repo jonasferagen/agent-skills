@@ -1,6 +1,6 @@
 # Application foundation
 
-Version: 0.1.0
+Version: 0.1.1
 
 Design the inside of an application from a concrete operation: behavior, state,
 dependencies and the boundaries that need verification. Start from project
@@ -20,3 +20,9 @@ code conventions and deployment procedures enter when the task reaches them.
 
 Read only the route needed by the task. Installation and source-maintenance
 material are not prerequisites for ordinary use.
+
+When an application task introduces a service boundary, lifecycle controls or
+maintained service use, follow the project's service-guidance route before
+implementation. If that route or installation is missing, identify the gap and
+its consequence; do not silently treat core application design as service/runtime
+coverage. Pure application logic and literal edits do not need this route.

@@ -42,6 +42,20 @@ Included in the project-foundation collection and available for other authoring 
 | [Clear writing](collections/project-foundation/skills/clear-writing/SKILL.md) (`clear-writing`) | Express facts and instructions clearly without changing their meaning. |
 | [Diagrams and tables](collections/project-foundation/skills/diagrams-and-tables/SKILL.md) (`diagrams-and-tables`) | Choose and verify useful visual explanations of relationships and comparisons. |
 
+## Services
+
+The [service-foundation collection](collections/service-foundation/COLLECTION.md)
+installs service ownership and runtime guidance together. Promotion from a spike
+to maintained service use selects both members; narrow tasks select only what they
+need. Its manifest and checker detect incomplete or locally changed installations.
+The repository package validator also checks declared collection inventories, so
+member edits require a reviewed inventory update before validation passes.
+
+| Member | Use it for |
+| --- | --- |
+| [service-boundaries](collections/service-foundation/skills/service-boundaries/SKILL.md) | Define service ownership and shared behavior across HTTP and MCP adapters. |
+| [runtime-operations](collections/service-foundation/skills/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
+
 ## Design
 
 The [application-foundation collection](collections/application-foundation/COLLECTION.md)
@@ -55,7 +69,6 @@ Source directory: `skills/design/`.
 
 | Skill | Use it for |
 | --- | --- |
-| [service-boundaries](skills/design/service-boundaries/SKILL.md) | Define service ownership and shared behavior across HTTP and MCP adapters. |
 | [relational-modeling](skills/design/relational-modeling/SKILL.md) (draft) | Structure known entities around retrieval questions and revise relationships through synthetic scenarios. |
 | [postgres-design](skills/design/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries, and transactions on pooled connections. |
 
@@ -71,13 +84,13 @@ Source directory: `skills/verification/`.
 
 ## Operations
 
-Source directory: `skills/operations/`.
+Source directory for standalone operations packages: `skills/operations/`.
+Runtime operations is a member of service-foundation.
 
 | Skill | Use it for |
 | --- | --- |
 | [containerization](skills/operations/containerization/SKILL.md) | Build service images, configure local stacks and manage isolated container test resources. |
 | [database-migrations](skills/operations/database-migrations/SKILL.md) | Preserve migration history, review baselines and verify database bootstrap and upgrades. |
-| [runtime-operations](skills/operations/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
 
 ## Workflow
 

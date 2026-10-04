@@ -3,6 +3,7 @@
 
 import re
 import sys
+import subprocess
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
@@ -112,6 +113,18 @@ def main() -> int:
         packages.extend(members)
         errors.extend(error for package in members for error in check_package(package, check_links=False))
         errors.extend(check_local_links(collection))
+        if (collection / "collection.json").is_file():
+            checker = collection / "scripts/check_installation.py"
+            if not checker.is_file():
+                errors.append(f"{collection.relative_to(ROOT)}: manifest has no installation checker")
+            else:
+                try:
+                    result = subprocess.run([sys.executable, str(checker)],
+                        stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=20)
+                    if result.returncode:
+                        errors.append(f"{collection.relative_to(ROOT)}: inventory check failed: {result.stderr.strip()}")
+                except (OSError, subprocess.SubprocessError) as error:
+                    errors.append(f"{collection.relative_to(ROOT)}: inventory checker unavailable: {error}")
     names: dict[str, Path] = {}
     for package in packages:
         if package.name in names:
