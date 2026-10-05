@@ -100,10 +100,23 @@ Runtime operations is a member of service-foundation.
 
 ## Workflow
 
-Source directory: `skills/workflow/`.
+The [process-design collection](collections/process-design/COLLECTION.md) owns
+work records: the brief that commissions a bounded assignment, the study or
+worklog that retains its evidence, the handoff record that transfers it, and the
+findings and disposition that close it. It supplies the
+[record chain](collections/process-design/references/record-chain.md), four
+templates and the opt-in `work-record/v1`
+[format](collections/process-design/references/record-format.md) with a checker.
+Projects adopt it explicitly through its
+[extension declaration](collections/process-design/references/extension.md);
+project-foundation is not a dependency. Named processes and their structured
+page format stay with the consuming project's framework in this release.
+
+Standalone workflow packages live in `skills/workflow/`.
 
 | Skill | Use it for |
 | --- | --- |
+| [work-records](collections/process-design/skills/work-records/SKILL.md) | Commission bounded work as a brief, retain its evidence and close it with a scoped disposition. |
 | [pattern-capture](skills/workflow/pattern-capture/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
 
 ## Languages and runtimes

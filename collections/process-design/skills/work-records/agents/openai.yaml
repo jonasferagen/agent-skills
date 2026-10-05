@@ -1,0 +1,3 @@
+interface:
+  display_name: "Work records"
+  short_description: "Commission bounded work, retain its evidence and close it"

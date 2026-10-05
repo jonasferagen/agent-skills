@@ -1,0 +1,83 @@
+"""Synthetic staged collections exercise installation drift and membership failures."""
+import importlib.util
+import json
+from pathlib import Path
+import shutil
+import tempfile
+import unittest
+
+SCRIPT = Path(__file__).resolve().parents[1] / 'scripts/check_installation.py'
+spec = importlib.util.spec_from_file_location('collection_check', SCRIPT)
+checker = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(checker)
+
+
+class InstallationTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.source = Path(temporary.name) / 'source'
+        self.source.mkdir()
+        self.names = ['work-records']
+        for name in self.names:
+            package = self.source / 'skills' / name
+            package.mkdir(parents=True)
+            (package / 'SKILL.md').write_text(f'# {name}\n')
+        (self.source / 'COLLECTION.md').write_text('Version: 0.1.0\n' + '\n'.join(
+            f'[Member](skills/{name}/SKILL.md)' for name in self.names))
+        (self.source / 'collection.json').write_text(json.dumps({
+            'name': 'process-design', 'version': '0.1.0', 'members': self.names, 'files': {}}))
+        checker.write(self.source)
+        self.target = Path(temporary.name) / 'installed'
+        shutil.copytree(self.source, self.target)
+
+    def test_complete_copy_passes_and_bytecode_is_ignored(self):
+        cache = self.target / '__pycache__'
+        cache.mkdir()
+        (cache / 'example.pyc').write_bytes(b'generated')
+        self.assertEqual(checker.check(self.target, self.source), 2)
+
+    def test_missing_member_is_rejected(self):
+        shutil.rmtree(self.target / 'skills/work-records')
+        with self.assertRaisesRegex(ValueError, 'Membership mismatch'):
+            checker.check(self.target, self.source)
+
+    def test_changed_file_is_rejected(self):
+        (self.target / 'skills/work-records/SKILL.md').write_text('Edited locally')
+        with self.assertRaisesRegex(ValueError, 'changed='):
+            checker.check(self.target, self.source)
+
+    def test_retired_file_left_by_overlay_is_rejected(self):
+        (self.target / 'retired.md').write_text('Left by overlay')
+        with self.assertRaisesRegex(ValueError, 'extra='):
+            checker.check(self.target, self.source)
+
+    def test_consumer_cannot_bless_drift_by_regenerating_manifest(self):
+        (self.target / 'skills/work-records/SKILL.md').write_text('Edited locally')
+        checker.write(self.target)
+        with self.assertRaisesRegex(ValueError, 'manifest differs'):
+            checker.check(self.target, self.source)
+
+    def test_missing_entry_route_is_rejected(self):
+        (self.target / 'COLLECTION.md').write_text('Version: 0.1.0\n')
+        with self.assertRaisesRegex(ValueError, 'does not route'):
+            checker.check(self.target, self.source)
+
+    def test_symlink_is_rejected(self):
+        (self.target / 'alias').symlink_to(self.source / 'COLLECTION.md')
+        with self.assertRaisesRegex(ValueError, 'Symlink'):
+            checker.check(self.target, self.source)
+
+    def test_another_collection_manifest_is_rejected(self):
+        path = self.target / 'collection.json'
+        data = json.loads(path.read_text())
+        data['name'] = 'service-foundation'
+        path.write_text(json.dumps(data))
+        with self.assertRaisesRegex(ValueError, 'manifest differs'):
+            checker.check(self.target, self.source)
+
+
+class ShippedCollectionTests(unittest.TestCase):
+    def test_this_collection_matches_its_recorded_inventory(self):
+        root = Path(__file__).resolve().parents[1]
+        self.assertGreater(checker.check(root, root), 0)
