@@ -115,3 +115,83 @@ practice. Changing the rule itself remains a separate decision.
 
 Mechanical checks pass and both material findings are fixed; the routing
 requirement is covered by the exception above. Tagged `process-design/v0.1.0`.
+
+
+## Bounded assignments and separate reports — 2026-10-05
+
+Unreleased source revision 0.2.0 extends work-record guidance. Named-process
+ownership and actual project exchange contracts retain their current owners.
+The metadata parser and `work-record/v1` field vocabulary are unchanged.
+Document purposes are explicit prose/templates, not inferred metadata types.
+No Forge installation or existing brief is migrated by this source change.
+
+### Changes and review
+
+- `record-chain.md` owns the distinction between briefs, reports, worklogs,
+  studies and handoff records. Its six linked concepts do not require six files.
+- `assignment-contract.md` owns bounded assignment splitting, discoverable
+  required context, executor discretion and the requested return. Split by
+  independent decisions/completion evidence, not length or repository count.
+- The brief form separates required inputs, optional background, excluded prior
+  results, deliverables and reporting. The new report form records an assessed
+  basis, criterion-linked findings, checks, limits and disposition. Worklogs link
+  assessments rather than maintaining another copy.
+- A report does not automatically close its brief. `ready` is an authored framing
+  assessment, not verified prerequisite availability or execution authority.
+
+Clear-writing and its instruction guidance were applied to the changed prose;
+diagrams-and-tables and its table guidance were applied to the new document and
+assignment-boundary tables. The existing Mermaid view is unchanged. An
+independent prose comparison against `e5793d94b239d1bce0ac554e57f90f456da5e582`
+found no material unintended authority change, approval gate, mandatory
+paperwork or ambiguity requiring repair. The source was then reconciled with
+the self-conformance fixes at `a2eec55459ff78d3476ab5ee8b184bbdf85f9ee1`.
+That review is evidence about these passages, not consumer readiness.
+
+### Fresh-context routing trials
+
+Three independent agents started from a synthetic project's `AGENTS.md` outside
+the authoring repository. It routed bounded work to a complete staged collection
+and named-process work to a separate framework owner. They were not given the
+expected route. No live Forge state, engine, external generation or service was
+used. Trials selected draft 0.2.0 before the later prose tidy and reconciliation;
+the assignment contract and template behavior tested are unchanged.
+
+| Request | Observed route and artifact | Result and limit |
+| --- | --- | --- |
+| Shape creature concepts, models and an encounter into independent work | Collection → work-records → assignment contract, brief/report forms and record chain; proposed three dependent briefs | Each has its own inputs, exclusions, evidence and return; missing domain choices remain explicit. No assets or runtime behavior established |
+| Pick up a portrait-rendering brief whose selected geometry exists only in a prior chat | Collection → work-records → assignment contract, report form, record chain and optional record format/checker; returned a partial-work report | Did not invent the selection, use excluded results, redefine the commission or mark rendering complete. Selected report metadata passed; rendering remains unperformed |
+| Clarify an existing proposed import process | Project framework and existing process source; collection entry was an optional boundary check | Preserved named-process ownership, source anchor and proposed status. No record skill, parser migration or service selected |
+
+The commissioning trial materially read seven complete instruction/template
+files, approximately 3,888 whitespace words. The executor trial read eight
+complete files, approximately 4,920 words including its brief source. Both had
+one displayed read per file and separate mechanical count/hash rereads, without
+truncation. The named-process trial read three instruction files (495 words)
+and its 23-word process source, 518 total; it classified the collection entry
+as optional and unnecessary once the framework route was resolved. No source
+authoring routes were loaded by the consumer trials. No required applicable
+guidance was observed missing. The extra collection read is a bounded overhead
+observation, not a reason to require that route for process work.
+
+The reviewer inspected all returned artifacts and read traces. These trials
+demonstrate assignment framing, missing-input handling, reporting and the nearby
+framework boundary. They establish neither successful production from a complete
+brief nor routing reliability. There was no matched baseline trial, routine-fix
+trial or source-authoring trial. Consumer link/access validation and a real
+completed assignment remain useful next evidence; no autonomous execution or
+framework migration is claimed.
+
+### Mechanical verification
+
+The complete source gate `PYTHONDONTWRITEBYTECODE=1 python3 scripts/check.py`
+passed all six checks with no failures after normal local process access was
+provided. A restricted run first failed the unrelated GPG roundtrip and Node
+child-process EOF checks; the process-design suite and package checks already
+passed there. The successful run used the repository's existing exact TypeScript
+dependency through a temporary task-worktree link; no lockfile changed.
+
+The process-design suite, source inventory checker, package link/containment
+checks and `git diff --check` pass. The existing template-placeholder check now
+covers all five shipped forms. These are structural checks; they do not verify
+actual project selections, useful criteria, execution authority or acceptance.
