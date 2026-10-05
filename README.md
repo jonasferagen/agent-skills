@@ -101,10 +101,11 @@ Runtime operations is a member of service-foundation.
 ## Workflow
 
 The [process-design collection](collections/process-design/COLLECTION.md) owns
-work records: the brief that commissions a bounded assignment, the study or
-worklog that retains its evidence, the handoff record that transfers it, and the
+work records: the brief that commissions a bounded assignment, the worklog that tracks progress, the report or
+study that retains its findings, the handoff record that transfers it, and the
 findings and disposition that close it. It supplies the
-[record chain](collections/process-design/references/record-chain.md), four
+[record chain](collections/process-design/references/record-chain.md), the
+[assignment contract](collections/process-design/references/assignment-contract.md), five
 templates and the opt-in `work-record/v1`
 [format](collections/process-design/references/record-format.md) with a checker.
 Projects adopt it explicitly through its

@@ -13,6 +13,11 @@ checked. Installing or upgrading this collection opts nothing in. A selected
 record with an unsupported version or a malformed block fails the checker rather
 than silently falling back to prose.
 
+Document purposes such as brief, report and worklog are defined by the
+[record chain](record-chain.md). They are not values of `Kind`, which describes
+the assignment's purpose. This version adds no metadata field for document type
+or brief-to-report associations; consumers must not infer them from `Kind`.
+
 Selection makes a record's identity and coordination fields consistent. It does
 not establish that the described work happened, was reviewed or was accepted.
 

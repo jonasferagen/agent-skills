@@ -1,15 +1,37 @@
 # The work-record chain
 
-Six records carry a bounded assignment from intent to a scoped decision. Each
-answers one reader question and has one owner. Use a short section or a linked
-record when that is sufficient; several of these can share one page when their
-meanings stay distinguishable.
+Six concepts connect a bounded assignment to a scoped decision. They are not
+six required files. Each answers one reader question and has an owner; several
+can share a report or worklog entry when their meanings stay distinguishable.
 
 A brief says what should be achieved and how it will be assessed. A work item
 names the change or investigation intended to meet it. A review subject is the
 exact content assessed. A review context is the conditions under which it was
 assessed. A finding is an observation with its limits. A decision says what the
 findings mean for the intended use and what happens next.
+
+## Document boundaries
+
+These documents serve different reading tasks. Their subject can be shared;
+their purpose, owner and assessed basis remain explicit.
+
+| Document | Keeps | Typical owner |
+| --- | --- | --- |
+| Brief | Assignment intent, inputs, constraints, criteria, coordination state and next action | Commissioning owner |
+| Report | A dated result against identified brief revisions, findings, limits and disposition | Performing or reviewing owner |
+| Worklog | Dated progress, decisions and links to reports or retained evidence | Owner of the work being recorded |
+| Study | Candidates, comparable conditions, observations and a recommendation for an open choice | Owner performing the comparison |
+| Handoff record | An identified transfer, checked properties, gaps and receiver's next action | Sending owner |
+
+A living subject specification belongs to the project's domain owner. It can
+support several bounded briefs; it need not pretend to be one finishable
+assignment. The [assignment contract](assignment-contract.md) owns how to split
+work and make each assignment's inputs and return discoverable.
+
+Document purpose, assignment `Kind` and coordination `Workflow` are distinct.
+`Kind: experiment` alone cannot identify a file as a brief or a report. This
+release defines document purposes in prose and templates; the metadata checker
+does not classify them or validate their associations.
 
 ## What connects to what
 
@@ -66,7 +88,20 @@ back. A brief may link historical results without making them inputs to a new ru
 Do not create a second authoritative status. The brief's coordination state and
 next action live in the brief; dated findings and decisions live in the record.
 Where a project already has an adequate work record, use it rather than adding
-another.
+another. The brief identifies the requested reporting form. Use a separate
+[report](../templates/repository-docs/work-records/report.md) when the result
+needs to be read as a whole; a short result can remain a dated worklog entry.
+Do not require both for every task.
+
+One brief may have several reports, each identifying the revision and scope it
+assesses. A report addressing several briefs names each assessed basis and
+keeps their findings distinct. Link reports from the brief and progress record
+without copying their findings into either. A study can be the requested return
+for a comparison; no second report is needed to restate it.
+
+Separate an executor's completion claim and recommendation from the deciding
+owner's disposition. Report unresolved acceptance as unresolved. The presence of
+a report alone does not set the brief to `done`; use its completion condition.
 
 ## Criteria state what evidence would answer them
 

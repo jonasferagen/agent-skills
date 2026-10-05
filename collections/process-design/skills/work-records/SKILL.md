@@ -2,7 +2,7 @@
 name: work-records
 description: "Commission bounded work as a brief, retain its evidence and close it with a scoped disposition. Use when framing an assignment for another owner, recording what a run actually showed, or deciding what findings mean; routine fixes and plan items need no brief."
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Work records
@@ -12,12 +12,13 @@ Read the existing intent, the source basis actually available and the project's
 current owners first. Preserve what the project already records; this guidance
 adds no approval gate and migrates nothing.
 
-Four questions decide what you are writing:
+Five questions decide what you are writing:
 
 | The question in front of you | Write | Shape |
 | --- | --- | --- |
 | What should this achieve, and how will we know? | A brief | [brief template](../../templates/repository-docs/work-records/brief.md) |
-| What did this run actually produce and show? | A worklog entry | [worklog template](../../templates/repository-docs/work-records/worklog.md) |
+| What happened as work progressed? | A worklog entry | [worklog template](../../templates/repository-docs/work-records/worklog.md) |
+| What did this assignment establish against its brief? | A report | [report template](../../templates/repository-docs/work-records/report.md) |
 | What do these candidates tell us about an open choice? | A study | [study template](../../templates/repository-docs/work-records/study.md) |
 | What is being transferred, and what must the receiver be able to rely on? | A handoff record | [handoff template](../../templates/repository-docs/work-records/handoff-record.md) |
 
@@ -31,6 +32,11 @@ and who keeps it. The [record format](../../references/record-format.md) owns
 the optional metadata and its checker.
 
 ## Frame the question
+
+When defining assignment boundaries or preparing work for an agent starting
+without the conversation, use the [assignment contract](../../references/assignment-contract.md).
+It owns split decisions, required inputs, discovery routes and the requested
+return. A brief can reference discoverable context without copying it all.
 
 State the intended use and its boundary before the method. Name the bounded
 question this work should resolve, the evidence that would let the owner judge
@@ -51,6 +57,11 @@ A living specification can support several bounded assignments with their own
 completion. Say explicitly when no single completion boundary is selected.
 
 ## Perform and retain evidence
+
+Start at project instructions, resolve the brief's required inputs and use the
+relevant method owners. Record the actual basis used. If a missing input or
+conflicting obligation prevents a sound result, identify the affected work and
+continue independent work; use the assignment contract's interruption guidance.
 
 Identify the exact subject: files, revision and relevant dependencies, and what
 was included or excluded. Record the conditions, method, settings and acting

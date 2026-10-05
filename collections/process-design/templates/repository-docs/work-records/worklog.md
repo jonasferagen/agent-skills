@@ -8,6 +8,8 @@ Status: {{what_this_record_currently_establishes}}
 
 Entries are appended newest last. Each entry keeps its own date and stands on
 its own; do not rewrite an earlier entry to match a later understanding.
+Link a separate report or study when it owns the findings; summarize the event
+here without copying its assessment. A short result can remain in this entry.
 
 ## {{YYYY-MM-DD}} — {{what_was_done}}
 

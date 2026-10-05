@@ -172,8 +172,8 @@ class DirectoryTests(unittest.TestCase):
     def test_shipped_templates_are_not_valid_instances(self):
         templates = Path(__file__).resolve().parents[1] / 'templates'
         errors, selected, _ = validate([templates])
-        self.assertEqual(selected, 4)
-        self.assertEqual(len(errors), 4)
+        self.assertEqual(selected, 5)
+        self.assertEqual(len(errors), 5)
         self.assertTrue(all('unfilled template placeholder' in error for error in errors))
 
 

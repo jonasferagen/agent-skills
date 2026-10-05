@@ -1,16 +1,17 @@
 # Process design
 
-Version: 0.1.0
+Version: 0.2.0
 
 Use this collection for the records that carry work between owners: the brief
-that commissions a bounded assignment, the worklog or study that retains its
-evidence, and the findings and disposition that close it. Start from the
+that commissions a bounded assignment, the worklog that tracks progress, and the
+report or study that retains findings and a scoped disposition. Start from the
 project's existing owners and the work actually being done. This collection
 works without a specific project framework, document root or viewer.
 
 | Task | Entry point |
 | --- | --- |
 | Frame a bounded assignment, record its evidence or close it with a disposition | [Work records](skills/work-records/SKILL.md) |
+| Bound an assignment, make its context discoverable, or define its return | [Assignment contract](references/assignment-contract.md) |
 | Understand which record owns intent, evidence, findings or a decision | [Work records](skills/work-records/SKILL.md), then its [record chain](references/record-chain.md) |
 | Write or interpret record metadata, or run its checker | [Record format](references/record-format.md) |
 | Adopt work-record homes and checks in a project | [Process-design extension](references/extension.md) |

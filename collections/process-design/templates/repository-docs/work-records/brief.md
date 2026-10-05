@@ -13,8 +13,13 @@ Worklog: {{markdown_link_to_the_work_record}}
 
 {{what_this_should_achieve_for_which_use_its_boundary_and_any_open_choices}}
 
-Source basis: {{inputs_with_their_revisions_and_commits_actually_used}}
-{{where_a_shared_input_is_unselected_the_local_hypothesis_being_worked_under}}
+## Required inputs and discovery
+
+Project entry: {{reachable_project_instructions_and_relevant_method_owners}}
+Required inputs: {{sources_with_required_revisions_or_a_bounded_discovery_route}}
+Optional background: {{context_that_is_useful_but_not_required_or_none}}
+Excluded prior results: {{results_an_independent_run_must_not_use_or_none}}
+Source basis: {{pinned_sources_or_current_adopted_owners_and_local_hypotheses}}
 
 ## Process
 
@@ -25,7 +30,13 @@ Source basis: {{inputs_with_their_revisions_and_commits_actually_used}}
 ## Constraints and preserved basis
 
 {{what_must_not_change_and_why_including_decisions_already_made_elsewhere}}
-{{what_is_deliberately_left_open_for_this_work_to_select}}
+{{what_the_executor_can_resolve_within_delegation_and_what_another_owner_decides}}
+
+## Deliverables and reporting
+
+{{requested_deliverables_and_their_output_and_evidence_homes}}
+Return: {{separate_report_study_or_existing_work_record_and_decision_owner}}
+{{report_the_actual_basis_findings_checks_limits_and_unresolved_work}}
 
 ## Review criteria
 

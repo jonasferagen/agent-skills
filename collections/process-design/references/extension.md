@@ -1,8 +1,8 @@
 # Process-design extension
 
 Process-design owns work records: the brief that commissions a bounded
-assignment, the study or worklog that retains its evidence, the handoff record
-that transfers it, and the review findings and disposition that close it. It can
+assignment, the worklog that tracks progress, the report or study that retains
+findings, and the handoff record that transfers a result. It can
 be used with a project's own instructions or adopted as an optional
 project-foundation extension. Its guidance and checker require no
 project-foundation installation.
@@ -16,11 +16,13 @@ active plan already tracks with a short result needs no brief merely because
 this collection is installed.
 
 The [record chain](record-chain.md) is authoritative for what each record means,
-which owner keeps it and how findings route back to the thing that changed. The
+which owner keeps it and how findings route back to the thing that changed.
+The [assignment contract](assignment-contract.md) owns assignment boundaries,
+discoverable inputs and the requested return. The
 [record format](record-format.md) is authoritative for the optional
 `work-record/v1` metadata and its checker. The templates under
-`templates/repository-docs/work-records/` are starting structures for the four
-document types; omit sections rather than inventing content to fill them.
+`templates/repository-docs/work-records/` are starting structures for the five
+document purposes; omit sections rather than inventing content to fill them.
 
 These are extension-managed documents with repository-owned content. The
 project keeps intent, criteria, evidence and decisions; this collection supplies
@@ -30,8 +32,8 @@ work queue into a record.
 ## Select homes outside the reserved tree
 
 Work records are content. Keep them with the work: the performing repository's
-workspace for a study or worklog, the commissioning owner's workspace for a
-cross-discipline brief. Where a project framework reserves a governed document
+workspace for a report, study or worklog, the commissioning owner's workspace
+for a cross-discipline brief. Where a project framework reserves a governed document
 root, these homes stay outside it unless that framework's own map admits the
 type.
 
@@ -81,8 +83,8 @@ consuming project's framework. Where that is project-foundation, its
 this collection deliberately supplies no second definition of them.
 
 Project-foundation's `review-feedback-section` template also stays core's for
-now. This collection's [worklog](../templates/repository-docs/work-records/worklog.md)
-covers the same subject, method, findings, limits and disposition for an adopted
+now. This collection's [report](../templates/repository-docs/work-records/report.md)
+or a short [worklog](../templates/repository-docs/work-records/worklog.md) entry covers the same subject, method, findings, limits and disposition for an adopted
 project; where both are available, select one and say which, rather than keeping
 two active definitions.
 
@@ -92,5 +94,5 @@ migration, deprecation path and version impact in both collections, not
 something an installation of this version performs. Until it lands, do not treat
 a process page as extension-managed and do not run this checker over one.
 
-Contracts, policy, architecture, conceptual models and the active plan are not
-in scope at any point. A brief links them; it never becomes their second home.
+Project exchange contracts, policy, architecture, conceptual models and the
+active plan retain their own owners. A brief links them; it never becomes their second home.

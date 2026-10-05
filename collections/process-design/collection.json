@@ -1,25 +1,27 @@
 {
   "name": "process-design",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "members": [
     "work-records"
   ],
   "files": {
-    "COLLECTION.md": "9aad3665be988d9ef525b37ea232d26296beb57105e6de52ff12f7cf144d52e7",
-    "references/extension.md": "169751073c046e281441c59f8e2513f8ca0cd518f2e0a8289cabe05b4fee89eb",
+    "COLLECTION.md": "9d22b02d01e0576f044019433782237d238ff887a5960e04aedf5a177084a738",
+    "references/assignment-contract.md": "edb269a79ccd1892ff1dff4e20d5505b3a2f2ca70fc41a34176e6637d69758c5",
+    "references/extension.md": "880e247e33ab25e3dcc55824f09e278a21f20a47e223ebec595cc66a2517b7c8",
     "references/installation.md": "09cf63e018c4b9a8eb0f19ac2f963419cfed34697f91102cee88ec12283fa011",
-    "references/record-chain.md": "b721496a0787335451db69126e38bafa1f0666220c468cade7ec8c7280f9431d",
-    "references/record-format.md": "a1668d995390c82c7e11c5404d0909ad90b0a4ec4c39f6da37487e5080c0e72f",
+    "references/record-chain.md": "89bbc097d293ee7490885f43c48a880b6efef42d3a485c680f020e01457e2902",
+    "references/record-format.md": "e6ad16c8a544de398ff5c07fede165b9086c09e824ad403bef4318a7b1948456",
     "scripts/check_installation.py": "ab1dd5c66b2cce5d53a4d52f56f6005f5926d1118f0f457518afe74cb83b4594",
     "scripts/validate-work-records.py": "4b750941212f510392a34ae660b2ce6c4a95e80f3f3491a7ab5ae7e8368233a0",
     "scripts/work_record_format.py": "0493c63afc8e5a101ba4fc53c78d473aba2a4c202f185ef4ee503285f90f8584",
-    "skills/work-records/SKILL.md": "a732a3a538b7fc01b06b6f12a8f37e7e8958eb376140bb2a112f551949d2d649",
+    "skills/work-records/SKILL.md": "5eb44a647326566a10f9b9e52ec37a274908e98c369b95451aab4109f00703d6",
     "skills/work-records/agents/openai.yaml": "c4d4b6a67efe522daf8d731708c98fc383a77981038c2c25333b46ae13350301",
-    "templates/repository-docs/work-records/brief.md": "9cb7da1fa57a9baed611f222b485cc49caabd3f75c8b331c00cff0c6a9a2b10e",
+    "templates/repository-docs/work-records/brief.md": "f027daac75edb97a9c425e724d72b1ede26579080b5051d50eea5dd2a90e138b",
     "templates/repository-docs/work-records/handoff-record.md": "23bcbf986cb70cf91ab285cdf08ab5663380679fbd5660128d8b9ffab9486e55",
+    "templates/repository-docs/work-records/report.md": "97ccdfd96658b4e681637db87a5c72ad1d0adbab3430dce7fcce3ed9b6923f51",
     "templates/repository-docs/work-records/study.md": "8ccd4e314cf6d08f444e89db9c66c73a6b07b11bdcf7432cf8b945b059ba6a0c",
-    "templates/repository-docs/work-records/worklog.md": "54679ebf6191722e2bb5befd859c7c373378fb2bf16cb0cc4bd50b0a1db88499",
+    "templates/repository-docs/work-records/worklog.md": "780c5419de0d2746caf3043273019c3bc0fc5d714c798021c1e85a09926cabf9",
     "tests/test_installation.py": "41cc71e136150ece5f5db81cad7fd0523aedd233598b4cc59a841008a0cd4573",
-    "tests/test_work_record_format.py": "01b079a8a29aaec6f762be18cb33b0691455de79c9eda4f14bbc673c09f34f94"
+    "tests/test_work_record_format.py": "36d55a263a5c1cc3e7ef3547bc9e2cef4161fc8253284328854103b6c3252115"
   }
 }
