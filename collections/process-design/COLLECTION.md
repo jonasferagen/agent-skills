@@ -27,14 +27,10 @@ brief states intent and criteria for one assignment; it does not become a second
 home for responsibilities, obligations or the active work queue. Report a missing
 required owner with its consequence and continue unaffected work.
 
-## Scope boundary and planned ownership
+## Scope boundary
 
-This release owns work records only. The named-process document type and its
-structured page format remain with the consuming project's framework; where that
-is project-foundation, its `project-process/v1` reference, parser and template
-stay authoritative and this collection adds no second definition.
-
-Transferring that type here is the recorded next step for this collection, taken
-as a deliberate framework change with its own migration and version impact. Until
-it lands, do not treat a process page as an extension-managed document, and do
-not run this collection's checker over one.
+This release owns work records only. Named processes and their structured page
+format stay with the consuming project's framework, and taking them over is this
+collection's recorded next step. The
+[extension declaration](references/extension.md#not-owned-by-this-release) owns
+that boundary and what it means for checks.

@@ -35,6 +35,9 @@ Worklog: [Work record](../templates/repository-docs/work-records/worklog.md)
 ```
 
 Lines appear in this order; present fields keep it, absent ones leave no gap.
+The [checker](../scripts/work_record_format.py) owns the exact field names and
+the closed `Kind` and `Workflow` vocabularies; this table explains how to apply
+them, and a bundled test fails if the two disagree.
 
 | Field | Required | Value |
 | --- | --- | --- |

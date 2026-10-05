@@ -5,11 +5,11 @@
     "work-records"
   ],
   "files": {
-    "COLLECTION.md": "c43ac2143a0f80a2a2717d52d941799e515bec00fb00b155f4300e48a4a71ab7",
+    "COLLECTION.md": "9aad3665be988d9ef525b37ea232d26296beb57105e6de52ff12f7cf144d52e7",
     "references/extension.md": "169751073c046e281441c59f8e2513f8ca0cd518f2e0a8289cabe05b4fee89eb",
     "references/installation.md": "09cf63e018c4b9a8eb0f19ac2f963419cfed34697f91102cee88ec12283fa011",
     "references/record-chain.md": "b721496a0787335451db69126e38bafa1f0666220c468cade7ec8c7280f9431d",
-    "references/record-format.md": "be05a8913a3bb88493a36b113490ebf0f856db34e6f380259ed5bba443d5e0b1",
+    "references/record-format.md": "a1668d995390c82c7e11c5404d0909ad90b0a4ec4c39f6da37487e5080c0e72f",
     "scripts/check_installation.py": "ab1dd5c66b2cce5d53a4d52f56f6005f5926d1118f0f457518afe74cb83b4594",
     "scripts/validate-work-records.py": "4b750941212f510392a34ae660b2ce6c4a95e80f3f3491a7ab5ae7e8368233a0",
     "scripts/work_record_format.py": "0493c63afc8e5a101ba4fc53c78d473aba2a4c202f185ef4ee503285f90f8584",
@@ -20,6 +20,6 @@
     "templates/repository-docs/work-records/study.md": "8ccd4e314cf6d08f444e89db9c66c73a6b07b11bdcf7432cf8b945b059ba6a0c",
     "templates/repository-docs/work-records/worklog.md": "54679ebf6191722e2bb5befd859c7c373378fb2bf16cb0cc4bd50b0a1db88499",
     "tests/test_installation.py": "41cc71e136150ece5f5db81cad7fd0523aedd233598b4cc59a841008a0cd4573",
-    "tests/test_work_record_format.py": "da2a5602de1391fd5880e4fd25e304cc81dcce12a1b29a6de80fe9fb9a2626a1"
+    "tests/test_work_record_format.py": "01b079a8a29aaec6f762be18cb33b0691455de79c9eda4f14bbc673c09f34f94"
   }
 }

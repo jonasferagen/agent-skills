@@ -175,3 +175,40 @@ class DirectoryTests(unittest.TestCase):
         self.assertEqual(selected, 4)
         self.assertEqual(len(errors), 4)
         self.assertTrue(all('unfilled template placeholder' in error for error in errors))
+
+
+class DocumentedVocabularyTests(unittest.TestCase):
+    """The reference explains what the checker enforces; silent drift between them is a defect."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.reference = (Path(__file__).resolve().parents[1]
+                         / 'references/record-format.md').read_text(encoding='utf-8')
+        cls.module = _format
+
+    def documented(self, field: str) -> list[str]:
+        import re
+        row = re.search(rf'^\| `{field}` \| (?:Yes|No) \| One of (.+?) \|$',
+                        self.reference, re.MULTILINE)
+        self.assertIsNotNone(row, f'{field} has no documented value row')
+        return re.findall(r'`([^`]+)`', row.group(1))
+
+    def test_documented_kinds_match_the_checker(self):
+        self.assertEqual(self.documented('Kind'), list(self.module['KIND']))
+
+    def test_documented_workflows_match_the_checker(self):
+        self.assertEqual(self.documented('Workflow'), list(self.module['WORKFLOW']))
+
+    def test_documented_field_order_matches_the_checker(self):
+        import re
+        rows = re.findall(r'^\| `([A-Za-z ]+)` \| (?:Yes|No) \|', self.reference, re.MULTILINE)
+        identity = ['Record ID', 'Revision', 'Date']
+        self.assertEqual(rows[:len(identity)], identity, 'identity fields changed in the reference')
+        self.assertEqual(rows[len(identity):], list(self.module['ORDER']))
+
+    def test_the_example_in_the_reference_is_a_valid_record(self):
+        import re
+        block = re.search(r'```text\n(# .+?)\n```', self.reference, re.DOTALL)
+        self.assertIsNotNone(block, 'the reference no longer shows an example record')
+        record = parse_record(block.group(1))
+        self.assertEqual(record['identifier'], 'hud-portrait-card-graphics')
