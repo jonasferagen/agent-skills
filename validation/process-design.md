@@ -195,3 +195,47 @@ The process-design suite, source inventory checker, package link/containment
 checks and `git diff --check` pass. The existing template-placeholder check now
 covers all five shipped forms. These are structural checks; they do not verify
 actual project selections, useful criteria, execution authority or acceptance.
+
+## Settled named-process owner — 2026-10-06
+
+Revision 0.3.0 withdraws the takeover 0.2.0 had recorded as this collection's
+next step. The division is now stated as one of document home and subject: a
+named process is a standing explanation of recurring work inside the consuming
+framework's governed document root, and a work record is a dated document about
+one assignment, kept with that work. `review-feedback-section` stays core's as an
+in-place section pattern beside this collection's standalone report and worklog,
+and neither deprecates the other.
+
+The reason was reader cost, not duplication. Nothing here ever defined the
+process format: project-foundation holds the `project-process/v1` reference, the
+`process_format.py` parser, the process template, `validate-project-docs.py` and
+its tests, and a consumer's own alignment checker loads that parser by path. What
+the pendency cost was certainty — a reader had to know which release they held,
+and what was planned, before they could say who owns a process page today.
+
+### Changes and verification
+
+| File | Change |
+| --- | --- |
+| `COLLECTION.md` | Scope boundary states a settled division; version 0.3.0 |
+| `references/extension.md` | `## Not owned by this release` becomes `## Owned by the project framework`, states the home-and-subject division, settles `review-feedback-section`, and records the withdrawal |
+| `references/installation.md` | `## Watch for a second owner` becomes `## One owner per document type`: no upgrade moves the type, and two active definitions of one type are the defect to repair |
+| `references/assignment-contract.md` | Drops "in this release" and follows the renamed anchor |
+| `README.md` | Catalog entry drops "in this release" and links the boundary |
+| `collection.json` | Version and the five changed hashes |
+
+Both inbound links to the renamed anchor were updated; no other file referenced
+it. Mechanical verification: the collection's own `check_installation.py`
+regenerated and then re-validated the inventory at 18 files and one member;
+`scripts/validate-packages.py` passed 22 entries and six collections;
+`scripts/check.py` passed all six checks with zero failures, using the
+repository's existing TypeScript dependency through a temporary worktree link
+with no lockfile change; `git diff --check` clean.
+
+This is a prose-only change to scope statements, so no discovery trial applies
+under the README's routing requirement. No template, script, check or metadata
+behaviour changes, and no existing record is reclassified. The structural checks
+establish the package's shape; they do not establish that a consuming project
+has reconciled its own routes, which is that project's own change. Reopening the
+transfer would be a new decision in both collections, with its own migration,
+deprecation path and version impact.
