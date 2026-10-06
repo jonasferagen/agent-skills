@@ -63,6 +63,10 @@ class ServiceTests(unittest.TestCase):
         (self.home / "preview").rename(self.home / "Bad_Name")
         self.assertTrue(any("service name" in e for e in validate(self.home)))
 
+    def test_action_names_are_reserved(self):
+        (self.home / "preview").rename(self.home / "status")
+        self.assertTrue(any("dispatcher action" in e for e in validate(self.home)))
+
     def test_missing_explicit_home_is_failure(self):
         self.assertTrue(validate(self.root / "missing"))
 

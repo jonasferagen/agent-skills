@@ -64,7 +64,26 @@ services/
 `services/README.md` lists defined services and links their operating guides.
 Each `services/<name>/README.md` owns its purpose, operational definition and
 command route. Use lowercase names separated by hyphens. Use
-`./services/control <name> start|stop|restart|status|logs` as the common entry point. The [dispatcher template](../templates/repository-docs/services/control)
+`./services/control <name> start|stop|restart|status|logs` as the common entry point. `./services/control status`
+without a name reports the whole project: this checkout and each checkout named in
+the foundation References that has its own dispatcher, with `--scope checkout` to
+narrow it to one. A declared member with no service home is reported as such rather
+than omitted. Starting, stopping, restarting and logs always name one service, so
+lifecycle changes stay explicit.
+
+Reading is project-wide; starting and stopping stay checkout-local. A bare status
+asks the installed checkout, found through the common Git directory, because a task
+worktree owns no units or containers: its controllers would report instances that
+were never created while the real ones run in the installed checkout. An explicit
+`--root` still selects a checkout, and the mutating actions still run against the
+checkout the command was invoked from.
+
+Bare status reports and does not assert health. A service that is deliberately not
+running, such as an unprovisioned environment or one that starts when asked, exits
+nonzero while nothing is wrong, so each service's own exit code is shown and not
+folded into a verdict. The aggregate exits nonzero only when a controller could not
+be run at all, which is the one condition a reader cannot see in the rows. Action words are
+therefore reserved and cannot name a service. The [dispatcher template](../templates/repository-docs/services/control)
 finds executable `services/<name>/control` files and replaces itself with the
 selected controller, forwarding the action and `--root`. Both entry points must
 be executable. Each service controller accepts those five actions and an expected
@@ -122,7 +141,7 @@ python3 <collection>/scripts/validate-services.py <service-home>
 
 Select a home that adopts this convention, normally `services/`. Each immediate
 subdirectory is a service definition. The check requires its guide and executable
-controller, the index and executable dispatcher, lowercase hyphenated names and
+controller, the index and executable dispatcher, lowercase hyphenated names that are not action words, and
 inline Markdown index links targeting each service’s `README.md`. Symlinked
 service entries are rejected, matching dispatcher discovery. An explicitly selected
 missing or empty home fails; projects without selected services need no invocation

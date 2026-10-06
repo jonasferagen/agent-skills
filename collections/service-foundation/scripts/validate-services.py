@@ -10,6 +10,7 @@ from urllib.parse import unquote, urlsplit
 ServiceDefinition = runpy.run_path(str(Path(__file__).with_name("service_format.py")))["ServiceDefinition"]
 
 NAME = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
+ACTIONS = {"start", "stop", "restart", "status", "logs"}
 LINK = re.compile(r"(?<!!)\[[^]\n]+\]\(<?([^\s)>]+)>?\)")
 
 
@@ -38,6 +39,8 @@ def validate(home: Path) -> list[str]:
             services.append(child)
             if not NAME.fullmatch(child.name):
                 errors.append(f"{child}: expected a lowercase hyphenated service name")
+            elif child.name in ACTIONS:
+                errors.append(f"{child}: {child.name!r} is a dispatcher action and cannot name a service")
             required(child / "README.md")
             required(child / "control", True)
     identities = set()
