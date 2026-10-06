@@ -111,7 +111,9 @@ templates and the opt-in `work-record/v1`
 Projects adopt it explicitly through its
 [extension declaration](collections/process-design/references/extension.md);
 project-foundation is not a dependency. Named processes and their structured
-page format stay with the consuming project's framework in this release.
+page format belong to the consuming project's framework; the
+[extension boundary](collections/process-design/references/extension.md#owned-by-the-project-framework)
+owns that settled division.
 
 Standalone workflow packages live in `skills/workflow/`.
 
