@@ -16,6 +16,11 @@ resolves that owner through its existing declared route, and keeps that route in
 the owner it already uses for cross-repository paths. The collection selects no
 workspace layout and reads no project document.
 
+Resolve a declared relative route against the document that declares it, not the
+working directory a controller happens to run from. A route that works from the
+repository root and fails from a service directory is the same defect either way,
+and an absolute declared target hides it until someone makes the target relative.
+
 The collection owns **admission**: rejecting an unusable directory and refusing
 an interface the caller was not written against. Copy
 [the loader](../templates/repository-docs/tools/service_runtime.py) into the

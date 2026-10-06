@@ -128,3 +128,45 @@ The trial correctly identified per-guide opt-in, the extension format owner,
 project adoption authority, repository prose/fact ownership, and the checker’s
 structural limits. It did not load boundary/runtime skills, source history or
 unrelated guidance, and operated no services. No routing finding remained.
+
+## 2026-10-07 — a checked import contract for the runtime helpers
+
+Unreleased collection revision 0.6.0 adds `runtimeApi`, which declares the
+importable interface the bundled helpers offer, and a copy-deployed loader that
+admits it. The review that prompted it found three consumer repositories had each
+invented their own way in — a relative path append, a regex over a project
+Markdown table, and a third copy of that regex inline — none asserting a version,
+while installation replaces the whole directory at once. Discovery stays with the
+project, which is the only owner that knows its own layout; admission becomes the
+collection's. `runtime-operations` 1.5.0 routes to the contract and forbids an
+unchecked path append. No member behavior, control action or service document
+changed, and the interface is versioned separately from both the skill's prose
+version and the collection version.
+
+Verification: `python3 scripts/check.py` passed all six check groups with no
+skips. Collection tests rose from 32 to 45; the 13 new cases are the first
+coverage the copy-deployed templates have had, exercising the loader's refusals
+(wrong major, absent minor surface, missing declaration, missing and symlinked
+directory, non-integer version), that a refusal leaves `sys.path` unchanged, and
+the dispatcher's option pass-through that 0.5.0 had dropped unnoticed. The
+reviewed inventory contains 29 files and two members. `git diff --check` passed
+and `scripts/sync-collection-tools.py` reported no drift.
+
+Fresh-context routing trial [`consumer-controller`](service-foundation-trials/consumer-controller.md)
+defined a service in a consumer fixture holding no installation, entering from its
+own `AGENTS.md`. It reached `references/runtime-helpers.md` unprompted, deployed
+the loader verbatim, named the offered interface, kept discovery in its own
+function, and recorded the collection's stated check limits rather than claiming
+readiness. Three routing findings remain, recorded in that trial.
+
+One trial finding was folded back immediately: the trial resolved a declared
+relative route against the wrong directory, caught it with its own test and fixed
+it. Two of this workspace's three existing consumers had made the same choice,
+one correctly and one surviving only because the declared target is absolute.
+The reference now states where a declared route resolves.
+
+Limits: the trial installed, started and enabled nothing, so no action that
+changes runtime state is evidence here. Interface compatibility is exercised only
+against major 1; a major replacement still requires reviewing each consumer. The
+version check cannot make an incompatible replacement safe — it moves the failure
+to the importing controller and names both sides. No release tag was created.

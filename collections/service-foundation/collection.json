@@ -10,7 +10,7 @@
     "references/extension.md": "74c852c1476354521cbad76a1a5ac673edd9ceb5835c61ff775044ed332fe295",
     "references/installation.md": "f8aba21388d3b230041a45ef5a779a713808cc0856f6b60fdc20eb46e8dc5b1f",
     "references/repository-services.md": "03b1c86110ca68c5ce96f1017478d8640b8b82d71a2ff9cfe2a86d77c4e2e621",
-    "references/runtime-helpers.md": "6cd6713f7a7bda775255eefad6c3949e078816129080ac58e416d0478e618056",
+    "references/runtime-helpers.md": "0d003de00def2bf69d798136fb0db1b25368611e43fca6ecfcbad186b0d9c245",
     "references/service-definition.md": "ba7058fc7a0b744dddaaaab1ca12ba60b6fbedf7066e3381241f25b64aac6237",
     "scripts/check_installation.py": "ab1dd5c66b2cce5d53a4d52f56f6005f5926d1118f0f457518afe74cb83b4594",
     "scripts/service_format.py": "779c58c6c84732927a8c67c902fe9c8e77644789f7698106ec80a0cdc5d67304",
