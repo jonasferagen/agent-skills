@@ -1,6 +1,6 @@
 # Service foundation
 
-Version: 0.5.1
+Version: 0.6.0
 
 Use this collection when defining service documentation, designing a service
 boundary or changing how a service runs. Begin with the project's current owners and operating choices. Install the
@@ -13,6 +13,7 @@ whole collection; load only the members needed by the task.
 | Promote a spike to a maintained service | Read both [service boundaries](skills/service-boundaries/SKILL.md) and [runtime operations](skills/runtime-operations/SKILL.md); identify changed reliance, lifecycle and acceptance evidence in the project's existing owners |
 | Change service ownership or an HTTP/MCP operation | [Service boundaries](skills/service-boundaries/SKILL.md) |
 | Change startup, shutdown, readiness, process identity, credentials or recovery tooling | [Runtime operations](skills/runtime-operations/SKILL.md) |
+| Import the runtime helpers from a consuming repository | [Runtime helpers](references/runtime-helpers.md) |
 | Install, update or check this collection | [Installation and maintenance](references/installation.md) |
 
 A local service remains a service: localhost does not remove lifecycle or ownership

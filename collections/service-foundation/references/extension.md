@@ -58,6 +58,11 @@ prerequisites remain service-specific. The convention explains the exact check
 limits and required operational review/evidence. Collection installation checks
 verify the distributed package, not a consumer's service definitions.
 
+A repository whose controllers import the bundled Python helpers deploys the
+collection's loader and names the interface version it was written against;
+[runtime helpers](runtime-helpers.md) owns that contract. Discovery of the
+installed directory stays with the project's existing route.
+
 The optional [structured definition](service-definition.md) adds versioned facts
 inside the owning guide. Service-foundation owns its format and parser; a browser
 adapter selects adopted homes explicitly and projects these sources. Installation

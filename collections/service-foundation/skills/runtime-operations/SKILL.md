@@ -2,7 +2,7 @@
 name: runtime-operations
 description: "Design or change credential handling, local service controls and encrypted database backups. Use for secret custody, execution identities, lifecycle or recovery tooling, and their child-process and verification behavior."
 metadata:
-  version: "1.4.0"
+  version: "1.5.0"
 ---
 
 # Runtime operations
@@ -103,7 +103,11 @@ senders.
   change. Preserve the configured external-action gate.
 
 [serviceControl.py](scripts/serviceControl.py) implements Linux user-systemd
-control. Project entrypoints supply unit names, non-secret settings and commands.
+control. A consuming repository imports these helpers through the collection's
+[loader](../../templates/repository-docs/tools/service_runtime.py), which checks
+the [declared interface version](scripts/runtimeApi.py) before any import; see
+[runtime helpers](../../references/runtime-helpers.md) for that contract and its
+limits. Do not reach into the installed directory with an unchecked path. Project entrypoints supply unit names, non-secret settings and commands.
 Use the same controller for installed and transient services; each project
 binding selects the unit, expected checkout, command and optional prerequisite
 startup. An active `start` checks readiness without replacing or stopping that
