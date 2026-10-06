@@ -18,10 +18,10 @@ def main() -> int:
     parser.add_argument("action", choices=("start", "stop", "restart", "status", "logs"))
     parser.add_argument("--root", type=Path, default=home.parent,
                         help="expected runtime checkout; defaults to this checkout")
-    args = parser.parse_args()
+    args, options = parser.parse_known_args()
     controller = home / args.service / "control"
     try:
-        os.execv(str(controller), [str(controller), args.action, "--root", str(args.root)])
+        os.execv(str(controller), [str(controller), args.action, "--root", str(args.root), *options])
     except OSError as error:
         print(f"Cannot run {args.service} control: {error}", file=sys.stderr)
         return 1
