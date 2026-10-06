@@ -1,12 +1,12 @@
 {
   "name": "service-foundation",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "members": [
     "service-boundaries",
     "runtime-operations"
   ],
   "files": {
-    "COLLECTION.md": "57afd79b7121f9ff128f1147955f8edca9d7cb1c34745d6c9d267a7921a1ac5d",
+    "COLLECTION.md": "2f530b41f3fcd1086d149aa77ef3bfe887277c61f430fa2c5e26f0fd05e730f4",
     "references/extension.md": "cbd7d22d445ae4de9226ceec8f5013be03861935017a3cc64f4d89fa13dac8b1",
     "references/installation.md": "f8aba21388d3b230041a45ef5a779a713808cc0856f6b60fdc20eb46e8dc5b1f",
     "references/repository-services.md": "03b1c86110ca68c5ce96f1017478d8640b8b82d71a2ff9cfe2a86d77c4e2e621",
@@ -25,8 +25,8 @@
     "skills/runtime-operations/tests/test_service_health.py": "1ce97f562c858a1a4386fd48ccae3a32a3aadbc53455ed5ab45231dab80b7dd0",
     "skills/service-boundaries/SKILL.md": "a7118527217c0c9481a60ea5f5eddac2f2bb06d0c3f50f1dd37b214a3eb75a85",
     "skills/service-boundaries/agents/openai.yaml": "d015c7108bf4f9784e9a3fd153faa03f077f061272a69303343ad692323d22fa",
-    "templates/repository-docs/services/README.md": "030e81b5022e3a0cdbf9e1e958c5c66c4dac9df9c7130ce3f20f2422d12aaf81",
-    "templates/repository-docs/services/control": "a8b584d28ff0acc986b907930c3f97beb240d80e5b4bba47b372899086fe4736",
+    "templates/repository-docs/services/README.md": "edc263a54acc0efcfd5f24d1de898dfeb295918b9c93904df1aa17e93a0edb74",
+    "templates/repository-docs/services/control": "eda0bc373433fb31f456ca44a594ffc5d0866e7dc499ff856f4f472efa397a43",
     "templates/repository-docs/services/service/README.md": "10ec0877ef9349a1358bdf001fc0f17e79093b00b90d33298c70d2f080ed6dcb",
     "tests/test_installation.py": "9b122c3655e1034b934cbe100697141edb23c6ff4278417c8aa5ff5accc2a2ec",
     "tests/test_service_format.py": "5f43dfcaa8869c9209de352d0753ee77a6fca2a903e52f7889d35d43f43d0f1a",

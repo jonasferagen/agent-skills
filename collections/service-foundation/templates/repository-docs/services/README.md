@@ -10,7 +10,8 @@ Delete this prompt before adopting the template. -->
 <!-- Link the project's service convention and candidate review when present. -->
 
 Use `./services/control <name> start|stop|restart|status|logs`.
-`./services/control --help` lists services with executable controllers.
+`./services/control --help` lists services with executable controllers. Options
+after the action pass through to that service's controller.
 
 <!-- Copy the dispatcher as executable services/control. Each defined service
 provides executable services/<name>/control accepting an action and --root.
