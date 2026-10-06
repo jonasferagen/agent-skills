@@ -6,7 +6,7 @@ the project's decision: a repository holding the installation can derive it from
 its own root, and a repository using another one's installation resolves that
 owner through its existing declared route. This loader owns what follows -
 rejecting an unusable directory and refusing an interface the caller was not
-written against - so every consumer gets the same check instead of its own.
+written against, so every consumer gets the same check instead of its own.
 """
 from pathlib import Path
 import importlib.util

@@ -24,39 +24,42 @@ copy policy, architecture or changing facts into a second owner.
 
 ## Adopt in a project
 
-Record this entrypoint, the affected repositories/capabilities, service home,
-project adaptations and validation route in the existing instruction owner.
-Record the complete collection's source pin in provenance using
-[installation guidance](installation.md). A shared installation can serve several
-repositories without adopting service definitions in every repository.
+The project system owns how any extension is adopted: what to record, where, and
+which authority survives it. With project-foundation 5 or later, follow its
+adopted-extensions convention from the project's installed core, which owns the
+declaration contents, the shared-installation rule and the authority boundary.
+Another project system declares equivalent explicit routes in its own
+instructions. This collection requires no core parser or runtime import, and
+nothing here repeats that contract.
 
-With project-foundation 5 or later, follow its extension-adoption convention from
-the project's installed core. Earlier foundations or other project systems can
-declare equivalent explicit routes in their instructions; no core parser or
-runtime import is required. Project-foundation versions before 5 shipped this
-service scaffold themselves. During migration, remove active routes to that copy
-and select this collection as the single owner. Preserve current service paths,
-controls, local adaptations, retained state and operating guarantees. Installation
-does not start services or change hosting, exposure or automatic startup.
+What this extension contributes to such a declaration is service-specific: the
+capabilities selected as services, the chosen service home, local adaptations to
+the layout below, and the validation route in
+[discovery and checks](#discovery-and-checks). Record the complete collection's
+source pin through [installation guidance](installation.md).
 
-Project policy and user decisions govern authority. Extension defaults do not
-override project commitments. Keep unresolved conflicts with their affected owner
-and continue unrelated work; unavailable guidance does not waive requirements.
+Project-foundation versions before 5 shipped this service scaffold themselves.
+During migration, remove active routes to that copy and select this collection as
+the single owner. Preserve current service paths, controls, local adaptations,
+retained state and operating guarantees. Installation does not start services or
+change hosting, exposure or automatic startup.
 
 ## Discovery and checks
 
-For an adopted default home, `services/README.md` indexes immediate named service
-directories; `services/<name>/README.md` owns each definition. The selected home
-and index bound discovery. Supporting guides remain linked sources, not additional
-service definitions. Do not follow symlinks or scan arbitrary directories for
-possible services. Repositories without defined services need no empty home.
+The [repository service convention](repository-services.md) defines the adopted
+home, its index, the per-service guide and the controller interface. This
+declaration adds only what bounds them: the selected home and its index bound
+discovery, supporting guides are linked sources rather than further service
+definitions, symlinks are not followed, arbitrary directories are not scanned for
+possible services, and a repository with no defined services needs no empty home.
 
-Run `python3 <service-foundation>/scripts/validate-services.py <service-home>`
-when changing adopted definitions. It checks structure and index routes without
-executing controllers. Python 3 is needed for the checker and dispatcher; runtime
-prerequisites remain service-specific. The convention explains the exact check
-limits and required operational review/evidence. Collection installation checks
-verify the distributed package, not a consumer's service definitions.
+The validation route is
+`python3 <service-foundation>/scripts/validate-services.py <service-home>`, run
+when adopted definitions change. Python 3 is the only prerequisite this extension
+adds; runtime prerequisites stay service-specific. The convention owns the exact
+check limits and the operational review and evidence that a structural pass
+cannot replace. Collection installation checks verify the distributed package,
+not a consumer's service definitions.
 
 A repository whose controllers import the bundled Python helpers deploys the
 collection's loader and names the interface version it was written against;

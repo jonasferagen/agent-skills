@@ -1,39 +1,39 @@
 {
   "name": "service-foundation",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "members": [
     "service-boundaries",
     "runtime-operations"
   ],
   "files": {
-    "COLLECTION.md": "00c5b255dee8b2f90854dc1a7e3358c7695e88acaa9416c5fac4292d08aecf79",
-    "references/extension.md": "74c852c1476354521cbad76a1a5ac673edd9ceb5835c61ff775044ed332fe295",
+    "COLLECTION.md": "a61518d824ce4564d23f5c2720979055e7b5bab17dfc925b4ffc72a71dc0b9ce",
+    "references/extension.md": "5e8152d1de5afa90e8421a31f8e489d9438d4624be505ed1ba8719ede606c614",
     "references/installation.md": "f8aba21388d3b230041a45ef5a779a713808cc0856f6b60fdc20eb46e8dc5b1f",
     "references/repository-services.md": "03b1c86110ca68c5ce96f1017478d8640b8b82d71a2ff9cfe2a86d77c4e2e621",
-    "references/runtime-helpers.md": "0d003de00def2bf69d798136fb0db1b25368611e43fca6ecfcbad186b0d9c245",
+    "references/runtime-helpers.md": "bd63836d11379d41e9c8297af6800c1c5f6aa377f59ffb07d5d0da56b97301ce",
     "references/service-definition.md": "ba7058fc7a0b744dddaaaab1ca12ba60b6fbedf7066e3381241f25b64aac6237",
     "scripts/check_installation.py": "ab1dd5c66b2cce5d53a4d52f56f6005f5926d1118f0f457518afe74cb83b4594",
     "scripts/service_format.py": "779c58c6c84732927a8c67c902fe9c8e77644789f7698106ec80a0cdc5d67304",
     "scripts/test_service_dispatcher.py": "4cd7cb28cc4f0ac99d2b1b4921cc9ab7c9c561206ab7079c331371168d8ad18f",
     "scripts/validate-services.py": "b3b0633c8072cdb5916dfde2793e9f64473b27152d3a4fb5db10f9cfa692cee4",
-    "skills/runtime-operations/SKILL.md": "1efeeccf28238354116a256b4da4dec1dc4c77f6fc74b9d6e80c546c8a7270c5",
+    "skills/runtime-operations/SKILL.md": "f83e757aad1123ed365ca99c748909db8931adcb529051a827dbcfbe45017518",
     "skills/runtime-operations/agents/openai.yaml": "58b1af26167369e5853e790b9e66fabb0c29219da14e09eb0f2ca0add8045a1e",
     "skills/runtime-operations/scripts/credentialStore.py": "4587d90a84606ae870e187ed5cad9c88e4041cbb3f3071538e49daf4b846d0b9",
     "skills/runtime-operations/scripts/databaseBackup.py": "e4b133675daa1f102f1c3ed1c38c2751777226ae6772b57e125a0989fe725b0f",
     "skills/runtime-operations/scripts/runtimeApi.py": "3cd81bfe62ab1813fbb25c615c219eb8115ec1ed08a2baf968f9a775ea1b8824",
     "skills/runtime-operations/scripts/serviceControl.py": "98520e76d5ac8424858e0d24cb5a6dba2b2c3f91853d1afb100a0a43ca8714f5",
     "skills/runtime-operations/scripts/serviceHealth.py": "fac43a199d1bf26f5e267c6fb8c7588858b6b2beaa80af2f648878576440c73f",
-    "skills/runtime-operations/tests/test_runtime.py": "953f474adf5a8977b0519cd2c149904ef2e6c0d2f942cf4bdc9e798906747fb8",
+    "skills/runtime-operations/tests/test_runtime.py": "c880bc2f496ac0d440191a252c03104a507bb893e377fa101431c3e73178db4f",
     "skills/runtime-operations/tests/test_service_health.py": "1ce97f562c858a1a4386fd48ccae3a32a3aadbc53455ed5ab45231dab80b7dd0",
     "skills/service-boundaries/SKILL.md": "a7118527217c0c9481a60ea5f5eddac2f2bb06d0c3f50f1dd37b214a3eb75a85",
     "skills/service-boundaries/agents/openai.yaml": "d015c7108bf4f9784e9a3fd153faa03f077f061272a69303343ad692323d22fa",
     "templates/repository-docs/services/README.md": "edc263a54acc0efcfd5f24d1de898dfeb295918b9c93904df1aa17e93a0edb74",
     "templates/repository-docs/services/control": "eda0bc373433fb31f456ca44a594ffc5d0866e7dc499ff856f4f472efa397a43",
     "templates/repository-docs/services/service/README.md": "10ec0877ef9349a1358bdf001fc0f17e79093b00b90d33298c70d2f080ed6dcb",
-    "templates/repository-docs/tools/service_runtime.py": "b51d52a93215da2d7ef87baad79aecf3f72caee91c9b6e04213eacbc5296c323",
+    "templates/repository-docs/tools/service_runtime.py": "e2666692e1411dc89aa0dfe3e04113e513006a4f0998bd6f5da7a07c681c1f90",
     "tests/test_installation.py": "9b122c3655e1034b934cbe100697141edb23c6ff4278417c8aa5ff5accc2a2ec",
     "tests/test_service_format.py": "5f43dfcaa8869c9209de352d0753ee77a6fca2a903e52f7889d35d43f43d0f1a",
     "tests/test_services.py": "dbf2cbc0546108c860e1ba6ac006b964d63da9998644f18bd4bbba7485d3e0f9",
-    "tests/test_templates.py": "f9c68562abbac9461ec3b22a55e759287ea9ed6278aec4b6fdfea183b363b27f"
+    "tests/test_templates.py": "53a932d0283dbd23a47fabcc7298e824d530833014a98b379c4046f10a6faa3b"
   }
 }

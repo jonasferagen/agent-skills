@@ -85,6 +85,20 @@ class LoaderTests(unittest.TestCase):
         self.assertEqual(loader().load(COLLECTION, major=1), "runtime-operations/1.0")
 
 
+class DeclaredInterfaceTests(unittest.TestCase):
+    """The reference states the offered interface; it must not outlive the file."""
+
+    def test_the_reference_states_the_interface_the_helpers_offer(self):
+        declaration = importlib.util.spec_from_file_location(
+            "runtime_api_under_test", COLLECTION / SCRIPTS / "runtimeApi.py")
+        module = importlib.util.module_from_spec(declaration)
+        declaration.loader.exec_module(module)
+        offered = f"`{module.NAME}/{module.MAJOR}.{module.MINOR}`"
+        reference = (COLLECTION / "references/runtime-helpers.md").read_text(encoding="utf-8")
+        self.assertIn(f"This installation offers {offered}", reference)
+        self.assertIn(f"calls `load(collection, major={module.MAJOR})`", reference)
+
+
 class DispatcherTests(unittest.TestCase):
     def setUp(self):
         tmp = tempfile.TemporaryDirectory()

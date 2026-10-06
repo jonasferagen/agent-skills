@@ -170,3 +170,50 @@ changes runtime state is evidence here. Interface compatibility is exercised onl
 against major 1; a major replacement still requires reviewing each consumer. The
 version check cannot make an incompatible replacement safe — it moves the failure
 to the importing controller and names both sides. No release tag was created.
+
+## 2026-10-07 — one owner for adoption, one owner for the binding
+
+Unreleased collection revision 0.7.0 answers the two routing findings the
+import-contract trial left open. `references/extension.md` had restated
+project-foundation's adopted-extensions contract almost item for item: what to
+record, the shared-installation rule and the authority boundary. It now delegates
+all three and keeps only what is service-specific, so a project reads that
+contract once, from the project system that owns it. The collection still
+requires no project-foundation installation; another project system declares
+equivalent explicit routes in its own instructions. Its discovery section stops
+restating the repository convention's layout and routes to it instead.
+
+`references/runtime-helpers.md` gained the binding surface the previous trial had
+to read from helper source: every `Service` field with what omitting it selects,
+the constraints between fields, and how the five actions behave. The reference now
+also states the offered interface version, which a consumer must pin and could
+previously only find in the declaration's source. `runtime-operations` 1.6.0
+routes to it and says to read it rather than infer the binding from the helper.
+
+Verification: `python3 scripts/check.py` passed all six check groups with no
+skips. Runtime tests rose from 39 to 50, pinning each documented omission as
+behavior rather than prose: an absent `command` operating an installed unit, an
+absent `directory` comparing nothing, `environment` reaching a transient launch
+and never an installed unit, the transient port range, the structured-health
+prerequisites, `status`'s exit status, a stop on an unloaded unit, a skipped
+prerequisite on an already-active start, and the readiness bound. Collection
+tests rose from 45 to 46 with a drift check between the stated interface and the
+declaration. Three disposable mutations were exercised: accepting any port for a
+transient command, leaking `environment` into an installed unit, and bumping the
+declared minor version. Each failed the suite; the intact suite passed. The
+reviewed inventory contains 29 files and two members. `git diff --check` passed.
+
+Fresh-context routing trial [`http-binding`](service-foundation-trials/http-binding.md)
+defined an HTTP service in a consumer whose adoption was already declared. It took
+the binding entirely from the reference and stated that it opened no helper
+implementation; the previous trial had read 687 words of `serviceControl.py` for
+the same decisions. `extension.md` fell from a required restatement to a useful
+confirmation, and the generic contract was read once from project-foundation.
+Three gaps it found were fixed in this revision; a fourth report was a fixture
+defect, not a product defect, and is recorded as such.
+
+Limits: nothing was installed, started or enabled in either trial, so no control
+action, readiness result or recovery path is evidenced here. Interface
+compatibility is still exercised only against major 1. The adoption delegation is
+verified by one trial against project-foundation 5.4.1; an earlier foundation or
+another project system remains unexercised.

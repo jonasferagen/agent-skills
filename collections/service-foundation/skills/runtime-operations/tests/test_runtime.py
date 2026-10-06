@@ -152,6 +152,106 @@ class ServiceTests(unittest.TestCase):
             run.assert_called_once_with(['systemctl','--user','restart','worker.service'])
 
 
+class BindingTests(unittest.TestCase):
+    """What an omitted binding field selects, as the import contract documents it."""
+
+    def test_no_command_operates_an_installed_unit(self):
+        with patch.object(services, 'properties', return_value={'ActiveState':'inactive'}), \
+                patch.object(services, 'ready', return_value=True), patch.object(services, 'run') as run:
+            services.control(services.Service('worker.service'), 'start')
+            self.assertEqual(run.call_args.args[0], ['systemctl','--user','start','worker.service'])
+            self.assertFalse(any('systemd-run' in str(call) for call in run.call_args_list))
+
+    def test_environment_reaches_a_transient_launch_and_never_an_installed_unit(self):
+        with patch.object(services, 'properties', return_value={'LoadState':'not-found','ActiveState':'inactive'}), \
+                patch.object(services, 'ready', return_value=True), patch.object(services, 'run') as run:
+            services.control(services.Service('preview.service', ['python3','app.py'], Path('/tmp'),
+                                              {'MODE':'preview'}, 3199), 'start')
+            self.assertIn('--setenv=MODE=preview', run.call_args.args[0])
+        with patch.object(services, 'properties', return_value={'ActiveState':'inactive'}), \
+                patch.object(services, 'ready', return_value=True), patch.object(services, 'run') as run:
+            services.control(services.Service('worker.service', environment={'MODE':'worker'}), 'start')
+            self.assertFalse(any('MODE' in str(call) for call in run.call_args_list))
+
+    def test_a_transient_command_requires_a_usable_port(self):
+        for port in (None, 80, 70000):
+            with patch.object(services, 'properties', return_value={'LoadState':'not-found','ActiveState':'inactive'}), \
+                    patch.object(services, 'run') as run:
+                with self.assertRaisesRegex(ValueError, 'port between 1024 and 65535'):
+                    services.control(services.Service('preview.service', ['python3','app.py'],
+                                                      Path('/tmp'), {}, port), 'start')
+                run.assert_not_called()
+
+    def test_an_omitted_checkout_compares_nothing(self):
+        state = {'ActiveState':'inactive','WorkingDirectory':'/elsewhere'}
+        with patch.object(services, 'properties', return_value=state), \
+                patch.object(services, 'ready', return_value=True), patch.object(services, 'run'):
+            self.assertEqual(services.control(services.Service('worker.service'), 'start'), 0)
+        with patch.object(services, 'properties', return_value=state), \
+                patch.object(services, 'run') as run:
+            with self.assertRaisesRegex(ValueError, 'different checkout'):
+                services.control(services.Service('worker.service', directory=Path('/tmp'),
+                                                  health_service='worker'), 'start')
+            run.assert_not_called()
+
+    def test_structured_health_requires_an_expected_checkout(self):
+        response = unittest.mock.MagicMock()
+        response.__enter__.return_value.read.return_value = b'{"pid": 1}'
+        opener = unittest.mock.Mock(); opener.open.return_value = response
+        with patch.object(services, 'properties', return_value={'ActiveState':'active'}), \
+                patch.object(services.urllib.request, 'build_opener', return_value=opener):
+            with self.assertRaisesRegex(ValueError, 'requires an expected checkout'):
+                services.check(services.Service('test.service', port=3199, health_service='test'))
+
+    def test_an_uninstalled_structured_service_is_named_rather_than_launched(self):
+        with patch.object(services, 'properties', return_value={'LoadState':'not-found','ActiveState':'inactive'}), \
+                patch.object(services, 'run') as run:
+            with self.assertRaisesRegex(ValueError, 'not installed'):
+                services.control(services.Service('worker.service', directory=Path('/tmp'),
+                                                  health_service='worker'), 'start')
+            run.assert_not_called()
+
+    def test_an_omitted_port_makes_an_active_unit_ready(self):
+        with patch.object(services, 'properties', return_value={'ActiveState':'active'}):
+            self.assertTrue(services.ready(services.Service('worker.service')))
+        with patch.object(services, 'properties', return_value={'ActiveState':'inactive'}):
+            self.assertFalse(services.ready(services.Service('worker.service')))
+
+    def test_status_exits_nonzero_when_the_service_is_not_ready(self):
+        with patch.object(services, 'properties', return_value={'ActiveState':'active'}), \
+                patch.object(services, 'ready', return_value=True), patch('builtins.print'):
+            self.assertEqual(services.control(services.Service('worker.service'), 'status'), 0)
+        with patch.object(services, 'properties', return_value={'ActiveState':'failed'}), \
+                patch.object(services, 'ready', return_value=False), patch('builtins.print'):
+            self.assertEqual(services.control(services.Service('worker.service'), 'status'), 1)
+
+    def test_stopping_an_unloaded_unit_succeeds_without_acting(self):
+        with patch.object(services, 'properties', return_value={'LoadState':'not-found'}), \
+                patch.object(services, 'run') as run:
+            self.assertEqual(services.control(services.Service('worker.service'), 'stop'), 0)
+            run.assert_not_called()
+
+    def test_a_prerequisite_is_skipped_for_an_already_active_service(self):
+        calls = []
+        service = services.Service('worker.service', before_start=lambda: calls.append('ran'))
+        with patch.object(services, 'properties', return_value={'ActiveState':'active'}), \
+                patch.object(services, 'ready', return_value=True), patch.object(services, 'run'):
+            services.control(service, 'start')
+        self.assertEqual(calls, [])
+        with patch.object(services, 'properties', return_value={'ActiveState':'inactive'}), \
+                patch.object(services, 'ready', return_value=True), patch.object(services, 'run'):
+            services.control(service, 'start')
+        self.assertEqual(calls, ['ran'])
+
+    def test_a_readiness_bound_must_be_positive_and_finite(self):
+        for bound in (0, -1, float('inf'), float('nan')):
+            with patch.object(services, 'properties') as properties:
+                with self.assertRaisesRegex(ValueError, 'positive and finite'):
+                    services.control(services.Service('worker.service', ready_seconds=bound), 'status')
+                properties.assert_not_called()
+        self.assertEqual(services.Service('worker.service').ready_seconds, 60)
+
+
 class BackupTests(unittest.TestCase):
     def make_tool(self, root):
         config = backups.BackupConfig('project', 'vault', 'db', 'key', root, Path('/ca'),
