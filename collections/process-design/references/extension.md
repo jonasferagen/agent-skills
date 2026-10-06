@@ -75,24 +75,31 @@ checks verify the distributed package, not a consumer's records.
 A core document check makes no claim about these records, and this checker makes
 no claim about core documents.
 
-## Not owned by this release
+## Owned by the project framework
 
-The named-process document type and its structured page format stay with the
+The named-process document type and its structured page format belong to the
 consuming project's framework. Where that is project-foundation, its
-`project-process/v1` reference, parser and template remain the single owner, and
-this collection deliberately supplies no second definition of them.
+`project-process/v1` reference, parser and template are the single owner, and
+this collection supplies no second definition of them. The division follows the
+document's home and subject, not a release boundary: a named process is a
+standing explanation of how recurring work runs, kept in the framework's governed
+document root; a work record is a dated document about one assignment, kept with
+that work. Do not treat a process page as extension-managed and do not run this
+checker over one.
 
-Project-foundation's `review-feedback-section` template also stays core's for
-now. This collection's [report](../templates/repository-docs/work-records/report.md)
-or a short [worklog](../templates/repository-docs/work-records/worklog.md) entry covers the same subject, method, findings, limits and disposition for an adopted
-project; where both are available, select one and say which, rather than keeping
-two active definitions.
+Project-foundation's `review-feedback-section` template stays core's for the same
+reason. It is a section pattern for an assessment placed inside the repository
+document that already owns the subject. This collection's
+[report](../templates/repository-docs/work-records/report.md) and
+[worklog](../templates/repository-docs/work-records/worklog.md) are standalone
+records that return findings to a commissioning owner. Their fields overlap, so
+select by where the finding belongs rather than by which is newer. Both stay
+defined; neither deprecates the other.
 
-Transferring the process type and consolidating that template here are this
-collection's recorded next step. It is a framework change with its own
-migration, deprecation path and version impact in both collections, not
-something an installation of this version performs. Until it lands, do not treat
-a process page as extension-managed and do not run this checker over one.
+Earlier revisions recorded taking both over as this collection's next step. That
+intention is withdrawn, so no reader needs a pending migration to interpret
+either collection. Moving the process type here later would be a new decision in
+both, with its own migration, deprecation path and version impact.
 
 Project exchange contracts, policy, architecture, conceptual models and the
 active plan retain their own owners. A brief links them; it never becomes their second home.

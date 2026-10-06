@@ -3,6 +3,37 @@
 Keep structural decisions and unresolved ideas here. Detailed trial evidence
 belongs in `validation/`. A follow-up idea is not an adopted requirement.
 
+## 6 October 2026
+
+### Settle the named-process owner — adopted
+
+Project-foundation owns the named-process document type and its
+`project-process/v1` reference, parser and template. Process-design owns work
+records. Process-design 0.2.0 recorded taking the process type and the
+`review-feedback-section` template over as its next step; that intention is
+withdrawn and the boundary is now stated as a settled division of document
+types in the [extension boundary](collections/process-design/references/extension.md#owned-by-the-project-framework).
+
+The reason is that a recorded future transfer is a second source of truth while
+it is pending. A consumer reading either collection had to know which release it
+held and what was planned before it could tell who owned a process page. The
+division itself was never in doubt in practice: the reference, parser, template,
+checker and tests all live in project-foundation and nothing here duplicates
+them.
+
+The division follows the document's home and subject rather than the collection
+name. A named process is a standing explanation of recurring work inside the
+framework's governed document root. A work record is a dated document about one
+assignment, kept with the work. `review-feedback-section` stays core's as a
+section pattern for an assessment inside the document that already owns the
+subject; this collection's report and worklog stay standalone records that
+return findings to a commissioning owner. Both remain defined and neither
+deprecates the other.
+
+Process-design becomes 0.3.0: the scope statement changes meaning, though no
+guidance, template, script or check changes behavior. Reopening the transfer
+would be a new decision in both collections.
+
 ## 3 October 2026
 
 ### Retire change-workflow — completed

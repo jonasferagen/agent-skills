@@ -48,14 +48,18 @@ behavior.
 A collection upgrade does not re-check, re-date or re-classify existing records,
 and it does not opt an unselected record into the structured format.
 
-## Watch for a second owner
+## One owner per document type
 
-This collection's planned next step takes over the named-process document type
-from the consuming project's framework. When that version arrives, adopt it as a
-deliberate migration: remove active routes to the old copy, select one owner,
-and preserve current process pages, their selected format, anchors and inbound
-links. Do not leave two active definitions of one format. Historical records
-keep their original source paths and pins.
+No upgrade of this collection changes who owns the named-process document type:
+it stays with the consuming project's framework, as the
+[extension boundary](extension.md#owned-by-the-project-framework) states. An
+upgrade that appeared to move it would be a framework change, not an available
+version, and the project's own instructions would have to select it.
+
+If a project does find two active definitions of one document type or format,
+treat that as the defect: select one owner, remove active routes to the other,
+and preserve existing pages, their selected format, anchors and inbound links.
+Historical records keep their original source paths and pins.
 
 ## Authoring the collection
 

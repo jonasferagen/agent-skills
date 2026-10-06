@@ -1,6 +1,6 @@
 # Process design
 
-Version: 0.2.0
+Version: 0.3.0
 
 Use this collection for the records that carry work between owners: the brief
 that commissions a bounded assignment, the worklog that tracks progress, and the
@@ -30,8 +30,8 @@ required owner with its consequence and continue unaffected work.
 
 ## Scope boundary
 
-This release owns work records only. Named processes and their structured page
-format stay with the consuming project's framework, and taking them over is this
-collection's recorded next step. The
-[extension declaration](references/extension.md#not-owned-by-this-release) owns
-that boundary and what it means for checks.
+This collection owns work records. Named processes and their structured page
+format belong to the consuming project's framework; that is a settled division
+of document types, not a transfer awaiting a later release. The
+[extension declaration](references/extension.md#owned-by-the-project-framework)
+owns that boundary and what it means for checks.

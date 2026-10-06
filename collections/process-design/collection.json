@@ -1,14 +1,14 @@
 {
   "name": "process-design",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "members": [
     "work-records"
   ],
   "files": {
-    "COLLECTION.md": "9d22b02d01e0576f044019433782237d238ff887a5960e04aedf5a177084a738",
-    "references/assignment-contract.md": "edb269a79ccd1892ff1dff4e20d5505b3a2f2ca70fc41a34176e6637d69758c5",
-    "references/extension.md": "880e247e33ab25e3dcc55824f09e278a21f20a47e223ebec595cc66a2517b7c8",
-    "references/installation.md": "09cf63e018c4b9a8eb0f19ac2f963419cfed34697f91102cee88ec12283fa011",
+    "COLLECTION.md": "c1ad810789ac90b1c284357a2a46aa7603290d9ad601613b54133888199ba872",
+    "references/assignment-contract.md": "1ead6b45c6eb62403ee7307e71f3edfc12c63c690136167dbd8a55da4477990c",
+    "references/extension.md": "bf5e2538fd9ff55ec12593d2888a160e46ed8e0040e4fff7e067c52cdc768a42",
+    "references/installation.md": "70da015e13cd25e454a818fc102d34dd016517e4d583c2689d6b9568184d6543",
     "references/record-chain.md": "89bbc097d293ee7490885f43c48a880b6efef42d3a485c680f020e01457e2902",
     "references/record-format.md": "e6ad16c8a544de398ff5c07fede165b9086c09e824ad403bef4318a7b1948456",
     "scripts/check_installation.py": "ab1dd5c66b2cce5d53a4d52f56f6005f5926d1118f0f457518afe74cb83b4594",

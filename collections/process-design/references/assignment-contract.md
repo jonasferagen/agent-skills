@@ -115,7 +115,7 @@ planning, actual exchange obligations and decisions. A consumer implements its
 own browsing and link resolution. Structural checks verify selected metadata;
 they do not establish that an agent can discover, execute or finish the work.
 
-Named-process pages and their format remain owned by the project's framework
-in this release, as declared in the [extension boundary](extension.md#not-owned-by-this-release).
+Named-process pages and their format are owned by the project's framework, as
+declared in the [extension boundary](extension.md#owned-by-the-project-framework).
 No process-format migration, autonomous dispatcher or reporting service is
 required to use this guidance.
