@@ -7,7 +7,11 @@ provenance is not a required reading list for ordinary consumption.
 
 ## Git
 
-This repository keeps task worktrees under `.worktrees/` in the main checkout.
+Task worktrees belong under the acting agent's own home, as
+`~/.claude/worktrees/agent-skills/<task>` or `~/.codex/worktrees/agent-skills/<task>`,
+so each agent owns and sweeps what it created and the checkout holds only the
+repository. Worktrees already under `.worktrees/` stay there until their work
+finishes.
 
 ## Package maintenance
 
