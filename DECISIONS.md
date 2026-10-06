@@ -5,6 +5,30 @@ belongs in `validation/`. A follow-up idea is not an adopted requirement.
 
 ## 6 October 2026
 
+### Task worktrees belong to the acting agent — adopted
+
+Task worktrees go under the acting agent's own home, as
+`~/.claude/worktrees/agent-skills/<task>` or the Codex equivalent, so each agent
+owns and sweeps what it created and this checkout holds only the repository. AGENTS
+previously stated `.worktrees/` in the main checkout, which is why agents kept
+placing them there.
+
+Worktrees already under `.worktrees/` stay until their work finishes. Moving a
+checkout another session is using breaks that session, and the ignored files inside
+one — installed packages, run output, scratch evidence — are the easiest thing to
+lose in a move. Both locations are task worktrees; tooling that resolves them
+through `git worktree list` needs no change.
+
+### Landed branches are retired, not kept — adopted
+
+Landing never retired a branch, so eleven worktrees had accumulated, every one
+merged into main and clean. A branch is swept only when it is merged, carries no
+uncommitted change and holds no ignored file beyond build output; anything else is
+reported and kept, because age and merge status alone do not establish abandonment.
+The sweep used Forge Primary's `tools/worktrees`, which implements that rule. This
+repository had nothing outside the removable class, and `python3 scripts/check.py`
+passes with one worktree and one branch remaining.
+
 ### Settle the named-process owner — adopted
 
 Project-foundation owns the named-process document type and its
