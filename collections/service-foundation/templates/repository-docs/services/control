@@ -61,12 +61,14 @@ def row(record, width):
     where = record.get("endpoint") or record.get("unit") or ""
     detail = record.get("detail")
     attention = record.get("attention")
-    line = f"{record['service']:<{width}}  {record['state']:<9}  {where}".rstrip()
+    # Trimmed once, at the end: trimming the columns first moved a detail left into
+    # the space a missing endpoint left behind, and the detail column went ragged.
+    line = f"{record['service']:<{width}}  {record['state']:<9}  {where}"
     if attention:
         line += f"  ** {attention}"
     elif detail:
         line += f"  ({detail})"
-    return line
+    return line.rstrip()
 
 
 def discover(home):

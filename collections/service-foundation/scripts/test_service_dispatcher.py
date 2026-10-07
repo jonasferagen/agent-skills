@@ -108,6 +108,16 @@ class DispatcherTests(unittest.TestCase):
         self.assertIn("** no successful run recorded", result.stdout)
         self.assertNotIn("(exit 1)", result.stdout)
 
+    def test_a_row_without_an_endpoint_keeps_the_state_column(self):
+        self.reporter("one", state="absent", detail="nothing is provisioned here")
+        self.reporter("two", state="ready", unit="two.service")
+        result = self.run_control("status", "--scope", "checkout")
+        rows = {line.split()[0]: line for line in result.stdout.splitlines() if line[:1].isalpha()}
+        # The state column keeps its width even with nothing to point at, so the
+        # detail does not slide left into the space a missing endpoint left behind.
+        self.assertRegex(rows["one"], r"absent\s{4,}\(nothing is provisioned here\)")
+        self.assertRegex(rows["two"], r"ready\s+two\.service")
+
     def test_several_instances_of_one_service_are_several_rows(self):
         controller(self.entry.parent / "preview/control",
                    'if "--report" in sys.argv:\n'

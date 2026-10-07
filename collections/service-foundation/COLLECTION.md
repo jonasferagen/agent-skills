@@ -1,6 +1,6 @@
 # Service foundation
 
-Version: 0.10.0
+Version: 0.10.1
 
 Use this collection when defining service documentation, designing a service
 boundary or changing how a service runs. Begin with the project's current owners and operating choices. Install the

@@ -154,10 +154,16 @@ def report(service) -> int:
                                  attention='a same-name unit belongs to another checkout'))
         return 1
     selected = state_of(service, state)
+    # A detail explains the state; it must not contradict it. The manager reports an
+    # unloaded unit as inactive too, so repeating that under `absent` read as though
+    # the unit existed and was merely stopped.
+    details = {'ready': None,
+               'absent': 'no unit of this name is loaded for this checkout',
+               'failed': f"the manager reports {state.get('ActiveState') or 'a failure'}"}
     print(ServiceReport.line(service.name, service.directory, selected,
                              unit=service.unit, endpoint=service.endpoint,
-                             detail=None if selected == 'ready' else
-                             f"the manager reports {state.get('ActiveState') or state.get('LoadState') or 'nothing'}",
+                             detail=details.get(selected,
+                                                f"the manager reports {state.get('ActiveState') or 'nothing'}"),
                              attention='active but not answering readiness'
                              if selected == 'failed' and state.get('ActiveState') == 'active' else None))
     return 0 if selected == 'ready' else 1

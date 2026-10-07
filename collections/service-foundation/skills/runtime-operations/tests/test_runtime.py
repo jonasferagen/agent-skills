@@ -246,6 +246,15 @@ class BindingTests(unittest.TestCase):
                 self.assertEqual(record['service'], 'worker')
                 self.assertEqual(code, 0 if expected == 'ready' else 1)
 
+    def test_a_detail_explains_its_state_instead_of_contradicting_it(self):
+        with patch.object(services, 'ready', return_value=False):
+            _, record = self.report(services.Service('worker.service', name='worker'),
+                                    {'LoadState': 'not-found', 'ActiveState': 'inactive'})
+        # The manager calls an unloaded unit inactive too, which read as though it
+        # existed and was merely stopped.
+        self.assertEqual(record['state'], 'absent')
+        self.assertIn('no unit of this name is loaded', record['detail'])
+
     def test_an_active_unit_that_will_not_answer_reports_failed_and_says_why(self):
         """Readiness is what a running service was asked for, so active is not enough."""
         with patch.object(services, 'ready', return_value=False):
