@@ -12,12 +12,30 @@ class ReportLineTests(unittest.TestCase):
     def test_a_line_carries_the_declared_fields_and_nothing_else(self):
         record = json.loads(ServiceReport.line('docs-browser', '/checkout', 'ready',
                                                endpoint='http://127.0.0.1:8765/',
-                                               unit='docs-viewer.service'))
+                                               unit='docs-viewer.service',
+                                               lifecycle='maintained'))
         self.assertEqual(record, {'schema': 'service-report/v1', 'service': 'docs-browser',
                                   'checkout': '/checkout', 'state': 'ready',
+                                  'lifecycle': 'maintained',
                                   'endpoint': 'http://127.0.0.1:8765/',
                                   'unit': 'docs-viewer.service', 'detail': None,
                                   'attention': None})
+
+    def test_a_controller_that_declares_no_class_is_unclassified(self):
+        """Absent is a value a consumer can act on; a guess is not."""
+        record = json.loads(ServiceReport.line('example', '/checkout', 'ready'))
+        self.assertIn('lifecycle', record)
+        self.assertIsNone(record['lifecycle'])
+
+    def test_a_class_outside_the_vocabulary_is_refused(self):
+        for invalid in ('Maintained', 'daemon', 'on demand', ''):
+            with self.subTest(lifecycle=invalid), self.assertRaisesRegex(ValueError, 'lifecycle'):
+                ServiceReport.line('example', '/checkout', 'ready', lifecycle=invalid)
+        for declared in ServiceReport.LIFECYCLES:
+            with self.subTest(lifecycle=declared):
+                record = json.loads(ServiceReport.line('example', '/checkout', 'ready',
+                                                       lifecycle=declared))
+                self.assertEqual(record['lifecycle'], declared)
 
     def test_a_line_is_one_line(self):
         for state in ServiceReport.STATES:
@@ -54,6 +72,22 @@ class ReportParsingTests(unittest.TestCase):
                   + '  ' + ServiceReport.line('two', '/checkout', 'absent') + '  \n')
         self.assertEqual([record['service'] for record in ServiceReport.reports(output)],
                          ['one', 'two'])
+
+    def test_an_unreadable_class_loses_the_class_and_not_the_row(self):
+        """A reading must survive a value a consumer cannot act on."""
+        found = ServiceReport.reports(
+            '{"schema": "service-report/v1", "service": "one", "state": "ready",'
+            ' "lifecycle": "daemon"}\n'
+            '{"schema": "service-report/v1", "service": "two", "state": "ready",'
+            ' "lifecycle": "maintained"}\n')
+        self.assertEqual([(record['service'], record['lifecycle']) for record in found],
+                         [('one', None), ('two', 'maintained')])
+
+    def test_a_report_from_before_the_class_reads_as_unclassified(self):
+        found = ServiceReport.reports(
+            '{"schema": "service-report/v1", "service": "one", "state": "ready"}')
+        self.assertEqual(len(found), 1)
+        self.assertIsNone(found[0]['lifecycle'])
 
     def test_a_partial_adoption_is_not_mistaken_for_a_report(self):
         for text in ('{}', '{"schema": "service-report/v1"}', 'not json at all',

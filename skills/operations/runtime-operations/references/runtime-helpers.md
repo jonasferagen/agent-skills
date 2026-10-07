@@ -47,10 +47,11 @@ name, a function signature or a `Service` field changes incompatibly. Its
 version it was written against: one written against 1.0 keeps working on 1.3,
 and one written against 1.3 refuses 1.0, because the surface it needs is absent.
 
-This installation offers `runtime-operations/1.1`, so a consumer written against
+This installation offers `runtime-operations/1.2`, so a consumer written against
 it calls `load(runtime_operations, major=1)`. A consumer that reports its status needs
 `minor=1`, which is where `Service.name`, `Service.endpoint` and the reporting
-`status` arrived. [The declaration](../scripts/runtimeApi.py)
+`status` arrived, and `minor=2` to declare a class, which is where
+`Service.lifecycle` arrived. [The declaration](../scripts/runtimeApi.py)
 remains authoritative and a refusal names both sides; a bundled test keeps this
 sentence and that file from disagreeing.
 
@@ -82,8 +83,8 @@ Explicit shell commands retain the shell's own interpretation contract.
 
 Skill 2.0.0 requires review of existing transient bindings: update unsupported
 clients, and resolve any formerly intentional manager expansion in the binding
-before launch. The Python import interface remains 1.1 because function signatures
-and fields are unchanged. A successful import does not prove host capability or
+before launch. That release left the Python import interface where it was, because
+it changed no function signature and no field. A successful import does not prove host capability or
 live-service readiness. Keep secrets outside command arguments and unit definitions.
 
 ## Bind a service
@@ -104,6 +105,7 @@ field is a choice rather than a default:
 | `before_start` | When a prerequisite must be running first. | No prerequisite step. It does not run when `start` finds the service already active. |
 | `name` | To report in the project-wide view, as the name the dispatcher discovered. | A binding that cannot report: `control(..., reporting=True)` refuses rather than inventing a name. |
 | `endpoint` | When a reader would open an address, as that address. | A report row that points at the unit instead. |
+| `lifecycle` | To declare which class the service belongs to, as one of the report vocabulary's four values. | An unclassified row: a consumer composing a project-wide launch skips it rather than guessing. |
 
 A non-empty `command` requires a `port` between 1024 and 65535, and
 `health_service` requires `directory`. Setting `health_service` on an installed

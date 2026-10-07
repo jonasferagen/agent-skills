@@ -145,7 +145,7 @@ flag when a controller reports nothing, so a partial adoption still appears. Its
 `--report` emits the lines instead of rows, for a consumer that is not a person.
 
 Each line carries the service, the checkout, one state, and the rest only when they
-exist: `endpoint`, `unit`, `detail`, `attention`. `service` is the name the
+exist: `lifecycle`, `endpoint`, `unit`, `detail`, `attention`. `service` is the name the
 dispatcher discovered, or `service:instance` where one service holds several named
 instances. `detail` is one short line, and `attention` is what a reader must act on,
 so an aggregate can show what is owed without reading everything. Both are bounded
@@ -180,6 +180,42 @@ unit that had never been created while its only started instance stayed invisibl
 The `runtime-operations` skill owns the helper that builds and parses these lines, and the state a running service's unit maps to. A
 controller that implements its own units builds its own line, and the helper
 validates it.
+
+### Declare what a project-wide launch may touch
+
+A state says what a service is doing; it cannot say what the service is. `absent`
+is what an unprovisioned environment, an instance that was never named and a unit
+that was never installed all report, so nothing in a row tells a reader which of
+them a "bring the project up" command should act on. Starting all of them is
+wrong in three different ways: an environment is provisioned deliberately by its
+own guide's words, an instance cannot be started without a name, and a schedule is
+installed once and then means unattended runs.
+
+So a controller declares its class, in a second closed vocabulary, as the
+`lifecycle` key on its report line:
+
+| `lifecycle` | What it is | A project-wide launch |
+| --- | --- | --- |
+| `maintained` | Kept running because the project expects it available | starts and stops it |
+| `environment` | Provisioned deliberately, by its own guide's words | leaves it alone, and says so |
+| `scheduled` | A schedule, installed once by its own `start` | leaves it alone |
+| `on-demand` | An instance that cannot be started without a name | leaves it alone |
+
+`scheduled` appears in both vocabularies deliberately: an installed schedule is
+both what that service is and what it is currently doing. A controller that
+declares nothing reports `null`, which reads as unclassified; a launch skips it
+rather than guessing, and the parser reduces a value outside the vocabulary to
+`null` for the same reason, keeping the row and discarding only the claim. This is
+how a partial adoption stays visible instead of becoming wrong.
+
+A project-wide launch is not an action on the dispatcher. Reading is project-wide
+and mutation is checkout-local, and a bare project-wide `start` would contradict
+that, besides giving every repository's dispatcher authority over the others. A
+project that wants one command to bring its maintained set up builds it where the
+repositories are already declared together — the holder, or whatever its layout
+calls the owner that names the others — and composes the named, checkout-local
+starts the dispatchers already provide. The `lifecycle` key is what such a
+composer reads; the dispatcher keeps the five named actions it has.
 
 ## Connect the owners and evidence
 

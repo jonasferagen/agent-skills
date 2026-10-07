@@ -2,7 +2,7 @@
 name: runtime-operations
 description: "Design or change credential handling, local service controls and encrypted database backups. Use for secret custody, execution identities, lifecycle or recovery tooling, and their child-process and verification behavior."
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # Runtime operations
@@ -137,7 +137,10 @@ action and set `Service.name` to the name the dispatcher discovered, plus
 `Service.endpoint` when a reader would open one. It prints a single
 `service-report/v1` line from [serviceReport.py](scripts/serviceReport.py) instead
 of the human lines: the service, the checkout, one state from the closed
-vocabulary, and `unit`, `endpoint`, `detail` and `attention` where they exist. A
+vocabulary, and `lifecycle`, `unit`, `endpoint`, `detail` and `attention` where
+they exist. Set `Service.lifecycle` to declare which class the service belongs to,
+which is what a consumer composing a project-wide launch reads to decide what such
+a launch may touch; leaving it unset reports unclassified and is skipped. A
 unit held by another checkout reports `elsewhere` rather than refusing, because a
 report is a reading and not an operation; an active unit that will not answer
 readiness reports `failed`, because readiness is what a running service was asked

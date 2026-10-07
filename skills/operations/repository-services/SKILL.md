@@ -2,7 +2,7 @@
 name: repository-services
 description: "Define, document and check a repository's named services: the services/ home, per-service guides, the control dispatcher and the structural validator. Use when adopting the service convention, adding a service definition or its scheduled class, or reporting project-wide status; boundary and runtime design are separate skills."
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Repository services
@@ -17,6 +17,7 @@ editor does not need promotion into a service merely to fit the layout.
 | Adopt service document homes and their checks in a project | [Service extension](references/extension.md) |
 | Choose whether a capability is a running or scheduled service, and define its guide and controls | [Repository service convention](references/convention.md) |
 | Report one line per instance project-wide, or read the state vocabulary | [Report one line per instance](references/convention.md#report-one-line-per-instance) |
+| Declare which services a project-wide launch may start and stop | [Declare what a project-wide launch may touch](references/convention.md#declare-what-a-project-wide-launch-may-touch) |
 | Opt a guide into comparable structured facts | [Structured service definition](references/service-definition.md) |
 | Check an adopted service home | `python3 scripts/validate-services.py <service-home>` |
 

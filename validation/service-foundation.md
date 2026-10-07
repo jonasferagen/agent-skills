@@ -268,3 +268,31 @@ is verified as guidance a consumer can follow, not as a running schedule. Whethe
 the shared helper should gain a schedule binding stays open; one real instance is
 not a basis for that interface, and both current implementations own their units.
 No release tag was created.
+
+## 2026-10-07 — what a project-wide launch may touch
+
+The convention gained a second closed vocabulary, `lifecycle`, on the report line:
+`maintained`, `environment`, `scheduled`, `on-demand`. The report section states
+which of them a project-wide launch acts on, why a state cannot answer that
+question, and that an undeclared or unreadable class is unclassified and skipped.
+
+It also states where such a launch belongs, which is the finding this revision
+rests on. A consuming project proposed extending its dispatcher's bare `status`
+form to `start` and `stop` with the same project-wide scope. That contradicts this
+convention's own rule that reading is project-wide while mutation stays
+checkout-local, and it would give each repository's dispatcher authority over the
+others' runtime state — neither consequence was visible in the proposal. The
+convention now says a launch is composed where the repositories are already
+declared together, from the named checkout-local starts the dispatchers already
+provide, and that the dispatcher keeps its five named actions.
+
+This means the dispatcher template is unchanged by this revision, and so is the
+convention's rule. Only the report line grew, which is the cheapest shape the
+capability has: one optional key, and one keyword argument per controller that
+adopts it.
+
+Limits: guidance and a checked helper contract, with no controller declaring a
+class and no launch reading one, so nothing here is verified as a working launch.
+`python3 scripts/check.py` passes all five checks; `git diff --check` passes. The
+same reasoning applied to a real instance is recorded by that project, not here.
+No release tag was created.

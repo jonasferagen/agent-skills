@@ -200,3 +200,35 @@ self-conformance claim. Project-foundation and Forge must deliberately update
 their complete checked imports before claiming adopted behavior. Other source
 worktrees, including an unrelated partial runtime-artifact guidance edit, were
 preserved and are not part of this change.
+
+## A declared service class — 2026-10-07
+
+`ServiceReport.line` takes an optional `lifecycle`, `Service.lifecycle` carries it
+through `control(..., reporting=True)`, and the import interface rose to
+`runtime-operations/1.2`: compatible surface added, no signature or field changed
+incompatibly. The reference's stated interface and the declaration agree, which
+the bundled loader test enforces and which caught the stale sentence on the first
+run.
+
+The failure the key exists to prevent is a consumer deciding from `state` what a
+project-wide launch may start. Measured in a real installation before writing it:
+of the eight services reporting, three distinct classes report `absent` — an
+unprovisioned database environment, a preview instance that was never named, and a
+unit that is not installed — so the state vocabulary provably cannot carry the
+distinction. Two cheaper homes were also ruled out on evidence rather than
+preference: four of that project's eight guides had adopted
+`service-definition/v1`, and in all four `Lifetime` is free prose ("User systemd
+service with explicit installation", "Explicitly started local Docker container"),
+so it is not a vocabulary a consumer can branch on.
+
+An unrecognized value reduces to `null` in the parser rather than dropping the
+row, and a report written before the key reads as unclassified. Both are tested:
+a reading must survive a claim a consumer cannot act on, and nothing may act on a
+class it cannot name. `python3 scripts/check.py` passes all five checks, 23
+packages and 157 tests with no skips, on Python 3.14.4 and Node 24.15.0; the
+report suite grew by four tests. `git diff --check` passes.
+
+Limits: no controller declares a class yet, and no project-wide launch reads one,
+so this is a checked contract rather than observed behavior. The helper still
+binds only running services, so a scheduled controller builds its own line and
+passes its own `lifecycle`. No release tag was created.

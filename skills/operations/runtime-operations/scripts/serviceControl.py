@@ -29,6 +29,10 @@ class Service:
     # that does not report can leave them unset.
     name: str | None = None
     endpoint: str | None = None
+    # Which class this service belongs to, from ServiceReport.LIFECYCLES. A binding
+    # that leaves it unset reports unclassified, so a consumer composing a
+    # project-wide launch skips it rather than guessing what starting it would do.
+    lifecycle: str | None = None
 
 
 def run(args, *, check=True, timeout=45):
@@ -150,6 +154,7 @@ def report(service) -> int:
     except ValueError:
         print(ServiceReport.line(service.name, service.directory, 'elsewhere',
                                  unit=service.unit, endpoint=service.endpoint,
+                                 lifecycle=service.lifecycle,
                                  detail=f"the named unit uses {state.get('WorkingDirectory') or 'another checkout'}",
                                  attention='a same-name unit belongs to another checkout'))
         return 1
@@ -162,6 +167,7 @@ def report(service) -> int:
                'failed': f"the manager reports {state.get('ActiveState') or 'a failure'}"}
     print(ServiceReport.line(service.name, service.directory, selected,
                              unit=service.unit, endpoint=service.endpoint,
+                             lifecycle=service.lifecycle,
                              detail=details.get(selected,
                                                 f"the manager reports {state.get('ActiveState') or 'nothing'}"),
                              attention='active but not answering readiness'
