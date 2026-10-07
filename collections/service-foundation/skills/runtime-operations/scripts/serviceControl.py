@@ -11,6 +11,7 @@ import urllib.error
 import urllib.request
 
 from serviceHealth import ServiceHealth
+from serviceReport import ServiceReport
 
 
 @dataclass
@@ -23,6 +24,11 @@ class Service:
     health_service: str | None = None
     ready_seconds: float = 60
     before_start: Callable[[], None] | None = None
+    # The name a reader and the dispatcher know this service by, and the address a
+    # reader would open. Both belong in a report row and nowhere else, so a binding
+    # that does not report can leave them unset.
+    name: str | None = None
+    endpoint: str | None = None
 
 
 def run(args, *, check=True, timeout=45):
@@ -108,11 +114,64 @@ def _report(service):
     print(f'{service.unit} ready' + (f': http://127.0.0.1:{service.port}/' if service.port else ''))
 
 
-def control(service, action):
+def state_of(service, state) -> str:
+    """This instance's state in the report vocabulary, from what the manager says.
+
+    A running service's readiness is a live property, so an active unit whose
+    instance will not answer is `failed` rather than `ready`: it was asked to serve
+    and does not.
+    """
+    if state.get('LoadState') == 'not-found':
+        return 'absent'
+    active = state.get('ActiveState')
+    if active == 'active':
+        return 'ready' if ready(service) else 'failed'
+    if active == 'failed':
+        return 'failed'
+    if active in ('inactive', 'deactivating'):
+        return 'stopped'
+    if active in ('activating', 'reloading'):
+        return 'unknown'
+    return 'unknown'
+
+
+def report(service) -> int:
+    """Print one report line for this instance and exit as its status would.
+
+    This is the project-wide view's half of `status`: one line a reader can scan,
+    with the long output left to `status <name>`. A unit held by another checkout
+    reports `elsewhere` instead of raising, because a report is a reading.
+    """
+    if service.name is None:
+        raise ValueError('A reporting service names itself')
+    state = properties(service.unit)
+    try:
+        _checkout(service, state)
+    except ValueError:
+        print(ServiceReport.line(service.name, service.directory, 'elsewhere',
+                                 unit=service.unit, endpoint=service.endpoint,
+                                 detail=f"the named unit uses {state.get('WorkingDirectory') or 'another checkout'}",
+                                 attention='a same-name unit belongs to another checkout'))
+        return 1
+    selected = state_of(service, state)
+    print(ServiceReport.line(service.name, service.directory, selected,
+                             unit=service.unit, endpoint=service.endpoint,
+                             detail=None if selected == 'ready' else
+                             f"the manager reports {state.get('ActiveState') or state.get('LoadState') or 'nothing'}",
+                             attention='active but not answering readiness'
+                             if selected == 'failed' and state.get('ActiveState') == 'active' else None))
+    return 0 if selected == 'ready' else 1
+
+
+def control(service, action, *, reporting: bool = False):
     if action not in ('start', 'stop', 'restart', 'status', 'logs'):
         raise ValueError('Action must be start, stop, restart, status or logs')
     if not math.isfinite(service.ready_seconds) or service.ready_seconds <= 0:
         raise ValueError('Readiness timeout must be positive and finite')
+    if reporting:
+        if action != 'status':
+            raise ValueError('Only status reports; the other actions change state')
+        return report(service)
     state = properties(service.unit)
     _checkout(service, state)
     if action == 'logs':

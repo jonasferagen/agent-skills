@@ -225,6 +225,59 @@ class BindingTests(unittest.TestCase):
                 patch.object(services, 'ready', return_value=False), patch('builtins.print'):
             self.assertEqual(services.control(services.Service('worker.service'), 'status'), 1)
 
+    def report(self, service, state):
+        output = io.StringIO()
+        with patch.object(services, 'properties', return_value=state), \
+                patch('sys.stdout', output):
+            code = services.control(service, 'status', reporting=True)
+        return code, json.loads(output.getvalue().strip())
+
+    def test_a_report_maps_the_manager_state_into_the_closed_vocabulary(self):
+        service = services.Service('worker.service', name='worker')
+        cases = {'ready': ({'ActiveState': 'active'}, True),
+                 'failed': ({'ActiveState': 'active'}, False),
+                 'stopped': ({'ActiveState': 'inactive'}, False),
+                 'absent': ({'LoadState': 'not-found'}, False),
+                 'unknown': ({'ActiveState': 'activating'}, False)}
+        for expected, (state, is_ready) in cases.items():
+            with self.subTest(state=expected), patch.object(services, 'ready', return_value=is_ready):
+                code, record = self.report(service, state)
+                self.assertEqual(record['state'], expected)
+                self.assertEqual(record['service'], 'worker')
+                self.assertEqual(code, 0 if expected == 'ready' else 1)
+
+    def test_an_active_unit_that_will_not_answer_reports_failed_and_says_why(self):
+        """Readiness is what a running service was asked for, so active is not enough."""
+        with patch.object(services, 'ready', return_value=False):
+            code, record = self.report(services.Service('worker.service', name='worker'),
+                                       {'ActiveState': 'active'})
+        self.assertEqual((code, record['state']), (1, 'failed'))
+        self.assertIn('not answering', record['attention'])
+
+    def test_a_unit_held_by_another_checkout_reports_elsewhere_instead_of_raising(self):
+        """A report is a reading; refusing belongs to the actions that change state."""
+        service = services.Service('worker.service', name='worker', directory=Path('/selected'))
+        with patch.object(services, 'ready', return_value=True):
+            code, record = self.report(service, {'ActiveState': 'active',
+                                                 'WorkingDirectory': '/another'})
+        self.assertEqual((code, record['state']), (1, 'elsewhere'))
+        self.assertIn('/another', record['detail'])
+
+    def test_only_status_reports_and_a_report_needs_a_name(self):
+        with self.assertRaisesRegex(ValueError, 'Only status reports'):
+            services.control(services.Service('worker.service', name='worker'), 'stop', reporting=True)
+        with patch.object(services, 'properties', return_value={'ActiveState': 'active'}), \
+                self.assertRaisesRegex(ValueError, 'names itself'):
+            services.control(services.Service('worker.service'), 'status', reporting=True)
+
+    def test_an_endpoint_reaches_the_row_a_reader_scans(self):
+        service = services.Service('worker.service', name='worker', port=8765,
+                                   endpoint='http://127.0.0.1:8765/')
+        with patch.object(services, 'ready', return_value=True):
+            _, record = self.report(service, {'ActiveState': 'active'})
+        self.assertEqual(record['endpoint'], 'http://127.0.0.1:8765/')
+        self.assertEqual(record['unit'], 'worker.service')
+
     def test_stopping_an_unloaded_unit_succeeds_without_acting(self):
         with patch.object(services, 'properties', return_value={'LoadState':'not-found'}), \
                 patch.object(services, 'run') as run:

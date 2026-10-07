@@ -80,6 +80,61 @@ class DispatcherTests(unittest.TestCase):
         self.assertIn("  docs up ['status', '--root']", result.stdout)
         self.assertIn("example-preview: reports exit 7", result.stdout)
 
+    def reporter(self, name, **fields):
+        """A controller that reports when asked and prints an essay when not."""
+        record = {"schema": "service-report/v1", "service": name, "checkout": "/checkout",
+                  "state": "ready", "endpoint": None, "unit": None, "detail": None,
+                  "attention": None, **fields}
+        controller(self.entry.parent / name / "control",
+                   'if "--report" in sys.argv:\n'
+                   f'    print(json.dumps({record!r}))\n'
+                   '    sys.exit(0)\n'
+                   'print("line one")\nprint("line two")\nsys.exit(3)\n')
+
+    def test_a_reporting_controller_becomes_one_row_and_its_essay_is_not_printed(self):
+        """One timer's own status was forty-one lines of a forty-six line report."""
+        self.reporter("docs", endpoint="http://127.0.0.1:8765/", unit="docs.service")
+        result = self.run_control("status", "--scope", "checkout")
+        self.assertIn("docs             ready      http://127.0.0.1:8765/", result.stdout)
+        self.assertNotIn("line one", result.stdout)
+        # The unadopted controller beside it still prints the way it printed itself.
+        self.assertIn("example-preview: reports exit 7", result.stdout)
+
+    def test_attention_is_shown_and_detail_only_without_it(self):
+        self.reporter("one", state="scheduled", detail="next run Thursday")
+        self.reporter("two", state="failed", detail="exit 1", attention="no successful run recorded")
+        result = self.run_control("status", "--scope", "checkout")
+        self.assertIn("(next run Thursday)", result.stdout)
+        self.assertIn("** no successful run recorded", result.stdout)
+        self.assertNotIn("(exit 1)", result.stdout)
+
+    def test_several_instances_of_one_service_are_several_rows(self):
+        controller(self.entry.parent / "preview/control",
+                   'if "--report" in sys.argv:\n'
+                   '    for name in ("preview:water", "preview:lamplighter"):\n'
+                   '        print(json.dumps({"schema": "service-report/v1", "service": name,\n'
+                   '                          "checkout": "/checkout", "state": "stopped"}))\n'
+                   '    sys.exit(1)\n'
+                   'sys.exit(1)\n')
+        result = self.run_control("status", "--scope", "checkout")
+        self.assertIn("preview:water", result.stdout)
+        self.assertIn("preview:lamplighter", result.stdout)
+
+    def test_report_emits_the_lines_for_a_consumer_that_is_not_a_person(self):
+        self.reporter("docs", unit="docs.service")
+        result = self.run_control("status", "--scope", "checkout", "--report")
+        lines = [json.loads(line) for line in result.stdout.splitlines() if line.startswith("{")]
+        by_service = {record["service"]: record for record in lines}
+        self.assertEqual(by_service["docs"]["state"], "ready")
+        # A service that does not report is still a row, and says that about itself.
+        self.assertEqual(by_service["example-preview"]["state"], "unknown")
+        self.assertIn("has not adopted", by_service["example-preview"]["attention"])
+
+    def test_report_applies_only_to_bare_status(self):
+        result = self.run_control("example-preview", "status", "--report")
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("--report applies only to bare status", result.stderr)
+
     def test_an_unrunnable_controller_is_the_only_fault_bare_status_reports(self):
         broken = self.entry.parent / "broken/control"
         broken.parent.mkdir()

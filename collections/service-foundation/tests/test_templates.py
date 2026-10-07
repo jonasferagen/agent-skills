@@ -1,6 +1,7 @@
 """Check the copy-deployed templates against the interfaces consumers rely on."""
 import importlib.util
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -34,8 +35,16 @@ class LoaderTests(unittest.TestCase):
         sys.path[:] = path
 
     def declare(self, *, major, minor):
+        """A synthetic installation declaring exactly these two numbers.
+
+        Rewritten by assignment rather than by the literals the shipped file
+        happens to hold: matching those made raising the shipped minor silently
+        stop building the version this fixture is about.
+        """
         source = (COLLECTION / SCRIPTS / "runtimeApi.py").read_text(encoding="utf-8")
-        source = source.replace("MAJOR = 1", f"MAJOR = {major}").replace("MINOR = 0", f"MINOR = {minor}")
+        source, major_count = re.subn(r"^MAJOR = \d+$", f"MAJOR = {major}", source, flags=re.M)
+        source, minor_count = re.subn(r"^MINOR = \d+$", f"MINOR = {minor}", source, flags=re.M)
+        assert major_count == 1 and minor_count == 1, "the declaration states two numbers"
         (self.scripts / "runtimeApi.py").write_text(source, encoding="utf-8")
 
     def test_accepts_the_collection_root_or_the_scripts_directory(self):
@@ -82,7 +91,12 @@ class LoaderTests(unittest.TestCase):
             self.load(self.root, major="1")
 
     def test_the_shipped_declaration_matches_the_shipped_helpers(self):
-        self.assertEqual(loader().load(COLLECTION, major=1), "runtime-operations/1.0")
+        declaration = importlib.util.spec_from_file_location(
+            "runtime_api_shipped", COLLECTION / SCRIPTS / "runtimeApi.py")
+        module = importlib.util.module_from_spec(declaration)
+        declaration.loader.exec_module(module)
+        self.assertEqual(loader().load(COLLECTION, major=1),
+                         f"runtime-operations/{module.MAJOR}.{module.MINOR}")
 
 
 class DeclaredInterfaceTests(unittest.TestCase):

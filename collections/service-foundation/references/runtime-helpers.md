@@ -47,8 +47,10 @@ name, a function signature or a `Service` field changes incompatibly. Its
 version it was written against: one written against 1.0 keeps working on 1.3,
 and one written against 1.3 refuses 1.0, because the surface it needs is absent.
 
-This installation offers `runtime-operations/1.0`, so a consumer written against
-it calls `load(collection, major=1)`. [The declaration](../skills/runtime-operations/scripts/runtimeApi.py)
+This installation offers `runtime-operations/1.1`, so a consumer written against
+it calls `load(collection, major=1)`. A consumer that reports its status needs
+`minor=1`, which is where `Service.name`, `Service.endpoint` and the reporting
+`status` arrived. [The declaration](../skills/runtime-operations/scripts/runtimeApi.py)
 remains authoritative and a refusal names both sides; a collection test keeps this
 sentence and that file from disagreeing.
 
@@ -79,6 +81,8 @@ field is a choice rather than a default:
 | `environment` | Non-secret settings a transient command needs. | An inherited environment. It is passed only when launching a transient unit, never to an installed one. |
 | `ready_seconds` | When 60 seconds is wrong for this service. | 60 seconds. It must be positive and finite. |
 | `before_start` | When a prerequisite must be running first. | No prerequisite step. It does not run when `start` finds the service already active. |
+| `name` | To report in the project-wide view, as the name the dispatcher discovered. | A binding that cannot report: `control(..., reporting=True)` refuses rather than inventing a name. |
+| `endpoint` | When a reader would open an address, as that address. | A report row that points at the unit instead. |
 
 A non-empty `command` requires a `port` between 1024 and 65535, and
 `health_service` requires `directory`. Setting `health_service` on an installed
@@ -89,7 +93,13 @@ nothing to systemd, and each command fetches its own.
 The actions behave as the operator contract requires, not as thin wrappers.
 `status` prints the unit's state and checkout, adds an HTTP readiness line when a
 port is set, and exits non-zero when the service is not ready, so a script can
-depend on it. `start` on an already-active service waits for readiness and
+depend on it. `control(service, 'status', reporting=True)` prints one
+`service-report/v1` line instead of those, for the project-wide view, and keeps
+the same exit status; only `status` reports, and
+[repository services](repository-services.md) owns the contract and its states.
+A unit held by another checkout reports `elsewhere` there rather than refusing,
+because a report is a reading, and an active unit that will not answer readiness
+reports `failed` rather than `ready`. `start` on an already-active service waits for readiness and
 reports without replacing or stopping that instance. `stop` on a unit that is not
 loaded succeeds. Every action returns an exit status for the controller to pass
 on, and reports a failure by raising rather than by returning one. A failed start or readiness timeout stops only the selected

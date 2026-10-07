@@ -126,6 +126,21 @@ controller verifies the service name, ready status, PID against the unit MainPID
 cgroup membership and both reported and configured checkout. This is readiness
 of the named instance, not a continuous availability guarantee.
 
+For the project-wide view, pass `reporting=True` to `control` with the `status`
+action and set `Service.name` to the name the dispatcher discovered, plus
+`Service.endpoint` when a reader would open one. It prints a single
+`service-report/v1` line from [serviceReport.py](scripts/serviceReport.py) instead
+of the human lines: the service, the checkout, one state from the closed
+vocabulary, and `unit`, `endpoint`, `detail` and `attention` where they exist. A
+unit held by another checkout reports `elsewhere` rather than refusing, because a
+report is a reading and not an operation; an active unit that will not answer
+readiness reports `failed`, because readiness is what a running service was asked
+for. Only `status` reports. A controller that implements its own units, as a
+scheduled service does, builds its line with the same helper, which validates the
+state and keeps `detail` and `attention` to one bounded line each.
+[Repository services](../../references/repository-services.md) owns the contract
+and what each state means.
+
 Existing bindings without `health_service` retain the plain-PID `/health` probe
 until deliberately migrated. The helper does not install units, dependencies or
 credentials. Keep automatic-start and restart policy with the unit owner.

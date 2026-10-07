@@ -2,7 +2,7 @@
 
 NAME = 'runtime-operations'
 MAJOR = 1
-MINOR = 0
+MINOR = 1
 
 
 def label(major: int = MAJOR, minor: int = MINOR) -> str:

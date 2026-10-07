@@ -131,6 +131,58 @@ no service-specific controller: implement and verify the selected mechanism
 rather than shipping stub commands that appear operational. Do not create empty service trees
 in repositories that have no defined services.
 
+## Report one line per instance
+
+A project-wide status is only read if it can be scanned. A controller's own `status`
+output is written for someone asking about that one service, so an aggregate that
+prints all of it buries a project in journals: one timer's status was forty-one
+lines of the forty-six in a whole project's report.
+
+So `status` has two forms. Asked with `--report`, a controller prints
+`service-report/v1` lines, one per instance, and nothing else. Asked without it, it
+prints what it has always printed, for the reader who is asking about that service.
+The dispatcher asks for reports, renders a row from each, and asks again without the
+flag when a controller reports nothing, so a partial adoption still appears. Its own
+`--report` emits the lines instead of rows, for a consumer that is not a person.
+
+Each line carries the service, the checkout, one state, and the rest only when they
+exist: `endpoint`, `unit`, `detail`, `attention`. `service` is the name the
+dispatcher discovered, or `service:instance` where one service holds several named
+instances. `detail` is one short line, and `attention` is what a reader must act on,
+so an aggregate can show what is owed without reading everything. Both are bounded
+single lines; the long output stays with `status <name>`, which is what a reader asks
+for next.
+
+The state vocabulary is closed, so a reader learns seven words once and a consumer
+never guesses at an eighth:
+
+| State | Meaning |
+| --- | --- |
+| `ready` | A running instance that answers ready now |
+| `scheduled` | An installed, active schedule; a run is intended and none is held |
+| `stopped` | Known here and deliberately not running |
+| `absent` | Nothing installed or provisioned here to run |
+| `elsewhere` | The named unit or instance belongs to another checkout |
+| `failed` | It ran, or was asked to run, and did not succeed |
+| `unknown` | The controller could not determine the state |
+
+A running service's readiness is live, so an active unit whose instance will not
+answer reports `failed` and not `ready`: it was asked to serve and does not. A
+scheduled service never reports `ready`, because readiness is not a property it has;
+an active schedule is `scheduled`, and what its row owes besides is the durable
+record of the last success, as a `detail` and an `attention` when there is none. A
+unit a reader might mistake for this checkout's reports `elsewhere` rather than
+refusing, because a report is a reading and not an operation.
+
+A service with no instance reports `absent` rather than inventing one. Assuming a
+default instance is the failure this shape invites: one preview service reported a
+unit that had never been created while its only started instance stayed invisible.
+
+[Runtime operations](../skills/runtime-operations/SKILL.md) owns the helper that
+builds and parses these lines, and the state a running service's unit maps to. A
+controller that implements its own units builds its own line, and the helper
+validates it.
+
 ## Connect the owners and evidence
 
 Link the service index from the repository README and affected foundation or
