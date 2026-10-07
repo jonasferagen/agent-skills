@@ -253,7 +253,7 @@ capture without an explicit evaluation request.
 
 ### Scope the next data-design stage — proposed
 
-The [data-foundations proposal](docs/data-foundations.md) maps tasks to guidance.
+The data-foundations proposal (`docs/data-foundations.md`, removed 7 October 2026 once relational-modeling landed) mapped tasks to guidance.
 The likely new entry point is relational-modeling: structure known entities around
 retrieval questions and iterate toward an implementation-ready model. Reuse
 PostgreSQL, migration, authoring and ER guidance; start synthetic scenario/seed
@@ -528,7 +528,7 @@ collection's rules. Edited members take patch versions; no release tag is create
 
 ## 2026-10-03 — Application foundation first package
 
-Create [application-foundation](docs/application-foundation.md) with one
+Create application-foundation (its design record `docs/application-foundation.md` was removed with the collections on 7 October 2026) with one
 application-design member and a conditional external-integration reference. The
 user approved drafting this workflow, exercising it on Tools and a different
 application case, and packaging the useful guidance. Keep project-design's system

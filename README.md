@@ -10,10 +10,6 @@ Dated review and trial records live under `validation/`; the
 [collection sweep](validation/collection-sweep.md) and the per-collection pages
 there describe the grouped layout this repository used until October 2026.
 
-[Data foundations](docs/data-foundations.md) proposes skills for the next
-database-modeling stage. [Application foundation](docs/application-foundation.md)
-records the design behind `application-design`.
-
 A downstream distribution may bundle several skills from here into one
 installation. It owns its own membership, lock, checker and release rules; this
 repository supplies the packages and their versions.
