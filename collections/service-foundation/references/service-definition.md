@@ -27,7 +27,14 @@ Unknown versions, duplicate declarations, missing or empty fields fail validatio
 | Evidence | Route to exercised acceptance evidence and its limits. |
 
 Every value is nonempty. The last six fields require an inline Markdown link or
-exactly `Unknown` or `None`; do not invent evidence to fill a field. Local relative
+exactly `Unknown` or `None`; do not invent evidence to fill a field.
+
+A scheduled service fills the same fields without pretending to be a listener.
+`Lifetime` states the schedule and what starting it means, `Exposure` states that
+there is no transport and who can trigger a run, and `Readiness` is `None`,
+because readiness is not a property this class has. Its `Operations` route covers
+the schedule's controls, and `Evidence` routes to the durable record of runs. Use
+`None` deliberately here: it is the honest value, not a gap to be filled. Local relative
 Markdown paths, same-document anchors and project symbolic references are allowed.
 Absolute paths, external URLs and backslash paths are excluded from these facts.
 Link to the existing detail owner instead of copying commands or changing facts.

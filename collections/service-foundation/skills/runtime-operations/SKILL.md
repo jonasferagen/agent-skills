@@ -2,7 +2,7 @@
 name: runtime-operations
 description: "Design or change credential handling, local service controls and encrypted database backups. Use for secret custody, execution identities, lifecycle or recovery tooling, and their child-process and verification behavior."
 metadata:
-  version: "1.6.0"
+  version: "1.7.0"
 ---
 
 # Runtime operations
@@ -132,6 +132,42 @@ credentials. Keep automatic-start and restart policy with the unit owner.
 If launch or readiness times out after starting an attempt, it stops only the
 selected unit. A failed cleanup reports separately and preserves the primary
 startup or readiness error.
+
+## Scheduled runs
+
+A scheduled service installs a schedule, not a listener. Each run is a finite job
+that finishes, so the controller operates the schedule and reports evidence of
+runs rather than readiness. Keep the trigger in project policy; the schedule is
+how that policy is applied.
+
+- An unattended run must be safe at the moment it happens, because nobody chooses
+  that moment. It must not need an attended precondition: a prompt, a credential
+  typed in, a quiet period or a resource an operator would otherwise have
+  reserved. If the work needs any of those, the schedule ships the part that does
+  not and the attended part stays a command.
+- Let a run decline rather than disturb live work. A run that takes the lock a
+  person is using, or starts a dependency for its own convenience, has chosen its
+  own completion over the system it runs inside.
+- A scheduled run may do the paid or costly work its policy chose, and must bound
+  it: cap the cost of one run, never repeat work already recorded as done, and
+  stop after repeated failure instead of retrying unattended. Spending that the
+  policy did not choose is the defect, not spending as such. No control action
+  spends: an operator inspecting a schedule must not be billed for it.
+- Share one lock between the schedule and manual invocation of the same job, so
+  they defer instead of overlapping. Two copies of the same job are rarely safe
+  just because one was asked for.
+- Report the schedule and the last run's durable outcome together. An active
+  schedule is not evidence of a run, and a run is not evidence of success. Keep
+  that record outside the unit, because a stopped or replaced unit must not take
+  the evidence with it.
+- Decide what a missed window means and say so. A host that was off through the
+  window can run late or skip; skipping silently is the choice that looks like
+  success. Add a randomized delay where many hosts would otherwise act together.
+- Derive the unit name from the selected checkout so a second checkout cannot
+  adopt the first one's schedule, its runs or its evidence.
+- `stop` stops and disables the schedule and leaves every completed run in place.
+  Nothing an ordinary control does may prune, forget or overwrite retained
+  evidence.
 
 ## Arguments
 

@@ -217,3 +217,54 @@ action, readiness result or recovery path is evidenced here. Interface
 compatibility is still exercised only against major 1. The adoption delegation is
 verified by one trial against project-foundation 5.4.1; an earlier foundation or
 another project system remains unexercised.
+
+## 2026-10-07 — the scheduled service class
+
+Unreleased collection revision 0.9.0 names two classes of service where the
+convention previously assumed one. A **running** service holds a process while it
+serves, so readiness is a live property. A **scheduled** service holds none
+between runs: a schedule is what is installed, each run is a finite job, and
+readiness is not a property it has. The five actions keep their names and operate
+the schedule, with `status` owing the schedule, the last run and the durable
+record of the last success together, because an active schedule read alone looks
+like a working backup.
+
+The review that prompted this found the gap in a working service rather than in
+the guidance: the one real instance had opted out of the shared helper, redefined
+`status`, and declared in its own guide that it was the only service starting
+without being asked. Both properties now follow from its class. `runtime-operations`
+1.7.0 owns what an unattended run may touch, generalized from that instance:
+safe at the moment it happens because nobody chooses that moment, no attended
+precondition, declining rather than taking a lock in use, one lock shared with
+manual invocation, evidence kept outside the unit, and a stated decision about a
+missed window, since skipping silently is the failure that looks like success.
+`service-definition/v1` gains the scheduled shape, where `Readiness` is `None`
+as the honest value rather than a gap.
+
+Verification: `python3 scripts/check.py` passed all six check groups with no
+skips; 47 collection tests and 50 runtime tests, unchanged in count, since this
+revision adds guidance and no checked behavior. The reviewed inventory contains
+29 files and two members. `git diff --check` passed.
+
+Applied to the real instance in the consuming workspace: the off-host backup
+guide dropped both self-justifications, adopted `service-definition/v1` with
+`Readiness` as `None`, and now routes its class to this convention. The structural
+checker rejected a first attempt that put explanatory prose inside the definition
+table, which is the format behaving as specified. Running that service's `status`
+to confirm the class description corrected the guide's own `Status` field: the
+timer is installed and a scheduled run has shipped, which a stale note had denied.
+That is the class's own rule paying for itself within an hour of being written.
+
+Fresh-context routing trial [`scheduled-service`](service-foundation-trials/scheduled-service.md)
+gave a consumer an operator request whose obvious design was partly
+unschedulable. It scheduled only the already-finished work and left the
+lock-taking build command alone, reaching from the guidance the conclusion the
+real instance had reached from experience. It found one rule written too
+absolutely, which was fixed in this revision, and one recurring departure, which
+the convention now states as the class's expected shape.
+
+Limits: nothing was installed, started or enabled in the trial, so this revision
+is verified as guidance a consumer can follow, not as a running schedule. Whether
+the shared helper should gain a schedule binding stays open; one real instance is
+not a basis for that interface, and both current implementations own their units.
+No release tag was created.

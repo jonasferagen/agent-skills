@@ -1,22 +1,22 @@
 {
   "name": "service-foundation",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "members": [
     "service-boundaries",
     "runtime-operations"
   ],
   "files": {
-    "COLLECTION.md": "95bd1e3c082200ff02e3042434c1c3168a79bc90ba39af4415ec8d811846aa67",
+    "COLLECTION.md": "bfceb0600955a7dfb1ab71e780b916b7bfe9ac240eca550096fca4a28a5ee1e3",
     "references/extension.md": "5e8152d1de5afa90e8421a31f8e489d9438d4624be505ed1ba8719ede606c614",
     "references/installation.md": "f8aba21388d3b230041a45ef5a779a713808cc0856f6b60fdc20eb46e8dc5b1f",
-    "references/repository-services.md": "16917b17ecbf6e31c4d763a2c8acb2ca27cd3362a66eb6df7ab66b809256752e",
+    "references/repository-services.md": "c6ea6217b1bbf300199e89d02f2cceeacb11b31ba30edc4e41a74043514ef28c",
     "references/runtime-helpers.md": "bd63836d11379d41e9c8297af6800c1c5f6aa377f59ffb07d5d0da56b97301ce",
-    "references/service-definition.md": "ba7058fc7a0b744dddaaaab1ca12ba60b6fbedf7066e3381241f25b64aac6237",
+    "references/service-definition.md": "0a418aee8977aa92c41ad8a6261ee0444fb543f71557fa83c6593680a8f96538",
     "scripts/check_installation.py": "ab1dd5c66b2cce5d53a4d52f56f6005f5926d1118f0f457518afe74cb83b4594",
     "scripts/service_format.py": "779c58c6c84732927a8c67c902fe9c8e77644789f7698106ec80a0cdc5d67304",
     "scripts/test_service_dispatcher.py": "b4c0087e686c51128b1432d53346d701b2cf84a9ab6978355413d533408c8646",
     "scripts/validate-services.py": "cbaa628ffab7acd6be6d260f5676aea0cd04d35c37b5419fcc628d7544d44118",
-    "skills/runtime-operations/SKILL.md": "f83e757aad1123ed365ca99c748909db8931adcb529051a827dbcfbe45017518",
+    "skills/runtime-operations/SKILL.md": "f23842adc8cd262e81e4fabe8a2fe6c2a9e138a3d2a537430290a73e58279251",
     "skills/runtime-operations/agents/openai.yaml": "58b1af26167369e5853e790b9e66fabb0c29219da14e09eb0f2ca0add8045a1e",
     "skills/runtime-operations/scripts/credentialStore.py": "4587d90a84606ae870e187ed5cad9c88e4041cbb3f3071538e49daf4b846d0b9",
     "skills/runtime-operations/scripts/databaseBackup.py": "e4b133675daa1f102f1c3ed1c38c2751777226ae6772b57e125a0989fe725b0f",

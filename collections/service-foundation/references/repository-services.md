@@ -16,8 +16,38 @@ Start from a concrete capability that a person or another runtime needs to start
 stop and inspect as an identified instance. State its owner, inputs, outputs and
 lifetime. A continuously maintained reader and an explicitly launched preview
 can both have service definitions; they need different lifecycle and readiness
-evidence. Finite jobs and interactive authoring tools retain their command
-workflows unless a managed-instance requirement justifies a service boundary.
+evidence. Interactive authoring tools retain their command workflows unless a
+managed-instance requirement justifies a service boundary.
+
+Two classes of service need different evidence, and a definition states which it
+is. A **running** service holds a process while it serves: its readiness is a live
+property, and `status` can ask the instance whether it is ready now. A
+**scheduled** service holds no process between runs: a schedule is what is
+installed, and each run is a finite job that finishes. A finite job alone is still
+a command workflow; it becomes a scheduled service when the schedule itself has to
+be started, stopped and inspected as an identified instance.
+
+For a scheduled service, readiness is not a live property and must not be
+reported as one. An installed schedule proves only that a run is intended, never
+that one happened, so its evidence is the last run's durable outcome. The five
+actions keep their names and apply to the schedule rather than to a run: `start`
+installs and starts the schedule, `stop` stops and disables it without undoing
+completed runs, `restart` re-applies it, `logs` shows the runs, and `status`
+reports the schedule, the last run and the durable record of the last success
+together. Reporting an active schedule without that record is the failure this
+class invites, because an operator reads an active timer as a working backup.
+
+A scheduled service is the one case where starting a service means it will later
+act unattended. That follows from its class and needs no local exception; what
+each guide owes instead is what an unattended run is allowed to touch, which
+[runtime operations](../skills/runtime-operations/SKILL.md) owns.
+
+A scheduled service also owns its own schedule units. The shared runtime helper
+binds a running service: its `start` operates an installed unit without ever
+installing one, and its `status` asks an instance whether it is ready now. For
+this class `start` is what installs the schedule and readiness does not exist, so
+a scheduled controller implements its own units rather than binding that helper.
+That is the expected shape of the class, not a departure a guide must justify.
 
 Service-foundation owns this convention, templates, checks and documentation
 routes. The [extension declaration](extension.md) defines adoption and discovery.
