@@ -28,13 +28,13 @@ class CheckTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             for name in ('scripts/tests/test_one.py', 'scripts/tests/test_two.py',
-                         'collections/example/skills/helper/tests/test_nested.py',
-                         'collections/.worktrees/old/test_retired.py'):
+                         'skills/example/helper/tests/test_nested.py',
+                         'skills/.worktrees/old/test_retired.py'):
                 file = root / name
                 file.parent.mkdir(parents=True, exist_ok=True)
                 file.touch()
             self.assertEqual(runner.test_directories(root), [
-                root / 'collections/example/skills/helper/tests', root / 'scripts/tests'])
+                root / 'scripts/tests', root / 'skills/example/helper/tests'])
 
     def test_empty_failed_and_skipped_suites_cannot_report_success(self):
         for body in ('', 'self.fail("synthetic failure")', 'self.skipTest("synthetic missing prerequisite")'):

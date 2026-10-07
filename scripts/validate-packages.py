@@ -3,23 +3,26 @@
 
 import re
 import sys
-import subprocess
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
-
-from collection_installation import VERSION as SEMANTIC_VERSION
 
 
 ROOT = Path(__file__).resolve().parent.parent
 SKILLS = ROOT / "skills"
-COLLECTIONS = ROOT / "collections"
 LINK = re.compile(r"!?(?:\[[^\]]*\])\(([^)]+)\)")
 COPY_RECORD = re.compile(r"<!-- Package-boundary copy: (.*?)-->")
 COPY_TARGET = re.compile(r"\b([a-z][a-z0-9-]*)/((?:[\w.-]+/)*[\w.-]+\.md)\b")
 VERSION = re.compile(r'^  version: "([^"]+)"$')
+NUMBER = r'(?:0|[1-9][0-9]*)'
+PRERELEASE = rf'(?:{NUMBER}|[0-9]*[A-Za-z-][0-9A-Za-z-]*)'
+SEMANTIC_VERSION = re.compile(
+    rf'{NUMBER}\.{NUMBER}\.{NUMBER}'
+    rf'(?:-{PRERELEASE}(?:\.{PRERELEASE})*)?'
+    r'(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?'
+)
 
 
-def check_package(package: Path, check_links: bool = True) -> list[str]:
+def check_package(package: Path) -> list[str]:
     errors = []
     manifest = package / "SKILL.md"
     if not manifest.is_file():
@@ -40,8 +43,7 @@ def check_package(package: Path, check_links: bool = True) -> list[str]:
         if not any(line.startswith("description: ") for line in frontmatter):
             errors.append(f"{manifest.relative_to(ROOT)}: missing description")
 
-    if check_links:
-        errors.extend(check_local_links(package))
+    errors.extend(check_local_links(package))
     return errors
 
 
@@ -102,34 +104,6 @@ def find_packages(directory: Path) -> list[Path]:
 def main() -> int:
     packages = find_packages(SKILLS)
     errors = [error for package in packages for error in check_package(package)]
-    collections = sorted(path for path in COLLECTIONS.iterdir() if path.is_dir()) if COLLECTIONS.exists() else []
-    for collection in collections:
-        if not (collection / "COLLECTION.md").is_file():
-            errors.append(f"{collection.relative_to(ROOT)}: missing COLLECTION.md")
-        if not (collection / "skills").is_dir():
-            errors.append(f"{collection.relative_to(ROOT)}: missing skills directory")
-            continue
-        members = find_packages(collection / "skills")
-        packages.extend(members)
-        errors.extend(error for package in members for error in check_package(package, check_links=False))
-        errors.extend(check_local_links(collection))
-        if not (collection / "collection.json").is_file():
-            errors.append(f"{collection.relative_to(ROOT)}: missing collection.json")
-        else:
-            checker = collection / "scripts/check_installation.py"
-            canonical = ROOT / "scripts/collection_installation.py"
-            if checker.is_file() and checker.read_bytes() != canonical.read_bytes():
-                errors.append(f"{collection.relative_to(ROOT)}: checker differs from canonical source; synchronize tools")
-            if not checker.is_file():
-                errors.append(f"{collection.relative_to(ROOT)}: manifest has no installation checker")
-            else:
-                try:
-                    result = subprocess.run([sys.executable, str(checker)],
-                        stdin=subprocess.DEVNULL, capture_output=True, text=True, encoding='utf-8', timeout=20)
-                    if result.returncode:
-                        errors.append(f"{collection.relative_to(ROOT)}: inventory check failed: {result.stderr.strip()}")
-                except (OSError, subprocess.SubprocessError) as error:
-                    errors.append(f"{collection.relative_to(ROOT)}: inventory checker unavailable: {error}")
     names: dict[str, Path] = {}
     for package in packages:
         if package.name in names:
@@ -142,7 +116,7 @@ def main() -> int:
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print(f"Validated {len(packages)} skill entries, including {len(collections)} collections at {ROOT}")
+    print(f"Validated {len(packages)} skill packages at {ROOT}")
     return 0
 
 

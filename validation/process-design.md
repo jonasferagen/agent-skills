@@ -1,7 +1,7 @@
 # Process design validation
 
-Scope boundaries worth testing for the [process-design collection](../collections/process-design/COLLECTION.md)
-and its [work-records](../collections/process-design/skills/work-records/SKILL.md) member.
+Scope boundaries worth testing for the [process-design collection](https://github.com/jonasferagen/agent-skills/blob/914aa01b1915d190ee0429d18a570e72c179fd5d/collections/process-design/COLLECTION.md)
+and its [work-records](../skills/workflow/work-records/SKILL.md) member.
 This page records intended behaviour and actual results; it establishes no
 consumer adoption.
 

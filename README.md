@@ -1,151 +1,91 @@
 # Jonas’s agent skills
 
-Jonas's reusable, project-agnostic agent skills. Standalone packages live under
-`skills/<category>/<name>/`. Related skills and shared resources can instead form
-one installable collection under `collections/<name>/`.
+Jonas's reusable, project-agnostic agent skills. Every skill is a standalone
+package at `skills/<area>/<name>/`, installed by its name and complete in its
+own directory. Areas group skills by their main task for browsing; they do not
+require loading every skill in the group, and they are not installation units.
 
 [Decision log](DECISIONS.md) records structural decisions and ideas for follow-up.
+Dated review and trial records live under `validation/`; the
+[collection sweep](validation/collection-sweep.md) and the per-collection pages
+there describe the grouped layout this repository used until October 2026.
 
-The [collection sweep](validation/collection-sweep.md) records the 4 October 2026
-skill-quality and collection-consistency review, its checks and remaining limits.
+[Data foundations](docs/data-foundations.md) proposes skills for the next
+database-modeling stage. [Application foundation](docs/application-foundation.md)
+records the design behind `application-design`.
 
-[Data foundations](docs/data-foundations.md) proposes the skills for the next
-database-modeling stage; it is not an installed collection yet.
+A downstream distribution may bundle several skills from here into one
+installation. It owns its own membership, lock, checker and release rules; this
+repository supplies the packages and their versions.
 
-[Application foundation](docs/application-foundation.md) defines the application
-design collection and its relationship to the existing specialist packages.
-
-Categories group skills by their main task. A collection is an installation unit;
-its individual skills remain task entry points loaded when needed.
-
-## Projects
-
-[Project foundation](https://github.com/jonasferagen/project-foundation) owns the project framework: foundation formats,
-document homes, templates, bootstrap, design, planning, contracts, policy and
-documentation workflows. Install its complete collection from a selected commit;
-its installation guide owns dependency pins, routing and updates.
-
-## Authoring and authoritative definitions
-
-These standalone packages are maintained here. Project-foundation imports checked,
-pinned copies rather than maintaining another source version.
+## Authoring
 
 | Skill | Use it for |
 | --- | --- |
-| [Clear writing](skills/authoring/clear-writing/SKILL.md) (`clear-writing`) | Express facts and instructions clearly without changing their meaning. |
-| [Diagrams and tables](skills/authoring/diagrams-and-tables/SKILL.md) (`diagrams-and-tables`) | Choose and verify useful visual explanations of relationships and comparisons. |
-| [Authoritative definitions](skills/design/source-of-truth/SKILL.md) (`source-of-truth`) | Give each rule a home and derive or check its other appearances. |
-
-## Services
-
-Service-foundation also owns the [optional service extension](collections/service-foundation/references/extension.md):
-repository service homes, templates, discovery, structural validation and the
-[import contract](collections/service-foundation/references/runtime-helpers.md)
-for its bundled runtime helpers. Projects adopt it explicitly; project-foundation
-is not a runtime or tooling dependency.
-
-The [service-foundation collection](collections/service-foundation/COLLECTION.md)
-installs service ownership and runtime guidance together. Promotion from a spike
-to maintained service use selects both members; narrow tasks select only what they
-need. Its manifest and checker detect incomplete or locally changed installations.
-
-| Member | Use it for |
-| --- | --- |
-| [service-boundaries](collections/service-foundation/skills/service-boundaries/SKILL.md) | Define service ownership and shared behavior across HTTP and MCP adapters. |
-| [runtime-operations](collections/service-foundation/skills/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups. |
+| [clear-writing](skills/authoring/clear-writing/SKILL.md) | Express facts and instructions clearly without changing their meaning. |
+| [diagrams-and-tables](skills/authoring/diagrams-and-tables/SKILL.md) | Choose and verify useful visual explanations of relationships and comparisons. |
 
 ## Design
 
-The [application-foundation collection](collections/application-foundation/COLLECTION.md)
-contains language-neutral application guidance:
-
 | Skill | Use it for |
 | --- | --- |
-| [application-design](collections/application-foundation/skills/application-design/SKILL.md) (draft) | Shape operations, state ownership and dependency interfaces inside an application, including external operation boundaries. |
-
-Source directory: `skills/design/`.
-
-| Skill | Use it for |
-| --- | --- |
+| [source-of-truth](skills/design/source-of-truth/SKILL.md) | Give each rule a home and derive or check its other appearances. |
+| [application-design](skills/design/application-design/SKILL.md) (draft) | Shape operations, state ownership and dependency interfaces inside an application, including external operation boundaries. |
+| [service-boundaries](skills/design/service-boundaries/SKILL.md) | Define service ownership and shared behavior across HTTP and MCP adapters. |
 | [relational-modeling](skills/design/relational-modeling/SKILL.md) (draft) | Structure known entities around retrieval questions and revise relationships through synthetic scenarios. |
 | [postgres-design](skills/design/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries, and transactions on pooled connections. |
 
-## Verification
-
-For source maintenance, install Node 24, Python 3.11 or later and GnuPG, run
-`npm ci --ignore-scripts`, then `python3 scripts/check.py`. This command checks
-packages and discovers helper suites under `scripts/` and `collections/`, including
-the real GnuPG round trip and examples extracted from the TypeScript and Node
-guidance. Empty, failed, skipped and incomplete suites fail the command. Missing
-prerequisites fail explicitly. CI runs the same command. These local checks do
-not establish live service or database acceptance.
-
-The [verification-foundation collection](collections/verification-foundation/COLLECTION.md)
-installs evidence selection, test authoring and suite audit together. Choose its
-member by the requested task; new regression work does not require a suite audit.
-
-| Skill | Use it for |
-| --- | --- |
-| [verification-design](collections/verification-foundation/skills/verification-design/SKILL.md) | Choose evidence for a change or milestone and consolidate checks by the failures they detect. |
-| [test-writing](collections/verification-foundation/skills/test-writing/SKILL.md) | Writing unit tests, integration tests and their fixtures, with made-up data and state each test owns. |
-| [test-audit](collections/verification-foundation/skills/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
-
 ## Operations
 
-Source directory for standalone operations packages: `skills/operations/`.
-Runtime operations is a member of service-foundation.
-
 | Skill | Use it for |
 | --- | --- |
+| [repository-services](skills/operations/repository-services/SKILL.md) | Define, document and check a repository's named services: the `services/` home, guides, dispatcher and structural validator. |
+| [runtime-operations](skills/operations/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups, with the Python helpers controllers import. |
 | [containerization](skills/operations/containerization/SKILL.md) | Build service images, configure local stacks and manage isolated container test resources. |
 | [database-migrations](skills/operations/database-migrations/SKILL.md) | Preserve migration history, review baselines and verify database bootstrap and upgrades. |
 
-## Workflow
+Repository-services and runtime-operations each ship an optional extension a
+project adopts explicitly: the
+[service extension](skills/operations/repository-services/references/extension.md)
+for service homes and checks, and the
+[runtime helpers contract](skills/operations/runtime-operations/references/runtime-helpers.md)
+for importing the bundled helpers. Promotion from a spike to maintained service
+use reads service-boundaries and runtime-operations together.
 
-The [process-design collection](collections/process-design/COLLECTION.md) owns
-work records: the brief that commissions a bounded assignment, the worklog that tracks progress, the report or
-study that retains its findings, the handoff record that transfers it, and the
-findings and disposition that close it. It supplies the
-[record chain](collections/process-design/references/record-chain.md), the
-[assignment contract](collections/process-design/references/assignment-contract.md), five
-templates and the opt-in `work-record/v1`
-[format](collections/process-design/references/record-format.md) with a checker.
-Projects adopt it explicitly through its
-[extension declaration](collections/process-design/references/extension.md);
-project-foundation is not a dependency. Named processes and their structured
-page format belong to the consuming project's framework; the
-[extension boundary](collections/process-design/references/extension.md#owned-by-the-project-framework)
-owns that settled division.
-
-Standalone workflow packages live in `skills/workflow/`.
+## Verification
 
 | Skill | Use it for |
 | --- | --- |
-| [work-records](collections/process-design/skills/work-records/SKILL.md) | Commission bounded work as a brief, retain its evidence and close it with a scoped disposition. |
+| [verification-design](skills/verification/verification-design/SKILL.md) | Choose evidence for a change or milestone and consolidate checks by the failures they detect. |
+| [test-writing](skills/verification/test-writing/SKILL.md) | Writing unit tests, integration tests and their fixtures, with made-up data and state each test owns. |
+| [test-audit](skills/verification/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
+
+Choose by the requested task; new regression work does not require a suite audit.
+
+## Workflow
+
+| Skill | Use it for |
+| --- | --- |
+| [work-records](skills/workflow/work-records/SKILL.md) | Commission bounded work as a brief, retain its evidence and close it with a scoped disposition; ships the record chain, assignment contract, five templates and the opt-in `work-record/v1` checker. |
 | [pattern-capture](skills/workflow/pattern-capture/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
+
+Work records are an extension a project adopts through their
+[extension declaration](skills/workflow/work-records/references/extension.md).
+Named processes and their page format belong to the consuming project's framework.
 
 ## Languages and runtimes
 
-The [Python foundation](collections/python-foundation/COLLECTION.md) pairs Python
-design and language patterns. [TypeScript foundation](collections/typescript-foundation/COLLECTION.md)
-pairs TypeScript design and language patterns with conditional Node tooling guidance.
-Godot and Bash remain standalone packages under `skills/languages/`.
-
 | Skill | Use it for |
 | --- | --- |
-| [godot-gdscript](skills/languages/godot-gdscript/SKILL.md) (draft) | Typed Godot scripts, headless probes, imports and scene measurements. |
-| [typescript-patterns](collections/typescript-foundation/skills/typescript-patterns/SKILL.md) | TypeScript types, narrowing, generics, absence, module syntax and enforcement. |
-| [typescript-design](collections/typescript-foundation/skills/typescript-design/SKILL.md) | Class-based TypeScript house style: operations, naming, ownership, ports, barrels and directory layout. |
-| [python-patterns](collections/python-foundation/skills/python-patterns/SKILL.md) | Python types, runtime boundaries, defaults, exceptions, resource cleanup and async tasks. |
-| [python-design](collections/python-foundation/skills/python-design/SKILL.md) | Class-based Python house style: operations, domain values, dependency protocols, naming and modules. |
+| [typescript-patterns](skills/languages/typescript-patterns/SKILL.md) | TypeScript types, narrowing, generics, absence, module syntax and enforcement. |
+| [typescript-design](skills/languages/typescript-design/SKILL.md) | Class-based TypeScript house style: operations, naming, ownership, ports, barrels and directory layout. |
+| [node-patterns](skills/languages/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
+| [python-patterns](skills/languages/python-patterns/SKILL.md) | Python types, runtime boundaries, defaults, exceptions, resource cleanup and async tasks. |
+| [python-design](skills/languages/python-design/SKILL.md) | Class-based Python house style: operations, domain values, dependency protocols, naming and modules. |
 | [bash-patterns](skills/languages/bash-patterns/SKILL.md) | Preserving arguments, command failures, query results and cleanup ownership in Bash scripts. |
-| [node-patterns](collections/typescript-foundation/skills/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
+| [godot-gdscript](skills/languages/godot-gdscript/SKILL.md) (draft) | Typed Godot scripts, headless probes, imports and scene measurements. |
 
-Install each standalone package by its existing name, for example
-`skills/languages/bash-patterns/` to `.agents/skills/bash-patterns/`.
-Names, invocation examples and release tags are unchanged by source grouping.
-Existing imports retain their pinned source paths; use the new path when importing
-a revision after the move.
+The patterns and design skills of one language pair naturally; each works alone.
 
 ## Using a skill
 
@@ -157,63 +97,33 @@ pin. Imported files should match that commit; keep project-specific rules outsid
 the imported directory and document any necessary local modifications in the
 provenance file.
 
-For project-foundation, follow the separate [framework repository](https://github.com/jonasferagen/project-foundation)'s
-installation guidance. Its generic dependencies are maintained here.
+Names, invocation examples and release tags are unchanged by source grouping.
+Existing imports retain their pinned source paths; use the new path when importing
+a revision after a move.
 
-Application-foundation also installs as a complete collection. Its
-[installation guidance](collections/application-foundation/references/installation.md)
-defines its self-contained core and project routing to separately pinned companions.
+Every package keeps its required resources inside its own directory: references,
+templates, scripts and their tests. Links must stay inside the package. A skill
+refers to another skill by name, never by a relative path, because the consumer
+decides which skills are installed and where. When two packages must each state
+one rule, record the copy in both places with a comment naming the counterpart,
+such as `<!-- Package-boundary copy: test-writing/references/fixtures.md states
+this rule for ordinary tests. Keep both passages aligned. -->`. Paths start with
+the counterpart's package name.
 
-Every collection declares its members, version and shipped file hashes in
-`collection.json`. Before adopting a staged copy, run the checker from the selected
-source revision against it:
+## Verification
 
-```sh
-python3 /selected/source/<collection>/scripts/check_installation.py /staged/<collection>
-```
+For source maintenance, install Node 24, Python 3.11 or later and GnuPG, run
+`npm ci --ignore-scripts`, then `python3 scripts/check.py`. This command checks
+packages and discovers helper suites under `scripts/` and `skills/`, including
+the real GnuPG round trip and examples extracted from the TypeScript and Node
+guidance. Empty, failed, skipped and incomplete suites fail the command. Missing
+prerequisites fail explicitly. CI runs the same command. These local checks do
+not establish live service or database acceptance.
 
-The installed checker's self-check detects accidental drift; checking against the
-trusted source also compares the manifest. Neither replaces review of changed
-guidance or proves native client discovery. Each collection's installation
-reference owns its project routing and update procedure.
-
-For source edits, maintain the declared membership deliberately. The shared
-checker is owned by `scripts/collection_installation.py`; after changing it, run
-`python3 scripts/sync-collection-tools.py` to distribute it and
-`python3 -m unittest discover -s scripts/tests -q` to exercise its metadata and
-staged-copy behavior. After reviewing a collection's edits, regenerate that
-collection's inventory with its checker and `--write`, then run package validation.
-The inventory identifies the selected artifact; it is not a stored expected
-answer for a behavioral test. Do not regenerate a consumer inventory to accept
-local drift.
-
-Collection members may link to each other and shared references or templates.
-Standalone packages keep required resources inside their own directory. Links
-must stay inside the applicable installation unit; do not duplicate guidance just
-to make each collection entry point independently installable.
-
-When two installation units must each state one rule, record the copy in both
-places with a comment naming the counterpart, such as
-`<!-- Package-boundary copy: test-writing/references/fixtures.md states this rule
-for ordinary tests. Keep both passages aligned. -->`. Paths start with the
-counterpart's package name.
-
-The entrypoint carries the purpose, essential constraints and links to details.
-Put mode-specific procedures and longer examples in `references/` and link them
-where they become useful; a short skill can stay in one file. A skill can bundle
-`scripts/` when repeated operations need a reliable implementation and `tests/`
-when those helpers need offline verification. The entire directory, including
-those resources, is installed together.
-
-Run `python3 scripts/validate-packages.py` after editing a package. It checks
-frontmatter, local link targets, installation-unit containment and that each
-recorded copy names an existing counterpart that records it back. Behavioral
-scenarios in `validation/` and any bundled helper tests still need their own review.
-
-Updates are deliberate: select a release, review its changes and local exceptions,
-replace the complete directory, compare it with the source, validate the manifest
-and links, then update provenance in the same commit. No automatic tracking of
-`main`, global installation or database deployment is implied by an import.
+`python3 scripts/validate-packages.py` alone checks frontmatter, local link
+targets, package containment, unique names and that each recorded copy names an
+existing counterpart that records it back. Behavioral scenarios in `validation/`
+and bundled helper tests still need their own review.
 
 ## Discovery and lesson capture
 
@@ -222,10 +132,10 @@ and links, then update provenance in the same commit. No automatic tracking of
 A consumer must be able to find the relevant guidance without reading this
 authoring repository's maintenance material. Additional reading must follow a
 concrete task need, and required deeper guidance must remain reachable. Apply this
-standard to our own catalog, instructions and collections as well as their output.
+standard to our own catalog and instructions as well as their output.
 
 Routing is an acceptance requirement when changing triggers, entrypoints, shared
-guidance or packaging, and before releasing a collection. Run proportionate
+guidance or packaging, and before releasing a skill. Run proportionate
 practical trials using the [routing trial method](validation/discovery.md#routing-trial-method).
 Preserve task constraints and check missed obligations as well as unnecessary
 reading. Package validation alone cannot establish routing quality.
@@ -236,7 +146,7 @@ verified from word-count reductions alone. Ordinary prose edits need no new tria
 unless they change routing or reveal concrete friction.
 
 When authoring here, use the catalog and maintenance sections relevant to the
-change. When consuming an installed collection, use its entrypoint and project
+change. When consuming an installed skill, use its entrypoint and project
 routes. Do not follow provenance back to this README unless the task needs source
 maintenance, upgrade information or investigation of a concrete source issue.
 
@@ -290,22 +200,12 @@ about selection. See [the discovery review](validation/discovery.md).
 
 ## Skill releases
 
-Collections are pinned as a whole by source commit and annotated release tag.
-Collection releases use `<collection-name>/v<version>`, such as
-`project-foundation/v<version>` or `application-foundation/v<version>`; the version
-is recorded in the collection's `COLLECTION.md`. Member versions describe changed skill behavior;
-individual member tags do not establish a compatible collection release.
-
-Before a collection release is tagged, the whole collection must pass a
-[self-conformance review](validation/self-conformance.md): it must meet the
-standards its own members teach. This is a release requirement, alongside the
-routing trials.
-
 Version each skill independently. Its `SKILL.md` declares a string under
 `metadata.version`, such as `"1.0.0"`. Publish an annotated Git tag named
 `<skill-name>/v<version>` on the committed release; never move a published tag.
 The tagged package and manifest version must agree. Unreleased skills can remain
-pinned by commit until their first release.
+pinned by commit until their first release. Tags of the retired collection
+layout, `<collection>/v<version>`, remain as history and are not reused.
 
 The version on `main` can also describe an unreleased revision after an earlier
 tag. The tag remains the last released version until that revision is validated
@@ -320,26 +220,26 @@ behavior, defaults, exceptions and bundled resource interfaces.
 - **Major:** change defaults, mandatory rules, scope or exceptions in a way that
   requires consumers to review their adoption.
 
-Validate the package and its behavioral scenarios before tagging, and see the
-[authoring skills](#authoring-skills) recommended for releases. A release must
-contain no unfinished scaffold or project-specific credentials or identifiers.
-Consumers pin the full commit as well as the release label because tags are
-names, not an integrity guarantee. Other skills in the repository need no
-version bump when one skill is released.
+Before tagging, validate the package and its behavioral scenarios, repeat the
+applicable routing trials, and complete the
+[self-conformance review](validation/self-conformance.md) for a skill that
+bundles scripts, templates or an extension declaration. A release must contain
+no unfinished scaffold or project-specific credentials or identifiers. Consumers
+pin the full commit as well as the release label because tags are names, not an
+integrity guarantee. Other skills in the repository need no version bump when
+one skill is released.
 
 ### Authoring skills
-
-Project-foundation source maintenance belongs in its [own repository](https://github.com/jonasferagen/project-foundation).
 
 Skills in this repository should meet the standards they teach. Apply relevant
 guidance to the packages, helpers and documentation we maintain here. Start
 with the named package when one is known; use the catalog to select additional
 guidance from the task's actual trigger. Load only needed references. For example,
-use source-of-truth when reconciling copied
-rules, verification-design when selecting evidence, and pattern-capture when
-assessing a reusable finding or an explicit capture request. Its simplicity
-test also applies to our own rules and exceptions. Report a relevant conflict
-or gap rather than silently exempting the repository.
+use source-of-truth when reconciling copied rules, verification-design when
+selecting evidence, and pattern-capture when assessing a reusable finding or an
+explicit capture request. Its simplicity test also applies to our own rules and
+exceptions. Report a relevant conflict or gap rather than silently exempting the
+repository.
 
 During authoring, AGENTS.md requires writing and visual guidance where relevant.
 Before tagging a release, also apply these skills to the content changed since the skill's
@@ -349,30 +249,27 @@ last tag, or to the whole package for a first release:
 - [Diagrams and tables](skills/authoring/diagrams-and-tables/SKILL.md), to existing
   diagrams and tables and to passages a diagram or table would explain better.
 
-For a skill release, this additional pass is a recommendation, not a release
-requirement; a collection release includes it in its required self-conformance
-review. Clear Writing does not yet
-cover every kind of prose a skill package contains, such as trigger
+This pass is a recommendation, not a release requirement. Clear Writing does not
+yet cover every kind of prose a skill package contains, such as trigger
 descriptions, defined terms, worked examples, pattern catalogs and templates.
 
 When you apply them, record on the skill's validation page which skills were
 applied and what they changed; "no change needed" is a valid result. When a pass
 rewrites wording, an independent comparison of each changed passage with the
 prior text is recommended: the first Clear Writing sweep found four meaning
-changes that way. Project-foundation imports these skills as pinned dependencies. Other packages
-use them here as authoring guidance without acquiring that dependency.
+changes that way.
 
 ## Adding a skill
 
 - Keep it project-agnostic: no account details, credentials, service
-  identifiers or private domain records. A skill about one project's systems
+  identifiers or private domain records, and no names of the projects or
+  distributions that consume these skills. A skill about one project's systems
   does not belong here. Skills about Jonas himself, such as his email style,
   live in his separate local `personal-skills` repository.
-- Put standalone manifests at `skills/<category>/<name>/SKILL.md` and collection
-  members at `collections/<collection>/skills/<name>/SKILL.md`. Keep skill names
-  unique across both layouts. Put shared resources inside their collection.
-  `agents/openai.yaml` carries the display name for tools that
-  read it.
+- Put the manifest at `skills/<area>/<name>/SKILL.md`; choose the existing area
+  whose task it serves. Keep skill names unique. Put every resource the skill
+  needs inside its directory. `agents/openai.yaml` carries the display name for
+  tools that read it.
 - Choose a short lowercase hyphenated name for the activity or subject readers
   will seek. Use familiar terms and the actual language or tool when it narrows
   the scope. Preserve an established name unless clearer discovery justifies
@@ -603,7 +500,7 @@ acceptance. Its subject is the seam between media — a concept authored in a
 schema, a setting or a document and restated in application code, another
 language or prose, where no single search finds both sides and the restatement
 falls behind silently. It deliberately excludes code shape, which belongs to
-[typescript-design](collections/typescript-foundation/skills/typescript-design/SKILL.md), and schema design,
+[typescript-design](skills/languages/typescript-design/SKILL.md), and schema design,
 which belongs to [postgres-design](skills/design/postgres-design/SKILL.md). The
 installable package is synthetic throughout and names no language, framework or
 toolchain as a requirement. Several of its false-positive tests — a complete copy

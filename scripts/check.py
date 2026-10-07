@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_directories(root: Path) -> list[Path]:
-    return sorted({file.parent for owner in ('scripts', 'collections')
+    return sorted({file.parent for owner in ('scripts', 'skills')
                    for file in (root / owner).rglob('test_*.py')
                    if not {'.worktrees', '__pycache__'} & set(file.relative_to(root).parts)})
 

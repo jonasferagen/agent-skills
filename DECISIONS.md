@@ -622,3 +622,24 @@ retain their historical source pins until deliberately replaced.
 
 Keep the shared collection installation checker owned here. The framework
 imports its selected implementation and records that dependency with its skills.
+
+## 7 October 2026 — Flatten the catalog and drop collections
+
+Every skill is a standalone package at `skills/<area>/<name>/`; there are no
+collections, manifests, bundled checkers or collection releases here. The six
+collections' members moved into the areas authoring, design, operations,
+verification, workflow and languages under their existing names. Collection-level
+resources followed the skill that uses them: process-design's references,
+templates and checker into `work-records`; the service loader and runtime-helpers
+contract into `runtime-operations`; the service convention, structured
+definition, templates, validator, parser and dispatcher into a new
+`repository-services` skill. Sibling links became skill names, because the
+consumer decides which skills are installed and where.
+
+A downstream distribution bundles skills from here as pinned directory imports
+and owns its own membership, lock, installation checker and releases. This
+repository no longer names any consumer in shipped content; a test under
+`scripts/tests/` fails on such a name. The finished extraction tooling and plan
+left with the migration they served; `validation/framework-extraction.md`
+records the result. Old collection tags and pins remain history and are not
+reused.

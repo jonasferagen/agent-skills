@@ -1,9 +1,15 @@
 # Application foundation scope
 
+> Design record from 4 October 2026. The collection described here was
+> flattened on 7 October 2026: `application-design` is now a standalone skill
+> under `skills/design/`, and the collection entry point, manifest and
+> installation reference are history. Companion routing is the project's.
+
+
 Status: initial draft package with bounded design trials, 3 October 2026.
 No release tag or consumer adoption is claimed.
 
-The [application-foundation collection](../collections/application-foundation/COLLECTION.md)
+The [application-foundation collection](https://github.com/jonasferagen/agent-skills/blob/914aa01b1915d190ee0429d18a570e72c179fd5d/collections/application-foundation/COLLECTION.md)
 connects an established workflow to application operations, state ownership,
 dependency interfaces and verification boundaries. Its first member is
 `application-design`; external integration mechanics are a conditional reference
@@ -11,7 +17,7 @@ inside that workflow.
 
 ## Responsibility boundary
 
-Project-foundation continues to own system responsibilities, conceptual models,
+The project's framework continues to own system responsibilities, conceptual models,
 workflow and provider selection, handoff obligations, policy and document ownership.
 Application-design opens an implementing application around a concrete operation.
 An internal trace can expose a question for the shared architecture, but cannot
@@ -31,13 +37,13 @@ selects the guidance the work needs.
 | Application-design workflow | New collection member | Language-neutral internal design has a distinct trigger and outcome |
 | External operation boundaries | Conditional reference | Provider mechanics refine the same operation trace |
 | Language, service and test guidance | Separately pinned companion packages or collections | Existing tasks and installation units remain useful alone |
-| Project-foundation | Optional project-routed companion | Reuse established owners without copying the collection |
+| The project's framework | Optional project-routed companion | Reuse established owners without copying the collection |
 | Provider-specific commands and contracts | Consuming repository | Product facts and executable behavior need local owners |
 
 ## Packaging choice
 
 The first collection is self-contained and has no mandatory companion dependency.
-Its [installation route](../collections/application-foundation/references/installation.md)
+Its [installation route](https://github.com/jonasferagen/agent-skills/blob/914aa01b1915d190ee0429d18a570e72c179fd5d/collections/application-foundation/references/installation.md)
 uses independently pinned companions and explicit project-owned paths. This works
 within the current package validator's installation-unit containment rule; it adds
 no resolver and does not settle mandatory dependency packaging for data-foundations.
@@ -48,18 +54,17 @@ merely to populate a collection. Add a member only when a separate recognizable
 task needs its own outcome. Required shared resources can then remain inside this
 installation unit.
 
-For Forge, a future shared installation belongs in Primary alongside its pinned
-project-foundation collection. Members can use the same shared-access mechanism
-and task routes. This source change does not install or update any consumer.
+A project may hold one shared installation for several repositories. This
+source change does not install or update any consumer.
 
 ## First trials
 
 Three isolated consumers exercised project-instruction discovery with copied
 installations and synthetic inputs: provider execution representative of
-forge-tools, local candidate receipt representative of forge-assets, and a literal
+a tool repository, local candidate receipt representative of an asset repository, and a literal
 wording edit. The two designs preserved their different state and dependency needs;
 the wording edit left application-design unopened. The provider trial used the
-core without reading project-foundation; receipt also used contract and authoring
+core without reading the project's framework; receipt also used contract and authoring
 guidance. The [validation record](../validation/application-design.md) retains the
 actual proposals, reading evidence and remaining coverage limits.
 

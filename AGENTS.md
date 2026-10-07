@@ -1,8 +1,8 @@
 # Repository guidance
 
 These maintenance instructions govern changes to this authoring repository.
-When only using an installed skill or collection for another project, start at
-that installation's entry point and the consuming project's instructions. Source
+When only using an installed skill for another project, start at that
+installation's entry point and the consuming project's instructions. Source
 provenance is not a required reading list for ordinary consumption.
 
 ## Git
@@ -16,8 +16,10 @@ finishes.
 ## Package maintenance
 
 [README](README.md) owns the catalog, package format, naming and release rules.
-Standalone packages must work alone. Collection members may use shared resources
-inside their collection; copy the complete collection as one installation unit.
+Every skill is a standalone package that must work alone: its references,
+templates, scripts and tests live inside its directory, and it names another
+skill rather than linking to it. This repository ships no bundles; a downstream
+distribution that bundles skills owns its own manifest and checks.
 
 For a named skill, start at that package. Use the catalog when selecting additional
 guidance. Read the relevant maintenance section directly: [package use](README.md#using-a-skill),
@@ -43,21 +45,22 @@ or table, or when a passage might explain better as one. These skills own their
 reusable rules; keep repository-specific package and release rules in the
 README.
 
-These standalone skills are owned here and work without a project scaffold.
-Project-foundation imports them from selected source commits. The README's
-[authoring skills](README.md#authoring-skills) section owns release guidance.
+Shipped content names no consumer: no project, distribution or framework that
+installs these skills. Say "the consuming project" or "the project's framework".
+History under `validation/` and `DECISIONS.md` may name what it actually tested.
 
 ## Verification
 
 - For trigger, entrypoint, shared-guidance or packaging changes, meet the
   [routing acceptance requirement](README.md#routing-quality) using the practical
   trials in [discovery validation](validation/discovery.md#routing-trial-method).
-  Repeat applicable trials before a collection release; prose-only edits need no
+  Repeat applicable trials before a release; prose-only edits need no
   automatic discovery trial.
 
 - Run `python3 scripts/check.py` and `git diff --check`; the README's
   [verification](README.md#verification) section owns prerequisites.
-- Before tagging a collection release, complete its
+- Before tagging a release of a skill that bundles scripts, templates or an
+  extension declaration, complete its
   [self-conformance review](validation/self-conformance.md).
 - Review the affected scenarios under `validation/`; record actual results and
   remaining limits when evaluating a skill. For a narrow edit, read the applicable

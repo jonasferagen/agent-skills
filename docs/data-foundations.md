@@ -25,7 +25,7 @@ credentials; record those choices when needed rather than inferring them.
 | --- | --- | --- |
 | Turn known entities and retrieval questions into a relational model; revise an ambiguous relationship | `relational-modeling` | New workflow candidate. Own the iteration, open questions and readiness for implementation. |
 | Choose PostgreSQL representation: keys, types, constraints, naming and data lifecycle | Existing `postgres-design` | Reuse relevant guidance. Separate design conventions from the broader modeling workflow; review its current migration/transaction scope before packaging. |
-| Explain entities, roles, cardinalities and optionality | Existing visual selection and ER reference | Reuse from project-foundation. The model owns semantics; diagram guidance owns representation and checking. |
+| Explain entities, roles, cardinalities and optionality | Existing visual selection and ER reference | Reuse `diagrams-and-tables` and its `references/er/` guidance. The model owns semantics; diagram guidance owns representation and checking. |
 | Plan schema bootstrap, baselines or upgrades | Existing `database-migrations` | Load when migration strategy or implementation is in scope, not merely because a model contains tables. |
 | Choose synthetic cases that expose model behavior | A scenario/seed reference supporting modeling | Begin with a reference. Dataset design is distinct from test-framework fixtures and from loading data into a running database. |
 | Establish database document homes and terminology | Existing `project-docs`, `clear-writing`, `source-of-truth`; domain-modeling ideas | Reuse foundation authoring. Adapt useful domain-modeling guidance without inheriting fixed glossary paths or mandatory ADRs. |
@@ -65,9 +65,11 @@ implemented; the model document owns intended semantics and unresolved gaps.
 
 ## Organization and dependency boundary
 
-Use `data-foundations` as the provisional collection name. Project-foundation
-supplies authoring, policy, authority and visual guidance. Avoid copying those
-skills into a second independently maintained collection.
+Use `data-foundations` as the provisional working name for this group of skills.
+The project's framework supplies policy and authority; `clear-writing`,
+`source-of-truth` and `diagrams-and-tables` supply authoring and visual
+guidance. Avoid copying those skills into a second independently maintained
+home.
 
 Collection-to-collection dependency resolution is not implemented: today's package
 validator permits references only within an installation unit. Before packaging,

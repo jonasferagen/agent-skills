@@ -8,8 +8,8 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[2]
-TYPESCRIPT = ROOT / 'collections/typescript-foundation/skills/typescript-patterns/references/typescript.md'
-NODE = ROOT / 'collections/typescript-foundation/skills/node-patterns/SKILL.md'
+TYPESCRIPT = ROOT / 'skills/languages/typescript-patterns/references/typescript.md'
+NODE = ROOT / 'skills/languages/node-patterns/SKILL.md'
 
 
 def code_block(page: Path, language: str, containing: str) -> str:
