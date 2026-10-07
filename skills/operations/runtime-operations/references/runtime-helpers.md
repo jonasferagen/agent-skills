@@ -64,6 +64,28 @@ check must not leave an import path behind for a later `import serviceControl`
 to succeed against. An installation predating this declaration is reported as
 such and must be re-pinned before use rather than imported hopefully.
 
+## Transient argument compatibility
+
+Starting or restarting a transient service requires a `systemd-run` client with
+`--expand-environment` support, introduced in upstream systemd 254. The helper
+checks the client's advertised capability before running prerequisites, stopping
+an existing instance or launching a unit. Missing support fails with setup guidance;
+there is no fallback that changes argument interpretation. Status, stop, logs,
+already-active start and installed-unit controls do not require this new capability.
+
+Transient `Service.command` values are literal argument vectors. The helper passes
+`--expand-environment=no` because the service manager otherwise expands expressions
+such as `${NAME}` even without a shell. The [systemd-run documentation](https://www.freedesktop.org/software/systemd/man/latest/systemd-run.html#--expand-environment=BOOL)
+owns this client behavior. Project-owned installed-unit generators separately own
+systemd escaping or literal-execution flags; this helper does not generate them.
+Explicit shell commands retain the shell's own interpretation contract.
+
+Skill 2.0.0 requires review of existing transient bindings: update unsupported
+clients, and resolve any formerly intentional manager expansion in the binding
+before launch. The Python import interface remains 1.1 because function signatures
+and fields are unchanged. A successful import does not prove host capability or
+live-service readiness. Keep secrets outside command arguments and unit definitions.
+
 ## Bind a service
 
 A project binding supplies a `serviceControl.Service` and calls `control(service,

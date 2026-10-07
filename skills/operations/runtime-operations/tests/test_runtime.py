@@ -68,6 +68,12 @@ class CredentialTests(unittest.TestCase):
 
 
 class ServiceTests(unittest.TestCase):
+    def setUp(self):
+        # Lifecycle tests assume the separate transient-client capability check passes.
+        support = patch.object(services, '_require_literal_arguments')
+        support.start()
+        self.addCleanup(support.stop)
+
     def test_startup_timeout_stops_only_the_selected_unit(self):
         for command in ([], ['python3', 'app.py']):
             with self.subTest(kind='installed' if not command else 'transient'):
@@ -154,6 +160,12 @@ class ServiceTests(unittest.TestCase):
 
 class BindingTests(unittest.TestCase):
     """What an omitted binding field selects, as the import contract documents it."""
+
+    def setUp(self):
+        # Lifecycle tests assume the separate transient-client capability check passes.
+        support = patch.object(services, '_require_literal_arguments')
+        support.start()
+        self.addCleanup(support.stop)
 
     def test_no_command_operates_an_installed_unit(self):
         with patch.object(services, 'properties', return_value={'ActiveState':'inactive'}), \
@@ -312,6 +324,59 @@ class BindingTests(unittest.TestCase):
                     services.control(services.Service('worker.service', ready_seconds=bound), 'status')
                 properties.assert_not_called()
         self.assertEqual(services.Service('worker.service').ready_seconds, 60)
+
+
+class LiteralArgumentTests(unittest.TestCase):
+    def test_transient_launch_disables_manager_expansion_and_preserves_arguments(self):
+        command = ['/usr/bin/env', '-i', 'HOME=/tmp/literal-${SYNTHETIC_UNSET}',
+                   '/usr/bin/printf', '%s', 'literal $HOME ${SYNTHETIC_UNSET} $$']
+        responses = lambda args, **kwargs: subprocess.CompletedProcess(
+            args, 0, '--expand-environment=BOOL' if args == ['systemd-run', '--help'] else '', '')
+        with patch.object(services, 'properties', return_value={'LoadState': 'not-found'}), \
+                patch.object(services, 'ready', return_value=True), \
+                patch.object(services, 'run', side_effect=responses) as run:
+            services.control(services.Service('literal-example.service', command,
+                                              Path('/tmp'), port=3199), 'start')
+        launch = run.call_args.args[0]
+        self.assertIn('--expand-environment=no', launch)
+        self.assertEqual(launch[-len(command):], command)
+        self.assertEqual(run.call_args_list[0].args[0], ['systemd-run', '--help'])
+
+    def test_missing_capability_refuses_before_prerequisites_or_unit_changes(self):
+        before = unittest.mock.Mock()
+        service = services.Service('literal-example.service', ['/usr/bin/true'],
+                                   Path('/tmp'), port=3199, before_start=before)
+        for action in ('start', 'restart'):
+            with self.subTest(action=action), \
+                    patch.object(services, 'properties', return_value={
+                        'LoadState': 'loaded', 'ActiveState': 'inactive', 'WorkingDirectory': '/tmp'}), \
+                    patch.object(services, 'run', return_value=subprocess.CompletedProcess(
+                        [], 0, 'older client help', '')) as run:
+                with self.assertRaisesRegex(RuntimeError, '254 or later'):
+                    services.control(service, action)
+                run.assert_called_once_with(['systemd-run', '--help'])
+        before.assert_not_called()
+
+    def test_unavailable_capability_probe_refuses_before_unit_changes(self):
+        for failure in (FileNotFoundError('synthetic absent client'),
+                        subprocess.TimeoutExpired(['systemd-run', '--help'], 1)):
+            with self.subTest(failure=type(failure).__name__), \
+                    patch.object(services, 'properties', return_value={'LoadState': 'not-found'}), \
+                    patch.object(services, 'run', side_effect=failure) as run:
+                with self.assertRaisesRegex(RuntimeError, 'literal arguments'):
+                    services.control(services.Service('literal-example.service', ['/usr/bin/true'],
+                                                      Path('/tmp'), port=3199), 'start')
+                run.assert_called_once_with(['systemd-run', '--help'])
+
+    def test_status_and_active_start_need_no_new_launch_capability(self):
+        for action in ('status', 'start'):
+            with self.subTest(action=action), \
+                    patch.object(services, 'properties', return_value={'ActiveState': 'active'}), \
+                    patch.object(services, 'ready', return_value=True), \
+                    patch.object(services, 'run') as run:
+                self.assertEqual(services.control(services.Service('literal-example.service',
+                                                                 ['/usr/bin/true'], port=3199), action), 0)
+                run.assert_not_called()
 
 
 class BackupTests(unittest.TestCase):

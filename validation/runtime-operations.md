@@ -144,3 +144,59 @@ The companion [framework validation](https://github.com/jonasferagen/project-fou
 records its full read audit and the status/wording routing controls. Consumer
 readiness checks remain necessary; these synthetic checks establish helper behavior,
 not the health of every bound application.
+
+
+## Literal transient arguments — 2026-10-07
+
+An environment-profile adoption in Forge reproduced a framework defect: passing
+an argument vector to systemd-run still lets the manager expand `${NAME}` before
+an `env -i` wrapper executes. A literal synthetic HOME `/tmp/literal-${NAME}`
+became `/tmp/literal-`. The [upstream systemd-run manual source](https://raw.githubusercontent.com/systemd/systemd/main/man/systemd-run.xml)
+documents manager expansion and the `--expand-environment` switch introduced in
+254. This is a downstream interpreter boundary, so argument-vector construction
+alone cannot establish literal delivery.
+
+Runtime-operations 2.0.0 now probes the client's advertised
+`--expand-environment=` capability before prerequisites, stop/reset or launch,
+and passes `--expand-environment=no` for transient services. Missing support or
+an unavailable probe refuses without those side effects. Status, stop, logs,
+already-active start and installed-unit actions retain their prior behavior.
+The major skill version records changed transient host requirements and the
+removal of implicit manager expansion. Python import API 1.1 remains unchanged;
+consumers deliberately review host capability and existing bindings. Installed
+unit generators retain their own escaping/literal-mode obligation.
+
+The change uses existing runtime-operations ownership, clear-writing and
+pattern-capture: preserve literal values through the manager, not merely through
+the caller's argv. No new skill or launcher abstraction is added. A narrow
+independent source review verified capability ordering, the changed binding
+semantics and unaffected installed/status behavior; no material finding remains.
+The existing Services entry directly states the capability and reaches the
+runtime-helpers compatibility section. Source-authoring and real consumer use
+exercised that route; no new discovery entry was introduced or cold-reader cost
+reduction claimed.
+
+`python3 scripts/check.py` passes all five checks on Python 3.14.4 and Node
+24.15.0: 23 complete packages and 8 + 42 + 77 + 26 = 153 tests, no skips. The
+runtime suite includes four new tests for literal argv, unsupported/unavailable
+capability refusal before side effects and unaffected status/active-start. An
+isolated mutation removing `--expand-environment=no` fails the new argv regression.
+`git diff --check` passes. Canonical imported-package tests do not require a live
+service manager.
+
+A separate real observation used this changed `serviceControl.control` on host
+systemd 259.5 with an owned random transient unit and synthetic loopback observer.
+The script filename itself contained `${SYNTHETIC_UNSET}`; the child received
+`literal ${SYNTHETIC_UNSET} $HOME $$ %n` unchanged, retained the literal synthetic
+HOME, and excluded a synthetic manager-provided sentinel through `env -i`.
+The controller verified the actual unit/cgroup PID health, then stopped that
+owned unit; its final state was `not-found`/`inactive`. No global manager
+environment or unrelated unit was changed. Temporary observer files were removed.
+This establishes one Linux/systemd 259 observation, not coverage of every manager
+version, installed-unit generator or application service.
+
+This is a checked source revision without a release tag or full package release
+self-conformance claim. Project-foundation and Forge must deliberately update
+their complete checked imports before claiming adopted behavior. Other source
+worktrees, including an unrelated partial runtime-artifact guidance edit, were
+preserved and are not part of this change.

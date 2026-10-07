@@ -2,7 +2,7 @@
 name: runtime-operations
 description: "Design or change credential handling, local service controls and encrypted database backups. Use for secret custody, execution identities, lifecycle or recovery tooling, and their child-process and verification behavior."
 metadata:
-  version: "1.8.0"
+  version: "2.0.0"
 ---
 
 # Runtime operations
@@ -71,7 +71,9 @@ can escape, a command can hang, or an error can point to the wrong component.
   process environment, because that change affects every later call. Filter by
   prefix so a later release of a tool cannot reintroduce a variable that takes
   precedence over the intended credential.
-- Pass an argument vector, never a string for a shell to parse.
+- Pass an argument vector, never a string for a shell to parse. A downstream
+  service manager can still expand that vector; select literal handling at that
+  boundary and verify the values received by the child.
 - Bound every call with a timeout, and decide what a timeout means. Connection,
   statement and idle limits are three different bounds, and a script usually wants
   all three.
@@ -103,7 +105,11 @@ senders.
   change. Preserve the configured external-action gate.
 
 [serviceControl.py](scripts/serviceControl.py) implements Linux user-systemd
-control. A consuming repository imports these helpers through this skill's
+control. Transient launches require the `--expand-environment` capability
+(upstream systemd 254 or later) and disable manager expansion so supplied arguments
+remain literal. The helper checks support before prerequisites or unit changes;
+installed-unit controls and status retain their existing requirements. A consuming
+repository imports these helpers through this skill's
 [loader](templates/service_runtime.py), which checks
 the [declared interface version](scripts/runtimeApi.py) before any import. Do not
 reach into the installed directory with an unchecked path.

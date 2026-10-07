@@ -169,6 +169,18 @@ def report(service) -> int:
     return 0 if selected == 'ready' else 1
 
 
+def _require_literal_arguments():
+    """Probe the client before stopping an instance or starting prerequisites."""
+    message = ('Transient services require systemd-run --expand-environment '
+               'support (upstream systemd 254 or later) to preserve literal arguments')
+    try:
+        result = run(['systemd-run', '--help'])
+    except (OSError, subprocess.SubprocessError) as error:
+        raise RuntimeError(message) from error
+    if '--expand-environment=' not in result.stdout:
+        raise RuntimeError(message)
+
+
 def control(service, action, *, reporting: bool = False):
     if action not in ('start', 'stop', 'restart', 'status', 'logs'):
         raise ValueError('Action must be start, stop, restart, status or logs')
@@ -203,6 +215,8 @@ def control(service, action, *, reporting: bool = False):
         raise ValueError('The selected service is not installed')
     if service.command and (service.port is None or not 1024 <= service.port <= 65535):
         raise ValueError('A transient preview needs a port between 1024 and 65535')
+    if service.command:
+        _require_literal_arguments()
     if service.before_start is not None:
         service.before_start()
     attempted = False
@@ -215,7 +229,8 @@ def control(service, action, *, reporting: bool = False):
             if state.get('LoadState') != 'not-found':
                 run(['systemctl', '--user', 'stop', service.unit])
             run(['systemctl', '--user', 'reset-failed', service.unit], check=False)
-            args = ['systemd-run', '--user', '--collect', f'--unit={service.unit}',
+            args = ['systemd-run', '--user', '--collect', '--expand-environment=no',
+                    f'--unit={service.unit}',
                     f'--property=WorkingDirectory={service.directory}', '--property=UMask=0077',
                     '--property=NoNewPrivileges=yes', '--property=KillMode=control-group',
                     '--property=TimeoutStopSec=15']
