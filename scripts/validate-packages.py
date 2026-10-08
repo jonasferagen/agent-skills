@@ -66,7 +66,7 @@ def check_local_links(unit: Path) -> list[str]:
 
 
 def check_copy_records(packages: list[Path]) -> list[str]:
-    """Each recorded cross-package copy names an existing counterpart that records it back."""
+    """Check reciprocal file references, not equality or meaning of the recorded rules."""
     by_name = {package.name: package for package in packages}
     records: dict[Path, tuple[tuple[str, str], list[tuple[int, str, str]]]] = {}
     for package in packages:

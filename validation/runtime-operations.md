@@ -232,3 +232,10 @@ Limits: no controller declares a class yet, and no project-wide launch reads one
 so this is a checked contract rather than observed behavior. The helper still
 binds only running services, so a scheduled controller builds its own line and
 passes its own `lifecycle`. No release tag was created.
+
+## Checked package copies — 2026-10-09
+
+Version 2.1.1 identifies the existing service-report declarations as the
+authority for checked vocabulary copies. Runtime behavior is unchanged.
+The [reference-sharing sweep](reference-sharing-sweep.md) records checks,
+compatibility evidence and remaining review limits.

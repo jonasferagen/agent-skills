@@ -49,3 +49,10 @@ operations and their exceptions, filename case, one primary runtime export,
 parameter-object triggers, directory placement, and barrel boundaries. Each can
 now be reviewed within design without changing the language package. Enforcement
 stays in patterns until a separate tooling trigger justifies another skill.
+
+## Checked package copies — 2026-10-09
+
+Version 1.0.2 identifies module syntax as a checked copy of the passage owned
+by typescript-patterns. The rule itself is unchanged.
+The [reference-sharing sweep](reference-sharing-sweep.md) records checks,
+compatibility evidence and remaining review limits.

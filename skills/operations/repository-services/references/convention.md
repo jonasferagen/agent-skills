@@ -179,7 +179,10 @@ A service with no instance reports `absent` rather than inventing one. Assuming 
 default instance is the failure this shape invites: one preview service reported a
 unit that had never been created while its only started instance stayed invisible.
 
-The `runtime-operations` skill owns the helper that builds and parses these lines, and the state a running service's unit maps to. A
+The `runtime-operations` skill's `serviceReport.py` owns the wire schema and
+closed vocabularies. Its helper builds and parses these lines and maps a running
+service's unit to its state. The tables here and the standalone dispatcher's
+schema and state vocabulary are checked copies in source maintenance. A
 controller that implements its own units builds its own line, and the helper
 validates it.
 

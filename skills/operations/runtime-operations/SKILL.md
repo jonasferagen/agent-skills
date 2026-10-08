@@ -2,7 +2,7 @@
 name: runtime-operations
 description: "Design or change credential handling, local service controls and encrypted database backups. Use for secret custody, execution identities, lifecycle or recovery tooling, and their child-process and verification behavior."
 metadata:
-  version: "2.1.0"
+  version: "2.1.1"
 ---
 
 # Runtime operations

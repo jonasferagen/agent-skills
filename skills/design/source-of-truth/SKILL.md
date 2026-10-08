@@ -2,7 +2,7 @@
 name: source-of-truth
 description: "Reconcile a rule, vocabulary or shape defined in several places. Use when copies drift, a change requires coordinated edits, or a consistency check needs to survive restructuring."
 metadata:
-  version: "3.0.0"
+  version: "3.1.0"
 ---
 
 # Authoritative definitions
@@ -51,6 +51,8 @@ project scaffold or companion installation.
 
 - To find a concept's owner, compare similar definitions, choose derivation or
   assess drift risk, read [definitions](references/definitions.md).
+- For configuration, external identifiers or repository locations used in several
+  places, read [one owner for a shared value](references/authoritative-values.md).
 - When a language, build or runtime boundary prevents direct reuse, read
   [boundaries](references/boundaries.md).
 - When keeping or adding a consistency check, read

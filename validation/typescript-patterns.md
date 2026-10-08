@@ -215,3 +215,10 @@ split. Version 2.0.0's description was written for the split and has 30 words, s
 the review's measurements for this skill describe 1.1.1, not 2.0.0. See [the
 discovery review](discovery.md) for the measured sizes, scope and verification.
 Earlier behavioral results do not establish the new discovery behavior.
+
+## Checked package copies — 2026-10-09
+
+Version 2.0.2 identifies module syntax as the authoritative passage for its
+checked copy in typescript-design. The rule itself is unchanged.
+The [reference-sharing sweep](reference-sharing-sweep.md) records checks,
+compatibility evidence and remaining review limits.

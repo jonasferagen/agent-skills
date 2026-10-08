@@ -111,6 +111,20 @@ such as `<!-- Package-boundary copy: test-writing/references/fixtures.md states
 this rule for ordinary tests. Keep both passages aligned. -->`. Paths start with
 the counterpart's package name.
 
+These comments record a maintenance relationship, not semantic agreement. Name
+the authoritative owner when one passage is a copy. Prefer deriving a required
+copy or checking it against that owner over relying on a reminder. Source-level
+reuse can cross package boundaries while every committed package remains
+independently installable. Keep contextual applications distinct when exact
+wording would erase their different responsibilities.
+
+A distribution may import an explicitly self-contained reference as a file,
+recording its owning skill, version, source path and full commit. This does not
+install or register the whole skill. The shared-value reference at
+`skills/design/source-of-truth/references/authoritative-values.md` supports that
+use and requires no sibling resources. Preserve the imported bytes and record
+the distribution's own adoption and routes separately.
+
 ## Verification
 
 For source maintenance, install Node 24, Python 3.11 or later and GnuPG, run
@@ -125,6 +139,11 @@ not establish live service or database acceptance.
 targets, package containment, unique names and that each recorded copy names an
 existing counterpart that records it back. Behavioral scenarios in `validation/`
 and bundled helper tests still need their own review.
+
+`python3 scripts/check_shared_contracts.py` compares the selected TypeScript
+module-syntax copy and service-report vocabulary with their current owners. The
+ordinary `scripts/check.py` gate runs it and the compatibility tests. This is a
+bounded check of declared shared contracts, not a semantic scan of all guidance.
 
 ## Discovery and lesson capture
 

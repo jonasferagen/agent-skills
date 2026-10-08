@@ -66,6 +66,7 @@ def main() -> int:
         print('\n'.join(errors), file=sys.stderr)
         return 1
     commands = [[sys.executable, str(ROOT / 'scripts/validate-packages.py')]]
+    commands.append([sys.executable, str(ROOT / 'scripts/check_shared_contracts.py')])
     commands.extend([sys.executable, str(Path(__file__).resolve()), '--suite', str(directory)]
                     for directory in directories)
     failures = 0

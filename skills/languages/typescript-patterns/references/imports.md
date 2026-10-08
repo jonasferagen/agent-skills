@@ -1,6 +1,6 @@
 # Module imports
 
-<!-- Package-boundary copy: typescript-design/references/imports-and-barrels.md (Module And Path Syntax). Keep both passages aligned. -->
+<!-- Package-boundary copy: typescript-design/references/imports-and-barrels.md (Module And Path Syntax) is checked against this authoritative passage by the source-maintenance gate. -->
 
 ## Module And Path Syntax
 

@@ -331,3 +331,10 @@ check is clean. The earlier trial records under
 `validation/service-foundation-trials/` describe the previous dispatcher and are
 left as the observations they were; no release tag was created, and no consuming
 project has been re-imported at this revision.
+
+## Checked package copies — 2026-10-09
+
+Repository-services 0.3.1 identifies the report schema and vocabulary owner
+and preserves the standalone dispatcher and 0.3.0 member-selection interface.
+The [reference-sharing sweep](reference-sharing-sweep.md) records checks,
+compatibility evidence and remaining review limits.

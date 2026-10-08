@@ -45,15 +45,9 @@ setting the process actually reads, the generated artifact that ships. Code that
 filters on a vocabulary is downstream of whatever admits values into it. A
 document describing the vocabulary is downstream of both.
 
-For an external identifier that this project chooses to use in several places,
-such as a plugin namespace or a service address, look for an existing settings
-owner first. If none exists, keep the chosen value in one project-owned lookup
-table. Documentation can refer to its key rather than repeat the literal.
-Generate machine-readable copies from that table when a consumer requires a
-literal; if generation is unavailable, compare each copy with the table in a
-required check. A placeholder in a manifest is not derivation unless its loader
-actually resolves it. Historical pins and citations keep the values they used
-at the time; they answer a different question from current configuration.
+For a shared setting or external identifier, follow
+[one owner for a shared value](authoritative-values.md). It covers existing
+configuration owners, lookup declarations, explicit inputs and historical values.
 
 Validation that is stricter than the home is also a defect. A check that refuses
 input the home would accept cannot protect the concept; it can only reject a

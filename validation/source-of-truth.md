@@ -282,3 +282,9 @@ examples and UI metadata remain together. The entrypoint now follows declared
 project authority and repair routes instead of requiring project-foundation.
 Earlier dated records retain their original tested source identities.
 Migration routing evidence is recorded in [the extraction review](framework-extraction.md).
+
+## Shared-value export — 2026-10-09
+
+Version 3.1.0 adds a self-contained shared-value reference while retaining
+project-owned layouts and configuration. The [reference-sharing sweep](reference-sharing-sweep.md)
+records its scope, installed-copy walkthrough, checks and independent-review limit.

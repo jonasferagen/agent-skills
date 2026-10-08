@@ -6,6 +6,8 @@ NAME = re.compile(r'[a-z][a-z0-9-]*(:[a-z][a-z0-9-]*)?')
 
 
 class ServiceReport:
+    # Authoritative wire schema and closed vocabularies. Source maintenance checks
+    # the standalone dispatcher and service convention against these declarations.
     SCHEMA = 'service-report/v1'
     # A closed vocabulary. A reader learns seven words once, and a controller cannot
     # invent an eighth that every consumer would then have to guess at:

@@ -21,6 +21,11 @@ templates, scripts and tests live inside its directory, and it names another
 skill rather than linking to it. This repository ships no bundles; a downstream
 distribution that bundles skills owns its own manifest and checks.
 
+Standalone installation does not require independent authorship. Source
+maintenance can derive or compare package-local copies of a shared rule; the
+committed package must remain complete. Do not replace its local resources with
+links or runtime imports into another skill.
+
 For a named skill, start at that package. Use the catalog when selecting additional
 guidance. Read the relevant maintenance section directly: [package use](README.md#using-a-skill),
 [routing quality](README.md#routing-quality), [releases](README.md#skill-releases)
