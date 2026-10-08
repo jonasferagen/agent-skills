@@ -2,15 +2,10 @@
 name: source-of-truth
 description: "Reconcile a rule, vocabulary or shape defined in several places. Use when copies drift, a change requires coordinated edits, or a consistency check needs to survive restructuring."
 metadata:
-  version: "3.1.0"
+  version: "3.1.1"
 ---
 
 # Authoritative definitions
-
-If execution exposes a consequential guidance or routing problem, surface its
-effect and use the project's declared capture and repair route when available.
-Continue unaffected work; retain the concrete finding when the source or repair
-route is unavailable. Successful work needs no capture pass.
 
 Give each concept one authoritative home: the place that decides its value or
 rule. Derive every other appearance from that home, or make a check fail when the

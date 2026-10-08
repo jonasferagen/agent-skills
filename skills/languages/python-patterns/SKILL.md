@@ -2,7 +2,7 @@
 name: python-patterns
 description: "Write or review Python types, data boundaries, defaults, exceptions, resource cleanup and async tasks. Use for language correctness and failure handling; class organization belongs to adopted design guidance."
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Python patterns
@@ -41,7 +41,8 @@ rather than silently changing either owner. Follow the user's explicit decision.
 ## Scope and output
 
 Leave the code with an honest type and failure contract, and name the evidence.
-The repository's design guidance determines where operations and classes live.
+The repository's design guidance determines where operations and classes live;
+python-design is a suitable companion when available.
 Use the project's formatter, linter and type checker; do not add competing tools
 or change coverage thresholds as part of an ordinary code edit.
 

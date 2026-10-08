@@ -1,4 +1,4 @@
 interface:
-  display_name: "Node Patterns"
+  display_name: "Node patterns"
   short_description: "Preserve child-process outcomes and exit status in Node scripts"
   default_prompt: "Use $node-patterns to check that this Node script reports child-process failures, output and its own exit status accurately."

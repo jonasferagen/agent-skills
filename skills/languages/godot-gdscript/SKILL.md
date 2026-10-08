@@ -2,7 +2,7 @@
 name: godot-gdscript
 description: "Write or review Godot GDScript, headless scene probes, resource imports and scene-geometry measurements. Use for engine implementation and technical evidence; perceptual review needs its own observer workflow."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Godot and GDScript
@@ -67,10 +67,6 @@ bounds do not establish an animated silhouette: identify animation, sample time
 and the measurement method. Retain scene/resource identity, relevant transforms
 and camera settings with the result. Pixels and FOV cannot supply an observer's
 physical screen size or perceived distance.
-
-If work exposes a missing case or costly workaround, surface the concrete effect
-and smallest candidate improvement in existing work notes. Keep unverified fixes
-explicit; ordinary success needs no extra report.
 
 ## Technical sources
 

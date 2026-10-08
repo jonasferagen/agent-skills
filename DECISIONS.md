@@ -19,6 +19,39 @@ project-instructions convention describes that defect; this repository installs
 no documentation collection, so the wording is adopted on its merits and not to
 satisfy an installed rule.
 
+### State the reporting checkpoint once — adopted
+
+The 8 October decision below gives consequential guidance and routing problems
+one route: the checkpoint in the consuming project's instructions. Three
+entrypoints (clear-writing, diagrams-and-tables, source-of-truth) still opened
+with their own restatement of that trigger, and godot-gdscript closed with an
+older wording of it, while the other 24 skills carried none. A reader could not
+tell whether the four had a stronger duty or had merely been written earlier.
+The restatements are removed; the obligation is unchanged and lives where the
+checkpoint record says it does. project-contracts keeps its one sentence, which
+draws a boundary (a missing project term is not a skill defect) rather than
+restating the trigger. The four take patch versions because the consumer's
+requirement did not move; only its restatement did.
+
+### Validation pages follow skill names — adopted
+
+The catalog asks for `validation/<name>.md`. After the 7 October flattening,
+work-records and repository-services were the only skills whose intended
+behaviour lived under a collection's name. `process-design.md` is renamed to
+`work-records.md`, since work-records was its only member and its dated sections
+keep the collection name. `repository-services.md` is new and links the service
+foundation history and trials that exercised its templates, validator and
+dispatcher. `service-foundation.md` stays, because it also records
+service-boundaries and runtime-operations decisions.
+
+The README defines the `(draft)` marker, which eight catalog rows carried without
+a stated meaning. Package validation now checks link fragments inside a package,
+and a source test checks that the README, repository instructions and this log
+resolve their local links, since history under `validation/` may cite moved
+paths but the live maintenance pages may not. The
+[sweep record](validation/standalone-sweep-2026-10-09.md) holds the findings
+and checks.
+
 ## 6 October 2026
 
 ### Task worktrees belong to the acting agent — superseded by 9 October above
@@ -52,7 +85,7 @@ Project-foundation owns the named-process document type and its
 records. Process-design 0.2.0 recorded taking the process type and the
 `review-feedback-section` template over as its next step; that intention is
 withdrawn and the boundary is now stated as a settled division of document
-types in the [extension boundary](collections/process-design/references/extension.md#owned-by-the-project-framework).
+types in the [extension boundary](skills/workflow/work-records/references/extension.md#owned-by-the-project-framework).
 
 The reason is that a recorded future transfer is a second source of truth while
 it is pending. A consumer reading either collection had to know which release it
@@ -135,7 +168,7 @@ installation migration from this cleanup.
 | --- | --- |
 | [Containerization](skills/operations/containerization/SKILL.md) | Images, stack configuration, startup and container resource cleanup |
 | [Database migrations](skills/operations/database-migrations/SKILL.md) | History, runners, baselines, bootstrap, upgrades and migration verification |
-| [Service boundaries](collections/service-foundation/skills/service-boundaries/SKILL.md) | Service ownership, caller identities and shared application behavior across HTTP/MCP |
+| [Service boundaries](skills/design/service-boundaries/SKILL.md) | Service ownership, caller identities and shared application behavior across HTTP/MCP |
 
 These tasks can arise independently of containers. The database-testing reference
 moves with migrations; container cleanup mechanics stay with containerization.
@@ -150,7 +183,9 @@ Containerization's narrowed scope is version 1.0.0; the two new packages start a
   systemd implementations.
 - Consider separating consistency-check design from source-of-truth, with a home
   under verification.
-- Clarify documentation ownership versus domain modeling in project-docs.
+- Clarify documentation ownership versus domain modeling in project-docs. (That
+  skill left this repository with project-foundation on 4 October 2026; the idea
+  went with it.)
 - Decide user-wide installation after the responsibilities settle.
 
 Keep verification-design, test-writing and test-audit separate: they select
@@ -560,7 +595,7 @@ evidence belongs in [application-design validation](validation/application-desig
 ## 2026-10-04 — Service foundation pilot
 
 Move `service-boundaries` and `runtime-operations` into one complete
-[service-foundation collection](collections/service-foundation/COLLECTION.md),
+[service-foundation collection](https://github.com/jonasferagen/agent-skills/blob/914aa01b1915d190ee0429d18a570e72c179fd5d/collections/service-foundation/COLLECTION.md),
 version 0.1.0. Member names, versions, helper APIs and behavior are unchanged;
 there is one source home per member. Earlier standalone pins remain historical
 identities, not alternate current sources. Application-foundation 0.1.1 adds a

@@ -2,7 +2,7 @@
 name: typescript-design
 description: "Apply the class-based TypeScript house style when shaping operations, domain values, dependency ports, naming, directories, barrels, resolution or orchestration. Use for code organization and ownership decisions."
 metadata:
-  version: "1.0.2"
+  version: "1.0.3"
 ---
 
 # TypeScript design
@@ -10,7 +10,8 @@ metadata:
 Apply the class-based TypeScript house style. Exported operations use static
 or stateful classes, with the narrow exceptions in
 [class shape](references/class-shape.md#classes-and-managers).
-Type checking and compiler settings remain the repository's language guidance.
+Type checking and compiler settings remain the repository's language guidance;
+typescript-patterns is a suitable companion when available.
 
 <!-- Package-boundary copy: typescript-patterns/SKILL.md carries the same repository authority, workflow and output expectations. Keep both aligned. -->
 **The repository's local docs own product facts: grammar, framework setup, enforcement commands, package
@@ -54,7 +55,7 @@ repository.
 | A barrel, public surface or external boundary is unclear | [Imports and barrels](references/imports-and-barrels.md) |
 | Code needs design diagnostic questions | [Design review heuristics](references/review-heuristics.md) |
 
-## Shape Escalation
+## Shape escalation
 
 Escalate a value to the next shape only when that step's trigger fires:
 

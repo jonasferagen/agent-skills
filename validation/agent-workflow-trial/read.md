@@ -1,6 +1,6 @@
 # Reading result
 
-Author and Editor are accountable owners in this proposed view; the lanes do not establish separate services. The crossing passes the **Candidate revision** as a work handoff, not an API call. No network interface or deployment mapping is declared. The agent acting for Editor may decide whether citations pass because Editor explicitly delegated citation decisions to it. A pass leads to **Record accepted revision**; a failure returns findings to Author. These are statements about the proposed process, not evidence that it has been implemented. Source: [existing-view.md](existing-view.md), its status/legend, labelled crossing, and delegation statement.
+Author and Editor are accountable owners in this proposed view; the lanes do not establish separate services. The crossing passes the **Candidate revision** as a work handoff, not an API call. No network interface or deployment mapping is declared. The agent acting for Editor may decide whether citations pass because Editor explicitly delegated citation decisions to it. A pass leads to **Record accepted revision**; a failure returns findings to Author. These are statements about the proposed process, not evidence that it has been implemented. Source: the fixture's `existing-view.md` (not retained with this record), its status/legend, labelled crossing, and delegation statement.
 
 # Routing evidence
 

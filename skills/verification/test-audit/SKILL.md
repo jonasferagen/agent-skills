@@ -5,7 +5,7 @@ metadata:
   version: "0.3.2"
 ---
 
-# Test Audit
+# Test audit
 
 <!-- Package-boundary copy: test-writing/SKILL.md opens with the same repository authority rule. Keep both aligned. -->
 **Local docs own the testing standard; this package supplies the lenses.** The
@@ -26,8 +26,8 @@ command. **A focused-test marker is a hard finding:** it silently skips every
 unfocused test in its scope (its file in some runners, the whole run in others),
 so the suite can still report green over a denominator it never names. Report it
 prominently and remove it only when the user's request authorizes test edits.
-Writing tests for discovered gaps is follow-up work; use
-the `test-writing` skill when that work is authorized.
+Writing tests for discovered gaps is follow-up work; use the `test-writing`
+skill when that work is authorized.
 
 Three neighbouring passes are not this one. Tests inside a change under review
 belong to that review. A finding whose subject is the production contract behind
@@ -50,8 +50,8 @@ result as partial feedback, not as complete verification. The reading project's
 own policy decides which runs are required for a change or release.
 When a fast lane lists its members, the full lane must still select every
 listed test; membership is a performance classification, not a coverage exception.
-Use the `verification-design` skill when the task asks
-which checks an active change needs.
+Use the `verification-design` skill when the task asks which checks an active
+change needs.
 
 ## Workflow
 

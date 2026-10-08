@@ -2,7 +2,7 @@
 name: python-design
 description: "Apply the class-based Python house style when shaping operations, domain values, dependency protocols, naming and module boundaries. Use for code organization and ownership decisions."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Python design
@@ -48,4 +48,5 @@ rather than silently changing either owner. Follow the user's explicit decision.
 Stop at a passive contract for wire records and one-shot inputs. Classes should
 make responsibility visible; inheritance, factories and registries need their
 own use case. Language correctness and tool configuration remain separate
-concerns. Neither a test framework nor a package manager is prescribed here.
+concerns; python-patterns is a suitable companion for language correctness when
+available. Neither a test framework nor a package manager is prescribed here.

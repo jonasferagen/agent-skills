@@ -10,6 +10,9 @@ from urllib.parse import unquote, urlsplit
 ROOT = Path(__file__).resolve().parent.parent
 SKILLS = ROOT / "skills"
 LINK = re.compile(r"!?(?:\[[^\]]*\])\(([^)]+)\)")
+HEADING = re.compile(r"^#{1,6}[ \t]+(.+?)[ \t]*#*[ \t]*$")
+HTML_ANCHOR = re.compile(r'<a\s+(?:id|name)="([^"]+)"')
+FENCE = re.compile(r"^(```|~~~)")
 COPY_RECORD = re.compile(r"<!-- Package-boundary copy: (.*?)-->")
 COPY_TARGET = re.compile(r"\b([a-z][a-z0-9-]*)/((?:[\w.-]+/)*[\w.-]+\.md)\b")
 VERSION = re.compile(r'^  version: "([^"]+)"$')
@@ -47,22 +50,67 @@ def check_package(package: Path) -> list[str]:
     return errors
 
 
-def check_local_links(unit: Path) -> list[str]:
+def display(page: Path) -> str:
+    """A page's path relative to this checkout, or as given when it lies outside it."""
+    resolved = page.resolve()
+    return str(resolved.relative_to(ROOT) if resolved.is_relative_to(ROOT) else page)
+
+
+def heading_anchors(page: Path) -> set[str]:
+    """Fragments a Markdown renderer derives from headings, plus explicit HTML anchors.
+
+    Follows the common slug rule: lower-case, punctuation other than hyphens and
+    spaces dropped, spaces to hyphens, a numeric suffix for a repeated heading.
+    """
+    anchors: set[str] = set()
+    seen: dict[str, int] = {}
+    in_fence = False
+    for line in page.read_text(encoding='utf-8').splitlines():
+        if FENCE.match(line):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        anchors.update(HTML_ANCHOR.findall(line))
+        match = HEADING.match(line)
+        if not match:
+            continue
+        text = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", match.group(1))
+        text = re.sub(r"[`*_]", "", text)
+        slug = re.sub(r"[^\w\- ]", "", text.lower()).strip().replace(" ", "-")
+        count = seen.get(slug, 0)
+        seen[slug] = count + 1
+        anchors.add(slug if count == 0 else f"{slug}-{count}")
+    return anchors
+
+
+def check_page_links(page: Path, unit: Path, anchors: dict[Path, set[str]] | None = None) -> list[str]:
+    """Check one page's local links: target inside the unit, file present, fragment present."""
     errors = []
-    for page in unit.rglob("*.md"):
-        for line_number, line in enumerate(page.read_text(encoding='utf-8').splitlines(), 1):
-            for match in LINK.finditer(line):
-                destination = match.group(1).strip().split()[0].strip("<>")
-                parsed = urlsplit(destination)
-                if parsed.scheme or parsed.netloc or not parsed.path:
-                    continue
-                target = (page.parent / unquote(parsed.path)).resolve()
-                location = f"{page.relative_to(ROOT)}:{line_number}"
-                if not target.is_relative_to(unit.resolve()):
-                    errors.append(f"{location}: link leaves installation unit: {destination}")
-                elif not target.exists():
-                    errors.append(f"{location}: missing link target: {destination}")
+    anchors = {} if anchors is None else anchors
+    for line_number, line in enumerate(page.read_text(encoding='utf-8').splitlines(), 1):
+        for match in LINK.finditer(line):
+            destination = match.group(1).strip().split()[0].strip("<>")
+            parsed = urlsplit(destination)
+            if parsed.scheme or parsed.netloc or not (parsed.path or parsed.fragment):
+                continue
+            target = (page.parent / unquote(parsed.path)).resolve() if parsed.path else page.resolve()
+            location = f"{display(page)}:{line_number}"
+            if not target.is_relative_to(unit.resolve()):
+                errors.append(f"{location}: link leaves installation unit: {destination}")
+            elif not target.exists():
+                errors.append(f"{location}: missing link target: {destination}")
+            elif parsed.fragment and target.suffix == ".md":
+                if target not in anchors:
+                    anchors[target] = heading_anchors(target)
+                if unquote(parsed.fragment) not in anchors[target]:
+                    errors.append(f"{location}: missing link anchor: {destination}")
     return errors
+
+
+def check_local_links(unit: Path) -> list[str]:
+    anchors: dict[Path, set[str]] = {}
+    return [error for page in sorted(unit.rglob("*.md")) for error in check_page_links(page, unit, anchors)]
 
 
 def check_copy_records(packages: list[Path]) -> list[str]:

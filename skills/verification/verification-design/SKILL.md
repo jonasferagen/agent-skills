@@ -57,7 +57,7 @@ the same verdict. Broaden checks when the change crosses a boundary or a focused
 run reveals a concrete unresolved risk; stop repeating unaffected tiers once
 the required evidence is in hand.
 
-When the selected evidence requires writing a test, use
-the `test-writing` skill. For weak assertions, mock drift or
-missing cases in a settled suite, use the `test-audit` skill.
-Load those skills only when the requested work reaches their task.
+When the selected evidence requires writing a test, use the `test-writing`
+skill. For weak assertions, mock drift or missing cases in a settled suite, use
+the `test-audit` skill. Load those skills only when the requested work reaches
+their task.

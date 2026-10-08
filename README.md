@@ -4,6 +4,8 @@ Jonas's reusable, project-agnostic agent skills. Every skill is a standalone
 package at `skills/<area>/<name>/`, installed by its name and complete in its
 own directory. Areas group skills by their main task for browsing; they do not
 require loading every skill in the group, and they are not installation units.
+A skill marked (draft) is a first version whose scope is still settling: expect
+its contract to change, and read its validation page for what has been exercised.
 
 [Decision log](DECISIONS.md) records structural decisions and ideas for follow-up.
 Dated review and trial records live under `validation/`; the
@@ -136,8 +138,11 @@ prerequisites fail explicitly. CI runs the same command. These local checks do
 not establish live service or database acceptance.
 
 `python3 scripts/validate-packages.py` alone checks frontmatter, local link
-targets, package containment, unique names and that each recorded copy names an
-existing counterpart that records it back. Behavioral scenarios in `validation/`
+targets and anchors, package containment, unique names and that each recorded
+copy names an existing counterpart that records it back. A source test applies
+the same link check to this README, the repository instructions and the
+decision log; dated records under `validation/` may cite paths that have since
+moved. Behavioral scenarios in `validation/`
 and bundled helper tests still need their own review.
 
 `python3 scripts/check_shared_contracts.py` compares the selected TypeScript
@@ -327,18 +332,18 @@ $test-writing to add a regression test for this parser fix", "Use $test-writing
 to build sample records for the importer tests." See
 [validation](validation/test-writing.md).
 
-Historical note: **shared-code-design** is now retired; see the
-[decision log](DECISIONS.md).
-
-**verification-design** and **shared-code-design** capture two architecture
-decisions exposed by a review of the local Atlas/Work proof of concept in
-2026-09. The former separates evidence at schema, domain, independent-session,
-public-interface and built-artifact boundaries while looking for repeated setup.
-The latter compares checked copies with generation and versioned dependencies
-against the promise that each component builds independently. The installable
-skills use language-neutral examples and impose no project test matrix or
-package manager. See their [verification scenarios](validation/verification-design.md)
-and [shared-code scenarios](validation/shared-code-design.md).
+**verification-design** and the since-retired **shared-code-design** captured two
+architecture decisions exposed by a review of the local Atlas/Work proof of
+concept in 2026-09. The former separates evidence at schema, domain,
+independent-session, public-interface and built-artifact boundaries while
+looking for repeated setup. The latter compared checked copies with generation
+and versioned dependencies against the promise that each component builds
+independently; it was retired on 2 October 2026 (see the
+[decision log](DECISIONS.md)) and its
+[validation history](validation/shared-code-design.md) is preserved. The
+installable skill uses language-neutral examples and imposes no project test
+matrix or package manager. See its
+[verification scenarios](validation/verification-design.md).
 
 **containerization** 0.3.0 adds reuse of one service image for API, migration
 and seed commands when their runtime files are the same. This came from the same
@@ -353,8 +358,9 @@ audit need not run the suite. See [validation](validation/test-audit.md).
 
 **clear-writing** brings the short-text guidance into a reusable prose skill,
 with a shared core and separate references for instructions and short text. It
-covers wording and meaning; document ownership belongs to `project-docs` and
-visual form to `diagrams-and-tables`. Jonas's email voice has its own skill
+covers wording and meaning; visual form belongs to `diagrams-and-tables`, and
+document ownership stayed with `project-docs`, which left this repository with
+project-foundation on 4 October 2026. Jonas's email voice has its own skill
 outside this repository. Its first prose trials are the conceptual
 `source-of-truth` skill and the procedural `bash-patterns` skill; a later sweep
 revised eight more packages. See [validation scenarios and
@@ -372,8 +378,10 @@ services and checked against PostgreSQL 17. See
 [validation and alignment](validation/postgres-design.md) for pinned sources,
 adoption differences and review limits.
 
-**project-docs** was developed from a documentation review and cleanup in
-Personal on 2026-09-19. The reusable guidance is newly written, and the worked
+**project-docs** lived here until 4 October 2026, when it moved with
+project-foundation to [its own repository](https://github.com/jonasferagen/project-foundation).
+It was developed from a documentation review and cleanup in Personal on
+2026-09-19. The reusable guidance is newly written, and the worked
 example is synthetic. The source project credited Forge Agent Kit and Diátaxis
 as earlier influences; the package contains no copied upstream skill files. It
 supports establishing a documentation set, reviewing an existing one, and

@@ -2,15 +2,10 @@
 name: diagrams-and-tables
 description: "Read or explain diagrams and tables, check their meaning, choose a visual form, or construct and visually review one. Route by the task so interpreting an existing view does not require authoring or renderer guidance."
 metadata:
-  version: "0.12.0"
+  version: "0.12.1"
 ---
 
 # Diagrams and tables
-
-If execution exposes a consequential guidance or routing problem, surface its
-effect and use the project's declared capture and repair route when available.
-Continue unaffected work; retain the concrete finding when the source or repair
-route is unavailable. Successful work needs no capture pass.
 
 Start with the user's question and the existing view, caption, legend and source.
 Keep what the view states separate from what the underlying system proves.

@@ -2,14 +2,15 @@
 name: typescript-patterns
 description: "Write or review TypeScript types, narrowing, generics, absence, tuples, brands and module syntax. Use also for compiler strictness and lint enforcement; class organization and naming belong to adopted design guidance."
 metadata:
-  version: "2.0.2"
+  version: "2.0.3"
 ---
 
 # TypeScript patterns
 
 Apply TypeScript language patterns and type-safety conventions. This package
 does not prescribe class-based operations, filename conventions or directory
-layout. Repository design guidance owns those choices.
+layout. Repository design guidance owns those choices; typescript-design is a
+suitable companion when available.
 
 <!-- Package-boundary copy: typescript-design/SKILL.md carries the same repository authority, workflow and output expectations. Keep both aligned. -->
 **The repository's local docs own product facts: grammar, framework setup, enforcement commands, package

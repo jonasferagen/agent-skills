@@ -1,3 +1,3 @@
 interface:
-  display_name: "Postgres Design"
+  display_name: "Postgres design"
   short_description: "Relational identity, state and integrity conventions"

@@ -5,7 +5,7 @@ metadata:
   version: "0.1.3"
 ---
 
-# Node Patterns
+# Node patterns
 
 Read the repository's instructions first. They determine which scripts exist,
 what each one checks and what should happen when it fails.

@@ -28,9 +28,8 @@ use it as permission to pick the easier rule.
    and which failure would disprove it. A test whose failure you cannot name is
    not ready to be written. Whether a change needs a test at all, and at which
    layer, is a question of evidence. Settle that first; this skill starts once
-   a test is to be written. Use
-   the `verification-design` skill if the evidence is
-   still undecided.
+   a test is to be written. Use the `verification-design` skill if the evidence
+   is still undecided.
 2. **Open the references the work needs,** from the table below: the one for
    your kind of test, and fixtures. Do this before you look at real records.
 3. **Make up every value.** Real records show the shape of the input: a data
@@ -108,10 +107,8 @@ asking.
 
 ## Scope
 
-This skill covers writing tests and their fixtures. Use
-`verification-design` to choose checks for a
-change or milestone, and `test-audit` to assess a settled
+This skill covers writing tests and their fixtures. Use `verification-design`
+to choose checks for a change or milestone, and `test-audit` to assess a settled
 suite. This skill does not pick a framework or set a coverage threshold. It
-supplies no check for copied
-values: a project that keeps real data at hand owns one, and the fixtures
-reference says what it needs.
+supplies no check for copied values: a project that keeps real data at hand owns
+one, and the fixtures reference says what it needs.

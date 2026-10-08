@@ -1,9 +1,11 @@
-# Process design validation
+# Work records validation
 
-Scope boundaries worth testing for the [process-design collection](https://github.com/jonasferagen/agent-skills/blob/914aa01b1915d190ee0429d18a570e72c179fd5d/collections/process-design/COLLECTION.md)
-and its [work-records](../skills/workflow/work-records/SKILL.md) member.
-This page records intended behaviour and actual results; it establishes no
-consumer adoption.
+Scope boundaries worth testing for [work-records](../skills/workflow/work-records/SKILL.md).
+Until the catalog was flattened on 7 October 2026 this was the page of the
+[process-design collection](https://github.com/jonasferagen/agent-skills/blob/914aa01b1915d190ee0429d18a570e72c179fd5d/collections/process-design/COLLECTION.md),
+whose only member was work-records; the dated sections below keep that name and
+the paths they tested. This page records intended behaviour and actual results;
+it establishes no consumer adoption.
 
 ## Intended selection
 
@@ -13,9 +15,9 @@ consumer adoption.
 | Record what a run produced and what it does not establish | work-records, then the worklog template | The brief, as a results section |
 | Compare candidates for an open choice | work-records, then the study template | A project's architecture or planning owner |
 | Transfer a result with what the receiver can rely on | work-records, then the handoff template | An existing delivery contract's terms, which stay with that contract |
-| Fix a typo in an existing brief | Nothing from this collection | Any record authoring workflow |
-| A small task the active plan already tracks with a short result | Nothing from this collection | A brief, worklog and decision record |
-| Author or migrate a named process page | The project's own framework | This collection, which does not own that type in 0.1.0 |
+| Fix a typo in an existing brief | Not work-records | Any record authoring workflow |
+| A small task the active plan already tracks with a short result | Not work-records | A brief, worklog and decision record |
+| Author or migrate a named process page | The project's own framework | work-records, which does not own that document type |
 
 A record organizes work and grants no authority. A recorded disposition is not
 acceptance by an owner who did not give it, and `Workflow: done` is not adoption
