@@ -3,9 +3,25 @@
 Keep structural decisions and unresolved ideas here. Detailed trial evidence
 belongs in `validation/`. A follow-up idea is not an adopted requirement.
 
+## 9 October 2026
+
+### Prefer the acting agent's managed worktree support — adopted
+
+Use the acting agent's own managed worktree support when it provides one, and
+name a concrete fallback home for when it does not. Both hand-named homes stay
+correct as that fallback, and no existing worktree moves.
+
+Naming one assistant's directory first makes every other agent's correct
+behavior look like a deviation. The 6 October decision below named
+`~/.claude/worktrees/agent-skills/<task>` and then the Codex equivalent, so it
+read as a primary choice rather than one of two equals. project-bootstrap's
+project-instructions convention describes that defect; this repository installs
+no documentation collection, so the wording is adopted on its merits and not to
+satisfy an installed rule.
+
 ## 6 October 2026
 
-### Task worktrees belong to the acting agent — adopted
+### Task worktrees belong to the acting agent — superseded by 9 October above
 
 Task worktrees go under the acting agent's own home, as
 `~/.claude/worktrees/agent-skills/<task>` or the Codex equivalent, so each agent
