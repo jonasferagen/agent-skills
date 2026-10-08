@@ -61,3 +61,13 @@ unverified; package checks cannot establish them. No release tag is created.
 The reusable finding belongs in this bootstrap workflow: installing instructions
 and establishing the facts those instructions govern are separate outcomes.
 Policy prompts and document shape remain with their existing owners.
+
+## Environment requirements — 8 October 2026
+
+Bootstrap now establishes the consumer contract for a selected external runtime
+resource and keeps provisioning with its providing owner. The standalone skill
+states the minimum outcome and uses project-supplied environment guidance when
+available; it requires no companion package or particular manifest.
+
+See [environment requirement trials](environment-requirements-2026-10-08.md) for
+the fresh-context database setup case and the nearby owned-output control.

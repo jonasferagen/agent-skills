@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Establish a new project's or repository's scope, policy, overview and agent routes, or fill those starting-context gaps in an existing project. Use for project setup; a dependency-only upgrade or ordinary implementation needs its own workflow."
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Project bootstrap
@@ -43,6 +43,16 @@ Use evidence and established decisions to give the repository:
 - Explicit consequential unknowns, with what depends on them and when a decision
   is needed. Ask only when the current task needs the answer; proceed with
   unaffected work. An unknown is useful content, not a prompt to invent a choice.
+
+When a selected workflow relies on externally provided resources, establish its
+environment requirements: the resource and supported interface, required access,
+provider, environment binding and readiness or missing-dependency behavior. Use
+the project's environment-requirements guidance when supplied. A mounted collection
+can be an external dependency just as a separately operated database can. Keep
+consumer requirements with this repository and provisioning procedures with the
+provider; relying on a resource does not transfer its operational ownership.
+Ordinary temporary output is owned state, and a future option needs no provisioned
+dependency. Reuse adequate existing documentation rather than requiring a manifest.
 
 Separate observed implementation, adopted requirements and proposed work.
 A local checkout does not establish local-only deployment, synthetic data or

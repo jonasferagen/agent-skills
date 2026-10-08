@@ -19,3 +19,17 @@ established retry behavior. Container packaging is outside this package's scope.
 These scenarios received author review. No independent agent trial or HTTP/MCP
 implementation test was run. Package and link checks are recorded with the
 extraction in the containerization validation page.
+
+## Published filesystem boundary — 8 October 2026
+
+The earlier author-reviewed scenarios exercised private tables and transport
+adapters, but omitted a published filesystem resource. The unqualified phrase
+"mounting its data" could reject that valid contract and encourage an unnecessary
+service wrapper. The correction distinguishes published resources from private
+implementation storage and adds that distinction to boundary verification. This
+was a semantic coverage gap; package integrity checks could not detect it.
+
+The environment-requirements trial record below retains the published-filesystem,
+private-storage, external-database and owned-output cases and their limits.
+
+See [environment requirement trials](environment-requirements-2026-10-08.md).

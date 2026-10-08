@@ -1,0 +1,1 @@
+Trial installation: project-bootstrap base bb0aad2 plus the environment-requirements working change; agent-skills base 397b2ed plus service-boundaries and project-bootstrap working changes. Inventories describe the prior pins and are not regenerated trial evidence.

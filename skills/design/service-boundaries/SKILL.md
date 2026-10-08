@@ -2,7 +2,7 @@
 name: service-boundaries
 description: "Design or review service ownership and shared application behavior exposed through HTTP and MCP. Use when separating service responsibilities or adding a transport to an existing operation; container builds and protocol SDK setup are separate tasks."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Service boundaries
@@ -15,7 +15,12 @@ single application into services or adding another transport.
 ## Connect services through their contracts
 
 Give each service its own storage and runtime identity. Other services use its
-published operations rather than reaching into its tables or mounting its data.
+published contract rather than reaching into its private tables or storage.
+Determine whether a filesystem location is private implementation storage or an
+explicitly published resource before rejecting or wrapping access to it. A shared
+file collection can be the intended interface; consuming it does not require a
+new service or transport. Preserve its agreed layout, access and write semantics,
+and keep provisioning, credentials and storage lifecycle with their declared owner.
 A composition file may wire addresses and dependencies without owning domain
 rules. Independent services need not share a source tree or release together.
 
@@ -30,6 +35,12 @@ need DDL privileges; a normal request handler should use the service's narrower
 runtime role. An orchestrator receives only the access its operations need.
 
 ## Verify the boundary being changed
+
+For a storage boundary, exercise both sides of the distinction: access through a
+published resource contract must remain possible, while direct access to private
+service storage must not bypass its owner. Check required access, missing-resource
+behavior and any write or visibility guarantees the consumer relies on. A local
+write completing does not by itself establish remote persistence.
 
 Trace each public operation from transport input through identity and validation
 to its application handler and result mapping. Check that domain rules remain in
