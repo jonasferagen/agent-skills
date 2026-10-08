@@ -1,0 +1,3 @@
+interface:
+  display_name: "Project bootstrap"
+  short_description: "Establish project context, policy and working routes"

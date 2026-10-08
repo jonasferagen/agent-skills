@@ -62,6 +62,8 @@ Choose by the requested task; new regression work does not require a suite audit
 
 | Skill | Use it for |
 | --- | --- |
+| [project-bootstrap](skills/workflow/project-bootstrap/SKILL.md) (draft) | Establish actual project context, policy, overview and usable agent routes. |
+| [project-planning](skills/workflow/project-planning/SKILL.md) (draft) | Choose next work, sequence prerequisites and keep one coordination owner per item. |
 | [project-policy](skills/workflow/project-policy/SKILL.md) (draft) | Establish or interpret policy, assess compliance and review changed operating facts or obligations. |
 | [work-records](skills/workflow/work-records/SKILL.md) | Commission bounded work as a brief, retain its evidence and close it with a scoped disposition; ships the record chain, assignment contract, five templates and the opt-in `work-record/v1` checker. |
 | [pattern-capture](skills/workflow/pattern-capture/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
