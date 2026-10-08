@@ -25,6 +25,8 @@ repository supplies the packages and their versions.
 
 | Skill | Use it for |
 | --- | --- |
+| [project-design](skills/design/project-design/SKILL.md) (draft) | Shape system responsibilities, conceptual models, workflows and integration choices. |
+| [project-contracts](skills/design/project-contracts/SKILL.md) (draft) | Read, apply, design or review obligations at a handoff, including acceptance and failure. |
 | [source-of-truth](skills/design/source-of-truth/SKILL.md) | Give each rule a home and derive or check its other appearances. |
 | [application-design](skills/design/application-design/SKILL.md) (draft) | Shape operations, state ownership and dependency interfaces inside an application, including external operation boundaries. |
 | [service-boundaries](skills/design/service-boundaries/SKILL.md) | Define service ownership and shared behavior across HTTP and MCP adapters. |
