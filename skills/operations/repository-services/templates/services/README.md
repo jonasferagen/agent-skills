@@ -13,8 +13,8 @@ Use `./services/control <name> start|stop|restart|status|logs`.
 `./services/control --help` lists services with executable controllers. Options
 after the action pass through to that service's controller.
 `./services/control status` reports every service in the project: this checkout and
-each checkout named in the foundation References that has its own dispatcher. Add
-`--scope checkout` to narrow it to one. It reports the installed checkout even when
+each member checkout it was given, by repeated `--checkout` or once in
+`SERVICE_CHECKOUTS`. Add `--scope checkout` to narrow it to one. It reports the installed checkout even when
 run from a task worktree, and exits nonzero only when a controller will not run.
 
 <!-- Copy the dispatcher as executable services/control. Each defined service

@@ -2,9 +2,9 @@
 """Run a named service's start, stop, restart, status or logs control.
 
 `status` without a service name reports every service in the project: this
-checkout and each checkout named in the foundation References that has its own
-services/control. `--scope checkout` narrows it to one checkout. Other actions
-always name one service.
+checkout and each member checkout it was told about, by repeated `--checkout` or
+once in SERVICE_CHECKOUTS. `--scope checkout` narrows it to one checkout. Other
+actions always name one service.
 
 Reading is project-wide; starting and stopping stay checkout-local. A report is
 asked of the installed checkout, not of the task worktree the command was run
@@ -23,7 +23,6 @@ import argparse
 import json
 import os
 from pathlib import Path
-import re
 import subprocess
 import sys
 
@@ -31,7 +30,7 @@ ACTIONS = ("start", "stop", "restart", "status", "logs")
 SCOPES = ("workspace", "checkout")
 SCHEMA = "service-report/v1"
 STATES = ("ready", "scheduled", "stopped", "absent", "elsewhere", "failed", "unknown")
-REFERENCE = re.compile(r"^\|\s*([a-z0-9][a-z0-9-]*)\s*\|\s*([^|]+?)\s*\|\s*$")
+CHECKOUTS = "SERVICE_CHECKOUTS"
 
 
 def reports(output):
@@ -98,19 +97,24 @@ def installed(home):
     return root if (root / "services/control").is_file() else home.parent
 
 
-def references(checkout):
-    """Checkouts named in this checkout's foundation References table."""
-    foundation = checkout / "project-docs/foundation.md"
-    try:
-        text = foundation.read_text(encoding="utf-8")
-    except OSError:
-        return []
-    section = re.search(r"^## References\s*$(.*?)(?=^## |\Z)", text, re.M | re.S)
+def members(selected, declared):
+    """The member checkouts this dispatcher was told about, in the order given.
+
+    A project-wide read needs the other checkouts named: repeated --checkout for
+    one run, or SERVICE_CHECKOUTS once for a project whose members do not change.
+    Nothing is discovered by reading a document. A path written for a reader
+    drifts from the checkout it names, and the dispatcher cannot tell a stale row
+    from a member that is deliberately absent.
+    """
+    given = list(declared)
+    if not given:
+        given = [part for part in os.environ.get(CHECKOUTS, "").split(os.pathsep) if part]
     found = []
-    for line in (section[1] if section else "").splitlines():
-        match = REFERENCE.match(line)
-        if match and match[1] != "key":
-            found.append((match[1], (foundation.parent / match[2]).resolve()))
+    for part in given:
+        checkout = Path(part).expanduser()
+        if not checkout.is_absolute():
+            checkout = selected / checkout
+        found.append((checkout.name, checkout.resolve()))
     return found
 
 
@@ -194,6 +198,9 @@ def main() -> int:
                              "default workspace")
     parser.add_argument("--report", action="store_true",
                         help="with bare status, emit the " + SCHEMA + " lines instead of rows")
+    parser.add_argument("--checkout", action="append", default=[], metavar="PATH",
+                        help="with bare status, a member checkout to include; repeatable, "
+                             "or name them once in " + CHECKOUTS)
     args, options = parser.parse_known_args()
     if args.action is None:
         if args.target != "status":
@@ -206,18 +213,17 @@ def main() -> int:
         if args.scope == "checkout":
             return failed
         seen = {selected}
-        for key, checkout in references(selected):
+        for key, checkout in members(selected, args.checkout):
             sibling = checkout / "services/control"
             if checkout in seen:
                 continue
             if not sibling.is_file() or not os.access(sibling, os.X_OK):
                 # A declared member with no service home is stated, so no reader has to
-                # wonder whether it was skipped by accident. A reference that is not a
-                # repository at all, such as a content store, is not a member.
-                if (checkout / "project-docs/foundation.md").is_file():
-                    seen.add(checkout)
-                    print(f"\n== {key} ({checkout})")
-                    print("  no service home")
+                # wonder whether it was skipped by accident. Every member here was named
+                # deliberately, so none of them is dropped in silence.
+                seen.add(checkout)
+                print(f"\n== {key} ({checkout})")
+                print("  no service home")
                 continue
             seen.add(checkout)
             print(f"\n== {key} ({checkout})")
@@ -238,6 +244,8 @@ def main() -> int:
         return failed
     if args.scope != "workspace":
         parser.error("--scope applies only to bare status")
+    if args.checkout:
+        parser.error("--checkout applies only to bare status")
     if args.report:
         parser.error("--report applies only to bare status; a named service's control "
                      "takes it directly")

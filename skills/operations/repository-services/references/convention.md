@@ -94,10 +94,12 @@ services/
 Each `services/<name>/README.md` owns its purpose, operational definition and
 command route. Use lowercase names separated by hyphens. Use
 `./services/control <name> start|stop|restart|status|logs` as the common entry point. `./services/control status`
-without a name reports the whole project: this checkout and each checkout named in
-the foundation References that has its own dispatcher, with `--scope checkout` to
-narrow it to one. A declared member with no service home is reported as such rather
-than omitted. Starting, stopping, restarting and logs always name one service, so
+without a name reports the whole project: this checkout and each member checkout it
+was given, by repeated `--checkout` or once in `SERVICE_CHECKOUTS`, with
+`--scope checkout` to narrow it to one. A declared member with no service home is
+reported as such rather than omitted. The dispatcher reads no document to find its
+members: a path written for a reader drifts from the checkout it names, and a stale
+row cannot be told from a member that is deliberately absent. Starting, stopping, restarting and logs always name one service, so
 lifecycle changes stay explicit.
 
 Reading is project-wide; starting and stopping stay checkout-local. A bare status
@@ -219,7 +221,7 @@ composer reads; the dispatcher keeps the five named actions it has.
 
 ## Connect the owners and evidence
 
-Link the service index from the repository README and affected foundation or
+Link the service index from the repository README and the affected overview or
 design owner. Architecture decides responsibility and interfaces; the service
 guide owns exact operating commands. Keep candidates explicitly proposed in their
 design or planning owner, with the concrete need and next evidence required.

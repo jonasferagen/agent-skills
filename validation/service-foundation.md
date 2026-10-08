@@ -296,3 +296,38 @@ class and no launch reading one, so nothing here is verified as a working launch
 `python3 scripts/check.py` passes all five checks; `git diff --check` passes. The
 same reasoning applied to a real instance is recorded by that project, not here.
 No release tag was created.
+
+## 2026-10-09 — members are named, not read out of a document
+
+The dispatcher found the project's other checkouts by parsing a `## References`
+table out of `project-docs/foundation.md`: a regex over two-column Markdown rows,
+with a path resolved relative to that file, and a member without an executable
+dispatcher reported only when that same file existed beside it. The location
+belonged to a document layout the consuming project has since retired, so the
+discovery path led to a file that no longer exists there and the project-wide form
+silently reported one checkout.
+
+Members are now named explicitly: repeated `--checkout` for one run, or
+`SERVICE_CHECKOUTS` once for a project whose members do not change. A relative
+value resolves against the selected checkout. Every named member is reported,
+including one with no service home, which is no longer dropped for failing to look
+like a repository — it was named deliberately, so silence about it is wrong. The
+key in the `== key (path)` header is the checkout's directory name instead of a
+table key. `--checkout` is rejected with a named service, as `--scope` and
+`--report` already were. The repository-services manifest goes to 0.3.0: a default
+is removed and consumers must supply what the parser used to guess.
+
+Replacing the parser rather than pointing it at a different file is the decision
+worth recording. A dispatcher reading a document cannot distinguish a stale row
+from a member that is deliberately absent, and the table it read is written for a
+reader, not for a program. The consuming project's own rule now keeps such paths
+in one declared place; which place that is remains the project's choice, and a
+program takes its members as an argument either way.
+
+Checks: the package's 44 tests pass, including the rewritten project-wide case,
+a new case for the environment form and a new case rejecting `--checkout` with a
+named service. The repository check passes all five checks and the whitespace
+check is clean. The earlier trial records under
+`validation/service-foundation-trials/` describe the previous dispatcher and are
+left as the observations they were; no release tag was created, and no consuming
+project has been re-imported at this revision.

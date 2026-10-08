@@ -2,7 +2,7 @@
 name: repository-services
 description: "Define, document and check a repository's named services: the services/ home, per-service guides, the control dispatcher and the structural validator. Use when adopting the service convention, adding a service definition or its scheduled class, or reporting project-wide status; boundary and runtime design are separate skills."
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Repository services

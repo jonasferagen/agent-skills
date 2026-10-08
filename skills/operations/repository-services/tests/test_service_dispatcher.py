@@ -1,5 +1,6 @@
 """Exercise the shipped dispatcher across its executable/process boundary."""
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -30,8 +31,9 @@ class DispatcherTests(unittest.TestCase):
                               'print(json.dumps(sys.argv[1:]))\nsys.exit(7)\n', encoding="utf-8")
         controller.chmod(0o755)
 
-    def run_control(self, *arguments):
+    def run_control(self, *arguments, env=None):
         return subprocess.run([str(self.entry), *arguments], cwd=self.root.parent,
+                              env={**os.environ, **env} if env else None,
                               stdin=subprocess.DEVNULL, capture_output=True, text=True,
                               encoding="utf-8", timeout=5)
 
@@ -161,7 +163,7 @@ class DispatcherTests(unittest.TestCase):
                 self.assertEqual(result.returncode, 2)
                 self.assertEqual(result.stdout, "")
 
-    def test_bare_status_is_workspace_wide_and_follows_references_once(self):
+    def test_bare_status_is_workspace_wide_over_the_members_it_was_given(self):
         """Workspace is the default shape, so a bare status answers for the project."""
         (self.entry.parent / "example-preview/control").unlink()
         controller(self.entry.parent / "docs/control", 'print("primary")\n')
@@ -171,23 +173,38 @@ class DispatcherTests(unittest.TestCase):
         controller(member / "services/db/control", 'print("member db")\nsys.exit(1)\n')
         quiet = self.root.parent / (self.root.name + "-quiet")
         self.addCleanup(shutil.rmtree, quiet, True)
-        (quiet / "project-docs").mkdir(parents=True)
-        (quiet / "project-docs/foundation.md").write_text("# Foundation\n", encoding="utf-8")
-        (self.root / "project-docs").mkdir()
-        (self.root / "project-docs/foundation.md").write_text(
-            "# Foundation\n\n## References\n\n| Key | Target |\n| --- | --- |\n"
-            f"| member | {member} |\n| quiet | {quiet} |\n| self | .. |\n"
-            "| files | /nonexistent |\n\n## Inheritance\n",
-            encoding="utf-8")
-        result = self.run_control("status")
+        quiet.mkdir(parents=True)
+        result = self.run_control("status", "--checkout", str(member),
+                                  "--checkout", str(quiet), "--checkout", ".")
         self.assertEqual(result.returncode, 0)
         self.assertIn("docs: reports ready", result.stdout)
-        self.assertIn(f"== member ({member})", result.stdout)
+        self.assertIn(f"== {member.name} ({member})", result.stdout)
         self.assertIn("db: reports exit 1", result.stdout)
-        # A declared member with no service home is stated; a non-repository is not.
-        self.assertIn(f"== quiet ({quiet})", result.stdout)
+        # A declared member with no service home is stated rather than dropped. A
+        # relative path resolves against the selected checkout, so "." names it again
+        # and is not reported twice.
+        self.assertIn(f"== {quiet.name} ({quiet})", result.stdout)
         self.assertIn("no service home", result.stdout)
         self.assertEqual(result.stdout.count("== "), 2)
+
+    def test_members_can_be_named_once_in_the_environment(self):
+        """A project whose members do not change names them once, not per run."""
+        (self.entry.parent / "example-preview/control").unlink()
+        controller(self.entry.parent / "docs/control", 'print("primary")\n')
+        member = self.root.parent / (self.root.name + "-env-member")
+        self.addCleanup(shutil.rmtree, member, True)
+        shutil.copy2(SOURCE, (member / "services").mkdir(parents=True) or member / "services/control")
+        controller(member / "services/db/control", 'print("member db")\n')
+        result = self.run_control("status", env={"SERVICE_CHECKOUTS": str(member)})
+        self.assertEqual(result.returncode, 0)
+        self.assertIn(f"== {member.name} ({member})", result.stdout)
+        self.assertIn("db: reports ready", result.stdout)
+
+    def test_checkout_needs_bare_status(self):
+        """--checkout selects members for a project-wide read, not for one service."""
+        result = self.run_control("example-preview", "status", "--checkout", "..")
+        self.assertEqual(result.returncode, 2)
+        self.assertEqual(result.stdout, "")
 
     def test_a_worktree_reports_the_installed_checkout_not_itself(self):
         """A task worktree has no units of its own, so it must not answer for them."""
