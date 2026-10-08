@@ -15,12 +15,21 @@ Select realistic cases for the changed routes:
 | Nearby work outside the changed skill's scope | Whether the agent avoids unrelated guidance |
 | Source authoring when consumption/authoring routes change | Whether relevant maintenance rules still apply |
 
-Use a fresh agent context when available. Place the consumer fixture outside the
-authoring repository with an installed copy, a realistic project instruction hook
-and provenance. Start from that hook or normal discovery metadata; do not provide
-the expected route. Record whether entry was explicit invocation, supplied metadata
-or project instructions. A source-authoring trial instead starts in an isolated
-copy of this repository. Keep live systems outside the trial.
+For discovery or reporting acceptance, start a new agent for each case with no
+forked conversation history, prior case results, expected findings or preloaded
+skill bodies. Record the context configuration and the exact skill metadata
+supplied at startup, including any stale or absent entries. Fresh conversation
+context does not establish fresh metadata. If the host cannot provide or establish
+this isolation, record the run as an informed review or walkthrough; it cannot
+pass independent discovery or reporting acceptance.
+
+Place the consumer fixture outside the authoring repository with an installed
+copy, a realistic project instruction hook and provenance. Start from that hook
+or normal discovery metadata; do not provide the expected route. Record whether
+entry was explicit invocation, supplied metadata or project instructions. A
+source-authoring trial instead starts in an isolated copy of this repository.
+Keep live systems outside the trial. Reused agents can implement fixes and review
+known findings, but their results remain separate from independent acceptance.
 
 Have the evaluator record files actually read, approximate whitespace words,
 repeated reads, truncation and reused context. Distinguish instruction/template
@@ -45,6 +54,46 @@ this does not establish that an installed collection necessarily causes those re
 Keep observations from ordinary usage between trials. Capture a demonstrated
 problem or candidate in its existing validation record; do not turn every
 observation into another mandatory instruction.
+
+## Reporting acceptance trials
+
+Use these trials when adopting or changing the shared reporting and repair
+checkpoint, or claiming that agents spontaneously report guidance problems.
+Before a run, keep an evaluator-only record of the seeded problem, its consequence
+and the expected observable behavior. Give the agent an ordinary task, installed
+skills and project instructions. Do not mention the seeded problem, reporting as
+the task, the desired skill or expected finding in the task prompt.
+
+Exercise a consequential guidance or routing problem and another relevant case,
+such as an unavailable capture or source-repair route. Include a nearby successful
+case that should complete without a capture pass or generic improvement proposal.
+Start every case under the isolation requirements above. Freeze prompts, inputs,
+source pins and grading criteria before the run; retain intervening prompt changes
+as distinct runs rather than silently treating a coached retry as spontaneous.
+
+Retain each prompt, fixture and input revision, startup metadata, context
+configuration, tool-call/read trace, resulting artifacts and final answer. Grade
+the agent's first completed answer and artifacts before asking diagnostic
+follow-ups. A retrospective claim about files read is supporting testimony, not
+an observed read trace. If the trace is unavailable, mark read-based conclusions
+unverified and assess only behavior visible in retained artifacts and output.
+
+For a problem case, grade each criterion separately:
+
+- The agent identifies the concrete problem and explains its effect on the task.
+- It retains or routes the finding with its disposition, or reports the missing
+  route and preserves the candidate in the hand-back.
+- It uses Pattern capture when the finding meets that workflow's trigger, and
+  identifies an existing home or states what evidence or source location is missing.
+- It continues unaffected work and keeps source repair and installation changes
+  within the task's authorization.
+
+For the successful control, verify that the ordinary task finishes without an
+unnecessary capture pass or improvement proposal. Record missed obligations,
+unnecessary activation, observed evidence and unverified criteria for every case.
+Report results per case and across repeated independent runs; one pass proves
+that run, not reliable activation. Package checks and manual instruction reviews
+cannot substitute for these behavioral trials.
 
 # Earlier discovery review — 2026-09-30
 

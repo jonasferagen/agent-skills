@@ -77,7 +77,11 @@ an obligation, condition or level of certainty.
 Add a dated section to the skill's validation page, such as
 [service-foundation](service-foundation.md) for the services skills, with:
 
-- the commit reviewed and whether the reviewer had a fresh context;
+- the commit reviewed and whether the reviewer had a fresh context, including
+  inherited conversation, startup metadata and any prior review results;
+- whether the evidence is an informed review, walkthrough or independent
+  acceptance trial; discovery and reporting acceptance must follow the isolation
+  and evidence requirements in [the trial method](discovery.md#routing-trial-method);
 - the rules applied and the files each covered;
 - findings with their dispositions, and exceptions with their review conditions;
 - checks that could not run, reported separately from checks that passed.

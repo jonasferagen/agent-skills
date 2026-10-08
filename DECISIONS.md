@@ -643,3 +643,36 @@ repository no longer names any consumer in shipped content; a test under
 left with the migration they served; `validation/framework-extraction.md`
 records the result. Old collection tags and pins remain history and are not
 reused.
+
+
+## 8 October 2026 — Shared reporting and independent acceptance
+
+Capture consequential guidance and routing problems through one checkpoint in
+consumer project instructions, available before any individual skill is selected.
+Route reusable findings to the existing Pattern capture workflow and keep repair
+within the task's authorization. The [consumer checkpoint](README.md#selection-and-capture)
+owns the proposed instruction; [discovery validation](validation/discovery.md#reporting-acceptance-trials)
+owns acceptance. Fresh conversation context, actual startup metadata and retained
+behavioral evidence are separate requirements. Informed reviews using inherited
+or reused context do not establish independent activation.
+
+The [finding record](validation/pattern-capture.md#shared-reporting-checkpoint--2026-10-08)
+records current coverage and the positive and successful-control trial results.
+The reporting and repair mechanism already has a home; no new skill is proposed.
+
+### Distribution scope — proposed
+
+Engineering-conventions currently bundles five native conventions and 18 pinned
+agent-skills imports. Pattern capture, clear-writing, diagrams-and-tables,
+source-of-truth and work-records are absent from its imported membership. Its
+entrypoint says governance, document homes and document-maintenance workflows
+ship separately in the documents collection. This is already the requested
+agent-skills -> package -> project structure, but it does not provide the shared
+reporting checkpoint or Pattern capture in the engineering installation.
+
+Assess whether to broaden that distribution's scope and include Pattern capture
+with an installation checkpoint, or provide a package that assembles engineering
+and document guidance. Decide the membership, checkpoint owner and consumer
+migration before choosing a new name. Preserve standalone ownership in
+agent-skills and pinned imports in the distribution. No distribution rename,
+import update or consumer adoption is made by this source change.

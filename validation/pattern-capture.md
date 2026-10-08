@@ -29,18 +29,11 @@ do not test the new invocation name.
 
 ## Discovery trial
 
-The planned trial gives a fresh subagent the original Atlas/Work scan request
-without conversation history or an explicit skill invocation. Record the actual
-catalog supplied, any project routing instruction, the skill files opened and
-the result. Installation, discovery, selection and correct use are separate
-claims. A prompt listing the desired skill as an instruction cannot establish
-implicit selection. A project hook can test configured routing but cannot
-establish metadata-only selection.
-
-This trial may inspect the repository and propose guidance, but must not edit
-the project or skill source. Skill bodies and expected findings are withheld.
-After the answer, ask which skill metadata was available and which files were
-read. Run a nearby negative case to check unnecessary activation.
+Use the [routing trial method](discovery.md#routing-trial-method) for discovery
+acceptance and its [reporting acceptance trials](discovery.md#reporting-acceptance-trials)
+for spontaneous reporting. Installation, discovery, selection and correct use
+remain separate claims. A project hook tests configured routing, not metadata-only
+selection. Historical runs below retain their original methods and evidence limits.
 
 ## Trials on the original installed name — 2026-09-30
 
@@ -178,3 +171,55 @@ Plugin refresh and consumer repins are separate from this source change.
 Checks: repository validation passed for all 16 packages; the system skill quick
 validator passed for pattern-capture; `git diff --check` passed. No helper code
 or diagram changed, so no runtime or rendering check was needed for this edit.
+
+## Shared reporting checkpoint — 2026-10-08
+
+The repository review found a general guidance-problem reporting trigger in
+three of the 23 current skill entrypoints: clear-writing, diagrams-and-tables and
+source-of-truth. Other packages have narrower reporting duties. The source
+AGENTS.md activates Pattern capture for friction, but the consumer checkpoint
+was optional installation guidance. The latest feedback assessment above is a
+manual instruction review, not evidence of spontaneous activation.
+
+The mechanism is availability before selection: an instruction inside a skill
+cannot guide an agent that never selects it. A shared consumer checkpoint gives
+reporting and repair one route across the installed skills. Existing Pattern
+capture owns assessment and scoped source repair; no new repair skill is needed.
+Routine successful work and literal edits remain outside the capture trigger.
+
+Disposition: expanded the README's consumer checkpoint to surface the task,
+obstacle, effect and disposition, continue unaffected work, preserve findings
+when routes are unavailable, and follow existing authorization for repair.
+Strengthened the trial method to require a new context per acceptance case,
+record startup metadata, withhold expected findings, retain evidence and grade
+observable reporting behavior. Self-conformance now distinguishes informed
+reviews from independent acceptance evidence. Clear writing and Verification
+design were applied to those changes.
+
+Three configured project-hook trials ran with separate agents and no forked
+conversation: a stale required guidance route, a consequential problem with an
+unavailable capture route, and a nearby successful task. Both problem cases
+reported the missing acceptance document and continued the independent code fix.
+The stale-route case retained the finding in project notes; the unavailable-route
+case preserved it in the final answer. The control completed without a capture
+record or improvement proposal. Parent verification confirmed the code behavior
+in all three and found no imported skill changes.
+
+The [retained trial record](reporting-checkpoint-trial/report.md) identifies inputs,
+criteria, outputs and evidence limits. No exported tool-call/read trace was
+available, so actual reads and internal skill activation remain unverified.
+These runs demonstrate reporting through configured project instructions, not
+metadata-only discovery, reliable repeated activation or consumer adoption.
+
+Checks: `python3 scripts/check.py` completed with five checks and no failures;
+`git diff --check` passed. Local-link review found three pre-existing links to
+retired collection paths in DECISIONS.md; new links resolve. Those historical
+links were preserved. The source checkpoint is ready for consumer review; no
+installed project or distribution pin was changed.
+
+Distribution observation: engineering-conventions already provides a pinned
+agent-skills -> distribution -> project chain, but its current 18 imported
+skills exclude Pattern capture and the three general reporting entrypoints.
+Package membership and consumer activation therefore need separate attention.
+The distribution owns that installation decision; adding a skill to its lock
+alone would not activate the checkpoint in a consuming project's instructions.

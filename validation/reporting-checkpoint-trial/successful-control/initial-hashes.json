@@ -1,0 +1,15 @@
+{
+  "AGENTS.md": "fb4643ccc2582ffe2fe90ec4c46b37c8fdf01e82698f4a2f2a3936d8e6156a0d",
+  "request.md": "81286fab881a11e196b02e8886e8a8314545d59e2e73427729388bcd3addc50e",
+  "app.py": "dcb04a9a84572ab7da81c16993d12c264291be4e36c3fed20f50511f663ee63d",
+  "docs/python-acceptance.md": "cd5caa7e33948b44bc912cdda01887d69c1d7c91d0e8e8ce1880de63ea9c6f67",
+  "notes/findings.md": "770516662a6aa8106529459aa99dd5447ba7d9b98c6ac3a97b28fd6322c7aa6d",
+  ".agents/skills/pattern-capture/SKILL.md": "8173e969d56c6f18dc12e8dda060db5835adf26425b7a0a9c337fac1e2420228",
+  ".agents/skills/python-patterns/SKILL.md": "fcb20b45284a814b933c5e697893c6eebc189c03228442eb857bc77afbcbf974",
+  ".agents/skills/python-patterns/references/types-and-boundaries.md": "7802cc248cc005aaa748f91e115156270835a4984ce55bcf539cc04244bb098d",
+  ".agents/skills/python-patterns/references/values-and-collections.md": "1ade98d3929a7fcbb9f18d64c83d62ac549ef4fb94188dc295eae4f829fb1519",
+  ".agents/skills/python-patterns/references/async-work.md": "636a50993f32ce1cd109df40cfc2909bc3ee5a368f2904cdd9813e1a1f1c0ff8",
+  ".agents/skills/python-patterns/references/errors-and-resources.md": "c54886ac4e086f88df4451685c237d179e820b0b9769d6246d7a5fc14fbc395a",
+  ".agents/skills/python-patterns/agents/openai.yaml": "98a162a90f8b416a873364bac991e5142847e76881d5759d5c034b4506474a70",
+  ".agents/skills/pattern-capture/agents/openai.yaml": "b7033dec4a7d409c8ab362f18878ba3375cf2537c318f2dc24b73e3a3498a1e4"
+}

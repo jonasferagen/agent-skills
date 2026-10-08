@@ -154,21 +154,29 @@ package. Keep them concise and put the main trigger first. The selected
 open only the references needed for the current decision. Grouping this catalog
 does not itself control which instructions an agent reads.
 
-When installing `pattern-capture`, the consuming project's instructions can add
-this checkpoint:
+When installing `pattern-capture`, put a shared reporting and repair checkpoint in
+the consuming project's instructions so it is available before a skill is selected.
+A distribution can supply this checkpoint with its installation guidance; the
+project adopts it and supplies its local capture route:
 
-> Before finishing an architecture or consolidation review that produced concrete
-> findings, use pattern-capture to assess the strongest reusable candidate against
-> existing guidance. Do the same after a fix or user correction exposes a recurring
-> design issue. Find the authoring source in imported-skill provenance and read
-> only the catalog and likely owner. Report its home or why it stays local.
-> Routine lookups and literal edits do not need this checkpoint.
+> If work exposes a consequential guidance or routing problem, report the task,
+> obstacle and effect. Retain the finding and its disposition in the project's
+> existing capture home; if that home is unavailable, include them in the hand-back.
+> Continue unaffected work. At a natural checkpoint, use pattern-capture to assess
+> repeated friction, an undocumented workaround or a correction that suggests
+> missing guidance. Follow the task's authorization for source repair or installation
+> updates; preserve a concrete candidate and needed validation when repair cannot
+> proceed.
+>
+> Before finishing an architecture or consolidation review with concrete findings,
+> also use pattern-capture to assess the strongest reusable candidate against
+> existing guidance. Report its home or why it stays local. Routine lookups,
+> literal edits and ordinary successful skill use need no capture pass.
 
-Also route to pattern-capture when skill use reveals repeated friction, an
-undocumented workaround or a correction that suggests missing guidance. Keep
-this trigger in project or personal instructions so it is available before the
-skill body is loaded. Load pattern-capture when the trigger applies; ordinary
-successful skill use needs no capture pass.
+Verify spontaneous reporting through the
+[reporting acceptance trials](validation/discovery.md#reporting-acceptance-trials).
+A checkpoint being installed or an agent reporting that it read it does not by
+itself establish that the agent notices and reports a problem during ordinary work.
 
 Use a local link to the installed skill in that instruction. Put the source
 location in provenance; never bake a machine-specific path into the skill.
