@@ -2,7 +2,7 @@
 name: project-policy
 description: "Establish or interpret project policy, assess compliance or adequacy, and review changed circumstances or obligations. Use when project scope, operating facts or adopted requirements need a decision."
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Project policy
@@ -29,9 +29,9 @@ implemented design can expose such a change; a proposal remains a proposal.
 
 ## Resolve authority and evidence
 
-A shared policy owner supplies common rules; member repositories record their
-local facts and authorized exceptions. A closer file does not silently override
-shared commitments. Resolve conflicts through the project's established authority,
+A shared policy owner supplies common rules and the project's operating facts;
+member repositories record only their local additions and authorized exceptions.
+A closer file does not silently override shared commitments. Resolve conflicts through the project's established authority,
 preserving user instructions and standing authorization. This skill adds no
 approval gate and grants no permission to perform external actions.
 
@@ -40,7 +40,9 @@ distinct. A rule can be adopted but unmet. Missing evidence neither proves failu
 nor establishes compliance; an implementation gap does not amend the rule. Use
 the relevant implementation and verification guidance when behavior needs checking.
 
-Policy owns current facts and adopted constraints. Design and operating guides
+Policy owns adopted constraints. Operating facts stay with the policy owner,
+or with the project's environment declaration when it keeps one; policy then
+cites that declaration instead of restating its facts. Design and operating guides
 own the implemented structure and procedures. Plans own pending work; work records
 own dated assessments and evidence. Follow the project's document homes and link
 these owners. Preserve prior decisions and assessed revisions when moving content.

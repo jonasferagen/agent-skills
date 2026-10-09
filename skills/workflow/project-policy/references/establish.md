@@ -9,6 +9,9 @@ rules to fill a document template.
 
 Use these axes as prompts during establishment or a substantive adequacy review.
 They are not a required table or a questionnaire to repeat for every task.
+Record the facts they surface with the project's operating-facts owner: its
+environment declaration when it keeps one, otherwise the policy. Policy states
+the constraints adopted because of those facts.
 
 | Axis | Facts that affect requirements |
 | --- | --- |

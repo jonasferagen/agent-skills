@@ -47,3 +47,23 @@ distribution's document-home conventions. Project-bootstrap owns adoption and
 placement defaults; the consuming project owns facts, requirements and exceptions.
 This extraction supplies the missing skill home without adding framework rules
 to source-of-truth, work-records or service-boundaries.
+
+## Revision 0.2.0: operating facts with the environment declaration
+
+Reviewed on 2026-10-10 from base `db2d36fe4f8ae748b1f4d516ad87a64750ea3a8d`.
+A consuming project restated environment obligations (data, exposure, recovery)
+in each member's policy because the skill said policy owns current facts and
+members record local facts. Version 0.2.0 keeps operating facts with the policy
+owner or, when the project keeps one, its environment declaration, which policy
+cites. Members record only local additions and authorized exceptions.
+
+This is an author walkthrough, not an independent trial.
+
+| Request and supplied facts | Route reviewed | Result |
+| --- | --- | --- |
+| Establish policy in a project that keeps an environment declaration | SKILL.md; establish.md | Axes surface facts; they are recorded in the environment declaration and policy states the constraints, citing it |
+| Establish policy in a project with no environment declaration | SKILL.md; establish.md | Facts stay with the policy owner, as in 0.1.0 |
+| A member repository wants to record its service's exposure | SKILL.md authority section | The project-wide obligation stays with the shared owner; the member records a local addition or authorized exception only |
+
+The change is compatible with a project that keeps no environment declaration,
+so it is a minor version. No release tag was created.
