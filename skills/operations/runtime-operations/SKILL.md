@@ -2,14 +2,22 @@
 name: runtime-operations
 description: "Design or change credential handling, local service controls and encrypted database backups. Use for secret custody, execution identities, lifecycle or recovery tooling, and their child-process and verification behavior."
 metadata:
-  version: "2.1.1"
+  version: "3.0.0"
 ---
 
 # Runtime operations
 
 Read the project's policy and operational guide first. Preserve its execution
-identities, external-action gates and release process. This skill supplies a
-common method and small Python helpers; project configuration stays in the repo.
+identities, external-action gates and release process. This skill owns the method
+and the interface contract operational tooling must satisfy; project configuration
+stays in the repo.
+
+No code ships here. The modules a service controller imports are deployed by the
+project's framework, which also chooses the secret store, the process manager and
+the database provider they bind. [The helpers contract](references/runtime-helpers.md)
+states the surface those modules must offer, the binding a project supplies, and
+what survives an update. Read it before writing a controller, rather than
+inferring the surface from an installed module's source.
 
 ## Credentials
 
@@ -44,11 +52,14 @@ tiers, not a requirement to use exactly three vaults or merge distinct roles.
   can discard a startup setting in transit. Without the check, a consumer that
   believes it is read-only can write.
 
-[credentialStore.py](scripts/credentialStore.py) supplies token-file checks,
-service-account item reads and owner-only item reads. Callers own project/role
-validation and the child environment. The helper uses 1Password CLI, not
-Developer Environments; do not substitute one credential mechanism silently
-for another.
+Which secret store holds these credentials is the project's choice, and this
+method selects none. A store usually offers more than one way to authenticate —
+an operator's interactive session, a service-account token, a local agent or
+desktop integration — and they are not interchangeable: each carries a different
+identity and a different reach. Name the mechanism the tooling uses, in the
+tooling, and never substitute another silently. Reading a credential is itself a
+child process, so the rules below govern it: its error output names the command,
+the identity it used and the exit status, and nothing more.
 
 ## Child processes
 
@@ -86,75 +97,56 @@ can escape, a command can hang, or an error can point to the wrong component.
 Expose `start`, `stop`, `restart`, `status` and `logs` for each named service.
 `start` leaves an active service running; `restart` applies changed code or
 credentials. If the control command has a default service, make it a viewer: a
-preview that sends nothing. Keep it a separate unit from workers and outbound
+preview that sends nothing. Keep it a separate service from workers and outbound
 senders.
 
 - Let the process manager own the complete process group. Stop only the named
-  unit, including after a failed start. An occupied port is a startup failure,
+  service, including after a failed start. An occupied port is a startup failure,
   never permission to kill its owner.
-- Check readiness from the intended unit. An unrelated HTTP listener returning
-  success does not establish startup. Status should expose the selected checkout.
-- Run previews, including the viewer, as transient user services, and retained
-  workers as installed units. Preserve pinned releases and settings across
-  worker restarts; an ordinary control command does not install, enable or
-  upgrade a worker.
-- Keep secret values out of unit definitions and command arguments. Launchers
-  read their token files when the service starts. Limit browser services to
-  loopback and keep request-origin checks in the application.
+- Readiness is a property of one named instance, not of a port. An unrelated
+  listener returning success does not establish startup. A probe that proves
+  identity establishes it: the service it claims to be, its process identity
+  against the manager's own record, its membership in that service's process
+  group, and the checkout it reports against the configured one. Status should
+  expose the selected checkout.
+- An ephemeral preview and a retained worker have different lifetimes, so the
+  process manager holds them differently: a preview exists only while it runs,
+  and a worker keeps an installed definition. Preserve pinned releases and
+  settings across worker restarts; an ordinary control command does not install,
+  enable or upgrade a worker.
+- Keep secret values out of service definitions and command arguments. Launchers
+  read their token files when the service starts, and each command fetches its
+  own credentials. Limit browser services to loopback and keep request-origin
+  checks in the application.
 - Do not restart outbound processing as a side effect of a viewer or credential
   change. Preserve the configured external-action gate.
 
-[serviceControl.py](scripts/serviceControl.py) implements Linux user-systemd
-control. Transient launches require the `--expand-environment` capability
-(upstream systemd 254 or later) and disable manager expansion so supplied arguments
-remain literal. The helper checks support before prerequisites or unit changes;
-installed-unit controls and status retain their existing requirements. A consuming
-repository imports these helpers through this skill's
-[loader](templates/service_runtime.py), which checks
-the [declared interface version](scripts/runtimeApi.py) before any import. Do not
-reach into the installed directory with an unchecked path.
-[Runtime helpers](references/runtime-helpers.md) owns that contract and the
-binding surface: which fields a project binding supplies, what omitting each one
-selects, and how the five actions behave. Read it instead of inferring the
-binding from this helper's source. Project entrypoints supply unit names, non-secret settings and commands.
-Use the same controller for installed and transient services; each project
-binding selects the unit, expected checkout, command and optional prerequisite
-startup. An active `start` checks readiness without replacing or stopping that
-instance. HTTP `status` includes readiness, not merely process existence. A
-configured checkout mismatch is refused before changing runtime state.
+A controller binds one service and asks for one action. The contract reference
+owns which fields a binding supplies, what omitting each one selects, and how the
+five actions behave. Three of its rules are method rather than mechanism, so a
+controller written against any implementation keeps them: a checkout mismatch is
+refused before anything changes runtime state, a `start` that only wanted
+readiness neither replaces nor stops an already active instance, and a failed
+start stops only what it attempted while preserving the original error.
 
-For a new HTTP binding, set `Service.health_service` and expose `/health` using
-[ServiceHealth](scripts/serviceHealth.py)'s `service-health/v1` JSON envelope:
-`schema`, `service`, `pid`, `checkout`, `status` and `details`. Return HTTP 200 for
-`ready` and 503 for `degraded`; include only bounded, non-sensitive diagnostics.
-The application owns meaningful dependency checks and its detail fields. The
-controller verifies the service name, ready status, PID against the unit MainPID,
-cgroup membership and both reported and configured checkout. This is readiness
-of the named instance, not a continuous availability guarantee.
+For the project-wide view a controller prints one bounded line per instance
+instead of its reader-facing output: the service, the checkout, one state from a
+closed vocabulary, and the unit, endpoint, lifecycle class, detail and attention
+fields where they exist. Only `status` reports, because the other actions change
+state and a report is a reading. That is why a service whose unit is held by
+another checkout reports that fact rather than refusing, while an active service
+that will not answer readiness reports a failure: readiness is what a running
+service was asked for. Keep every line scannable. Long output — a journal, a
+durable receipt, a database probe — belongs to `status <name>`, which a reader
+asks for after a row says something is owed.
 
-For the project-wide view, pass `reporting=True` to `control` with the `status`
-action and set `Service.name` to the name the dispatcher discovered, plus
-`Service.endpoint` when a reader would open one. It prints a single
-`service-report/v1` line from [serviceReport.py](scripts/serviceReport.py) instead
-of the human lines: the service, the checkout, one state from the closed
-vocabulary, and `lifecycle`, `unit`, `endpoint`, `detail` and `attention` where
-they exist. Set `Service.lifecycle` to declare which class the service belongs to,
-which is what a consumer composing a project-wide launch reads to decide what such
-a launch may touch; leaving it unset reports unclassified and is skipped. A
-unit held by another checkout reports `elsewhere` rather than refusing, because a
-report is a reading and not an operation; an active unit that will not answer
-readiness reports `failed`, because readiness is what a running service was asked
-for. Only `status` reports. A controller that implements its own units, as a
-scheduled service does, builds its line with the same helper, which validates the
-state and keeps `detail` and `attention` to one bounded line each.
-The `repository-services` skill owns the contract and what each state means.
-
-Existing bindings without `health_service` retain the plain-PID `/health` probe
-until deliberately migrated. The helper does not install units, dependencies or
-credentials. Keep automatic-start and restart policy with the unit owner.
-If launch or readiness times out after starting an attempt, it stops only the
-selected unit. A failed cleanup reports separately and preserves the primary
-startup or readiness error.
+That report's schema and its closed state and lifecycle vocabularies have one
+owner outside this skill: the guidance that states the project's service-report
+contract, including what each state means and which class a project-wide launch
+may touch. Validate every reported value against that owner rather than inventing
+one, and declare a lifecycle class rather than leaving a consumer to guess what
+starting the service would do; an undeclared class reads as unclassified and is
+skipped.
 
 ## Scheduled runs
 
@@ -181,13 +173,13 @@ how that policy is applied.
   just because one was asked for.
 - Report the schedule and the last run's durable outcome together. An active
   schedule is not evidence of a run, and a run is not evidence of success. Keep
-  that record outside the unit, because a stopped or replaced unit must not take
-  the evidence with it.
+  that record outside the service definition, because a stopped or replaced
+  service must not take the evidence with it.
 - Decide what a missed window means and say so. A host that was off through the
   window can run late or skip; skipping silently is the choice that looks like
   success. Add a randomized delay where many hosts would otherwise act together.
-- Derive the unit name from the selected checkout so a second checkout cannot
-  adopt the first one's schedule, its runs or its evidence.
+- Derive the schedule's name from the selected checkout so a second checkout
+  cannot adopt the first one's schedule, its runs or its evidence.
 - `stop` stops and disables the schedule and leaves every completed run in place.
   Nothing an ordinary control does may prune, forget or overwrite retained
   evidence.
@@ -228,32 +220,40 @@ projects share the same machinery: encrypted export, integrity check and a full
 disposable restore before publication. A project that tolerates data loss can
 choose that stronger routine to avoid maintaining a separate path.
 
-[databaseBackup.py](scripts/databaseBackup.py) supplies this routine and a
-`backup`, `rehearse`, `admin -- COMMAND` interface. The project supplies its schema
-scope, credential references, prerequisite roles and snapshot/access checks.
-Preserve object ownership where SECURITY DEFINER commands depend on it. The
-helper never chooses a production restore destination; rehearsals have no network,
-published port, persistent data volume or production passwords.
+A backup is worth what it can prove. Each item below is a separate guarantee, and
+a routine that omits one has not established it:
 
-The bundled implementation validates a Supabase pooler credential profile and
-uses a pinned Supabase PostgreSQL container image. Other PostgreSQL targets need
-a reviewed project binding; importing the method does not select a provider.
-Configure at least one schema explicitly. `BackupConfig.command_timeout` sets a
-positive finite limit for each backup command, defaulting to 900 seconds; review
-that bound against the project's expected archive size before adoption.
-Client and rehearsal container cleanup identifies each attempt by its generated
-name and unique label, including after failed or timed-out startup or an attached
-command. An operational crypto failure is not
-evidence that a wrong key was denied; the helper requires GnuPG's bad-passphrase
-status before recording that check.
-
-Keys stay separate from archives; archives, metadata and receipts stay outside
-Git. Publish without overwriting retained files. Verify archive identity, checksum
-and decryption before restoration. Capture tests make each verification step
-fail and confirm that nothing is published; project tests should exercise actual
-restoration and permissions.
-An archive covers only its selected schemas; document external dependencies and
-login provisioning. Never imply it is a full managed-project backup.
+- **The export covers what was configured.** Configure at least one schema
+  explicitly; an archive covers only its selected schemas. Document external
+  dependencies and login provisioning, and never imply the archive is a full
+  managed-project backup.
+- **The credential profile is the intended one.** Verify the project, login, port,
+  database and endpoint before exporting, and connect with verified TLS. Which
+  provider and endpoint shape those values describe is a project binding, and
+  adopting the method does not select a provider.
+- **The archive matches itself.** Verify archive identity, checksum and
+  decryption before restoration, and compare the encryption round trip against
+  the captured bytes.
+- **A wrong key was observed being denied.** An operational failure in the crypto
+  tool is not evidence that a wrong key was refused. Require the tool's reported
+  bad-passphrase status before recording that check.
+- **The archive restores.** Restore in full into a disposable instance, in one
+  transaction, failing on the first error; then inspect the result and compare it
+  with what the capture recorded. Preserve object ownership where privileged
+  definitions depend on it.
+- **The rehearsal can reach nothing real.** A rehearsal runs with no network, no
+  published port, no persistent data volume and no production passwords, and the
+  routine never chooses a production restore destination.
+- **Nothing is published until every step passed.** Keys stay separate from
+  archives; archives, metadata and receipts stay outside Git; publication never
+  overwrites a retained file. Capture tests make each verification step fail and
+  confirm that nothing is published; project tests exercise actual restoration
+  and permissions.
+- **Every command is bounded, and every attempt is reclaimed.** Give each backup
+  command a positive, finite timeout and review that bound against the project's
+  expected archive size. Identify each disposable instance by its own generated
+  name and a unique label, so cleanup after a failed, timed-out or attached
+  command removes what this attempt created and never a namesake.
 
 ## Verification
 
