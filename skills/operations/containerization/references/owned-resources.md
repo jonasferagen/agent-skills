@@ -51,6 +51,24 @@ applies.
 A Compose file used for test stacks must not set `container_name` or fixed volume
 names. Those names escape the project and collide when two runs overlap.
 
+## Bind the run's own state locations
+
+A run that starts a container from an existing service definition, such as
+`docker compose run` against a developer stack, inherits that definition's
+mounts. It then writes into locations the service owns rather than the run:
+the tool's home, its caches, its preferences, its per-project state. Cleanup by
+the run's label cannot reach those bytes, and the leftover listing above cannot
+see them, because the location was never the run's to create or remove.
+
+Bind a throwaway directory over every mount point the run does not own,
+including the image's home when the tool keeps state there. A run-time bind at
+the same target shadows the definition's volume for that run alone, so the
+writes land where teardown already removes them.
+
+Take that directory as a required argument of whatever assembles the run, not
+an option with a default. A default is what the next call site omits, and the
+omission is silent: the run passes, and the owned location is what changed.
+
 ## Publish on ephemeral loopback ports
 
 Publish a test service on loopback with an ephemeral host port, as in

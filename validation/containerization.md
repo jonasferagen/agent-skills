@@ -114,6 +114,29 @@ entrypoint and relied on by the source harness. Compose's project label and
 `--rmi local` behavior are documented Compose behavior. No new container trial
 ran for this reference; the scenarios above remain author review.
 
+## Inherited mounts — 2026-10-09
+
+Version 1.1.0 adds "Bind the run's own state locations" to
+[owned test resources](../skills/operations/containerization/references/owned-resources.md).
+It was drawn from the local Tessera container stack (`tessera-stack`), where
+one-off `docker compose run` invocations against a persistent authoring service
+inherited that service's named volume at the container user's home. A check of
+another project therefore rewrote the service's own editor settings and left
+per-project logs in the volume. Binding a throwaway directory at the same
+target removed those writes, measured by listing the volume's paths with owner,
+size and modification time before and after the run and finding the two
+listings identical.
+
+Two services in that stack had the same shape, and the second regression
+arrived through a shared helper whose isolation argument was optional until it
+was made required, which is the reason this reference asks for a required
+argument rather than a documented flag.
+
+No new container trial ran for this addition, and the behavioral scenarios
+above remain author review. The volume-listing comparison is the consuming
+project's evidence, recorded here for the finding's origin rather than as a
+trial of this guidance.
+
 ## Independent outline trial — 2026-09-30
 
 A separate agent read the package and answered a synthetic request for a Python

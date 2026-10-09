@@ -2,7 +2,7 @@
 name: containerization
 description: "Build or review independent local service containers, startup, the environments a local stack can run, and disposable test resources. Use for service images and local stacks; production rollout policy belongs to the project."
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Containerization
