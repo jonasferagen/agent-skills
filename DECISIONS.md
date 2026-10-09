@@ -22,7 +22,7 @@ satisfy an installed rule.
 ### State the reporting checkpoint once — adopted
 
 The 8 October decision below gives consequential guidance and routing problems
-one route: the checkpoint in the consuming project's instructions. Three
+one route, declared by the installer in the consuming project's instructions. Three
 entrypoints (clear-writing, diagrams-and-tables, source-of-truth) still opened
 with their own restatement of that trigger, and godot-gdscript closed with an
 older wording of it, while the other 24 skills carried none. A reader could not
@@ -52,7 +52,7 @@ paths but the live maintenance pages may not. The
 [sweep record](validation/standalone-sweep-2026-10-09.md) holds the findings
 and checks.
 
-### Checkpoint text and placement belong to the installer — proposed
+### Checkpoint text and placement belong to the installer — adopted
 
 The reporting checkpoint is stated in two homes. This README's
 [selection and capture](README.md#selection-and-capture) section dictates the
@@ -74,11 +74,16 @@ by the installer". pattern-capture's own sentence about mapping
 `/pattern-capture [idea]` would say "the installer may map", at a patch version
 the distribution picks up when it next re-pins.
 
-Not adopted on 9 October 2026: a separate task was live in the distribution's
-`task/alignment-register` worktree, and the owner chose to hold this change
-until that task lands rather than move the claim while both repositories are
-being edited. The discovery trials that exercised the checkpoint remain valid
-evidence about the instruction, whichever repository states it.
+Held on 9 October 2026 while a separate task was live in the distribution's
+`task/alignment-register` worktree, then adopted the same day once that task
+landed as project-bootstrap `be125fc`. The README's selection-and-capture
+section now states the need and hands text, placement, link, capture home and
+shortcut to the installer; pattern-capture 0.3.1 says the installer may map the
+shortcut. relational-modeling 0.2.2 drops its suggested document homes for the
+same reason: where a consumer's model, scenarios and glossary live is the
+installing distribution's claim. The discovery trials that exercised the
+checkpoint remain valid evidence about the instruction, whichever repository
+states it. The distribution picks up both patch versions when it next re-pins.
 
 ## 6 October 2026
 
@@ -729,8 +734,9 @@ reused.
 Capture consequential guidance and routing problems through one checkpoint in
 consumer project instructions, available before any individual skill is selected.
 Route reusable findings to the existing Pattern capture workflow and keep repair
-within the task's authorization. The [consumer checkpoint](README.md#selection-and-capture)
-owns the proposed instruction; [discovery validation](validation/discovery.md#reporting-acceptance-trials)
+within the task's authorization. The installing distribution or project owns
+that instruction, and the [consumer checkpoint](README.md#selection-and-capture)
+states the need (reworded 9 October); [discovery validation](validation/discovery.md#reporting-acceptance-trials)
 owns acceptance. Fresh conversation context, actual startup metadata and retained
 behavioral evidence are separate requirements. Informed reviews using inherited
 or reused context do not establish independent activation.

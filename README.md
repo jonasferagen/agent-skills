@@ -183,47 +183,25 @@ package. Keep them concise and put the main trigger first. The selected
 open only the references needed for the current decision. Grouping this catalog
 does not itself control which instructions an agent reads.
 
-When installing `pattern-capture`, put a shared reporting and repair checkpoint in
-the consuming project's instructions so it is available before a skill is selected.
-A distribution can supply this checkpoint with its installation guidance; the
-project adopts it and supplies its local capture route:
-
-> If work exposes a consequential guidance or routing problem, report the task,
-> obstacle and effect. Retain the finding and its disposition in the project's
-> existing capture home; if that home is unavailable, include them in the hand-back.
-> Continue unaffected work. At a natural checkpoint, use pattern-capture to assess
-> repeated friction, an undocumented workaround or a correction that suggests
-> missing guidance. Follow the task's authorization for source repair or installation
-> updates; preserve a concrete candidate and needed validation when repair cannot
-> proceed.
->
-> Before finishing an architecture or consolidation review with concrete findings,
-> also use pattern-capture to assess the strongest reusable candidate against
-> existing guidance. Report its home or why it stays local. Routine lookups,
-> literal edits and ordinary successful skill use need no capture pass.
+`pattern-capture` needs one thing from the project that installs it: a reporting
+and repair checkpoint that is reachable before any skill is selected, so a
+consequential guidance or routing problem met during ordinary work is reported
+rather than worked around, and a reusable finding reaches this skill at a natural
+checkpoint. The installing distribution or project owns that instruction: its
+text, where it lives, the local link to the installed skill, the capture home,
+and any text shortcut such as `/pattern-capture [idea]`, which is an
+agent-interpreted shortcut and not a native slash-menu entry. This repository
+states the need and does not dictate the consumer's wording or placement.
 
 Verify spontaneous reporting through the
 [reporting acceptance trials](validation/discovery.md#reporting-acceptance-trials).
 A checkpoint being installed or an agent reporting that it read it does not by
 itself establish that the agent notices and reports a problem during ordinary work.
-
-Use a local link to the installed skill in that instruction. Put the source
-location in provenance; never bake a machine-specific path into the skill.
-Reading and proposing guidance can fit a review. Writing the source repository
-or adopting a new pin follows the task's actual authorization.
-
-For explicit requests, invoke `$pattern-capture` with an idea or refer to the
-current discussion. To also accept `/pattern-capture [idea]`, add this project
-instruction beside the checkpoint:
-
-> Treat `/pattern-capture [idea]` as an explicit request to use the installed
-> pattern-capture skill, even for a small idea. Assess whether it generalizes,
-> prefer the simplest adequate rule and check its existing home. Follow the
-> request's scope when proposing or making changes.
-
-This is an agent-interpreted text shortcut. It does not add a native slash-menu
-entry; native skill discovery depends on the client's supported invocation and
-refresh behavior.
+Put the source location in provenance; never bake a machine-specific path into
+the skill. Reading and proposing guidance can fit a review. Writing the source
+repository or adopting a new pin follows the task's actual authorization. For
+explicit requests, invoke `$pattern-capture` with an idea or refer to the
+current discussion.
 
 Test discovery with realistic requests and metadata before showing skill bodies
 or expected answers. Record whether a trial used host-provided metadata, a

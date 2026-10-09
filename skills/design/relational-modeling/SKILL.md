@@ -2,7 +2,7 @@
 name: relational-modeling
 description: "Turn known entities and retrieval questions into a relational model, or revise a relationship when its meaning changes. Use for identity, roles, cardinalities and model scenarios before implementation; routine prose edits, database provisioning and migration execution are separate tasks."
 metadata:
-  version: "0.2.1"
+  version: "0.2.2"
 ---
 
 # Relational modeling
@@ -68,10 +68,10 @@ documents or adding features merely because the representation permits them.
 
 ## Document and hand off
 
-Follow the project's documentation guidance and use clear-writing when
-available. Suitable starting homes are `docs/database/model.md`,
-`docs/database/scenarios.md` and `docs/project/glossary.md`; honor existing
-paths. Add a directory README when routes help. Defer migration and seed-loading
+Follow the project's documentation guidance for where the model, its scenarios
+and the glossary live, and use clear-writing when available; honor existing
+paths. This skill names no home of its own. Add a directory README when routes
+help. Defer migration and seed-loading
 documents until those subjects are addressed.
 
 Keep one canonical ER view with the model. Use ER guidance

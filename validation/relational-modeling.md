@@ -132,3 +132,11 @@ dependency packaging and a fresh-agent correction handoff remain separate trials
 
 The [ER routing trial](er-routing.md) tests a direct ER route, conditional
 large-model guidance, and reading an existing model without diagram construction.
+
+## Document homes handed to the installer — 2026-10-09
+
+Version 0.2.2 drops the suggested homes `docs/database/model.md`,
+`docs/database/scenarios.md` and `docs/project/glossary.md`. Where a consumer's
+model, scenarios and glossary live is the installing distribution's claim; the
+skill now says to follow the project's documentation guidance and honour existing
+paths, and names no home of its own. Prose-only; no trial rerun.

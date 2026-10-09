@@ -223,3 +223,14 @@ skills exclude Pattern capture and the three general reporting entrypoints.
 Package membership and consumer activation therefore need separate attention.
 The distribution owns that installation decision; adding a skill to its lock
 alone would not activate the checkpoint in a consuming project's instructions.
+
+## Checkpoint ownership — 2026-10-09
+
+Version 0.3.1 changes one sentence: the installing distribution or project, not
+"a project", may map `/pattern-capture [idea]`. The README's selection-and-capture
+section now states only the need this skill has, a reporting and repair
+checkpoint reachable before any skill is selected, and hands the instruction's
+text, placement, link, capture home and shortcut to the installer. The decision
+record explains why: the distribution already stated the same checkpoint in its
+own wording, and the two had begun to differ. No trial was rerun; the change
+moves a claim, not the behaviour the earlier trials exercised.

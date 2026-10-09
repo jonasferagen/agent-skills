@@ -2,7 +2,7 @@
 name: pattern-capture
 description: "Assess and capture reusable lessons from reviews, fixes, user corrections or friction while using a skill, and on explicit request. Check existing guidance, prefer a simple rule, and improve its home within the authorized scope."
 metadata:
-  version: "0.3.0"
+  version: "0.3.1"
 ---
 
 # Pattern capture
@@ -15,9 +15,9 @@ catalog review.
 An explicit capture request also activates this workflow for small ideas that
 would not warrant that checkpoint. Use the idea named by the user or evident
 in the current discussion; ask only if the intended idea is unclear. In clients
-with native skill invocation, use `$pattern-capture`. A project may also map
-`/pattern-capture [idea]` to this skill in its instructions; that text shortcut
-does not register a native slash command.
+with native skill invocation, use `$pattern-capture`. The installing distribution
+or project may map `/pattern-capture [idea]` to this skill in its instructions;
+that text shortcut does not register a native slash command.
 
 ## Decide whether the lesson generalizes
 
