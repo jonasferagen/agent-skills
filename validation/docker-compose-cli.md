@@ -54,6 +54,54 @@ Repository package validation, the shared-contract comparison and
 `git diff --check` passed. The suite runner was not run in this worktree because
 `node_modules` is not tracked there and the change adds no helpers.
 
+## Image and build policy — 0.2.0, 9 October 2026
+
+The [routing trial](docker-routing-trial-2026-10-09.md) raised that `compose run`
+builds implicitly, and its case 2 declined to add `--no-build`. The flag does not
+exist on `run`, so the case was declining something unavailable. This revision
+supplies the mechanic the package was missing, measured rather than read.
+
+### What was measured
+
+Against Docker 29.4.3 and Compose v5.1.3, with a two-service fixture holding a
+`build:` service over a local base image. Each probe ran under its own project
+name and label, and both projects were removed and proved empty afterwards.
+
+| Probe | Observed |
+| --- | --- |
+| `compose run`, image absent | Built it: `Image <project>-probe Built` |
+| `compose run --pull never`, image absent | Built it anyway |
+| `pull_policy: never` in the file, image absent | Built it anyway |
+| `compose run`, image present, Dockerfile changed | Ran the stale image; no rebuild, no warning |
+| `compose up`, image absent | Built it |
+| `compose up`, image present, Dockerfile changed | Ran the stale image; no rebuild, no warning |
+| `compose up --no-build`, image absent | Refused: `No such image` |
+| `image:` by tag with no `build:`, image absent | Refused: `No such image` |
+
+Two findings, not one. An absent image is built by both commands, and `run` has
+no flag that refuses it — `--no-build` exists only on `up`. A present image is
+never rebuilt by either command, so changed build inputs run as a success
+against whatever the first build produced. `--pull never` and `pull_policy:
+never` govern pulling and do not reach either case; that is the misconception
+the section names explicitly, because it is the first thing a reader reaches for.
+
+### What the section requires
+
+An explicit build step, then `build:` kept out of the file a run reads so that a
+missing image fails as `No such image`. Where one file must serve both, a
+pre-run check that the image is present and carries the recorded identity. The
+fallback is stated as a requirement because no flag covers it on `run`.
+
+The trigger description is unchanged, so this adds no routing surface and needed
+no new routing trial. A silent build and a stale image both fall inside the
+existing "ignores a value" trigger. Whether image selection deserves naming in
+the description is left open: changing it would make routing an acceptance
+requirement under the [routing rule](../README.md#routing-quality).
+
+### Checks
+
+`python3 scripts/check.py` and `git diff --check` passed.
+
 ## Behavioral scenarios
 
 Each rule's original evaluation is recorded under
@@ -73,6 +121,9 @@ describes evidence for this package's own boundary.
 | `compose run` borrows a developer stack's service definition | A throwaway directory is bound at every mount point the run does not own, as a required argument | Inherited from containerization 1.1.0, measured |
 | Teardown runs `compose down` but skips the leftover listing | Flagged: a stack that failed before compose recorded it stays invisible | Inherited: author review |
 | A prune command would be faster than project-scoped teardown | Rejected: it reaches resources this work did not create | Inherited: author review |
+| A `compose run` or `compose up` is written against a `build:` service | Flagged: an absent image is built with no evidence, and `run` has no flag that refuses it | Measured against a live daemon, 0.2.0 |
+| A changed Dockerfile is expected to take effect on the next `run` or `up` | Flagged: neither command rebuilds a present image, so the run succeeds against the previous build | Measured against a live daemon, 0.2.0 |
+| `--pull never` or `pull_policy: never` is offered as the way to stop a build | Rejected: both govern pulling and neither prevents a build | Measured against a live daemon, 0.2.0 |
 | A request concerns one container or image command | Out of scope: `docker-cli` owns single-command mechanics | Author review only |
 | A request concerns a host full of unattributed resources | Out of scope: `docker-cleanup` owns host-wide attribution and reclaim | Author review only |
 | A request asks what a composed set must declare about its variants and prerequisites | Out of scope: an outcome owned by the consuming framework's convention | Author review only |

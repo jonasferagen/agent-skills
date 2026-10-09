@@ -2,7 +2,7 @@
 name: docker-compose-cli
 description: "Write or review a `docker compose` invocation and the file it reads: project selection, inherited environment, profiles, borrowed service definitions and project-scoped teardown. Use when a compose command acts on the wrong stack, leaks resources or ignores a value; single containers belong to docker-cli and host-wide reclaim to docker-cleanup."
 metadata:
-  version: "0.1.1"
+  version: "0.2.0"
 ---
 
 # Docker Compose CLI
@@ -64,6 +64,31 @@ an untagged build artifact is indistinguishable from an abandoned one within the
 hour.
 
 <!-- Package-boundary copy: docker-cli/SKILL.md (Name every resource a command creates) states these rules for a single command. Keep both passages aligned. -->
+
+## Decide the image before the command runs
+
+A service with a `build:` section builds its image whenever that image is
+absent, on `compose run` as well as `compose up`. `compose up` takes
+`--no-build` to refuse it. `compose run` has no such flag, so a run against a
+`build:` service cannot be told not to build.
+
+Once the image exists, neither command rebuilds it. A changed Dockerfile or a
+changed build input is not noticed: the command runs the image already there and
+reports success. The two behaviours compose into one hazard — the first run
+builds an image nothing recorded, and every later run uses whatever that first
+build produced.
+
+Build in a step of its own, `docker compose build` or `--build` passed
+deliberately, so the build has its own output and its own evidence. Then keep
+`build:` out of the file a run reads: declare the service's `image:` by tag
+there, and let the build step produce that tag. A run whose image is missing
+then fails with `No such image` rather than building one, which is the refusal
+`compose run` offers no flag for.
+
+Where one file has to serve both, check before starting the run that the image
+is present and carries the identity the project recorded, and fail naming the
+image when it does not. `--pull never` and `pull_policy: never` do not cover
+this: both govern pulling, and neither prevents a build.
 
 ## Give the work one identity
 

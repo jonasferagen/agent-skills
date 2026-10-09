@@ -77,3 +77,20 @@ project instructions and a collection entrypoint, not host-supplied skill
 metadata. One run demonstrates the route, not its reliability. No case exercised
 this package against `docker-compose-cli` in conflict — one container inside an
 existing project, where both could reasonably be selected.
+
+## Raised, not repaired
+
+**This package says nothing about implicit pull.** While measuring compose's
+build policy for `docker-compose-cli` 0.2.0, the single-command side turned out
+to have the same shape with a simpler remedy. `docker run` defaults to
+`--pull=missing`, so a missing image is fetched as a side effect of the run;
+`docker run --pull=never` refuses it with `No such image`, verified against
+Docker 29.4.3. This package's "Pin the image" neighbours in the consuming
+framework's convention require that a run never pull implicitly, and this
+package supplies no mechanic for that, exactly as `docker-compose-cli` did not
+for builds.
+
+The remedy is one flag rather than compose's file restructuring, so the two
+sections would not be a package-boundary copy. Recorded here rather than patched
+because the compose change was the authorized scope; a revision should state the
+`--pull=never` default alongside the existing identity and cleanup rules.
