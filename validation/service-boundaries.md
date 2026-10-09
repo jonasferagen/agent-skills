@@ -33,3 +33,21 @@ The environment-requirements trial record below retains the published-filesystem
 private-storage, external-database and owned-output cases and their limits.
 
 See [environment requirement trials](environment-requirements-2026-10-08.md).
+
+## Provided-resource contract — 9 October 2026
+
+Version 0.2.0. The 0.1.1 verification sentence told a consumer that a completed
+local write does not establish remote persistence. Consumers of a shared
+directory read that as an obligation to check or qualify persistence behind the
+interface, which belongs to the resource's owner. The skill now has the owner
+publish one contract for the resource, and a completed write through it carries
+the semantics that contract states; persistence behind the interface is the
+provider's guarantee to check.
+
+| Request and context | Expected outcome |
+| --- | --- |
+| A tool writes into a shared directory its provider publishes | The write completes when the contract says; report no persistence caveat. |
+| A consumer needs a durability guarantee the contract does not state | Raise it with the provider; do not add a consumer-side probe. |
+| A consumer reads private service storage outside any published contract | Still a boundary bypass; route through the owner. |
+
+Author review only. No independent agent trial was run for this revision.

@@ -71,3 +71,13 @@ available; it requires no companion package or particular manifest.
 
 See [environment requirement trials](environment-requirements-2026-10-08.md) for
 the fresh-context database setup case and the nearby owned-output control.
+
+## Provided resources — 9 October 2026
+
+Version 0.3.0. Establishing actual context now covers both sides of an external
+resource: a providing repository publishes one contract per resource it provides,
+and a consumer's environment requirements cite that contract with its selector,
+access, relied-on layout and missing-dependency behavior. A missing contract is
+reported to the provider as its bootstrap gap rather than written by the consumer.
+Author review only; an independent downstream adoption trial is recorded by the
+distribution that imports this revision.
