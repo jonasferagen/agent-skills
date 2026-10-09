@@ -52,6 +52,34 @@ paths but the live maintenance pages may not. The
 [sweep record](validation/standalone-sweep-2026-10-09.md) holds the findings
 and checks.
 
+### Checkpoint text and placement belong to the installer — proposed
+
+The reporting checkpoint is stated in two homes. This README's
+[selection and capture](README.md#selection-and-capture) section dictates the
+instruction's text, that it goes in the consuming project's instructions, the
+local-link rule and the `/pattern-capture` shortcut; the 8 October entry below
+names the README as owner of that proposed instruction. The project-bootstrap
+distribution's project-instructions convention states the same checkpoint,
+placement and link rules in its own wording, and already lets a member route to
+a shared owner's statement. The two texts have begun to differ.
+
+Where a consuming project's instruction lives, and what it says, is a claim
+about that project's documentation. This repository owns pattern-capture and
+the need it has: a reporting trigger available before any skill is selected. It
+does not own the installer's instruction. The proposed change keeps the need in
+the README and hands the text, placement and shortcut rules to the installing
+distribution or project; the 8 October ownership sentence and the "state the
+reporting checkpoint once" entry above would be reworded to "one route, declared
+by the installer". pattern-capture's own sentence about mapping
+`/pattern-capture [idea]` would say "the installer may map", at a patch version
+the distribution picks up when it next re-pins.
+
+Not adopted on 9 October 2026: a separate task was live in the distribution's
+`task/alignment-register` worktree, and the owner chose to hold this change
+until that task lands rather than move the claim while both repositories are
+being edited. The discovery trials that exercised the checkpoint remain valid
+evidence about the instruction, whichever repository states it.
+
 ## 6 October 2026
 
 ### Task worktrees belong to the acting agent — superseded by 9 October above
