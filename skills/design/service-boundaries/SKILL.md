@@ -2,7 +2,7 @@
 name: service-boundaries
 description: "Design or review service ownership and shared application behavior exposed through HTTP and MCP. Use when separating service responsibilities or adding a transport to an existing operation; container builds and protocol SDK setup are separate tasks."
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Service boundaries
@@ -19,9 +19,10 @@ published contract rather than reaching into its private tables or storage.
 Determine whether a filesystem location is private implementation storage or an
 explicitly published resource before rejecting or wrapping access to it. A shared
 file collection can be the intended interface; consuming it does not require a
-new service or transport. Its owner publishes the contract once: interface,
-selection, access and sharing rules, the semantics consumers may rely on, and
-readiness and repair routes. Preserve that layout, access and write semantics,
+new service or transport. Its owner publishes the contract once: a selector it
+sets for consumers to bind, the interface there, access and sharing rules, the
+semantics consumers may rely on, and readiness and repair routes. Consumers bind
+the selector rather than copying the host path behind it. Preserve that layout, access and write semantics,
 and keep provisioning, credentials and storage lifecycle with their declared owner.
 A composition file may wire addresses and dependencies without owning domain
 rules. Independent services need not share a source tree or release together.

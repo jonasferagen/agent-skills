@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Establish a new project's or repository's scope, policy, overview and agent routes, or fill those starting-context gaps in an existing project. Use for project setup; a dependency-only upgrade or ordinary implementation needs its own workflow."
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Project bootstrap
@@ -45,10 +45,12 @@ Use evidence and established decisions to give the repository:
   unaffected work. An unknown is useful content, not a prompt to invent a choice.
 
 A repository that provides a resource to others, such as a shared directory
-tree, a database or a device, publishes one contract for each: its interface,
-selection, access and sharing rules, the semantics consumers may rely on, and
-its readiness and repair routes. Guarantees behind the interface, such as
-persistence or replication, are the provider's to state and check.
+tree, a database or a device, publishes one contract for each: the selector it
+sets for consumers to bind, the interface at that selector, access and sharing
+rules, the semantics consumers may rely on, and its readiness and repair routes.
+The contract names the resource's role, not a host path or the mechanism behind
+it. Persistence or replication behind the interface is the provider's to check;
+what it does not yet check is its own open work, not a caveat in the contract.
 
 When a selected workflow relies on externally provided resources, establish its
 environment requirements by citing the provider's contract: the selector it binds,

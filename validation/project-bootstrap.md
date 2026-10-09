@@ -81,3 +81,13 @@ access, relied-on layout and missing-dependency behavior. A missing contract is
 reported to the provider as its bootstrap gap rather than written by the consumer.
 Author review only; an independent downstream adoption trial is recorded by the
 distribution that imports this revision.
+
+## Provider selector — 9 October 2026
+
+Version 0.4.0. An independent downstream adoption of 0.3.0 published a provider
+contract whose interface was a host path naming the storage vendor, and whose
+text told consumers what the provider did not check behind it. The skill now
+names the provider-set selector as the contract's binding, keeps the host path
+and mechanism out of the contract, and keeps unchecked guarantees as the
+provider's open work rather than a consumer-facing caveat. Author review; the
+downstream re-trial is recorded by the importing distribution.

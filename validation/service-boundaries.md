@@ -51,3 +51,10 @@ provider's guarantee to check.
 | A consumer reads private service storage outside any published contract | Still a boundary bypass; route through the owner. |
 
 Author review only. No independent agent trial was run for this revision.
+
+## Provider selector — 9 October 2026
+
+Version 0.3.0. The published contract now leads with a selector the provider
+sets; consumers bind it rather than copying the host path behind it. Prompted by
+an independent downstream adoption in which consumers hard-coded the provider's
+host path. Author review only.
