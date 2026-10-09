@@ -2,7 +2,7 @@
 name: test-audit
 description: "Audit a settled test suite for weak assertions, gaps, brittle cases, mock drift, non-determinism and misleading coverage claims. Use when asking whether existing tests actually protect behavior; choosing evidence for an active change is a separate task."
 metadata:
-  version: "0.3.2"
+  version: "0.3.3"
 ---
 
 # Test audit
@@ -59,7 +59,7 @@ change needs.
 
    ```bash
    git status --short --untracked-files=all
-   find <scope> -name AGENTS.md -print
+   find <scope> -name '<agent-instruction-file>' -print
    ```
 
 2. **Run the repository's own test scanner, and its report of source files
