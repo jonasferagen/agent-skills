@@ -2,7 +2,7 @@
 name: work-records
 description: "Commission bounded work as a brief, retain its evidence and close it with a scoped disposition. Use when framing an assignment for another owner, recording what a run actually showed, or deciding what findings mean; routine fixes and plan items need no brief."
 metadata:
-  version: "0.3.0"
+  version: "1.0.0"
 ---
 
 # Work records
@@ -12,26 +12,31 @@ Read the existing intent, the source basis actually available and the project's
 current owners first. Preserve what the project already records; this guidance
 adds no approval gate and migrates nothing.
 
-Five questions decide what you are writing:
+Use the project's selected document shapes. This skill owns the method for
+commissioning work, retaining evidence and deciding what it establishes; it
+supplies no document templates or subtype registry. It works without a framework:
+make intent, inputs, acceptance, evidence, limits and the deciding owner explicit
+in the existing task and record.
 
-| The question in front of you | Write | Shape |
-| --- | --- | --- |
-| What should this achieve, and how will we know? | A brief | [brief template](templates/repository-docs/work-records/brief.md) |
-| What happened as work progressed? | A worklog entry | [worklog template](templates/repository-docs/work-records/worklog.md) |
-| What did this assignment establish against its brief? | A report | [report template](templates/repository-docs/work-records/report.md) |
-| What do these candidates tell us about an open choice? | A study | [study template](templates/repository-docs/work-records/study.md) |
-| What is being transferred, and what must the receiver be able to rely on? | A handoff record | [handoff template](templates/repository-docs/work-records/handoff-record.md) |
+A **brief** is a bounded assignment definition. It may be one plan item or a
+separate work definition when another owner needs a self-contained commission.
+A **record** retains a dated result against an identified basis. Reports, studies
+and handoffs are uses of records; a worklog is a sequence of dated records. These
+names describe reader needs, not five mandatory file types.
 
-Reading or correcting an existing record needs none of these. A small task can
-stay one item in the active plan with a short result; it does not need a brief,
-a worklog and a decision record. Use the existing work record when the project
-already has an adequate one.
+Reading or correcting an existing record needs no authoring workflow. A small
+task can stay one item in the active plan with a short result in its existing
+record. Do not create a brief, worklog and report merely because the skill exists.
+Keep changing intent and coordination separate from dated evidence, even when
+an existing task system holds both.
 
-The [record chain](references/record-chain.md) owns what each record means
-and who keeps it. The [record format](references/record-format.md) owns
-the optional metadata and its checker. Adopting record homes and checks in a
-project follows the [extension declaration](references/extension.md); named
-process pages stay with the project's own framework.
+The [record chain](references/record-chain.md) owns these meanings and the
+relationships between intent, evidence and decisions. For assignment boundaries,
+reachable inputs and requested returns, use the
+[assignment contract](references/assignment-contract.md). The optional
+[record format](references/record-format.md) and checker remain compatible with
+existing records; they do not choose a document shape. Adoption and ownership
+follow the [extension declaration](references/extension.md).
 
 ## Frame the question
 
@@ -75,6 +80,12 @@ unknown viewing setup and a fabricated input are limits on the evidence, not
 details to tidy away. Where a prerequisite was missing, say which conclusion it
 blocks.
 
+For a comparison, identify the candidates, what was held constant and what varied.
+Retain the considered candidates and their evidence, including unselected ones,
+with the basis of the eventual selection. For a transfer, identify delivered
+revisions and dependencies, exclusions, checked properties, gaps and the receiving
+owner's next action. Link existing exchange obligations rather than restating them.
+
 Put this in the linked record, not in the brief. The brief keeps intent,
 criteria, coordination state and next action; appending results to it creates a
 second authoritative status and loses which revision was actually assessed.
@@ -105,7 +116,9 @@ Existing delegation still applies; this adds no permission request where
 permission was already given.
 
 Do not expand a brief into a second home for policy, architecture,
-responsibilities, contracts or the active work queue. Link those owners. When a
+responsibilities or contracts. Link those owners. When a brief is a plan item,
+that item owns its coordination; a separate brief is linked without copying its
+changing status into the parent plan. When a
 record and an authoritative owner disagree, the owner governs and the
 disagreement is reported, not silently resolved.
 

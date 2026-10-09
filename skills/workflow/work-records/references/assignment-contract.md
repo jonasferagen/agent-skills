@@ -32,9 +32,10 @@ old results satisfied completion conditions introduced later.
 
 ## What the commissioning owner supplies
 
-The [brief template](../templates/repository-docs/work-records/brief.md) is a
-starting form. These contents can be concise sections or links to existing
-owners; they do not need a new serialization format.
+Use the project's work-definition shape or existing task system. A bounded plan
+item can serve as the brief; a separate commission uses the same requirements.
+These contents can be concise prose or links to existing owners, without a
+separate template or serialization format.
 
 | Boundary | Make discoverable |
 | --- | --- |
@@ -88,9 +89,10 @@ allows that outcome; incomplete required work cannot be relabelled inconclusive.
 
 ## What the executor returns
 
-Use the brief's requested reporting form: the [report template](../templates/repository-docs/work-records/report.md),
-a [study](../templates/repository-docs/work-records/study.md) for comparisons, or
-a concise entry in an existing [worklog](../templates/repository-docs/work-records/worklog.md).
+Use the brief's requested return: a record read as a whole or a concise dated
+entry in an existing worklog. A comparison records candidates and comparable
+conditions; a transfer identifies delivered revisions, checked properties, gaps
+and the receiving owner's next action. Use the project's shape for either.
 Record the brief revision and commit actually used, actual inputs and subject,
 method, outputs, findings against criteria, checks and limits. State what was
 completed, failed or left unresolved and what should happen next.
@@ -110,7 +112,7 @@ or adopt it in a consumer. Existing exchange contracts own those consequences.
 ## Skill and project boundaries
 
 Work-records owns these record meanings, assignment boundaries and reusable
-forms. The project owns placement, source access, domain specifications,
+methods. Concrete authoring shapes belong to the project or its framework. The project owns placement, source access, domain specifications,
 planning, actual exchange obligations and decisions. A consumer implements its
 own browsing and link resolution. Structural checks verify selected metadata;
 they do not establish that an agent can discover, execute or finish the work.

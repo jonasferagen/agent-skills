@@ -36,7 +36,6 @@ Kind: concept
 Workflow: ready
 Owner: Primary — brief and review; UI artist — delivery; Jonas — selection.
 Status: Designer 2B is the selected layout basis. Finished art is still open.
-Worklog: [Work record](../templates/repository-docs/work-records/worklog.md)
 ```
 
 Lines appear in this order; present fields keep it, absent ones leave no gap.
@@ -80,13 +79,13 @@ scoped disposition and does not mean the subject was accepted or adopted; link
 the actual disposition and keep the prose `Status` for that distinction. Any
 kind can be `parked`, which retains its reason and next owner.
 
-A new kind needs a concrete distinction from these five, not a new template or
-a subject that lacks a home.
+Keep these optional v1 values for compatibility. They are not document subtypes
+and do not require templates. Omit Kind unless a real consumer needs it.
 
 ## Run the checker
 
 ```sh
-python3 <process-design>/scripts/validate-work-records.py <path>...
+python3 <work-records>/scripts/validate-work-records.py <path>...
 ```
 
 Each path is a Markdown file or a directory of them. The checker reads only the

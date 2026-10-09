@@ -1,0 +1,14 @@
+{
+  "UPSTREAM.md": "9aeb1fe22aed1c42e748211aa78ec208e21093e8d40301d64739402fbaa1479e",
+  "AGENTS.md": "abd03b8dfc7959f4e591e2450f27f60db7cc670bde51b85f35dd3edb16c5a8fd",
+  "input/request.md": "cfbaf3bcd721672bf2036c2ce2c14cc71ccdd6f0d1302705f2233ef93e849465",
+  ".agents/skills/work-records/SKILL.md": "1f4f34289f21ada18b2e9504a5aba0bae1a7d15b1019c1dda42401e3f6023dee",
+  ".agents/skills/work-records/references/assignment-contract.md": "d6cb3f4a76d3fa6222796688955f1bb37a14df95e209fc9443c057534a1d8322",
+  ".agents/skills/work-records/references/record-format.md": "458eab34aa63fef38f44f940ea00b1b527d8cb55d161e0fd14ecdc1f0a98be17",
+  ".agents/skills/work-records/references/record-chain.md": "dc7df4560e25950d8e19bd883e9700177edd99c0d1e777fb54428605ab72fe72",
+  ".agents/skills/work-records/references/extension.md": "a1e5a0e301577c0e494019a3060ec221c5454c8e0ee888f6ceddf7251337e53e",
+  ".agents/skills/work-records/agents/openai.yaml": "c4d4b6a67efe522daf8d731708c98fc383a77981038c2c25333b46ae13350301",
+  ".agents/skills/work-records/scripts/validate-work-records.py": "4b750941212f510392a34ae660b2ce6c4a95e80f3f3491a7ab5ae7e8368233a0",
+  ".agents/skills/work-records/scripts/work_record_format.py": "47c1684ba4da7a78bc5c88a7cf64a438cc3ef64657c0fbf7ae04fa8b08be0c7b",
+  ".agents/skills/work-records/tests/test_work_record_format.py": "fcc4344c00b036e28d807eda9fc670b14f4168b33ce1c0266b3de9b92ffcd74c"
+}

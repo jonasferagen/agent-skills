@@ -12,8 +12,10 @@ findings mean for the intended use and what happens next.
 
 ## Document boundaries
 
-These documents serve different reading tasks. Their subject can be shared;
-their purpose, owner and assessed basis remain explicit.
+These names describe reading tasks, not prescribed document subtypes. The
+project selects concrete shapes. A brief may be a bounded plan item; a report,
+study or handoff may be one record; a worklog collects dated records. Their
+purpose, owner and assessed basis remain explicit.
 
 | Document | Keeps | Typical owner |
 | --- | --- | --- |
@@ -29,9 +31,9 @@ assignment. The [assignment contract](assignment-contract.md) owns how to split
 work and make each assignment's inputs and return discoverable.
 
 Document purpose, assignment `Kind` and coordination `Workflow` are distinct.
-`Kind: experiment` alone cannot identify a file as a brief or a report. This
-release defines document purposes in prose and templates; the metadata checker
-does not classify them or validate their associations.
+`Kind: experiment` alone cannot identify a file as a brief or a report. The
+method defines these purposes in prose; the optional metadata checker does not
+classify document shapes or validate their associations.
 
 ## What connects to what
 
@@ -78,8 +80,8 @@ identified by its commit. Findings stay attached to the version actually assesse
 
 ## Keep the assignment input separate from its output
 
-The brief is the assignment input: intent, constraints, criteria, current
-coordination state and next action. Execution observations, comparative
+The brief, including a plan item serving as one, is the assignment input: intent,
+constraints, criteria, current coordination state and next action. Execution observations, comparative
 recommendations, design returns and dispositions belong in a linked record, not
 appended to the brief as a results section. Identify the brief revision actually
 assessed in that record and link it from the brief without copying the findings
@@ -89,8 +91,7 @@ Do not create a second authoritative status. The brief's coordination state and
 next action live in the brief; dated findings and decisions live in the record.
 Where a project already has an adequate work record, use it rather than adding
 another. The brief identifies the requested reporting form. Use a separate
-[report](../templates/repository-docs/work-records/report.md) when the result
-needs to be read as a whole; a short result can remain a dated worklog entry.
+report when the result needs to be read as a whole; a short result can remain a dated worklog entry.
 Do not require both for every task.
 
 One brief may have several reports, each identifying the revision and scope it

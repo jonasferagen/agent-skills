@@ -11,7 +11,7 @@ IDENTITY = re.compile(
     r' · Date: (?P<date>\d{4}-\d{2}-\d{2})$')
 KIND = ('concept', 'experience', 'experiment', 'integration', 'assessment')
 WORKFLOW = ('draft', 'ready', 'in-progress', 'in-review', 'done', 'parked')
-# Declared order after the identity line, matching the templates and existing records.
+# Declared order after the identity line; preserve compatibility with existing records.
 OPTIONAL = {'Kind': KIND, 'Workflow': WORKFLOW, 'Worklog': None}
 ORDER = ('Kind', 'Workflow', 'Owner', 'Status', 'Worklog')
 REQUIRED = ('Owner', 'Status')

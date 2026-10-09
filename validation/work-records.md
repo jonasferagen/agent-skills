@@ -11,10 +11,10 @@ it establishes no consumer adoption.
 
 | Request | Should select | Should not select |
 | --- | --- | --- |
-| Commission a bounded assignment for another owner | work-records, then the brief template | Any process-page or contract guidance |
-| Record what a run produced and what it does not establish | work-records, then the worklog template | The brief, as a results section |
-| Compare candidates for an open choice | work-records, then the study template | A project's architecture or planning owner |
-| Transfer a result with what the receiver can rely on | work-records, then the handoff template | An existing delivery contract's terms, which stay with that contract |
+| Commission a bounded assignment for another owner | work-records, then the project’s work definition | Any process-page or contract guidance |
+| Record what a run produced and what it does not establish | work-records, then a dated record | The brief, as a results section |
+| Compare candidates for an open choice | work-records, then a comparison record | A project's architecture or planning owner |
+| Transfer a result with what the receiver can rely on | work-records, then a transfer record | An existing delivery contract's terms, which stay with that contract |
 | Fix a typo in an existing brief | Not work-records | Any record authoring workflow |
 | A small task the active plan already tracks with a short result | Not work-records | A brief, worklog and decision record |
 | Author or migrate a named process page | The project's own framework | work-records, which does not own that document type |
@@ -241,3 +241,11 @@ establish the package's shape; they do not establish that a consuming project
 has reconciled its own routes, which is that project's own change. Reopening the
 transfer would be a new decision in both collections, with its own migration,
 deprecation path and version impact.
+
+## Generic shapes and standalone methods — 2026-10-09
+
+Version 1.0.0 removes the five templates and assigns concrete shape ownership to
+the consuming project or framework. The [source and trial record](document-shapes-2026-10-09.md)
+retains the compatibility review, standalone consumer output and verification.
+Earlier sections describe the revisions they tested; their old template paths are
+historical evidence, not current authoring routes.

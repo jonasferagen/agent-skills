@@ -169,12 +169,6 @@ class DirectoryTests(unittest.TestCase):
         self.assertEqual((selected, skipped), (0, 0))
         self.assertIn('not a file or directory', errors[0])
 
-    def test_shipped_templates_are_not_valid_instances(self):
-        templates = Path(__file__).resolve().parents[1] / 'templates'
-        errors, selected, _ = validate([templates])
-        self.assertEqual(selected, 5)
-        self.assertEqual(len(errors), 5)
-        self.assertTrue(all('unfilled template placeholder' in error for error in errors))
 
 
 class DocumentedVocabularyTests(unittest.TestCase):
