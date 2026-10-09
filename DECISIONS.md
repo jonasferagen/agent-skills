@@ -5,6 +5,39 @@ belongs in `validation/`. A follow-up idea is not an adopted requirement.
 
 ## 9 October 2026
 
+### Docker split routing trial — completed
+
+Four cases, one fresh agent each, against a consumer fixture outside both
+repositories. All four reached the intended owner, and no case selected the
+wrong Docker package. Each boundary was declined for a stated reason rather
+than missed. The [trial record](validation/docker-routing-trial-2026-10-09.md)
+holds the cases, reads and verdicts.
+
+The risk recorded against docker-compose-cli before the trial — that a request
+naming a stack would select docker-cli on the word "container" alone — did not
+occur. The one seam the split does not separate, the borrowed definition, was
+read as intended: the outcome from the convention and the mechanic from the
+skill, joined by the anchor link between them.
+
+Two defects in the new text were repaired, both at 0.1.1. docker-compose-cli
+required `--env-file` on every call, which a project with no env file cannot do;
+docker-cleanup could not select resources carrying no label, which was the query
+its hardest case needed.
+
+Findings raised for a decision, not patched. Two cases independently could not
+find where a required declaration lives — writable roots in one, the composed-set
+owner in the other — which suggests one rule about declaration homes rather than
+two local repairs. local-containers was read by all four cases and mostly did
+not apply to three of them, so it may want conditional references rather than
+one 2,400-word page. A project label scheme has no findable home, though
+cleanup makes label attribution authoritative. These belong to the consuming
+framework's conventions; pattern-capture is the route for the declaration-home
+rule.
+
+The trial is entrypoint routing, not independent discovery acceptance: its
+agents read project instructions and a collection entrypoint, never
+host-supplied skill metadata. No release tag is created.
+
 ### Split containerization into CLI packages and a convention — completed
 
 Retire containerization at 1.1.0 and divide its material by what selects it.

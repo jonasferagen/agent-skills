@@ -66,8 +66,14 @@ describes evidence for this package's own boundary.
 
 ## Limits
 
-No automatic discovery trial has been run. The routing acceptance requirement
-applies before a release tag, and the trial must separate four near-neighbours:
-this package, `docker-compose-cli`, `docker-cleanup` and the consuming
-framework's local-containers convention. Until it runs, the split is unverified
-as a routing change, whatever the inherited behavioral evidence shows.
+The [routing trial](docker-routing-trial-2026-10-09.md) exercised this package
+against its three near-neighbours. Its case 1 reached this package and the
+consuming framework's convention together, and declined the compose and cleanup
+rows citing this package's own scope statement. No defect in this package's text
+was found.
+
+That trial is entrypoint routing, not independent discovery: the agents read
+project instructions and a collection entrypoint, not host-supplied skill
+metadata. One run demonstrates the route, not its reliability. No case exercised
+this package against `docker-compose-cli` in conflict — one container inside an
+existing project, where both could reasonably be selected.

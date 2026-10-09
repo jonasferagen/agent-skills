@@ -112,12 +112,36 @@ Docker's and the engine-neutral name claimed a portability the package had not
 earned. The engine-neutral claim was removed with it; the entrypoint now says
 the method would translate and that no other engine has been tried.
 
+## Routing trial — 9 October 2026
+
+The [routing trial](docker-routing-trial-2026-10-09.md) exercised this package
+against `docker-cli`, `docker-compose-cli` and the consuming framework's
+local-containers convention. Its case 3 reached this package in two reads, from
+a project-instruction hook through the collection entrypoint, and followed this
+package's own pointer to `inventory.md`. The "Do not select this skill for"
+section then handed the repair side to the two CLI packages, and the agent read
+only the passages it named.
+
+On a fixture built around an anonymous-volume leak, the agent ranked that group
+the prime suspect for the stated reason — the largest consumer was also the
+least attributable — and classified it review-first rather than safe because the
+owner was unknown. The tiering held on a case it was not written against.
+
+The trial found one gap, repaired at 0.1.1: `inventory.md` had no way to select
+resources carrying no label, nor to total a group of hash-named ones, which was
+exactly the query that case needed. It gains "Find what carries no label at
+all". The subtraction it prescribes was run against a live daemon holding 12
+volumes and correctly isolated the one with no compose project label, an
+editor's volume rather than any project's.
+
 ## Limits
 
-The package has been exercised once, by its author, on one Linux host with one
-Docker daemon. No scenario above has been evaluated against an independent
-agent following the written instructions, and no trial has tested whether a
-realistic request selects this package rather than `containerization`.
+The method has been exercised once by its author on one Linux host with one
+Docker daemon, and once through the routing trial, which supplied no daemon. The
+trial is entrypoint routing rather than independent discovery: its agents read
+project instructions and a collection entrypoint, not host-supplied skill
+metadata. One run demonstrates the route, not its reliability, and most
+scenarios above remain at author review.
 
 The virtual-disk-image caveat in "Prove the result" is reasoned from how such
 hosts store daemon data, not measured: the originating host writes to the host

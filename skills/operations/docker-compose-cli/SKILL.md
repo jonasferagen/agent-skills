@@ -2,7 +2,7 @@
 name: docker-compose-cli
 description: "Write or review a `docker compose` invocation and the file it reads: project selection, inherited environment, profiles, borrowed service definitions and project-scoped teardown. Use when a compose command acts on the wrong stack, leaks resources or ignores a value; single containers belong to docker-cli and host-wide reclaim to docker-cleanup."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Docker Compose CLI
@@ -31,6 +31,12 @@ Pass `--project-name`, `--file` and `--env-file` on every invocation, including
 the ones that only read. Without them the caller's `COMPOSE_PROJECT_NAME`,
 `COMPOSE_FILE` or a `.env` file in the project directory can point the call at
 another stack.
+
+Where the project has no env file, `--env-file` still has to be passed, because
+leaving it out is what lets a `.env` beside the compose file be picked up. Point
+it at an empty file the call owns — `/dev/null` serves on a POSIX host — rather
+than at a path that does not exist, which compose rejects. Passing nothing is
+not the same as passing nothing to read.
 
 An explicit flag takes precedence, but a variable for an option that was not
 passed still applies — the active profiles being the one that catches people.

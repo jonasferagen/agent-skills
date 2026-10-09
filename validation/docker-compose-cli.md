@@ -79,9 +79,19 @@ describes evidence for this package's own boundary.
 
 ## Limits
 
-No automatic discovery trial has been run. The routing acceptance requirement
-applies before a release tag, and the trial must separate four near-neighbours:
-this package, `docker-cli`, `docker-cleanup` and the consuming framework's
-local-containers convention. The risk specific to this package is that a request
-naming a stack or several services could select `docker-cli` on the word
-"container" alone.
+The [routing trial](docker-routing-trial-2026-10-09.md) exercised this package
+against its three near-neighbours. The risk recorded here before it ran — that a
+request naming a stack could select `docker-cli` on the word "container" alone —
+did not occur in any of the four cases.
+
+Its case 2 exercised the borrowed-definition seam and read the convention's
+outcome together with this package's mechanics, reporting the anchor link
+between them as what joined the two passages. It also found one defect in this
+package, now repaired at 0.1.1: the rule to pass `--env-file` on every call
+could not be followed by a project with no env file, because compose rejects a
+path that does not exist and omitting the flag is what lets a `.env` be picked
+up.
+
+That trial is entrypoint routing, not independent discovery: the agents read
+project instructions and a collection entrypoint, not host-supplied skill
+metadata. One run demonstrates the route, not its reliability.

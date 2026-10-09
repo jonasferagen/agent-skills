@@ -63,6 +63,36 @@ and the inventory should say so rather than counting its size twice.
 Record an owner that no signal establishes as unknown. Do not infer an owner
 from a name that merely resembles another resource's.
 
+## Find what carries no label at all
+
+The resources hardest to attribute are the ones with no label, and they are
+often the bulk of the reclaim: an anonymous volume gets a hash for a name, so
+nothing about it says which command created it or when.
+
+There is no filter for the absence of a label, so subtract instead. List every
+volume, list the ones each known owner claims, and treat the remainder as
+unlabelled:
+
+```sh
+docker volume ls --quiet | sort > /tmp/all
+docker volume ls --quiet --filter label=com.docker.compose.project | sort > /tmp/claimed
+comm -23 /tmp/all /tmp/claimed          # repeat --filter per owning label in use
+```
+
+Repeat the claimed listing for every label key the host's projects use, so the
+remainder shrinks to what genuinely carries none. A 64-character hex name is a
+strong hint that Docker generated it, but confirm with
+`docker volume inspect` rather than by the shape of the name.
+
+To total a group, read the per-volume sizes from `docker system df -v` and sum
+the group's rows; the summary line gives no per-group figure. Report the total
+and the count together, because one 5 GB volume and five hundred 10 MB volumes
+need different decisions.
+
+Unlabelled does not mean unowned. A running container can mount an anonymous
+volume, which makes it in use whatever its name looks like, so the in-use
+listing above still comes first.
+
 ## Read a volume before removing it
 
 Mount the volume read-only into a throwaway container and list it. The container
