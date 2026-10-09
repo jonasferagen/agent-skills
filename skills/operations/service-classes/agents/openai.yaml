@@ -1,0 +1,4 @@
+interface:
+  display_name: "Service classes"
+  short_description: "Decide whether a capability is a service and what its class owes"
+  default_prompt: "Use $service-classes to decide whether this capability is a service, which class it belongs to, and what its status must report."

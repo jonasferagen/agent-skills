@@ -1,4 +1,0 @@
-interface:
-  display_name: "Repository services"
-  short_description: "Define, document and check a repository's named services"
-  default_prompt: "Use $repository-services to define this service's guide and controls and check the services home."
