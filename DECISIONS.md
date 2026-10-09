@@ -155,6 +155,14 @@ states it. The distribution picks up both patch versions when it next re-pins.
 
 ### Shipped code belongs to the distribution — adopted
 
+The three tests have one home each, by side. The installing distribution owns
+them as a named procedure, because it is the side that sees both halves and a
+package here may not name the distributions that install it. This repository
+states the complement in "Adding a skill": a package makes no claim about a
+consumer and ships no code a consumer runs, only the contract. Neither restates
+the other's half, following the checkpoint entry below rather than creating a
+second owner.
+
 A third test joins the two the containerization split and the checkpoint entry
 established. Selection divides a command from an outcome; placement divides a
 stated need from a named home; this one divides guidance from an artifact. If a

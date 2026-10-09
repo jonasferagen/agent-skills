@@ -290,6 +290,17 @@ changes that way.
   distributions that consume these skills. A skill about one project's systems
   does not belong here. Skills about Jonas himself, such as his email style,
   live in his separate local `personal-skills` repository.
+- Make no claim about a consumer. A package states a need; where the consumer
+  satisfies it is the installer's to decide. So a package names no path,
+  filename, document home, command name or instruction wording in a consuming
+  project, and ships no code a consumer imports or executes — only the interface
+  contract such code is bound by. Guidance selected by a command or artifact in
+  front of the reader belongs here; an outcome a project's own work must meet
+  belongs to the installing distribution's conventions. An installing
+  distribution states the same division in its own words, from its side; fix an
+  overreaching package here rather than letting a consumer document the
+  deviation. The retirements of `containerization` and `repository-services`
+  record what this costs when it is noticed late.
 - Put the manifest at `skills/<area>/<name>/SKILL.md`; choose the existing area
   whose task it serves. Keep skill names unique. Put every resource the skill
   needs inside its directory. `agents/openai.yaml` carries the display name for
