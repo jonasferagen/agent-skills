@@ -67,6 +67,22 @@ fixture. Prefer injection of a database connection over environment mutations
 that could redirect unrelated tests. Close pools and workers so the runner can
 exit without a forced success status.
 
+## Start a disposable instance cheaply
+
+For a disposable PostgreSQL container, mount its data directory on `tmpfs`, as
+`--tmpfs /var/lib/postgresql/data`, so no volume exists to leak.
+
+Wait for readiness with a query over TCP using a password, with a deadline. The
+image's initialization runs a temporary server that listens only on its socket,
+so a successful socket connection can come from that server rather than the
+final one. Socket trust authentication also proves nothing about logins, so
+connect with the credentials the test is about.
+
+Check that the container runtime is available when the run starts. A missing
+runtime fails a tier that requires it; it does not turn the tier into a skip.
+The container command's own argument, port, secret and cleanup mechanics are a
+separate concern from this database guidance.
+
 For a migration-runner change, exercise an empty database, a second no-op run,
 an altered checksum and an intentional migration failure. Verify that the
 failure leaves no successful ledger entry and prevents later migrations. Test

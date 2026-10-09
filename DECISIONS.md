@@ -5,6 +5,41 @@ belongs in `validation/`. A follow-up idea is not an adopted requirement.
 
 ## 9 October 2026
 
+### Split containerization into CLI packages and a convention — completed
+
+Retire containerization at 1.1.0 and divide its material by what selects it.
+Everyday Docker and Compose usage is a consumer skill; the outcomes a project's
+containers must meet are framework convention; PostgreSQL and verification
+material belonged to neither.
+
+| Owner | Scope |
+| --- | --- |
+| [docker-cli](skills/operations/docker-cli/SKILL.md) | One container or image command: naming, identity, secrets, ports, owned mounts, teardown, daemon reads |
+| [docker-compose-cli](skills/operations/docker-compose-cli/SKILL.md) | Project-scoped commands: selection and inherited environment, borrowed definitions, closed name sets, project teardown |
+| [docker-cleanup](skills/operations/docker-cleanup/SKILL.md) | Host-wide attribution and reclaim of accumulated state |
+| Consuming framework's local-containers convention | Lifecycle, label scheme, state custody, isolation, image pinning and provenance, composed sets and variants, containerized tools |
+| [database-migrations](skills/operations/database-migrations/SKILL.md) | Disposable PostgreSQL instances: tmpfs data directory and readiness over TCP |
+| [verification-design](skills/verification/verification-design/SKILL.md) | Build evidence against runtime evidence for a packaged service |
+
+Three Docker packages for one tool is a routing cost, accepted because the three
+triggers do not overlap: assembling a command, driving a project, and accounting
+for a host. Cleanup stayed separate rather than becoming a reference inside
+docker-cli, because its substance is an authorization about destructive action
+and a reader loading flag guidance should not acquire one.
+
+Four rules apply to both CLI packages and are duplicated with reciprocal copy
+records, since a package may not link into another: resource naming, run
+identity with label-over-pattern selection, cleanup registered before creation,
+and the prune refusal. The borrowed-definition rule is the one seam the cut does
+not separate: compose-triggered, fixed with a docker run bind, so stated in
+both.
+
+Preserve the [containerization validation history](validation/containerization.md)
+and Git history. The convention-shaped sections leave this repository entirely;
+moving them into the framework's convention and re-pinning its import are
+separate work in that repository. Routing acceptance is outstanding and must
+separate four near-neighbours, so no release tag is created.
+
 ### Prefer the acting agent's managed worktree support — adopted
 
 Use the acting agent's own managed worktree support when it provides one, and
@@ -199,7 +234,7 @@ installation migration from this cleanup.
 
 | Owner | Scope |
 | --- | --- |
-| [Containerization](skills/operations/containerization/SKILL.md) | Images, stack configuration, startup and container resource cleanup |
+| Containerization (retired 9 October 2026) | Images, stack configuration, startup and container resource cleanup |
 | [Database migrations](skills/operations/database-migrations/SKILL.md) | History, runners, baselines, bootstrap, upgrades and migration verification |
 | [Service boundaries](skills/design/service-boundaries/SKILL.md) | Service ownership, caller identities and shared application behavior across HTTP/MCP |
 

@@ -2,7 +2,7 @@
 name: verification-design
 description: "Choose proportionate checks for a change or milestone and consolidate overlapping validation by the failure each check can detect. Use when deciding which test layers to run, what evidence a claim needs, or whether repeated suites and setup can be combined."
 metadata:
-  version: "0.1.2"
+  version: "0.2.0"
 ---
 
 # Verification design
@@ -27,6 +27,14 @@ Keep a compact map of claim, check, failure it detects, prerequisites and cost
 when a suite has grown hard to reason about. Mark an unavailable prerequisite as
 an outstanding check. Record the exact commands and results that ran; an earlier
 run proves only the code and environment it exercised.
+
+A check performed while an artifact is built is build evidence: it establishes
+what the artifact contains, not that it runs. Where a service is packaged, the
+claims worth separating are that the artifact was built, that it starts with its
+declared dependencies, that a useful public operation succeeds through it, and
+that state survives a restart. An in-process or embedded substitute for a
+dependency supports that work without establishing any of them. A missing
+required tool is an unmet prerequisite, not a passing check.
 
 ## Consolidate by failure signal
 

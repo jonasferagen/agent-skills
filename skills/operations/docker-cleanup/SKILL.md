@@ -1,6 +1,6 @@
 ---
 name: docker-cleanup
-description: "Audit and reclaim a Docker host's accumulated images, volumes, networks and build cache, including state left by retired, renamed or unrelated projects. Use when a build, pull or container fails for disk space, when the daemon's usage is unexplained, or after retiring a project; a test run's own resources belong to containerization."
+description: "Audit and reclaim a Docker host's accumulated images, volumes, networks and build cache, including state left by retired, renamed or unrelated projects. Use when a build, pull or container fails for disk space, when the daemon's usage is unexplained, or after retiring a project; removing what one command or project created belongs to docker-cli and docker-compose-cli."
 metadata:
   version: "0.1.0"
 ---
@@ -38,11 +38,12 @@ The trigger is the symptom, not a decision to delete. An audit that ends in
 
 ## Do not select this skill for
 
-- **A test run's own leaked resources.** A run that creates containers,
+- **Resources one command or project created.** Work that creates containers,
   networks, volumes and images owns them for its length and removes them by its
-  own label. That lifecycle, and the mounts a borrowed service definition hands
-  a run, belong to `containerization`. This skill is what finds such bytes once
-  they have already escaped and their owner is no longer obvious.
+  own label. That lifecycle belongs to `docker-cli`, and its project-scoped form,
+  including the mounts a borrowed service definition hands a run, to
+  `docker-compose-cli`. This skill is what finds such bytes once they have
+  already escaped and their owner is no longer obvious.
 - **Host disk pressure that is not Docker's.** Logs, package caches, build
   outputs, source trees and editor state outside the daemon are out of scope.
   Report them as a likely cause when the inventory clears Docker; do not remove
@@ -78,6 +79,9 @@ group resources for review, never as the sole basis for removal.
 
 Record an owner that cannot be established as unknown rather than guessing. An
 unknown owner is review-first, never safe.
+
+<!-- Package-boundary copy: docker-cli/SKILL.md (Give the work one identity) and docker-compose-cli/SKILL.md (Give the work one identity) state the label-over-pattern rule for resources their own work created. Keep all three aligned. -->
+
 
 Neither age nor a project's retirement establishes that a resource is
 disposable. A retired project's volume can hold the only copy of a credential,
@@ -121,6 +125,9 @@ because it reaches only build cache.
 
 A pattern may select a group for the inventory and for the approval request. The
 removal still names what the approved group contained.
+
+<!-- Package-boundary copy: docker-cli/SKILL.md (Remove what the command created, and prove it) and docker-compose-cli/references/project-isolation.md (Remove, sweep and prove) state the prune refusal for their own scopes. Keep all three aligned. -->
+
 
 ## Inspect a volume before removing it
 

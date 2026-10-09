@@ -41,8 +41,9 @@ repository supplies the packages and their versions.
 | --- | --- |
 | [repository-services](skills/operations/repository-services/SKILL.md) | Define, document and check a repository's named services: the `services/` home, guides, dispatcher and structural validator. |
 | [runtime-operations](skills/operations/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups, with the Python helpers controllers import. |
-| [containerization](skills/operations/containerization/SKILL.md) | Build service images, configure local stacks and manage isolated container test resources. |
 | [database-migrations](skills/operations/database-migrations/SKILL.md) | Preserve migration history, review baselines and verify database bootstrap and upgrades. |
+| [docker-cli](skills/operations/docker-cli/SKILL.md) | Write or review a single container or image command: ports, secrets, mounts, labels, identity and the cleanup of what it created. |
+| [docker-compose-cli](skills/operations/docker-compose-cli/SKILL.md) | Write or review a compose command and the file it reads: project selection, inherited environment, borrowed definitions and project-scoped teardown. |
 | [docker-cleanup](skills/operations/docker-cleanup/SKILL.md) | Audit a Docker host's accumulated images, volumes, networks and build cache, and reclaim space by attributed owner and tier. |
 
 Repository-services and runtime-operations each ship an optional extension a
@@ -52,6 +53,14 @@ for service homes and checks, and the
 [runtime helpers contract](skills/operations/runtime-operations/references/runtime-helpers.md)
 for importing the bundled helpers. Promotion from a spike to maintained service
 use reads service-boundaries and runtime-operations together.
+
+The three Docker packages split one tool by the moment it is used: assembling a
+command, driving a project of containers, or accounting for what a host has
+accumulated. Each is standalone and carries its own copy of the identity,
+label-over-pattern and prune-refusal rules they share. The outcomes a project's
+containers must meet — lifecycle, state custody, image pinning, composed sets —
+are convention rather than CLI usage and belong to the consuming project's
+framework.
 
 ## Verification
 
@@ -292,10 +301,27 @@ changes that way.
 
 ## Origins
 
+**docker-cli** and **docker-compose-cli** 0.1.0 split the retired
+containerization package along the line between assembling one container command
+and driving a project of them. The cut was chosen over one Docker package because
+most compose accidents are a command that ran correctly against the wrong
+project, decided by inputs the command line does not show — the caller's
+`COMPOSE_*` variables and a `.env` file in the working directory — and that
+trigger has nothing in common with getting a port, a secret or a mount right on
+a single `docker run`. Four rules apply to both: run identity, the label scheme,
+registering cleanup before creating, and sweep-and-prove. They are duplicated
+with reciprocal copy records rather than linked, because each package must work
+alone. One seam resists the cut: binding a run's own state locations is
+triggered by `compose run` borrowing a service definition but fixed with a
+`docker run` bind, so the trigger lives in docker-compose-cli and docker-cli
+carries the mechanic. See [docker-cli](validation/docker-cli.md) and
+[docker-compose-cli](validation/docker-compose-cli.md).
+
 **docker-cleanup** 0.1.0 separates reclaiming a host's accumulated Docker state
-from containerization, which owns a test run's own resources. Both forbid
-blanket prune commands, from opposite directions: a prune can reach resources a
-run did not create, and resources an audit never classified. The lesson came
+from the two CLI packages, which own what one command or project created. All
+three forbid blanket prune commands, from different directions: a prune can
+reach resources the work did not create, and resources an audit never
+classified. The lesson came
 from clearing a development host that had run a retired project alongside two
 unrelated ones. Three decisions in that pass are now rules. Age and retirement
 do not establish that a volume is disposable — three volumes in an approved
@@ -308,9 +334,13 @@ and their non-triggers, and routes to one reference for the commands,
 attribution signals and reporting shape. It is deliberately Docker-specific: the
 method would translate to another engine, but every command in it is Docker's
 and no other engine has been tried, so the first draft's engine-neutral name and
-claim were both dropped. Example requests: "Use $docker-cleanup to find what is
-reclaimable on this host", "Use $docker-cleanup to clear the retired project's
-container state." See [validation](validation/docker-cleanup.md).
+claim were both dropped. It stayed a third package rather than a reference inside
+docker-cli because its trigger is a symptom — a build failing for space — not an
+invocation under review, and because its substance is an authorization about
+destructive action that a reader loading flag guidance should not pick up.
+Example requests: "Use $docker-cleanup to find what is reclaimable on this
+host", "Use $docker-cleanup to clear the retired project's container state." See
+[validation](validation/docker-cleanup.md).
 
 **test-writing** 0.1.0 fills the gap between verification-design, which chooses
 the checks a change needs, and test-audit, which judges a settled suite. No
@@ -344,10 +374,14 @@ installable skill uses language-neutral examples and imposes no project test
 matrix or package manager. See its
 [verification scenarios](validation/verification-design.md).
 
-**containerization** 0.3.0 adds reuse of one service image for API, migration
-and seed commands when their runtime files are the same. This came from the same
-review; it does not prescribe a container tool or image cache. See
-[validation](validation/containerization.md).
+**containerization** was retired on 9 October 2026 at 1.1.0, split into
+`docker-cli` and `docker-compose-cli` for CLI usage, with its convention-shaped
+outcomes going to the consuming framework's local-containers convention and its
+PostgreSQL and verification material to database-migrations and
+verification-design. Its reuse of one service image for API, migration and seed
+commands, added at 0.3.0, is an image-authoring outcome and left with the
+convention. Its [validation history](validation/containerization.md) and Git
+history are preserved; see the [decision log](DECISIONS.md) for the split.
 
 **test-audit** 0.3.0 narrows its integration-test advice to the failure each
 test can observe. Native contention, real permissions and built-artifact checks

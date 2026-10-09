@@ -1,5 +1,12 @@
 # Validation — Containerization
 
+Retired on 9 October 2026 at 1.1.0. This page preserves historical evidence, and
+its links to the former package's own pages are history rather than live routes.
+The CLI material moved to [docker-cli](docker-cli.md) and
+[docker-compose-cli](docker-compose-cli.md), which cite the scenarios below as
+their inherited evidence; the convention-shaped outcomes left this repository.
+See the [decision log](../DECISIONS.md) for the split and the remaining owners.
+
 ## Scope extraction — 2 October 2026
 
 Version 1.0.0 narrows this package to container images, local stacks, startup and
