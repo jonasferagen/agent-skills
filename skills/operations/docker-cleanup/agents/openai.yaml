@@ -1,0 +1,4 @@
+interface:
+  display_name: "Docker cleanup"
+  short_description: "Audit and reclaim a Docker host's accumulated state"
+  default_prompt: "Use $docker-cleanup to audit this host's Docker state and report what can be reclaimed."

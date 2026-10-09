@@ -43,6 +43,7 @@ repository supplies the packages and their versions.
 | [runtime-operations](skills/operations/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups, with the Python helpers controllers import. |
 | [containerization](skills/operations/containerization/SKILL.md) | Build service images, configure local stacks and manage isolated container test resources. |
 | [database-migrations](skills/operations/database-migrations/SKILL.md) | Preserve migration history, review baselines and verify database bootstrap and upgrades. |
+| [docker-cleanup](skills/operations/docker-cleanup/SKILL.md) | Audit a Docker host's accumulated images, volumes, networks and build cache, and reclaim space by attributed owner and tier. |
 
 Repository-services and runtime-operations each ship an optional extension a
 project adopts explicitly: the
@@ -290,6 +291,26 @@ changes that way.
   boundaries worth testing, and add a row to the table above.
 
 ## Origins
+
+**docker-cleanup** 0.1.0 separates reclaiming a host's accumulated Docker state
+from containerization, which owns a test run's own resources. Both forbid
+blanket prune commands, from opposite directions: a prune can reach resources a
+run did not create, and resources an audit never classified. The lesson came
+from clearing a development host that had run a retired project alongside two
+unrelated ones. Three decisions in that pass are now rules. Age and retirement
+do not establish that a volume is disposable — three volumes in an approved
+group held credentials, a release tree and an unexpected database data
+directory, so contents are read and rescued before removal. Two tags sharing one
+image ID are one image, so a rename leftover is reported at zero size. A type's
+reported size is not its reclaimable size, because images and build cache share
+layers. The entrypoint gives a five-step method, names the selecting symptoms
+and their non-triggers, and routes to one reference for the commands,
+attribution signals and reporting shape. It is deliberately Docker-specific: the
+method would translate to another engine, but every command in it is Docker's
+and no other engine has been tried, so the first draft's engine-neutral name and
+claim were both dropped. Example requests: "Use $docker-cleanup to find what is
+reclaimable on this host", "Use $docker-cleanup to clear the retired project's
+container state." See [validation](validation/docker-cleanup.md).
 
 **test-writing** 0.1.0 fills the gap between verification-design, which chooses
 the checks a change needs, and test-audit, which judges a settled suite. No
