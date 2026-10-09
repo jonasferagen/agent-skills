@@ -141,12 +141,11 @@ durable receipt, a database probe — belongs to `status <name>`, which a reader
 asks for after a row says something is owed.
 
 That report's schema and its closed state and lifecycle vocabularies have one
-owner outside this skill: the guidance that states the project's service-report
-contract, including what each state means and which class a project-wide launch
-may touch. Validate every reported value against that owner rather than inventing
-one, and declare a lifecycle class rather than leaving a consumer to guess what
-starting the service would do; an undeclared class reads as unclassified and is
-skipped.
+owner outside this skill: the `service-classes` skill, which states what each
+state means and which class a project-wide launch may touch. Validate every
+reported value against that owner rather than inventing one, and declare a
+lifecycle class rather than leaving a consumer to guess what starting the
+service would do; an undeclared class reads as unclassified and is skipped.
 
 ## Scheduled runs
 

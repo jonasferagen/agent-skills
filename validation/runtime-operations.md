@@ -24,8 +24,9 @@ The skill must preserve these decisions in realistic applications:
 | A check reports success having compared zero tables | Treated as a defect in the check; the honest output is a refusal naming the empty denominator. |
 | A capture's restore check fails | Nothing is published; a capture test makes that step fail and confirms it. |
 
-Run the helper tests with `python3 -B -m unittest discover -s
-collections/service-foundation/skills/runtime-operations/tests`. Validate the manifest with the skill-creator
+Run the helper tests wherever the distribution deploys the helpers; this
+repository no longer carries them, and the path named here was a collection
+layout retired on 7 October 2026. Validate the manifest with the skill-creator
 validator. Consumer repositories verify their own project bindings and launchers.
 
 Verification: helper failure-path tests pass, and both consumer adapters restored
@@ -239,3 +240,42 @@ Version 2.1.1 identifies the existing service-report declarations as the
 authority for checked vocabulary copies. Runtime behavior is unchanged.
 The [reference-sharing sweep](reference-sharing-sweep.md) records checks,
 compatibility evidence and remaining review limits.
+
+## The helpers leave the package — 2026-10-09
+
+Version 3.0.0 stops shipping the code a consumer imports. Six modules
+(`credentialStore`, `databaseBackup`, `runtimeApi`, `serviceControl`,
+`serviceHealth`, `serviceReport`), the `service_runtime.py` template and four
+test suites left the package; the distribution deploys them and names the
+interface version it was written against. The method stayed and grew where a
+rule had existed only in implementation terms: readiness is a property of one
+named instance and a probe must prove identity; an ephemeral preview and a
+retained worker have different lifetimes, so the manager holds them differently;
+a store's authentication mechanisms are not interchangeable, so the one the
+tooling uses is named. The backup section became eight named guarantees, each of
+which the removed code implemented. The helpers contract grew rather than shrank,
+because the shipped loader used to demonstrate a contract it now has to state.
+
+The interface version did not move. No signature or field changed, and a
+consumer written against `major=1` revisits only discovery.
+
+This repository stops running four suites, 81 tests: credential reads with no
+owner fallback and withheld output, service control where a startup or readiness
+timeout stops only the selected unit and a cleanup failure preserves the primary
+error, an unrelated listener not counting as ready, the binding table, the
+literal-argument capability cases, backups including a wrong-key denial and a
+real GnuPG round trip, loader admission and refusal ordering, envelope identity
+verification and the closed vocabularies. The coverage moves rather than
+disappearing: the distribution discovers `test_*.py` wherever the code lands,
+and the suites were run against the proposed layout at the split — 81 tests, OK.
+Two checks did not move, because both artifacts they compared left this
+repository; the [decision log](../DECISIONS.md) records what replaced them.
+
+Lint is new for this code. The distribution lints the tree the helpers land in,
+which this repository did not, and `databaseBackup.py` has a finding that is a
+trap: an unused `cleanup_error` whose handler exists to preserve the primary
+failure. The repair is a bare handler with a comment, not a deleted one.
+
+Not established: no routing trial, and the container label the backup code
+applies to the containers it creates still carries this repository's name, which
+belongs to the distribution once it owns the code.

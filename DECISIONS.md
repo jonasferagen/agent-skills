@@ -153,6 +153,74 @@ installing distribution's claim. The discovery trials that exercised the
 checkpoint remain valid evidence about the instruction, whichever repository
 states it. The distribution picks up both patch versions when it next re-pins.
 
+### Shipped code belongs to the distribution — adopted
+
+A third test joins the two the containerization split and the checkpoint entry
+established. Selection divides a command from an outcome; placement divides a
+stated need from a named home; this one divides guidance from an artifact. If a
+consumer imports or executes it inside their own runtime, it is a library, not
+guidance. The skill may state the interface contract it is bound by; the
+distribution ships, versions and upgrades the code.
+
+Two packages establish it together, because each was mostly one of the two
+halves.
+
+| Owner | Scope |
+| --- | --- |
+| [service-classes](skills/operations/service-classes/SKILL.md) 0.1.0 | Whether a capability is a service, which class it is, what evidence each class owes, and what a status line may claim |
+| [runtime-operations](skills/operations/runtime-operations/SKILL.md) 3.0.0 | Credential tiers and custody, child-process rules, service-control and backup method, and the helpers' interface contract |
+| Consuming distribution's service convention | The `services/` home, index and guide shapes, reserved actions, control entry point, dispatcher, structural validator, `service-definition/v1` and the adoption declaration |
+| Consuming distribution's engineering collection | The six runtime helper modules, the service-runtime template and their four test suites |
+
+`repository-services` is retired at 0.3.1 and replaced rather than renumbered.
+Its name named the layout, which is the half that left, and the Docker routing
+trial had already recorded that its catalog row pulled a reader expecting
+service guidance into a `services/` home their project did not have. A major
+version under the old name would have preserved exactly that defect.
+`runtime-operations` keeps its name and takes a major version instead: its
+trigger and subject did not move, its description needed no change, and
+`node-patterns` and `test-writing` hold reciprocal copy records against the
+name. The helpers' interface version does not move either — no signature or
+field changed, only who distributes the code.
+
+`service-definition/v1` went to the distribution entire, format included. Every
+rule in it is a claim about a consumer's document: the filename, the declaration
+line, the heading, the table shape and the twelve field names. The three
+judgments it encoded stayed, restated without it — a recorded status is scoped
+and never an inferred health claim, a scheduled service's readiness is honestly
+absent rather than unknown, and a fact routes to the owner holding the detail
+instead of being invented to fill a field. The state and class vocabularies
+stayed too, as per-class judgment rather than a wire format, while the field
+names and encoding remain the producer's interface.
+
+The three-way topical split of runtime-operations proposed under "Remaining
+ideas" was assessed and declined. Credentials is the hub rather than a peer:
+the service launcher reads a token file and the backup routine reads the
+credential store, so two of the three proposed packages could not state their
+own rules without the credential ones. Three sections cut across all three
+candidates, which would mean six or more reciprocal copy records where the
+Docker split accepted four across two packages. The real cost is a reader taking
+the whole entrypoint for a narrow task, recorded at
+`validation/service-foundation-trials/transition.md`, and the cheaper fix is
+conditional references inside one package — the same remedy the Docker routing
+trial proposed for local-containers. That stays an idea, after a trial.
+
+Agent-skills loses the service-report contract check, because both artifacts it
+compared — the producer's declarations and the dispatcher's copy — leave this
+repository. `check_shared_contracts.py` keeps only the TypeScript comparison,
+and its suite drops from seventeen tests to six. The five interoperability tests
+are worth re-establishing in the distribution, which will hold the code and the
+installed guidance together; nothing here can compare a guide against an owner
+that is no longer present. This repository also stops running the four helper
+suites, 81 tests including a real GnuPG round trip; the distribution already
+discovers them wherever the code lands.
+
+Routing acceptance is outstanding for both packages, so neither is tagged. The
+near-neighbours a trial must separate are `service-classes`,
+`service-boundaries` and `runtime-operations` on one axis, and the distribution's
+service convention against all three on the other. As with the Docker split,
+both catalogs present the same set, so the trial belongs with the distribution's.
+
 ## 6 October 2026
 
 ### Task worktrees belong to the acting agent — superseded by 9 October above
@@ -279,9 +347,11 @@ Containerization's narrowed scope is version 1.0.0; the two new packages start a
 
 ### Remaining ideas — proposed
 
-- Split runtime-operations into credential handling, local service control and
-  database backup/recovery. Distinguish general guidance from its 1Password and
-  systemd implementations.
+- Give runtime-operations conditional references rather than one entrypoint, so
+  a narrow task need not read the credential, service-control and backup
+  material together. Assessed and preferred over the three-way topical split on
+  9 October; see that day's entry above. The 1Password and systemd
+  implementations were separated from the general rules in 3.0.0.
 - Consider separating consistency-check design from source-of-truth, with a home
   under verification.
 - Clarify documentation ownership versus domain modeling in project-docs. (That

@@ -178,10 +178,10 @@ service does, builds its line with the same module so the same validation
 applies.
 
 That schema and its closed state and lifecycle vocabularies have one owner
-outside this contract: the guidance that states the project's service-report
-contract, including what each state means and which class a project-wide launch
-may touch. Validate every value against that owner; a controller may not invent
-a state or a class that every consumer would then have to guess at.
+outside this contract: the `service-classes` skill, which states what each
+state means and which class a project-wide launch may touch. Validate every
+value against that owner; a controller may not invent a state or a class that
+every consumer would then have to guess at.
 
 ## Limits
 

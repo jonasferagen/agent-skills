@@ -39,20 +39,21 @@ repository supplies the packages and their versions.
 
 | Skill | Use it for |
 | --- | --- |
-| [repository-services](skills/operations/repository-services/SKILL.md) | Define, document and check a repository's named services: the `services/` home, guides, dispatcher and structural validator. |
-| [runtime-operations](skills/operations/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups, with the Python helpers controllers import. |
+| [service-classes](skills/operations/service-classes/SKILL.md) (draft) | Decide whether a capability is a service and whether it is running or scheduled, what evidence each class owes, and what a status report may claim. |
+| [runtime-operations](skills/operations/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups, as method and an interface contract rather than shipped code. |
 | [database-migrations](skills/operations/database-migrations/SKILL.md) | Preserve migration history, review baselines and verify database bootstrap and upgrades. |
 | [docker-cli](skills/operations/docker-cli/SKILL.md) | Write or review a single container or image command: ports, secrets, mounts, labels, identity and the cleanup of what it created. |
 | [docker-compose-cli](skills/operations/docker-compose-cli/SKILL.md) | Write or review a compose command and the file it reads: project selection, inherited environment, borrowed definitions and project-scoped teardown. |
 | [docker-cleanup](skills/operations/docker-cleanup/SKILL.md) | Audit a Docker host's accumulated images, volumes, networks and build cache, and reclaim space by attributed owner and tier. |
 
-Repository-services and runtime-operations each ship an optional extension a
-project adopts explicitly: the
-[service extension](skills/operations/repository-services/references/extension.md)
-for service homes and checks, and the
+Runtime-operations states the
 [runtime helpers contract](skills/operations/runtime-operations/references/runtime-helpers.md)
-for importing the bundled helpers. Promotion from a spike to maintained service
-use reads service-boundaries and runtime-operations together.
+a consumer binds to, without shipping the helpers themselves: a distribution
+deploys that code and names the interface version it was written against.
+Service homes, document shapes, control commands and their checks are the
+installing distribution's convention, and service-classes states only what a
+service and its status owe. Promotion from a spike to maintained service use
+reads service-boundaries, service-classes and runtime-operations together.
 
 The three Docker packages split one tool by the moment it is used: assembling a
 command, driving a project of containers, or accounting for what a host has
@@ -134,7 +135,9 @@ A distribution may import an explicitly self-contained reference as a file,
 recording its owning skill, version, source path and full commit. This does not
 install or register the whole skill. The shared-value reference at
 `skills/design/source-of-truth/references/authoritative-values.md` supports that
-use and requires no sibling resources. Preserve the imported bytes and record
+use and requires no sibling resources, as does
+`skills/operations/runtime-operations/references/runtime-helpers.md`. Keep both
+free of local links, so an importer that rejects them can carry the file. Preserve the imported bytes and record
 the distribution's own adoption and routes separately.
 
 ## Verification
@@ -156,7 +159,7 @@ moved. Behavioral scenarios in `validation/`
 and bundled helper tests still need their own review.
 
 `python3 scripts/check_shared_contracts.py` compares the selected TypeScript
-module-syntax copy and service-report vocabulary with their current owners. The
+module-syntax copy with its current owner. The
 ordinary `scripts/check.py` gate runs it and the compatibility tests. This is a
 bounded check of declared shared contracts, not a semantic scan of all guidance.
 
@@ -382,6 +385,31 @@ verification-design. Its reuse of one service image for API, migration and seed
 commands, added at 0.3.0, is an image-authoring outcome and left with the
 convention. Its [validation history](validation/containerization.md) and Git
 history are preserved; see the [decision log](DECISIONS.md) for the split.
+
+**repository-services** was retired on 9 October 2026 at 0.3.1 and replaced by
+`service-classes` 0.1.0. It mixed judgment with placement: the running and
+scheduled classes and what each owes as evidence sat beside a `services/` home,
+an index and guide file layout, five reserved action words, a control entry
+point, a dispatcher implementation, a structural validator and an adoption
+declaration. Everything that names a path, a filename, a command or a document
+shape is a claim about a consuming project, so it went to the installing
+distribution's convention; the classification and status judgment stayed. The
+name went with the layout, because a routing trial had found the old catalog row
+pulled a reader expecting service guidance into a home their project did not
+have. Its [validation history](validation/repository-services.md) and Git
+history are preserved; see the [decision log](DECISIONS.md) for the split.
+
+**runtime-operations** 3.0.0 stopped shipping the Python helpers a consumer
+imports. Six modules, a service-runtime template and their four test suites left
+the package; the credential tiers, child-process rules, service-control method
+and backup guarantees stayed, and the
+[helpers contract](skills/operations/runtime-operations/references/runtime-helpers.md)
+grew because the shipped loader used to demonstrate a contract it now has to
+state. The interface version did not move: no signature or field changed, only
+who distributes the code. The name did not change either, since the trigger and
+the subject are untouched — a reader asking about a credential, a service
+control or a backup still selects this package. The proposed three-way topical
+split was assessed and declined; the decision log records why.
 
 **test-audit** 0.3.0 narrows its integration-test advice to the failure each
 test can observe. Native contention, real permissions and built-artifact checks
