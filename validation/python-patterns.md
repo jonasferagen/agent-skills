@@ -10,6 +10,7 @@ references cover selected patterns, not a complete Python style guide.
 | A timeout of zero becomes the default | Test absence explicitly and preserve meaningful zero. |
 | Two dataclass instances share a list | Use a per-instance factory and make ownership explicit. |
 | A frozen record contains a list | Do not claim deep immutability or assume it is hashable. |
+| A grid cell is unpacked, sorted and used as a set member | Choose a NamedTuple and accept its whole tuple contract; use a frozen dataclass when tuple behavior is not wanted or construction must validate. |
 | A generator is read twice | Recognize exhaustion; choose materialization only when repeated access and size justify it. |
 | A file read fails before JSON parsing | Preserve acquisition failure separately from malformed JSON. |
 | The second resource acquisition fails | Release the first through its owning context or ExitStack. |
@@ -130,3 +131,37 @@ It does not establish the correct encoding for arbitrary input files, and it
 should not reject intentionally locale-dependent text handling. Both techniques
 remain validation options here; this entry adds no mandatory consumer test lane
 or interpreter requirement and changes no installed skill.
+
+## NamedTuple versus frozen dataclass — 2026-10-10
+
+Version 0.3.0 adds a section to
+[Values and collections](../skills/languages/python-patterns/references/values-and-collections.md)
+and a symptom row routing to it: choose `typing.NamedTuple` when tuple behavior
+is the point (unpacking, element-wise ordering and hashing, interop with code
+expecting tuples, as with grid cells and vectors), a frozen dataclass otherwise.
+It names the costs that come with the tuple contract: indexing, `len`, iteration,
+equality with any tuple of the same items, and no `__new__` override for a
+construction invariant. The trigger was a consumer layout compiler whose grid
+cell and vector became NamedTuples during a restructure with no guidance on the
+choice.
+
+The example parsed with Python 3.11's syntax feature version and ran on CPython
+3.13 and 3.14.4. Probes confirmed unpacking, equality with a plain tuple and
+with another NamedTuple type of equal items, and that a NamedTuple class
+defining `__new__` is refused at class creation (`AttributeError`; one written
+with `super()` fails earlier with `TypeError`). mypy was not available, so no
+strict type check was repeated.
+
+One routing trial ran in a fresh general-purpose agent with no forked history.
+The fixture sat outside this repository with installed copies of both Python
+packages and a project instruction hook listing their descriptions (supplied
+metadata, not host discovery). The neutral task asked for a named grid-cell type
+in a small route module whose callers unpack cells, key dictionaries by them and
+compare them with plain tuples. The agent read the hook, the code and test,
+python-design's entrypoint and values reference, then python-patterns' entrypoint,
+followed the new row to the new section and chose a NamedTuple; tests passed. It
+reported that the python-design values reference alone pointed toward a frozen
+dataclass. python-design 0.2.0 now names this choice and python-patterns there.
+About 1,950 of 4,250 guidance words were read; unrelated references were not.
+One run demonstrates the route, not its reliability; the nearby-scope case was
+not exercised.

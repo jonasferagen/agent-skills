@@ -2,7 +2,7 @@
 name: python-design
 description: "Apply the class-based Python house style when shaping operations, domain values, dependency protocols, naming and module boundaries. Use for code organization and ownership decisions."
 metadata:
-  version: "0.1.1"
+  version: "0.2.0"
 ---
 
 # Python design
@@ -32,6 +32,7 @@ rather than silently changing either owner. Follow the user's explicit decision.
 | Symptom or decision | Read |
 | --- | --- |
 | An operation, service or factory needs a home | [Class shape](references/class-shape.md) |
+| Tests need to vary a policy value such as a margin or limit | [Class shape](references/class-shape.md) |
 | A data record gains invariants, or arguments travel together | [Values and call sites](references/values-and-call-sites.md) |
 | A consumer depends on a large client or hidden global | [Dependency boundaries](references/dependency-boundaries.md) |
 | Names, module placement or package exports are unclear | [Names and modules](references/names-and-modules.md) |

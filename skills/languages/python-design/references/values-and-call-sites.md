@@ -12,7 +12,8 @@ together or have shared meaning, not for every function with optional arguments.
 
 A dataclass can be a passive record or a value object with behavior. A wire DTO
 stays a transport contract; an internal value can own validation and derivation.
-The following value has one invariant regardless of whether callers use a
+A value whose callers rely on tuple behavior can be a NamedTuple instead;
+python-patterns covers that choice when available. The following value has one invariant regardless of whether callers use a
 factory. Its fields are immutable scalars:
 
 ```python

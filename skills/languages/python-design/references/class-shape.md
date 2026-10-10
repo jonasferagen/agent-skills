@@ -43,6 +43,30 @@ wrapper solely to satisfy the house style. Tables, constants and descriptors are
 data and may remain module values. A new operation does not become an exception
 merely because it is a short pure function.
 
+## Give a varied policy value its operation as owner
+
+A policy value that tests or callers need to vary, such as a margin or limit,
+belongs to the operation that applies it. Prefer a keyword-only or constructor
+parameter whose default is the policy; a class attribute on that operation is
+the smaller step when only the default needs a name. Tests pass the value they
+exercise rather than patching a module global. Such a patch changes the value
+for every reader while it lasts and misses code that imported the name with
+`from module import NAME`.
+
+```python
+from collections.abc import Iterable
+
+class Clearance:
+    MARGIN = 0.10
+
+    @staticmethod
+    def violations(gaps: Iterable[float], *, margin: float = MARGIN) -> list[float]:
+        return [gap for gap in gaps if gap < margin]
+```
+
+A test calls `Clearance.violations(gaps, margin=0.6)`. The default is bound when
+the class body runs, so patching `Clearance.MARGIN` later does not change it.
+
 ## Construction is a real boundary
 
 Python has no enforced private constructor. An alternate `parse` or `from_*`

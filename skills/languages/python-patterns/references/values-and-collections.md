@@ -39,6 +39,31 @@ members for a value intended to stay stable. Choose `slots=True` for a concrete
 memory or attribute-layout need, after checking inheritance and tooling; it is
 not a universal improvement.
 
+## Choose NamedTuple when tuple behavior is the point
+
+Use `typing.NamedTuple` when callers rely on the value being a tuple: they
+unpack it, sort or hash it element by element, or pass it to code that expects
+a plain tuple. Grid cells, coordinates and small vectors are typical. Use a
+frozen dataclass otherwise. A NamedTuple brings the whole tuple contract:
+indexing, `len`, iteration, and equality with any tuple holding the same items,
+including another NamedTuple type. It cannot override `__new__`, so a
+construction invariant needs a frozen dataclass.
+
+```python
+from typing import NamedTuple
+
+class Cell(NamedTuple):
+    x: int
+    z: int
+
+    def step(self, dx: int, dz: int) -> "Cell":
+        return Cell(self.x + dx, self.z + dz)
+
+x, z = Cell(2, 3).step(1, 0)  # unpacks as (3, 3)
+assert Cell(2, 3) == (2, 3)
+assert min({Cell(1, 0), Cell(0, 5)}) == Cell(0, 5)
+```
+
 ## Keep iteration and ownership visible
 
 An iterator can be exhausted. If two consumers need independent passes, accept
@@ -55,6 +80,7 @@ unequal lengths are a defect, and ordinary `zip` when truncation is intended.
 
 Sources: [defaults](https://docs.python.org/3/faq/programming.html#why-are-default-values-shared-between-objects),
 [dataclasses](https://docs.python.org/3/library/dataclasses.html),
+[NamedTuple](https://docs.python.org/3/library/typing.html#typing.NamedTuple),
 [zip](https://docs.python.org/3/library/functions.html#zip),
 [closing](https://docs.python.org/3/library/contextlib.html#contextlib.closing),
 [closing async generators](https://docs.python.org/3/library/contextlib.html#contextlib.aclosing).

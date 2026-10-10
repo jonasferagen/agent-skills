@@ -15,6 +15,7 @@ TypeScript design package, while adapting its choices to Python.
 | A value has ordering invariants | Enforce ordinary construction, not just a bypassable factory. |
 | A wire DTO only describes an external payload | Keep it passive; runtime parsing remains a separate boundary concern. |
 | A property would perform network I/O | Use an explicit operation rather than hiding costly work behind attribute access. |
+| A test patches a module-level margin to exercise a failure | Give the margin to its owning operation as a keyword or constructor parameter; the test passes the value. |
 | A consumer calls one method but forwards the client elsewhere | Trace downstream and lifecycle needs before narrowing to a protocol. |
 | Two clients have matching methods but different session ownership | Preserve semantic and lifetime requirements; structural matching is insufficient. |
 | An injected client is borrowed | Do not close it as though the consumer acquired it. |
@@ -63,3 +64,31 @@ choice suits a real application. The package remains an unreleased starting set.
 The entrypoint tables were rendered in a temporary 830-pixel content column
 and inspected in external Chrome; text remained readable without horizontal
 clipping. This was a local preview, not a check of every hosting renderer.
+
+## Policy values that tests vary — 2026-10-10
+
+Version 0.2.0 adds a section to [Class shape](../skills/languages/python-design/references/class-shape.md)
+and a symptom row routing to it: a policy value that tests or callers vary,
+such as a margin or limit, belongs to the operation that applies it, preferably
+as a keyword-only or constructor parameter whose default is the policy, with a
+class attribute as the smaller step. Tests pass the value instead of patching a
+module global. [Values and call sites](../skills/languages/python-design/references/values-and-call-sites.md)
+also names the NamedTuple alternative and python-patterns as its owner, after
+the routing trial recorded on the
+[python-patterns page](python-patterns.md#namedtuple-versus-frozen-dataclass--2026-10-10)
+showed that reference alone pointing toward a frozen dataclass. The trigger was
+a consumer layout compiler whose test patched a clearance margin.
+
+The example parsed with Python 3.11's syntax feature version and ran on CPython
+3.13 and 3.14.4. A probe confirmed that passing `margin=` changes the result and
+that reassigning the class attribute after definition leaves the bound default
+unchanged, as the reference states.
+
+One routing trial ran in a fresh general-purpose agent with the same fixture
+setup. The neutral task asked it to remove a `unittest.mock.patch` of a module
+margin while keeping default behavior. It read the hook, the code and test,
+python-design's entrypoint, followed the new row to class-shape and moved the
+margin to a class attribute used as a keyword-only default; the test now passes
+`margin=0.80` and both tests passed. It read no python-patterns material. One run
+demonstrates the route, not its reliability; the nearby-scope case was not
+exercised.
