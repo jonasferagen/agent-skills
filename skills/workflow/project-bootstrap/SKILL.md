@@ -2,7 +2,7 @@
 name: project-bootstrap
 description: "Establish a new project's or repository's scope, policy, overview and agent routes, or fill those starting-context gaps in an existing project. Use for project setup; a dependency-only upgrade or ordinary implementation needs its own workflow."
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # Project bootstrap
@@ -36,6 +36,9 @@ Use evidence and established decisions to give the repository:
 
 - An overview of its purpose, current responsibility and relevant dependencies.
   An adequate README can own this without a separate design document.
+- Explicit governing choices and their precedence. When the owner supplies
+  principles at setup, establish their scope, tradeoffs and review conditions;
+  do not wait for a past implementation or manufacture principles from examples.
 - A policy owner with the known operating facts and adopted constraints needed
   for the work. Follow the project's policy workflow; project-policy is a suitable
   companion when available. Merely linking an installed policy skill does not
@@ -66,7 +69,11 @@ adequate existing documentation rather than requiring a manifest.
 Separate observed implementation, adopted requirements and proposed work.
 A local checkout does not establish local-only deployment, synthetic data or
 disposable state. A possible future mechanism does not select its technology or
-adopt its operational requirements. Keep a requirement in its policy owner and
+adopt its operational requirements. Keep facts distinct from adopted obligations, including decisions that a
+requirement is unnecessary under stated conditions. Project-wide lifetime and
+reliance need not be properties of one runtime environment. Follow the project's
+principles when deriving policy and review both when a fundamental boundary
+changes. Keep a requirement in its policy owner and
 an implemented mechanism in its overview or design owner. Plans and dated
 evidence follow their own homes, outside current-state documentation.
 

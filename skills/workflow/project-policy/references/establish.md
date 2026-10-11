@@ -1,6 +1,6 @@
 # Establish or review policy
 
-Start with existing instructions, policy, the requested outcome and the relevant
+Start with existing instructions, principles, policy, the requested outcome and the relevant
 design and operating owners. Keep adequate policy and stronger commitments. Find
 the missing decisions by tracing actual users, state and actions; do not invent
 rules to fill a document template.
@@ -37,14 +37,23 @@ and identify the decisions the authorized task actually needs.
 
 ## Derive requirements
 
-Connect each consequential fact or adopted decision to the required outcome and
+Establish the project's governing choices before deriving requirements. A new
+project can adopt a principle from an explicit owner decision; it need not wait
+for an implementation to exist. Record the tradeoff, scope, cost and conditions
+that would require reconsideration. Examples such as accepting breaking changes
+to accelerate exploration illustrate choices; they adopt nothing for a consumer.
+
+Connect each applicable principle and consequential fact or adopted decision to the required outcome and
 the owner that supplies it. Consider failure cases the axes do not expose. Record
 what is known, decided or unresolved and identify affected work. Assumptions need
 an explicit scope; a label such as "prototype" establishes no blanket exemption.
 
 A rule states its scope, required outcome and reason. Name the deciding owner
 and how compliance is judged: a command, a reader or both. Link existing checks
-and their limits. Keep mechanisms in their design or operating owner unless the
+and their limits. State what could change its applicability. "No application
+login required" is a scoped policy choice, not a deduction from "one user";
+"simple backups" needs an agreed retained-data scope and acceptable loss before
+an implementation can be judged. Do not invent numerical targets. Keep mechanisms in their design or operating owner unless the
 mechanism itself is the adopted constraint.
 
 An exception identifies the rule and affected scope, reason, deciding owner and

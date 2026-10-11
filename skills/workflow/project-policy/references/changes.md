@@ -13,6 +13,14 @@ Changes in users, exposure, data, lifetime, compatibility or recovery can requir
 review before any policy text changes. So can an adopted design that moves
 responsibility, state or external authority.
 
+Review applicable principles first when the change crosses their assumptions:
+external users, new reliance, valuable data or a maintained lifetime may call for
+a different governing tradeoff even if no environment is added. The owner may
+retain, revise or supersede a principle; the changed fact itself adopts no new
+principle. Then derive affected policy and implementation consequences. Keep
+local, staging and production scopes distinct rather than treating maturity as
+one switch for the whole project.
+
 Classify the effect as tighter requirements, relaxed requirements, a mixture or
 a clarification. A wording-only correction needs a focused comparison; it does
 not require reconstructing the policy or creating a worklog. An unchanged
@@ -48,7 +56,8 @@ permission to deploy, contact users or change external systems.
 
 ## Update owners and retain evidence
 
-Keep policy current for operating facts and adopted constraints. Update affected
+Keep principles, operating facts and policy current at their respective owners.
+Update affected
 requirement owners, implementation guides, instructions and checks together as
 their meaning changes. Current-state documentation describes what is implemented;
 an adopted but unimplemented requirement remains in policy and its implementation

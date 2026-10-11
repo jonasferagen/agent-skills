@@ -2,12 +2,12 @@
 name: project-policy
 description: "Establish or interpret project policy, assess compliance or adequacy, and review changed circumstances or obligations. Use when project scope, operating facts or adopted requirements need a decision."
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Project policy
 
-Use the project's authoritative policy and instructions to resolve current
+Use the project's authoritative principles, policy and instructions to resolve current
 operating facts, adopted constraints, scope and exceptions. Reuse adequate owners
 and formats. The project decides its policy; this skill supplies the workflow for
 understanding, establishing and changing it.
@@ -29,6 +29,14 @@ implemented design can expose such a change; a proposal remains a proposal.
 
 ## Resolve authority and evidence
 
+Read the project's declared governing precedence. Where principles are its
+highest commitments, derive policy from them rather than treating principles as
+advice only when policy leaves room. A conflicting lower-level rule needs repair
+at its owner; it does not silently amend a principle. Apply an explicit principle
+to the decision within its scope, but do not infer destructive actions or removal
+of unrelated protections from a slogan. Preserve unaffected commitments and
+resolve ambiguous conflicts through existing decision authority.
+
 A shared policy owner supplies common rules and the project's operating facts;
 member repositories record only their local additions and authorized exceptions.
 A closer file does not silently override shared commitments. Resolve conflicts through the project's established authority,
@@ -40,9 +48,13 @@ distinct. A rule can be adopted but unmet. Missing evidence neither proves failu
 nor establishes compliance; an implementation gap does not amend the rule. Use
 the relevant implementation and verification guidance when behavior needs checking.
 
-Policy owns adopted constraints. Operating facts stay with the policy owner,
+Policy owns the requirements selected under the project's principles. Operating facts stay with the policy owner,
 or with the project's environment declaration when it keeps one; policy then
-cites that declaration instead of restating its facts. Design and operating guides
+cites that declaration instead of restating its facts. Keep project-wide context
+such as lifetime separate from facts specific to an environment. An access,
+recovery or compatibility requirement is a policy decision, not an observed fact.
+An explicit decision that a requirement is unnecessary needs its scope and review
+condition; an undecided requirement stays open. Design and operating guides
 own the implemented structure and procedures. Plans own pending work; work records
 own dated assessments and evidence. Follow the project's document homes and link
 these owners. Preserve prior decisions and assessed revisions when moving content.
