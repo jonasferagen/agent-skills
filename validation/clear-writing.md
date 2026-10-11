@@ -14,6 +14,10 @@ they are not claims that an independent agent has passed them.
 | An overview says "no release has been made yet", but readers only need the repository's purpose | Omit the release snapshot without replacing it with another status claim or creating a status page. |
 | Readers need to choose an available release, and the repository has a releases page | Link the releases page with useful context rather than copying its current contents into prose. |
 | A guide says the loader does not verify hashes, and a dated report records one successful load | Preserve the current limitation and the dated result's tested scope; neither becomes a general verification claim. |
+| A keeper entrypoint's Maintenance section recounts adoption, a move and planned work | State current upkeep and routes; retain history and proposed work with their record or plan owner, with useful pointers. |
+| An overview mixes supported commands, a migration story and a future feature promise | Keep the supported interface and current limitations; link the history and plan instead of embedding their narrative. |
+| A worklog, changelog or proposed design intentionally describes another time scope | Preserve that purpose, assessed conditions and proposal state; the current-guidance rule is not a universal present-tense rewrite. |
+| Instructions say what to do when an existing operation fails | Keep the operational steps and conditions; future-tense wording does not make the supported procedure a roadmap. |
 | Write a confirmation after a backup command succeeds but no restore was attempted | Report the command's success without claiming that recovery was verified. |
 | Edit explanatory text in an established personal voice | Improve comprehension while retaining the requested tone and distinctive voice. |
 | The user requests a creative form or deliberately elaborate prose | Follow the requested form; do not impose terse technical prose as a universal style. |
@@ -132,3 +136,19 @@ Migration routing evidence is recorded in [the extraction review](framework-extr
 ## Useful maintained claims — 2026-10-11
 
 Version 0.5.0 adds omission before snapshot repair, existing-answer pointers and preservation of actionable limitations and dated evidence. The [independent fixture review](document-claim-homes-2026-10-11.md) retains the exact brief, installed metadata, input, proposed output, reported read set and evaluator assessment. Its broad case passed; the nearby literal-edit route is an informed author trace, and no spontaneous discovery or maintenance-cost result is claimed.
+
+## Present-focused guidance — 2026-10-11
+
+Version 0.6.0 extends claim selection to the temporal purpose of current overviews,
+instructions and explanatory guides. The Owner requested elevation of the existing
+current-documentation boundary after finding adoption/move history under an
+asset-keeper entrypoint's Maintenance section. Informed author traces preserve
+that history at an existing record or a deliberately selected changelog, keep
+current upkeep in the entrypoint, and route proposed work to its plan. A supported
+failure procedure remains current guidance even when its steps use future tense;
+an intentionally historical worklog is not rewritten into present claims.
+
+These are author traces with the intent known, not a new independent discovery
+trial. The coordinated project-bootstrap adoption will test the shipped route
+independently. `python3 -B scripts/check.py` passes all four checks and 45 tests;
+whitespace checks pass. No tag or broad historical-record rewrite is made.
