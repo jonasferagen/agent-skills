@@ -2,7 +2,7 @@
 name: clear-writing
 description: "Draft or edit explanatory and instructional prose for clarity, including technical explanations, documentation, skills, project instructions and concise labels. Preserve the requested voice, factual meaning and level of certainty."
 metadata:
-  version: "0.4.1"
+  version: "0.5.0"
 ---
 
 # Clear writing
@@ -21,6 +21,22 @@ For an edit, preserve facts, technical distinctions, uncertainty and commitments
 Do not make a claim more certain just to make it shorter. When the source leaves
 the meaning unresolved, retain that uncertainty or ask for the missing detail;
 fluent wording does not resolve it.
+
+## Choose claims the reader needs
+
+In maintained prose, ask whether a claim helps the reader understand, decide or
+act before making it more precise. Omit incidental facts that change, such as
+"no release has been made yet" in an overview that needs no release status.
+When the current answer matters, point to its authoritative home, such as the
+existing releases page or tracker, rather than repeating a snapshot. Give the
+link enough context to show which question it answers; do not create a new page
+just to retain an unnecessary claim.
+
+Keep limitations, unsupported behavior, obligations and uncertainty that affect
+the reader's decision or understanding of the current contract. Their ability to
+change is not a reason to hide them. Preserve dated observations in records meant
+to retain evidence; they describe the conditions assessed, not a promise of
+current status.
 
 ## Make the wording carry the meaning
 

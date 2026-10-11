@@ -1,8 +1,8 @@
 ---
 name: source-of-truth
-description: "Reconcile a rule, vocabulary or shape defined in several places. Use when copies drift, a change requires coordinated edits, or a consistency check needs to survive restructuring."
+description: "Reconcile a rule, vocabulary, shape or changing prose claim defined in several places. Use when copies drift, a change requires coordinated edits, or a consistency check needs to survive restructuring."
 metadata:
-  version: "3.1.2"
+  version: "3.2.0"
 ---
 
 # Authoritative definitions
@@ -45,8 +45,9 @@ project scaffold or companion installation.
 
 ## Read for the decision at hand
 
-- To find a concept's owner, compare similar definitions, choose derivation or
-  assess drift risk, read [definitions](references/definitions.md).
+- To find a concept's owner, decide which prose claims to retain, compare similar
+  definitions, choose derivation or assess drift risk, read
+  [definitions](references/definitions.md).
 - For configuration, external identifiers or repository locations used in several
   places, read [one owner for a shared value](references/authoritative-values.md).
 - When a language, build or runtime boundary prevents direct reuse, read
@@ -72,7 +73,7 @@ The numbered “rungs” are the [options for deriving or checking a copy](refer
   rungs and state what remains unprotected.
 - If you added or retained a check, state what it reads on each side when it
   runs. Its verdict must name the root and the set it measured.
-- Update the documents that state the concept to agree with its current
-  definition. Use the present tense and name the authoritative home in the guide
-  responsible for that concept.
+- Remove unnecessary prose restatements. Reconcile needed explanations with the
+  current definition and point to its authoritative home; retain dated evidence
+  as evidence of the conditions assessed.
 - Run the project's own checks. Include any new gate check in the same change.

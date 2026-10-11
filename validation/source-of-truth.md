@@ -24,7 +24,12 @@ of an independent agent evaluation.
 | A proposed check has never been observed to fail | Disagreement is introduced deliberately to confirm the check fails, then reverted. |
 | Two similar lists answer different questions | Not a second home; the questions are compared rather than the contents. |
 | One constant is used several times inside one module | Not a duplication. |
-| A document and a constraint both list a vocabulary and the document is stale | The document is a home; it is reconciled in the present tense. |
+| A document and a constraint both list a vocabulary and the document is stale | Remove an unnecessary prose copy or reconcile the needed explanation with the constraint and name its home. |
+| Several overviews repeat "no release exists" without a reader needing that status | Remove the snapshots; do not create a release inventory merely to relocate them. |
+| Release availability affects a reader's next action and an authoritative release listing exists | Link that listing directly with enough context; do not copy it through intermediate repository summaries. |
+| A keeper maintains changing prose by hand | Name a bounded maintained set and update triggers; supporting documents point to its homes rather than independently tracking status. |
+| Policy requires hash verification but the current loader does not perform it | Preserve the requirement and the observed limitation with their respective owners; omission does not hide the gap. |
+| An old acceptance report records a passing revision | Retain the assessed revision and conditions as historical evidence, rather than rewriting the report to describe current support. |
 | A plugin namespace appears in docs, a generated manifest and UI prompts | One project-owned lookup value decides the namespace; docs use its key, generated files derive the literal, and historical pins retain their original names. |
 | A manifest needs a literal namespace but its loader does not expand variables | A placeholder is rejected; generate the literal or compare it with the owner in a required check. |
 | A duplication can be neither derived nor checked | Recorded where the concept lives, naming what must change together and what goes wrong when one is missed. |
@@ -288,3 +293,7 @@ Migration routing evidence is recorded in [the extraction review](framework-extr
 Version 3.1.0 adds a self-contained shared-value reference while retaining
 project-owned layouts and configuration. The [reference-sharing sweep](reference-sharing-sweep.md)
 records its scope, installed-copy walkthrough, checks and independent-review limit.
+
+## Useful maintained claims — 2026-10-11
+
+Version 3.2.0 adds omission before snapshot repair, existing-answer pointers and preservation of actionable limitations and dated evidence. The [independent fixture review](document-claim-homes-2026-10-11.md) retains the exact brief, installed metadata, input, proposed output, reported read set and evaluator assessment. Its broad case passed; the nearby literal-edit route is an informed author trace, and no spontaneous discovery or maintenance-cost result is claimed.

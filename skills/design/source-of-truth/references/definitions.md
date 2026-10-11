@@ -33,6 +33,28 @@ History provides evidence of drift. If an earlier extension changed only one
 home, the drift already shipped. The current state of the other homes tells you
 how long it went unnoticed.
 
+## Decide which prose claims to keep
+
+Before consolidating a changing claim, ask whether the reader needs it. Omit
+incidental status from maintained prose rather than maintaining a more accurate
+copy. An overview may need to explain how to find releases without saying
+whether a release exists. If the answer matters, link the existing authoritative
+release, catalog or tracking owner with enough context for the reader to use it.
+Do not create an inventory or another document for every removed statement.
+
+Keep a limitation, uncertainty or qualification where readers need it to
+understand the current behavior or contract. A required guarantee and observed
+support answer different questions; neither can replace the other. A dated
+record retains what was observed at its assessed revision, even after the current
+answer changes.
+
+For a prose home that needs manual maintenance, name the responsible owner, its
+scope and what changes trigger an update. Keep the maintained set small enough
+for that responsibility to be practical. Other documents explain their own
+subject and point to the home instead of keeping independent status, inventories
+or ownership summaries. A reference across a repository boundary should reach
+the owner of the answer, not a chain of summaries restating it.
+
 ## Choose the home that decides
 
 Identify the one appearance that decides the answer. Changing it changes the

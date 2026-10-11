@@ -11,6 +11,9 @@ they are not claims that an independent agent has passed them.
 | Clarify a default that allows project-specific exceptions | Keep the permitted exceptions beside the default; do not make the default mandatory. |
 | Rewrite a procedure containing commands and exact resource names | Preserve operational meaning and literal values; editing the procedure does not cause the commands to run. |
 | Shorten the description of a growing repository | Describe its stable category and useful scope without embedding a list that becomes incomplete as contents change. |
+| An overview says "no release has been made yet", but readers only need the repository's purpose | Omit the release snapshot without replacing it with another status claim or creating a status page. |
+| Readers need to choose an available release, and the repository has a releases page | Link the releases page with useful context rather than copying its current contents into prose. |
+| A guide says the loader does not verify hashes, and a dated report records one successful load | Preserve the current limitation and the dated result's tested scope; neither becomes a general verification claim. |
 | Write a confirmation after a backup command succeeds but no restore was attempted | Report the command's success without claiming that recovery was verified. |
 | Edit explanatory text in an established personal voice | Improve comprehension while retaining the requested tone and distinctive voice. |
 | The user requests a creative form or deliberately elaborate prose | Follow the requested form; do not impose terse technical prose as a universal style. |
@@ -125,3 +128,7 @@ examples and UI metadata remain together. The entrypoint now follows declared
 project authority and repair routes instead of requiring project-foundation.
 Earlier dated records retain their original tested source identities.
 Migration routing evidence is recorded in [the extraction review](framework-extraction.md).
+
+## Useful maintained claims — 2026-10-11
+
+Version 0.5.0 adds omission before snapshot repair, existing-answer pointers and preservation of actionable limitations and dated evidence. The [independent fixture review](document-claim-homes-2026-10-11.md) retains the exact brief, installed metadata, input, proposed output, reported read set and evaluator assessment. Its broad case passed; the nearby literal-edit route is an informed author trace, and no spontaneous discovery or maintenance-cost result is claimed.
