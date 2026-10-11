@@ -37,6 +37,14 @@ and identify the decisions the authorized task actually needs.
 
 ## Derive requirements
 
+Check adopted defaults before drafting local statements. Use their requirements
+by reference and record only what the project decides in addition or differently.
+Group related decisions by the outcome a reader needs; one Git adoption decision
+need not become separate policies for branches, verification, pushing and cleanup.
+A recovery target or deliberate access exemption remains a project decision even
+when conventions supply its implementation method. Removing a duplicate statement
+does not relax the rule supplied by the adopted convention.
+
 Establish the project's governing choices before deriving requirements. A new
 project can adopt a principle from an explicit owner decision; it need not wait
 for an implementation to exist. Record the tradeoff, scope, cost and conditions

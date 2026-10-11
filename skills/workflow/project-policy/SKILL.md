@@ -2,7 +2,7 @@
 name: project-policy
 description: "Establish or interpret project policy, assess compliance or adequacy, and review changed circumstances or obligations. Use when project scope, operating facts or adopted requirements need a decision."
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Project policy
@@ -59,6 +59,13 @@ own the implemented structure and procedures. Plans own pending work; work recor
 own dated assessments and evidence. Follow the project's document homes and link
 these owners. Preserve prior decisions and assessed revisions when moving content.
 Do not turn current-state documentation into a change history or a proposal.
+
+Adopted conventions can supply common requirements directly. Record their adoption
+once; do not restate each inherited rule as a project policy statement. Policy
+adds the project's outcomes, scope and exceptions. Command paths, tool pins,
+configuration and procedures normally belong to their implementation or convention
+owner. A deliberately chosen mechanism can be policy, but being required by an
+adopted convention does not make it a separate project decision.
 
 ## Handle gaps and finish
 

@@ -2,7 +2,7 @@
 name: service-boundaries
 description: "Design or review service ownership and shared application behavior exposed through HTTP and MCP. Use when separating service responsibilities or adding a transport to an existing operation; container builds and protocol SDK setup are separate tasks."
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Service boundaries
@@ -38,6 +38,16 @@ need DDL privileges; a normal request handler should use the service's narrower
 runtime role. An orchestrator receives only the access its operations need.
 
 ## Verify the boundary being changed
+
+Identify the intended callers, listening interfaces and permitted operations from
+the service's contracts and project decisions. Verify the actual listener and
+access behavior before claiming that boundary holds, including relevant rejected
+access. Configuration text or a passing source check alone cannot establish a
+live boundary. Keep credentials and authorization with their declared owners.
+Local development alone establishes neither an authentication exemption nor a
+need for a particular authentication mechanism. If users, exposure or allowed
+actions exceed the decided scope, use the project's decision route before work
+relies on that expansion; report unknowns and continue unrelated work.
 
 For a storage boundary, exercise both sides of the distinction: access through a
 published resource contract must remain possible, while direct access to private
