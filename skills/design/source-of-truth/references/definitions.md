@@ -95,7 +95,7 @@ The rest of this skill refers to these numbered options as rungs.
 4. **Derive it at request time.** Send the concept with the data that depends on
    it, so a consumer that cannot import the home still receives it.
 5. **Check it in the gate.** Keep the restatement and add a check that fails when
-   the two homes disagree. Put it in the gate: the suite that always runs. You
+   the two homes disagree. Put it in the required gate for every affected input. You
    must now maintain the check; apply the requirements in
    [keep the check durable](check-design.md#keep-the-check-durable).
 6. **Record it.** The duplication is structural. Say so where the concept lives,
@@ -105,6 +105,28 @@ Rungs 1 to 4 make disagreement impossible. Rung 5 makes it fail a check. Rung 6
 only records the risk; use it only when a boundary genuinely prevents every
 higher option. [Boundaries](boundaries.md) explains those boundaries
 and the options each leaves available.
+
+## Give machine consumers a structured contract
+
+When domain code or behavior tests consume a contract, reuse its existing
+structured authority. If none exists, keep the machine facts in a small versioned
+schema or data format, such as JSON, and generate the human view from it. Prose
+layout, table headings and explanatory wording should not become a domain API.
+Keep ownership and dependency direction clear; moving a table to JSON alone
+does not establish which home decides the answer.
+
+If a formal document must remain authoritative, compile its explicit contract
+fields into a structured artifact at build or verification time. Validate that
+extraction, keep provenance to the source revision, and make consumers depend on
+the fresh artifact. Do not independently hand-maintain both forms or let stale
+output survive a changed source. Use deterministic generation and a binding check
+that runs for every affected source, renderer or build change.
+
+Behavior tests read the structured contract while document checks verify its
+rendered view or extraction. Preserve authored examples and literal expectations
+as independent oracles; generating an expected answer from the implementation
+under test defeats the check. Tests of document syntax, references or authoring
+rules still read documents because their subject is the document itself.
 
 ## Beware the fallback
 

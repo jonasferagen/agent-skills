@@ -2,8 +2,8 @@
 
 ## Behavioral scenarios
 
-These scenarios were reviewed against the instructions. No independent agent
-trial or runtime test has been run for this new skill.
+These scenarios were reviewed against the instructions. These initial scenarios were author traces; they do not establish independent
+activation.
 
 | Request and context | Expected decision |
 | --- | --- |
@@ -26,3 +26,26 @@ failure signals prerequisites for consolidation rather than claiming a speedup.
 
 On 2026-09-30, the current tree passed the package validator (15 packages),
 the system skill validator for `verification-design`, and `git diff --check`.
+
+## Change-selected suites — 2026-10-11
+
+Version 0.3.0 adds repository-owned input scopes and dependencies, selected from
+the result after integration preparation. Tessera's existing landing command
+ran the full game hook for documentation changes; that hook included Python
+checks and Godot import/startup. No elapsed-cost claim is made.
+
+Author fixture tests use real temporary Git repositories and observe the base
+ref as well as commands: Markdown-only work selects docs; a code change includes
+its document dependency after a concurrent base commit; a shared structured
+contract selects both suites; renames classify both paths; unknown, executable,
+symlink, empty and check-configuration changes use full checks. Failed selected
+checks leave the base unchanged. Invalid maps and missing hooks refuse.
+The retained project record identifies exact commands and results.
+
+The second case is tessera-policy's optional docs hook without a suite map;
+repositories without that hook preserve full verification. A nearby small cheap
+suite need not gain a selector, and unclear dependencies retain broad checks.
+These are author implementation evidence and routing traces, not spontaneous
+skill activation or a measured maintenance-cost improvement. Jonas grants
+full-gate amnesty for this pass; only affected tests and document/package checks
+run. Full suites and Godot checks remain unrun.

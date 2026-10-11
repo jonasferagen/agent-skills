@@ -79,7 +79,9 @@ worth having if it would actually fail.
 
 - **It must read both homes.** A check that states the expected values is a third
   home and will drift alongside the second. Compare home to home.
-- **It must run in the suite that always runs.** A check behind an environment
+- **It must run for every affected input.** Keep it in the full gate, or in a
+  required suite selected for changes to either home, the check and its build
+  inputs. Unclassified changes need the full gate. A check behind an environment
   variable, a manual command or an optional job protects nothing by default. If
   the project keeps such tests deliberately opt-in, say that the concept is
   unprotected in the gate rather than implying it is covered.

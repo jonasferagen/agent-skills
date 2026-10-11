@@ -2,7 +2,7 @@
 name: source-of-truth
 description: "Reconcile a rule, vocabulary, shape or changing prose claim defined in several places. Use when copies drift, a change requires coordinated edits, or a consistency check needs to survive restructuring."
 metadata:
-  version: "3.2.0"
+  version: "3.3.0"
 ---
 
 # Authoritative definitions
@@ -45,7 +45,8 @@ project scaffold or companion installation.
 
 ## Read for the decision at hand
 
-- To find a concept's owner, decide which prose claims to retain, compare similar
+- To find a concept's owner, choose a structured contract for machine consumers,
+  decide which prose claims to retain, compare similar
   definitions, choose derivation or assess drift risk, read
   [definitions](references/definitions.md).
 - For configuration, external identifiers or repository locations used in several

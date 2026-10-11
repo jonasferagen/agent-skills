@@ -2,7 +2,7 @@
 name: verification-design
 description: "Choose proportionate checks for a change or milestone and consolidate overlapping validation by the failure each check can detect. Use when deciding which test layers to run, what evidence a claim needs, or whether repeated suites and setup can be combined."
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Verification design
@@ -55,6 +55,33 @@ Repeated setup can be consolidated without merging the assertions. Reuse a
 built artifact or immutable fixture where the inputs are identical, while each
 case keeps the state and identity needed to reveal its own failure. Measure the
 cost first; a new test runner or wrapper also needs maintenance.
+
+## Select suites from affected inputs
+
+When broad verification repeatedly runs unaffected checks, separate suites by
+the boundary each proves. Give each a command, inputs, prerequisites and a
+coverage verdict. Reuse these commands in the full gate and the selected route
+so their check lists cannot drift. Keep a full route available.
+
+The repository owns a compact map from changed paths to suites, including shared
+contracts, generators, fixtures, configuration and dependencies between suites.
+Select the union of affected suites and their dependencies from the change
+actually being integrated: after rebase or merge, against the intended base.
+Consider both sides of renames and deleted paths. Extension alone is insufficient:
+a Markdown file consumed by code can affect code tests, while ordinary prose
+may need only document checks.
+
+Run checks that apply to every change in either route. Use full verification for
+unclassified paths and changes to the selection machinery; refuse an invalid map
+instead of silently omitting checks. Test representative docs-only, code,
+shared-contract, mixed, rename and fallback selections, including that a failed
+selected check blocks integration. Revisit the map when inputs or suites change.
+
+This pattern needs identifiable input boundaries. When dependencies are unclear,
+keep the broader check until the scope can be established. A path map does not
+prove coverage by itself or replace independent expectations in tests. Avoid
+introducing a selection framework for a small, cheap suite with no measured
+omission or setup problem.
 
 ## Keep feedback and completion distinct
 

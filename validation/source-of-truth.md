@@ -297,3 +297,31 @@ records its scope, installed-copy walkthrough, checks and independent-review lim
 ## Useful maintained claims — 2026-10-11
 
 Version 3.2.0 adds omission before snapshot repair, existing-answer pointers and preservation of actionable limitations and dated evidence. The [independent fixture review](document-claim-homes-2026-10-11.md) retains the exact brief, installed metadata, input, proposed output, reported read set and evaluator assessment. Its broad case passed; the nearby literal-edit route is an informed author trace, and no spontaneous discovery or maintenance-cost result is claimed.
+
+## Machine contracts and human views — 2026-10-11
+
+Version 3.3.0 adds structured inputs for domain code and behavior tests, with
+checked generation or extraction at the document boundary. It also permits a
+consistency check in a required affected-input suite instead of requiring an
+unaffected suite on every change.
+
+Tessera-game had two behavior test files parsing level-contract.md tables. The
+scalar table was already derived from engine.json, so those tests now read that
+existing authority. The six authored curved-stair cases move without value
+changes to a versioned JSON contract; their Markdown table and conditions are
+generated. The compiler does not generate its own expected answers. Literal
+boundary expectations and both directions of travel remain tested.
+
+Author reproduction compares all six migrated cases with the original Git blob.
+Both structured inputs load with the Markdown tables absent; the document check
+refuses absent generated markers and detects a changed rendered rise. The two
+affected behavior suites pass. The two cases exercise reuse of an existing
+structured owner and migration of an authored oracle. Formal document syntax
+and reference checks are the nearby countercase: they still read documents.
+Document-authoritative extraction into a build artifact is an informed design
+option, not a new runtime implementation demonstrated here.
+
+Jonas grants full-gate amnesty for this pass. Package integrity, focused tests
+and document checks run; no full source or consumer gate is claimed. Independent
+bootstrap adoption, when recorded there, proves that route rather than
+spontaneous activation of this skill.
