@@ -2,7 +2,7 @@
 name: clear-writing
 description: "Draft or edit explanatory and instructional prose for clarity, including technical explanations, documentation, skills, project instructions and concise labels. Preserve the requested voice, factual meaning and level of certainty."
 metadata:
-  version: "0.6.0"
+  version: "0.6.1"
 ---
 
 # Clear writing
@@ -40,11 +40,13 @@ current status.
 
 ## Keep current guidance about the present
 
-Overviews, instructions and maintained explanatory guides describe current
-purpose, behavior, responsibilities and constraints. Put change narratives and
-planned capabilities with their history or planning owner, then link there when
-the reader needs the background or next work. A "History" or "Maintenance"
-heading does not change a current guide into a historical record.
+Overviews, instructions, maintained guides and current indexes or registers
+describe current purpose, behavior, responsibilities and constraints. Put change
+narratives and planned capabilities with their history or planning owner, then
+link there when the reader needs the background or next work. A "History" or
+"Maintenance" heading does not change a current page into a historical record.
+An index retains keys, aliases and retirement information needed for current
+lookup; that does not require a narrative of past changes.
 
 Plans, worklogs, changelogs and other deliberately historical or prospective
 documents keep their intended time scope. Preserve required adoption basis,

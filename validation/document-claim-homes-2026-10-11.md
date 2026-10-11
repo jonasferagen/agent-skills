@@ -14,6 +14,27 @@ The reported read set reaches both entrypoints, instruction-writing guidance and
 
 Source verification passed: `python3 -B scripts/check.py` completed four checks with 45 tests and no skipped suites, and `git diff --check` passed. These checks establish package/helper integrity, not prose freshness or selection reliability.
 
+## Present-content clarification — 2026-10-11
+
+Jonas subsequently requested the present-content principle for generic
+documentation, preserving deliberate history/planning records. Clear-writing
+0.6.0 supplied that boundary. Project-bootstrap's second independent adoption
+of it moved histories from role definitions and implementation entrypoints, but
+left the current roles index's adoption/relocation narrative. The distribution's
+adoption route named overviews and keeper entrypoints, leaving the index route
+implicit. Clear-writing 0.6.1 explicitly names current indexes and registers
+within the same intended boundary, preserving keys, aliases, retirement lookup,
+required adoption basis and evidence identities. This is a wording clarification;
+the distribution owns the expanded adoption review and its fresh trial.
+
+An informed author trace applies the boundary to a roles index: retain current
+rows and stable aliases, move migration narrative to an existing dated record,
+and keep current maintenance instructions with a pointer. A retired-key row and
+a dated decision record remain valid in their own purpose. This trace is not
+independent discovery or adoption evidence. The original fixture above tested
+claim selection, not this later clarification; the distribution retains its
+separate downstream trial assessment.
+
 ## Exact fixture input
 
 ### `AGENTS.md`
