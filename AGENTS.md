@@ -53,7 +53,7 @@ README.
 
 Shipped content names no consumer: no project, distribution or framework that
 installs these skills. Say "the consuming project" or "the project's framework".
-History under `validation/` and `DECISIONS.md` may name what it actually tested.
+History under `validation/` may name what it actually tested.
 
 ## Verification
 

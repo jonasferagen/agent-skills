@@ -8,7 +8,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
 VALIDATOR = runpy.run_path(str(ROOT / 'scripts/validate-packages.py'))
-MAINTENANCE_PAGES = ('README.md', 'AGENTS.md', 'DECISIONS.md')
+MAINTENANCE_PAGES = ('README.md', 'AGENTS.md')
 
 
 class LinkCheckTests(unittest.TestCase):
@@ -49,7 +49,7 @@ class LinkCheckTests(unittest.TestCase):
 
 
 class MaintenancePageTests(unittest.TestCase):
-    def test_readme_instructions_and_decision_log_resolve_their_local_links(self):
+    def test_readme_and_instructions_resolve_their_local_links(self):
         errors = [error for name in MAINTENANCE_PAGES
                   for error in VALIDATOR['check_page_links'](ROOT / name, ROOT)]
         self.assertEqual(errors, [], '\n'.join(errors))

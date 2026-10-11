@@ -7,7 +7,6 @@ require loading every skill in the group, and they are not installation units.
 A skill marked (draft) is a first version whose scope is still settling: expect
 its contract to change, and read its validation page for what has been exercised.
 
-[Decision log](DECISIONS.md) records structural decisions and ideas for follow-up.
 Dated review and trial records live under `validation/`; the
 [collection sweep](validation/collection-sweep.md) and the per-collection pages
 there describe the grouped layout this repository used until October 2026.
@@ -153,10 +152,9 @@ not establish live service or database acceptance.
 `python3 scripts/validate-packages.py` alone checks frontmatter, local link
 targets and anchors, package containment, unique names and that each recorded
 copy names an existing counterpart that records it back. A source test applies
-the same link check to this README, the repository instructions and the
-decision log; dated records under `validation/` may cite paths that have since
-moved. Behavioral scenarios in `validation/`
-and bundled helper tests still need their own review.
+the same link check to this README and the repository instructions; dated records
+under `validation/` may cite paths that have since moved. Behavioral scenarios in
+`validation/` and bundled helper tests still need their own review.
 
 `python3 scripts/check_shared_contracts.py` compares the selected TypeScript
 module-syntax copy with its current owner. The
@@ -381,8 +379,7 @@ concept in 2026-09. The former separates evidence at schema, domain,
 independent-session, public-interface and built-artifact boundaries while
 looking for repeated setup. The latter compared checked copies with generation
 and versioned dependencies against the promise that each component builds
-independently; it was retired on 2 October 2026 (see the
-[decision log](DECISIONS.md)) and its
+independently; it was retired on 2 October 2026 and its
 [validation history](validation/shared-code-design.md) is preserved. The
 installable skill uses language-neutral examples and imposes no project test
 matrix or package manager. See its
@@ -395,7 +392,7 @@ PostgreSQL and verification material to database-migrations and
 verification-design. Its reuse of one service image for API, migration and seed
 commands, added at 0.3.0, is an image-authoring outcome and left with the
 convention. Its [validation history](validation/containerization.md) and Git
-history are preserved; see the [decision log](DECISIONS.md) for the split.
+history are preserved.
 
 **repository-services** was retired on 9 October 2026 at 0.3.1 and replaced by
 `service-classes` 0.1.0. It mixed judgment with placement: the running and
@@ -408,7 +405,7 @@ distribution's convention; the classification and status judgment stayed. The
 name went with the layout, because a routing trial had found the old catalog row
 pulled a reader expecting service guidance into a home their project did not
 have. Its [validation history](validation/repository-services.md) and Git
-history are preserved; see the [decision log](DECISIONS.md) for the split.
+history are preserved.
 
 **runtime-operations** 3.0.0 stopped shipping the Python helpers a consumer
 imports. Six modules, a service-runtime template and their four test suites left
@@ -420,7 +417,7 @@ state. The interface version did not move: no signature or field changed, only
 who distributes the code. The name did not change either, since the trigger and
 the subject are untouched — a reader asking about a credential, a service
 control or a backup still selects this package. The proposed three-way topical
-split was assessed and declined; the decision log records why.
+split was assessed and declined.
 
 **test-audit** 0.3.0 narrows its integration-test advice to the failure each
 test can observe. Native contention, real permissions and built-artifact checks
