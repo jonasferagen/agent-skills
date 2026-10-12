@@ -79,11 +79,8 @@ Choose by the requested task; new regression work does not require a suite audit
 | [project-bootstrap](skills/workflow/project-bootstrap/SKILL.md) (draft) | Establish actual project context, policy, overview and usable agent routes. |
 | [project-planning](skills/workflow/project-planning/SKILL.md) (draft) | Choose next work, sequence prerequisites and keep one coordination owner per item. |
 | [project-policy](skills/workflow/project-policy/SKILL.md) (draft) | Establish or interpret policy, assess compliance and review changed operating facts or obligations. |
-| [work-records](skills/workflow/work-records/SKILL.md) | Commission bounded work as a brief, retain its evidence and close it with a scoped disposition; supplies assignment and evidence methods plus the opt-in `work-record/v1` checker; concrete shapes belong to the consuming project. |
 | [pattern-capture](skills/workflow/pattern-capture/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
 
-Work records are an extension a project adopts through their
-[extension declaration](skills/workflow/work-records/references/extension.md).
 Named processes and their page format belong to the consuming project's framework.
 
 ## Languages and runtimes
@@ -312,6 +309,12 @@ changes that way.
   boundaries worth testing, and add a row to the table above.
 
 ## Origins
+
+**work-records** moved to [project-bootstrap](https://github.com/jonasferagen/project-bootstrap)
+on 12 October 2026 by the owner's decision that this repository should not own
+workflow skills. Its last version here was 1.0.0, and `e2e0ed4` is the last
+commit that ships it. Project-bootstrap now authors and versions it as a native
+skill; its validation history here was dropped and remains in Git history.
 
 **docker-cli** and **docker-compose-cli** 0.1.0 split the retired
 containerization package along the line between assembling one container command
