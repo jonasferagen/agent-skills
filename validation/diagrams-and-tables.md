@@ -333,7 +333,8 @@ semantics are explicitly collection conventions, not formal BPMN/UML compliance.
 
 The planning consumer trial correctly interpreted a flowchart-syntax repository
 map as handoff responsibilities without loading construction or renderer guidance.
-See project-planning validation for its read log and limitations. Clear Writing
+See [project-planning validation](https://github.com/jonasferagen/agent-skills/blob/4edb9c471076dc16991db7a497075d0127f5eaef/validation/project-planning.md#trial--2026-10-03)
+for its read log and limitations. Clear Writing
 kept branch requirements scoped to depicted behavior; no provider retry guarantee
 is implied by the synthetic loop.
 

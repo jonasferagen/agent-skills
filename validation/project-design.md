@@ -48,3 +48,36 @@ Independent cold-entry and nearby-negative activation remain unverified.
 The reusable boundary is responsibility versus packaging: a design owner can
 produce decisions and artifacts without acquiring a runtime. The optional
 distribution collection owns templates; the standalone skill owns reasoning.
+
+## Project-owned planning route — 2026-10-12
+
+Version 0.1.1 removes the optional named project-planning recommendation after
+that package moved to project-bootstrap. The project's planning workflow still
+owns sequencing designs, experiments and implementation. The source comparison
+was against `183148d34dd1434df0402a0c6e69b195da84a525`; the description, other
+routes, references and UI metadata are unchanged. No design collection import is
+updated by this source correction.
+
+These are informed author traces of the revised entrypoint, not independent
+discovery trials. A request to sequence an experiment and dependent implementation
+reaches "Select the design question", then the consuming project's planning
+workflow. The entrypoint still requires no companion installation, and its final
+guidance uses the project's planning home and links the active queue rather than
+adding another status owner. A routine model lookup or literal label correction
+reaches the existing document and writing guidance; the explicit nearby boundary
+requires no design reconstruction or document migration. Neither case requires
+loading this repository's maintenance material during ordinary consumption.
+
+Clear Writing and its instruction guidance informed the wording correction. The
+comparison found the planning responsibility and conditions preserved without
+the retired recommendation. Diagrams and tables informed removal of the retired
+workflow catalog table; no diagram source changed. Skill Creator guided the
+focused skill edit and validation.
+
+`python3 scripts/check.py` passed: 25 packages, one shared-contract comparison,
+20 tests, three checks and zero failures or skips. The system skill-creator quick
+validator passed for project-design, and `git diff --check` passed. The retired-name
+guard confirms no shipped package names a moved workflow skill; README and
+AGENTS.md local links resolve. These checks establish source integrity separately
+from the reviewed routes. Independent discovery, spontaneous selection and the
+future design import remain unverified by this change.

@@ -1,1 +1,0 @@
-Work only in /tmp/reporting-trials-y65xm6s2/unavailable-capture. Read its AGENTS.md and request.md, then perform the requested task. Do not read sibling directories, parent fixture files, source repositories or other agents' work. No network or live-service effects. This fixture is outside Git; edit it directly. Return your completed task answer.

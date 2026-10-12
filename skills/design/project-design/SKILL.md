@@ -2,7 +2,7 @@
 name: project-design
 description: "Shape system responsibilities, conceptual models, workflows and integration choices before or during implementation. Use for design across people, agents, tools or services; literal edits and provider setup have their own workflows."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Project design
@@ -45,7 +45,7 @@ then reconcile affected owners as findings become decisions.
 - For obligations at an established handoff, use the project's contract workflow;
   project-contracts is a suitable companion when available.
 - For sequencing designs, experiments and implementation, use the project's
-  planning workflow; project-planning is suitable when available.
+  planning workflow.
 
 A boundary review needs no integration-selection pass. Reading an existing model
 or correcting a label needs no design reconstruction or document migration.

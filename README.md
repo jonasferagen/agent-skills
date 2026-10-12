@@ -72,17 +72,6 @@ framework.
 
 Choose by the requested task; new regression work does not require a suite audit.
 
-## Workflow
-
-| Skill | Use it for |
-| --- | --- |
-| [project-bootstrap](skills/workflow/project-bootstrap/SKILL.md) (draft) | Establish actual project context, policy, overview and usable agent routes. |
-| [project-planning](skills/workflow/project-planning/SKILL.md) (draft) | Choose next work, sequence prerequisites and keep one coordination owner per item. |
-| [project-policy](skills/workflow/project-policy/SKILL.md) (draft) | Establish or interpret policy, assess compliance and review changed operating facts or obligations. |
-| [pattern-capture](skills/workflow/pattern-capture/SKILL.md) | Decide whether an engineering discovery generalizes and improve its existing skill home when authorized. |
-
-Named processes and their page format belong to the consuming project's framework.
-
 ## Languages and runtimes
 
 | Skill | Use it for |
@@ -158,7 +147,7 @@ module-syntax copy with its current owner. The
 ordinary `scripts/check.py` gate runs it and the compatibility tests. This is a
 bounded check of declared shared contracts, not a semantic scan of all guidance.
 
-## Discovery and lesson capture
+## Discovery and routing
 
 ### Routing quality
 
@@ -183,7 +172,7 @@ change. When consuming an installed skill, use its entrypoint and project
 routes. Do not follow provenance back to this README unless the task needs source
 maintenance, upgrade information or investigation of a concrete source issue.
 
-### Selection and capture
+### Selection
 
 Skill descriptions name the task or observed symptom that should select the
 package. Keep them concise and put the main trigger first. The selected
@@ -191,25 +180,9 @@ package. Keep them concise and put the main trigger first. The selected
 open only the references needed for the current decision. Grouping this catalog
 does not itself control which instructions an agent reads.
 
-`pattern-capture` needs one thing from the project that installs it: a reporting
-and repair checkpoint that is reachable before any skill is selected, so a
-consequential guidance or routing problem met during ordinary work is reported
-rather than worked around, and a reusable finding reaches this skill at a natural
-checkpoint. The installing distribution or project owns that instruction: its
-text, where it lives, the local link to the installed skill, the capture home,
-and any text shortcut such as `/pattern-capture [idea]`, which is an
-agent-interpreted shortcut and not a native slash-menu entry. This repository
-states the need and does not dictate the consumer's wording or placement.
-
-Verify spontaneous reporting through the
-[reporting acceptance trials](validation/discovery.md#reporting-acceptance-trials).
-A checkpoint being installed or an agent reporting that it read it does not by
-itself establish that the agent notices and reports a problem during ordinary work.
 Put the source location in provenance; never bake a machine-specific path into
 the skill. Reading and proposing guidance can fit a review. Writing the source
-repository or adopting a new pin follows the task's actual authorization. For
-explicit requests, invoke `$pattern-capture` with an idea or refer to the
-current discussion.
+repository or adopting a new pin follows the task's actual authorization.
 
 Test discovery with realistic requests and metadata before showing skill bodies
 or expected answers. Record whether a trial used host-provided metadata, a
@@ -255,10 +228,8 @@ guidance to the packages, helpers and documentation we maintain here. Start
 with the named package when one is known; use the catalog to select additional
 guidance from the task's actual trigger. Load only needed references. For example,
 use source-of-truth when reconciling copied rules, verification-design when
-selecting evidence, and pattern-capture when assessing a reusable finding or an
-explicit capture request. Its simplicity test also applies to our own rules and
-exceptions. Report a relevant conflict or gap rather than silently exempting the
-repository.
+selecting evidence. Report a relevant conflict or gap rather than silently
+exempting the repository.
 
 During authoring, AGENTS.md requires writing and visual guidance where relevant.
 Before tagging a release, also apply these skills to the content changed since the skill's
@@ -279,6 +250,14 @@ prior text is recommended: the first Clear Writing sweep found four meaning
 changes that way.
 
 ## Adding a skill
+
+This repository owns reusable technical and authoring methods. Project-bootstrap
+owns project setup, governance and coordination skills, including bootstrap,
+planning, policy, work records and capture. It also owns adopted conventions,
+document shapes, placement, collection integration and installation. A native
+skill supplies the method; a convention supplies concrete defaults; the consuming
+project owns its decisions, priorities, responsibilities, requirements, local
+procedures and evidence.
 
 - Keep it project-agnostic: no account details, credentials, service
   identifiers or private domain records, and no names of the projects or
@@ -309,6 +288,14 @@ changes that way.
   boundaries worth testing, and add a row to the table above.
 
 ## Origins
+
+**project-planning** 0.1.0, **project-bootstrap** 0.5.0,
+**pattern-capture** 0.3.1 and **project-policy** 0.4.0 moved to
+[project-bootstrap](https://github.com/jonasferagen/project-bootstrap) on
+12 October 2026 by Jonas's decision that agent-skills should not own workflow.
+`183148d34dd1434df0402a0c6e69b195da84a525` is the last commit that ships them.
+Project-bootstrap now authors and versions them as native skills; their validation
+history here was dropped and remains in Git history.
 
 **work-records** moved to [project-bootstrap](https://github.com/jonasferagen/project-bootstrap)
 on 12 October 2026 by the owner's decision that this repository should not own

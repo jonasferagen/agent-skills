@@ -35,11 +35,7 @@ or provenance-history read.
 
 Apply the [authoring principle](README.md#authoring-skills) to this repository's
 own changes: select relevant guidance from the catalog, then read only what
-the task needs. This includes Pattern capture for a reusable finding or an
-explicit `/pattern-capture [idea]` request; its source home is this repository.
-Use it also when skill use exposes repeated friction, an undocumented workaround
-or a correction that suggests missing guidance. Load its instructions when that
-trigger applies; routine successful use needs no capture pass.
+the task needs.
 
 ## Writing
 
