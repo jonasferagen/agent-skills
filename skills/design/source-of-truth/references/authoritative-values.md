@@ -31,6 +31,13 @@ Examples state their assumed values. These answer different questions from
 current configuration and must not be rewritten to look current. Two similar
 values with different owners or meanings need not be unified.
 
+A citation either resolves through the project's declared binding, which makes
+it a current reference, or names a revision, which makes it a historical one. A
+link to a moving branch, such as a hosted `blob/main` URL, is neither. It binds
+a provider location the project has not declared, and its meaning changes
+silently when the branch moves. Cite through the declaration or pin the
+revision.
+
 Report which declaration owns the value, how each consumer obtains it and what
 the check actually covers. A selected resource that is unavailable is a missing
 dependency, not evidence that its declared value is wrong. Establishing a route

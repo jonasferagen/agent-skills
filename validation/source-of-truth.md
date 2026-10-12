@@ -30,6 +30,7 @@ of an independent agent evaluation.
 | A keeper maintains changing prose by hand | Name a bounded maintained set and update triggers; supporting documents point to its homes rather than independently tracking status. |
 | Policy requires hash verification but the current loader does not perform it | Preserve the requirement and the observed limitation with their respective owners; omission does not hide the gap. |
 | An old acceptance report records a passing revision | Retain the assessed revision and conditions as historical evidence, rather than rewriting the report to describe current support. |
+| A document cites a shared file through a hosted link to a moving branch | Treated as neither a current nor a historical reference; the citation resolves through the project's declared binding or pins a revision. |
 | A plugin namespace appears in docs, a generated manifest and UI prompts | One project-owned lookup value decides the namespace; docs use its key, generated files derive the literal, and historical pins retain their original names. |
 | A manifest needs a literal namespace but its loader does not expand variables | A placeholder is rejected; generate the literal or compare it with the owner in a required check. |
 | A duplication can be neither derived nor checked | Recorded where the concept lives, naming what must change together and what goes wrong when one is missed. |
@@ -325,3 +326,12 @@ Jonas grants full-gate amnesty for this pass. Package integrity, focused tests
 and document checks run; no full source or consumer gate is claimed. Independent
 bootstrap adoption, when recorded there, proves that route rather than
 spontaneous activation of this skill.
+
+## Moving-branch citations — 2026-10-12
+
+Version 3.4.0 adds one paragraph to the shared-value reference: a citation is
+current through the declared binding or historical by revision, and a hosted
+link to a moving branch is neither. The Owner approved the wording's intent on
+2026-10-12. This is an author-reviewed scenario row; no independent agent
+evaluation or routing trial ran, since the trigger and entrypoint are unchanged.
+Clear Writing was applied to the new paragraph while drafting.

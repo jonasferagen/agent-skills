@@ -2,7 +2,7 @@
 name: source-of-truth
 description: "Reconcile a rule, vocabulary, shape or changing prose claim defined in several places. Use when copies drift, a change requires coordinated edits, or a consistency check needs to survive restructuring."
 metadata:
-  version: "3.3.0"
+  version: "3.4.0"
 ---
 
 # Authoritative definitions
