@@ -21,6 +21,7 @@ they are not claims that an independent agent has passed them.
 | Write a confirmation after a backup command succeeds but no restore was attempted | Report the command's success without claiming that recovery was verified. |
 | Edit explanatory text in an established personal voice | Improve comprehension while retaining the requested tone and distinctive voice. |
 | The user requests a creative form or deliberately elaborate prose | Follow the requested form; do not impose terse technical prose as a universal style. |
+| Consolidate a guide that repeats its canonical command page and has an empty future-work section | Keep a useful command-page link and remove the empty scaffold, preserving required evidence and limits; create no replacement index. |
 | Fix one unclear sentence in a documentation set | Make the focused edit without reorganizing the documentation or adding unrelated diagrams. |
 | Replace a metaphor whose word choice carries a distinction, such as "cheapest" meaning least information lost | Keep the distinction in plain wording, or keep the metaphor; do not substitute a near-synonym that changes the reason. |
 | Clarify a sentence where "when available" could limit one action or all of them | Keep the scope visible or ask; do not move the condition so that it governs more actions than before. |
@@ -152,3 +153,24 @@ These are author traces with the intent known, not a new independent discovery
 trial. The coordinated project-bootstrap adoption will test the shipped route
 independently. `python3 -B scripts/check.py` passes all four checks and 45 tests;
 whitespace checks pass. No tag or broad historical-record rewrite is made.
+
+## Less is more — 2026-10-13
+
+Version 0.7.0 makes the existing omission and meaning-preservation guidance an
+explicit section, adding a scoped test for unnecessary documents and navigation
+layers. It changes no trigger, metadata description or deeper-reference route.
+The source owner is clear-writing; consumer entrypoints can link its section
+instead of repeating the rule.
+
+Informed author walkthroughs, with the intended change known:
+
+| Request and input | Applied result | Assessment |
+| --- | --- | --- |
+| Tighten a guide: “Run `tool check`. The command reference lists all options. This guide repeats that list. Future work: TBD. Hash checking is unsupported.” | “Run `tool check`; see the command reference for options. Hash checking is unsupported.” | Removed a competing inventory and empty scaffold; kept invocation, useful route and unsupported behavior. |
+| Shorten instructions: “Before production deployment, get owner approval and verify a restore. Preview needs neither. Retry at most twice, except after invalid credentials.” | “Production deployment requires owner approval and a verified restore; preview requires neither. Retry at most twice, never after invalid credentials.” | Kept both prerequisites, ordering, exception scope and retry boundary. |
+| Fix only “The checker return an error” in a long guide | “The checker returns an error.” | No reorganization, extra index or document-set sweep. |
+
+These are author-applied examples, not independent discovery or reliability
+measurements. Existing cases for requested voice, historical evidence, uncertain
+claims and literal resource names remain applicable. Package and source checks
+are recorded with the committed change; no helper behavior changed.

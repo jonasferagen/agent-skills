@@ -2,7 +2,7 @@
 name: clear-writing
 description: "Draft or edit explanatory and instructional prose for clarity, including technical explanations, documentation, skills, project instructions and concise labels. Preserve the requested voice, factual meaning and level of certainty."
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Clear writing
@@ -22,7 +22,18 @@ Do not make a claim more certain just to make it shorter. When the source leaves
 the meaning unresolved, retain that uncertainty or ask for the missing detail;
 fluent wording does not resolve it.
 
-## Choose claims the reader needs
+## Less is more
+
+Keep the smallest amount of prose that lets the reader understand, decide or act
+correctly. Remove repetition, empty scaffolding and detail that answers no reader
+question. Prefer a useful link to an existing authoritative answer over another
+summary or navigation layer. A separate document earns its place by answering a
+distinct question better than an existing home, within the assigned scope.
+
+Preserve useful rationale, necessary evidence and consequential uncertainty.
+Brevity should reduce the reader's work, not make them reconstruct missing meaning
+or override the requested form, voice or detail. Apply this to the passage or
+structure being edited; it does not commission a wider documentation sweep.
 
 In maintained prose, ask whether a claim helps the reader understand, decide or
 act before making it more precise. Omit incidental facts that change, such as
@@ -71,8 +82,6 @@ Respect the requested form and explicit project exceptions.
   a short description explains better. A metaphor can carry a distinction, such
   as cost rather than effort; keep that distinction in the replacement, or keep
   the metaphor when plain wording loses it.
-- Remove repetition and context the reader already has. Keep enough detail to
-  prevent a plausible misunderstanding; brevity should reduce the reader's work.
 - Use headings, lists and tables when they expose useful structure. Connected
   reasoning often reads more clearly as a paragraph.
 
