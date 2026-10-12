@@ -71,6 +71,10 @@ History under `validation/` may name what it actually tested.
 - Review the affected scenarios under `validation/`; record actual results and
   remaining limits when evaluating a skill. For a narrow edit, read the applicable
   behavior cases; load dated trial history only when revisiting those results.
+- Keep a validation record only while a shipped skill, this repository's
+  instructions or README, or another current record cites it. A skill's own
+  page lives as long as the skill. Delete a record in the change that removes
+  its last reader; Git history and published pins retain it.
 - Run bundled helper tests when helper behavior changes. Render changed
   diagrams and inspect them at their intended reading width.
 - On a rename, update the directory, manifest, UI metadata, validation page,

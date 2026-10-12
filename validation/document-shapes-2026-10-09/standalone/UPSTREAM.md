@@ -1,1 +1,0 @@
-Draft installation: project-bootstrap base a420afa plus document-shapes task changes; agent-skills base 839a0c3 plus document-shapes task changes. No release claim. Installed input hashes are retained by the evaluator.
