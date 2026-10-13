@@ -2,7 +2,7 @@
 name: clear-writing
 description: "Draft or edit explanatory and instructional prose for clarity, including technical explanations, documentation, skills, project instructions and concise labels. Preserve the requested voice, factual meaning and level of certainty."
 metadata:
-  version: "0.7.1"
+  version: "0.7.2"
 ---
 
 # Clear writing
@@ -56,8 +56,10 @@ describe current purpose, behavior, responsibilities and constraints. Put change
 narratives and planned capabilities with their history or planning owner, then
 link there when the reader needs the background or next work. A "History" or
 "Maintenance" heading does not change a current page into a historical record.
-An index retains keys, aliases and retirement information needed for current
-lookup; that does not require a narrative of past changes.
+An index retains keys, aliases and routes needed for current lookup, including
+the status of retired entries. The owning register rule and the reader's current
+use determine any further retirement detail; a recovery inventory is not
+required merely because source was retired.
 
 Plans, worklogs, changelogs and other deliberately historical or prospective
 documents keep their intended time scope. Preserve required adoption basis,
