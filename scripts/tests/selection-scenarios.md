@@ -38,3 +38,5 @@ not establish selection behavior.
 | Correct a spelling error in an operating guide | none | service-classes, runtime-operations |
 | Rename a screenshot file | none | godot-gdscript |
 | Replace a literal spelling in a README | none | clear-writing, relational-modeling |
+| Review this repository for structural and semantic drift | repository-maintenance | project-design, test-audit |
+| Correct a spelling error in a maintenance guide | none | repository-maintenance |

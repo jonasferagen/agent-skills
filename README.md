@@ -65,11 +65,14 @@ framework.
 
 | Skill | Use it for |
 | --- | --- |
+| [repository-maintenance](skills/verification/repository-maintenance/SKILL.md) | Review structural and semantic drift across a repository's responsibilities, instructions, implementation, checks and open work. |
 | [verification-design](skills/verification/verification-design/SKILL.md) | Choose evidence for a change or milestone and consolidate checks by the failures they detect. |
 | [test-writing](skills/verification/test-writing/SKILL.md) | Writing unit tests, integration tests and their fixtures, with made-up data and state each test owns. |
 | [test-audit](skills/verification/test-audit/SKILL.md) | Auditing a settled test suite for brittleness, coverage asymmetry, weak assertions, mock drift and non-determinism. |
 
 Choose by the requested task; new regression work does not require a suite audit.
+Repository-maintenance assesses an existing repository's coherence; it does not
+own project governance, maintenance scheduling or local document shapes.
 
 ## Languages and runtimes
 
