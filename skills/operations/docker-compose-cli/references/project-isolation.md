@@ -20,6 +20,20 @@ sees an interruption. Remove the signal listeners as the last teardown step.
 
 ## Bind the run's own state locations
 
+A borrowed service definition is not a complete project. When using `extends`,
+declare its required top-level named volumes, networks, secrets and configs in
+the calling project; Compose does not bring those definitions across with the
+service. Render the exact call with `docker compose config` before running it and
+check that every inherited resource is declared.
+
+Compose interpolates the files before it merges or overrides services. A
+required `${NAME:?message}` in an extended service, or in a sibling service in
+the selected file, can fail even when the caller overrides the field or never
+starts the sibling. Provide the value or remove that requirement at its owner;
+an override does not bypass it. Relative bind paths interpolated in an extended
+file resolve from that file's directory. Check the rendered source paths with
+the actual selected files, environment and working directory.
+
 A `compose run` against an existing stack inherits that service definition's
 mounts. It then writes into locations the service owns rather than the run: the
 tool's home, its caches, its preferences, its per-project state. Cleanup by the

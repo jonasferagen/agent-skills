@@ -18,6 +18,9 @@ run's observed results with the change that ran it, not here.
 | A destructive reset is requested for a project whose data no seed reproduces | Refused, and its confirmation flag refused where it does not apply. |
 | A development project name is taken as evidence that its data is disposable | Rejected: the label alone is insufficient. |
 | `compose run` borrows a developer stack's service definition | A throwaway directory is bound at every mount point the run does not own, as a required argument. |
+| A borrowed service uses a named volume declared only in its source file | The calling project declares the volume too; `extends` does not carry the source file's top-level declaration. |
+| An override replaces a borrowed bind containing a required variable, or selects a file with an unused sibling requiring one | The required interpolation is still checked before merge or service selection; provide the value or repair the source requirement. |
+| An extended file interpolates a relative bind path while the caller runs Compose elsewhere | Check `docker compose config` with the actual files, environment and working directory; the bind resolves from the extended file's directory. |
 
 ## Images and builds
 
@@ -52,6 +55,9 @@ project name and label.
 - The port-fallback and borrowed-definition rules come from reproduced defects
   and measured fixes in one project; the build-policy rules were measured as
   above; the rest are author-reviewed.
+- The `extends` declaration, interpolation and relative-path cases were
+  reproduced with synthetic files using Docker 29.4.3 and Compose v5.1.3;
+  `config` exercised parsing only, not a running container or registry pull.
 - One routing trial exercised the borrowed-definition seam and found the
   missing-env-file defect now repaired. The risk that a request naming a stack
   selects docker-cli on the word "container" did not occur in its four cases.
