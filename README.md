@@ -5,11 +5,10 @@ package at `skills/<area>/<name>/`, installed by its name and complete in its
 own directory. Areas group skills by their main task for browsing; they do not
 require loading every skill in the group, and they are not installation units.
 A skill marked (draft) is a first version whose scope is still settling: expect
-its contract to change, and read its validation page for what has been exercised.
+its contract to change, and read its scenarios for what it is evaluated against.
 
-Dated review and trial records live under `validation/`; the
-[collection sweep](validation/collection-sweep.md) and the per-collection pages
-there describe the grouped layout this repository used until October 2026.
+A package may carry `scenarios/README.md`: the requests, context and expected
+behavior it is evaluated against. Ordinary use of a skill does not read it.
 
 A downstream distribution may bundle several skills from here into one
 installation. It owns its own membership, lock, checker and release rules; this
@@ -125,20 +124,46 @@ the distribution's own adoption and routes separately.
 
 ## Verification
 
-For source maintenance, install Node 24, Python 3.11 or later and GnuPG, then
-run `python3 scripts/check.py`. This command checks packages and discovers test
-suites under `scripts/` and `skills/`, including each package's own `tests/`,
-such as the Node example check in node-patterns. Empty, failed, skipped and
-incomplete suites fail the command. Missing prerequisites fail explicitly. CI
-runs the same command. These local checks do not establish live service or
-database acceptance.
+For source maintenance, install Node 24 and Python 3.11 or later, then run
+`python3 scripts/check.py`. It validates the packages and runs every `test_*.py`
+suite under `scripts/` and `skills/`, including each package's own `tests/`.
+Empty, failed, skipped and incomplete suites fail it, and missing prerequisites
+fail explicitly. CI runs the same command. These local checks do not establish
+live service or database acceptance.
 
 `python3 scripts/validate-packages.py` alone checks frontmatter, local link
 targets and anchors, package containment, unique names and that each recorded
-copy names an existing counterpart that records it back. A source test applies
-the same link check to this README and the repository instructions; dated records
-under `validation/` may cite paths that have since moved. Behavioral scenarios in
-`validation/` and bundled helper tests still need their own review.
+copy names an existing counterpart that records it back. Source tests apply the
+same link check to this README and AGENTS.md, and check that shipped packages
+name no consumer or retired skill and that no entrypoint or reference routes
+ordinary use into a package's scenarios.
+
+### Where a package keeps its checks
+
+| Directory | Holds |
+| --- | --- |
+| `references/` | Guidance applied while using the skill |
+| `scripts/` | Tools the skill uses |
+| `tests/` | Executable checks of behavior the package owns, as `test_*.py` suites `check.py` discovers; each suite declares its prerequisites in its docstring and runs from an independent copy of the package with `python3 -m unittest discover -s tests` |
+| `scenarios/README.md` | Maintained requests, context and expected behavior, with current limits beside the behavior they qualify; case directories with synthetic inputs only when a case needs them |
+
+Create none of these empty, and require no uniform section template beyond
+useful case meaning. Scenarios hold inputs and expectations, not observed
+outputs, timestamps or run reports. Source-wide package checks, cross-skill
+consistency checks and the [selection scenarios](scripts/tests/selection-scenarios.md)
+stay in `scripts/tests/`.
+
+### Evaluating a skill against its scenarios
+
+Give a fresh agent the case's request and context with the installed package,
+not the expected behavior, under the isolation rules in
+[routing quality](#routing-quality). Judge the artifacts against the expected
+behavior; note missed obligations and unnecessary reading as well as wrong
+answers. Record the observed results, the commit evaluated and the context
+configuration with the change that ran them — its commit message, review or the
+project's work record — not in the package. A run that shows a failure worth
+keeping adds a regression case; one that shows a limit states it beside the
+behavior it qualifies. One passing run demonstrates a route, not its reliability.
 
 ## Discovery and routing
 
@@ -150,10 +175,50 @@ concrete task need, and required deeper guidance must remain reachable. Apply th
 standard to our own catalog and instructions as well as their output.
 
 Routing is an acceptance requirement when changing triggers, entrypoints, shared
-guidance or packaging, and before releasing a skill. Run proportionate
-practical trials using the [routing trial method](validation/discovery.md#routing-trial-method).
-Preserve task constraints and check missed obligations as well as unnecessary
-reading. Package validation alone cannot establish routing quality.
+guidance or packaging, and before releasing a skill. Run proportionate practical
+trials by the method below. Preserve task constraints and check missed obligations
+as well as unnecessary reading. Package validation alone cannot establish routing
+quality.
+
+#### Routing trial method
+
+Select realistic cases for the changed routes:
+
+| Case | Observe |
+| --- | --- |
+| Cold entry into ordinary consumer work | Reads before useful work and irrelevant activation |
+| Work requiring deeper guidance | Whether required references are reached and obligations preserved |
+| Nearby work outside the changed skill's scope | Whether the agent avoids unrelated guidance |
+| Source authoring when consumption or authoring routes change | Whether relevant maintenance rules still apply |
+
+Start a new agent for each case with no forked conversation history, prior case
+results, expected findings or preloaded skill bodies. Record the context
+configuration and the exact skill metadata supplied at startup, including stale
+or absent entries; fresh conversation context does not establish fresh metadata.
+If the host cannot provide this isolation, record the run as an informed review
+or walkthrough, which cannot pass independent acceptance.
+
+Place the consumer fixture outside this repository with an installed copy, a
+realistic project instruction hook and provenance. Start from that hook or from
+normal discovery metadata; do not supply the expected route, and record whether
+entry was explicit invocation, supplied metadata or project instructions. A
+source-authoring trial starts in an isolated copy of this repository. Keep live
+systems outside the trial. Reused agents can implement fixes and review known
+findings; their results stay separate from independent acceptance.
+
+Have the evaluator record the files actually read, approximate words, repeated
+reads, truncation and reused context, distinguishing instruction reads from
+catalogs, generated-output review and mechanical checks. Classify each material
+read as required, useful or irrelevant with a reason, and report required
+guidance missed and output constraints preserved or violated. An unexercised
+case is a limitation.
+
+A consumer reaching source maintenance material without a task reason is a
+finding; so is missing necessary deeper guidance, even when reading falls.
+Compare equivalent tasks across revisions and record the smallest supported fix
+and remaining gaps. A single successful run demonstrates a route, not its
+reliability. Capture a demonstrated problem in the owning package's scenarios;
+do not turn every observation into another mandatory instruction.
 
 Do not set a universal word budget. Compare equivalent tasks and explain which
 reads were unnecessary. Record remaining gaps; do not claim the requirement is
@@ -180,8 +245,9 @@ repository or adopting a new pin follows the task's actual authorization.
 Test discovery with realistic requests and metadata before showing skill bodies
 or expected answers. Record whether a trial used host-provided metadata, a
 supplied metadata catalog, or a project hook. Check a nearby request that should
-not activate the skill as well. A successful package check alone says nothing
-about selection. See [the discovery review](validation/discovery.md).
+not activate the skill as well; the
+[selection scenarios](scripts/tests/selection-scenarios.md) list such pairs. A
+successful package check alone says nothing about selection.
 
 ## Skill releases
 
@@ -205,14 +271,66 @@ behavior, defaults, exceptions and bundled resource interfaces.
 - **Major:** change defaults, mandatory rules, scope or exceptions in a way that
   requires consumers to review their adoption.
 
-Before tagging, validate the package and its behavioral scenarios, repeat the
-applicable routing trials, and complete the
-[self-conformance review](validation/self-conformance.md) for a skill that
-bundles scripts, templates or an extension declaration. A release must contain
-no unfinished scaffold or project-specific credentials or identifiers. Consumers
+Before tagging, validate the package and its scenarios, repeat the applicable
+routing trials, and complete the release review below for a skill that bundles
+scripts, templates or an extension declaration. A release must contain no
+unfinished scaffold or project-specific credentials or identifiers. Consumers
 pin the full commit as well as the release label because tags are names, not an
 integrity guarantee. Other skills in the repository need no version bump when
 one skill is released.
+
+### Release review
+
+For a skill that bundles scripts, templates or an extension declaration, a
+release review applies the standards the skills teach to the package itself.
+Review the whole package before
+its release is tagged against the rules its own content and this repository's
+authoring skills state — every file, not only the changes since an earlier
+release — together with the catalog text and instructions that describe it.
+Ordinary edits need only the checks in [AGENTS.md](AGENTS.md#verification). A
+finding that recurs is a candidate for a mechanical check.
+
+Run the mechanical checks first; they decide structure only:
+`python3 scripts/validate-packages.py`, `python3 scripts/check.py` (a package
+without tests reports that coverage as absent rather than treating a zero-test
+run as evidence), and
+`git diff --check $(git hash-object -t tree /dev/null) HEAD -- skills/<area>/<name>`
+for whitespace errors in every committed file of the package.
+
+Then apply each owner's own review steps to the package's files:
+
+| Rule owner | Apply to | Review steps |
+| --- | --- | --- |
+| Source of truth | Rules, vocabularies, paths and counts stated in more than one package file or in the catalog | [Review and verification](skills/design/source-of-truth/SKILL.md#review-and-verification) |
+| Source of truth, check design | Bundled scripts and their tests | [Keep the check durable](skills/design/source-of-truth/references/check-design.md#keep-the-check-durable) |
+| Verification design | Scenarios, examples and claims about what a skill or check proves: each names the boundary observed and the evidence, and distinguishes a walkthrough from an exercised run | [Match each claim to an observable boundary](skills/verification/verification-design/SKILL.md#match-each-claim-to-an-observable-boundary) |
+| Clear writing | All prose, including descriptions, templates and examples | [Check the result](skills/authoring/clear-writing/SKILL.md#check-the-result), plus [instruction guidance](skills/authoring/clear-writing/references/instructions.md) for instructions |
+| Diagrams and tables | Each diagram and table, and passages that would explain better as one | [Semantic review](skills/authoring/diagrams-and-tables/references/review.md) and [visual verification](skills/authoring/diagrams-and-tables/references/verification.md) |
+| Documentation | Links resolve, including anchors and links outside the package; each statement has one current owner; historical text is labelled as such | Check each link's target and anchor; compare current and historical passages |
+| Routing quality | Entry points, triggers and conditional references | [Routing trial method](#routing-trial-method) |
+| Application design | Application designs and runtime helpers produced by a skill, when present | [Exercise the boundary and choose the increment](skills/design/application-design/SKILL.md#exercise-the-boundary-and-choose-the-increment) |
+| Other skills in this repository | Helpers and tests, such as Python scripts and their suites | Select from the catalog by trigger |
+
+A skill gaining a rule owner adds a row here in the same change. Skills that
+govern projects apply to this repository where AGENTS.md adopts them.
+
+For each finding, record the rule, the file, the concrete consequence and its
+disposition: fixed, or an explicit exception stating its reason, scope, who
+accepted it and the condition for reviewing it again. The reviewer proposes an
+exception; the repository owner accepts it. When the package cannot follow one
+of its own rules, report that against the rule or the package rather than
+exempting it silently. Wording changed during the review needs an independent
+comparison of each changed passage with the prior text before release.
+
+Record with the release — in the annotated tag or the change that tags it — the
+commit reviewed and whether the reviewer had a fresh context; whether the
+evidence is an informed review, a walkthrough or an independent acceptance trial
+under the routing trial method's isolation rules; the rules applied and the files
+each covered; findings with dispositions and exceptions with review conditions;
+and checks that could not run, separately from checks that passed. The skill is
+ready to tag when the mechanical checks pass, the routing trials meet the
+[routing acceptance requirement](#routing-quality), and every material finding is
+fixed or covered by an accepted exception.
 
 ### Authoring skills
 
@@ -236,11 +354,11 @@ This pass is a recommendation, not a release requirement. Clear Writing does not
 yet cover every kind of prose a skill package contains, such as trigger
 descriptions, defined terms, worked examples, pattern catalogs and templates.
 
-When you apply them, record on the skill's validation page which skills were
-applied and what they changed; "no change needed" is a valid result. When a pass
-rewrites wording, an independent comparison of each changed passage with the
-prior text is recommended: the first Clear Writing sweep found four meaning
-changes that way.
+When a pass rewrites wording, have a reviewer without the author's rationale
+compare each changed passage with the prior text: the first Clear Writing sweep
+found four meaning changes that way, now kept as regression cases in that skill's
+scenarios. Note which skills were applied in the change's record; "no change
+needed" is a valid result.
 
 ## Adding a skill
 
@@ -277,321 +395,70 @@ procedures and evidence.
   the scope. Preserve an established name unless clearer discovery justifies
   changing consumer paths.
 - Use the [authoring skills](#authoring-skills) while writing the package.
-- Record intended behaviour in `validation/<name>.md` when a skill has scope
-  boundaries worth testing, and add a row to the table above.
+- Add `scenarios/README.md` when the skill has scope boundaries worth testing,
+  `tests/` when it ships behavior a check can own (see
+  [where a package keeps its checks](#where-a-package-keeps-its-checks)), and a
+  row to the catalog table above.
 
 ## Origins
 
-**project-planning** 0.1.0, **project-bootstrap** 0.5.0,
-**pattern-capture** 0.3.1 and **project-policy** 0.4.0 moved to
-[project-bootstrap](https://github.com/jonasferagen/project-bootstrap) on
-12 October 2026 by Jonas's decision that agent-skills should not own workflow.
-`183148d34dd1434df0402a0c6e69b195da84a525` is the last commit that ships them.
-Project-bootstrap now authors and versions them as native skills; their validation
-history here was dropped and remains in Git history.
+Attribution for material that came from elsewhere, and the moves and
+retirements a consumer upgrading from an older pin needs to know. Git history
+holds the rest.
 
-**work-records** moved to [project-bootstrap](https://github.com/jonasferagen/project-bootstrap)
-on 12 October 2026 by the owner's decision that this repository should not own
-workflow skills. Its last version here was 1.0.0, and `e2e0ed4` is the last
-commit that ships it. Project-bootstrap now authors and versions it as a native
-skill; its validation history here was dropped and remains in Git history.
+### Attribution
 
-**docker-cli** and **docker-compose-cli** 0.1.0 split the retired
-containerization package along the line between assembling one container command
-and driving a project of them. The cut was chosen over one Docker package because
-most compose accidents are a command that ran correctly against the wrong
-project, decided by inputs the command line does not show — the caller's
-`COMPOSE_*` variables and a `.env` file in the working directory — and that
-trigger has nothing in common with getting a port, a secret or a mount right on
-a single `docker run`. Four rules apply to both: run identity, the label scheme,
-registering cleanup before creating, and sweep-and-prove. They are duplicated
-with reciprocal copy records rather than linked, because each package must work
-alone. One seam resists the cut: binding a run's own state locations is
-triggered by `compose run` borrowing a service definition but fixed with a
-`docker run` bind, so the trigger lives in docker-compose-cli and docker-cli
-carries the mechanic. See [docker-cli](validation/docker-cli.md) and
-[docker-compose-cli](validation/docker-compose-cli.md).
+- **bash-patterns**, **test-audit**, **diagrams-and-tables** (then named
+  `diagrams`) and the durable-check material in **source-of-truth** were
+  imported on 29 September 2026 from the owner's Forge Agent Kit at
+  `c98147a115a30f36b952df5faf1c869b54480c59`, from its `shell-patterns`,
+  `test-audit`, `diagrams` and `selfcheck-guard` skills. Prose was revised,
+  sibling-skill links became descriptions of the boundary, and citations of that
+  kit's project policy were replaced with statements in place or deferred to the
+  reading project's own policy.
+- **python-patterns** and **python-design** drew their topic selection from
+  Everything Claude Code's Python patterns at
+  `c70874fae9eb0e5ad0365beb7e2955899fd1d30f` (MIT, copyright 2026 Affaan
+  Mustafa) and the tooling boundary from Trail of Bits' modern-python plugin at
+  `82fe8226252622fa807643bdca1710901198553a` (CC-BY-SA-4.0). No prose, examples,
+  hooks or code were reused; neither upstream is tracked automatically.
+- **bash-patterns** 0.2.0 assessed topics from wshobson/agents
+  bash-defensive-patterns at `156b7a5e7a8b93642628a339ee4039c925b34c7f` (MIT,
+  copyright 2024 Seth Hobson); its prose and examples are independently
+  authored.
+- **diagrams-and-tables** consulted Mermaid's official documentation, OWASP's
+  system-modeling scope and OMG BPMN 2.0.2 for notation boundaries; its examples
+  keep real shapes and counts from the owner's projects with synthetic names.
+- **postgres-design**, **source-of-truth**, **node-patterns**,
+  **verification-design**, **test-writing**, **runtime-operations** and the
+  Docker packages were written from reviews of the owner's own projects. The
+  packages carry no project schema names, identifiers, paths or credentials.
 
-**docker-cleanup** 0.1.0 separates reclaiming a host's accumulated Docker state
-from the two CLI packages, which own what one command or project created. All
-three forbid blanket prune commands, from different directions: a prune can
-reach resources the work did not create, and resources an audit never
-classified. The lesson came
-from clearing a development host that had run a retired project alongside two
-unrelated ones. Three decisions in that pass are now rules. Age and retirement
-do not establish that a volume is disposable — three volumes in an approved
-group held credentials, a release tree and an unexpected database data
-directory, so contents are read and rescued before removal. Two tags sharing one
-image ID are one image, so a rename leftover is reported at zero size. A type's
-reported size is not its reclaimable size, because images and build cache share
-layers. The entrypoint gives a five-step method, names the selecting symptoms
-and their non-triggers, and routes to one reference for the commands,
-attribution signals and reporting shape. It is deliberately Docker-specific: the
-method would translate to another engine, but every command in it is Docker's
-and no other engine has been tried, so the first draft's engine-neutral name and
-claim were both dropped. It stayed a third package rather than a reference inside
-docker-cli because its trigger is a symptom — a build failing for space — not an
-invocation under review, and because its substance is an authorization about
-destructive action that a reader loading flag guidance should not pick up.
-Example requests: "Use $docker-cleanup to find what is reclaimable on this
-host", "Use $docker-cleanup to clear the retired project's container state." See
-[validation](validation/docker-cleanup.md).
+### Moves and retirements
 
-**test-writing** 0.1.0 fills the gap between verification-design, which chooses
-the checks a change needs, and test-audit, which judges a settled suite. No
-package was selected at the moment a test or a fixture is written, although
-rules for that moment sat in four packages under other triggers. The lesson
-that prompted it came from a project that keeps real personal data in an
-ignored directory. A test about unlabelled numbers was written with a phone
-number and an identity-like number copied from that data into a tracked file.
-The entrypoint gives a workflow and routes to three references: unit tests,
-integration tests and fixtures. Its new rule is that every value in a test is
-made up, and that a test reproduces the shape of a real value, never its
-content or a part of it. In the trials the instructions alone did not hold on
-every model, and a project test that checks for copied values did. So the
-fixtures reference says what such a check needs. The check itself belongs to
-the project: the first versions bundled one, which now lives in the project
-that prompted the skill, with the workflow around it. Example requests: "Use
-$test-writing to add a regression test for this parser fix", "Use $test-writing
-to build sample records for the importer tests." See
-[validation](validation/test-writing.md).
+| Former package | Date | Where it is now |
+| --- | --- | --- |
+| project-planning 0.1.0, project-bootstrap 0.5.0, pattern-capture 0.3.1, project-policy 0.4.0 | 12 October 2026 | [project-bootstrap](https://github.com/jonasferagen/project-bootstrap), which authors and versions them as native skills; `183148d34dd1434df0402a0c6e69b195da84a525` is the last commit here that ships them |
+| work-records 1.0.0 | 12 October 2026 | project-bootstrap; `e2e0ed4` is the last commit here that ships it |
+| typescript-patterns 2.0.3, typescript-design 1.0.3 | 13 October 2026 | Retired by the Owner's decision; `605cded` is the last commit that ships them, with the shared-contract check that compared their module-syntax copies and the TypeScript example check |
+| containerization 1.1.0 | 9 October 2026 | CLI usage split into docker-cli and docker-compose-cli; PostgreSQL and verification material to database-migrations and verification-design; convention-shaped outcomes, including one service image for API, migration and seed commands, to the consuming framework's convention |
+| repository-services 0.3.1 | 9 October 2026 | Judgment kept as service-classes 0.1.0; the `services/` home, document shapes, reserved actions, dispatcher and validator to the installing distribution's convention |
+| project-docs | 4 October 2026 | [project-foundation](https://github.com/jonasferagen/project-foundation) |
+| change-workflow | 3 October 2026 | Retired; Git worktree operations, verification, document maintenance and reporting conventions belong to the consuming project |
+| shared-code-design | 2 October 2026 | Retired; its distribution-boundary criteria are not carried by another package |
+| jonas-email-style | 30 September 2026 | The owner's local `personal-skills` repository, installed for his user account |
 
-**verification-design** and the since-retired **shared-code-design** captured two
-architecture decisions exposed by a review of the local Atlas/Work proof of
-concept in 2026-09. The former separates evidence at schema, domain,
-independent-session, public-interface and built-artifact boundaries while
-looking for repeated setup. The latter compared checked copies with generation
-and versioned dependencies against the promise that each component builds
-independently; it was retired on 2 October 2026 and its
-[validation history](validation/shared-code-design.md) is preserved. The
-installable skill uses language-neutral examples and imposes no project test
-matrix or package manager. See its
-[verification scenarios](validation/verification-design.md).
+Installed copies keep working at their pinned commits. A consumer upgrading from
+containerization or repository-services adopts the successor packages and moves
+the convention-shaped outcomes to its own framework.
 
-**containerization** was retired on 9 October 2026 at 1.1.0, split into
-`docker-cli` and `docker-compose-cli` for CLI usage, with its convention-shaped
-outcomes going to the consuming framework's local-containers convention and its
-PostgreSQL and verification material to database-migrations and
-verification-design. Its reuse of one service image for API, migration and seed
-commands, added at 0.3.0, is an image-authoring outcome and left with the
-convention. Its [validation history](validation/containerization.md) and Git
-history are preserved.
+### Current maintenance notes
 
-**repository-services** was retired on 9 October 2026 at 0.3.1 and replaced by
-`service-classes` 0.1.0. It mixed judgment with placement: the running and
-scheduled classes and what each owes as evidence sat beside a `services/` home,
-an index and guide file layout, five reserved action words, a control entry
-point, a dispatcher implementation, a structural validator and an adoption
-declaration. Everything that names a path, a filename, a command or a document
-shape is a claim about a consuming project, so it went to the installing
-distribution's convention; the classification and status judgment stayed. The
-name went with the layout, because a routing trial had found the old catalog row
-pulled a reader expecting service guidance into a home their project did not
-have. Its [validation history](validation/repository-services.md) and Git
-history are preserved.
-
-**runtime-operations** 3.0.0 stopped shipping the Python helpers a consumer
-imports. Six modules, a service-runtime template and their four test suites left
-the package; the credential tiers, child-process rules, service-control method
-and backup guarantees stayed, and the
-[helpers contract](skills/operations/runtime-operations/references/runtime-helpers.md)
-grew because the shipped loader used to demonstrate a contract it now has to
-state. The interface version did not move: no signature or field changed, only
-who distributes the code. The name did not change either, since the trigger and
-the subject are untouched — a reader asking about a credential, a service
-control or a backup still selects this package. The proposed three-way topical
-split was assessed and declined.
-
-**test-audit** 0.3.0 narrows its integration-test advice to the failure each
-test can observe. Native contention, real permissions and built-artifact checks
-remain distinct evidence even when they call the same domain operation. Its
-full-suite rule now applies to complete coverage and timing claims; a static
-audit need not run the suite. See [validation](validation/test-audit.md).
-
-**clear-writing** brings the short-text guidance into a reusable prose skill,
-with a shared core and separate references for instructions and short text. It
-covers wording and meaning; visual form belongs to `diagrams-and-tables`, and
-document ownership stayed with `project-docs`, which left this repository with
-project-foundation on 4 October 2026. Jonas's email voice has its own skill
-outside this repository. Its first prose trials are the conceptual
-`source-of-truth` skill and the procedural `bash-patterns` skill; a later sweep
-revised eight more packages. See [validation scenarios and
-results](validation/clear-writing.md).
-
-**postgres-design** was extracted from Personal Atlas's database conventions on
-2026-09-29 and compared with work-system's migrations and data model. The
-installable package uses synthetic examples and contains no project schema names,
-service identifiers, vocabulary inventories or deployment policy. Work-system
-contributed guidance on provenance versus identity, explicit conditions, atomic
-commands and retries. Atlas credits the owner's Forge database conventions as an
-earlier influence. Version 1.1.0 adds a reference on transactions over pooled
-connections, drawn from the transaction runner of the local atlas-work-dev
-services and checked against PostgreSQL 17. See
-[validation and alignment](validation/postgres-design.md) for pinned sources,
-adoption differences and review limits.
-
-**project-docs** lived here until 4 October 2026, when it moved with
-project-foundation to [its own repository](https://github.com/jonasferagen/project-foundation).
-It was developed from a documentation review and cleanup in Personal on
-2026-09-19. The reusable guidance is newly written, and the worked
-example is synthetic. The source project credited Forge Agent Kit and Diátaxis
-as earlier influences; the package contains no copied upstream skill files. It
-supports establishing a documentation set, reviewing an existing one, and
-reconciling it after changes, and adapts to the project's existing layout
-rather than prescribing a stack, access model, merge policy or folder tree.
-Example requests: "Use $project-docs to establish documentation for this
-repository", "Use $project-docs to reconcile the docs after this release." See
-[its validation scenarios](https://github.com/jonasferagen/agent-skills/blob/9093cfca4ffa93df1be35b1bb7ebffaef0baac65/validation/project-docs.md); it still needs
-experience in a second real project.
-
-The owner's Forge Agent Kit `selfcheck-guard` skill was folded into
-**source-of-truth** at 1.1.0 on 2026-09-29, from the same commit as the
-bash-patterns and test-audit imports, rather than added as a ninth skill. This
-one already ended at a check — keep the restatement, add a gate that fails when
-the homes disagree — and never said what keeps that check working after the next
-restructure. The bar's six requirements and seven questions now sit in the
-manifest at that rung, and the five properties behind it, each with the shape
-that breaks it and the shape that holds, are in its
-`references/durable-checks.md`: compute the invariant live instead of
-re-blessing a golden, anchor to the check's own location or to version control,
-read the manifest rather than copying it, fabricate the fixture, and report an
-absent dependency as absent rather than as a failing test. Forge Project Policy
-citations were redirected as in test-audit — two carried substance now stated in
-place, and whether a check earns its recurring cost defers to the reading
-project's own policy.
-
-**change-workflow** was retired on 3 October 2026. It combined Git worktree
-operations with verification, document maintenance, tracker procedures and
-reporting conventions. Its [validation history](validation/change-workflow.md)
-retains the source provenance and review evidence; the former package remains in
-Git history.
-
-**diagrams-and-tables**, named `diagrams` until 2026-09-30, merges the owner's
-Forge Agent Kit `diagrams` skill, at `c98147a115a30f36b952df5faf1c869b54480c59`,
-with the diagram conventions that `project-docs` had been carrying. Upstream
-supplied form choice, the underused-tables argument, draw-less-link-more,
-vertical-and-one-altitude, the drawing reference and ten worked examples; the
-local reference supplied two sections upstream lacked — grounding every edge in
-whatever owns it, and verifying that a diagram reads in the renderer and themes
-its readers use, where a successful parse is explicitly not a readability check.
-It is a top-level skill because form choice applies to plans, issue bodies,
-design records and review feedback, not only to documentation.
-
-`project-docs` was reduced in the same change to what is particular to a
-documentation set — which document owns which view, glossary-led terms, and
-freshness as part of doc review — so the craft has one home instead of two that
-drift. Three provenance citations naming a private repository and its commits
-were replaced with neutral descriptions, and one worked example's schema
-vocabulary was renamed, so the package carries no project identifiers while
-keeping the real shapes and counts the examples depend on. Example requests:
-"Use $diagrams-and-tables to decide whether this section wants a diagram or a
-table", "Use $diagrams-and-tables to split this overview before it gets any
-wider." See [validation and alignment](validation/diagrams-and-tables.md).
-
-**bash-patterns** was imported from the owner's Forge Agent Kit on 2026-09-29,
-pinned at `c98147a115a30f36b952df5faf1c869b54480c59`. The upstream package
-referenced no Forge systems, trackers or policy. Its behavioral guidance is
-retained, with local metadata, repository authority guidance and revised prose.
-It distinguishes a successful match, a successful absence and a failed
-acquisition, and covers the defects that blur them: a `local` declaration
-reporting its own status, an early pipeline reader turning a match into a SIGPIPE
-failure under `pipefail`, and a process substitution whose producer status nobody
-collects. Example requests: "Use $bash-patterns to check whether this backup
-script's checks can pass when they should fail", "Use $bash-patterns on this
-pipeline before I trust its exit code." Version 0.2.0 retains those rules in
-focused references and adds argument boundaries, explicit status handling, file
-iteration and resource ownership. Third-party defensive Bash guidance supplied
-topics to assess; the additions are newly authored and runtime-checked. See
-[validation and alignment](validation/bash-patterns.md).
-
-**node-patterns** was written on 2026-09-30 as the Node counterpart to
-bash-patterns, from a review of the local atlas-work-dev repository. That review
-found one idiom for reading a child process's result copied into seven places;
-it reported a timeout, a signal, a missing program and truncated output all as
-exit 1. The review also found check scripts that exit before their piped output
-is written, and a script root resolved from a URL path that fails under a
-directory containing a space. Every behavior the package states was reproduced
-with Node 24 on Linux before it was written down. It covers how Node reports
-outcomes; which output may hold secrets, how a child's environment is built and
-what a timeout should mean stay with runtime-operations or the project's own
-guidance. Example requests: "Use $node-patterns to check that this harness
-reports why docker failed", "Use $node-patterns on these check scripts before CI
-relies on their exit status." See
-[validation and alignment](validation/node-patterns.md).
-
-**test-audit** was imported from the same Agent Kit commit on 2026-09-29, and
-fills a gap this repository declared on purpose: `typescript-patterns` leaves
-testing to the reading repository, so both consuming projects owned it locally
-with no shared method. Its sharpest lens is the unfalsifiable request — a double
-answers whatever the code asks it, so what the code claims about an external
-contract was never checked against the real thing, which is not drift because
-there was nothing to drift from. Three Forge Project Policy citations were
-redirected: two carried substance now stated in place, and the third defers to the
-reading project's own policy, because the upstream policy opens by declaring
-nothing is in production while both consumers are. References to three sibling
-Agent Kit skills became descriptions of the boundary, since a cross-package path
-would break when this skill is installed alone. Example requests: "Use $test-audit
-on the runner suite", "Use $test-audit to find what our mocks have never actually
-verified." See [validation and alignment](validation/test-audit.md).
-
-**typescript-patterns** 2.0.3 and **typescript-design** 1.0.3 were retired on
-13 October 2026 by the Owner's decision. `605cded` is the last commit that ships
-them, together with the shared-contract check that compared their module-syntax
-copies and the TypeScript example check. Installed copies keep working at their
-pinned commits; Git history retains the packages and their validation records.
-
-**python-patterns** and **python-design** start a language/design split
-for Python at version 0.1.0. They cover selected failure-prone patterns and the
-class-based house style, using Python conventions: keyword-only arguments,
-dataclasses, protocols, snake_case names and cohesive modules.
-
-Everything Claude Code's Python skill informed topic selection; Trail of Bits'
-modern-python plugin helped identify tooling decisions to leave with consuming
-projects. The prose and examples are newly authored and checked against Python's
-documentation. No upstream skill files, hooks or installers were imported.
-Source pins, adoption decisions and verification limits are recorded in the
-[language validation](validation/python-patterns.md) and
-[design validation](validation/python-design.md). Updates require deliberate
-review; neither upstream is tracked automatically.
-
-Example requests: "Use $python-patterns to review cancellation and cleanup in
-this worker", "Use $python-design to give these operations and values clear
-owners." Each package works alone; neither prescribes a toolchain or changes
-installed consumers.
-
-**source-of-truth** was extracted on 2026-09-29 from a duplication audit of
-Personal Atlas: six parallel searches over validation rules, domain vocabularies,
-logic expressed in more than one medium, configuration constants, types and
-shapes, and documentation, with every candidate independently challenged before
-acceptance. Its subject is the seam between media — a concept authored in a
-schema, a setting or a document and restated in application code, another
-language or prose, where no single search finds both sides and the restatement
-falls behind silently. It deliberately excludes code shape, which belongs to
-a language's design skill, and schema design, which belongs to
-[postgres-design](skills/design/postgres-design/SKILL.md). The
-installable package is synthetic throughout and names no language, framework or
-toolchain as a requirement. Several of its false-positive tests — a complete copy
-versus a deliberate subset, a test that states its expectations being a third
-home rather than a check, an opt-in test not counting as gate coverage — came
-from the challenge step rejecting or correcting an initial finding. Example
-requests: "Use $source-of-truth — this vocabulary is defined in the schema and
-again in the reader", "Use $source-of-truth to decide where this constant belongs."
-See [its validation scenarios](validation/source-of-truth.md); it has been applied
-in one project only and is not yet released.
-
-**jonas-email-style** lived here from 2026-09-24 until 2026-09-30, when it
-moved with its history to Jonas's local `personal-skills` repository. It is
-installed for his user account there rather than copied into projects.
-
-**runtime-operations** supplies the common credential, Linux service and encrypted
-backup machinery used by Personal Atlas and Work-system. Project adapters own
-vault IDs, roles, schema scope and access checks. The package includes offline
-helper tests; consumer adapters also exercise actual disposable restores.
-Child-process, argument and verification-reporting guidance was added in 1.1.0
-from a parallel review of the same two projects' tooling: withholding child
-output, inherited stdin reaching a child that parses it, timeouts and argument
-vectors; subcommand and argument rules, including what a script must never accept
-from its caller; verifying that a read-only session setting survived a pooler; and
-the rule that a verdict names its denominator, which is adopted from the owner's
-Forge project policy.
-See [validation scenarios](validation/runtime-operations.md).
+- **runtime-operations** 3.0.0 stopped shipping the Python helpers a consumer
+  imports. The distribution deploys that code and names the interface version it
+  was written against, as the
+  [helpers contract](skills/operations/runtime-operations/references/runtime-helpers.md)
+  states; the interface version did not move.
+- The Docker packages duplicate four shared rules under reciprocal copy records
+  rather than linking, because each must work alone; the borrowed-definition
+  rule is triggered in docker-compose-cli and fixed with a docker-cli bind.

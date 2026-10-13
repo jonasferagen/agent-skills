@@ -1,1 +1,0 @@
-A command converts checked-in synthetic text fixtures to a generated report in a new temporary directory for each run. The command owns and deletes those reports; it uses no external service or mounted collection. Existing runtime-location configuration declares this as run output under the host temporary location. We need to change the report wording only.

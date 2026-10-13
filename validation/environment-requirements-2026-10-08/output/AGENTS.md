@@ -1,1 +1,0 @@
-This fixture is an independent consumer repository. Read README.md for project context. For setup or missing starting context, use .guidance/documentation/skills/project-bootstrap/SKILL.md. For engineering tasks, select the relevant route from .guidance/engineering/COLLECTION.md. Use only guidance needed by the task. This is a read-only review; do not operate live systems.

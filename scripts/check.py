@@ -32,9 +32,8 @@ def prerequisites(root: Path) -> list[str]:
     errors = []
     if sys.version_info < (3, 11):
         errors.append('Python 3.11 or later is required for source checks')
-    for executable in ('node', 'gpg'):
-        if not shutil.which(executable):
-            errors.append(f'{executable} is required; install it before running checks')
+    if not shutil.which('node'):
+        errors.append('node is required; install it before running checks')
     if shutil.which('node'):
         version = subprocess.run(['node', '--version'], stdin=subprocess.DEVNULL,
                                  capture_output=True, text=True, encoding='utf-8', check=True, timeout=10)

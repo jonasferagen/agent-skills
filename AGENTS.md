@@ -49,30 +49,31 @@ README.
 
 Shipped content names no consumer: no project, distribution or framework that
 installs these skills. Say "the consuming project" or "the project's framework".
-History under `validation/` may name what it actually tested.
 
 ## Verification
 
 - For trigger, entrypoint, shared-guidance or packaging changes, meet the
-  [routing acceptance requirement](README.md#routing-quality) using the practical
-  trials in [discovery validation](validation/discovery.md#routing-trial-method).
-  Repeat applicable trials before a release; prose-only edits need no
-  automatic discovery trial.
-
+  [routing acceptance requirement](README.md#routing-quality) with the practical
+  trials of its [routing trial method](README.md#routing-trial-method). Repeat
+  applicable trials before a release; prose-only edits need no automatic
+  discovery trial.
 - Run `python3 scripts/check.py` and `git diff --check`; the README's
-  [verification](README.md#verification) section owns prerequisites.
+  [verification](README.md#verification) section owns prerequisites and says
+  [where a package keeps its checks](README.md#where-a-package-keeps-its-checks).
 - Before tagging a release of a skill that bundles scripts, templates or an
-  extension declaration, complete its
-  [self-conformance review](validation/self-conformance.md).
-- Review the affected scenarios under `validation/`; record actual results and
-  remaining limits when evaluating a skill. For a narrow edit, read the applicable
-  behavior cases; load dated trial history only when revisiting those results.
-- Keep a validation record only while a shipped skill, this repository's
-  instructions or README, or another current record cites it. A skill's own
-  page lives as long as the skill. Delete a record in the change that removes
-  its last reader; Git history and published pins retain it.
-- Run bundled helper tests when helper behavior changes. Render changed
+  extension declaration, complete the README's
+  [release review](README.md#release-review).
+- Review the affected cases in the package's `scenarios/README.md` when
+  evaluating a skill, by the README's
+  [evaluation guidance](README.md#evaluating-a-skill-against-its-scenarios).
+  Record observed results with the change that ran them, not in the package.
+  Add a demonstrated failure as a regression case and state a current limit
+  beside the behavior it qualifies. For a narrow edit, read only the applicable
+  cases.
+- Keep scenarios free of observed outputs, timestamps and run reports, and keep
+  entrypoints and references from routing ordinary use into them.
+- Run bundled tests when the behavior they check changes. Render changed
   diagrams and inspect them at their intended reading width.
-- On a rename, update the directory, manifest, UI metadata, validation page,
+- On a rename, update the directory, manifest, UI metadata, scenarios,
   invocation examples and references. Preserve source names in provenance when
   they identify material under its original name.

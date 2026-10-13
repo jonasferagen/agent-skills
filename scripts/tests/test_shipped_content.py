@@ -11,7 +11,7 @@ SKILLS = ROOT / 'skills'
 # compound such as a service or repository name does.
 CONSUMER_NAMES = re.compile(r'project-foundation|\bforge\b|\bforge-', re.IGNORECASE)
 # Skills that left this catalog. A shipped package names only skills a consumer
-# can still install from here; history under validation/ may keep these names.
+# can still install from here; the README records where each one went.
 RETIRED_SKILL_NAMES = re.compile(
     r'\b(containerization|repository-services|project-docs|shared-code-design|change-workflow|git-worktrees|jonas-email-style|selfcheck-guard|work-records|project-planning|project-bootstrap|pattern-capture|project-policy|typescript-patterns|typescript-design)\b')
 TEXT = {'.md', '.py', '.yaml', '.yml', '.json', '.txt', '.sh', ''}
@@ -35,6 +35,23 @@ class ShippedContentTests(unittest.TestCase):
                 continue
             for number, line in enumerate(file.read_text(encoding='utf-8').splitlines(), 1):
                 if RETIRED_SKILL_NAMES.search(line):
+                    hits.append(f'{file.relative_to(ROOT)}:{number}: {line.strip()}')
+        self.assertEqual(hits, [], '\n'.join(hits))
+
+    def test_ordinary_use_is_not_routed_into_scenarios(self):
+        hits = []
+        for package in sorted(path.parent for path in SKILLS.rglob('SKILL.md')):
+            for file in [package / 'SKILL.md', *sorted((package / 'references').rglob('*.md'))]:
+                for number, line in enumerate(file.read_text(encoding='utf-8').splitlines(), 1):
+                    if re.search(r'\]\((?:\.\./)*scenarios/', line):
+                        hits.append(f'{file.relative_to(ROOT)}:{number}: {line.strip()}')
+        self.assertEqual(hits, [], '\n'.join(hits))
+
+    def test_scenarios_hold_no_run_reports(self):
+        hits = []
+        for file in sorted(SKILLS.glob('*/*/scenarios/**/*.md')):
+            for number, line in enumerate(file.read_text(encoding='utf-8').splitlines(), 1):
+                if re.search(r'\b20\d\d-\d\d-\d\d\b|\b(?:passed|failed) on\b', line):
                     hits.append(f'{file.relative_to(ROOT)}:{number}: {line.strip()}')
         self.assertEqual(hits, [], '\n'.join(hits))
 
