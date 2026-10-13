@@ -126,9 +126,9 @@ the distribution's own adoption and routes separately.
 ## Verification
 
 For source maintenance, install Node 24, Python 3.11 or later and GnuPG, then
-run `python3 scripts/check.py`. This command checks packages and discovers helper
-suites under `scripts/` and `skills/`, including the real GnuPG round trip and
-the examples extracted from the Node guidance. Empty, failed, skipped and
+run `python3 scripts/check.py`. This command checks packages and discovers test
+suites under `scripts/` and `skills/`, including each package's own `tests/`,
+such as the Node example check in node-patterns. Empty, failed, skipped and
 incomplete suites fail the command. Missing prerequisites fail explicitly. CI
 runs the same command. These local checks do not establish live service or
 database acceptance.

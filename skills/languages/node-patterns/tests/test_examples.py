@@ -1,14 +1,20 @@
-"""Compile/run the maintained examples directly from their Markdown owners."""
+"""Run the `outcomeOf` example from SKILL.md against real child processes.
+
+Prerequisites: Python 3.11 or later and a `node` executable on PATH. The
+behaviors were reproduced on Node 24 on Linux; the test fails explicitly, rather
+than skipping, when `node` is absent. It needs nothing outside this package.
+"""
 
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import tempfile
 import unittest
 
 
-ROOT = Path(__file__).resolve().parents[2]
-NODE = ROOT / 'skills/languages/node-patterns/SKILL.md'
+PACKAGE = Path(__file__).resolve().parents[1]
+SKILL = PACKAGE / 'SKILL.md'
 
 
 def code_block(page: Path, language: str, containing: str) -> str:
@@ -19,18 +25,13 @@ def code_block(page: Path, language: str, containing: str) -> str:
     return matches[0]
 
 
-def run(command: list[str], directory: Path) -> None:
-    result = subprocess.run(command, cwd=directory, stdin=subprocess.DEVNULL,
-                            capture_output=True, text=True, encoding='utf-8', timeout=30)
-    if result.returncode:
-        raise AssertionError(f'{command[0]} failed ({result.returncode}):\n{result.stdout}\n{result.stderr}')
-
-
-class GuidanceExamples(unittest.TestCase):
-    def test_node_outcomes_and_cancellation_preserve_child_and_wrapper_facts(self):
+class OutcomeExample(unittest.TestCase):
+    def test_outcomes_and_cancellation_preserve_child_and_wrapper_facts(self):
+        node = shutil.which('node')
+        self.assertIsNotNone(node, 'node is required on PATH to run the node-patterns example check')
+        source = code_block(SKILL, 'js', 'function outcomeOf(')
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            source = code_block(NODE, 'js', 'function outcomeOf(')
             (root / 'probe.mjs').write_text('''
 import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
@@ -74,4 +75,11 @@ const signaled = await execute(node, ['-e',
   child => child.stdout.once('data', () => process.kill(child.pid, 'SIGKILL')));
 assert.deepEqual(signaled.outcome, { kind: 'signaled', signal: 'SIGKILL' });
 ''', encoding='utf-8')
-            run(['node', 'probe.mjs'], root)
+            result = subprocess.run([node, 'probe.mjs'], cwd=root, stdin=subprocess.DEVNULL,
+                                    capture_output=True, text=True, encoding='utf-8', timeout=30)
+            self.assertEqual(result.returncode, 0,
+                             f'node failed ({result.returncode}):\n{result.stdout}\n{result.stderr}')
+
+
+if __name__ == '__main__':
+    unittest.main()
