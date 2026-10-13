@@ -13,7 +13,7 @@ CONSUMER_NAMES = re.compile(r'project-foundation|\bforge\b|\bforge-', re.IGNOREC
 # Skills that left this catalog. A shipped package names only skills a consumer
 # can still install from here; history under validation/ may keep these names.
 RETIRED_SKILL_NAMES = re.compile(
-    r'\b(containerization|repository-services|project-docs|shared-code-design|change-workflow|git-worktrees|jonas-email-style|selfcheck-guard|work-records|project-planning|project-bootstrap|pattern-capture|project-policy)\b')
+    r'\b(containerization|repository-services|project-docs|shared-code-design|change-workflow|git-worktrees|jonas-email-style|selfcheck-guard|work-records|project-planning|project-bootstrap|pattern-capture|project-policy|typescript-patterns|typescript-design)\b')
 TEXT = {'.md', '.py', '.yaml', '.yml', '.json', '.txt', '.sh', ''}
 
 

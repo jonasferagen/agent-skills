@@ -2,7 +2,6 @@
 """Run package checks and every maintained helper/example suite without silent skips."""
 
 import argparse
-import json
 import os
 from pathlib import Path
 import shutil
@@ -36,14 +35,6 @@ def prerequisites(root: Path) -> list[str]:
     for executable in ('node', 'gpg'):
         if not shutil.which(executable):
             errors.append(f'{executable} is required; install it before running checks')
-    compiler = root / 'node_modules/typescript/bin/tsc'
-    if not compiler.is_file():
-        errors.append('TypeScript is required; run npm ci in the source repository')
-    else:
-        expected = json.loads((root / 'package.json').read_text(encoding='utf-8'))['devDependencies']['typescript']
-        actual = json.loads((compiler.parents[1] / 'package.json').read_text(encoding='utf-8'))['version']
-        if actual != expected:
-            errors.append(f'TypeScript {expected} is required; found {actual}; run npm ci')
     if shutil.which('node'):
         version = subprocess.run(['node', '--version'], stdin=subprocess.DEVNULL,
                                  capture_output=True, text=True, encoding='utf-8', check=True, timeout=10)
@@ -66,7 +57,6 @@ def main() -> int:
         print('\n'.join(errors), file=sys.stderr)
         return 1
     commands = [[sys.executable, str(ROOT / 'scripts/validate-packages.py')]]
-    commands.append([sys.executable, str(ROOT / 'scripts/check_shared_contracts.py')])
     commands.extend([sys.executable, str(Path(__file__).resolve()), '--suite', str(directory)]
                     for directory in directories)
     failures = 0

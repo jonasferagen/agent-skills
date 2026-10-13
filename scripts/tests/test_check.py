@@ -19,10 +19,9 @@ class CheckTests(unittest.TestCase):
     def test_missing_prerequisites_fail_explicitly(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(runner.shutil, 'which', return_value=None):
             errors = runner.prerequisites(Path(directory))
-        self.assertEqual(len(errors), 3)
+        self.assertEqual(len(errors), 2)
         self.assertTrue(any('node is required' in error for error in errors))
         self.assertTrue(any('gpg is required' in error for error in errors))
-        self.assertTrue(any('npm ci' in error for error in errors))
 
     def test_discovery_includes_nested_helpers_without_duplicate_directories(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -1,4 +1,0 @@
-interface:
-  display_name: "TypeScript patterns"
-  short_description: "Type safety, generics and language conventions"
-  default_prompt: "Use $typescript-patterns to check these TypeScript types and boundary assumptions."

@@ -76,15 +76,13 @@ Choose by the requested task; new regression work does not require a suite audit
 
 | Skill | Use it for |
 | --- | --- |
-| [typescript-patterns](skills/languages/typescript-patterns/SKILL.md) | TypeScript types, narrowing, generics, absence, module syntax and enforcement. |
-| [typescript-design](skills/languages/typescript-design/SKILL.md) | Class-based TypeScript house style: operations, naming, ownership, ports, barrels and directory layout. |
 | [node-patterns](skills/languages/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
 | [python-patterns](skills/languages/python-patterns/SKILL.md) | Python types, runtime boundaries, defaults, exceptions, resource cleanup and async tasks. |
 | [python-design](skills/languages/python-design/SKILL.md) | Class-based Python house style: operations, domain values, dependency protocols, naming and modules. |
 | [bash-patterns](skills/languages/bash-patterns/SKILL.md) | Preserving arguments, command failures, query results and cleanup ownership in Bash scripts. |
 | [godot-gdscript](skills/languages/godot-gdscript/SKILL.md) (draft) | Typed Godot scripts, headless probes, imports and scene measurements. |
 
-The patterns and design skills of one language pair naturally; each works alone.
+The Python patterns and design skills pair naturally; each works alone.
 
 ## Using a skill
 
@@ -127,13 +125,13 @@ the distribution's own adoption and routes separately.
 
 ## Verification
 
-For source maintenance, install Node 24, Python 3.11 or later and GnuPG, run
-`npm ci --ignore-scripts`, then `python3 scripts/check.py`. This command checks
-packages and discovers helper suites under `scripts/` and `skills/`, including
-the real GnuPG round trip and examples extracted from the TypeScript and Node
-guidance. Empty, failed, skipped and incomplete suites fail the command. Missing
-prerequisites fail explicitly. CI runs the same command. These local checks do
-not establish live service or database acceptance.
+For source maintenance, install Node 24, Python 3.11 or later and GnuPG, then
+run `python3 scripts/check.py`. This command checks packages and discovers helper
+suites under `scripts/` and `skills/`, including the real GnuPG round trip and
+the examples extracted from the Node guidance. Empty, failed, skipped and
+incomplete suites fail the command. Missing prerequisites fail explicitly. CI
+runs the same command. These local checks do not establish live service or
+database acceptance.
 
 `python3 scripts/validate-packages.py` alone checks frontmatter, local link
 targets and anchors, package containment, unique names and that each recorded
@@ -141,11 +139,6 @@ copy names an existing counterpart that records it back. A source test applies
 the same link check to this README and the repository instructions; dated records
 under `validation/` may cite paths that have since moved. Behavioral scenarios in
 `validation/` and bundled helper tests still need their own review.
-
-`python3 scripts/check_shared_contracts.py` compares the selected TypeScript
-module-syntax copy with its current owner. The
-ordinary `scripts/check.py` gate runs it and the compatibility tests. This is a
-bounded check of declared shared contracts, not a semantic scan of all guidance.
 
 ## Discovery and routing
 
@@ -541,34 +534,13 @@ would break when this skill is installed alone. Example requests: "Use $test-aud
 on the runner suite", "Use $test-audit to find what our mocks have never actually
 verified." See [validation and alignment](validation/test-audit.md).
 
-**typescript-patterns** and **typescript-design** separate the language and
-house-style guidance in Jonas's TypeScript canon, first brought here on
-2026-09-29. Both packages use a symptom table to select focused references,
-remain installable alone, and leave testing and review workflows to the
-consuming repository.
+**typescript-patterns** 2.0.3 and **typescript-design** 1.0.3 were retired on
+13 October 2026 by the Owner's decision. `605cded` is the last commit that ships
+them, together with the shared-contract check that compared their module-syntax
+copies and the TypeScript example check. Installed copies keep working at their
+pinned commits; Git history retains the packages and their validation records.
 
-`typescript-patterns` owns language conventions, type safety, generics, module
-syntax and compiler/lint enforcement. `typescript-design` owns the class-based
-house style: operations, domain values, naming and placement, dependency ports,
-orchestration, resolution, barrels and directories. Class-based operations
-remain a strong convention with the same exceptions; this split changes where
-rules are selected, not the design choices themselves.
-
-To preserve the former package's full guidance when upgrading from
-`typescript-patterns` 1.x, adopt **both** packages and update project guidance
-that selected only the old skill. Existing commit-pinned copies remain intact.
-Version 2.0.0 of `typescript-patterns` narrows its scope; version 1.0.0 of
-`typescript-design` starts the extracted package. These manifest versions do not
-publish release tags or update installed consumers.
-
-Example requests: "Use $typescript-patterns to check this union and its label
-table", "Use $typescript-design to name this module and its exports", and
-"Use $typescript-design — this constructor takes six positional arguments."
-See the [language validation](validation/typescript-patterns.md) and
-[design validation](validation/typescript-design.md), including the split's
-reference mapping and remaining limits.
-
-**python-patterns** and **python-design** start the same language/design split
+**python-patterns** and **python-design** start a language/design split
 for Python at version 0.1.0. They cover selected failure-prone patterns and the
 class-based house style, using Python conventions: keyword-only arguments,
 dataclasses, protocols, snake_case names and cohesive modules.
@@ -595,8 +567,8 @@ acceptance. Its subject is the seam between media — a concept authored in a
 schema, a setting or a document and restated in application code, another
 language or prose, where no single search finds both sides and the restatement
 falls behind silently. It deliberately excludes code shape, which belongs to
-[typescript-design](skills/languages/typescript-design/SKILL.md), and schema design,
-which belongs to [postgres-design](skills/design/postgres-design/SKILL.md). The
+a language's design skill, and schema design, which belongs to
+[postgres-design](skills/design/postgres-design/SKILL.md). The
 installable package is synthetic throughout and names no language, framework or
 toolchain as a requirement. Several of its false-positive tests — a complete copy
 versus a deliberate subset, a test that states its expectations being a third
