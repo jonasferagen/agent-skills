@@ -2,7 +2,7 @@
 name: verification-design
 description: "Choose proportionate checks for a change or milestone and consolidate overlapping validation by the failure each check can detect. Use when deciding which test layers to run, what evidence a claim needs, or whether repeated suites and setup can be combined."
 metadata:
-  version: "0.3.0"
+  version: "0.3.1"
 ---
 
 # Verification design

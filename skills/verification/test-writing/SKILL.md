@@ -2,7 +2,7 @@
 name: test-writing
 description: "Write or change unit tests, integration tests and the fixtures they use. Use when adding or editing a test, test helper, fixture or test input, especially with real records at hand; evidence selection and settled-suite audits are separate tasks."
 metadata:
-  version: "0.1.2"
+  version: "0.1.3"
 ---
 
 # Test writing

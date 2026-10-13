@@ -2,7 +2,7 @@
 name: python-design
 description: "Apply the class-based Python house style when shaping operations, domain values, dependency protocols, naming and module boundaries. Use for code organization and ownership decisions."
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Python design

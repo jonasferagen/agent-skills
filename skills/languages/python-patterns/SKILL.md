@@ -2,7 +2,7 @@
 name: python-patterns
 description: "Write or review Python types, data boundaries, defaults, exceptions, resource cleanup and async tasks. Use for language correctness and failure handling; class organization belongs to adopted design guidance."
 metadata:
-  version: "0.3.0"
+  version: "0.3.1"
 ---
 
 # Python patterns

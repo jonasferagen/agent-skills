@@ -2,7 +2,7 @@
 name: bash-patterns
 description: "Write or review Bash scripts that preserve argument boundaries, command status, query results and cleanup ownership. Use for pipelines, captures, file iteration, traps and background work; repository policy determines command intent and failure handling."
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Bash patterns

@@ -2,7 +2,7 @@
 name: godot-gdscript
 description: "Write or review Godot GDScript, headless scene probes, resource imports and scene-geometry measurements. Use for engine implementation and technical evidence; perceptual review needs its own observer workflow."
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
 ---
 
 # Godot and GDScript

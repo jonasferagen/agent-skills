@@ -2,7 +2,7 @@
 name: test-audit
 description: "Audit a settled test suite for weak assertions, gaps, brittle cases, mock drift, non-determinism and misleading coverage claims. Use when asking whether existing tests actually protect behavior; choosing evidence for an active change is a separate task."
 metadata:
-  version: "0.3.3"
+  version: "0.3.4"
 ---
 
 # Test audit
