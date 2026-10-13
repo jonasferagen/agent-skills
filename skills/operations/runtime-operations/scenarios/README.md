@@ -11,7 +11,7 @@ run's observed results with the change that ran it, not here.
 | Two projects share a reader vault | Separate database credentials; explain what shared vault access exposes. |
 | Intake and owner commands have separate database roles | Keep secret access separate too; a single Operate tier does not merge identities. |
 | A runtime token is absent while the operator's desktop secret-store session is unlocked | Fail before reading an item; no owner fallback. |
-| A privileged backup inherits a runtime token | Read through the owner's session; never treat a runtime token as maintenance authentication. |
+| A privileged maintenance command inherits a runtime token | Read through the owner's session; never treat a runtime token as maintenance authentication. |
 | A service account needs a database writer's credentials | Read access to its vault suffices; secret-store access is not a capability tier. |
 
 ## Services
@@ -40,13 +40,6 @@ run's observed results with the change that ran it, not here.
 | A caller wants to pass an endpoint or query text to a boundary script | Refused; the script resolves and verifies its own endpoint and owns its statements. |
 | A check reports success having compared zero tables | A defect in the check; the honest output is a refusal naming the empty denominator. |
 
-## Backups
-
-| Request and context | Expected behavior |
-| --- | --- |
-| Reconstructible data versus a canonical queue | Keep backup triggers local; one mandatory restore routine can serve both when the owner chooses consolidation. |
-| A capture's restore check fails | Nothing is published; a capture test makes each verification step fail in turn and confirms that nothing is published. |
-
 ## Open
 
 - "Require an explicit target for a job that acts on a named thing" sits
@@ -61,5 +54,3 @@ run's observed results with the change that ran it, not here.
   therefore checked against the method text, not against shipped code.
 - The literal-argument behavior was observed on one Linux systemd version; other
   managers and installed-unit generators keep their own escaping obligation.
-- Capture tests for the encryption round trip and backup-directory permissions
-  had no failure test when the helpers left; the restore check did.

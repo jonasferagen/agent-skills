@@ -1,8 +1,8 @@
 ---
 name: runtime-operations
-description: "Design or change credential handling, local service controls and encrypted database backups. Use for secret custody, execution identities, lifecycle or recovery tooling, and their child-process and verification behavior."
+description: "Design or change credential handling, local service controls and scheduled runs. Use for secret custody, execution identities, lifecycle tooling, and their child-process and verification behavior."
 metadata:
-  version: "3.0.1"
+  version: "4.0.0"
 ---
 
 # Runtime operations
@@ -13,8 +13,8 @@ and the interface contract operational tooling must satisfy; project configurati
 stays in the repo.
 
 No code ships here. The modules a service controller imports are deployed by the
-project's framework, which also chooses the secret store, the process manager and
-the database provider they bind. [The helpers contract](references/runtime-helpers.md)
+project's framework, which also chooses the secret store and the process manager
+they bind. [The helpers contract](references/runtime-helpers.md)
 states the surface those modules must offer, the binding a project supplies, and
 what survives an update. Read it before writing a controller, rather than
 inferring the surface from an installed module's source.
@@ -137,7 +137,7 @@ state and a report is a reading. That is why a service whose unit is held by
 another checkout reports that fact rather than refusing, while an active service
 that will not answer readiness reports a failure: readiness is what a running
 service was asked for. Keep every line scannable. Long output — a journal, a
-durable receipt, a database probe — belongs to `status <name>`, which a reader
+durable receipt, a probe's full answer — belongs to `status <name>`, which a reader
 asks for after a row says something is owed.
 
 That report's schema and its closed state and lifecycle vocabularies have one
@@ -212,48 +212,6 @@ allows, not whatever its caller supplies. Where a script is a boundary other
 programs call, bound the request too: a small fixed set of fields, a capped input
 size, and every value validated before acting.
 
-## Backups
-
-Keep the trigger for a backup in project policy. Use one capture routine when
-projects share the same machinery: encrypted export, integrity check and a full
-disposable restore before publication. A project that tolerates data loss can
-choose that stronger routine to avoid maintaining a separate path.
-
-A backup is worth what it can prove. Each item below is a separate guarantee, and
-a routine that omits one has not established it:
-
-- **The export covers what was configured.** Configure at least one schema
-  explicitly; an archive covers only its selected schemas. Document external
-  dependencies and login provisioning, and never imply the archive is a full
-  managed-project backup.
-- **The credential profile is the intended one.** Verify the project, login, port,
-  database and endpoint before exporting, and connect with verified TLS. Which
-  provider and endpoint shape those values describe is a project binding, and
-  adopting the method does not select a provider.
-- **The archive matches itself.** Verify archive identity, checksum and
-  decryption before restoration, and compare the encryption round trip against
-  the captured bytes.
-- **A wrong key was observed being denied.** An operational failure in the crypto
-  tool is not evidence that a wrong key was refused. Require the tool's reported
-  bad-passphrase status before recording that check.
-- **The archive restores.** Restore in full into a disposable instance, in one
-  transaction, failing on the first error; then inspect the result and compare it
-  with what the capture recorded. Preserve object ownership where privileged
-  definitions depend on it.
-- **The rehearsal can reach nothing real.** A rehearsal runs with no network, no
-  published port, no persistent data volume and no production passwords, and the
-  routine never chooses a production restore destination.
-- **Nothing is published until every step passed.** Keys stay separate from
-  archives; archives, metadata and receipts stay outside Git; publication never
-  overwrites a retained file. Capture tests make each verification step fail and
-  confirm that nothing is published; project tests exercise actual restoration
-  and permissions.
-- **Every command is bounded, and every attempt is reclaimed.** Give each backup
-  command a positive, finite timeout and review that bound against the project's
-  expected archive size. Identify each disposable instance by its own generated
-  name and a unique label, so cleanup after a failed, timed-out or attached
-  command removes what this attempt created and never a namesake.
-
 ## Verification
 
 Exercise missing/wrong credentials, environment isolation, failed startup and
@@ -268,5 +226,5 @@ denominator is empty, the honest output is a refusal, not a pass. Examples of an
 empty denominator: nothing compared, no tests collected, no archive matched, or
 a filter or threshold that nothing could meet. A passing result that measured
 nothing is a defect in the check. It is the failure mode that stays unnoticed
-longest, because nobody investigates a pass. This is why capture tests exercise
-failing verification, not only a passing one.
+longest, because nobody investigates a pass. This is why tests exercise failing
+verification, not only a passing one.

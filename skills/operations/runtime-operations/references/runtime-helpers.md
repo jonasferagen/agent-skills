@@ -2,16 +2,16 @@
 
 A service controller does not drive a process manager directly. It binds one
 service and asks for one action, through a small set of Python modules the
-project's framework deploys: `serviceControl`, `serviceHealth`, `serviceReport`,
-`credentialStore` and `databaseBackup`, with a `runtimeApi` declaration beside
+project's framework deploys: `serviceControl`, `serviceHealth`, `serviceReport`
+and `credentialStore`, with a `runtimeApi` declaration beside
 them. They are files in a deployed directory, not an installed package, so a
 consumer must put that directory on `sys.path` before importing them.
 
 This reference owns the contract and nothing else: how a consumer admits the
 modules, what the two version numbers mean, what a project binding supplies, how
 the actions behave, and what survives an update. The modules themselves are
-deployed with the project's framework, which also chooses the process manager,
-the secret store and the database provider they bind. Read this contract instead
+deployed with the project's framework, which also chooses the process manager
+and the secret store they bind. Read this contract instead
 of inferring the surface from a deployed module's source, and treat it as what a
 conforming deployment must offer.
 
@@ -198,8 +198,8 @@ instead of failing later inside a call. It cannot make such a replacement safe:
 review the consumers a major change affects and exercise each affected
 controller.
 
-This contract states a surface, not an implementation. Which process manager,
-secret store and database provider the deployed modules bind is the framework's
+This contract states a surface, not an implementation. Which process manager
+and secret store the deployed modules bind is the framework's
 choice, and that choice carries its own prerequisites: a client capability, a
 running manager, an installed credential tool, a container runtime. A conforming
 deployment documents them where it ships the code, and keeps its own tests with
