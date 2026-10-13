@@ -2,7 +2,7 @@
 name: postgres-design
 description: "Design or review PostgreSQL schemas, migrations and transaction boundaries, including pooled connections. Use for keys, relationships, types, state and integrity; query tuning follows project guidance."
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
 ---
 
 # Postgres design

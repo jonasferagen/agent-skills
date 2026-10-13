@@ -2,7 +2,7 @@
 name: relational-modeling
 description: "Turn known entities and retrieval questions into a relational model, or revise a relationship when its meaning changes. Use for identity, roles, cardinalities and model scenarios before implementation; routine prose edits, database provisioning and migration execution are separate tasks."
 metadata:
-  version: "0.2.2"
+  version: "0.2.3"
 ---
 
 # Relational modeling

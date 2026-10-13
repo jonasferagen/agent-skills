@@ -2,7 +2,7 @@
 name: application-design
 description: "Turn a workflow into application operations, state ownership and dependency interfaces, or revise those boundaries. Use when deciding where behavior belongs inside an application; provider selection, language idioms and literal document edits have separate routes."
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
 ---
 
 # Application design

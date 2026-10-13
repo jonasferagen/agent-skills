@@ -2,7 +2,7 @@
 name: service-boundaries
 description: "Design or review service ownership and shared application behavior exposed through HTTP and MCP. Use when separating service responsibilities or adding a transport to an existing operation; container builds and protocol SDK setup are separate tasks."
 metadata:
-  version: "0.4.0"
+  version: "0.4.1"
 ---
 
 # Service boundaries

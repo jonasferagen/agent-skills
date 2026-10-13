@@ -2,7 +2,7 @@
 name: project-contracts
 description: "Read, apply, design or review handoff obligations between people, agents, files or services. Use for missing terms, acceptance and compatibility; legal agreements and overall architecture have separate workflows."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Project contracts
