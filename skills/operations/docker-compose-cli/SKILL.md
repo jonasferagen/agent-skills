@@ -2,7 +2,7 @@
 name: docker-compose-cli
 description: "Write or review a `docker compose` invocation and the file it reads: project selection, inherited environment, profiles, borrowed service definitions and project-scoped teardown. Use when a compose command acts on the wrong stack, leaks resources or ignores a value; single containers belong to docker-cli and host-wide reclaim to docker-cleanup."
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Docker Compose CLI

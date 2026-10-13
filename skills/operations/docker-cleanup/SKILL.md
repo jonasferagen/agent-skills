@@ -2,7 +2,7 @@
 name: docker-cleanup
 description: "Audit and reclaim a Docker host's accumulated images, volumes, networks and build cache, including state left by retired, renamed or unrelated projects. Use when a build, pull or container fails for disk space, when the daemon's usage is unexplained, or after retiring a project; removing what one command or project created belongs to docker-cli and docker-compose-cli."
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
 ---
 
 # Docker cleanup

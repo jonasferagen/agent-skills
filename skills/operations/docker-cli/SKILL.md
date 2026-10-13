@@ -2,7 +2,7 @@
 name: docker-cli
 description: "Write or review a `docker run`, `inspect`, `rm` or image invocation: argument boundaries, published ports, secrets, mounts, labels, identity and cleanup of resources a command creates. Use when a container command is being assembled or has behaved unexpectedly; multi-container projects belong to docker-compose-cli and host-wide reclaim to docker-cleanup."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Docker CLI

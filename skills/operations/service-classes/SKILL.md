@@ -2,7 +2,7 @@
 name: service-classes
 description: "Decide whether a capability is a service and whether it is running or scheduled, and what each class owes as evidence: live readiness for one, the last run's durable outcome for the other. Use when promoting a command or job into a service, deciding what a scheduled service's status must report, or reading a project-wide status that looks like a failure; document homes, control commands, transports and runtime mechanics belong to other owners."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Service classes

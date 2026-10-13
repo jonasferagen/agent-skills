@@ -2,7 +2,7 @@
 name: database-migrations
 description: "Design or review database migration history, runners, baselines, reproducible development setup and seed routines. Use when establishing a development database, changing how schema changes are applied or testing migration behavior; container packaging and ordinary query design are separate tasks."
 metadata:
-  version: "0.3.0"
+  version: "0.3.1"
 ---
 
 # Database migrations
