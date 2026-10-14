@@ -346,22 +346,27 @@ selecting evidence. Report a relevant conflict or gap rather than silently
 exempting the repository.
 
 During authoring, AGENTS.md requires writing and visual guidance where relevant.
-Before tagging a release, also apply these skills to the content changed since the skill's
-last tag, or to the whole package for a first release:
+A skill that bundles scripts, templates or an extension declaration needs the
+whole-package [release review](#release-review) before tagging, which already
+applies both skills below. Before tagging any other release, also apply them to
+the content changed since the skill's last tag, or to the whole package for a
+first release:
 
 - [Clear writing](skills/authoring/clear-writing/SKILL.md), to the prose.
 - [Diagrams and tables](skills/authoring/diagrams-and-tables/SKILL.md), to existing
   diagrams and tables and to passages a diagram or table would explain better.
 
-This pass is a recommendation, not a release requirement. Clear Writing does not
-yet cover every kind of prose a skill package contains, such as trigger
-descriptions, defined terms, worked examples, pattern catalogs and templates.
+This changed-content pass is a recommendation, not a release requirement.
+Clear Writing does not yet cover every kind of prose a skill package contains,
+such as trigger descriptions, defined terms, worked examples, pattern catalogs
+and templates.
 
-When a pass rewrites wording, have a reviewer without the author's rationale
-compare each changed passage with the prior text: the first Clear Writing sweep
-found four meaning changes that way, now kept as regression cases in that skill's
-scenarios. Note which skills were applied in the change's record; "no change
-needed" is a valid result.
+When this pass rewrites wording, have a reviewer without the author's rationale
+compare each changed passage with the prior text, as release review requires for
+the packages it covers: the first Clear Writing sweep found four meaning changes
+that way, now kept as regression cases in that skill's scenarios. Note which
+skills were applied in the change's record; "no change needed" is a valid
+result.
 
 ## Adding a skill
 
@@ -465,17 +470,3 @@ the convention-shaped outcomes to its own framework.
 - The Docker packages duplicate four shared rules under reciprocal copy records
   rather than linking, because each must work alone; the borrowed-definition
   rule is triggered in docker-compose-cli and fixed with a docker-cli bind.
-
-- **Release-review wording overlap — filed 2026-10-15.** Owner: repository
-  maintainer. A delegated read-only review at `8233a6b` found that
-  [release review](#release-review) requires whole-package review for packages
-  with scripts, templates or extensions, while the later authoring guidance
-  separately describes a recommended review since the previous tag and repeats
-  independent wording comparison (reviewed lines 285–294 and 348–360).
-  The scopes may be compatible; this is a confusing duplicated route, not a
-  proven contradiction. Consolidate mandatory scope at release review and link
-  it from authoring, preserving optional advice outside that scope. Before
-  changing wording, trace a covered package release and a prose-only package
-  change; confirm required review remains discoverable and optional advice
-  stays optional. No release or reader trial ran. Next action: maintainer
-  revalidates the two passages and their scopes before the focused edit.
