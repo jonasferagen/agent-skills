@@ -2,7 +2,7 @@
 name: project-design
 description: "Shape system responsibilities, conceptual models, workflows and integration choices before or during implementation. Use for design across people, agents, tools or services; literal edits and provider setup have their own workflows."
 metadata:
-  version: "0.1.2"
+  version: "0.1.3"
 ---
 
 # Project design
@@ -97,9 +97,8 @@ when a proposal is adopted or implemented. An ordinary change within known
 constraints needs no fresh policy reconstruction. Reconcile affected definitions
 through their authoritative owners; source-of-truth is useful when available.
 
-Keep proposals and unimplemented work outside current-state documentation, using
-the project's design and planning homes. Link the active queue rather than adding
-another status owner. Use the project's writing guidance for authored output.
+Put proposals and unimplemented work in the project's design and planning homes.
+Link the active queue rather than adding another status owner. Use the project's writing guidance for authored output.
 Report the cases traced, decisions made, consequential unknowns and implementation
 evidence still needed. A walkthrough establishes only consistency of its cases;
 the design grants no new execution authority.
