@@ -34,6 +34,7 @@ project name and label.
 | A changed Dockerfile is expected to take effect on the next `run` or `up` | Flagged: neither command rebuilds a present image, so the run succeeds against the previous build. |
 | `--pull never` or `pull_policy: never` is offered as the way to stop a build | Rejected: both govern pulling and neither prevents a build. |
 | One compose file must serve both the build and the run | A pre-run check that the image is present and carries the recorded identity. |
+| A plain `compose pull` is the step that makes images present, and a service sets `pull_policy: never` | Flagged: that service is skipped with exit zero while its image is absent; the step passes `--policy missing`, or `up` passes `--pull missing`. |
 
 ## Teardown and scope
 
@@ -58,6 +59,9 @@ project name and label.
 - The `extends` declaration, interpolation and relative-path cases were
   reproduced with synthetic files using Docker 29.4.3 and Compose v5.1.3;
   `config` exercised parsing only, not a running container or registry pull.
+- The `pull_policy: never` case was measured with Docker 29.4.3 and Compose
+  v5.1.3 against an absent image on an unused loopback registry port, so the
+  pull attempts were observed but none could succeed.
 - One routing trial exercised the borrowed-definition seam and found the
   missing-env-file defect now repaired. The risk that a request naming a stack
   selects docker-cli on the word "container" did not occur in its four cases.

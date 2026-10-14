@@ -2,7 +2,7 @@
 name: docker-compose-cli
 description: "Write or review a `docker compose` invocation and the file it reads: project selection, inherited environment, profiles, borrowed service definitions and project-scoped teardown. Use when a compose command acts on the wrong stack, leaks resources or ignores a value; single containers belong to docker-cli and host-wide reclaim to docker-cleanup."
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Docker Compose CLI
@@ -89,6 +89,13 @@ Where one file has to serve both, check before starting the run that the image
 is present and carries the identity the project recorded, and fail naming the
 image when it does not. `--pull never` and `pull_policy: never` do not cover
 this: both govern pulling, and neither prevents a build.
+
+`pull_policy: never` also holds against a plain `docker compose pull`: the
+service is reported as skipped and the command exits zero even when the image
+is absent, so a pull step cannot be taken as evidence that every image is
+present. Pass `--policy missing` to `compose pull`, or `--pull missing` to
+`compose up`, when the step must fetch an absent image; either overrides the
+file's `never`. Without one, a later `up` or `run` fails with `No such image`.
 
 ## Give the work one identity
 
