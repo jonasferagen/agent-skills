@@ -465,3 +465,17 @@ the convention-shaped outcomes to its own framework.
 - The Docker packages duplicate four shared rules under reciprocal copy records
   rather than linking, because each must work alone; the borrowed-definition
   rule is triggered in docker-compose-cli and fixed with a docker-cli bind.
+
+- **Release-review wording overlap — filed 2026-10-15.** Owner: repository
+  maintainer. A delegated read-only review at `8233a6b` found that
+  [release review](#release-review) requires whole-package review for packages
+  with scripts, templates or extensions, while the later authoring guidance
+  separately describes a recommended review since the previous tag and repeats
+  independent wording comparison (reviewed lines 285–294 and 348–360).
+  The scopes may be compatible; this is a confusing duplicated route, not a
+  proven contradiction. Consolidate mandatory scope at release review and link
+  it from authoring, preserving optional advice outside that scope. Before
+  changing wording, trace a covered package release and a prose-only package
+  change; confirm required review remains discoverable and optional advice
+  stays optional. No release or reader trial ran. Next action: maintainer
+  revalidates the two passages and their scopes before the focused edit.
