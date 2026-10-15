@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[2]
 SKILLS = ROOT / 'skills'
 # Word-bounded so that "forgetting" in prose does not match; a hyphenated
 # compound such as a service or repository name does.
-CONSUMER_NAMES = re.compile(r'project-foundation|\bforge\b|\bforge-', re.IGNORECASE)
+CONSUMER_NAMES = re.compile(r'project-foundation|\bforge\b|\bforge-|\btessera\b', re.IGNORECASE)
 # Skills that left this catalog. A shipped package names only skills a consumer
 # can still install from here; the README records where each one went.
 RETIRED_SKILL_NAMES = re.compile(
