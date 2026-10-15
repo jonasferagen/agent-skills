@@ -90,11 +90,13 @@ The Python patterns and design skills pair naturally; each works alone.
 
 Copy the complete skill directory from a selected source commit into the target
 repository's `.agents/skills/<name>/` through its normal review process. Record
-source URL, source directory, full commit SHA, and any selected release version
-and tag in the target's `.agents/skills/UPSTREAM.md`. The SHA is the authoritative
-pin. Imported files should match that commit; keep project-specific rules outside
-the imported directory and document any necessary local modifications in the
-provenance file.
+its provenance once, in the target's machine-readable dependency lock: the
+source URL, full commit SHA, source directory, any selected release version and
+each installed file's digest. A target that keeps no lock records the same
+facts in the one provenance file it keeps, and never in both. The SHA is the
+authoritative pin. Imported files should match that commit; keep
+project-specific rules outside the imported directory, and record any necessary
+local modification beside the pin.
 
 Names, invocation examples and release tags are unchanged by source grouping.
 Existing imports retain their pinned source paths; use the new path when importing
