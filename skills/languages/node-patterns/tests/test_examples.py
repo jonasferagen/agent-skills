@@ -52,26 +52,26 @@ assert.deepEqual((await execute(node, ['-e', 'process.exitCode = 7'])).outcome,
 assert.deepEqual((await execute('./synthetic-missing-executable', [])).outcome,
   { kind: 'not_completed', reason: 'ENOENT' });
 const eof = await execute(node, ['-e',
-  "process.stdin.resume(); process.stdin.on('end', () => console.log('eof'));" ]);
+  "const fs = require('fs'); while (fs.readSync(0, Buffer.alloc(64)) > 0); fs.writeSync(1, 'eof');" ]);
 assert.equal(eof.stdout.trim(), 'eof');
 assert.deepEqual(eof.outcome, { kind: 'exited', status: 0 });
 assert.deepEqual((await execute(node, ['-e', 'setInterval(() => {}, 1000)'],
   { timeout: 100 })).outcome, { kind: 'stopped', signal: 'SIGTERM' });
-assert.deepEqual((await execute(node, ['-e', "console.log('x'.repeat(1000))"],
+assert.deepEqual((await execute(node, ['-e', "require('fs').writeSync(1, 'x'.repeat(1000))"],
   { maxBuffer: 10 })).outcome, { kind: 'not_completed', reason: 'ERR_CHILD_PROCESS_STDIO_MAXBUFFER' });
 const controller = new AbortController();
 assert.deepEqual((await execute(node, ['-e',
-  "console.log('ready'); setInterval(() => {}, 1000)"],
+  "require('fs').writeSync(1, 'ready'); setInterval(() => {}, 1000)"],
   { signal: controller.signal }, child => child.stdout.once('data', () => controller.abort()))).outcome,
   { kind: 'not_completed', reason: 'ABORT_ERR' });
 let cancellation;
 const graceful = await execute(node, ['-e',
-  "process.on('SIGTERM', () => process.exit(0)); console.log('ready'); setInterval(() => {}, 1000)"],
+  "process.on('SIGTERM', () => process.exit(0)); require('fs').writeSync(1, 'ready'); setInterval(() => {}, 1000)"],
   {}, child => child.stdout.once('data', () => { cancellation = 'cancelled'; child.kill(); }));
 assert.deepEqual(graceful.outcome, { kind: 'exited', status: 0 });
 assert.equal(cancellation, 'cancelled'); // The child outcome cannot undo the wrapper's decision.
 const signaled = await execute(node, ['-e',
-  "console.log('ready'); setInterval(() => {}, 1000)"], {},
+  "require('fs').writeSync(1, 'ready'); setInterval(() => {}, 1000)"], {},
   child => child.stdout.once('data', () => process.kill(child.pid, 'SIGKILL')));
 assert.deepEqual(signaled.outcome, { kind: 'signaled', signal: 'SIGKILL' });
 ''', encoding='utf-8')
