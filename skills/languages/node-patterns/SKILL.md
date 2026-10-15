@@ -2,7 +2,7 @@
 name: node-patterns
 description: "Write or review Node child-process wrappers and command-line checks. Use for exit status, timeouts, inherited environment, pipe output or failures reported as success."
 metadata:
-  version: "0.1.5"
+  version: "0.1.6"
 ---
 
 # Node patterns

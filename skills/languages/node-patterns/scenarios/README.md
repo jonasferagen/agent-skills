@@ -51,5 +51,5 @@ later and `node` on `PATH`, and fails explicitly when `node` is absent.
 - An `EPIPE` on a child's stdin did not end the process in a probe, so the skill
   gives no example of it.
 - The probe's children read and write fds 0 and 1 directly: a sandbox that
-  denies `getsockname` (Codex without network access) makes Node give a child
-  placeholder stdin and stdout.
+  denies `getsockname`, as one without network access can, makes Node give a
+  child placeholder stdin and stdout.
