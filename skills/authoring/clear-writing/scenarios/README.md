@@ -26,6 +26,8 @@ run's observed results with the change that ran it, not here.
 | Edit explanatory text in an established personal voice | Improve comprehension while retaining the requested tone and distinctive voice. |
 | The user requests a creative form or deliberately elaborate prose | Follow the requested form; do not impose terse technical prose as a universal style. |
 | Consolidate a guide that repeats its canonical command page and has an empty future-work section | Keep a useful command-page link and remove the empty scaffold, preserving required evidence and limits; create no replacement index. |
+| Organize a skill entrypoint with a common workflow, provider-specific requirements and maintenance history | Keep common decisions at entry, link provider details with their applicability conditions, and preserve every applicable obligation without making ordinary readers follow maintenance history. |
+| Edit a short guide whose conditional instructions already fit beside their rules | Keep it self-contained when splitting it would only add navigation; progressive disclosure does not require extra files. |
 | Fix one unclear sentence in a documentation set | Make the focused edit without reorganizing the documentation or adding unrelated diagrams. |
 | Replace a metaphor whose word choice carries a distinction, such as "cheapest" meaning least information lost | Keep the distinction in plain wording, or keep the metaphor; do not substitute a near-synonym that changes the reason. |
 | Clarify a sentence where "when available" could limit one action or all of them | Keep the scope visible or ask; do not move the condition so that it governs more actions than before. |

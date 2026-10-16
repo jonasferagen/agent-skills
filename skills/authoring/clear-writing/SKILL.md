@@ -2,7 +2,7 @@
 name: clear-writing
 description: "Draft or edit explanatory and instructional prose for clarity, including technical explanations, documentation, skills, project instructions and concise labels. Preserve the requested voice, factual meaning and level of certainty."
 metadata:
-  version: "0.7.2"
+  version: "0.8.0"
 ---
 
 # Clear writing
@@ -48,6 +48,19 @@ the reader's decision or understanding of the current contract. Their ability to
 change is not a reason to hide them. Preserve dated observations in records meant
 to retain evidence; they describe the conditions assessed, not a promise of
 current status.
+
+## Disclose detail progressively
+
+Give readers what they need, when they need it. In catalogs, skill entrypoints
+and linked references, keep common decisions at the entrypoint. Put conditional
+detail behind links that explain when to follow them. Use
+[progressive disclosure](https://www.nngroup.com/articles/progressive-disclosure/)
+to keep each reading route focused on the reader's task.
+
+Prefer the shortest route that preserves every applicable obligation. Readers
+must be able to find those obligations without reading unrelated guidance or
+maintenance history. Keep a short, self-contained explanation together when
+splitting it would add navigation without helping the reader.
 
 ## Keep current guidance about the present
 
