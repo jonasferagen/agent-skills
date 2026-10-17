@@ -34,6 +34,13 @@ an override does not bypass it. Relative bind paths interpolated in an extended
 file resolve from that file's directory. Check the rendered source paths with
 the actual selected files, environment and working directory.
 
+Because `extends` interpolates the whole file it reads, keep each fragment a
+caller may extend, such as an optional variant overlay, in a file of its own.
+Fragments that share a file make every caller set every fragment's required
+values, including ones it never selects. Pass absolute paths into an extended
+file, since a relative one resolves against that file's directory rather than
+the caller's.
+
 A `compose run` against an existing stack inherits that service definition's
 mounts. It then writes into locations the service owns rather than the run: the
 tool's home, its caches, its preferences, its per-project state. Cleanup by the
