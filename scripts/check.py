@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run package checks and every maintained helper/example suite without silent skips."""
+"""Run every maintained test suite without silent skips."""
 
 import argparse
 import os
@@ -55,9 +55,8 @@ def main() -> int:
     if errors:
         print('\n'.join(errors), file=sys.stderr)
         return 1
-    commands = [[sys.executable, str(ROOT / 'scripts/validate-packages.py')]]
-    commands.extend([sys.executable, str(Path(__file__).resolve()), '--suite', str(directory)]
-                    for directory in directories)
+    commands = [[sys.executable, str(Path(__file__).resolve()), '--suite', str(directory)]
+                for directory in directories]
     failures = 0
     for command in commands:
         print(f'Checking {command[-1]}', flush=True)

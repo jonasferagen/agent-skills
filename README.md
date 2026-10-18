@@ -130,18 +130,15 @@ the distribution's own adoption and routes separately.
 ## Verification
 
 For source maintenance, install Node 24 and Python 3.11 or later, then run
-`python3 scripts/check.py`. It validates the packages and runs every `test_*.py`
+`python3 scripts/check.py`. It runs every `test_*.py`
 suite under `scripts/` and `skills/`, including each package's own `tests/`.
 Empty, failed, skipped and incomplete suites fail it, and missing prerequisites
 fail explicitly. CI runs the same command. These local checks do not establish
 live service or database acceptance.
 
-`python3 scripts/validate-packages.py` alone checks frontmatter, local link
-targets and anchors, package containment, unique names and that each recorded
-copy names an existing counterpart that records it back. Source tests apply the
-same link check to this README and AGENTS.md, and check that shipped packages
-name no consumer or retired skill and that no entrypoint or reference routes
-ordinary use into a package's scenarios.
+Document checks (frontmatter, links and anchors, containment, unique names,
+copy records, consumer names and scenario routing) are removed until the v4
+freeze; the rules still apply but are reviewed by hand.
 
 ### Where a package keeps its checks
 
@@ -276,7 +273,7 @@ behavior, defaults, exceptions and bundled resource interfaces.
 - **Major:** change defaults, mandatory rules, scope or exceptions in a way that
   requires consumers to review their adoption.
 
-Before tagging, validate the package and its scenarios, repeat the applicable
+Before tagging, review the package and its scenarios by hand, repeat the applicable
 routing trials, and complete the release review below for a skill that bundles
 scripts, templates or an extension declaration. A release must contain no
 unfinished scaffold or project-specific credentials or identifiers. Consumers
@@ -296,7 +293,7 @@ Ordinary edits need only the checks in [AGENTS.md](AGENTS.md#verification). A
 finding that recurs is a candidate for a mechanical check.
 
 Run the mechanical checks first; they decide structure only:
-`python3 scripts/validate-packages.py`, `python3 scripts/check.py` (a package
+`python3 scripts/check.py` (a package
 without tests reports that coverage as absent rather than treating a zero-test
 run as evidence), and
 `git diff --check $(git hash-object -t tree /dev/null) HEAD -- skills/<area>/<name>`

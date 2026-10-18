@@ -46,6 +46,7 @@ README.
 
 Shipped content names no consumer: no project, distribution or framework that
 installs these skills. Say "the consuming project" or "the project's framework".
+No test checks this any more.
 
 ## Verification
 
@@ -54,7 +55,8 @@ installs these skills. Say "the consuming project" or "the project's framework".
   trials of its [routing trial method](README.md#routing-trial-method). Repeat
   applicable trials before a release; prose-only edits need no automatic
   discovery trial.
-- Run `python3 scripts/check.py` and `git diff --check`; the README's
+- Run `python3 scripts/check.py` (test suites only; document checks are removed
+  until the v4 freeze) and `git diff --check`; the README's
   [verification](README.md#verification) section owns prerequisites and says
   [where a package keeps its checks](README.md#where-a-package-keeps-its-checks).
 - Before tagging a release of a skill that bundles scripts, templates or an
@@ -68,7 +70,8 @@ installs these skills. Say "the consuming project" or "the project's framework".
   beside the behavior it qualifies. For a narrow edit, read only the applicable
   cases.
 - Keep scenarios free of observed outputs, timestamps and run reports, and keep
-  entrypoints and references from routing ordinary use into them.
+  entrypoints and references from routing ordinary use into them. No test
+  checks this any more.
 - Run bundled tests when the behavior they check changes. Render changed
   diagrams and inspect them at their intended reading width.
 - On a rename, update the directory, manifest, UI metadata, scenarios,
