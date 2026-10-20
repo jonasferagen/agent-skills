@@ -2,7 +2,7 @@
 name: test-writing
 description: "Write or change unit tests, integration tests and the fixtures they use. Use when adding or editing a test, test helper, fixture or test input, especially with real records at hand; evidence selection and settled-suite audits are separate tasks."
 metadata:
-  version: "0.1.3"
+  version: "1.0.0"
 ---
 
 # Test writing
@@ -78,6 +78,11 @@ Most work needs two of these: the kind of test, and fixtures.
 
 - **One behavior per test, named for that behavior.** A failure then says what
   broke before anyone reads the body.
+- **Give every permanent test a maintained input basis.** Make its inline
+  fixture, fixture builder, checked-in example or declared contract identifiable
+  in the test. Input construction and meaning must remain reproducible as the
+  supported behavior evolves; a separate fixture file is not required. See
+  [maintained inputs](references/fixtures.md#maintained-inputs).
 - **Assert what an outsider can observe:** a returned value, stored state, a
   file, a response, a message sent. Private fields, incidental calls and
   internal order can change while the behavior stays correct.

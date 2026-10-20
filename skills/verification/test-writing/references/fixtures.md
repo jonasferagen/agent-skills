@@ -3,6 +3,20 @@
 A fixture is any input a test supplies: a value, a record, a message, a file,
 a directory tree, rows in a database, and the helpers that build them.
 
+## Maintained inputs
+
+Stable fixtures have an explicit meaning and a reproducible source. They may
+evolve with supported behavior. Inline values and deterministic builders can
+supply that basis as well as stored files. When the input comes from a declared
+contract, identify that contract and how the test constructs its case from it.
+Keep each test's connection to its input visible through its setup or helper;
+an additional fixture registry is unnecessary.
+
+For an authored example used as test input, identify the current source and the
+behavior it exercises. Read-only sharing is appropriate; each test owns any
+mutable copy it needs. Preserve the synthetic-data and stored-reference rules
+below when selecting that source.
+
 ## Make up every value
 
 Do not copy a value from real data into a test. Real data means production

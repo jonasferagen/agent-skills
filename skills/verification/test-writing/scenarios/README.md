@@ -33,6 +33,21 @@ run's observed results with the change that ran it, not here.
 | The repository's testing guide prescribes another convention | The repository's guidance is followed, the contradiction is reported with both passages, and neither side is edited. |
 | A test needs elaborate machinery to reach a decision | Reported as a finding about the production code, and not restructured beyond the task without asking. |
 
+## Maintained input basis
+
+A permanent parser regression uses a small inline value and a local builder for
+variants. Keep those inputs where their meaning and construction are visible;
+do not require a stored fixture file merely to make them stable.
+
+A contract test uses a checked-in authored example that changes with supported
+behavior. Identify the source and the behavior it exercises, keep shared input
+read-only, and give each mutating case its own copy. Stability does not require
+freezing the example's bytes.
+
+A new permanent test reads whichever generated export was left in a developer's
+output directory. Replace that dependency with a maintained input whose
+construction and meaning are reproducible.
+
 ## Not this skill
 
 | Request and context | Expected behavior |
