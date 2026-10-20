@@ -5,16 +5,31 @@ variables, and `UPPER_CASE` for constants. A leading underscore marks an
 implementation detail by convention. Match the project's established public
 names rather than renaming an external contract for style.
 
-A module such as `invoice_total.py` can own `InvoiceTotal` and small related
-contracts. Keep one coherent responsibility per module; Python does not need a
-one-class-per-file rule. Split when responsibilities diverge, not merely because
-a second related dataclass appears. Directory names should identify a domain or
-real pipeline phase; avoid growing a miscellaneous `utils` or `helpers` bucket.
+A module can own related functions, classes and records. Group them by a
+responsibility callers can name and a rule that changes for one reason. Keep
+closely related behaviour together; split when responsibilities, dependencies or
+lifetimes diverge, not merely because a file is long or contains a second class.
+Directory names should identify a domain or real pipeline phase; avoid growing
+a miscellaneous `utils` or `helpers` bucket.
+
+Trace the dependency direction: core rules should not need a CLI, database
+driver or display formatter just to run. Keep transport adapters near their
+external boundary and orchestration where inputs, policies and effects meet.
+A small program may keep these in one module with clear functions; do not
+create layers that only forward calls. Share a helper when callers share its
+semantics, not merely similar lines of code.
 
 Name a class for its domain or obligation: a parser validates a representation,
 a resolver chooses among sources, and a repository owns persistence operations.
 Avoid a generic manager unless it genuinely owns a lifecycle. Name booleans as
-predicates, while retaining meaningful domain terms.
+predicates, while retaining meaningful domain terms. Prefer names that expose
+validation state, units or effects where callers might otherwise guess.
+Short mathematical names remain appropriate inside a small calculation.
+
+When a module starts dispatching multiple versions, separate selection from
+version-specific rules if the combined responsibility obscures either.
+Preserve public names and compatibility adapters until callers can migrate;
+renaming alone does not improve ownership.
 
 ## Keep import boundaries honest
 

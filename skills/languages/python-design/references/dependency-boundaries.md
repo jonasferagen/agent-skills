@@ -1,5 +1,20 @@
 # Dependency boundaries
 
+## Share a contract rather than an implementation accident
+
+When several modules use an underscored helper, inspect whether it represents
+a shared capability or whether callers are reaching past the intended boundary.
+Give a genuinely shared operation a named internal API and a result contract,
+or move behaviour back to its owner. Removing the underscore alone is not a
+design: decide what inputs, failures and stability callers may rely on.
+An internal API need not become an externally supported package API.
+
+Return domain results independently of their display text when callers need
+to branch, aggregate or test them. For diagnostics used across stages, stable
+codes, source locations and structured details can carry meaning while the CLI
+or other adapter renders messages. Avoid parsing prose to recover a decision.
+A local exception with a useful message is enough when no caller needs more.
+
 ## Describe the consumer's actual capability
 
 Use a consumer-owned `Protocol` for a stable role that several implementations

@@ -39,7 +39,8 @@ class PageWindow:
 Use a property for a cheap derived value without an operational side effect.
 A network request or expensive operation deserves a method whose name exposes
 that work. A helper that reads only one value and expresses behavior general to
-it belongs on that value. Keep consumer-specific policy with its consumer.
+it can live on that value when doing so clarifies ownership. Keep consumer-specific
+policy with its consumer.
 
 ## Resolve defaults where the sources meet
 

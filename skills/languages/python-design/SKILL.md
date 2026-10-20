@@ -1,16 +1,15 @@
 ---
 name: python-design
-description: "Apply the class-based Python house style when shaping operations, domain values, dependency protocols, naming and module boundaries. Use for code organization and ownership decisions."
+description: "Design or review the structure of Python programs: module responsibilities, phase contracts, state ownership, shared interfaces and naming. Use for architectural decisions and scoped refactoring; language correctness belongs to python-patterns."
 metadata:
-  version: "0.2.1"
+  version: "1.0.0"
 ---
 
 # Python design
 
-Apply the class-based house style using Python's own naming and call syntax.
-Public domain operations belong on static or stateful classes, with the narrow
-exceptions in [class shape](references/class-shape.md). This is an adopted
-house preference, not a claim that Python requires classes for operations.
+Make responsibilities and contracts visible as a Python program grows. Choose
+functions, modules, values and classes by the responsibility they express;
+neither classes nor a particular architectural pattern are required.
 
 <!-- Package-boundary copy: python-patterns/SKILL.md carries the same repository authority rule. Keep both aligned. -->
 The repository owns product contracts, framework choices, tooling and test
@@ -19,35 +18,38 @@ rather than silently changing either owner. Follow the user's explicit decision.
 
 ## Workflow
 
-1. Name the operation, invariant or lifecycle that needs an owner.
-2. Read the narrowest matching reference below. Trace callers and downstream
-   uses before narrowing a dependency or moving behavior.
-3. Apply the smallest shape that makes that ownership clear. Preserve public
-   contracts and framework-required callables; keep a small edit scoped.
-4. Update affected callers and repository examples, then run the relevant
-   checks. Explain the deciding trigger and any remaining design tradeoff.
+1. Establish the requested scope: review, conversion plan or implementation.
+   Read the product contracts and trace one representative call through its
+   data transformations, dependencies and effects before proposing boundaries.
+2. Name the concrete responsibility, invariant or lifecycle that is unclear.
+   Read the narrowest matching reference below and inspect callers as well as
+   callees. Distinguish a demonstrated defect from a design preference.
+3. Choose the smallest change that clarifies the contract. Preserve public
+   behaviour unless the task authorizes a change; keep small fixes scoped.
+   A review or plan does not authorize implementing its recommendations.
+4. For implementation, update affected callers and run relevant checks. For a
+   plan, identify migration steps, compatibility obligations and evidence needed
+   to switch. Explain tradeoffs and what remains untested.
 
 ## Start by symptom
 
 | Symptom or decision | Read |
 | --- | --- |
-| An operation, service or factory needs a home | [Class shape](references/class-shape.md) |
-| Tests need to vary a policy value such as a margin or limit | [Class shape](references/class-shape.md) |
+| Names, module responsibilities or version dispatch are unclear | [Names and modules](references/names-and-modules.md) |
+| Stages share partially populated state or a new implementation must preserve behaviour | [Phase contracts](references/phase-contracts.md) |
+| An operation needs a home, state lifetime or configurable policy | [Operations and state](references/operations-and-state.md) |
 | A data record gains invariants, or arguments travel together | [Values and call sites](references/values-and-call-sites.md) |
-| A consumer depends on a large client or hidden global | [Dependency boundaries](references/dependency-boundaries.md) |
-| Names, module placement or package exports are unclear | [Names and modules](references/names-and-modules.md) |
+| Modules share private helpers, diagnostic strings or large clients | [Dependency boundaries](references/dependency-boundaries.md) |
 
-## Shape escalation
+## Scope
 
-| Current shape | Change when |
-| --- | --- |
-| Positional arguments | Use keyword-only arguments when names remove ambiguity or clarify optional policy. |
-| Several keyword arguments | Introduce an input record when they travel together with shared meaning. |
-| Passive record | Add value behavior when invariants or repeated derivations need one owner. |
-| Stateless operation | Use an instance when dependencies or state have a real lifetime. |
+Start with existing strengths, then tie each proposed boundary to a concrete
+caller need, invariant, independent change or lifecycle. More files, interfaces
+or immutable records are not evidence of better design. Avoid turning a known
+sequence of calls into a framework or unifying different semantics merely
+because their records look similar.
 
-Stop at a passive contract for wire records and one-shot inputs. Classes should
-make responsibility visible; inheritance, factories and registries need their
-own use case. Language correctness and tool configuration remain separate
-concerns; python-patterns is a suitable companion for language correctness when
-available. Neither a test framework nor a package manager is prescribed here.
+Python-patterns is a suitable companion for runtime validation, numerical
+correctness, mutation mechanics and failure handling. This skill addresses who
+owns those contracts and how callers use them. Repository contracts still own
+domain semantics, tool choices and acceptance criteria.
