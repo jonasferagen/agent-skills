@@ -9,6 +9,12 @@ run's observed results with the change that ran it, not here.
 | Request and context | Expected behavior |
 | --- | --- |
 | JSON is cast to a TypedDict | Validate the runtime boundary; annotations and casts supply no validation. |
+| Validated records retain Any throughout downstream processing | Carry precise validated types; allow TypedDict at a mapping boundary and separate variants when payloads differ, without demanding dataclasses for every dictionary. |
+| Distinct numeric values become the same formatted dictionary key | Separate display labels from identity; preserve every record or report duplicate keys instead of silent replacement. |
+| A single epsilon is used for lengths, squared distances and volume | Identify units and error sources and choose policies for each decision; do not transplant one threshold across dimensions. |
+| A fixed absolute-error contract uses isclose at large coordinates | Set relative tolerance to zero and choose the contract's absolute tolerance; exercise zero, the threshold and representative large values. |
+| Approximate equality is used to deduplicate numeric keys | Explain non-transitivity and require an explicit grouping rule; do not silently substitute approximate key equality. |
+| Finite inputs overflow or distinct values collapse in float32 output | Check consequential derived values and decoded output invariants; exercise the actual encoding rather than only the in-memory model. |
 | An integer field receives `True` | Reject it when the domain excludes booleans, despite bool being an int subclass. |
 | A timeout of zero becomes the default | Test absence explicitly and preserve meaningful zero. |
 | Two dataclass instances share a list | Use a per-instance factory and make ownership explicit. |

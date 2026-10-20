@@ -8,6 +8,13 @@ runtime. Use `object` for an unconstrained value that must be narrowed; reserve
 pass the validated representation onward. Keep unavoidable casts local and
 explain the proof the checker cannot express.
 
+Keep the validated representation precise where downstream code relies on it:
+a `TypedDict` can describe a validated mapping, and a dataclass can name an
+internal record. Neither choice requires converting every wire dictionary.
+If variants carry different fields, model those variants instead of filling one
+record with unrelated optional fields and relying on callers to know the phase.
+Choose the representation for the invariants callers actually need.
+
 For an integer count, decide whether booleans belong to the domain: `bool` is an
 `int` subclass. This boundary deliberately rejects them:
 

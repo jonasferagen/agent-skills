@@ -1,8 +1,8 @@
 ---
 name: python-patterns
-description: "Write or review Python types, data boundaries, defaults, exceptions, resource cleanup and async tasks. Use for language correctness and failure handling; class organization belongs to adopted design guidance."
+description: "Write or review Python types, data boundaries, numerical comparisons, defaults, exceptions, resource cleanup and async tasks. Use for language correctness and failure handling; class organization belongs to adopted design guidance."
 metadata:
-  version: "0.3.1"
+  version: "0.4.0"
 ---
 
 # Python patterns
@@ -32,6 +32,7 @@ rather than silently changing either owner. Follow the user's explicit decision.
 | Symptom or decision | Read |
 | --- | --- |
 | A cast, annotation or protocol seems to promise validation | [Types and boundaries](references/types-and-boundaries.md) |
+| Float comparisons, rounded keys or precision conversions lose distinctions | [Numbers and identity](references/numbers-and-identity.md) |
 | Defaults leak between calls, or an empty value triggers a fallback | [Values and collections](references/values-and-collections.md) |
 | A dataclass, iterator or collection has unclear mutation or ownership | [Values and collections](references/values-and-collections.md) |
 | A small value type could be a NamedTuple or a frozen dataclass | [Values and collections](references/values-and-collections.md) |

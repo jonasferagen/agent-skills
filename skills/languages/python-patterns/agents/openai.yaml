@@ -1,4 +1,4 @@
 interface:
   display_name: "Python patterns"
-  short_description: "Python types, values and failure handling"
-  default_prompt: "Use $python-patterns to check the types, failure paths and resource ownership in this Python code."
+  short_description: "Python types, numerics and failure handling"
+  default_prompt: "Use $python-patterns to review the types, numeric decisions, failure paths and resource ownership in this Python code."
