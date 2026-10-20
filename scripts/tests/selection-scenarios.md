@@ -11,8 +11,8 @@ installed packages' metadata, no expected route. No test checks this table.
 | Which suites must this change run before merging? | verification-design | test-writing, test-audit |
 | Do the existing tests protect this behavior? | test-audit | test-writing, verification-design |
 | Add a regression test for this parser fix | test-writing | test-audit, verification-design |
-| Build sample records for the importer tests | test-writing | source-of-truth |
-| This vocabulary is defined in the schema and again in the reader | source-of-truth | postgres-design, python-design |
+| Build sample records for the importer tests | test-writing | single-source-of-truth |
+| This vocabulary is defined in the schema and again in the reader | single-source-of-truth | postgres-design, python-design |
 | Give these operations and values clear owners in a Python module | python-design | python-patterns |
 | Review cancellation and cleanup in this async worker | python-patterns | python-design |
 | Check that this harness reports why docker failed | node-patterns | bash-patterns, docker-cli |

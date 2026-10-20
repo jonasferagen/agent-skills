@@ -1,4 +1,4 @@
-# Source of truth scenarios
+# Single source of truth scenarios
 
 Requests, context and expected behavior this skill is evaluated against. Use them
 when changing the skill; ordinary use of the skill does not read them. Record a

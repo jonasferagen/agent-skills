@@ -27,7 +27,7 @@ repository supplies the packages and their versions.
 | --- | --- |
 | [project-design](skills/design/project-design/SKILL.md) (draft) | Shape system responsibilities, conceptual models, workflows and integration choices. |
 | [project-contracts](skills/design/project-contracts/SKILL.md) (draft) | Read, apply, design or review obligations at a handoff, including acceptance and failure. |
-| [source-of-truth](skills/design/source-of-truth/SKILL.md) | Give each rule a home and derive or check its other appearances. |
+| [single-source-of-truth](skills/design/single-source-of-truth/SKILL.md) | Give each rule a home and derive or check its other appearances. |
 | [application-design](skills/design/application-design/SKILL.md) (draft) | Shape operations, state ownership and dependency interfaces inside an application, including external operation boundaries. |
 | [service-boundaries](skills/design/service-boundaries/SKILL.md) | Define service ownership and shared behavior across HTTP and MCP adapters. |
 | [relational-modeling](skills/design/relational-modeling/SKILL.md) (draft) | Structure known entities around retrieval questions and revise relationships through synthetic scenarios. |
@@ -121,7 +121,7 @@ wording would erase their different responsibilities.
 A distribution may import an explicitly self-contained reference as a file,
 recording its owning skill, version, source path and full commit. This does not
 install or register the whole skill. The shared-value reference at
-`skills/design/source-of-truth/references/authoritative-values.md` supports that
+`skills/design/single-source-of-truth/references/authoritative-values.md` supports that
 use and requires no sibling resources, as does
 `skills/operations/runtime-operations/references/runtime-helpers.md`. Keep both
 free of local links, so an importer that rejects them can carry the file. Preserve the imported bytes and record
@@ -303,8 +303,8 @@ Then apply each owner's own review steps to the package's files:
 
 | Rule owner | Apply to | Review steps |
 | --- | --- | --- |
-| Source of truth | Rules, vocabularies, paths and counts stated in more than one package file or in the catalog | [Review and verification](skills/design/source-of-truth/SKILL.md#review-and-verification) |
-| Source of truth, check design | Bundled scripts and their tests | [Keep the check durable](skills/design/source-of-truth/references/check-design.md#keep-the-check-durable) |
+| Source of truth | Rules, vocabularies, paths and counts stated in more than one package file or in the catalog | [Review and verification](skills/design/single-source-of-truth/SKILL.md#review-and-verification) |
+| Source of truth, check design | Bundled scripts and their tests | [Keep the check durable](skills/design/single-source-of-truth/references/check-design.md#keep-the-check-durable) |
 | Verification design | Scenarios, examples and claims about what a skill or check proves: each names the boundary observed and the evidence, and distinguishes a walkthrough from an exercised run | [Match each claim to an observable boundary](skills/verification/verification-design/SKILL.md#match-each-claim-to-an-observable-boundary) |
 | Clear writing | All prose, including descriptions, templates and examples | [Check the result](skills/authoring/clear-writing/SKILL.md#check-the-result), plus [instruction guidance](skills/authoring/clear-writing/references/instructions.md) for instructions |
 | Diagrams and tables | Each diagram and table, and passages that would explain better as one | [Semantic review](skills/authoring/diagrams-and-tables/references/review.md) and [visual verification](skills/authoring/diagrams-and-tables/references/verification.md) |
@@ -340,7 +340,7 @@ Skills in this repository should meet the standards they teach. Apply relevant
 guidance to the packages, helpers and documentation we maintain here. Start
 with the named package when one is known; use the catalog to select additional
 guidance from the task's actual trigger. Load only needed references. For example,
-use source-of-truth when reconciling copied rules, verification-design when
+use single-source-of-truth when reconciling copied rules, verification-design when
 selecting evidence. Report a relevant conflict or gap rather than silently
 exempting the repository.
 

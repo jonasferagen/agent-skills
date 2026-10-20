@@ -95,7 +95,7 @@ verification evidence distinctly. Follow the project's policy workflow when the
 design changes responsibility, scope, operating facts or obligations, including
 when a proposal is adopted or implemented. An ordinary change within known
 constraints needs no fresh policy reconstruction. Reconcile affected definitions
-through their authoritative owners; source-of-truth is useful when available.
+through their authoritative owners; single-source-of-truth is useful when available.
 
 Put proposals and unimplemented work in the project's design and planning homes.
 Link the active queue rather than adding another status owner. Use the project's writing guidance for authored output.

@@ -68,7 +68,7 @@ Follow a concrete claim or dependency rather than reading every file.
   retention. Reconcile existing findings with current source before opening
   duplicates. An unmeasured possibility is not automatically pending work.
 
-When available and needed, use `source-of-truth` to resolve competing definitions,
+When available and needed, use `single-source-of-truth` to resolve competing definitions,
 `test-audit` to assess suite effectiveness, `verification-design` to choose
 checks, and `clear-writing` to revise prose. These are specialist routes, not a
 required reading list or installation dependency. Use the project's existing

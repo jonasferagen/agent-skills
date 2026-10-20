@@ -24,7 +24,7 @@ signals worth having and how to weigh them.
 **What it cannot do:** infer coverage asymmetry when the production and test
 trees are separate. Trace those by class or endpoint name instead.
 
-<!-- Package-boundary copy: source-of-truth/references/durable-checks.md covers ledgers; source-of-truth/references/check-design.md covers report-only checks. Keep these passages aligned. -->
+<!-- Package-boundary copy: single-source-of-truth/references/durable-checks.md covers ledgers; single-source-of-truth/references/check-design.md covers report-only checks. Keep these passages aligned. -->
 **A scanner's exemption ledger, and any drift stamp it carries, are judged as a
 check in their own right, not as test coverage.** A ledger lists files that
 predate a settled convention and are exempt from it, and it may only shrink: a

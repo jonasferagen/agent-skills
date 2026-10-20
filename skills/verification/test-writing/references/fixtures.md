@@ -54,7 +54,7 @@ policy decides what counts as private. Where it does not say, treat anything
 that identifies a person, an account, a contract or a payment as private, and
 ask.
 
-<!-- Package-boundary copy: source-of-truth/references/durable-checks.md (Fabricate the fixture) states the rule on building fixtures in a temporary location for a check's own tests. Keep both passages aligned. -->
+<!-- Package-boundary copy: single-source-of-truth/references/durable-checks.md (Fabricate the fixture) states the rule on building fixtures in a temporary location for a check's own tests. Keep both passages aligned. -->
 ## Keep fixtures small and inside the test
 
 - Supply only the fields the behavior needs. Put defaults in a builder and the
@@ -84,7 +84,7 @@ a binary format, a large document, a recorded exchange.
   storing it. Preserve public contract values that the test needs, and note
   its date and source. It pins what was observed, once.
 
-<!-- Package-boundary copy: source-of-truth/references/durable-checks.md (the invariant computed live, and its note that a literal expectation is not a golden) states this rule for consistency checks. Keep both passages aligned. -->
+<!-- Package-boundary copy: single-source-of-truth/references/durable-checks.md (the invariant computed live, and its note that a literal expectation is not a golden) states this rule for consistency checks. Keep both passages aligned. -->
 ## Prefer derived references to stored goldens
 
 When a test needs the output of an earlier step as its input, or compares a
