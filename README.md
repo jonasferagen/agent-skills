@@ -127,7 +127,7 @@ use and requires no sibling resources, as does
 free of local links, so an importer that rejects them can carry the file. Preserve the imported bytes and record
 the distribution's own adoption and routes separately.
 
-## Verification
+## Maintenance checks
 
 For source maintenance, install Node 24 and Python 3.11 or later, then run
 `python3 scripts/check.py`. It runs every `test_*.py`
