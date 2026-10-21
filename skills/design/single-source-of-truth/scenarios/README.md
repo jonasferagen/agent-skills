@@ -69,7 +69,7 @@ run's observed results with the change that ran it, not here.
 | --- | --- |
 | Adopting the skill into an existing project | No renaming, code movement or schema change is implied; existing project conventions take precedence. |
 | A changed policy raises the consequence of inconsistent copies | Revisit affected copies and checks, link unmet requirements to active work, and keep desired requirements distinct from observed behavior. |
-| A project has no policy skill installed | Use available project decisions and expose consequential unknowns; do not require installing another skill. |
+| A project states no consequence for inconsistent copies | Use available project decisions and expose consequential unknowns; do not require installing another skill. |
 
 ## Candidate, not adopted: record meaning versus storage origin
 

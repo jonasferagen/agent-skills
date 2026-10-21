@@ -2,7 +2,7 @@
 name: single-source-of-truth
 description: "Reconcile a rule, vocabulary, shape or changing prose claim defined in several places. Use when copies drift, a change requires coordinated edits, or a consistency check needs to survive restructuring."
 metadata:
-  version: "3.4.1"
+  version: "3.4.2"
 ---
 
 # Authoritative definitions
@@ -26,22 +26,15 @@ name a concept's home, and an explicit project convention takes precedence over
 this guidance. Adopting this skill does not call for renaming anything, moving
 existing code or changing a schema. Examples below are synthetic.
 
-Use the project's policy to judge the consequence of disagreement and the
-evidence worth maintaining. A policy change can alter that consequence: revisit
-affected copies and checks, and record unmet requirements in the active queue.
-Respect the project's governing precedence and keep principles, operating facts
-and policy decisions with their declared owners, downstream owners authoritative
-for derived requirements, and implementation owners
-authoritative for observed behavior; one cannot prove the other. A prototype
-label does not by itself waive an existing guarantee. Missing policy facts remain
+Let the project decide how much a disagreement matters and which checks are worth
+their cost. When requirements change, revisit the affected copies and checks, and
+record any requirement left unmet where the project keeps open work. Keep a
+required value with whoever requires it and observed behavior with the
+implementation that shows it; neither proves the other. Missing facts remain
 explicit unknowns.
 
-Follow the project's declared authority and policy workflow when project
-decisions and their implementations disagree or requirements change. This skill
-traces authoritative definitions, their consumers and consistency checks. Use
-the project's selected authoring guidance for explanatory changes. These routes
-are supplied by the consuming project; this package requires no particular
-project scaffold or companion installation.
+This skill traces authoritative definitions, their consumers and consistency
+checks. It requires no particular project scaffold or companion skill.
 
 ## Read for the decision at hand
 
