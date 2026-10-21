@@ -1,21 +1,24 @@
 ---
 name: python-patterns
-description: "Write or review Python types, data boundaries, numerical comparisons, defaults, exceptions, resource cleanup and async tasks. Use for language correctness and failure handling; class organization belongs to adopted design guidance."
+description: "Write or review Python types, data boundaries, numerical comparisons, defaults, exceptions, resource cleanup and async tasks. Use for language correctness and failure handling, not for module layout or class organization."
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # Python patterns
 
-Apply focused Python language patterns. Read the repository's instructions,
+Apply focused Python language patterns. Read the project's instructions,
 supported Python versions and existing checks before choosing syntax or tools.
-The examples target Python 3.11 or later; adapt to the project's actual minimum.
-This skill imposes no interpreter upgrade or package-manager migration.
+If none are documented, infer the minimum version and tools from
+`pyproject.toml` (`requires-python`, tool sections), CI configuration and
+tool-version files, and state the assumption in your report. The examples
+target Python 3.11 or later; adapt to the project's actual minimum. This skill
+imposes no interpreter upgrade or package-manager migration.
 
-<!-- Package-boundary copy: python-design/SKILL.md carries the same repository authority rule. Keep both aligned. -->
-The repository owns product contracts, framework choices, tooling and test
-policy. When its instructions conflict with this package, report both passages
-rather than silently changing either owner. Follow the user's explicit decision.
+The project's own instructions decide product contracts, framework choices,
+tooling and testing. When they conflict with this skill, report the conflict
+to the user, quoting both passages, and ask which to follow. Follow the user's
+explicit decision.
 
 ## Workflow
 
@@ -23,9 +26,12 @@ rather than silently changing either owner. Follow the user's explicit decision.
 2. Read the narrowest reference below and trace its effect through callers.
 3. Preserve distinctions between valid emptiness, absence and failure. Choose
    a representation and an error boundary that keep those distinctions visible.
-4. Make the scoped change, then run the repository's relevant checks. A type
-   checker verifies annotations; exercise runtime failures separately when the
-   change depends on them. Report what each check actually established.
+4. Make the scoped change, then run the project's relevant checks. If the
+   project has none, run `python -m compileall` on the changed files and a
+   small script or test that exercises the changed behavior, and say so in the
+   report. A type checker verifies annotations; exercise runtime failures
+   separately when the change depends on them. Report what each check actually
+   established.
 
 ## Start by symptom
 
@@ -42,10 +48,10 @@ rather than silently changing either owner. Follow the user's explicit decision.
 
 ## Scope and output
 
-Leave the code with an honest type and failure contract, and name the evidence.
-The repository's design guidance determines where operations and classes live;
-python-design is a suitable companion when available.
-Use the project's formatter, linter and type checker; do not add competing tools
+Leave the code with an honest type and failure contract, and say which checks
+established it. Where operations and classes live is a structural decision
+outside this skill; follow the project's existing layout. Use the project's
+formatter, linter and type checker; do not add competing tools
 or change coverage thresholds as part of an ordinary code edit.
 
 This is a starting set, not a Python handbook. Packaging, framework architecture,

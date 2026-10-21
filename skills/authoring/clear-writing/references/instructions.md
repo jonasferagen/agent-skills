@@ -33,7 +33,7 @@ for clarity is not permission to strengthen it.
 Use a requirement where deviation would violate a real constraint. Avoid making
 an editorial preference mandatory merely because a firm sentence sounds cleaner.
 When the source is ambiguous about the rule's strength and that affects behavior,
-resolve the ambiguity with its owner or leave it visible.
+ask the user or leave the ambiguity visible.
 
 ## Keep exceptions with their rules
 
@@ -46,8 +46,8 @@ Check the whole condition: "Stop unless both checks pass" does not mean "Stop if
 both checks fail."
 
 If several rules conflict, report the conflict instead of silently choosing a
-new precedence. A rewrite can clarify an established authority; it cannot invent
-one.
+new precedence. A rewrite can clarify a precedence the source already states; it cannot
+invent one.
 
 ## Preserve technical and authorization boundaries
 
@@ -57,7 +57,7 @@ approximation. A procedure that needs precise steps should retain them even when
 the result is longer.
 
 Preserve who may act, which system or records an action may affect, and what
-approval or evidence it requires. "Ask the owner before deploying" must not
+approval or evidence it requires. "Get approval before deploying" must not
 become "Deploy when ready." Likewise, avoid adding an approval requirement that
 the source does not contain.
 

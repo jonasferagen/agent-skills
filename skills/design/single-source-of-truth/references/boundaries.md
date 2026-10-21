@@ -70,7 +70,8 @@ Available: keep the schema authoritative and derive in the application at start
 time (rung 3) or request time (rung 4). A deployed migration is immutable in most
 projects, so a new migration is the only way to change the home at all. That
 usually puts schema changes outside the scope of a duplication fix. Confirm the
-project's own migration and approval rules before proposing one.
+project's own migration and approval rules before proposing one; if none are
+written, state the assumption you make and ask the user.
 
 ## Make disagreement fail
 
@@ -79,9 +80,10 @@ worth having if it would actually fail.
 
 - **It must read both homes.** A check that states the expected values is a third
   home and will drift alongside the second. Compare home to home.
-- **It must run for every affected input.** Keep it in the full gate, or in a
-  required suite selected for changes to either home, the check and its build
-  inputs. Unclassified changes need the full gate. A check behind an environment
+- **It must run for every affected input.** Keep it in the gate (the automated
+  checks required before merge); if the project runs only a subset of checks per
+  change, the subset must include it for any change to either home, the check or
+  its build inputs. A check behind an environment
   variable, a manual command or an optional job protects nothing by default. If
   the project keeps such tests deliberately opt-in, say that the concept is
   unprotected in the gate rather than implying it is covered.

@@ -18,6 +18,6 @@ construction needs; reading a diagram does not require generating another one.
 identifies processes, stores, flows, external entities and trust boundaries as useful
 parts of a security model. Its scope is threat modeling, not a universal DFD notation
 standard. [Mermaid's flowchart documentation](https://mermaid.js.org/syntax/flowchart.html)
-owns the syntax used by our illustrative diagrams. Our shape choices, routing and
-document decomposition remain collection conventions. Verify target-renderer support
+owns the syntax used by the illustrative diagrams here. Their shape choices,
+routing and document decomposition are this skill's conventions. Verify target-renderer support
 when using features beyond those already established in the project.

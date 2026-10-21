@@ -1,9 +1,10 @@
 # Design or change a contract
 
-Start with the participating owners, the purpose of the exchange and an actual
-case or labelled example. Identify the agreement's authoritative home and whether
-terms are proposed or adopted. Link existing definitions; use the project's reconciliation guidance when competing copies disagree.
-Source-of-truth is suitable when available.
+Start with the participants, the purpose of the exchange and an actual case or
+labelled example. Identify where the agreement is written and whether its terms
+are proposed or adopted. Link existing definitions rather than restating them;
+when two copies of a definition disagree, find the one that decides (the schema,
+the setting the code reads, the shipped artifact) and correct the others from it.
 Keep local implementation steps in their procedures.
 
 ## Discover the obligations
@@ -15,7 +16,7 @@ and still disagree about the valid outcome. The subjects below are starting
 points, not an exhaustive definition of a complete contract.
 
 - Preconditions: required inputs, identity/revision, permitted effects and
-  existing authority to act. Unresolved prerequisites remain visible.
+  existing permission to act. Unresolved prerequisites remain visible.
 - Result: what is returned or retained, who owns it, and the evidence linking it
   to the exact request and inputs.
 - Acceptance: who checks which conditions, and what makes rejection or completion
@@ -37,8 +38,10 @@ from adopted decisions. Preserve unresolved choices when the answer is not known
 Choose enough precision for each side to act without guessing. A short table may
 suffice. Define fields, formats or status values only when participants need them;
 do not impose a universal record template or turn every internal step into a
-separate contract. Refer to policy for retention and authority. Changed obligations
-or operating circumstances use the project's policy workflow.
+separate contract. Take retention periods and who may act from the project's existing rules
+rather than restating them in the contract. When obligations or operating
+circumstances change, follow the project's process for agreeing such changes,
+or ask the user when there is none.
 
 ## Preserve identity through failure and change
 
@@ -66,6 +69,7 @@ found during the exercise; a completed list of fields does not establish coverag
 Synthetic records establish design consistency; implementation and actual runs
 supply separate evidence that participants honor the contract.
 
-Keep the agreement in its existing document owner and link it from the architecture.
-Report unresolved terms and the work they block. A schema, successful operation
+Keep the agreement in its existing document and link it from the architecture
+overview if the project has one. Report to the user the unresolved terms and the
+work they block. A schema, successful operation
 or diagram alone does not demonstrate fulfillment of all obligations.

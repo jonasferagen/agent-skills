@@ -17,10 +17,10 @@ run's observed results with the change that ran it, not here.
 | An overview says "no release has been made yet", but readers only need the repository's purpose | Omit the release snapshot without replacing it with another status claim or creating a status page. |
 | Readers need to choose an available release, and the repository has a releases page | Link the releases page with useful context rather than copying its current contents into prose. |
 | A guide says the loader does not verify hashes, and a dated report records one successful load | Preserve the current limitation and the dated result's tested scope; neither becomes a general verification claim. |
-| A keeper entrypoint's Maintenance section recounts adoption, a move and planned work | State current upkeep and routes; retain history and proposed work with their record or plan owner, with useful pointers. |
-| A current index maps every retired source path and removed setting to a Git commit, while active readers need only the replacement or withdrawal of the retired whole | Keep current lookup routes and any needed evidence identity; do not treat the path inventory as required retirement information. Check the owning register rule for any specific retention duty. |
+| A README's Maintenance section recounts the project's adoption, a move and planned work | State current upkeep; move history and proposed work to the changelog or plan and link them. |
+| A current index maps every retired source path and removed setting to a Git commit, while active readers need only the replacement or withdrawal of the retired whole | Keep current lookup entries and any needed commit references; do not treat the path inventory as required retirement information unless the project's conventions require it. |
 | An overview mixes supported commands, a migration story and a future feature promise | Keep the supported interface and current limitations; link the history and plan instead of embedding their narrative. |
-| A worklog, changelog or proposed design intentionally describes another time scope | Preserve that purpose, assessed conditions and proposal state; the current-guidance rule is not a universal present-tense rewrite. |
+| A log, changelog or proposed design intentionally describes another time scope | Preserve that purpose, assessed conditions and proposal state; the current-guidance rule is not a universal present-tense rewrite. |
 | Instructions say what to do when an existing operation fails | Keep the operational steps and conditions; future-tense wording does not make the supported procedure a roadmap. |
 | Write a confirmation after a backup command succeeds but no restore was attempted | Report the command's success without claiming that recovery was verified. |
 | Edit explanatory text in an established personal voice | Improve comprehension while retaining the requested tone and distinctive voice. |
@@ -33,22 +33,19 @@ run's observed results with the change that ran it, not here.
 | Clarify a sentence where "when available" could limit one action or all of them | Keep the scope visible or ask; do not move the condition so that it governs more actions than before. |
 | Replace the idiom "that's a dead end" in a retry rule with an exception | State the consequence, keep the exception beside the rule, and ask what an unquantified "a few retries" means. |
 
-### Regressions from applying the skill to long documents
+### Regressions in long documents
 
-Each of these meaning changes was made and caught during a sweep of several
-packages. A revision must not repeat them.
+Meaning changes a revision must not make. Each has occurred in practice.
 
 | Source passage | Changed meaning to avoid |
 | --- | --- |
-| "Inspect the rendered diagram" in a documentation rule | Inspection made conditional on the target renderer being available. |
-| A rule saying where a compile error appears when a mirror is placed beside its declaration | The placement said to cause the error rather than to decide where it appears. |
-| A rule forbidding JSON from *becoming* a way around relational integrity | Forbidding only *using* it that way: a result became an intent. |
-| "Use the same verbs across scripts", illustrated with option names | Rewritten to fit the example, settling an ambiguity the source left open. |
+| "Inspect the rendered diagram" | "Inspect the rendered diagram when the renderer is available": an unconditional step became conditional. |
+| "JSON must not become a way around relational integrity" | "Do not use JSON as a way around relational integrity": a rule about results became a rule about intent. |
+| "Use the same verbs across scripts", illustrated with option names | "Use the same option names across scripts": the example replaced the rule, settling an ambiguity the source left open. |
 
 ## Limits
 
-- The settled-ambiguity and metaphor checks were trialled on short supplied
-  passages. Most of the sweep's meaning changes occurred in longer documents,
-  where the checks are least established.
-- Independent comparison of each changed passage with the prior text remains the
-  reliable safeguard; the skill's own check does not replace it.
+- The settled-ambiguity and metaphor checks are least reliable in long
+  documents. Independent comparison of
+  each changed passage with the prior text remains the reliable safeguard; the
+  skill's own check does not replace it.

@@ -3,7 +3,7 @@
 ## Name the concept
 
 Name the concept with one question the system answers. For example: which
-capacities may a participant hold? What shape does an identifier have? Which
+statuses may an order have? What shape does an identifier have? Which
 address does the paired service listen on? If the question needs an "and", it
 probably combines two concepts. Split them and start again.
 
@@ -38,9 +38,10 @@ how long it went unnoticed.
 Before consolidating a changing claim, ask whether the reader needs it. Omit
 incidental status from maintained prose rather than maintaining a more accurate
 copy. An overview may need to explain how to find releases without saying
-whether a release exists. If the answer matters, link the existing authoritative
-release, catalog or tracking owner with enough context for the reader to use it.
-Do not create an inventory or another document for every removed statement.
+whether a release exists. If the answer matters, link the place that already
+answers it, such as the release listing or the issue tracker, with enough
+context for the reader to use it. Do not create an inventory or another document
+for every removed statement.
 
 Keep a limitation, uncertainty or qualification where readers need it to
 understand the current behavior or contract. A required guarantee and observed
@@ -48,12 +49,14 @@ support answer different questions; neither can replace the other. A dated
 record retains what was observed at its assessed revision, even after the current
 answer changes.
 
-For a prose home that needs manual maintenance, name the responsible owner, its
-scope and what changes trigger an update. Keep the maintained set small enough
-for that responsibility to be practical. Other documents explain their own
-subject and point to the home instead of keeping independent status, inventories
-or ownership summaries. A reference across a repository boundary should reach
-the owner of the answer, not a chain of summaries restating it.
+For a prose home that needs manual maintenance, say who maintains it (if the
+project names nobody, propose the owner of the code it describes and ask the
+user), what it covers and which changes call for an update. Keep the maintained
+set small
+enough for that to be practical. Other documents explain their own subject and
+point to the home instead of keeping independent status or inventories. A
+reference from another repository should reach the document that answers the
+question, not a chain of summaries restating it.
 
 ## Choose the home that decides
 
@@ -69,7 +72,7 @@ document describing the vocabulary is downstream of both.
 
 For a shared setting or external identifier, follow
 [one owner for a shared value](authoritative-values.md). It covers existing
-configuration owners, lookup declarations, explicit inputs and historical values.
+configuration declarations, explicit inputs and historical values.
 
 Validation that is stricter than the home is also a defect. A check that refuses
 input the home would accept cannot protect the concept; it can only reject a
@@ -109,7 +112,7 @@ and the options each leaves available.
 ## Give machine consumers a structured contract
 
 When domain code or behavior tests consume a contract, reuse its existing
-structured authority. If none exists, keep the machine facts in a small versioned
+structured source. If none exists, keep the machine facts in a small versioned
 schema or data format, such as JSON, and generate the human view from it. Prose
 layout, table headings and explanatory wording should not become a domain API.
 Keep ownership and dependency direction clear; moving a table to JSON alone
@@ -119,7 +122,7 @@ If a formal document must remain authoritative, compile its explicit contract
 fields into a structured artifact at build or verification time. Validate that
 extraction, keep provenance to the source revision, and make consumers depend on
 the fresh artifact. Do not independently hand-maintain both forms or let stale
-output survive a changed source. Use deterministic generation and a binding check
+output survive a changed source. Use deterministic generation and a gate check
 that runs for every affected source, renderer or build change.
 
 Behavior tests read the structured contract while document checks verify its

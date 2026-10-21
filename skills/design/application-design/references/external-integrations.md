@@ -1,16 +1,17 @@
 # External operation boundaries
 
 Use this reference when a selected application operation depends on an external
-service. Capability selection and cross-owner obligations remain with the
-project's architecture. Start with the exact input and required result. If those
+service. Which provider to use, and what the application owes other systems, are
+settled by the project's architecture before this reference applies. Start with
+the exact input and required result. If those
 are missing, use an explicitly synthetic design case and retain the missing real
 brief as an implementation prerequisite.
 
 ## Preserve the actual contract
 
 Verify the selected operation against current official documentation before
-relying on its behavior. Record the source and observation date in project
-evidence. Distinguish direct responses, streamed bytes and durable provider jobs.
+relying on its behavior. Record the source and observation date beside the
+design, so a later reader can tell when the behavior was checked. Distinguish direct responses, streamed bytes and durable provider jobs.
 Check only the capabilities needed by the trace, such as lookup, output retrieval,
 idempotency, cancellation and retention. An unavailable capability constrains the
 design; it must not be invented to satisfy a shared interface.
@@ -29,9 +30,9 @@ justify a plugin registry, worker queue or persistent service.
 Separate preparation from submission. Preparation validates local input,
 configuration and destinations without initiating the external effect. Identify
 any remote check that transmits input or incurs cost. Keep credentials scoped to
-the adapter that needs them and out of request records and logs. Apply existing
-input-data and spending authority; unresolved scope remains a prerequisite for
-execution, not a reason to stop unrelated design work.
+the adapter that needs them and out of request records and logs. Send only the input data, and incur only the spending, that the user has
+already permitted; unresolved permission remains a prerequisite for execution,
+not a reason to stop unrelated design work.
 
 For an operation whose repetition can cause a second charge or durable effect,
 retain intent and an attempt identity before the external effect. Persist the
@@ -42,13 +43,14 @@ provider. A timeout or lost response may leave the attempt's outcome unknown.
 Reconcile an uncertain outcome using the supported provider lookup or idempotency
 mechanism. A known job identifier does not solve a submission whose response was
 lost before that identifier was retained. If supported reconciliation cannot
-resolve the attempt, report uncertainty and require an explicit disposition
-within the existing execution authority before another submission. Do not hide
+resolve the attempt, report the uncertainty to the user and require an explicit
+decision before another submission. Do not hide
 automatic submission retries in the HTTP client or SDK.
 
 Distinguish safe repetition of a status read or output download from repeating
-generation. Choose timeouts and retry limits for each operation's effects. A new
-attempt preserves the earlier record and cannot overwrite its candidate outputs.
+the effect itself (a charge, a render, a sent message). Choose timeouts and retry
+limits for each operation's effects. A new attempt preserves the earlier record
+and cannot overwrite the earlier attempt's outputs.
 Request withdrawal, attempted cancellation and confirmed termination are separate
 facts; a late output still needs an owner.
 
@@ -57,20 +59,22 @@ facts; a late output still needs an owner.
 When the operation promises a retained deliverable, retain its output bytes and
 required companion files before claiming completion. A provider URL with an
 expiry is a retrieval mechanism, not durable custody. Record output identities
-and completeness, actual operation/model and parameters where available, and
-enough provider evidence to diagnose failure. Keep unavailable facts explicit
+and completeness, the actual operation and parameters the provider reports where
+available, and enough provider evidence to diagnose failure. Keep unavailable facts explicit
 and remove secrets from retained responses. An ordinary lookup or status read
-needs only the result and retention the project's contract requires.
+needs only the result and retention the operation's agreement requires.
 
 For a retained result, choose a completion boundary for publication of the result
 and its record. Downloads and partial writes must not appear as complete outputs.
 Describe recovery
 after the provider finishes but local capture fails, using only retrieval behavior
-the provider supports. Retention and receiver acknowledgement follow the project's
-handoff agreement; successful execution does not make a creative acceptance decision.
+the provider supports. Retention and receiver acknowledgement follow the agreement
+between sender and receiver; successful execution does not decide whether the
+receiver accepts the output.
 
 Trace the most consequential uncertainty window during design. Name which checks
 are local, which need an authenticated provider, and which incur a new effect.
-Execute those checks only when the requested work authorizes them; a design trace
+Execute those checks only when the user's request covers them; a design trace
 is not runtime evidence. Local doubles establish application decisions only;
-live execution and paid retries need their own authorized scope and evidence.
+live execution, and any retry that incurs cost, need the user's explicit
+permission and their own evidence.

@@ -1,6 +1,6 @@
 # Read a flowchart
 
-Start with its caption, legend, entry condition and scope. Under this collection's
+Start with its caption, legend, entry condition and scope. Under this skill's
 minimal convention, a rectangle is an action, a diamond asks a decision question,
 and a rounded terminal marks an entry or outcome. Arrows mean the next step when
 the stated condition holds. Follow an existing diagram's declared notation first.

@@ -1,6 +1,5 @@
 # Integration tests
 
-<!-- Package-boundary copy: test-audit/references/principles.md (Test decisions where they are made) and verification-design/SKILL.md (Match each claim to an observable boundary) state when a boundary needs its own evidence. Keep these passages aligned. -->
 An integration test answers a question that no inner test can. Does the adapter
 pass the right input and identity? Does the real database accept, reject or
 serialize? Do two processes reach each other? Is the file written where the
@@ -30,7 +29,6 @@ public surface where that is practical. Reaching into internals to set state
 tests an arrangement that production never has. Keep collaborators inside the
 boundary real, and use doubles only outside it.
 
-<!-- Package-boundary copy: database-migrations/references/database-tests.md (Give each test run a complete lifecycle) states this lifecycle for database tests. Keep both passages aligned. -->
 ## Give each test its own state
 
 - Create a fresh temporary directory, database, queue or namespace for the

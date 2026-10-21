@@ -12,6 +12,6 @@ semantics; syntax alone does not make it a workflow.
 Use [form selection](../select.md) when the question concerns one object's states,
 ordered participant interactions, data movement or component relationships.
 [Mermaid's official documentation](https://mermaid.js.org/syntax/flowchart.html)
-owns renderer syntax. The minimal notation below is a collection convention,
+owns renderer syntax. The minimal notation below is this skill's convention,
 subject to an existing view's declared legend; it is not a claim of formal BPMN
 or UML compliance.

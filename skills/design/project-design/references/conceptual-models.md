@@ -17,8 +17,8 @@ Describe relationships, their roles and constraints, including cardinality where
 it matters. State rules a diagram cannot express clearly in prose: exclusive
 alternatives, contextual validity, ordering or prohibited cycles, for example.
 Use lifecycle or workflow detail only where change affects the model's meaning.
-If a visual helps, use the project's diagram guidance (diagrams-and-tables when available)
-for its representation; the model's owning document defines the meaning.
+If a visual helps, draw it in the format the project already uses for diagrams
+(Mermaid when it has none); the model's owning document defines the meaning, and the diagram illustrates it.
 
 ## Exercise the model
 
@@ -39,5 +39,6 @@ cannot establish. It does not require a history framework or a storage design.
 The slice is sufficient when its current questions have consistent answers across
 the example and change case, consequential assumptions are visible and affected
 owners can use the result. Record unresolved questions with what they affect and
-when they need answers, using the existing planning owner. Defer additional
-entities, histories and infrastructure until a concrete decision needs them.
+when they need answers, in the project's issue tracker or planning document (or
+the design note's open points when there is none). Defer additional entities,
+histories and infrastructure until a concrete decision needs them.

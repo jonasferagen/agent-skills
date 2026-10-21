@@ -1,16 +1,17 @@
 ---
 name: relational-modeling
-description: "Turn known entities and retrieval questions into a relational model, or revise a relationship when its meaning changes. Use for identity, roles, cardinalities and model scenarios before implementation; routine prose edits, database provisioning and migration execution are separate tasks."
+description: "Turn known entities and retrieval questions into a relational model, or revise a relationship when its meaning changes. Use for identity, roles, cardinalities and model scenarios before implementation; not for routine prose edits, database provisioning or migration execution."
 metadata:
-  version: "0.2.3"
+  version: "0.3.0"
 ---
 
 # Relational modeling
 
 Produce a coherent model for the questions the project needs to answer, or make
-the missing decisions explicit. Start from the supplied brief and project policy,
-existing model and terminology. Preserve established document homes and distinguish
-supplied facts, provisional assumptions and adopted decisions.
+the missing decisions explicit. Start from the supplied brief, the project's existing
+model, conventions and terminology. Keep documents where the project already
+keeps them, and distinguish supplied facts, provisional assumptions and adopted
+decisions.
 
 ## Select the task
 
@@ -19,15 +20,15 @@ terms or scenarios needed to answer. Cite the source and preserve unresolved
 meaning; do not start a modeling or authoring pass merely to read database docs.
 
 For a model review, compare the requested relationships and retrieval paths with
-the supplied requirements. Report findings and blockers. Load ER guidance for
-notation or relationship interpretation; visual verification applies when the
-review includes appearance. A review alone does not require rewritten documents.
+the supplied requirements. Report findings and blockers to the user. A review
+alone does not require rewritten documents.
 
 For a new model or relationship change, follow the workflow below. Its canonical
-relationship view is ER: use the ER route of diagrams-and-tables when that skill
-is available.
-PostgreSQL representation, migration planning and rendering tools serve different
-tasks; select them when the requested work reaches those decisions.
+relationship view is an entity-relationship (ER) diagram. Draw it in the diagram
+format the project already uses; if there is none, use Mermaid `erDiagram` with
+its standard notation and state that choice. This skill ships no notation guide
+or renderer. Database representation, migration planning and rendering are
+later steps; take them up only when the requested work reaches them.
 
 ## Establish or revise the model
 
@@ -45,15 +46,16 @@ For each relationship that matters, examine:
   correction, withdrawal or deletion when those operations are in scope?
 
 Do not turn an example into a universal constraint. When a missing decision blocks
-implementation, ask or record the decision needed. A bounded experiment may use
+implementation, ask the user if they are available; otherwise record the decision
+needed and the assumption you proceed on. A bounded experiment may use
 an explicitly provisional assumption; keep that status visible in the ER view and
 related scenarios. An unspecified relationship is not automatically many-to-many.
 
 Keep domain meanings separate from table names, keys and data types. A glossary
 defines terms; the model explains relationships and invariants. Use the project's
 existing glossary or add one when the resolved meanings need a shared home.
-For PostgreSQL representation, use postgres-design when available and relevant;
-do not load transaction or runtime guidance just to draw a conceptual relationship.
+Choosing a database representation is a later step; do not take up transaction
+or runtime questions just to draw a conceptual relationship.
 
 ## Exercise the questions
 
@@ -68,19 +70,22 @@ documents or adding features merely because the representation permits them.
 
 ## Document and hand off
 
-Follow the project's documentation guidance for where the model, its scenarios
-and the glossary live, and use clear-writing when available; honor existing
-paths. This skill names no home of its own. Add a directory README when routes
-help. Defer migration and seed-loading
+The model document states the entities, their relationships with cardinalities,
+the invariants, and the retrieval questions it answers. Put it, its scenarios
+and the glossary where the project keeps its
+design documents; if there is no such place, put them together in one directory
+beside the code they describe, with a short README naming each file's purpose,
+and say which you chose. Honor existing paths. Defer migration and seed-loading
 documents until those subjects are addressed.
 
-Keep one canonical ER view with the model. Use ER guidance
-when available; do not invent cardinalities to complete the drawing. Distinguish
+Keep one canonical ER view with the model. Do not invent cardinalities to
+complete the drawing; mark an undecided end as provisional instead. Distinguish
 conceptual relationships, proposed database representation and implemented schema.
 Report any missing rendering or visual verification instead of claiming it passed.
 
-Report what the model can answer, assumptions and unresolved implementation
-decisions, scenarios reviewed, checks actually performed and the next bounded task.
+Report to the user what the model can answer, assumptions and unresolved
+implementation decisions, scenarios reviewed, checks actually performed and the
+next task (one decision or one representation step, not the rest of the project).
 An implementation-ready claim requires resolved decisions for that implementation
 scope; a successful design review does not establish migration or runtime readiness.
 Provisioning, migration execution, seed loading, UI and application code are outside

@@ -1,8 +1,8 @@
 ---
 name: docker-compose-cli
-description: "Write or review a `docker compose` invocation and the file it reads: project selection, inherited environment, profiles, borrowed service definitions and project-scoped teardown. Use when a compose command acts on the wrong stack, leaks resources or ignores a value; single containers belong to docker-cli and host-wide reclaim to docker-cleanup."
+description: "Write or review a `docker compose` invocation and the file it reads: project selection, inherited environment, profiles, borrowed service definitions and project-scoped teardown. Use when a compose command acts on the wrong stack, leaks resources or ignores a value. Single-container `docker` commands and host-wide reclaim of accumulated state are separate tasks."
 metadata:
-  version: "0.4.1"
+  version: "0.5.0"
 ---
 
 # Docker Compose CLI
@@ -11,15 +11,16 @@ Every `docker compose` command acts on a project, and the project it acts on is
 decided by more inputs than the command line shows. The caller's environment, a
 developer's `.env` file in the working directory and the file's own defaults all
 reach the same decision. Most compose accidents are a command that ran correctly
-against the wrong project.
+against the wrong project. This package covers the `docker compose` command
+line; a single container or image command through plain `docker`, and auditing
+what has accumulated on a host across projects, are separate tasks.
 
-Two neighbours take the cases this one does not. A single container or image
-command belongs to `docker-cli`. Auditing and reclaiming what has accumulated on
-a host across projects belongs to `docker-cleanup`. Both carry their own copies
-of the identity and cleanup rules below, because each must work alone.
-
-Deciding to use containers at all, and the outcomes a project's containers must
-meet, are project convention rather than CLI usage.
+The project-selection rules apply to every compose call. The naming, port and
+teardown rules apply to a disposable project that a script or test harness
+creates and removes; a long-lived development stack a person starts by hand may
+keep its fixed names and ports, and is never torn down under these rules. The
+flags named here (`--no-build`, `--pull`, `--policy`, `--env-file`) are Compose
+v2 flags; check `docker compose version` when one is rejected.
 
 [Project isolation and teardown](references/project-isolation.md) holds the
 inherited-environment rules, the borrowed-definition case and the teardown
@@ -49,8 +50,9 @@ volume name or an image tag takes effect only where compose reads it, so write
 each selection into the file or the arguments compose will read. A wrapper that
 holds the value in order to check a port or print an address has not changed
 what compose does: compose falls back to its own default, usually the first
-selection's. Let any check read the value from the artifact compose reads, so
-the two cannot disagree unnoticed.
+selection's. Let any check read the value from where compose reads it — the
+compose file, its env file or the command-line arguments — so the two cannot
+disagree unnoticed.
 
 ## Name every resource the project creates
 
@@ -62,8 +64,6 @@ every call.
 Tag an image the project builds, or let compose's own project-scoped tag stand;
 an untagged build artifact is indistinguishable from an abandoned one within the
 hour.
-
-<!-- Package-boundary copy: docker-cli/SKILL.md (Name every resource a command creates) states these rules for a single command. Keep both passages aligned. -->
 
 ## Decide the image before the command runs
 
@@ -85,9 +85,10 @@ there, and let the build step produce that tag. A run whose image is missing
 then fails with `No such image` rather than building one, which is the refusal
 `compose run` offers no flag for.
 
-Where one file has to serve both, check before starting the run that the image
-is present and carries the identity the project recorded, and fail naming the
-image when it does not. `--pull never` and `pull_policy: never` do not cover
+Where one file has to serve both — for example, the project's existing compose
+file is the one under review and splitting it is out of scope — check before
+starting the run that the image is present and carries the identity the project
+recorded, and fail naming the image when it does not. `--pull never` and `pull_policy: never` do not cover
 this: both govern pulling, and neither prevents a build.
 
 `pull_policy: never` also holds against a plain `docker compose pull`: the
@@ -109,8 +110,6 @@ Select resources for removal by label, never by a name pattern alone: a pattern
 matches whatever else happens to share the prefix, including another project's
 resources.
 
-<!-- Package-boundary copy: docker-cli/SKILL.md (Give the work one identity) and docker-cleanup/SKILL.md (Attribute before classifying) state the label-over-pattern rule for their own scopes. Keep all three aligned. -->
-
 ## Publish on loopback with an ephemeral port
 
 Leave the host port empty in the file so the kernel assigns a free one, and read
@@ -120,19 +119,19 @@ is on loopback before using it.
 A fixed host port belongs to a stack a person starts deliberately. Disposable
 work that needs one checks the port is free and fails when it is not.
 
-## Treat the set of project names as closed
+## Validate the project name
 
 A project-scoped command acts on whatever name it is given.
 `compose down --remove-orphans` against a mistyped name does not fail — it acts
-on a project that now exists because the typo created it, or on a real project
-that was not the intended one.
+on a real project that happens to carry that name, or on an empty one and
+reports success, so nothing surfaces the mistake.
 
-Refuse a name outside the known set rather than passing it through. That refusal
-is what stands between a typo and another stack's containers. Decide it while
-the arguments are parsed, so it is testable without a container engine and a
-wrong selection fails before anything is created.
+If you build a wrapper around compose, validate the project name against an
+allow-list before passing it to compose. That refusal is what stands between a
+typo and another stack's containers. Decide it while the arguments are parsed,
+so it is testable without a container engine and a wrong selection fails before
+anything is created.
 
-Refuse the commands that repopulate or delete data for a project whose data no
-seed can reproduce, and refuse their confirmation flag where it does not apply,
-so it cannot be carried unnoticed in a script. Do not infer from a development
-name that the data behind it is disposable.
+Never run a destructive reset or `down --volumes` on a project whose data you
+cannot reproduce. Do not infer from a development name that the data behind it
+is disposable.

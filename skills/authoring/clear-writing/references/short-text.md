@@ -24,13 +24,13 @@ would lead the reader to different actions.
 
 | Context | Less useful | Clearer |
 | --- | --- | --- |
-| Description of a growing collection | Agent skills for documentation, diagrams, writing and more | Reusable agent skills |
+| Description of a growing collection | Scripts for backups, log rotation, deployment and more | Operations scripts |
 | Commit subject for a known bug fix | Improve timeout handling | Stop retrying after the final timeout |
 | Confirmation after three files were verified as removed | The cleanup operation has now been successfully completed | Removed the three temporary files. |
 | Brief status after a successful backup command, with no restore test | Backup verified. | The backup command finished successfully; a restore has not been tested. |
 
 The examples depend on their stated context. Include distinguishing scope when
-"Reusable agent skills" is too broad for the audience, and report only results
+"Operations scripts" is too broad for the audience, and report only results
 that the available evidence supports.
 
 ## Know when more text is needed

@@ -10,7 +10,8 @@ was checked against PostgreSQL 17; check the target version.
 ## Give each transaction its authority
 
 Let the pool log in as a role with no privileges granted to it directly:
-`LOGIN NOINHERIT`, granted the service's capability roles
+`LOGIN NOINHERIT`, granted the service's capability roles (one `NOLOGIN` role
+per kind of operation, holding exactly the privileges that operation needs)
 `WITH INHERIT FALSE, SET TRUE` (PostgreSQL 16 and later). Privileges granted to
 `PUBLIC`, such as the default `EXECUTE` on new functions, still apply to it;
 revoke them where they matter. Each capability role holds only the privileges

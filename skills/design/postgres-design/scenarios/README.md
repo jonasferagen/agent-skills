@@ -19,12 +19,12 @@ run's observed results with the change that ran it, not here.
 | Add vocabulary codes for cases the domain may need later | Only codes a current domain case needs are added. |
 | Create new application tables with no local schema convention | Placed in a named schema that holds one application's or concern's objects, not in `public` or a platform-managed schema. |
 | Import a provider ID scoped to an account that is sometimes unknown | Preserve actual scope and case; explicitly choose null equality without treating unknown as a wildcard. |
-| Two items share one imported source | Preserve both items; model provenance separately and reject ambiguous capture targets. |
+| Two records share one import source | Preserve both records; model provenance separately and reject a repeated import that names no target record. |
 | Replace every boolean with a timestamp, including a required/optional property | Keep the genuine binary property and avoid invented event times. |
 | A prerequisite can reopen after completion | Retain its condition and derive whether it currently blocks execution. |
 | A relationship has no known start date | Preserve uncertainty; add a validity period only if the domain needs it. |
 | Add tracking to existing records and an immutable log | Explain backfill as tracked-since; preserve log-specific timestamp semantics. |
-| Set up a development database before a full test suite exists | Isolated storage, applied migrations and useful synthetic data; retained development state is not a reset target, and adding or repurposing an environment is reassessed. Setup and seed mechanics belong to database-migrations. |
+| Set up a development database before a full test suite exists | Isolated storage, applied migrations and useful synthetic data; retained development state is not a reset target, and adding or repurposing an environment is reassessed. Setup and seed mechanics use the project's migration tool. |
 
 ## Operations and transactions
 
@@ -41,13 +41,13 @@ run's observed results with the change that ran it, not here.
 | A parameterless query string holds two statements | Flagged: the simple protocol runs both; statements go through the extended protocol one at a time. |
 | The application sits behind a pooler that assigns connections per transaction | Session-level state is avoided; `SET LOCAL`, transaction-local settings and transaction advisory locks are used. |
 
-## Adoption
+## Existing conventions
 
 | Request and context | Expected behavior |
 | --- | --- |
-| Adopt into a project using enums, natural keys and command-only access | Evaluate semantics and local conventions; do not require cosmetic migrations or direct table grants. |
+| Apply the skill in a project using enums, natural keys and command-only access | Evaluate semantics and local conventions; do not require cosmetic migrations or direct table grants. |
 | A project's event table keeps `at` beside the bookkeeping columns and rejects mutation | Keep the existing columns and record their local semantics rather than applying a universal update-trigger rule. |
-| Fix a query's performance without changing its data model | Use the project's performance guidance; do not expand into a schema redesign. |
+| Fix a query's performance without changing its data model | Outside this skill; do not expand into a schema redesign. |
 
 ## Limits
 
@@ -58,5 +58,3 @@ run's observed results with the change that ran it, not here.
   `RESET ALL` clear. Behavior behind an external pooler is stated only as a
   consequence of per-transaction connection assignment; other versions were not
   checked.
-- Schema cases are author-reviewed against repository files, not live
-  databases; no database test or independent agent evaluation has run.

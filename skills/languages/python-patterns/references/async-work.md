@@ -22,6 +22,10 @@ async def read_pair(source: TextSource) -> tuple[str, str]:
     return first.result(), second.result()
 ```
 
+On Python 3.10 or earlier, where `TaskGroup` is absent, use `gather` and cancel
+the remaining tasks yourself in an `except` block, or a task-group backport the
+project already depends on.
+
 Use `gather` when its semantics fit: default failure propagation does not cancel
 all sibling work. With `return_exceptions=True`, results contain exceptions as
 well as values; inspect and represent both before returning a success type.

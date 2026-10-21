@@ -14,8 +14,9 @@ modeling to a user of the skill; it is not a test of the skill.
 | A later relationship correction to that model ([second input](agreements/brief.md#correction)) | The model, ER view, glossary and scenarios agree on the new meaning; unrelated assumptions and open rules are preserved; scenarios distinguish the old and new interpretations. A compact representation that depends on a provisional assumption says so. |
 | A question about an existing model | Read its owning document and the terms needed; cite the source and keep unresolved meaning; start no modeling pass. |
 | A model review against stated requirements | Findings and blockers, not rewritten documents. |
-| A literal wording edit in a project that has this skill installed | No modeling or database-design guidance is loaded. |
-| The project also has PostgreSQL guidance installed | Not loaded for a conceptual model; representation is selected only when the work reaches it. |
+| A literal wording edit in a model document | No modeling pass is started. |
+| A conceptual model is requested and the project uses PostgreSQL | Database representation is not chosen; it is taken up only when the work reaches it. |
+| The project has no documented place for design documents | The model, scenarios and glossary go in one directory beside the code with a short README, and the choice is stated. |
 | A rendered check of the ER view is unavailable | Reported as unperformed; source review is not claimed as rendering. |
 
 ## Fixture
@@ -27,8 +28,5 @@ expectations above; reading fewer words is not acceptance by itself.
 
 ## Limits
 
-- One initial run, one warm correction and one nearby task have been observed;
-  this shows the route, not its reliability. A fresh agent discovering an
-  existing model during a handoff has not been tried.
-- The fixture had no renderer, so Mermaid parsing and readability stayed
-  unverified in that run.
+- The skill ships no renderer; whether an ER diagram parses and reads well is
+  checked only when the project supplies a rendering tool.

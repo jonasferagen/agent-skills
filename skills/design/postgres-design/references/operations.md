@@ -7,9 +7,10 @@ a database command API or a queue.
 ## Complete changes
 
 Keep a business operation's validation and related database writes in one
-transaction through the project's authoritative write boundary. Include required
-evidence associations and audit outcomes in that transaction so a failure leaves
-no partial result. Adapters should go through that write boundary rather than
+transaction through the code path the project designates for writes (if none is
+designated, the application's existing data-access code; see SKILL.md). Include
+required related rows, such as an audit entry, in that transaction so a failure
+leaves no partial result. Adapters should go through that write boundary rather than
 reimplement its rules.
 
 For retryable operations, define an operation identity separately from entity
@@ -31,9 +32,8 @@ checking each edge independently can admit a cycle under concurrent writes.
 Use a consistent lock order and test the competing transactions that matter.
 
 For worker claims, define lease ownership, expiry, recovery and stale-worker
-rejection. A single human owner can still have several agents and schedulers
-writing concurrently. Separate their execution permissions according to the
-project's model.
+rejection. Several processes may write concurrently even when one person runs
+them all; give each the least privilege its work needs.
 
 ## External effects
 

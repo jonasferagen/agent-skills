@@ -19,8 +19,8 @@ hold delegated decision authority. Completion, acceptance and consumer adoption
 remain distinct when the process distinguishes them.
 
 For an overview, explain who receives what, what they do and what allows work to
-continue. Link to the owning procedure or interface when the view does not show
-how. Preserve missing or proposed details as such; do not fill them from familiar
+continue. Link to the procedure or interface that defines the step when the view
+does not show how. Preserve missing or proposed details as such; do not fill them from familiar
 agent architectures.
 
 Use [form selection](../select.md) for another question and

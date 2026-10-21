@@ -1,5 +1,8 @@
 # Disposable PostgreSQL tests
 
+This reference is PostgreSQL-specific, apart from the test lifecycle section,
+which applies to any engine.
+
 Use a fresh database to verify migrations and domain behavior without touching
 retained local or shared data. Choose the cheapest engine that can observe the
 behavior under test, and state which behavior still needs native PostgreSQL.
@@ -14,8 +17,8 @@ to WebAssembly and supports ephemeral memory storage. See the maintained
 
 A SQLite schema or a mock query function does not execute PostgreSQL migrations.
 If no compatible embedded engine exists for the required features, use a
-disposable native PostgreSQL instance with temporary storage. Report which
-choice was made; do not call native container tests in-process tests.
+disposable native PostgreSQL instance with temporary storage. Report to the user
+which choice was made; do not call native container tests in-process tests.
 
 Check the selected engine and version against the migrations before adopting it.
 An embedded engine may differ in available extensions, connections, server
@@ -25,8 +28,10 @@ cannot establish the behavior of concurrent independent PostgreSQL sessions.
 
 ## Keep migration provenance visible
 
-Use the same domain migration source as the service whenever compatible. Give
-the harness a small, named platform bootstrap only when required. It may create
+Use the same domain migration source as the service whenever compatible. The
+platform is whatever the hosting environment supplies outside the domain
+migrations: roles, extensions and provider-managed schemas. Give the harness a
+small, named platform bootstrap only when required. It may create
 roles or a stand-in platform function for a domain test, but state what it
 models. A stand-in does not verify the real platform's authentication or grants.
 
@@ -47,7 +52,6 @@ Baselining an existing database also requires evidence that its schema matches
 the baseline. A new empty test database cannot supply that evidence. Similarly,
 bootstrap success does not prove an upgrade preserves existing rows.
 
-<!-- Package-boundary copy: test-writing/references/integration-tests.md (Give each test its own state) states this lifecycle for any boundary. Keep both passages aligned. -->
 ## Give each test run a complete lifecycle
 
 1. Allocate a fresh in-memory database or isolated disposable native instance.
@@ -78,17 +82,13 @@ so a successful socket connection can come from that server rather than the
 final one. Socket trust authentication also proves nothing about logins, so
 connect with the credentials the test is about.
 
-Check that the container runtime is available when the run starts. A missing
-runtime fails a tier that requires it; it does not turn the tier into a skip.
-The container command's own argument, port, secret and cleanup mechanics are a
-separate concern from this database guidance.
+Check that the container runtime is available when the run starts, for example
+with `docker info`. A missing runtime fails the tests that require it; it does
+not turn them into skips.
 
-For a migration-runner change, exercise an empty database, a second no-op run,
-an altered checksum and an intentional migration failure. Verify that the
-failure leaves no successful ledger entry and prevents later migrations. Test
-the concurrent-runner lock using independent native sessions; serial embedded
-calls do not exercise contention. Add an upgrade fixture when the change
-affects a supported existing state.
+Run the migration-runner checks listed in SKILL.md under "Verify and report".
+Test the concurrent-runner lock using independent native sessions; serial
+embedded calls do not exercise contention.
 
 Some PostgreSQL commands require special transaction handling. For example,
 [`CREATE INDEX CONCURRENTLY`](https://www.postgresql.org/docs/current/sql-createindex.html)
@@ -102,7 +102,6 @@ harness pass; test the migration runner's explicit handling on native PostgreSQL
 | Embedded PostgreSQL tests | Supported SQL, constraints, domain commands, transactions and fixtures | Native server features and differences in the selected engine |
 | Native PostgreSQL with independent clients | Role grants, connection behavior, advisory locks, contention and required extensions | Container packaging and service transport |
 | Built service and database containers | Image contents, startup, migrations, network, runtime identity and persistence | Managed-platform behavior absent from the local stack |
-| Public HTTP or MCP calls | Adapter input/result mapping and the identity passed to the shared handler | The other transport unless it is also exercised |
 
 Use native tests for the features the service relies on: distinct login roles,
 authentication and TLS, session-dependent behavior, concurrent transactions,

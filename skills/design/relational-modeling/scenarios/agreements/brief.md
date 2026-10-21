@@ -14,13 +14,12 @@ Retrieval questions:
 
 Participant roles and relationship cardinalities have not been decided. Use a
 small provisional model to reason about the questions; identify assumptions and
-blocking choices rather than asking an external owner during this bounded
-exercise. Names and identifiers in examples must be synthetic. Do not infer an
+blocking choices rather than asking anyone during this bounded exercise. Names and identifiers in examples must be synthetic. Do not infer an
 application stack, interface, schema implementation or operational permission.
 
 Produce a small database model proposal with a canonical ER view, a domain
 glossary and retrieval scenarios. Organize the documents so the next reader can
-find their owners. This is a design exercise, not adoption for a real project or
+find each one's purpose. This is a design exercise, not adoption for a real project or
 a runtime test.
 
 ## Correction

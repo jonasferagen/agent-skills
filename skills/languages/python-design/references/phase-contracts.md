@@ -3,10 +3,12 @@
 ## State what each handoff guarantees
 
 For each meaningful stage, identify its input assumptions, output guarantees,
-expected failures and effects. A parser may validate a wire representation;
-resolution may establish identities and references; construction may produce
-objects ready to serialize. Name the actual guarantees in the program rather
-than copying a fixed list of stage names.
+expected failures and effects. For example, in an order import a parser turns
+a JSON body into a `ParsedOrder` with the right field types; resolution turns
+its customer and product codes into database identities, yielding a
+`ResolvedOrder`; construction produces an `Order` ready to persist. Name the
+actual guarantees in the program rather than copying a fixed list of stage
+names.
 
 Return a representation that downstream callers can use without reconstructing
 how it became valid. Carry the result of validation forward instead of parsing
@@ -20,7 +22,7 @@ different required fields, use explicit variants or distinct records rather
 than an object whose optional fields mean different things at different times.
 Do not assume a frozen record protects nested mutable data.
 
-## Make mutation and evidence ownership explicit
+## Make mutation and provenance ownership explicit
 
 A builder may accumulate mutable working state efficiently. Keep that state
 with its owner and expose the result only when the promised invariants hold.
@@ -29,9 +31,9 @@ state and mutations visible in its API; avoid invisible dependence on a previous
 call having filled a field.
 
 Keep source identity and diagnostic locations through transformations when
-callers need to explain failures or audit output. Build evidence should describe
-the produced result and its source, rather than requiring consumers to inspect
-a partly populated internal builder.
+callers need to explain failures or audit output. A build result should carry
+what was produced and where it came from, rather than requiring consumers to
+inspect a partly populated internal builder.
 
 Separate computation from publication or other irreversible effects where that
 enables validation before effects. Validate encoded or persisted representations
@@ -51,12 +53,13 @@ scheduling requirement, not just multiple stages.
 
 ## Plan a conversion around observable contracts
 
-Start a replacement plan with the public behaviours and artifacts that must
-remain compatible, the known defects to correct, and the acceptance evidence.
+Start a replacement plan with the public behaviours and outputs that must
+remain compatible, the known defects to correct, and the checks that must pass
+before the switch.
 Characterize successful inputs and refusals, including diagnostic meaning.
 Compare old and new results at those boundaries, using semantic comparisons
-when byte identity is not required. The old implementation is useful evidence,
-not an oracle for behaviour already known to be wrong.
+when byte identity is not required. The old implementation is a useful
+reference, not an oracle for behaviour already known to be wrong.
 
 Identify the smallest useful path through the new implementation and the
 conditions under which callers can switch. Name who owns routing during any

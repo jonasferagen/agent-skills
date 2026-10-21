@@ -13,7 +13,7 @@ when their difference matters. Lanes need not match runtime boundaries.
 
 Trace one real request from trigger to scoped completion. Keep the overview to
 consequential activities, decisions and handoffs; put internal steps in the linked
-procedure. Name each action with a verb. Add the method only where it answers the
+procedure (the written steps the performer follows). Name each action with a verb. Add the method only where it answers the
 reader's uncertainty: agent follows procedure, agent invokes CLI, service executes,
 or human decides. These are descriptive labels, not exclusive types or mandatory
 fields. A service call nested inside an agent's task may belong in a sequence detail.
@@ -22,22 +22,22 @@ Label meaningful crossings with the artifact, identity or condition handed over.
 Place each decision with its actual decision maker, respecting existing delegation.
 Show a relevant return or interruption path when it explains continuation. Do not
 add a human gate, retry guarantee or runtime solely to complete the drawing.
-Link source-owned procedures, commands and contracts from the surrounding page;
-avoid copying their instructions into boxes. Distinguish proposed mechanisms from
+Link the procedures, commands and contracts from the surrounding page; avoid
+copying their instructions into boxes. Distinguish proposed mechanisms from
 implemented ones. Check the normal path and an exception against those sources.
 
 ## Choose a supported renderer
 
 [Mermaid swimlanes](https://mermaid.js.org/syntax/swimlanes) are documented from
 11.16.0 using `swimlane-beta`. Its syntax is evolving: check support and render in
-the actual consumer before choosing it. Top-level subgraphs define lanes. Shared
+the target renderer before choosing it. Top-level subgraphs define lanes. Shared
 [Mermaid guidance](../mermaid.md) applies where syntax is compatible; flowchart
 subgraph direction rules are not swimlane syntax rules.
 
 This fictional example assigns review to a human; it does not prescribe that
 allocation for other workflows. Lanes identify performers. Arrow labels describe
-results and conditions, not transport. Preparation begins with a supplied brief;
-the accepted branch ends at a recorded revision, before any consumer adoption.
+results and conditions, not transport. Preparation begins with a supplied specification;
+the approved branch ends at a recorded release, before anyone deploys it.
 The revision branch produces a revised request; another attempt starts at submission.
 
 ```mermaid
@@ -45,20 +45,20 @@ swimlane-beta TB
     subgraph agent["Agent"]
         prepare["Prepare request · procedure"]
         submit["Submit job · CLI"]
-        record["Record accepted revision · procedure"]
+        record["Record approved release · procedure"]
         revise["Revise request · procedure"]
     end
-    subgraph service["Generator service"]
-        generate["Generate candidate · API operation"]
+    subgraph service["Build service"]
+        generate["Build artifact · API operation"]
     end
     subgraph reviewer["Reviewer"]
-        review{"Assess candidate · human decision"}
+        review{"Review artifact · human decision"}
     end
     prepare -->|Request| submit
     submit -->|Job input| generate
-    generate -->|Candidate + job ID| review
-    review -->|Accepted revision| record
-    review -->|Revision requested| revise
+    generate -->|Artifact + job ID| review
+    review -->|Approved| record
+    review -->|Changes requested| revise
 ```
 
 When lanes are unsupported or too wide, use an actor-labelled flowchart with the
@@ -70,15 +70,15 @@ edges can override their direction; do not promise aligned lanes from them.
 flowchart TB
     prepare["Agent: prepare request · procedure"]
     submit["Agent: submit job · CLI"]
-    generate["Service: generate candidate · API"]
-    review{"Reviewer: assess candidate · human decision"}
-    record["Agent: record accepted revision · procedure"]
+    generate["Service: build artifact · API"]
+    review{"Reviewer: review artifact · human decision"}
+    record["Agent: record approved release · procedure"]
     revise["Agent: revise request · procedure"]
     prepare -->|Request| submit
     submit -->|Job input| generate
-    generate -->|Candidate + job ID| review
-    review -->|Accepted revision| record
-    review -->|Revision requested| revise
+    generate -->|Artifact + job ID| review
+    review -->|Approved| record
+    review -->|Changes requested| revise
 ```
 
 Inspect the real reading width, lane headers, crossings and feedback path. Split

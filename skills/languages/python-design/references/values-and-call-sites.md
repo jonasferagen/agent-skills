@@ -11,9 +11,13 @@ together or have shared meaning, not for every function with optional arguments.
 ## Give invariants one owner
 
 A dataclass can be a passive record or a value object with behavior. A wire DTO
-stays a transport contract; an internal value can own validation and derivation.
-A value whose callers rely on tuple behavior can be a NamedTuple instead;
-python-patterns covers that choice when available. The following value has one invariant regardless of whether callers use a
+(a record that mirrors an external payload such as a JSON body or a database
+row) stays a transport contract; an internal value can own validation and
+derivation.
+A value whose callers rely on tuple behavior (unpacking, ordering, indexing,
+set membership) can be a NamedTuple instead; choose a frozen dataclass when
+callers need keyword construction, defaults or methods and no tuple behavior.
+The following value has one invariant regardless of whether callers use a
 factory. Its fields are immutable scalars:
 
 ```python

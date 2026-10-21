@@ -21,8 +21,3 @@ run's observed results with the change that ran it, not here.
 | A reset is requested for retained development data | Retained development data is not a reset target; the data's disposability is established first. |
 | Change one migration | Select evidence for the migration and affected starting states; do not automatically run every runner test. |
 | Change only a container image | Container tooling is the relevant task; do not redesign migration history. |
-
-## Limits
-
-- All cases are author-reviewed; no independent agent trial or live database
-  test has run for this package.

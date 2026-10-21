@@ -15,12 +15,6 @@ structure it checks. A durable check must:
 
 A check built this way survives the next restructure without changes.
 
-A selected artifact's identity is a different invariant: which exact files and
-bytes were reviewed for that revision? A release manifest or hash inventory can
-record that selection and compare a staged installation with the trusted source.
-It does not replace a live parity check between current owners or prove behavior.
-See [artifact identity](durable-checks.md#compute-the-invariant-live) for that boundary.
-
 Hard-coded directory sets, member lists and expected counts copy facts that
 already have a home. Failures caused by an absent tool can create the same
 problem: the check fails because the environment changed, even though the homes
@@ -28,7 +22,6 @@ still agree. Updating the copied literal and approving a new baseline then
 becomes routine. That routine teaches reviewers to approve diffs they have not
 read.
 
-<!-- Package-boundary copy: test-audit/references/triage.md applies the report-only rule below to scanner drift stamps. Keep both passages aligned. -->
 | Ask of the check | If yes |
 | --- | --- |
 | Is it missing a concrete consequence to protect? | do not add the check until you can name that consequence concretely |
@@ -39,8 +32,8 @@ read.
 | Does it fail when a tool or service is missing, rather than when the homes disagree? | fail at the boundary where the environment contract requires that dependency; if no contract requires it, skip with a prominent notice |
 | Does it only produce a report, with nothing consuming that report? | make it check an invariant using current facts and fail a real gate, or remove it |
 
-[Checks that survive restructuring](durable-checks.md) states
-requirements two to six as five properties, with examples of checks that violate
-and satisfy each. Read it while writing the check. The project's own policy
-decides whether a check is worth its recurring cost; these requirements keep a
-retained check working as the project changes.
+[Checks that survive restructuring](durable-checks.md) expands these
+requirements, with examples of checks that violate and satisfy each. Read it
+while writing the check. The project decides whether
+a check is worth its recurring cost; these requirements keep a retained check
+working as the project changes.

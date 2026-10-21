@@ -13,10 +13,9 @@ must compare and where it must run; this page says what keeps it working
 afterwards. The [rung ladder](definitions.md#derive-instead-of-restate)
 decides whether a check is the right remedy at all: a check is rung 5 because
 rungs 1 to 4 make disagreement impossible, while a check only makes it fail. The
-project's own policy decides whether a check is worth its recurring cost.
-Examples are synthetic.
+project decides whether a check is worth its recurring cost. Examples are
+synthetic.
 
-<!-- Package-boundary copy: test-writing/references/fixtures.md (Prefer derived references to stored goldens) states this rule for ordinary tests. Keep both passages aligned. -->
 ## Compute the invariant live
 
 Compute the answer when the check runs, by reading the homes as they stand. If
@@ -41,15 +40,6 @@ goes stale is a committed copy of a *structural* fact, such as a count, a file
 list or an inventory, that is meant to track the home and can only be kept
 current by hand.
 
-A reviewed release's file hash inventory answers a different question: whether
-an installation contains the exact selected artifact. Generate it from the reviewed
-source revision and compare the staged copy with that trusted source, including
-the manifest. A source update creates a newly reviewed selection; regenerating a
-consumer's inventory merely accepts its drift. Artifact identity does not establish
-current structural parity or correct behavior. Keep behavioral expectations and
-live consistency invariants separate from this installation check.
-
-<!-- Package-boundary copy: test-audit/references/triage.md applies this ledger rule to test scanners. Keep both passages aligned. -->
 A **shrink-only ledger** is a bounded exception rather than a golden. It names
 known debt being paid down and belongs to the tree whose files it lists rather
 than to a shared tool. It gates hard: a new or increased violation fails. It
@@ -89,7 +79,6 @@ drifts exactly as any other restatement does.
   already reads, or its members from the manifest that declares them. Topology
   has one declaration: resolve through it, never through a constructed path.
 
-<!-- Package-boundary copy: test-writing/references/fixtures.md (Keep fixtures small and inside the test) states this rule for ordinary tests. Keep both passages aligned. -->
 ## Fabricate the fixture
 
 A check's own test creates its own fixtures. It must not depend on which
@@ -130,11 +119,12 @@ instead.
 The loudness matters as much as the skip. A silent skip is worse than a hard
 failure, because it reads as a pass.
 
-## Enforcement belongs in the tree it checks
+## Keep the check inside the repository it checks
 
 A detector that pattern-matches a catalogue of signatures across a fixed set of
 directories itself follows the anti-pattern it is meant to detect: it
 hard-codes the topology, and it needs updating and re-approval every time the
-structure moves. Where a project wants these rules enforced mechanically, the
-enforcement lives in the tree it checks and is scoped to that tree. It derives
-its file set from version control rather than from a copied list.
+structure moves. Where a project wants these rules enforced mechanically, put the
+check in the same repository as the files it examines, scope it to that
+repository, and derive its file set from version control rather than from a
+copied list.

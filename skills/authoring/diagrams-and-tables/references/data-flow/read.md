@@ -11,8 +11,9 @@ Distinguish file bytes, metadata and references: a URL does not prove retention.
 A store does not itself approve or convert data. If a transfer hides the responsible
 process, report the abstraction or ambiguity rather than inventing implementation.
 
-Our illustrative Mermaid convention uses rectangles for external entities, rounded
-nodes for processes and cylinders for stores. This is a collection convention,
+This skill's illustrative Mermaid convention uses rectangles for external
+entities, rounded nodes for processes and cylinders for stores. It is a
+convention of this skill,
 not a claim of formal Yourdon/DeMarco or Gane–Sarson notation. Other views may use
 different symbols; their stated notation takes precedence.
 

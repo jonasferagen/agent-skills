@@ -35,9 +35,9 @@ the parent's direction. The declaration cannot guarantee vertical placement.
 flowchart TB
   subgraph Pipeline [authored input to render]
     direction TB
-    A["parse authored input"] --> B["seat + build geometry"]
-    B --> C["bake closure"]
-    C --> D["client renders island"]
+    A["parse source"] --> B["build"]
+    B --> C["package"]
+    C --> D["deploy"]
   end
 ```
 
@@ -52,9 +52,10 @@ provided **each lane declares `direction TB`** and the finished block still fits
 the target column.
 
 Side-by-side lanes that are internally horizontal are the common failure. A
-four-node pair drawn without the inner `direction` measured 2495px wide against
-a GitHub issue column of roughly 830px, crushing every label to a third of its
-size; the same pair with `direction TB` in both lanes measured 1175px. Two
+four-node pair drawn without the inner `direction` can render about three times
+wider than a narrow reading column (a code host's issue view is roughly 800px),
+crushing every label to a third of its size; the same pair with `direction TB`
+in both lanes fits far better. Measure against the column your readers get. Two
 caveats when using this form:
 
 - **Left/right order is not guaranteed.** Mermaid may place the second subgraph
@@ -69,11 +70,11 @@ single invisible edge between the two subgraph ids, which ranks them vertically:
 
 ```mermaid
 flowchart TB
-  subgraph Before [today: bake per request]
+  subgraph Before [today: render per request]
     direction TB
-    B0["request"] --> B1["bake on demand"]
+    B0["request"] --> B1["render on demand"]
   end
-  subgraph After [target: prebaked artifact]
+  subgraph After [target: prebuilt artifact]
     direction TB
     A0["request"] --> A1["resolve pinned artifact"]
   end
@@ -88,17 +89,17 @@ top-level chart to `flowchart LR` and keep `direction TB` inside every subgraph:
 
 ```mermaid
 flowchart LR
-  subgraph Surfaces [consumer surfaces]
+  subgraph Surfaces [client surfaces]
     direction TB
-    S0["editor"]
-    S1["runtime"]
+    S0["web app"]
+    S1["mobile app"]
   end
-  subgraph Services [repository services]
+  subgraph Services [services]
     direction TB
     P0["static host"]
-    P1["projector"]
+    P1["read API"]
   end
-  subgraph Stores [durable backbone]
+  subgraph Stores [stores]
     direction TB
     D0["catalog"]
     D1["files"]
@@ -133,9 +134,9 @@ one edge carrying the count rather than N parallel edges:
 
 ```mermaid
 flowchart TB
-  MCORE["game-core"] -->|8| MCMB["game-combat"]
-  MCORE -->|7| MACT["game-actors"]
-  MCMB -->|5| MACT
+  ORD["orders"] -->|8| BIL["billing"]
+  ORD -->|7| SHP["shipping"]
+  BIL -->|5| SHP
 ```
 
 N parallel edges between one pair say nothing the number does not, and they are
@@ -151,13 +152,13 @@ For Markdown tables, read [tables](tables.md).
 
 ## Conservative syntax
 
-Syntax that travels across GitHub, editor previews, and the live editor:
+Syntax that travels across code hosts, editor previews, and the live editor:
 
 - **`subgraph id [bare title]`** with a space, not a quoted title. Keep Mermaid
   keywords (`direction`, `end`) out of a bare title — they confuse the parser.
 - **Quote node labels** — `["…"]` — and use `<br/>` for line breaks. Quoting keeps
   `(`, `)`, `:` and other punctuation from colliding with node-shape syntax; a
-  bare `A[Meshy export (raw)]` is a parse error. Skip other HTML tags — they vary
+  bare `A[export (raw)]` is a parse error. Skip other HTML tags — they vary
   by renderer.
 - **Never name a node with a reserved keyword** — `click`, `end`, `graph`,
   `subgraph`, `style`, `class`, `direction`, `default`, `call`, `href`,

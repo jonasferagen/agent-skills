@@ -2,7 +2,7 @@
 name: single-source-of-truth
 description: "Reconcile a rule, vocabulary, shape or changing prose claim defined in several places. Use when copies drift, a change requires coordinated edits, or a consistency check needs to survive restructuring."
 metadata:
-  version: "3.4.2"
+  version: "3.5.0"
 ---
 
 # Authoritative definitions
@@ -27,14 +27,21 @@ this guidance. Adopting this skill does not call for renaming anything, moving
 existing code or changing a schema. Examples below are synthetic.
 
 Let the project decide how much a disagreement matters and which checks are worth
-their cost. When requirements change, revisit the affected copies and checks, and
-record any requirement left unmet where the project keeps open work. Keep a
-required value with whoever requires it and observed behavior with the
-implementation that shows it; neither proves the other. Missing facts remain
-explicit unknowns.
+their cost. If the project has stated no such decision, assess the consequence of
+disagreement yourself (see [rank by how it fails](references/definitions.md#rank-by-how-it-fails)),
+state the assumption, and ask the user when the cost is unclear. When
+requirements change, revisit the affected copies and checks, and record any
+requirement left unmet in the project's issue tracker, or in the report to the
+user when there is none. A stated
+requirement and observed behavior are separate facts; neither proves the other.
+Missing facts remain explicit unknowns.
 
 This skill traces authoritative definitions, their consumers and consistency
-checks. It requires no particular project scaffold or companion skill.
+checks. A **gate** is an automated check that must pass before a change is
+merged (typically the CI job required on the main branch); a check that only
+runs on request is not in the gate. If the project has no gate, say so: a check
+outside a gate records the risk (rung 6) rather than preventing it, and ask the
+user whether to add one.
 
 ## Read for the decision at hand
 
@@ -53,9 +60,13 @@ checks. It requires no particular project scaffold or companion skill.
 Read the relevant reference when that decision arises; these are not a startup
 reading list.
 
-The numbered “rungs” are the [options for deriving or checking a copy](references/definitions.md#derive-instead-of-restate).
+A **rung** is one of the six numbered options for deriving or checking a copy,
+from removing the restatement (rung 1) to recording the duplication (rung 6);
+the ladder is in [derive instead of restate](references/definitions.md#derive-instead-of-restate).
 
 ## Review and verification
+
+Report the following to the user:
 
 - Name the concept, its authoritative home, and the rung you stopped at.
 - Show evidence of the drift risk and how the chosen option addresses it: a

@@ -20,4 +20,4 @@ flowchart TB
 The return path includes a changed draft; rejection alone does not trigger a
 repeat. The pause retains unresolved findings rather than implying acceptance.
 For an execution workflow, use its actual failure and retry obligations instead
-of copying this review loop onto a provider operation.
+of copying this review loop onto a call to an external service.

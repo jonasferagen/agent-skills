@@ -1,8 +1,8 @@
 ---
 name: postgres-design
-description: "Design or review PostgreSQL schemas, migrations and transaction boundaries, including pooled connections. Use for keys, relationships, types, state and integrity; query tuning follows project guidance."
+description: "Design or review PostgreSQL schemas, migrations and transaction boundaries, including pooled connections. Use for keys, relationships, types, state and integrity; not for query tuning."
 metadata:
-  version: "2.0.1"
+  version: "2.1.0"
 ---
 
 # Postgres design
@@ -14,7 +14,8 @@ Inspect later migrations before treating an initial definition as current.
 
 Apply these conventions to new application-owned PostgreSQL objects unless a
 concrete domain, compatibility or operational requirement justifies a departure.
-Record the reason in the project's owning guide. Explicit project conventions
+Record the reason beside the project's other database conventions, or in the
+migration that departs, if no such document exists. Explicit project conventions
 take precedence. Check the target PostgreSQL version before using newer features.
 Adopting these conventions does not by itself call for renaming existing
 objects, rewriting deployed migrations, changing access or deploying anything.
@@ -24,12 +25,12 @@ Examples below are synthetic.
 
 | Object | Default |
 | --- | --- |
-| Tables | English, lower-case `snake_case`, plural: `projects`. |
-| Link tables | Subject first, singular prefix and plural related noun: `project_people`. Use a domain noun when the relationship has its own meaning. |
+| Tables | English, lower-case `snake_case`, plural: `orders`. |
+| Link tables | Subject first, singular prefix and plural related noun: `order_products`. Use a domain noun such as `order_items` when the relationship has its own meaning. |
 | Columns | English, lower-case `snake_case`; singular for a single value. |
-| References | Role followed by the referenced key name: `project_id`, `reviewer_id`. Distinguish multiple roles referring to the same table. |
+| References | Role followed by the referenced key name: `order_id`, `approver_id`. Distinguish multiple roles referring to the same table (`customer_id` and `approver_id` both referencing `people`). |
 | Instants | PostgreSQL `timestamptz`, names ending in `_at`. |
-| Calendar dates | `date`, with a domain name such as `valid_from` or `review_on`. |
+| Calendar dates | `date`, with a domain name such as `valid_from` or `ship_on`. |
 | Primary and foreign keys | Keep PostgreSQL-generated `_pkey` and `_fkey` names. |
 | Checks | Explicit `<table>_<subject>_check`; name the rule. |
 | Unique constraints | Explicit `<table>_<columns>_unique`. |
@@ -43,7 +44,8 @@ shortens. Naming communicates intent but does not enforce identity or access.
 
 Maintained entities need a stable local identity that survives corrections to
 labels and external references. Use `id uuid PRIMARY KEY DEFAULT gen_random_uuid()`
-for new entities. Keep UUIDs in the native `uuid` type. Use the project's chosen
+for new entities (built in since PostgreSQL 13; older versions need the
+`pgcrypto` extension). Keep UUIDs in the native `uuid` type. Use the project's chosen
 generator when one is established. Before selecting a newer UUID algorithm,
 check target-version support and the workload; switching does not require
 rewriting existing identities.
@@ -70,13 +72,15 @@ uniqueness within their real scope, including provider, account, list or other
 namespace where needed.
 Preserve opaque identifiers' case and contents unless the provider defines
 normalization. Reject blank identifiers rather than treating them as identities.
-Keep evidence URLs separate from identity.
+Keep URLs that point at an external record separate from identity.
 
-A source association can be provenance without identifying the local entity.
-Model many-to-many provenance when several records can share one source; a
-capture retry must then use an explicit target or reject ambiguous matches.
-Cross-database references need an explicit validation and missing-target policy;
-an identifier alone neither supplies a foreign key nor confers authority.
+A link to the import source a record came from is provenance; it does not
+identify the local entity. When several records can share one source, model
+that as many-to-many; a repeated import must then name its target record or
+reject ambiguous matches.
+Cross-database references need an explicit rule for validation and for a
+missing target; an identifier alone neither supplies a foreign key nor proves
+the target exists.
 
 ## Types and missing values
 
@@ -99,7 +103,8 @@ that duplicate lifecycle or conceal unknowns. Retain a boolean for a genuinely
 binary property; define what false and unknown mean. This concerns stored domain
 fields, not application control flow or booleans derived in views.
 
-Keep lifecycle, real-world validity, visibility and evidence confidence distinct.
+Keep lifecycle, real-world validity, visibility and confidence in imported data
+distinct.
 An archive timestamp describes visibility only if the domain defines it that way.
 Decide separately whether links have their own lifecycle. Do not add validity
 periods to every relationship or assume that an unknown end date proves activity.
@@ -111,8 +116,9 @@ invent midnight timestamps or infer domain events from database bookkeeping.
 Store explicit conditions and derive their current consequences. For example,
 readiness can depend on a prerequisite and a date; storing another mutable
 `is_ready` flag creates a second rule to maintain. Keep a condition after it is
-satisfied if it may become unsatisfied again. An answer, evidence match or
-review date establishes permission only through the domain's explicit rule.
+satisfied if it may become unsatisfied again. A stored fact such as a signed
+agreement or an approval date establishes permission only through the domain's
+explicit rule.
 
 ## Controlled vocabularies
 
@@ -140,7 +146,9 @@ updated_at timestamptz NOT NULL DEFAULT now()
 
 Reuse existing columns. These defaults handle insertion only. Attach a shared
 row-level `BEFORE UPDATE` trigger that sets `NEW.updated_at = clock_timestamp()`
-on every update, including no-op updates, and preserves `OLD.created_at`.
+on every update, including no-op updates, and preserves `OLD.created_at`: one
+function per schema (for example `<schema>.set_updated_at()`), one trigger per
+table named `<table>_set_updated_at`, unless the project already has one.
 Keep this database-managed so every write path follows the same rule. A project
 may choose meaningful-change-only tracking, but must define and test that exception.
 Database defaults can be overridden by supplied values; decide at the write
@@ -162,13 +170,18 @@ An update timestamp is not a revision history. If audit or domain events are
 required, define coverage, actor attribution, payload exclusions and retention
 separately. Emit required events atomically with the change and protect immutable
 history through the access model. Avoid copying credentials or unnecessary
-sensitive payloads into logs. Project policy decides which tables need coverage.
+sensitive payloads into logs. The project decides which tables need coverage
+and which mechanism records it (triggers, application events); if it has
+decided neither, ask the user rather than auditing everything.
 
 ## Integrity and access
 
 Put application-owned objects in named schemas, each holding one application's
-or concern's objects, not in `public` or a platform-managed schema. Preserve the
-project's exposure model; a schema name alone provides no access protection.
+or concern's objects, not in `public` or a platform-managed schema (one the
+hosting provider or an extension owns, such as `auth`, `storage` or
+`extensions`). Preserve the project's exposure model, meaning which roles,
+APIs or schemas it already exposes to which callers; a schema name alone
+provides no access protection.
 Schema-qualify objects at trust boundaries and review the privileges of functions
 and views as well as tables. Separate runtime authority from schema ownership.
 Domain membership or an organisation relationship does not imply database access.
@@ -183,35 +196,44 @@ need an index for access by `right_id`.
 Use constraints for row and relationship invariants. For changes spanning rows,
 commands, retries or workers, read [operations](references/operations.md).
 Work within the project's existing write boundary: a restricted record writer
-and a command-only API have different responsibilities. Do not grant direct
-table writes merely to make a generic convention easier to apply.
+(application code that may insert and update rows directly under a narrow role)
+and a command-only API (writes happen only through named operations, such as
+functions or endpoints, that enforce the rules) have different responsibilities. If the project
+designates no write path, treat the application's existing data-access code as
+that boundary and say so. Do not grant direct table writes merely to make a
+generic convention easier to apply.
 
 When application code runs transactions through a connection pool under
 restricted roles, read [pooled transactions](references/pooled-transactions.md).
 It covers binding each transaction to a role, read-only transactions, refusing a
-commit after a failed statement, and resetting a connection before reuse.
+commit after a failed statement, and resetting a connection before reuse. It
+describes the contract such code must meet; write a new runner only when the
+project has none and the task includes application code.
 
 ## Development lifecycle
 
 For a new database implementation or an environment change, include the operating
-lifecycle in the design: isolated development storage, canonical migrations and a
-repeatable synthetic seed routine, even if automated tests come later. Keep a
-conceptual model review scoped to its question. Use database-migrations when
-available for setup, migration and seed implementation; otherwise preserve these
-outcomes in the project's operating guide and implementation work.
+lifecycle in the design: isolated development storage (a database or container
+owned by the checkout, shared with no other environment), canonical migrations and a
+repeatable synthetic seed routine, even if automated tests come later. A
+request to review the conceptual model answers only that question and does not
+start this lifecycle work. Implement setup, migrations and
+seeds with the migration tool the project already uses; if it has none, propose
+one, state the choice and ask the user before adding it.
 
-Treat dev and a shared validation environment such as staging as separate roles.
-State which environments exist and which are only planned; do not provision a
-second environment merely to complete a pair. Adding or repurposing one calls for
-reviewing credentials, external effects, retained data and recovery as well as
-configuration. Follow the project's policy/design change route when available.
+Treat development and a shared validation environment such as staging as
+separate environments with separate purposes. State which environments exist and
+which are only planned; do not provision a second environment merely to complete
+a pair. Adding or repurposing one calls for reviewing credentials, external
+effects, retained data and recovery as well as configuration; raise it with the
+user before doing so.
 
 ## Review and verification
 
 Review identity, nullable uniqueness, valid state combinations, deletion behavior,
 time semantics and access against concrete domain cases. For migrations, check
 existing data and backfill meaning as well as the empty-schema result. Keep
-deployed migrations immutable and follow the project's migration workflow.
+deployed migrations immutable and follow the project's migration conventions.
 
 Use the project's relevant checks: catalog assertions can cover naming, required
 columns and trigger coverage; behavioral checks should cover rejected invalid

@@ -1,8 +1,8 @@
 ---
 name: python-design
-description: "Design or review the structure of Python programs: module responsibilities, phase contracts, state ownership, shared interfaces and naming. Use for architectural decisions and scoped refactoring; language correctness belongs to python-patterns."
+description: "Design or review the structure of Python programs: module responsibilities, phase contracts, state ownership, shared interfaces and naming. Use for architectural decisions and scoped refactoring, not for language-level correctness such as validation, numerics or failure handling."
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Python design
@@ -11,14 +11,18 @@ Make responsibilities and contracts visible as a Python program grows. Choose
 functions, modules, values and classes by the responsibility they express;
 neither classes nor a particular architectural pattern are required.
 
-<!-- Package-boundary copy: python-patterns/SKILL.md carries the same repository authority rule. Keep both aligned. -->
-The repository owns product contracts, framework choices, tooling and test
-policy. When its instructions conflict with this package, report both passages
-rather than silently changing either owner. Follow the user's explicit decision.
+The project's own instructions decide product contracts, framework choices,
+tooling and testing. Read them first; if nothing is documented, infer the
+supported Python version and tools from `pyproject.toml`, CI configuration and
+tool-version files, and state the assumption. When those instructions conflict
+with this skill, report the conflict to the user, quoting both passages, and
+ask which to follow. Follow the user's explicit decision.
 
 ## Workflow
 
-1. Establish the requested scope: review, conversion plan or implementation.
+1. Establish the requested scope: a review, a replacement plan (how to migrate
+   from one implementation to another while keeping its public behaviour) or
+   an implementation.
    Read the product contracts and trace one representative call through its
    data transformations, dependencies and effects before proposing boundaries.
 2. Name the concrete responsibility, invariant or lifecycle that is unclear.
@@ -28,8 +32,12 @@ rather than silently changing either owner. Follow the user's explicit decision.
    behaviour unless the task authorizes a change; keep small fixes scoped.
    A review or plan does not authorize implementing its recommendations.
 4. For implementation, update affected callers and run relevant checks. For a
-   plan, identify migration steps, compatibility obligations and evidence needed
-   to switch. Explain tradeoffs and what remains untested.
+   plan, identify migration steps, compatibility obligations and the checks
+   that must pass before switching. Explain tradeoffs and what remains untested.
+
+A review or plan is reported to the user as: findings, each tied to the code or
+call trace that shows it; a recommendation with the smallest change; and what
+remains untested or undecided.
 
 ## Start by symptom
 
@@ -49,7 +57,8 @@ or immutable records are not evidence of better design. Avoid turning a known
 sequence of calls into a framework or unifying different semantics merely
 because their records look similar.
 
-Python-patterns is a suitable companion for runtime validation, numerical
-correctness, mutation mechanics and failure handling. This skill addresses who
-owns those contracts and how callers use them. Repository contracts still own
-domain semantics, tool choices and acceptance criteria.
+How to validate a value, compare numbers, mutate safely or report a failure
+is a language-level concern outside this skill. The references mention
+validation and failure only to place them: this skill addresses which stage or
+object owns such a guarantee and how callers rely on it. The project still
+decides domain semantics, tool choices and acceptance criteria.

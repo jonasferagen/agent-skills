@@ -2,14 +2,16 @@
 name: diagrams-and-tables
 description: "Read or explain diagrams and tables, check their meaning, choose a visual form, or construct and visually review one. Route by the task so interpreting an existing view does not require authoring or renderer guidance."
 metadata:
-  version: "0.12.2"
+  version: "0.13.0"
 ---
 
 # Diagrams and tables
 
 Start with the user's question and the existing view, caption, legend and source.
 Keep what the view states separate from what the underlying system proves.
-Follow the project's document ownership and navigation guidance.
+Follow the project's documentation conventions for where a diagram lives and
+how it is linked; if it has none, place the diagram in the document that
+explains its subject and tell the user that choice.
 
 ## Select the task
 

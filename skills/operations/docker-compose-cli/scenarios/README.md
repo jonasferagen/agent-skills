@@ -14,8 +14,8 @@ run's observed results with the change that ran it, not here.
 | A wrapper holds a port or image tag to check it, without writing it where compose reads it | Flagged: compose falls back to its own default, usually the first selection's. |
 | A wrapper passes the project name on every invocation | No second copy exists, so no further check is needed. |
 | A disposable compose file sets `container_name` or a fixed volume name | Flagged: those names escape the project and collide between runs. |
-| `compose down --remove-orphans` is called with a mistyped project name | Refused at parse time; an unrecognised name is not passed through. |
-| A destructive reset is requested for a project whose data no seed reproduces | Refused, and its confirmation flag refused where it does not apply. |
+| `compose down --remove-orphans` is called with a mistyped project name | A wrapper refuses it at parse time against its allow-list; an unrecognised name is not passed through. |
+| A destructive reset or `down --volumes` is requested for a project whose data no seed reproduces | Refused; the data's disposability is established first. |
 | A development project name is taken as evidence that its data is disposable | Rejected: the label alone is insufficient. |
 | `compose run` borrows a developer stack's service definition | A throwaway directory is bound at every mount point the run does not own, as a required argument. |
 | A borrowed service uses a named volume declared only in its source file | The calling project declares the volume too; `extends` does not carry the source file's top-level declaration. |
@@ -23,10 +23,6 @@ run's observed results with the change that ran it, not here.
 | An extended file interpolates a relative bind path while the caller runs Compose elsewhere | Check `docker compose config` with the actual files, environment and working directory; the bind resolves from the extended file's directory. |
 
 ## Images and builds
-
-Measured against Docker 29.4.3 and Compose v5.1.3 with a two-service fixture
-holding a `build:` service over a local base image, each probe under its own
-project name and label.
 
 | Request and context | Expected behavior |
 | --- | --- |
@@ -42,26 +38,16 @@ project name and label.
 | --- | --- |
 | Teardown runs `compose down` but skips the leftover listing | Flagged: a stack that failed before compose recorded it stays invisible. |
 | A prune command would be faster than project-scoped teardown | Rejected: it reaches resources this work did not create. |
-| A request concerns one container or image command | Out of scope: docker-cli owns single-command mechanics. |
-| A request concerns a host full of unattributed resources | Out of scope: docker-cleanup owns host-wide attribution and reclaim. |
-| A request asks what a composed set must declare about its variants and prerequisites | Out of scope: an outcome owned by the consuming project's convention. |
+| A request concerns one container or image command | Out of scope: a plain `docker` command on one container is not a compose matter. |
+| A request concerns a host full of unattributed resources | Out of scope: host-wide attribution and reclaim is a separate audit task. |
 
 ## Open
 
 - Whether image selection deserves naming in the skill's description is
-  undecided; changing it makes routing an acceptance requirement.
+  undecided.
 
 ## Limits
 
-- The port-fallback and borrowed-definition rules come from reproduced defects
-  and measured fixes in one project; the build-policy rules were measured as
-  above; the rest are author-reviewed.
-- The `extends` declaration, interpolation and relative-path cases were
-  reproduced with synthetic files using Docker 29.4.3 and Compose v5.1.3;
-  `config` exercised parsing only, not a running container or registry pull.
-- The `pull_policy: never` case was measured with Docker 29.4.3 and Compose
-  v5.1.3 against an absent image on an unused loopback registry port, so the
-  pull attempts were observed but none could succeed.
-- One routing trial exercised the borrowed-definition seam and found the
-  missing-env-file defect now repaired. The risk that a request naming a stack
-  selects docker-cli on the word "container" did not occur in its four cases.
+- The build-policy, `extends` and `pull_policy: never` behaviours describe
+  Compose v2 as of 2026; later releases may differ, and the `extends` cases
+  cover `docker compose config` rendering, not a running container.

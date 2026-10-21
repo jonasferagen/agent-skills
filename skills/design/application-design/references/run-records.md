@@ -11,7 +11,8 @@ Identify the attempt separately from the input revision and result. For stages
 whose partial completion matters, distinguish not started, running, passed and
 failed. An interrupted running stage has an unknown outcome until reconciled;
 absence of a failure record does not mean success. Preserve relevant diagnostics
-and earlier attempts within the project's data and retention policy; keep secrets
+and earlier attempts for as long as the project's retention rules allow, or
+until the user says they may go if there are none; keep secrets
 and prohibited input content out of records and logs. Record technical completion
 separately from acceptance.
 
@@ -50,5 +51,6 @@ appropriate snapshot or writer-control mechanism.
 Exercise the consequential gap: interrupt publication, change an input during
 capture, or repeat a revision with conflicting content. Verify both the record
 and the outputs, then state which recovery and concurrency guarantees remain
-untested. Surface a demonstrated gap in the owning work record; do not expand a
-small operation into a general job framework without a current need.
+untested. Report a demonstrated gap to the user, and record it in the project's
+tracker or design notes if it has one; do not expand a small operation into a
+general job framework without a current need.

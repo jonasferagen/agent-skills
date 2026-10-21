@@ -50,7 +50,8 @@ Same-filesystem rename supplies atomic replacement of a directory entry; a move
 from the system temporary directory may cross filesystems and become a copy.
 Atomic visibility does not imply crash durability, preserved permissions/ACLs,
 no-overwrite semantics or protection against concurrent writers. Set the required
-metadata before publishing and use the repository's locking or stronger storage
+metadata before publishing and use the project's locking (or `flock(1)` on a
+lock file beside the destination when it has none) or a stronger storage
 primitive when those guarantees matter. An existence test followed by `mv` does
 not prevent a race; interactive flags are not an unattended conflict policy.
 
@@ -63,8 +64,8 @@ and working-directory changes can affect that caller. Keep library definitions
 separate from executable entrypoints and preserve the existing integration form.
 
 Use the supported Bash and utility versions. Associative arrays and `mapfile`
-need Bash 4 or later; options such as `mapfile -d` and `wait -n` have later minimums.
-Check the specific feature instead of assuming every machine with Bash has it.
+need Bash 4 or later; `wait -n` needs 4.3, `mapfile -d` and `inherit_errexit`
+4.4. Check the specific feature instead of assuming every machine with Bash has it.
 
 Sources: [mktemp](https://www.gnu.org/software/coreutils/manual/html_node/mktemp-invocation.html),
 [trap](https://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html),

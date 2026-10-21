@@ -7,8 +7,9 @@ buying. ER-specific models live in [ER examples](er/examples.md);
 data movement has [data-flow examples](data-flow/examples.md).
 
 These are synthetic design examples. References to storage or delivery contracts
-name illustrative owners, not supplied documents or verified systems. In a real
-project, link the actual owner before marking that detail as available elsewhere.
+name illustrative documents, not supplied ones or verified systems. In a real
+project, link the actual document before marking that detail as available
+elsewhere.
 
 ## An overview and its detail, instead of one wide block
 
@@ -35,7 +36,7 @@ flowchart TB
   subgraph Publish [publish boundary]
     direction TB
     P0["stale-base check"] --> P1["whole-corpus validation"]
-    P1 --> P2["artifact policy"]
+    P1 --> P2["artifact rules"]
     P2 --> P3["immutable commit"]
     P3 --> P4["activation"]
   end
@@ -157,7 +158,7 @@ flowchart TB
   subgraph Build [optional backend build]
     direction TB
     B0["load source"] --> B1["build revision"]
-    B1 --> B2["bake artifact"]
+    B1 --> B2["package artifact"]
   end
   B2 --> F["set finalization"]
 ```
@@ -182,18 +183,18 @@ those facts or introduce a third altitude.
 
 ## Before / after as parallel vertical lanes
 
-**Replaces:** a paragraph saying "today the response is baked per request;
+**Replaces:** a paragraph saying "today the response is rendered per request;
 afterwards it resolves a pinned artifact instead" — true, but the reader has to
 hold both flows in their head to see where they diverge.
 
 ```mermaid
 flowchart TB
-  subgraph Before [today: bake per request]
+  subgraph Before [today: render per request]
     direction TB
-    B0["request"] --> B1["bake on demand"]
+    B0["request"] --> B1["render on demand"]
     B1 --> B2["serve response"]
   end
-  subgraph After [target: prebaked artifact]
+  subgraph After [target: prebuilt artifact]
     direction TB
     A0["request"] --> A1["resolve pinned artifact"]
     A1 --> A2["serve response"]
@@ -211,9 +212,9 @@ show.
 
 ## A layered overview with separate detail
 
-**Source shape:** a content platform's outer dependency map, generalized from a
-real repository. Cross-group edges in a left-to-right chart can make internal
-nodes form wide rows, even with `direction TB` inside each group.
+**Replaces:** one left-to-right chart of a content platform's outer dependency
+map with every node drawn. Cross-group edges in a left-to-right chart can make
+internal nodes form wide rows, even with `direction TB` inside each group.
 
 At overview level, show the three dependency groups as single nodes. Each arrow
 means that at least one part of the first group depends on a part of the next;
@@ -221,26 +222,26 @@ it does not claim every member connects to every other member.
 
 ```mermaid
 flowchart LR
-  Surfaces["consumer surfaces"] -->|"depend on"| Services["repository services"]
-  Services -->|"depend on"| Backbone["durable backbone"]
+  Surfaces["client surfaces"] -->|"depend on"| Services["services"]
+  Services -->|"depend on"| Backbone["stores"]
 ```
 
 Open those groups in a separate detail view when the particular dependencies are
 the question. This representative slice keeps the cross-group fan-out; the
-original owns the complete inventory. Use top-to-bottom layout here to keep the
-individual nodes and labels legible in a document column. Level editor, content
-browser and runtime are consumer surfaces. Static host, read-only projector and
-writer lane are repository services; catalog and files form the durable backbone.
-The ungrouped nodes keep each dependency's endpoint visible.
+architecture document owns the complete inventory. Use top-to-bottom layout here
+to keep the individual nodes and labels legible in a document column. Web app,
+content browser and mobile app are client surfaces. Static host, read API and
+write API are services; catalog and files are the stores. The ungrouped nodes
+keep each dependency's endpoint visible.
 
 ```mermaid
 flowchart TB
-    E0["level editor"]
+    E0["web app"]
     E1["content browser"]
-    E2["runtime"]
+    E2["mobile app"]
     S0["static host"]
-    S1["read-only projector"]
-    S2["writer lane"]
+    S1["read API"]
+    S2["write API"]
     B0["catalog"]
     B1["files"]
   E0 --> S0
@@ -283,9 +284,9 @@ decision needs.
 
 | Option | Effort | Reversible | Cost when wrong |
 | --- | --- | --- | --- |
-| **bake at publish** (chosen) | medium | yes — republish | stale artifacts until the next publish |
-| bake per request | low | yes | latency on every read, permanently |
-| bake nightly | low | no — batch window is fixed | a day of stale reads before anyone notices |
+| **render at publish** (chosen) | medium | yes — republish | stale artifacts until the next publish |
+| render per request | low | yes | latency on every read, permanently |
+| render nightly | low | no — batch window is fixed | a day of stale reads before anyone notices |
 
 Prose then carries only what the table cannot: *why* reversibility and the
 cost of being wrong outrank effort here. Effort is paid once; an irreversible

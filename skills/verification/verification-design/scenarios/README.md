@@ -13,20 +13,11 @@ run's observed results with the change that ran it, not here.
 | Two suites each build the same image and then use separate mutable databases | Consider reusing the built artifact while preserving isolated state; measure setup cost first. |
 | A developer ran a focused test during implementation | Name it as focused feedback; do not report the milestone gate as complete. |
 | Docker is unavailable for a required image check | Report that check as outstanding, not passed or silently skipped. |
-| A project already defines a milestone gate | Preserve the gate until the project owner changes it; offer a costed alternative without silently weakening the commitment. |
-| A settled suite has mock drift and weak assertions | Route the review to a test audit; this skill selects evidence for active changes. |
+| A project already defines a milestone gate | Preserve the gate unless the user asks to change it; offer a costed alternative without silently weakening the gate (the checks a change must pass before it is accepted). |
+| A settled suite has mock drift and weak assertions | Treat it as a separate review of the suite; this skill selects evidence for active changes. |
 | A wrapper command is proposed solely because many commands exist | Require a concrete reduction in omission or setup cost; keep each command's coverage and result visible. |
-| A landing command runs a full game or service hook for a documentation-only change | Select suites from the affected inputs after integration preparation: Markdown-only work selects the documentation checks; a code change includes its document dependency; a shared structured contract selects both suites. |
-| An input is unknown, executable, a symlink, empty, or part of the check configuration | Full checks run; unclear dependencies keep broad checks. |
-| A selected check fails | The base is left unchanged; integration does not proceed. |
-| A suite map is invalid or a named hook is missing | Refused rather than skipped. |
-| A repository has a small cheap suite and no suite map | No selector is required; full verification is preserved. |
-| The selected evidence requires writing a test | Hand the writing to test-writing. |
-
-## Limits
-
-- The cases are author traces and fixture tests on real temporary Git
-  repositories; no independent activation or elapsed-cost improvement has been
-  measured.
-- Suite selection has been implemented in one project's landing command and
-  one optional documentation hook; a second adoption is still to come.
+| The pre-acceptance check runs the full service suite for a documentation-only change, and the project keeps a path-to-suite map (changed paths to suites) | Select suites from the affected inputs of the change as it will be merged: Markdown-only work selects the documentation checks; a code change includes its document dependency; a shared structured contract selects both suites. |
+| A changed path is one the path-to-suite map cannot place: unknown, executable, a symlink, empty, or part of the check configuration | Full checks run; unclear dependencies keep broad checks. |
+| A selected check fails | The change is reported as not verified and is not accepted on that run. |
+| A path-to-suite map is invalid or a named check command is missing | Refused rather than skipped. |
+| A repository has a small cheap suite and no path-to-suite map | No selector is required; full verification is preserved. |

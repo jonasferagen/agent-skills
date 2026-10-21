@@ -103,20 +103,11 @@ Existing imports retain their pinned source paths; use the new path when importi
 a revision after a move.
 
 Every package keeps its required resources inside its own directory: references,
-templates, scripts and their tests. Links must stay inside the package. A skill
-refers to another skill by name, never by a relative path, because the consumer
-decides which skills are installed and where. When two packages must each state
-one rule, record the copy in both places with a comment naming the counterpart,
-such as `<!-- Package-boundary copy: test-writing/references/fixtures.md states
-this rule for ordinary tests. Keep both passages aligned. -->`. Paths start with
-the counterpart's package name.
-
-These comments record a maintenance relationship, not semantic agreement. Name
-the authoritative owner when one passage is a copy. Prefer deriving a required
-copy or checking it against that owner over relying on a reminder. Source-level
-reuse can cross package boundaries while every committed package remains
-independently installable. Keep contextual applications distinct when exact
-wording would erase their different responsibilities.
+templates, scripts and their tests. Links must stay inside the package. A shipped
+skill names no other skill and depends on none: when two packages need the same
+rule, each states it in full in its own words. Packages are generic: they make no
+claims about a particular consuming project's process, records or conventions,
+and their examples are synthetic.
 
 A distribution may import an explicitly self-contained reference as a file,
 recording its owning skill, version, source path and full commit. This does not

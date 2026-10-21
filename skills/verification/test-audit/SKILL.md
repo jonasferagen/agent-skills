@@ -2,22 +2,25 @@
 name: test-audit
 description: "Audit a settled test suite for weak assertions, gaps, brittle cases, mock drift, non-determinism and misleading coverage claims. Use when asking whether existing tests actually protect behavior; choosing evidence for an active change is a separate task."
 metadata:
-  version: "0.3.4"
+  version: "0.4.0"
 ---
 
 # Test audit
 
-<!-- Package-boundary copy: test-writing/SKILL.md opens with the same repository authority rule. Keep both aligned. -->
-**Local docs own the testing standard; this package supplies the lenses.** The
-standard covers which frameworks, layers and commands a repository uses, and
-what it has decided to test thinly on purpose. Read the nearest
-agent-instruction file and the repository's own testing guidance first. If that
-guidance contradicts a lens here, judge against the guidance. Report the
-contradiction to the user as documentation drift, quoting both passages, and
-edit neither side. Do not use it as permission to pick the easier rule.
+**The repository's own documentation sets the testing standard; this skill
+supplies the lenses.** The standard covers which frameworks, layers and commands
+a repository uses, and what it has decided to test thinly on purpose. Read the
+nearest agent instruction file (`AGENTS.md`, `CLAUDE.md` or similar) and the
+repository's own testing guidance first. If there is none, infer the standard
+from the test configuration, CI jobs and existing tests, and state that
+assumption in the report. If the guidance contradicts a lens here, judge against
+the guidance. Report the contradiction to the user as documentation drift,
+quoting both passages, and edit neither side. Do not use it as permission to
+pick the easier rule.
 
-Assess whether settled tests protect behavior or are thin, brittle, redundant,
-flaky, or silently missing.
+Assess whether settled tests (tests already merged, not part of a change under
+review) protect behavior or are thin, brittle, redundant, flaky, or silently
+missing.
 
 **Stay read-only** for tests, fixtures, and production code unless the user asks
 for edits. When the work already authorizes repository edits, repair stale prose
@@ -26,14 +29,17 @@ command. **A focused-test marker is a hard finding:** it silently skips every
 unfocused test in its scope (its file in some runners, the whole run in others),
 so the suite can still report green over a denominator it never names. Report it
 prominently and remove it only when the user's request authorizes test edits.
-Writing tests for discovered gaps is follow-up work; use the `test-writing`
-skill when that work is authorized.
+Writing tests for discovered gaps is follow-up work; do it only when the user
+authorizes it, following the repository's testing conventions.
 
-Three neighbouring passes are not this one. Tests inside a change under review
-belong to that review. A finding whose subject is the production contract behind
-an awkward test, rather than the test itself, is an architecture finding. Whether
-a custom check or gate survives structural change is its own question. Hand those
-on rather than settling them here.
+Three neighbouring questions are not this one. Tests inside a change under
+review belong to that change's review. A finding whose subject is the production
+contract behind an awkward test, rather than the test itself, is a design
+finding. Whether a project-specific check script, such as a test scanner, keeps
+working after the code is restructured is its own question. Report these to the
+user under a separate "Out of scope" heading at the end of the audit report
+rather than settling them here. When it is unclear whether a test is settled
+(for example, it sits on an open branch), ask the user before including it.
 
 ## Authority and modes
 
@@ -43,15 +49,20 @@ on rather than settling them here.
   assertions and observable contract, then expand only to public API, peers, and
   traced requirements.
 
+Pick the mode from the scope the user named; when the request does not make it
+clear, ask the user.
+
 An audit can inspect files without running the suite. If it reports suite timing
-or complete coverage, run the complete selected suite and name what it measured.
+or complete coverage, run the complete selected suite (every test the
+repository's test command would run for the scope under audit) and name what it
+measured.
 A fail-fast run that stops early or a fast subset leaves tests unrun; report its
-result as partial feedback, not as complete verification. The reading project's
-own policy decides which runs are required for a change or release.
-When a fast lane lists its members, the full lane must still select every
-listed test; membership is a performance classification, not a coverage exception.
-Use the `verification-design` skill when the task asks which checks an active
-change needs.
+result as partial feedback, not as complete verification. The project's own
+conventions decide which runs are required for a change or release. When the
+project defines a fast subset of tests by listing its members, the full run
+must still select every listed test; membership is a performance classification,
+not a coverage exception. Choosing which checks an active change needs is a
+separate task from auditing the suite.
 
 ## Workflow
 
@@ -59,7 +70,7 @@ change needs.
 
    ```bash
    git status --short --untracked-files=all
-   find <scope> -name '<agent-instruction-file>' -print
+   find <scope> -name 'AGENTS.md' -print   # or CLAUDE.md, CONTRIBUTING.md, TESTING.md
    ```
 
 2. **Run the repository's own test scanner, and its report of source files
@@ -103,9 +114,9 @@ change needs.
      Ask where the expectation came from and what independently checked it.
      When it was never checked, distinguish that missing evidence from later
      drift. See [references/principles.md](references/principles.md#mocking).
-   - **Fixtures:** prefer fixture factories from the package that owns the
-     type, and branded values; flag duplication, over-building, inaccessible
-     existing fixtures, and helpers that cannot express absence.
+   - **Fixtures:** prefer shared fixture factories defined alongside the type
+     they build over ad-hoc literals; flag duplication, over-building,
+     inaccessible existing fixtures, and helpers that cannot express absence.
    - **Determinism:** wall clock, unseeded randomness, network, sleeps, and real
      filesystem dependencies.
    - **Traceability:** one observable behavior per test, and visible requirement
@@ -118,9 +129,16 @@ change needs.
 
 ## Classification and output
 
-Classify findings as **Quick win**, **Coverage gap**, **Brittleness**,
-**Determinism risk**, **Production smell**, **Keep intentionally**, or **No
-evidence yet**.
+Classify each finding:
+
+- **Hard finding**: a focused-test marker; always reported first.
+- **Quick win**: a weak assertion or stale mock fixed in a few lines.
+- **Coverage gap**: a behavior or path no test exercises.
+- **Brittleness**: a test coupled to implementation detail or incidental order.
+- **Determinism risk**: time, randomness, network, sleeps or shared state.
+- **Production smell**: awkward test construction caused by the production contract.
+- **Keep intentionally**: a thin test the project chose on purpose, with its rationale.
+- **No evidence yet**: an external expectation nothing has checked against the real system.
 
 Lead with the highest-signal findings. For each give the path, the concrete
 smell, the failure it permits or the refactor it blocks, the evidence, and the

@@ -22,7 +22,7 @@ its methods coordinate substantial local working state; keep its mutation
 private to that operation and expose the completed result.
 
 A static method can group an operation with an existing value or service when
-callers benefit from that association. A repository may also choose a consistent
+callers benefit from that association. A project may also choose a consistent
 class-based API. Preserve such public contracts unless changing them is in scope;
 do not add or remove wrappers solely to impose this skill's preference.
 Do not hide mutable service state in class attributes or a global singleton.
@@ -72,7 +72,8 @@ convention, not an access-control mechanism.
 Keep invariants on the value; leave I/O, persistence and heavyweight adapters
 with an owning service. Prefer composition to inheritance unless callers
 actually rely on substituting subclasses. Repeated classes differing only in
-fixed data are candidates for descriptors plus shared behavior, not another
-copy with a new name.
+fixed data are candidates for one class whose varying data lives in instance
+attributes or a descriptor (an attribute object with `__get__`/`__set__`, as
+`property` is), not another copy with a new name.
 
 Source: [method binding](https://docs.python.org/3/library/functions.html#classmethod).

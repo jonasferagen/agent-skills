@@ -15,7 +15,7 @@ run's observed results with the change that ran it, not here.
 | Interpret a repository map drawn in flowchart syntax as handoff responsibilities | Read it as the responsibilities it states, without loading construction or renderer guidance. |
 | Explain an agent-led workflow's swimlane view | Retain proposed status and delegated authority; invent no APIs or services. |
 | A question needs the exact order of calls and replies | A sequence diagram, not a swimlane; missing protocol ordering stays explicit. |
-| Fill cells in an existing table | Table reading and authoring notes; no diagram construction references. |
+| Fill cells in an existing table | Preserve the table's columns, meaning and explicit unknowns; no diagram construction references are needed. |
 
 ## Form choice
 
@@ -58,18 +58,15 @@ run's observed results with the change that ran it, not here.
 | A diagram is too wide at reading width | Reflowed or split, rather than shrunk further. |
 | Rendering documentation would need a new application dependency | Refused; temporary output is used for visual checks unless the project's renderer needs a committed image. |
 | No renderer is available | Source review is reported separately from the parse and visual checks that did not run. |
-| Deciding where a diagram lives in a document set | Deferred: this skill owns form choice, drawing and verification; the owning surface decides placement, discoverability and catalog entry. |
-| Adopting the skill into an existing project | No redrawing of existing diagrams is implied, and an established visual format the project already follows takes precedence. |
+| Deciding where a diagram lives in a document set | Deferred to the project's documentation conventions: this skill covers form choice, drawing and verification, not where the diagram is filed or indexed. |
+| The project already follows an established visual format | That format takes precedence, and no redrawing of existing diagrams is implied. |
 
 ## Limits
 
 - Mermaid behavior claims were checked with Mermaid 12.0.0, 11.17.2 and 11.16.1
-  through the CLI and Chrome in light and dark themes; the bundled examples have
-  not been checked in every consuming project's publishing renderer, so
-  cross-renderer parity is unverified.
+  through the CLI and Chrome in light and dark themes; other renderers and
+  versions are unverified.
 - Swimlane syntax is documented from Mermaid 11.16.0 as an evolving beta;
   actor-labelled flowcharts are the compatible alternative.
 - Mermaid is the assumed text format. The layout and altitude rules generalize;
   the syntax and renderer caveats do not.
-- Table application, semantic review, visual-review-only and data-flow reading
-  routes were source-reviewed, not independently trialled.

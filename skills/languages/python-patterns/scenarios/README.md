@@ -19,7 +19,7 @@ run's observed results with the change that ran it, not here.
 | A timeout of zero becomes the default | Test absence explicitly and preserve meaningful zero. |
 | Two dataclass instances share a list | Use a per-instance factory and make ownership explicit. |
 | A frozen record contains a list | Do not claim deep immutability or assume it is hashable. |
-| A grid cell is unpacked, sorted and used as a set member | Choose a NamedTuple and accept its whole tuple contract: indexing, `len`, iteration, equality with any tuple of the same items, and no `__new__` override for a construction invariant. Use a frozen dataclass when tuple behavior is not wanted or construction must validate. |
+| A 2-D coordinate pair is unpacked, sorted and used as a set member | Choose a NamedTuple and accept its whole tuple contract: indexing, `len`, iteration, equality with any tuple of the same items, and no `__new__` override for a construction invariant. Use a frozen dataclass when tuple behavior is not wanted or construction must validate. |
 | A generator is read twice | Recognize exhaustion; choose materialization only when repeated access and size justify it. |
 | A file read fails before JSON parsing | Preserve acquisition failure separately from malformed JSON. |
 | The second resource acquisition fails | Release the first through its owning context or ExitStack; an unclosed resource is observable as a `ResourceWarning` under `warnings.catch_warnings(record=True)` with `gc.collect()`, and a deliberately leaked one must trigger that check. |
@@ -31,15 +31,13 @@ run's observed results with the change that ran it, not here.
 | Work is sent to a thread | Do not claim task cancellation stops the running thread. |
 | A semaphore guards a million created tasks | Bound task production too; a semaphore only limits active work. |
 | A project supports Python 3.10 | Adapt syntax and concurrency choices without an implicit interpreter upgrade. |
-| Asked to reorganize public operation classes | Select adopted design guidance separately. |
-| Asked to migrate tooling or raise coverage | Defer to repository policy; this skill mandates neither. |
+| Asked to reorganize public operation classes | Treated as a structural decision outside this skill; the project's existing layout is followed. |
+| Asked to migrate tooling or raise coverage | Deferred to the project's conventions or the user; this skill mandates neither. |
+| The project documents no Python version | The minimum is inferred from `requires-python`, CI and tool-version files, and the assumption is stated in the report. |
 
 ## Limits
 
-- The fenced examples parsed with Python 3.11's syntax feature version and ran
-  on CPython 3.11 and 3.14; subprocess probes ran on Linux only. Every supported
-  interpreter and platform has not been exercised.
-- One supplied-metadata routing trial reached the NamedTuple section from a
-  grid-cell task; the nearby-scope case was not exercised.
-- The encoding probe covered reads, not writes. Locale-dependent text handling
-  that is intended is not a defect.
+- The fenced examples are verified on CPython 3.11 and 3.14 on Linux; other
+  interpreters and platforms are not exercised.
+- The encoding case is verified for reads, not writes. Locale-dependent text
+  handling that is intended is not a defect.

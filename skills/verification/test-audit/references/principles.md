@@ -1,10 +1,10 @@
 # Testing principles
 
 Testing lenses, independent of runner, framework, or project layout. Apply them
-within the local testing standard described in [`test-audit`](../SKILL.md).
-For runner specifics and commands, see the owning repository's own testing guide.
+within the repository's own testing standard, as described in
+[SKILL.md](../SKILL.md). For runner specifics and commands, see the repository's
+own testing guide.
 
-<!-- Package-boundary copy: test-writing/references/unit-tests.md and test-writing/references/integration-tests.md restate these rules for an author writing tests. Keep them aligned. -->
 Tests are executable evidence: they prove **observable behavior and named
 invariants**, not the implementation inventory the source already exposes.
 

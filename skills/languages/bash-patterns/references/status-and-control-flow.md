@@ -56,7 +56,7 @@ if producer | consumer; then
 else
     statuses=("${PIPESTATUS[@]}")
 fi
-# Apply the caller's policy to statuses[0] and statuses[1].
+# Decide from statuses[0] and statuses[1] which failures matter here.
 ```
 
 A pipeline loop usually runs in a subshell; variable updates may not reach its

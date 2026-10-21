@@ -8,8 +8,8 @@ cardinalities remain unknown; do not supply a constraint to complete an answer.
 ## Mermaid cardinality
 
 Each end’s symbol describes the entity beside it. In
-`LEVEL ||--o{ PLACEMENT : contains`, each placement belongs to exactly one level,
-and a level contains zero or more placements.
+`ORDER ||--o{ ORDER_LINE : contains`, each order line belongs to exactly one
+order, and an order contains zero or more order lines.
 
 | Meaning | Left end | Right end |
 | --- | --- | --- |

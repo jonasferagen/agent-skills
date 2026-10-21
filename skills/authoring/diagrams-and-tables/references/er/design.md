@@ -16,8 +16,8 @@ hard to trace during construction, read [large ER views](large-models.md) for de
 shared targets. Small views need no decomposition inventory.
 
 Give every relationship a meaning label after `:`. Quote labels containing
-spaces or reserved words to avoid parsing ambiguity. Use identifiers without spaces, such as `MESH_DEFINITION`, so one
-entity cannot be interpreted as two. When showing schema attributes, use the
+spaces or reserved words to avoid parsing ambiguity. Use identifiers without
+spaces, such as `ORDER_LINE`, so one entity cannot be interpreted as two. When showing schema attributes, use the
 schema’s actual types and key markers. Omit them for a conceptual view when they
 are undecided.
 
@@ -27,6 +27,6 @@ Use layout features supported by the project’s renderer; check compatibility
 before relying on optional ER direction or grouping features. Verification owns
 renderer discovery and reporting limits.
 
-Read [examples](examples.md) only when a worked model would help. This collection's
+Read [examples](examples.md) only when a worked model would help. This skill's
 decomposition thresholds and document placement are authoring conventions, not ER
 standards.

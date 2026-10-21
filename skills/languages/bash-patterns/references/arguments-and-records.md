@@ -46,8 +46,9 @@ contain whitespace and newlines. Use NUL-delimited records for arbitrary paths;
 Bash can read each record into a variable even though a variable cannot contain
 the NUL delimiter itself.
 
-The following function expects an existing absolute input directory, an owned temporary
-manifest path, and a `process_file` function. It uses `find -print0`; verify that
+The following function expects an existing absolute input directory, a manifest
+path (a temporary file the caller created and will remove, as in
+[Resources and scope](resources-and-scope.md)), and a `process_file` function. It uses `find -print0`; verify that
 option on the target platform. Acquisition finishes successfully before any
 consumer side effects start:
 

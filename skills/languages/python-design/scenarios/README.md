@@ -13,13 +13,13 @@ run's observed results with the change that ran it, not here.
 | A method needs the receiving subclass | Use classmethod; staticmethod receives neither self nor cls. |
 | A fixture, decorator, contextmanager factory or framework entrypoint needs a function | Preserve the natural integration point without treating functions as exceptions. |
 | A one-shot builder has substantial coordinated working state | A class can own that state; expose a completed result rather than requiring callers to manipulate its internals. |
-| A repository deliberately exposes a class-based public API | Preserve the contract; do not remove static wrappers solely for style. |
+| A project deliberately exposes a class-based public API | Preserve the contract; do not remove static wrappers solely for style. |
 | A private helper or small value parser is clearer as a function | Keep the function; consider an existing value owner when it clarifies the contract. |
 | Optional positional arguments are ambiguous | Start with keyword-only arguments; do not automatically add an input class. |
 | Several callers pass a meaningful group of fields | Consider a shared input record when the fields travel together. |
 | A value has ordering invariants | Enforce ordinary construction, not just a bypassable factory. |
-| A value needs tuple behavior: unpacking, ordering, set membership | Name the NamedTuple alternative and hand the choice to python-patterns; the values reference alone must not steer toward a frozen dataclass. |
-| A wire DTO only describes an external payload | Keep it passive; runtime parsing remains a separate boundary concern. |
+| A value needs tuple behavior: unpacking, ordering, set membership | A NamedTuple is named as the alternative; the values reference must not steer toward a frozen dataclass by default. |
+| A wire DTO (a record mirroring an external payload) only describes that payload | Keep it passive; runtime parsing remains a separate boundary concern. |
 | A property would perform network I/O | Use an explicit operation rather than hiding costly work behind attribute access. |
 | A test patches a module-level margin to exercise a failure | Give the margin to its owning operation as a keyword-only or constructor parameter; the default may live with the module or class, and tests pass the value. |
 | A consumer calls one method but forwards the client elsewhere | Trace downstream and lifecycle needs before narrowing to a protocol. |
@@ -34,14 +34,14 @@ run's observed results with the change that ran it, not here.
 | A long but coherent module is flagged solely for its length | Trace responsibility, dependencies and callers before proposing a split; a line count is not an architectural boundary. |
 | An import cycle is hidden with TYPE_CHECKING | Confirm runtime annotation consumers and inspect ownership before hiding the import. |
 | A small correction is requested | Keep the edit scoped; no general class, phase or module migration. |
-| A numeric key collision or tolerance bug needs a local correction | Use language/numerical guidance when available; do not infer a program-wide redesign from the defect. |
-| Local instructions prescribe a different architecture | Respect repository authority and the user's decision; distinguish a preference from a correctness issue. |
-| Asked to select a formatter or packaging layout | Defer to project policy; this skill owns no toolchain. |
+| A numeric key collision or tolerance bug needs a local correction | Treated as a language-level correctness fix outside this skill's scope; no program-wide redesign is inferred from the defect. |
+| The project's instructions prescribe a different architecture | The conflict is reported to the user with both passages and the user's decision followed; a preference is distinguished from a correctness issue. |
+| Asked to select a formatter or packaging layout | Deferred to the project's conventions or the user; this skill covers no toolchain. |
 
 ## Limits
 
 - These scenarios exercise design decisions, not the correctness of a particular
   application. Domain semantics, performance requirements and migration risks
   still need project-specific evidence.
-- A small set of routing trials cannot establish that the skill consistently
-  selects the right boundaries across all Python architectures.
+- The cases cannot establish that the skill consistently selects the right
+  boundaries across all Python architectures.

@@ -1,7 +1,8 @@
 # Project isolation and teardown
 
 Use this reference when a compose command creates resources, borrows an existing
-service definition, or has to leave nothing behind.
+service definition, or has to leave nothing behind. The cleanup rules apply to a
+script or harness that creates a project and owns its teardown.
 
 ## Register cleanup before creating
 
@@ -29,8 +30,8 @@ check that every inherited resource is declared.
 Compose interpolates the files before it merges or overrides services. A
 required `${NAME:?message}` in an extended service, or in a sibling service in
 the selected file, can fail even when the caller overrides the field or never
-starts the sibling. Provide the value or remove that requirement at its owner;
-an override does not bypass it. Relative bind paths interpolated in an extended
+starts the sibling. Provide the value or remove that requirement in the file
+that declares it; an override does not bypass it. Relative bind paths interpolated in an extended
 file resolve from that file's directory. Check the rendered source paths with
 the actual selected files, environment and working directory.
 
@@ -50,25 +51,36 @@ them, because the location was never the run's to create or remove.
 Bind a throwaway directory over every mount point the run does not own,
 including the image's home when the tool keeps state there. A run-time bind at
 the same target shadows the definition's volume for that run alone, so the
-writes land where teardown already removes them.
+writes land where teardown already removes them. Find the mount points in the
+service's rendered `volumes:` from `docker compose config`, and the image's own
+declared volumes with `docker image inspect --format '{{.Config.Volumes}}'`.
 
 Take that directory as a required argument of whatever assembles the run, not an
 option with a default. A default is what the next call site omits, and the
 omission is silent: the run passes, and the owned location is what changed.
 
-<!-- Package-boundary copy: docker-cli/SKILL.md (Bind a location the command owns) carries this mechanic for a single command. Keep both passages aligned. -->
-
 ## Remove, sweep and prove
 
 At teardown, remove the project in three steps:
 
-1. `docker compose down --volumes --remove-orphans`, with every profile the work
-   may have started. Add `--rmi local` to remove images compose built without a
-   custom tag.
+1. `docker compose --profile '*' down --volumes --remove-orphans`. The `'*'`
+   selects every profile, so no list of started profiles has to be kept and
+   `COMPOSE_PROFILES`, which the call removed, is not consulted. Add
+   `--rmi local` to remove images compose built without a custom tag.
 2. Remove any container, network, volume or image still carrying the project
-   label or a label of your own, and any image tagged with the project's prefix.
-3. List what still matches the project label or the image prefix. Fail the
-   teardown if anything remains, and name it.
+   label or a label of your own, and any image tagged with the project's prefix:
+
+   ```sh
+   L="label=com.docker.compose.project=<name>"
+   docker ps -aq        --filter "$L" | xargs -r docker rm -f
+   docker network ls -q --filter "$L" | xargs -r docker network rm
+   docker volume ls -q  --filter "$L" | xargs -r docker volume rm
+   docker images -q     --filter "$L" | xargs -r docker rmi -f
+   ```
+
+3. List what still matches the project label or the image prefix — the same
+   four listings, plus `docker images '<name>-*'`. Fail the teardown if anything
+   remains, and name it.
 
 The third step turns cleanup into evidence. Without it, a stack that failed
 before compose recorded it, or a resource created outside compose, stays
@@ -77,12 +89,10 @@ unnoticed.
 Never clean up with `docker system prune`, `docker volume prune` or
 `docker image prune -a`. Each reaches resources this work did not create.
 
-<!-- Package-boundary copy: docker-cli/SKILL.md (Remove what the command created, and prove it) and docker-cleanup/SKILL.md (Select resources explicitly) state the prune refusal for their own scopes. Keep all three aligned. -->
-
 ## Keep secrets out of the file and off the command line
 
 Generate a password or token in memory. Where compose needs an env file, create
-it under an ignored directory with owner-only permissions and an exclusive-create
+it under a git-ignored directory with owner-only permissions and an exclusive-create
 flag, so an existing file is never overwritten, and remove it at teardown.
 
 Where a value can go to a single container instead, pass it through the CLI's own

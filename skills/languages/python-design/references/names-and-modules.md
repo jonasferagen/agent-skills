@@ -46,7 +46,7 @@ not need those names; frameworks evaluating annotations may still require them.
 
 Keep CLI or application startup behind an entrypoint. Importing a library module
 should not parse arguments, launch work or configure the application's logging.
-Follow the repository's packaging and import conventions; do not mandate a
+Follow the project's packaging and import conventions; do not mandate a
 `src/` migration while reshaping a class.
 
 Sources: [PEP 8](https://peps.python.org/pep-0008/),

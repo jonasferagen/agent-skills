@@ -31,7 +31,7 @@ merely to make the detailed layout convenient.
 
 ## Declare the notation
 
-Give a legend or name the required notation. Our compact Mermaid convention is
+Give a legend or name the required notation. This skill's compact Mermaid convention is
 explained in the reading notes. If the project requires a formal notation, use its
 symbols and rules with a suitable renderer.
 

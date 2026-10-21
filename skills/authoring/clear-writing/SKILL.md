@@ -2,7 +2,7 @@
 name: clear-writing
 description: "Draft or edit explanatory and instructional prose for clarity, including technical explanations, documentation, skills, project instructions and concise labels. Preserve the requested voice, factual meaning and level of certainty."
 metadata:
-  version: "0.8.0"
+  version: "0.9.0"
 ---
 
 # Clear writing
@@ -28,12 +28,13 @@ Keep the smallest amount of prose that lets the reader understand, decide or act
 correctly. Remove repetition, empty scaffolding and detail that answers no reader
 question. Prefer a useful link to an existing authoritative answer over another
 summary or navigation layer. A separate document earns its place by answering a
-distinct question better than an existing home, within the assigned scope.
+distinct question better than an existing page does.
 
-Preserve useful rationale, necessary evidence and consequential uncertainty.
-Brevity should reduce the reader's work, not make them reconstruct missing meaning
+Preserve useful rationale, necessary evidence and consequential uncertainty;
+when brevity and preservation conflict, preservation wins. Brevity should
+reduce the reader's work, not make them reconstruct missing meaning
 or override the requested form, voice or detail. Apply this to the passage or
-structure being edited; it does not commission a wider documentation sweep.
+structure being edited; it does not call for a wider documentation sweep.
 
 In maintained prose, ask whether a claim helps the reader understand, decide or
 act before making it more precise. Omit incidental facts that change, such as
@@ -51,8 +52,8 @@ current status.
 
 ## Disclose detail progressively
 
-Give readers what they need, when they need it. In catalogs, skill entrypoints
-and linked references, keep common decisions at the entrypoint. Put conditional
+Give readers what they need, when they need it. In an overview or entry page with
+linked references, keep common decisions on the entry page. Put conditional
 detail behind links that explain when to follow them. Use
 [progressive disclosure](https://www.nngroup.com/articles/progressive-disclosure/)
 to keep each reading route focused on the reader's task.
@@ -64,19 +65,19 @@ splitting it would add navigation without helping the reader.
 
 ## Keep current guidance about the present
 
-Overviews, instructions, maintained guides and current indexes or registers
-describe current purpose, behavior, responsibilities and constraints. Put change
-narratives and planned capabilities with their history or planning owner, then
-link there when the reader needs the background or next work. A "History" or
+Overviews, instructions, maintained guides and current indexes describe current
+purpose, behavior, responsibilities and constraints. Put change narratives and
+planned capabilities in the changelog, history or planning document, then link
+there when the reader needs the background or next work. A "History" or
 "Maintenance" heading does not change a current page into a historical record.
-An index retains keys, aliases and routes needed for current lookup, including
-the status of retired entries. The owning register rule and the reader's current
-use determine any further retirement detail; a recovery inventory is not
-required merely because source was retired.
+An index retains the names, alternative names and paths readers look up today,
+including the status of retired entries. Beyond that, the reader's current use decides how
+much retirement detail to keep; a full inventory of retired paths is not required
+merely because something was retired.
 
-Plans, worklogs, changelogs and other deliberately historical or prospective
-documents keep their intended time scope. Preserve required adoption basis,
-evidence identities and useful dates without adding a migration story. Current
+Plans, logs, changelogs and other deliberately historical or prospective
+documents keep their intended time scope. Preserve the decisions, evidence
+references and dates they record without adding a migration story. Current
 rationale, unsupported behavior and uncertainty stay where they qualify the
 answer. Steps for an existing operation and conditional rules describe present
 capabilities; this is a boundary on meaning, not a ban on future-tense verbs.

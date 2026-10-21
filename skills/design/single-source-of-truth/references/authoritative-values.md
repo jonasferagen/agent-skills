@@ -13,11 +13,12 @@ can name the setting and link its declaration without repeating its current
 value or becoming another source of configuration.
 
 For an external identifier the project chooses to use in several places, such
-as a plugin namespace or a repository location, reuse an existing settings owner.
-If none exists, establish one project-owned lookup declaration. Give the value a
-stable key and have readers resolve that key through the declaration. The
-project's conventions select its location and format; this rule requires no
-particular document or companion installation.
+as a package name, a service URL or a repository location, reuse the setting
+that already declares it. If none exists, keep the value in one declaration,
+such as a configuration file the project already reads, and have every other
+appearance reference it. Follow the project's conventions for where such
+declarations live; if there is none, pick the existing configuration file the
+most consumers already read and state that choice.
 
 When a machine needs a literal, pass the resolved value through its supported
 interface or generate its input from the declaration. A placeholder is not
@@ -25,20 +26,19 @@ derivation unless its loader actually resolves it. Do not teach an unrelated
 runtime to discover configuration by searching documentation. If several
 consumers intentionally share a file format, define and check that interface.
 
-Keep current bindings distinct from observations. Historical pins, citations,
+Keep current declarations distinct from observations. Historical pins, citations,
 execution evidence and dated assessments retain the values they actually used.
 Examples state their assumed values. These answer different questions from
 current configuration and must not be rewritten to look current. Two similar
 values with different owners or meanings need not be unified.
 
-A citation either resolves through the project's declared binding, which makes
-it a current reference, or names a revision, which makes it a historical one. A
-link to a moving branch, such as a hosted `blob/main` URL, is neither. It binds
-a provider location the project has not declared, and its meaning changes
-silently when the branch moves. Cite through the declaration or pin the
+A citation either resolves through the declaration, which makes it a current
+reference, or names a pinned revision, which makes it a historical one. A link
+to a moving branch, such as a hosted `blob/main` URL, is neither: its meaning
+changes silently when the branch moves. Cite through the declaration or pin the
 revision.
 
-Report which declaration owns the value, how each consumer obtains it and what
-the check actually covers. A selected resource that is unavailable is a missing
-dependency, not evidence that its declared value is wrong. Establishing a route
-does not grant access, provision the resource or prove its readiness.
+Report to the user which declaration owns the value, how each consumer obtains
+it and what the check actually covers. A declared resource that is unavailable
+is a missing dependency, not evidence that its declared value is wrong.
+Declaring a value does not grant access to the resource or prove it is ready.

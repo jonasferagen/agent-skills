@@ -25,9 +25,9 @@ run's observed results with the change that ran it, not here.
 | A check reports an unreadable input directory as a failed comparison | Flagged: input the check could not read is its own problem, separate from a comparison that failed. |
 | A changed script is verified by running it in a terminal | Called incomplete: output larger than a pipe buffer into a reader that waits, another working directory and a path with a space are also exercised. |
 | Lost output is checked with `\| tail -1` or `\| wc -l` | Called insufficient: a fast reader drains the pipe before Node queues anything; a reader that waits before reading is used. |
-| A conformance pass over a repository's scripts, with this skill installed and other skills applicable | Findings concentrate on process behavior; a pass meant to cover everything names every applicable skill or runs once per skill. |
-| A request to choose which child output may contain secrets | Deferred to the project's operational guidance; this skill covers how Node reports outcomes. |
-| Adopting the skill into a project with working scripts | No rewrite is implied; repository guidance decides what each script must report. |
+| A request to choose which child output may contain secrets | Deferred to the project's conventions or the user; this skill covers how Node reports outcomes. |
+| Applying the skill to an existing codebase with working scripts | No rewrite is implied; the project's conventions decide what each script must report, and only the defects named here are changed. |
+| A CommonJS script uses `import.meta.url` | Flagged: `import.meta` is unavailable there; `__dirname` is used. |
 
 ## Checks
 
@@ -40,7 +40,7 @@ later and `node` on `PATH`, and fails explicitly when `node` is absent.
 
 ## Limits
 
-- Behavior was reproduced on Node 24 on Linux. Pipe write behavior differs by
+- Behavior is verified on Node 24 on Linux. Pipe write behavior differs by
   platform, and Windows paths were checked only through URL parsing.
 - The lost-output case needs a reader slower than the writer: a fast reader
   such as `cat` receives everything, which is why the verification advice uses
@@ -48,8 +48,8 @@ later and `node` on `PATH`, and fails explicitly when `node` is absent.
 - Node documents that a child's stdio can remain open when `'exit'` fires; this
   was not reproduced, so the skill cites the documented behavior without an
   observed case.
-- An `EPIPE` on a child's stdin did not end the process in a probe, so the skill
-  gives no example of it.
-- The probe's children read and write fds 0 and 1 directly: a sandbox that
+- The skill gives no example of `EPIPE` on a child's stdin; that case is
+  unverified.
+- The test's children read and write fds 0 and 1 directly: a sandbox that
   denies `getsockname`, as one without network access can, makes Node give a
   child placeholder stdin and stdout.

@@ -24,42 +24,45 @@ signals worth having and how to weigh them.
 **What it cannot do:** infer coverage asymmetry when the production and test
 trees are separate. Trace those by class or endpoint name instead.
 
-<!-- Package-boundary copy: single-source-of-truth/references/durable-checks.md covers ledgers; single-source-of-truth/references/check-design.md covers report-only checks. Keep these passages aligned. -->
-**A scanner's exemption ledger, and any drift stamp it carries, are judged as a
-check in their own right, not as test coverage.** A ledger lists files that
-predate a settled convention and are exempt from it, and it may only shrink: a
-new or increased violation fails. A report-only drift *stamp* is a frozen
-snapshot the scanner diffs against, with no consumer acting on the diff. A
-report-only check like this is an anti-pattern: run the scanner against the live
-tree instead.
+**A scanner's exemption list, and any baseline snapshot it carries, are judged as
+a check in their own right, not as test coverage.** An exemption list names files
+that predate a convention and are exempt from it (for example, "these legacy
+test files may still use the old mocking helper"); it may only shrink, so a new or
+increased violation fails. A baseline snapshot is a frozen count or file list the
+scanner diffs against with nothing acting on the diff; such a report-only check
+is an anti-pattern. Run the scanner against the live tree instead.
 
 ## Cast-shaped stub triage
 
-An `as unknown as X`-style cast usually means the consumer accepts a concrete
-class while using only a narrow slice of it.
+A stub forced to a type it does not fully implement (in TypeScript, an
+`as unknown as X` cast; in other languages, a partial fake passed where a full
+interface is declared) usually means the consumer accepts a concrete class while
+using only a narrow slice of it.
 
 **First list the collaborator members the consumer actually calls, then compare
 the stub.** Missing members can reveal a branch the test never executes — which
 makes this correctness evidence rather than style noise.
 
-Count casts **by target type**, not only by file:
+Count casts **by target type**, not only by file; for TypeScript:
 
 ```bash
 rg -o 'as unknown as [A-Za-z_]\w*' <scope> | sort | uniq -c
 ```
 
-Repeated casts to one type can indicate **one missing port**. Check whether the
-owning package already exports a fixture whose overrides can express the needed
-or absent states, then inspect the consumer's actual dependency contract. A
-narrow structural port fits when the consumer needs only those methods and no
-hidden lifetime or identity guarantee. Otherwise use a real object or a justified
+Repeated casts to one type can indicate **one missing port** (a narrow
+interface declaring only the members the consumer uses). Check whether the
+package that defines the type already exports a fixture whose overrides can
+express the needed or absent states, then inspect the consumer's actual
+dependency contract. A narrow structural port fits when the consumer needs only
+those methods and no hidden lifetime or identity guarantee. Otherwise use a real object or a justified
 local cast. Do not widen the production contract just to make a stub compile.
 
 ## Optional coverage
 
 Use coverage to locate untested branches, rather than inventing a target number.
 Preserve any threshold the repository already requires. Run through its own test
-runner; a complete coverage claim needs the complete selected suite. A
+runner; a complete coverage claim needs the complete selected suite (every
+test the repository's test command would run for the scope under audit). A
 fail-fast run that stops early or a fast subset reports only partial coverage
 under the run rule in [SKILL.md](../SKILL.md).
 

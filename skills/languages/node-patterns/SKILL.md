@@ -2,13 +2,18 @@
 name: node-patterns
 description: "Write or review Node child-process wrappers and command-line checks. Use for exit status, timeouts, inherited environment, pipe output or failures reported as success."
 metadata:
-  version: "0.1.6"
+  version: "0.2.0"
 ---
 
 # Node patterns
 
-Read the repository's instructions first. They determine which scripts exist,
-what each one checks and what should happen when it fails.
+Read the project's instructions first (`AGENTS.md`, `CONTRIBUTING.md`, the
+README and the `scripts` section of `package.json`). They determine which
+scripts exist, what each one checks and what should happen when it fails. If
+none are documented, infer the supported Node version from `package.json`
+(`engines`), CI configuration and tool-version files such as `.nvmrc` or
+`.node-version`, state the assumption in your report, and ask the user what a
+failing script should do when nothing settles it.
 
 A Node script that runs another program must distinguish three outcomes: the
 program succeeded, the program ran and reported a failure, and the program did
@@ -18,15 +23,17 @@ separate these outcomes until the code that decides the result, and put them in
 the message a person reads. The script's own result needs the same care: its
 exit status and final output must survive until the process ends.
 
-This skill covers how Node reports those outcomes. The project's operational
-guidance decides which output may hold secrets, how to build a child's
-environment and arguments, and what a timeout should mean. Code structure
-belongs to its TypeScript or JavaScript guidance.
+This skill covers how Node reports those outcomes. Which output may hold
+secrets, how to build a child's environment and arguments, and what a timeout
+should mean are decisions for the project; follow its conventions or ask the
+user. General code structure is out of scope.
 
 ## Keep a child's outcome
 
 `execFile` and `exec` pass a single `error` to their callback for every kind of
-failure. Read three of its fields before deciding what happened:
+failure; the `util.promisify` forms reject with the same error, with `stdout`
+and `stderr` attached to it. Read three of its fields before deciding what
+happened:
 
 | What happened | `error.code` | `error.signal` | `error.killed` |
 | --- | --- | --- | --- |
@@ -71,10 +78,11 @@ is empty when the program never started or was killed before writing, which is
 when the reader most needs it. When a timeout or overflow stops the child, the
 captured output is partial; do not parse it as a complete answer.
 
-If a helper must reduce the outcome to one number, use the shell convention of
+If a helper must reduce the outcome to one number, use the shell conventions:
 128 plus the signal number for a signal (`os.constants.signals` holds the
-numbers). A missing program is still not the same as that program exiting 1, so
-report the reason alongside the number.
+numbers), 124 for a timeout (as `timeout(1)` does) and 127 for a program that
+could not be found. A missing program is still not the same as that program
+exiting 1, so report the reason alongside the number.
 
 ## Wait for the right spawn events
 
@@ -90,7 +98,6 @@ report the reason alongside the number.
 
 ## Close input the child does not need
 
-<!-- Package-boundary copy: runtime-operations/SKILL.md (Child processes) states this rule for any language. Keep both passages aligned. -->
 By default, `execFile`, `exec` and `spawn` give the child a stdin pipe and never
 close it. A child that reads stdin when it is not a terminal then waits until a
 timeout kills it, and the script reports a timeout or an unexplained failure.
@@ -128,9 +135,10 @@ in a comment.
 
 `process.exit()` ends the process without waiting for writes to stdout or
 stderr that are still queued. Node queues a write to a pipe once the pipe is
-full, so output is lost when the reader is slower than the script. In a test
-with Node 24 on Linux, a reader that waited one second before reading received
-803 of 12,002 lines written before `process.exit(1)`, about one pipe buffer. A
+full, so output is lost when the reader is slower than the script. With Node 24
+on Linux, a reader that waited one second before reading received about one
+pipe buffer's worth (roughly 800 of 12,000 lines) written before
+`process.exit(1)`; the recipe under "Verify the behavior" reproduces this. A
 file, a terminal and a fast reader such as `cat` received every line. The loss
 therefore appears with busy log collectors and slow consumers, and rarely when
 the script runs in a terminal.
@@ -145,9 +153,11 @@ the script runs in a terminal.
 
 ## Find files from the module
 
-Resolve paths relative to the script with
+The examples here use ES modules (`.mjs`, or `"type": "module"` in
+`package.json`). Resolve paths relative to the script with
 `fileURLToPath(new URL('..', import.meta.url))`, or with `import.meta.dirname`
-where the supported Node versions provide it (20.11 and later).
+where the supported Node versions provide it (20.11 and later). In a CommonJS
+script use `__dirname` instead; `import.meta` is not available there.
 
 `new URL('..', import.meta.url).pathname` keeps URL encoding. A directory named
 `my repo` becomes `my%20repo`, which does not exist on disk, and on Windows the
@@ -160,7 +170,6 @@ caller supplies.
 A check script usually reports every problem it finds, not only the first.
 Collect the problems, print them, then set `process.exitCode = 1`.
 
-<!-- Package-boundary copy: runtime-operations/SKILL.md (Verification) states this denominator rule. Keep both passages aligned. -->
 A passing result names what it measured: "14 files compared", not "all files
 identical". When the check measured nothing, because it found no files, an empty
 directory or a filter that matched nothing, fail instead of passing. Report

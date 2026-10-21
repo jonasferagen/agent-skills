@@ -1,6 +1,5 @@
 # Unit tests
 
-<!-- Package-boundary copy: test-audit/references/principles.md states these rules as the standard an audit judges against. Keep both aligned. -->
 A unit test checks a decision where it is made: a rule, a calculation, a
 parser, a state change. It runs in memory and shares nothing with other tests.
 Use it for the cases of a rule. What happens when the rule meets a file, a

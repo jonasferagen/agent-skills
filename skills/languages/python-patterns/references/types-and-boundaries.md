@@ -51,9 +51,11 @@ check completeness explicitly when all members are required.
 
 Built-in generics such as `list[str]` are available from 3.9; union notation
 `T | None` from 3.10; `Self` and `assert_never` from 3.11; `type` statements and
-type-parameter syntax from 3.12. Use compatible forms or an already adopted
-backport when the project supports older versions. Do not remove postponed
-annotation handling without checking runtime annotation consumers too.
+type-parameter syntax from 3.12. Use compatible forms or a backport the project
+already depends on when the project supports older versions. Do not remove
+`from __future__ import annotations` (which keeps annotations as unevaluated
+strings) without checking runtime annotation consumers such as dataclass
+field inspection, `typing.get_type_hints` or validation libraries.
 
 Sources: [typing](https://docs.python.org/3/library/typing.html),
 [protocols](https://typing.python.org/en/latest/reference/protocols.html),

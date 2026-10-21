@@ -24,10 +24,10 @@ run's observed results with the change that ran it, not here.
 | One constant is used several times inside one module | Not a duplication. |
 | Ranking a stable constant copied many times against one growing cross-medium vocabulary | The growing cross-medium concept ranks higher; copy count alone does not decide. |
 | A duplication can be neither derived nor checked | Recorded where the concept lives, naming what must change together and what goes wrong when one is missed. |
-| A plugin namespace appears in docs, a generated manifest and UI prompts | One project-owned lookup value decides the namespace; docs use its key, generated files derive the literal, and historical pins retain their original names. |
-| A manifest needs a literal namespace but its loader does not expand variables | A placeholder is rejected; generate the literal or compare it with the owner in a required check. |
-| Behavior tests parse a Markdown table that states a contract | The structured input belongs to domain code and tests; the document is generated or extracted from it with a check at that boundary. A consistency check may live in a required suite that the affected inputs select. |
-| A document cites a shared file through a hosted link to a moving branch | Treated as neither a current nor a historical reference; the citation resolves through the project's declared binding or pins a revision. |
+| A package name appears in docs, a generated config file and UI prompts | One declaration decides the name; docs reference it, generated files derive the literal, and historical records retain the name they actually used. |
+| A config file needs a literal value but its loader does not expand placeholders | A placeholder is rejected; generate the literal or compare it with the declaration in a gate check. |
+| Behavior tests parse a Markdown table that states a contract | The structured input belongs to domain code and tests; the document is generated or extracted from it with a check at that boundary. |
+| A document cites a shared file through a hosted link to a moving branch | Treated as neither a current nor a historical reference; the citation resolves through the declaration or pins a revision. |
 
 ## Maintained prose and records
 
@@ -36,8 +36,8 @@ run's observed results with the change that ran it, not here.
 | A document and a constraint both list a vocabulary and the document is stale | Remove an unnecessary prose copy or reconcile the needed explanation with the constraint and name its home. |
 | Several overviews repeat "no release exists" without a reader needing that status | Remove the snapshots; do not create a release inventory merely to relocate them. |
 | Release availability affects a reader's next action and an authoritative release listing exists | Link that listing directly with enough context; do not copy it through intermediate repository summaries. |
-| A keeper maintains changing prose by hand | Name a bounded maintained set and update triggers; supporting documents point to its homes rather than independently tracking status. |
-| Policy requires hash verification but the current loader does not perform it | Preserve the requirement and the observed limitation with their respective owners; omission does not hide the gap. |
+| Someone maintains changing prose by hand | Name a bounded maintained set and what changes call for an update; supporting documents point to that home rather than independently tracking status. |
+| A requirements document demands input validation that the current loader does not perform | Keep the stated requirement and the observed limitation as separate facts; omission does not hide the gap. |
 | An old acceptance report records a passing revision | Retain the assessed revision and conditions as historical evidence, rather than rewriting the report to describe current support. |
 
 ## Checks that stay durable
@@ -60,43 +60,18 @@ run's observed results with the change that ran it, not here.
 | A dependency nobody opted into is unavailable | The check exits successfully with a loud notice; a silent skip is rejected because it reads as a pass. |
 | A check is report-only, with nothing consuming its output | Named as cost without teeth; it gains a live invariant and a real gate, or it goes. |
 | A check can fire for changes that cannot affect the consequence it protects | The trigger is narrowed, or the proxy's cost is stated against the cost of a missed defect. |
-| Mechanical enforcement is proposed as a scanner over a fixed set of directories | Rejected as the anti-pattern enforcing itself; enforcement is scoped to the tree it checks and derives its file set from version control. |
-| Whether a given check earns its recurring cost | Deferred to the reading project's own policy; the durability bar applies to a check already being kept. |
+| Mechanical enforcement is proposed as a scanner over a fixed set of directories | Rejected as the anti-pattern enforcing itself; the check lives in the repository it examines and derives its file set from version control. |
+| Whether a given check earns its recurring cost | Left to the project's judgment; the durability bar applies to a check already being kept. |
 
-## Adoption and authority
+## Project conventions
 
 | Request and context | Expected behavior |
 | --- | --- |
-| Adopting the skill into an existing project | No renaming, code movement or schema change is implied; existing project conventions take precedence. |
-| A changed policy raises the consequence of inconsistent copies | Revisit affected copies and checks, link unmet requirements to active work, and keep desired requirements distinct from observed behavior. |
-| A project states no consequence for inconsistent copies | Use available project decisions and expose consequential unknowns; do not require installing another skill. |
-
-## Candidate, not adopted: record meaning versus storage origin
-
-When code decides what a record means from where it came from — its table, file
-or assertion kind — moving that kind of record to another home changes behavior
-without an error, and a catch-all branch makes the fallback silent. Giving each
-fact one home is exactly such a move, so consumers should be checked for branches
-on provenance before it. Provenance can itself be the meaning: a review status
-or trust level that decides what a value may do is a correct branch and stays.
-The simplest rule would be to store the kind of record as data and branch on
-that, keeping provenance for reporting and trust decisions.
-
-One reproduced case supports this; before adoption it needs a second, unrelated
-reproduction (such as configuration behaving differently by whether a value came
-from a file or the environment), a case outside the rule confirming the guidance
-does not discourage branching on review status, and a decision between a short
-addition to the definitions reference beside the silent-fallback passage and one
-line in the review list.
+| Applying the skill in an existing project | No renaming, code movement or schema change is implied; existing project conventions take precedence. |
+| A requirement change raises the consequence of inconsistent copies | Revisit affected copies and checks, record unmet requirements in the issue tracker, and keep stated requirements distinct from observed behavior. |
+| The project states no consequence for inconsistent copies | The consequence is assessed from how disagreement would appear, the assumption is stated, and the user is asked when the cost is unclear. |
 
 ## Limits
 
-- The rung ladder has not been exercised on a build-time generation case
-  (rung 2), and the language-boundary guidance rests on one observed instance.
-- No check has been observed failing on environment shape and then surviving the
-  same move after the durability bar was applied; that claim rests on experience
-  outside this repository.
-- The rule that a verdict names the root and set it measured has not been tested
-  against a case where the inventory basis was actually wrong.
-- Document-authoritative extraction into a build artifact is an informed design
-  option, not a demonstrated implementation.
+- Document-authoritative extraction into a build artifact is a design option the
+  skill describes, not a worked example it provides.

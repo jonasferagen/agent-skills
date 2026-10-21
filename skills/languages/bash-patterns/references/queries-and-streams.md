@@ -46,8 +46,10 @@ producer | awk '!found && /pattern/ { print; found = 1 }'
 This emits the first match; awk's success status does not distinguish absence.
 Test the retained output separately when the caller needs a predicate.
 
-Do not assume `grep ... >/dev/null` will consume the whole stream. GNU grep may
-stop reading when it knows its output is discarded.
+Do not assume `grep ... >/dev/null` will consume the whole stream. GNU grep
+detects a discarded standard output and may stop at the first match as `-q`
+does; the GNU manual documents `-q` as exiting immediately on the first match.
+Confirm the installed grep's behavior rather than relying on it either way.
 
 `grep ... < <(producer)` and `mapfile ... < <(producer)` do not collect the
 producer's status. Use process substitution only when disregarding that status

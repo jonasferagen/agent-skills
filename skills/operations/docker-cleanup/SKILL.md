@@ -1,8 +1,8 @@
 ---
 name: docker-cleanup
-description: "Audit and reclaim a Docker host's accumulated images, volumes, networks and build cache, including state left by retired, renamed or unrelated projects. Use when a build, pull or container fails for disk space, when the daemon's usage is unexplained, or after retiring a project; removing what one command or project created belongs to docker-cli and docker-compose-cli."
+description: "Audit and reclaim a Docker host's accumulated images, volumes, networks and build cache, including state left by retired, renamed or unrelated projects. Use when a build, pull or container fails for disk space, when the daemon's usage is unexplained, or after retiring a project. Removing what one command or project created at the end of that work is that work's own cleanup, not this skill."
 metadata:
-  version: "0.1.2"
+  version: "0.2.0"
 ---
 
 # Docker cleanup
@@ -14,8 +14,7 @@ reproduced, then remove only what that answer covers.
 
 This package is Docker-specific. Its method — attribute, tier, inspect, prove —
 would carry to another container engine, but every command, label key and
-subcommand named here is Docker's, and nothing in it has been tried elsewhere.
-For another engine, treat this as a model to translate rather than guidance to
+subcommand named here is Docker's. For another engine, treat this as a model to translate rather than guidance to
 follow.
 
 ## Select this skill when
@@ -26,7 +25,7 @@ Any one of these conditions is enough:
   `no space left on device`.
 - The host's free space is falling and the Docker daemon is a plausible cause,
   or `docker system df` reports a total nobody can account for.
-- The owner asks what Docker is holding, which resources are unused, or what
+- The user asks what Docker is holding, which resources are unused, or what
   could be reclaimed — including when the answer is expected to be "nothing".
 - A project was retired, renamed, moved between hosts or had its prefix changed,
   and its images, volumes or networks may remain.
@@ -39,17 +38,16 @@ The trigger is the symptom, not a decision to delete. An audit that ends in
 ## Do not select this skill for
 
 - **Resources one command or project created.** Work that creates containers,
-  networks, volumes and images owns them for its length and removes them by its
-  own label. That lifecycle belongs to `docker-cli`, and its project-scoped form,
-  including the mounts a borrowed service definition hands a run, to
-  `docker-compose-cli`. This skill is what finds such bytes once they have
-  already escaped and their owner is no longer obvious.
+  networks, volumes and images owns them for its length and removes them by the
+  label it set when it created them. That teardown is the work's own, whether
+  it runs through `docker` or `docker compose`. This skill is what finds such
+  bytes once they have already escaped and their owner is no longer obvious.
 - **Host disk pressure that is not Docker's.** Logs, package caches, build
   outputs, source trees and editor state outside the daemon are out of scope.
   Report them as a likely cause when the inventory clears Docker; do not remove
   them under this skill.
 - **Removing a running stack.** Stopping or retiring a service that is in use is
-  the owner's decision about that service, not a reclaim.
+  the user's decision about that service, not a reclaim.
 
 ## Work in five steps
 
@@ -80,9 +78,6 @@ group resources for review, never as the sole basis for removal.
 Record an owner that cannot be established as unknown rather than guessing. An
 unknown owner is review-first, never safe.
 
-<!-- Package-boundary copy: docker-cli/SKILL.md (Give the work one identity) and docker-compose-cli/SKILL.md (Give the work one identity) state the label-over-pattern rule for resources their own work created. Keep all three aligned. -->
-
-
 Neither age nor a project's retirement establishes that a resource is
 disposable. A retired project's volume can hold the only copy of a credential,
 an export or a build output. Establish that the contents are reproducible, or
@@ -90,33 +85,45 @@ that losing them is authorized.
 
 ## Classify into three tiers
 
+The scope is the projects or resources the user named. When the user names
+none, the whole host is in scope: audit everything, and the not-ours tier
+shrinks to what running containers use.
+
 **Safe** resources hold no data that removal would lose. Remove this tier
-without asking:
+without asking when the user asked for space to be reclaimed; when they asked
+only what Docker is holding, or the request is ambiguous ("free some space"),
+propose it and wait:
 
 - An image with no container and no tag, or a tag that shares its image ID with
   a tag still in use. Removing the second tag removes a name, not bytes.
 - Build cache, through `docker builder prune`. Cache entries hold intermediate
-  layers only. When a cached build downloads a large dependency, report the cost
-  of recreating it before pruning rather than after.
+  layers only. Build cache carries no project attribution, so this prune is
+  host-wide: run it when the scope is the host, otherwise ask first. When a
+  cached build downloads a large dependency, report the cost of recreating it
+  before pruning rather than after.
 - A network with no attached container, belonging to a retired project.
 
-**Review-first** resources need the owner's explicit approval, one group at a
+**Review-first** resources need the user's explicit approval, one group at a
 time:
 
 - Every named volume. A volume's name does not state its contents.
 - A named image that a rebuild could not reproduce without a network fetch, and
   any base image that other work on the host would re-pull.
 - Any resource whose owner is unknown, or whose owner is the host's editor or
-  agent tooling rather than a project.
+  agent tooling rather than a project: a dev-container, IDE or coding-assistant
+  image or volume, recognisable by labels such as `devcontainer.*` or a name
+  carrying the tool's name rather than a project's.
 
 **Not-ours** resources are reported and never touched: anything attributed to a
-project outside the task's scope, and anything a running container uses. Report
+project the user did not ask about, and anything a running container uses. Report
 their size so the whole picture is visible, and state plainly that they were
 left alone.
 
 ## Select resources explicitly
 
-Remove by the exact name or ID the inventory recorded. Do not run
+Remove by the exact name or ID the inventory recorded: `docker rm <container>`,
+`docker rmi <image ID or tag>`, `docker volume rm <name>`,
+`docker network rm <name>`. Do not run
 `docker system prune`, `docker volume prune`, `docker image prune -a`, or any
 other command that selects across the daemon by age or dangling status. Such a
 command can reach a resource the audit never classified, including one created
@@ -126,16 +133,13 @@ because it reaches only build cache.
 A pattern may select a group for the inventory and for the approval request. The
 removal still names what the approved group contained.
 
-<!-- Package-boundary copy: docker-cli/SKILL.md (Remove what the command created, and prove it) and docker-compose-cli/references/project-isolation.md (Remove, sweep and prove) state the prune refusal for their own scopes. Keep all three aligned. -->
-
-
 ## Inspect a volume before removing it
 
 Read a volume's contents before removal, including a volume in an approved
 group: mount it read-only in a throwaway container and list it. Report what is
 there, and copy out anything that is not reproducible before the volume goes. A
 credential directory, an export, a dump or a release tree deserves a copy to a
-path the owner keeps, and that location belongs in the result.
+path the user keeps, and that location belongs in the result.
 
 Stop and ask when a volume's contents contradict its expected owner, or when
 they look like the only copy of something. Approval to remove a group is not
@@ -156,6 +160,8 @@ Where the daemon stores its data in a virtual disk image rather than on the host
 filesystem, as on macOS and Windows, the host's free space does not grow when
 the daemon's usage falls. Report the daemon-side reclaim as what it is, and name
 the host's own compaction step as a remaining action rather than claiming space
-the host has not got back.
+the host has not got back. The step is platform-specific: Docker Desktop shrinks
+the disk image through its Resources settings (the virtual disk limit and
+location), and other virtual-machine runtimes have their own equivalent.
 
 Close by listing what remains and why: in use, not ours, or awaiting a decision.

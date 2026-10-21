@@ -18,9 +18,7 @@ drawing: name the one question the reader arrives with, and draw the answer.
 
 It follows that **a paragraph describing what a structured form would have shown
 makes the reader reconstruct that form.** Prefer the structured form wherever
-one fits:
-
-Choose the initial form using the [form-selection guidance](select.md). For a
+one fits. Choose the initial form using the [form-selection guidance](select.md). For a
 comparison or registry alongside a diagram, use [table guidance](tables.md).
 
 **Two forms, never three.** When an ER diagram and a column table both apply,
@@ -40,9 +38,11 @@ another canonical owner, or for extra diagrams that answer unrelated questions.
 Beyond the budget and that exception, each new block costs the reader attention
 and adds one more diagram the repository must keep accurate.
 
-**Before drawing, look for the diagram that already exists** — in the owning
-doc, in the design record, in the plan or issue that decided the shape. Link it.
-A redrawn copy is a second home for one fact, and the copy is the one that
+**Before drawing, look for the diagram that already exists** — in the document
+that already explains the subject, in the design notes, in the plan or issue
+that decided the shape. Link it. A document *owns* a fact when it is the one
+place that fact is kept current; every other mention should link there. A
+redrawn copy is a second home for one fact, and the copy is the one that
 drifts, silently, because nobody knows it is there to update.
 
 - **In an issue body, a plan, or review feedback, link the canonical diagram and
@@ -58,8 +58,9 @@ drifts, silently, because nobody knows it is there to update.
 **Audit an existing over-threshold diagram before redesigning it.** Those rules
 apply while you author something new; a block that has already outgrown its
 threshold needs one mechanical measurement first. For each element it draws, ask
-whether a lower-altitude canonical owner already carries that element — the same
-fact, with the same or better fidelity. A low duplicated fraction means the
+whether a lower-altitude document already owns that element — the same fact,
+with the same or better fidelity. As a rule of thumb, treat more than about
+half of the elements as a high duplicated fraction. A low fraction means the
 block is genuinely dense, and the altitude split described later is the fix. A
 high fraction is a different diagnosis: the block owns nothing, so delete it and
 draw the altitude **above** it instead. Take that measurement before choosing
@@ -118,8 +119,9 @@ large-schema decomposition.
 A subgraph is the right tool when the grouping is a handful of nodes the reader
 must see in place. **When a subgraph grows past roughly five nodes, it should
 be a separate diagram. When two subgraphs in one block are each large enough to
-stand alone, each should be its own diagram.** That local threshold is not the
-whole complexity test. A lifecycle is also above the split threshold when the
+stand alone, each should be its own diagram.** An ER block has its own, higher
+threshold of roughly 10–12 entities; see [large ER views](er/large-models.md).
+That local threshold is not the whole complexity test. A lifecycle is also above the split threshold when the
 whole block makes the reader independently understand several stage-level
 questions, especially a combination of:
 

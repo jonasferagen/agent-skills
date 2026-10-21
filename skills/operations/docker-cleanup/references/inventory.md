@@ -2,8 +2,10 @@
 
 Use this reference while taking the inventory, attributing resources and
 reporting the result. Each command below assumes a Docker daemon the caller can
-reach; check that first, because every listing is empty when it is unavailable
-and an empty inventory reads as a clean host.
+reach; check that first with `docker info >/dev/null` (non-zero exit means no
+daemon), because every listing is empty when it is unavailable and an empty
+inventory reads as a clean host. `DOCKER_HOST` or `docker context show` decides
+which host's disk the commands address; name that host in the report.
 
 ## Take the inventory in one pass
 
@@ -17,6 +19,7 @@ docker ps -a --format '{{.Names}}\t{{.Image}}\t{{.State}}\t{{.Status}}'
 docker images --format '{{.Repository}}:{{.Tag}}\t{{.ID}}\t{{.Size}}'
 docker volume ls --format '{{.Name}}'
 docker network ls --format '{{.Name}}'
+docker buildx du --verbose             # build cache entries, each with size and last use
 ```
 
 Read `docker system df` first and keep its reclaimable column beside the totals.
@@ -36,6 +39,8 @@ rather than from the `TOTAL`/`ACTIVE` counts.
 docker ps -a --format '{{.Image}}' | sort -u                # images in use
 docker ps -aq | xargs -r docker inspect \
   --format '{{range .Mounts}}{{.Name}} {{end}}' | tr ' ' '\n' | sort -u
+docker network inspect --format '{{.Name}} {{len .Containers}}' \
+  $(docker network ls -q)                                   # 0 = no container attached
 ```
 
 Compare each list against the inventory. An image or volume absent from these
@@ -74,13 +79,24 @@ volume, list the ones each known owner claims, and treat the remainder as
 unlabelled:
 
 ```sh
-docker volume ls --quiet | sort > /tmp/all
-docker volume ls --quiet --filter label=com.docker.compose.project | sort > /tmp/claimed
-comm -23 /tmp/all /tmp/claimed          # repeat --filter per owning label in use
+d=$(mktemp -d)                          # scratch lists; not fixed paths another process may share
+docker volume ls --quiet | sort > "$d/all"
+docker volume ls --quiet --filter label=com.docker.compose.project | sort > "$d/claimed"
+comm -23 "$d/all" "$d/claimed"          # repeat --filter per owning label in use
 ```
 
 Repeat the claimed listing for every label key the host's projects use, so the
-remainder shrinks to what genuinely carries none. A 64-character hex name is a
+remainder shrinks to what genuinely carries none. Find the keys in use from the
+inventory itself:
+
+```sh
+docker volume ls --format '{{.Labels}}' | tr ',' '\n' | cut -d= -f1 | sort -u
+```
+
+The same `--format '{{.Labels}}'` works on `docker ps -a`, `docker images` and
+`docker network ls`; for one resource, `docker inspect --format '{{json .Config.Labels}}' <image or container>`
+and `docker network inspect --format '{{json .Labels}}' <network>` print its
+labels. A 64-character hex name is a
 strong hint that Docker generated it, but confirm with
 `docker volume inspect` rather than by the shape of the name.
 
@@ -95,22 +111,25 @@ listing above still comes first.
 
 ## Read a volume before removing it
 
-Mount the volume read-only into a throwaway container and list it. The container
-must carry no mount that could be written to by mistake other than the
-destination for a copy.
+Mount the volume read-only into a throwaway container and list it. Use a small
+image already present on the host (`docker images`, for example `alpine` or
+`busybox`); do not pull one for this purpose. The container must carry no mount
+that could be written to by mistake other than the destination for a copy.
 
 ```sh
 docker run --rm -v <volume>:/src:ro <small image> find /src -maxdepth 2
 ```
 
-Copy out what is not reproducible before the volume goes:
+Copy out what is not reproducible before the volume goes. Check first that the
+destination has room (`df -h <destination>` against the volume's size from
+`docker system df -v`):
 
 ```sh
 docker run --rm -v <volume>:/src:ro -v <destination>:/out <small image> \
   tar czf /out/<volume>.tar.gz -C /src .
 ```
 
-Choose a destination the owner keeps and names in the result. A session's
+Choose a destination the user keeps, and name it in the result. A session's
 temporary directory is not such a place.
 
 What the listing shows decides the next step, not what the name suggested. A
@@ -130,7 +149,7 @@ name a group rather than a resource:
 | Note | The action proposed, or the reason the group is untouched |
 
 Name the resources that need a decision of their own outside the table, with
-what the inspection found in each. A group's size tells the owner what is at
+what the inspection found in each. A group's size tells the user what is at
 stake; the individual note tells them what they would lose.
 
 After acting, report the measured reclaim per group and the state that remains.

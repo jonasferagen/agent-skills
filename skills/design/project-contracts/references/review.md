@@ -22,7 +22,7 @@ terms and from unavailable evidence. For each material finding, name the relevan
 term or omission, a concrete case, its consequence and the owner or decision
 needed. Keep proposed corrections distinct from the current agreement.
 
-Report the cases examined and the limits of the evidence. A document walkthrough
-can expose an inconsistent agreement; it cannot prove runtime compliance. Route
-observed shortcomings in the skill through its entrypoint's missing-information
-guidance, without treating every unresolved project decision as a skill defect.
+Report to the user the cases examined and the limits of the evidence. A document
+walkthrough can expose an inconsistent agreement; it cannot prove runtime
+compliance. When the project has not decided a term, record the gap in the
+findings and ask the user whether to decide it now.

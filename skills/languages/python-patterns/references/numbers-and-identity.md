@@ -10,9 +10,9 @@ that requires unique keys, detect duplicates before assignment rather than
 silently replacing an earlier record.
 
 ```python
-heights = (1.000001, 1.000002)
-assert heights[0] != heights[1]
-assert f"{heights[0]:g}" == f"{heights[1]:g}"
+readings = (1.000001, 1.000002)
+assert readings[0] != readings[1]
+assert f"{readings[0]:g}" == f"{readings[1]:g}"
 ```
 
 More display digits do not define durable entity identity. If the domain
