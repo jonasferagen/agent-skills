@@ -2,7 +2,7 @@
 name: application-design
 description: "Turn a workflow into application operations, state ownership and dependency interfaces, or revise those boundaries. Use when deciding where behavior belongs inside an application; not for choosing a provider, language idioms or literal document edits."
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Application design
@@ -39,6 +39,13 @@ can decide it. An input adapter parses and translates; a dependency adapter maps
 an external mechanism. Neither should silently decide a second version of the
 operation's rules. Check the same boundary when there is only one caller.
 
+When several entrypoints expose the same operation, trace each relevant path:
+commands, UI handlers, background workers and maintenance workflows can each
+accumulate their own selection, validation and publication rules. Compare the
+rules and effects, not just similar code. Prefer one owned operation with thin
+adapters; convenience workflows compose it rather than reconstructing it from
+internal helpers. Keep differences that serve distinct caller obligations.
+
 Describe collaborators by what the operation needs from them. Keep external wire
 formats and SDK objects at their boundary when their changes would otherwise
 spread through application decisions. Preserve provider details that affect
@@ -74,12 +81,23 @@ state how the first implementation will prevent it.
 
 Distinguish durable records and outputs from reconstructible state and scratch.
 State what must be retained before reporting completion, and who can release it.
+An intermediate export used only to feed the next operation need not become a
+user-managed stage: consider passing a coherent captured input directly, while
+retaining explicit export where interchange or inspection needs it. A recoverable
+save and a derived build have different success conditions; do not make saving
+incomplete work depend on a successful build unless the product requires it.
 An operation that hands off a result may complete before the receiving actor
 accepts its quality; keep that distinction in the interface agreement between
 the two sides.
 
 For operations needing retained stage outcomes, input identities or publication
 evidence, use [run records](references/run-records.md).
+
+Shared discovery or storage machinery does not imply a single acceptance rule.
+Finding a record, checking its integrity, confirming durable storage and accepting
+its output for use establish different guarantees. Name the guarantee each caller
+needs and preserve it when consolidating implementations; avoid one ambiguous
+"valid" flag that callers interpret differently.
 
 ## Exercise the boundary and choose the increment
 

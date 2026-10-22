@@ -37,6 +37,9 @@ run's observed results with the change that ran it, not here.
 | A numeric key collision or tolerance bug needs a local correction | Treated as a language-level correctness fix outside this skill's scope; no program-wide redesign is inferred from the defect. |
 | The project's instructions prescribe a different architecture | The conflict is reported to the user with both passages and the user's decision followed; a preference is distinguished from a correctness issue. |
 | Asked to select a formatter or packaging layout | Deferred to the project's conventions or the user; this skill covers no toolchain. |
+| Authoring imports build.storage, which imports authoring checkpoint helpers; local imports keep it running | Trace ownership and callers; propose a cohesive owner or existing operation boundary rather than merely moving imports or adding a utilities module. |
+| A CLI and launcher assemble the same build from internal selection, validation and publication helpers | Consider a shared explicit operation with adapter-specific parsing and presentation; preserve differences in caller guarantees and effects. |
+| Several Python callers interpret one valid flag as found, intact, remotely stored or runnable | Name distinct guarantees in operations or results; preserve necessary revalidation at real boundaries while sharing discovery and I/O. |
 
 ## Limits
 

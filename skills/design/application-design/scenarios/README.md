@@ -13,6 +13,9 @@ run's observed results with the change that ran it, not here.
 | Change one sentence of an application's README literally | Make the edit without an application-design pass. |
 | The design proposes that an order ID and an external payment reference identify the same thing | Marked as a proposed interpretation needing confirmation from the agreement between the two systems, not a newly adopted meaning. |
 | A worked example resolves a relative path, and the design cites it as the rule | Named as an example; the exact resolution rule is still owed before code relies on it. |
+| Review a CLI, UI handler and maintenance command that each select inputs, validate and publish a report | Trace the entrypoints and compare policy and effects; propose one owned operation and composed convenience workflows, preserving caller-specific obligations without adding a workflow framework. |
+| Simplify a draft editor that requires a manual export before every preview and a passing preview before saving | Distinguish captured input, durable draft and derived output; consider direct preview input and independent saving, subject to the product contract, while retaining useful explicit export. |
+| Consolidate catalog lookup, checksum checks, remote confirmation and runtime admission | Share mechanisms where appropriate while preserving each guarantee and its failure meaning; do not replace them with a universal valid flag. |
 
 ## Limits
 

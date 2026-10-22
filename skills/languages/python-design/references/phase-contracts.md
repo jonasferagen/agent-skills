@@ -16,6 +16,12 @@ and validating the same input again in each stage. Keep revalidation at a real
 trust boundary or after mutation that invalidates the earlier guarantee.
 Annotations alone do not establish runtime validity.
 
+Share discovery and I/O without conflating the guarantees callers need. A record
+being found, intact, durably stored or accepted for execution are different facts.
+Represent the relevant distinction in operation names or results instead of a
+single validity flag. Retain revalidation where a different trust boundary or
+changed external state requires it; consolidation is not permission to remove it.
+
 A separate record is useful when a handoff establishes materially different
 invariants. It is unnecessary for every helper or pass. When alternatives have
 different required fields, use explicit variants or distinct records rather

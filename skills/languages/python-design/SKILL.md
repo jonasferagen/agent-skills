@@ -2,7 +2,7 @@
 name: python-design
 description: "Design or review the structure of Python programs: module responsibilities, phase contracts, state ownership, shared interfaces and naming. Use for architectural decisions and scoped refactoring, not for language-level correctness such as validation, numerics or failure handling."
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Python design
@@ -47,7 +47,7 @@ remains untested or undecided.
 | Stages share partially populated state or a new implementation must preserve behaviour | [Phase contracts](references/phase-contracts.md) |
 | An operation needs a home, state lifetime or configurable policy | [Operations and state](references/operations-and-state.md) |
 | A data record gains invariants, or arguments travel together | [Values and call sites](references/values-and-call-sites.md) |
-| Modules share private helpers, diagnostic strings or large clients | [Dependency boundaries](references/dependency-boundaries.md) |
+| Modules share private helpers or diagnostic strings, import each other’s infrastructure, or expose large clients | [Dependency boundaries](references/dependency-boundaries.md) |
 
 ## Scope
 

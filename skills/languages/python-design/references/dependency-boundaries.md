@@ -15,6 +15,22 @@ codes, source locations and structured details can carry meaning while the CLI
 or other adapter renders messages. Avoid parsing prose to recover a decision.
 A local exception with a useful message is enough when no caller needs more.
 
+## Place shared capabilities with their owner
+
+When sibling components import each other's storage, configuration or discovery
+helpers, trace who decides the shared rules and who only consumes them. A local
+import can postpone an import cycle without resolving that ownership. Move a
+shared capability to a cohesive owner with explicit inputs and results, or move
+the behavior back behind its existing owner's operation. A generic utilities
+module, a new interface or a renamed public helper alone does not settle the
+responsibility.
+
+Inspect callers that assemble an operation from several internal helpers. If a
+CLI and another adapter both choose inputs, validate them and publish a result,
+consider one operation that owns that sequence. Keep parsing and presentation
+with each adapter and preserve meaningful differences in effects or guarantees.
+An ordinary function can provide this boundary; no service framework is needed.
+
 ## Describe the consumer's actual capability
 
 Use a consumer-owned `Protocol` for a stable role that several implementations
