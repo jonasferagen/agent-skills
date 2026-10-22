@@ -2,7 +2,7 @@
 name: clear-writing
 description: "Draft or edit explanatory and instructional prose for clarity, including technical explanations, documentation, skills, project instructions and concise labels. Preserve the requested voice, factual meaning and level of certainty."
 metadata:
-  version: "0.9.0"
+  version: "0.10.0"
 ---
 
 # Clear writing
@@ -66,9 +66,14 @@ splitting it would add navigation without helping the reader.
 ## Keep current guidance about the present
 
 Overviews, instructions, maintained guides and current indexes describe current
-purpose, behavior, responsibilities and constraints. Put change narratives and
-planned capabilities in the changelog, history or planning document, then link
-there when the reader needs the background or next work. A "History" or
+purpose, behavior, responsibilities and constraints, including repository and
+package documentation, READMEs and agent instructions. Update the owning guide to
+describe the resulting system rather than appending an implementation summary.
+Keep plans, handoffs and historical records separate from maintained guidance,
+in the consuming project's designated location. The project owns that location
+and any exception for a dedicated, clearly named changelog; do not invent a
+repository path or storage policy. Link records only when the reader needs the
+background or next work, without presenting them as current authority. A "History" or
 "Maintenance" heading does not change a current page into a historical record.
 An index retains the names, alternative names and paths readers look up today,
 including the status of retired entries. Beyond that, the reader's current use decides how
