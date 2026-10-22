@@ -16,7 +16,7 @@ run's observed results with the change that ran it, not here.
 | Read a project-wide status whose rows look like failures | Read the state and class vocabularies; several distinct situations report `absent`, and a row's class says what a project-wide launch may start. Mutate no runtime state. |
 | A status row carries a class value the reader does not recognise, or predates the class key | Read as unclassified; nothing acts on a class it cannot name, and the row is not dropped. |
 | Adopt a `services/` home, its guide shape or its checks | The installing project's convention; this skill names no home. |
-| Decide service ownership or add a transport to an operation | service-boundaries; this skill classifies rather than designs the boundary. |
+| Decide service ownership or add a transport to an operation | service-design; this skill classifies rather than designs the boundary. |
 | Choose credentials, lifecycle controls or helper imports for a controller | runtime-operations, beyond naming that owner here. |
 | Correct a spelling error in an operating guide | Nothing from this skill. |
 
@@ -28,7 +28,7 @@ removes readiness, not lifecycle or ownership.
 
 - No routing trial has run against this package under its current name; the
   rename rests on a trial finding against the previous catalog row. The
-  near-neighbours to separate are service-boundaries, runtime-operations and
+  near-neighbours to separate are service-design, runtime-operations and
   the consuming project's service convention.
 - The two vocabularies in `references/status-reports.md` are copies of a report
   producer's declarations that live with the consuming project's deployed code.

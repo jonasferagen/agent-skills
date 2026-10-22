@@ -2,7 +2,7 @@
 name: service-classes
 description: "Decide whether a capability is a service and whether it is running or scheduled, and what each class owes as evidence: live readiness for one, the last run's durable outcome for the other. Use when promoting a command or job into a service, deciding what a scheduled service's status must report, or reading a project-wide status that looks like a failure; document homes, control commands, transports and runtime mechanics belong to other owners."
 metadata:
-  version: "0.1.1"
+  version: "1.0.0"
 ---
 
 # Service classes
@@ -124,12 +124,12 @@ field. The format such a record takes is the consuming project's claim.
 
 ## Neighbouring owners
 
-Use the `service-boundaries` skill to decide service ownership and shared
-behavior across transports, and the `runtime-operations` skill for credentials,
-lifecycle controls, the rules an unattended run follows and the report line's own
-interface. Read both for a maintained-service transition; a narrow change follows
-the relevant skill. If that guidance is unavailable, report the missing owner and
-continue only work that does not depend on it.
+Service ownership, shared behavior across transports, credentials and lifecycle
+controls follow the project's adopted boundary and operating guidance. A
+maintained-service transition needs evidence for the relevant responsibilities;
+a narrow change follows only the guidance its behavior touches. If a necessary
+operating contract is unavailable, report that gap and continue work that does
+not depend on it.
 
 A literal text correction or an ordinary pure-function change does not need
 service review unless it changes these boundaries. Project policy, application

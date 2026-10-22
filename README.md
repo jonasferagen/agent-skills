@@ -25,13 +25,18 @@ repository supplies the packages and their versions.
 
 | Skill | Use it for |
 | --- | --- |
-| [project-design](skills/design/project-design/SKILL.md) (draft) | Shape system responsibilities, conceptual models, workflows and integration choices. |
-| [project-contracts](skills/design/project-contracts/SKILL.md) (draft) | Read, apply, design or review obligations at a handoff, including acceptance and failure. |
+| [repository-design](skills/design/repository-design/SKILL.md) | Define repository ownership, public boundaries, external references, handoff contracts and independent verification. |
 | [single-source-of-truth](skills/design/single-source-of-truth/SKILL.md) | Give each rule a home and derive or check its other appearances. |
-| [application-design](skills/design/application-design/SKILL.md) (draft) | Shape operations, state ownership and dependency interfaces inside an application, including external operation boundaries. |
-| [service-boundaries](skills/design/service-boundaries/SKILL.md) | Define service ownership and shared behavior across HTTP and MCP adapters. |
+| [application-design](skills/design/application-design/SKILL.md) | Shape application operations, internal boundaries, state ownership, injected dependencies and recovery. |
+| [service-design](skills/design/service-design/SKILL.md) | Define runtime ownership, public interfaces, caller identity, retry behavior and storage custody. |
 | [relational-modeling](skills/design/relational-modeling/SKILL.md) (draft) | Structure known entities around retrieval questions and revise relationships through synthetic scenarios. |
 | [postgres-design](skills/design/postgres-design/SKILL.md) | Designing and reviewing PostgreSQL schemas: identity, types, state, timestamps and integrity boundaries, and transactions on pooled connections. |
+
+Repository-design applies to content, library, application and infrastructure
+repositories. Application-design and service-design specialize the decisions
+inside applications and across running services; each package works alone.
+Boundary contract review and external-reference discovery are part of
+repository-design. Consumer adoption remains explicit and pinned.
 
 ## Operations
 
@@ -51,7 +56,8 @@ deploys that code and names the interface version it was written against.
 Service homes, document shapes, control commands and their checks are the
 installing distribution's convention, and service-classes states only what a
 service and its status owe. Promotion from a spike to maintained service use
-reads service-boundaries, service-classes and runtime-operations together.
+selects service-design for runtime boundaries, service-classes for classification
+and runtime-operations for operating mechanics, as the work requires.
 
 The three Docker packages split one tool by the moment it is used: assembling a
 command, driving a project of containers, or accounting for what a host has
@@ -301,7 +307,7 @@ Then apply each owner's own review steps to the package's files:
 | Diagrams and tables | Each diagram and table, and passages that would explain better as one | [Semantic review](skills/authoring/diagrams-and-tables/references/review.md) and [visual verification](skills/authoring/diagrams-and-tables/references/verification.md) |
 | Documentation | Links resolve, including anchors and links outside the package; each statement has one current owner; historical text is labelled as such | Check each link's target and anchor; compare current and historical passages |
 | Routing quality | Entry points, triggers and conditional references | [Routing trial method](#routing-trial-method) |
-| Application design | Application designs and runtime helpers produced by a skill, when present | [Exercise the boundary and choose the increment](skills/design/application-design/SKILL.md#exercise-the-boundary-and-choose-the-increment) |
+| Application design | Application designs and runtime helpers produced by a skill, when present | [Check behavior at the owning boundary](skills/design/application-design/SKILL.md#check-behavior-at-the-owning-boundary) |
 | Other skills in this repository | Helpers and tests, such as Python scripts and their suites | Select from the catalog by trigger |
 
 A skill gaining a rule owner adds a row here in the same change. Skills that
@@ -435,6 +441,8 @@ holds the rest.
 
 | Former package | Date | Where it is now |
 | --- | --- | --- |
+| project-design 0.2.0, project-contracts 0.2.0 | 22 October 2026 | repository-design owns repository boundaries, external discovery and handoff contracts; application-design owns internal operations. Broad conceptual-model and provider-selection tutorials are outside the replacement scope. Existing pins retain the former packages. |
+| service-boundaries 0.5.0 | 22 October 2026 | service-design owns service interfaces, identity, storage custody and evidence matched to the task. Existing pins retain the former package. |
 | project-planning 0.1.0, project-bootstrap 0.5.0, pattern-capture 0.3.1, project-policy 0.4.0 | 12 October 2026 | [project-bootstrap](https://github.com/jonasferagen/project-bootstrap), which authors and versions them as native skills; `183148d34dd1434df0402a0c6e69b195da84a525` is the last commit here that ships them |
 | work-records 1.0.0 | 12 October 2026 | project-bootstrap; `e2e0ed4` is the last commit here that ships it |
 | typescript-patterns 2.0.3, typescript-design 1.0.3 | 13 October 2026 | Retired by the Owner's decision; `605cded` is the last commit that ships them, with the shared-contract check that compared their module-syntax copies and the TypeScript example check |

@@ -1,122 +1,137 @@
 ---
 name: application-design
-description: "Turn a workflow into application operations, state ownership and dependency interfaces, or revise those boundaries. Use when deciding where behavior belongs inside an application; not for choosing a provider, language idioms or literal document edits."
+description: "Design or review application operations, internal boundaries, state ownership and injected dependencies. Use for duplicated orchestration, coupled application logic, recovery or changed saved-state meaning; not for repository ownership, service transport or literal prose edits."
 metadata:
-  version: "0.3.0"
+  version: "1.0.0"
 ---
 
 # Application design
 
-Open an application's internal design around a concrete operation. Produce enough
-structure to implement the requested slice, or identify the decisions that block
-it. Use the project's existing architecture, interface agreements (whatever
-written statement says what each side of a handoff may rely on: an API
-description, a schema with notes, a README section), implementation and scope.
-If no architecture or agreement covers the operation, state what you infer from
-the code and ask the user before building on it. Label each design statement as
-**proposed** (your suggestion), **adopted** (decided by the project, cite where)
-or **observed** (what the current code or a run does, cite the evidence). In
-this skill, the **owner** of a rule, state or dependency is the component (and
-the people maintaining it) responsible for deciding and changing it.
+Shape the application around a concrete operation: the behavior a caller requests
+and the result or effect it can rely on. Start with the affected callers,
+implementation, existing design decisions and interface agreements. An agreement
+may be an API description, a schema with notes or a README section. Treat code
+as evidence of current behavior, and distinguish it from adopted obligations and
+proposed changes. When a consequential expectation is missing, state the
+assumption and the work that depends on resolving it; continue the part the
+request and known constraints support.
 
-## Bound the work
+Here, an **owner** is the component responsible for a rule, state or dependency
+and for changing it. Repository placement, process boundaries and deployment do
+not by themselves decide these internal responsibilities.
 
-For a focused change, start with the affected operation and its callers. For a
-new application, trace one representative request from input to result. Identify
-who uses the result, which decisions the application owns and which belong to
-another actor. Preserve existing ownership; if the trace exposes a conflict,
-name the affected owner and resolve only what the user's task covers.
+## Start from the operation
 
-A read-only operation may finish with a returned value. A durable operation may
-need state transitions and recovery. Do not impose a job system, persistence or
-a layered directory tree before an actual responsibility requires it.
+For a focused change, follow the affected operation from input to result. For a
+new application, choose one representative request. Identify its callers, rules,
+effects and returned information. A read may finish with a value; a durable
+operation may need publication and recovery. Add persistence, a job system or a
+layered directory tree only when an actual responsibility requires it.
 
-## Give behavior and dependencies owners
+Put each decision with the component that owns its meaning. An input adapter
+parses and translates a caller's request; a dependency adapter translates an
+external mechanism. Neither should acquire a separate version of the
+application's selection, validation or publication rules. Check ownership even
+when there is only one entrypoint.
 
-Name the rules that must hold at the operation boundary and the information
-needed to enforce them. Put each rule with the application or domain owner that
-can decide it. An input adapter parses and translates; a dependency adapter maps
-an external mechanism. Neither should silently decide a second version of the
-operation's rules. Check the same boundary when there is only one caller.
+When a command, UI handler, worker or maintenance workflow exposes the same
+operation, compare its decisions and effects. Prefer one owned operation with
+thin entrypoints. A convenience workflow calls or composes supported operations;
+it must not reconstruct them by reaching into private helpers and recreating
+validation, state transitions or publication. Preserve differences required by
+distinct caller obligations. Move a genuinely shared responsibility to a clear
+owner rather than making every helper public.
 
-When several entrypoints expose the same operation, trace each relevant path:
-commands, UI handlers, background workers and maintenance workflows can each
-accumulate their own selection, validation and publication rules. Compare the
-rules and effects, not just similar code. Prefer one owned operation with thin
-adapters; convenience workflows compose it rather than reconstructing it from
-internal helpers. Keep differences that serve distinct caller obligations.
+## Define dependencies at their seam
 
-Describe collaborators by what the operation needs from them. Keep external wire
-formats and SDK objects at their boundary when their changes would otherwise
-spread through application decisions. Preserve provider details that affect
-meaning or recovery; a common result shape must not erase a consequential state.
-For external calls, read [external integrations](references/external-integrations.md).
+Describe each collaborator by what the operation needs from it. Inject concrete
+dependencies where the application is constructed, using ordinary parameters,
+constructors or the project's existing conventions. Identify who supplies
+configuration and credentials and who opens and closes resources. A dependency
+injection framework, registry or factory needs a present reason of its own.
 
-Separate construction from behavior: identify where configuration, credentials
-and concrete collaborators enter, and which component owns their lifetime. This
-can be ordinary startup code. Follow the language's and runtime's usual conventions; a
-container or dependency-injection framework is a separate choice.
+Keep SDK objects, transport payloads and provider source structures behind the
+adapter when their changes would otherwise spread through application decisions.
+Preserve details that affect meaning, supported capabilities or recovery; a
+common result shape must not erase a consequential provider state. Verify the
+capabilities and effects of each external operation against its actual contract
+before relying on them, including lookups and preflight calls that may transmit
+data or incur cost. State uncertainty when current evidence is unavailable. For an
+external operation with submission or retained output, read
+[external operation boundaries](references/external-integrations.md).
 
-Choose modules from cohesive behavior and reasons to change. A new interface
-should protect a real caller or external boundary; a future second implementation
-alone does not justify factories or registries. Trace the impact of changing one
-input rule or dependency to see whether unrelated owners must move together.
+A dependency's source files being reachable does not make them its supported
+interface. If application logic imports another component's private model or
+helpers, identify the behavior it actually needs and the public seam that should
+supply it. An adapter may translate a supported data format into an internal
+model. Do not duplicate a provider's authoritative rules to make the seam appear
+independent. If the available interface cannot express the needed behavior,
+state the missing capability and propose the smallest change at its owner.
 
-## Make state changes recoverable
+Choose modules from cohesive behavior and reasons to change. Trace a change to
+one input rule or dependency: unrelated owners should not have to move together
+merely because an internal representation leaked. A possible second
+implementation alone does not justify a new abstraction.
 
-For each durable effect, identify its owner, the point at which it becomes
-authoritative and what a caller can observe after interruption. Keep operation
-identity, external identity and result identity distinct when they serve different
-purposes: for a payment, the order id names the request, the provider's payment
-reference names the external attempt, and the stored receipt id names the
-result; resubmitting the order must not mint a new receipt. Determine how
-repetition and changed input under an existing identity are handled. Do not add
-these identities to an operation that has no need for them.
+## Own state and its meaning
 
-Where several writes must agree, establish the transaction or publication boundary
-and how work resumes on either side. Choose the mechanism against the actual
-writers and readers. A local file layout still needs an answer for competing
-writers or partial publication if those are possible. If concurrency is deferred,
-state how the first implementation will prevent it.
+For each durable effect, identify who may write it, when it becomes authoritative
+and what a caller can observe after interruption. Distinguish request identity,
+external attempt identity and result identity when they serve different purposes.
+For example, an order, a provider payment reference and a stored receipt can have
+different identities. Define whether repetition returns an existing result,
+creates another attempt or refuses, including changed input under one identity.
+Do not add identities an operation does not need.
 
-Distinguish durable records and outputs from reconstructible state and scratch.
-State what must be retained before reporting completion, and who can release it.
-An intermediate export used only to feed the next operation need not become a
-user-managed stage: consider passing a coherent captured input directly, while
-retaining explicit export where interchange or inspection needs it. A recoverable
-save and a derived build have different success conditions; do not make saving
-incomplete work depend on a successful build unless the product requires it.
-An operation that hands off a result may complete before the receiving actor
-accepts its quality; keep that distinction in the interface agreement between
-the two sides.
+Where writes must agree, define the transaction or publication boundary and how
+work resumes on either side. A local file layout also needs an answer for partial
+publication and competing writers when they are possible. If concurrent use is
+out of scope, explain how the implementation prevents it.
 
-For operations needing retained stage outcomes, input identities or publication
-evidence, use [run records](references/run-records.md).
+Separate retained input, durable working state and accepted output from derived
+builds, caches and scratch. Name what must be retained before reporting completion
+and who can release it. Saving incomplete work need not depend on a successful
+preview or build unless that is a product requirement. An intermediate export
+used only by the next operation may be replaced by coherent captured input;
+retain explicit export where interchange or inspection needs it.
 
-Shared discovery or storage machinery does not imply a single acceptance rule.
-Finding a record, checking its integrity, confirming durable storage and accepting
-its output for use establish different guarantees. Name the guarantee each caller
-needs and preserve it when consolidating implementations; avoid one ambiguous
-"valid" flag that callers interpret differently.
+When changing a saved state format or the rules that interpret it, trace an old
+record through the new reader. State which rules or model revision give its
+values meaning. A checkpoint that stores only coordinates may change meaning
+when a map or ruleset changes even if its schema still parses. Choose an explicit
+compatibility check, migration, retained interpreter or rejection according to
+the product's obligations; do not silently reinterpret earlier state. Keep the
+original evidence needed to diagnose or recover from a failed transition.
 
-## Exercise the boundary and choose the increment
+Finding a record, checking its integrity, confirming durable custody and accepting
+its output for use establish different guarantees. Share mechanisms only while
+preserving the guarantee each caller needs and its failure meaning. Avoid one
+ambiguous `valid` flag. An operation may complete its handoff before the receiver
+accepts the output's quality; describe these as separate outcomes when they differ.
+
+For retained stage outcomes, input identities and publication evidence, read
+[run records](references/run-records.md).
+
+## Check behavior at the owning boundary
 
 Trace a successful case and a failure or change that could invalidate the design.
-Follow the records and observable result through the interruption point, including
-what the next invocation can safely do. Choose cases from this operation's risks;
-do not run a fixed distributed-systems checklist for every function.
+For durable work, follow the state through interruption and show what the next
+invocation can safely do. Select cases from the operation's risks; a read-only
+function does not need a distributed-systems checklist.
 
-For each consequential promise, identify a check that can observe it at the owning
-boundary, and put it in the project's existing test suite. A fake dependency
-can exercise the application's decision; it cannot establish a real provider's
-contract. Keep design traces, implemented behavior and execution evidence distinct.
+Use focused tests with supplied dependencies to check the application's decisions,
+including failure and repetition where relevant. Such tests should not require a
+provider's source checkout merely to create its private objects or call its
+helpers. Use representative public inputs and a local double at the supported
+seam. Check real interoperability separately against the actual dependency or its
+published artifact, recording the version and environment involved. A double
+cannot prove the real provider's contract; a successful integration does not
+replace checks of application rules.
 
-Present a compact design: operation and rules, responsibilities and dependencies,
-relevant state transitions, traced cases, and
-the smallest next implementation with its unresolved prerequisites. Report this
-to the user; when the task calls for a document in the repository, put it where
-the project keeps its design documents, or beside the code if there is no such
-place, and say which you chose. A table or short explanation may suffice; create
-separate documents only when they have distinct readers or owners. A review request can end with findings and needs no rewrite.
-Add language conventions, transport setup and deployment guidance only
-when the requested implementation reaches them.
+Present the operation, responsibility changes, dependency seams, relevant state
+transitions and cases traced, with the smallest useful implementation increment
+and unresolved prerequisites. Cite evidence for adopted decisions and observed
+behavior where it matters. Use the project's existing place for design records
+when the task needs a document; a short explanation or review findings can
+otherwise suffice. Keep design traces, implemented behavior and execution evidence
+distinct.

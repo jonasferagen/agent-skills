@@ -1,106 +1,117 @@
-# Boundaries that forbid derivation
+# Derivation across boundaries
 
-Four boundaries commonly stop a consumer from reading a concept's home. Each
-leaves a different set of rungs available, so name the boundary before settling
-for a lower rung. Examples are synthetic.
+A boundary changes how a consumer obtains a definition. It does not remove the
+need for ownership, nor require access to private internals. Choose an option
+from the [rung ladder](definitions.md#derive-instead-of-restate) that preserves
+the boundary and the relevant release contract. Examples are synthetic.
+
+## The repository and release boundary
+
+An independently released consumer adopts a published interface, package,
+schema or other artifact at an immutable revision. Its local build and behavior checks use declared artifacts and toolchain
+inputs without requiring the publisher's checkout or live service. Operations
+and integration checks that need a running service declare that prerequisite.
+
+Available: a pinned publication or generated artifact with source revision and
+integrity information (rung 2), or a versioned runtime interface when the system
+intentionally depends on one (rungs 3 or 4). Record any local transformation or
+modification. Let adoption changes follow the consumer's review process.
+
+The publisher verifies that a publication matches its selected authoritative
+source. The consumer verifies the artifact it adopted and its behavior against
+that contract. A separate integration check selects both participants and
+verifies compatibility. A local gate comparing a consumer pin with an upstream
+moving head would erase the consumer's adoption decision; do not use it as a
+generic drift check.
+
+Reading sibling source can help a source investigation or coordinated change
+when authorized. It is not a hidden prerequisite for consumer validation.
+Declare any deliberately coordinated release or integration environment and
+report its results separately from checks of each repository.
 
 ## The language boundary
 
-The home is in one language and a consumer is in another. Copying the values
-across is the obvious move and the wrong one, because each language normalises
-differently. For example, one URL parser may expose a bracketed IPv6 host and
-another the bare address, so the two allow-lists that mean the same thing cannot
-be the same strings. A copy looks right, passes review, and encodes a difference
-nobody stated.
+A rule written in one language may need a different representation in another.
+For example, one URL parser may expose brackets around an IPv6 host and another
+the bare address. Copying identical strings would not establish identical
+meaning.
 
-Available: build-time generation from the home into each language (rung 2); a
-data file both languages read as they start (rung 3); or, where the home is a
-database, reading it directly from both, at start time (rung 3) or with the
-data (rung 4).
+Available: generate each representation from a selected structured source
+(rung 2), consume an agreed data file at startup (rung 3), or deliver the needed
+facts through a public interface (rung 4). Validate conversions with independent
+examples, including cases where normalization differs.
 
-If the rule must be stated once per language, say in each place that it is one
-rule with two spellings (rung 6), and add a check that compares the two after
-normalising (rung 5). Do not add a check that restates the expected values; it
-would be a third home.
+When manual representations remain, compare them after their stated
+normalization (rung 5). The consistency check reads each representation; a
+third literal list cannot establish parity. Independently authored behavioral
+expectations still have value as oracles.
 
 ## The bundle boundary
 
-A client cannot import a server module without shipping that module's
-dependencies. This is a real cost, not a style objection: one import can pull a
-validation library or a database driver into a browser bundle.
+A browser import can pull in a server's validation library or database driver.
+Preserve the dependency direction rather than importing private machinery just
+to remove duplicate text.
 
-Available: request-time delivery (rung 4), which sends the concept with the data
-that needs it; or extracting a dependency-free module that both sides import
-(rung 1), while the heavier machinery stays in the home.
-
-Type-only declarations are erased at compile time and cross this boundary for
-free (rung 1), so sharing a type costs nothing while sharing a value may cost a
-great deal. Check which one the consumer actually needs before deciding the
-boundary blocks you.
+Available: a dependency-free published module (rung 1 or 2), a generated client
+artifact (rung 2), or delivery through the request interface (rung 4). A type-only
+declaration may be erased from the runtime bundle, but its build-time dependency
+must still be declared and obey the release boundary. Check which facts the
+consumer actually needs.
 
 ## The process boundary
 
-Two processes each own a setting the other needs. For example, each half of a
-pair needs the other's address, or each side of a handoff needs the other's
-schedule. Neither can read the other's configuration, and code shared between
-them cannot know either setting.
+Shared code receives deployment-specific values through explicit inputs rather
+than guessing them. The deployment or configuration owner selects addresses,
+schedules and other settings; neither process's private configuration becomes a
+public discovery interface merely because another process needs the value.
 
-Available: make the value an explicit input at the edge (rung 1, because the
-shared code then holds no copy). The process that owns a setting passes it in;
-shared code receives it and never guesses. A hardcoded default inside the shared
-code is the shape to remove, because it is a second home for a value the edge
-already knows.
+Available: pass the resolved setting at the edge (rung 1), have both processes
+consume an agreed configuration source (rung 3), or use an intentional discovery
+interface (rung 3 or 4). Define precedence, validation and availability where the
+setting is owned.
 
-Where neither process can know the other's value, the pair itself is the concept
-and needs a home outside both: one settings source they both read as they start
-(rung 3). Introducing that shared source is a larger change than it looks. If it
-is out of scope and both settings are in the repository, add a check that reads
-both and fails when they disagree (rung 5). Otherwise stop at rung 6 and record
-which two places must change together.
+If two declarations must agree for a deployment, the deployment's integration
+check reads the explicitly selected inputs. If a shared settings source is out
+of scope, compare those inputs (rung 5) or record the coordination risk (rung 6).
+Do not make every local repository check inspect another process's live config.
 
-## The schema boundary
+## The schema and data-ownership boundary
 
-A database constraint cannot consult application code, and often cannot consult
-another table either: a check constraint takes no subquery, so a vocabulary
-enforced by a check cannot be stored as rows that the check reads. Turning it into
-rows means a foreign key and a different way of enforcing integrity, which is a
-schema decision, not a refactor.
+A database constraint cannot consult arbitrary application code. Some integrity
+mechanisms also limit what they can read: for example, a PostgreSQL check
+constraint cannot use a subquery. Turning a vocabulary into referenced rows is a
+schema design change, not a duplication-only refactor.
 
-Available: keep the schema authoritative and derive in the application at start
-time (rung 3) or request time (rung 4). A deployed migration is immutable in most
-projects, so a new migration is the only way to change the home at all. That
-usually puts schema changes outside the scope of a duplication fix. Confirm the
-project's own migration and approval rules before proposing one; if none are
-written, state the assumption you make and ask the user.
+Within a service that owns both schema and application, derive from its selected
+schema or verify parity there. Follow the project's migration rules: a deployed
+migration normally changes through a new migration rather than rewriting
+history. Do not infer authorization for a schema change from this guidance.
+
+Across services, consume the owner's published schema or API contract, emitted
+events or an explicit export. Reading another service's private tables or
+constraints makes those internals a dependency; it is not the default remedy
+for drift. An integration test may provision the selected service versions and
+exercise their public interfaces when its environment is explicitly declared.
 
 ## Make disagreement fail
 
-When rungs 1 to 4 are unavailable, a check is what remains. A check is only
-worth having if it would actually fail.
+A retained consistency check needs a named relation and inputs:
 
-- **It must read both homes.** A check that states the expected values is a third
-  home and will drift alongside the second. Compare home to home.
-- **It must run for every affected input.** Keep it in the gate (the automated
-  checks required before merge); if the project runs only a subset of checks per
-  change, the subset must include it for any change to either home, the check or
-  its build inputs. A check behind an environment
-  variable, a manual command or an optional job protects nothing by default. If
-  the project keeps such tests deliberately opt-in, say that the concept is
-  unprotected in the gate rather than implying it is covered.
-- **It must fail for the right reason.** Confirm it fails when the homes disagree,
-  not merely that it passes today. Introduce the disagreement, watch the check
-  fail, then undo the disagreement. Until you have seen a check fail, you have
-  no evidence that it checks anything.
-- **Prefer a mechanism over a test.** Exhaustiveness the compiler proves, a
-  constraint the database enforces, or a start-time refusal all run without anyone
-  remembering to look.
+- **Read both sides at the selected revisions.** Compare a generated publication
+  with its source at publication time, an installed artifact with its adoption
+  declaration in consumer checks, or selected participants for integration.
+  These are different claims; report which one was checked.
+- **Run where the obligation is owned.** A required gate covers changes to its
+  relevant inputs and the check itself. An optional or manual check supplies
+  evidence when run but leaves that gate coverage absent.
+- **Demonstrate detection.** Introduce a representative disagreement, observe
+  the expected failure, then undo the mutation. A passing run alone does not
+  show that the check detects drift.
+- **Prefer direct enforcement when appropriate.** Compiler exhaustiveness,
+  database constraints and validated inputs can avoid separately maintained
+  checks. They still prove only the properties they enforce.
 
-A check you keep is a check you must maintain. It usually breaks because it
-encodes the structure it checks rather than reading it. [Checks that survive
-restructuring](durable-checks.md) sets out the requirements that prevent this.
-
-Where a check is impossible too, rung 6 is what remains: state the duplication
-where the concept lives, name every place that must change together, and say what
-goes wrong when one is missed. A recorded duplication is a known risk. An
-unrecorded one becomes a surprise when a later change updates only one of those
-places.
+Use [durable checks](durable-checks.md) when implementing a retained check. When
+automated agreement is impractical, record the manual relationship, its owners
+and what happens if an update is missed. Do not label intentional version
+selection as an unprotected duplicate merely because live upstream is absent.

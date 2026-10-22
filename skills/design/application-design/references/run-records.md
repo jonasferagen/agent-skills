@@ -10,10 +10,11 @@ handoff questions; no common schema or helper library is required.
 Identify the attempt separately from the input revision and result. For stages
 whose partial completion matters, distinguish not started, running, passed and
 failed. An interrupted running stage has an unknown outcome until reconciled;
-absence of a failure record does not mean success. Preserve relevant diagnostics
-and earlier attempts for as long as the project's retention rules allow, or
-until the user says they may go if there are none; keep secrets
-and prohibited input content out of records and logs. Record technical completion
+absence of a failure record does not mean success. Choose which diagnostics and
+earlier attempts recovery needs, who retains them and when they may be released,
+following the project's retention rules. Identify
+an unresolved retention choice when it affects recovery; keep secrets and
+prohibited input content out of records and logs. Record technical completion
 separately from acceptance.
 
 When byte identity matters, record SHA-256 and byte length for the bytes actually

@@ -1,39 +1,52 @@
 # Designing a consistency check
 
+## Choose the claim and owner
+
+Name the failure the check protects, its responsible owner and its declared
+inputs before implementing it. Consistency checks commonly protect different
+claims:
+
+- **Publication:** a generated or exported artifact matches the authoritative
+  source revision selected by its publisher.
+- **Consumer adoption:** the installed artifact matches the consumer's immutable
+  pin, and the consumer satisfies the contract it adopted.
+- **Integration:** explicitly selected participants and settings are compatible.
+
+Do not replace these with equality to a live upstream head. A consumer can
+correctly use an older supported contract. Its normal check uses declared
+artifacts rather than discovering sibling checkouts or private services.
+A compatibility or support policy may require an upgrade; name that separate
+policy and the evidence it needs.
+
 ## Keep the check durable
 
-The check added at rung 5 can itself become a restatement if it hard-codes the
-structure it checks. A durable check must:
+A retained check must:
 
-- Protect a named consequence at a cost proportionate to that consequence.
-- For parity between current owners, compute its answer when it runs instead of
-  comparing with a committed baseline, or "golden", that copies structural facts.
-- Read each structural fact from the home that declares it.
-- Resolve its location from its own file or module.
-- Use tests that create their own fixtures.
-- Fail only when the homes disagree.
+- Protect a named consequence at a proportionate cost.
+- Read each structural fact from its owning declaration or selected publication.
+- Record enough revision and integrity information to reproduce its comparison.
+- Resolve local inputs from its own location or an explicit declared root.
+- Give its tests isolated fixtures rather than requiring a neighboring checkout.
+- Distinguish disagreement, missing prerequisites and unmeasured behavior.
 
-A check built this way survives the next restructure without changes.
+For parity within one selected revision, compute the answer from those inputs
+when the check runs. Avoid a hand-maintained golden that merely copies current
+file sets, member lists or counts. A pinned published contract is different: it
+records a dependency selection, and remains valid until adoption changes.
+Independent literal behavioral expectations are also legitimate oracles.
 
-Hard-coded directory sets, member lists and expected counts copy facts that
-already have a home. Failures caused by an absent tool can create the same
-problem: the check fails because the environment changed, even though the homes
-still agree. Updating the copied literal and approving a new baseline then
-becomes routine. That routine teaches reviewers to approve diffs they have not
-read.
-
-| Ask of the check | If yes |
+| Ask of the check | Response |
 | --- | --- |
-| Is it missing a concrete consequence to protect? | do not add the check until you can name that consequence concretely |
-| Is there cheaper evidence that observes the same consequence? | use that evidence instead |
-| Can it fail for a change that cannot affect that consequence? | narrow the trigger, or explain why using that change as a proxy costs less than a missed defect |
-| Does it hold a name, a list or a count that also lives in the home? | read the home instead: that is rung 1 applied to the check |
-| Would it break if a directory moved, or if an optional component were absent? | resolve paths from its own location and make its tests create their fixtures |
-| Does it fail when a tool or service is missing, rather than when the homes disagree? | fail at the boundary where the environment contract requires that dependency; if no contract requires it, skip with a prominent notice |
-| Does it only produce a report, with nothing consuming that report? | make it check an invariant using current facts and fail a real gate, or remove it |
+| Is there no concrete consequence to protect? | Do not add it until that consequence is clear. |
+| Can cheaper evidence observe the same consequence? | Use that evidence. |
+| Can unrelated changes make it fail? | Narrow the trigger or explain the proxy's cost. |
+| Does it repeat a list or count already declared by an input? | Read that declaration at the selected revision. |
+| Does it require live sibling internals for a local claim? | Replace that dependency with the adopted publication or move the claim to explicit integration verification. |
+| Does it depend on where the caller launched it? | Resolve its own location or accept an explicit root and report it. |
+| Does a missing prerequisite look like drift? | Report the absence at the boundary that owes it; do not assert parity from empty output. |
+| Does it only report findings? | Identify who acts on them and when; do not claim required prevention without a gate. |
 
-[Checks that survive restructuring](durable-checks.md) expands these
-requirements, with examples of checks that violate and satisfy each. Read it
-while writing the check. The project decides whether
-a check is worth its recurring cost; these requirements keep a retained check
-working as the project changes.
+Read [checks that survive restructuring](durable-checks.md) when implementing
+the check. Verify a representative failure as well as the passing case.
+Generation parity and contract conformance do not prove the contract is correct;
+retain independent behavioral evidence for the consequences that matter.

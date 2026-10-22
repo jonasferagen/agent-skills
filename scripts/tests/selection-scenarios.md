@@ -23,12 +23,12 @@ installed packages' metadata, no expected route. No test checks this table.
 | Assemble a `docker run` for a one-off task with a published port | docker-cli | docker-compose-cli, docker-cleanup |
 | This compose command ran against the wrong project | docker-compose-cli | docker-cli |
 | A build failed with no space left on device | docker-cleanup | docker-cli, docker-compose-cli |
-| Should this nightly export job become a service, and what must its status report? | service-classes | service-boundaries, runtime-operations |
-| Add MCP access to an operation already exposed over HTTP | service-boundaries | service-classes |
-| Choose credentials and lifecycle controls for a service controller | runtime-operations | service-classes, service-boundaries |
-| Define the handoff between design and implementation | project-contracts | project-design |
-| Shape the responsibilities and conceptual model of a new repository | project-design | project-contracts, application-design |
-| Design one external generation operation inside an application | application-design | project-design, service-boundaries |
+| Should this nightly export job become a service, and what must its status report? | service-classes | service-design, runtime-operations |
+| Add MCP access to an operation already exposed over HTTP | service-design | service-classes |
+| Choose credentials and lifecycle controls for a service controller | runtime-operations | service-classes, service-design |
+| Define the handoff between design and implementation | repository-design | application-design |
+| Shape ownership, publication and dependency boundaries of a new repository | repository-design | application-design, service-design |
+| Design one external generation operation inside an application | application-design | repository-design, service-design |
 | Decide whether this section wants a diagram or a table | diagrams-and-tables | clear-writing |
 | Tighten this guide without changing what it requires | clear-writing | diagrams-and-tables |
 | Explain the cardinality at one end of an existing ER view | diagrams-and-tables | relational-modeling |
@@ -36,5 +36,12 @@ installed packages' metadata, no expected route. No test checks this table.
 | Correct a spelling error in an operating guide | none | service-classes, runtime-operations |
 | Rename a screenshot file | none | godot-gdscript |
 | Replace a literal spelling in a README | none | clear-writing, relational-modeling |
-| Review this repository for structural and semantic drift | repository-maintenance | project-design, test-audit |
+| Review this repository for structural and semantic drift | repository-maintenance | repository-design, test-audit |
 | Correct a spelling error in a maintenance guide | none | repository-maintenance |
+
+| Request | Should select | Should not select |
+| --- | --- | --- |
+| Our tests need sibling checkouts despite temporary local inputs | repository-design | service-design |
+| Introduce aliases for current external references without duplicating package locks | repository-design | application-design |
+| A pinned schema differs from its publisher's latest source: is that drift? | single-source-of-truth | service-design |
+| Review a saved record whose meaning changes when its dependency updates | application-design or repository-design, according to the affected boundary | service-classes |
