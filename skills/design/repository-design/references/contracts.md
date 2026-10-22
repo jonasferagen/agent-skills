@@ -45,6 +45,12 @@ Persistence across application restarts does not imply backup, protection from
 application deletion or survival of host loss; those require separate operational
 policies when needed. A backup policy should not become an application save state.
 
+Choose publication semantics from the consumer's actual needs. Immutable files
+with a completion record written last and complete read validation can suffice
+when readers reject incomplete generations. Require atomic rename, locking or
+crash durability only when the workflow needs those guarantees and the interface
+provides them.
+
 A consumer checks valid, complete data through the supported interface. The
 adapter's tests establish its declared behavior, and deployment checks establish
 that the installed backing fulfills it. Replacing an implementation preserves
