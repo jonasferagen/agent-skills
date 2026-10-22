@@ -2,7 +2,7 @@
 name: repository-design
 description: "Design or review a repository's responsibilities, public boundaries and external dependencies, including handoff contracts and acceptance. Use for cross-repository coupling, dependency discovery, compatibility or independent build and verification; not for routine edits inside an established boundary."
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Repository design
@@ -45,6 +45,16 @@ parsing its configuration and reuse of its test fixtures create implementation
 coupling. Replace them with an owned public boundary where useful. A documented
 file format or database view can be that boundary; a network API is not required.
 Renaming a private path as an alias does not make it public.
+
+Separate a resource's public guarantees, the adapter that exposes them, and the
+deployment that fulfills them. The adapter owns the consumer contract; the host
+or provider operates its backing implementation. A persistent filesystem can be
+the entire interface: consumers own file meaning and complete publication, while
+the provider owns storage persistence and any caching, replication or backup
+policy. Consumers should not reconstruct those guarantees by selecting internal
+routes, inspecting caches or confirming individual remote uploads. If the backing
+implementation cannot meet the promised contract, fix or qualify that boundary
+at its owner rather than adding provider orchestration to every consumer.
 
 An owner decides a contract's meaning; a consumer decides which supported
 publication it adopts. Prefer immutable artifacts with recorded source revision

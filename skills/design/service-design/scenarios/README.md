@@ -101,6 +101,13 @@ merely to complete the review.
 
 ## Nearby work
 
+- An application verifies remote object copies after saving to a mounted store:
+  distinguish its file-integrity obligation, the adapter's persistent-filesystem
+  contract and the host's replication/backup policy. Ordinary save workflows need
+  no knowledge of host upload queues or direct mounts. Validate required filesystem
+  semantics and preserve data before removing redundant routes; do not infer
+  backup or host-loss protection from persistence.
+
 - A single application needs only an HTTP adapter change: review its affected
   behavior without imposing per-service storage, identities or MCP.
 - A user requests a container build correction only: do not activate service

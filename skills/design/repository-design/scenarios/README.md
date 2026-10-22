@@ -66,3 +66,16 @@ Context: Review concerns a named document revision; acceptance and publication
 are different decisions. The workflow uses files and people, with no service.
 Expected: enough terms for identity, acceptance, rejection and revised input; no
 mandatory API, queue, common record schema or invented approval stage.
+
+## Filesystem adapter and host operations
+
+Request: Simplify an editor's save path. It uses a mounted persistent store but
+selects an uncached route and polls an object service before declaring a save.
+Context: All writers are local. The host owns replication and backup; the editor
+must retain complete valid checkpoints before dropping disposable working state.
+Expected: one consumer filesystem interface with explicit semantics; adapter-owned
+contract and host-owned backing operations. Keep completeness and reset guards,
+remove remote-backup states from the editor, test application behavior with local
+fixtures and deployment semantics separately. Preserve existing data and pending
+writes during transition. Do not assert cached writes meet durability promises
+without evidence or introduce an unnecessary storage service.

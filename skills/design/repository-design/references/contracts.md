@@ -35,6 +35,22 @@ to recover; do not invent guarantees the provider does not supply.
 
 ## Change a contract deliberately
 
+For an external resource, identify three responsibilities: the consumer's use,
+the adapter's promised behavior and the deployment's implementation obligations.
+They can belong to different owners even when their code shares a repository.
+Specify observable semantics, not the mechanism a current host happens to use.
+For a filesystem, define the required read/write visibility, publication and
+unavailability behavior. Do not imply full POSIX semantics from a mounted path.
+Persistence across application restarts does not imply backup, protection from
+application deletion or survival of host loss; those require separate operational
+policies when needed. A backup policy should not become an application save state.
+
+A consumer checks valid, complete data through the supported interface. The
+adapter's tests establish its declared behavior, and deployment checks establish
+that the installed backing fulfills it. Replacing an implementation preserves
+existing contents and accounts for pending writes and visibility before changing
+routes. A successful rename of a configuration field establishes none of these.
+
 Distinguish the publisher's newest revision from the revision each consumer has
 adopted. Identify affected consumers from their declared dependencies and actual
 uses. Compare old and new behavior, retained records and error semantics; adding

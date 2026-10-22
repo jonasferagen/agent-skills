@@ -2,7 +2,7 @@
 name: service-design
 description: "Design or review service responsibilities, public interfaces, caller identity and storage custody across runtime boundaries. Use for HTTP/MCP behavior parity, retry and concurrency semantics, private-storage bypasses or service operational boundaries; not for container builds or protocol SDK setup alone."
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Service design
@@ -86,6 +86,19 @@ operation spans owners; do not imply an atomic transaction across independent
 services without a mechanism that provides it.
 
 ## Keep storage and operations under their owners
+
+Distinguish the public resource contract, its adapter and the host or provider
+that operates the backing system. The adapter owns the guarantees callers may
+rely on; deployment owns how they are fulfilled. A mounted persistent filesystem
+needs no additional service merely to express this boundary. Its consumers own
+file validity, complete publication and application recovery. Caching, uploads,
+replication and backup remain deployment responsibilities unless a public
+operation explicitly makes one of them part of the requested product behavior.
+Do not make callers inspect provider processes or choose cache-bypassing routes
+to establish an ordinary save. Specify the filesystem semantics actually required
+and verify that the implementation provides them; persistence alone promises no
+backup or protection against deletion or host loss. Preserve contents and pending
+writes when replacing or removing a backing route.
 
 For multiple services, keep storage custody and runtime identities distinct.
 Each service accesses another's state through the supported interface. Shared
