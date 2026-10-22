@@ -43,21 +43,16 @@ repository-design. Consumer adoption remains explicit and pinned.
 | Skill | Use it for |
 | --- | --- |
 | [service-classes](skills/operations/service-classes/SKILL.md) (draft) | Decide whether a capability is a service and whether it is running or scheduled, what evidence each class owes, and what a status report may claim. |
-| [runtime-operations](skills/operations/runtime-operations/SKILL.md) | Credential handling, local service controls, child processes and encrypted PostgreSQL backups, as method and an interface contract rather than shipped code. |
 | [database-migrations](skills/operations/database-migrations/SKILL.md) | Preserve migration history, review baselines and verify database bootstrap and upgrades. |
 | [docker-cli](skills/operations/docker-cli/SKILL.md) | Write or review a single container or image command: ports, secrets, mounts, labels, identity and the cleanup of what it created. |
 | [docker-compose-cli](skills/operations/docker-compose-cli/SKILL.md) | Write or review a compose command and the file it reads: project selection, inherited environment, borrowed definitions and project-scoped teardown. |
 | [docker-cleanup](skills/operations/docker-cleanup/SKILL.md) | Audit a Docker host's accumulated images, volumes, networks and build cache, and reclaim space by attributed owner and tier. |
 
-Runtime-operations states the
-[runtime helpers contract](skills/operations/runtime-operations/references/runtime-helpers.md)
-a consumer binds to, without shipping the helpers themselves: the consuming
-project deploys that code and names the interface version it was written against.
 Service homes, document shapes, control commands and their checks are the
 consuming project's own, and service-classes states only what a
 service and its status owe. Promotion from a spike to maintained service use
-selects service-design for runtime boundaries, service-classes for classification
-and runtime-operations for operating mechanics, as the work requires.
+selects service-design for runtime boundaries and service-classes for
+classification, as the work requires.
 
 The three Docker packages split one tool by the moment it is used: assembling a
 command, driving a project of containers, or accounting for what a host has
@@ -119,9 +114,8 @@ A consuming project may import an explicitly self-contained reference as a file,
 recording its owning skill, version, source path and full commit. This does not
 install or register the whole skill. The shared-value reference at
 `skills/design/single-source-of-truth/references/authoritative-values.md` supports that
-use and requires no sibling resources, as does
-`skills/operations/runtime-operations/references/runtime-helpers.md`. Keep both
-free of local links, so an importer that rejects them can carry the file. Preserve the imported bytes and record
+use and requires no sibling resources. Keep it free of local links, so an
+importer that rejects them can carry the file. Preserve the imported bytes and record
 the project's own adoption and routes separately.
 
 ## Maintenance checks
@@ -425,7 +419,7 @@ holds the rest.
   system-modeling scope and OMG BPMN 2.0.2 for notation boundaries; its examples
   keep real shapes and counts from the owner's projects with synthetic names.
 - **postgres-design**, **source-of-truth**, **node-patterns**,
-  **verification-design**, **test-writing**, **runtime-operations** and the
+  **verification-design**, **test-writing** and the
   Docker packages were written from reviews of the owner's own projects. The
   packages carry no project schema names, identifiers, paths or credentials.
 
@@ -433,6 +427,7 @@ holds the rest.
 
 | Former package | Date | Where it is now |
 | --- | --- | --- |
+| runtime-operations 4.0.0 | 23 October 2026 | Retired by the Owner's decision: it described one framework's credential tiers and controller helpers. `f34f731` is the last commit that ships it; existing pins retain it. |
 | project-design 0.2.0, project-contracts 0.2.0 | 22 October 2026 | repository-design owns repository boundaries, external discovery and handoff contracts; application-design owns internal operations. Broad conceptual-model and provider-selection tutorials are outside the replacement scope. Existing pins retain the former packages. |
 | service-boundaries 0.5.0 | 22 October 2026 | service-design owns service interfaces, identity, storage custody and evidence matched to the task. Existing pins retain the former package. |
 | project-planning 0.1.0, project-bootstrap 0.5.0, pattern-capture 0.3.1, project-policy 0.4.0 | 12 October 2026 | project-bootstrap, since retired; `183148d34dd1434df0402a0c6e69b195da84a525` is the last commit here that ships them |
@@ -451,11 +446,6 @@ the convention-shaped outcomes into the project itself.
 
 ### Current maintenance notes
 
-- **runtime-operations** 3.0.0 stopped shipping the Python helpers a consumer
-  imports. The consuming project deploys that code and names the interface version it
-  was written against, as the
-  [helpers contract](skills/operations/runtime-operations/references/runtime-helpers.md)
-  states; the interface version did not move.
 - The Docker packages duplicate four shared rules under reciprocal copy records
   rather than linking, because each must work alone; the borrowed-definition
   rule is triggered in docker-compose-cli and fixed with a docker-cli bind.

@@ -16,16 +16,15 @@ installed packages' metadata, no expected route. No test checks this table.
 | Give these operations and values clear owners in a Python module | python-design | python-patterns |
 | Review cancellation and cleanup in this async worker | python-patterns | python-design |
 | Check that this harness reports why docker failed | node-patterns | bash-patterns, docker-cli |
-| Can this backup script's checks pass when they should fail? | bash-patterns | node-patterns, runtime-operations |
+| Can this backup script's checks pass when they should fail? | bash-patterns | node-patterns |
 | Which agreements involve a given organisation? Model the entities | relational-modeling | postgres-design, diagrams-and-tables |
 | Design the tables and keys for an adopted model | postgres-design | relational-modeling |
 | Review this migration runner's ledger and locking | database-migrations | postgres-design, docker-compose-cli |
 | Assemble a `docker run` for a one-off task with a published port | docker-cli | docker-compose-cli, docker-cleanup |
 | This compose command ran against the wrong project | docker-compose-cli | docker-cli |
 | A build failed with no space left on device | docker-cleanup | docker-cli, docker-compose-cli |
-| Should this nightly export job become a service, and what must its status report? | service-classes | service-design, runtime-operations |
+| Should this nightly export job become a service, and what must its status report? | service-classes | service-design |
 | Add MCP access to an operation already exposed over HTTP | service-design | service-classes |
-| Choose credentials and lifecycle controls for a service controller | runtime-operations | service-classes, service-design |
 | Define the handoff between design and implementation | repository-design | application-design |
 | Shape ownership, publication and dependency boundaries of a new repository | repository-design | application-design, service-design |
 | Design one external generation operation inside an application | application-design | repository-design, service-design |
@@ -33,7 +32,7 @@ installed packages' metadata, no expected route. No test checks this table.
 | Tighten this guide without changing what it requires | clear-writing | diagrams-and-tables |
 | Explain the cardinality at one end of an existing ER view | diagrams-and-tables | relational-modeling |
 | A headless Godot probe logs a failure and exits zero | godot-gdscript | bash-patterns |
-| Correct a spelling error in an operating guide | none | service-classes, runtime-operations |
+| Correct a spelling error in an operating guide | none | service-classes |
 | Rename a screenshot file | none | godot-gdscript |
 | Replace a literal spelling in a README | none | clear-writing, relational-modeling |
 | Review this repository for structural and semantic drift | repository-maintenance | repository-design, test-audit |
