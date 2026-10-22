@@ -15,7 +15,7 @@ run's observed results with the change that ran it, not here.
 | A scheduled service writes its own schedule units | Expected, not a departure to defend: `start` is what installs the schedule. |
 | Read a project-wide status whose rows look like failures | Read the state and class vocabularies; several distinct situations report `absent`, and a row's class says what a project-wide launch may start. Mutate no runtime state. |
 | A status row carries a class value the reader does not recognise, or predates the class key | Read as unclassified; nothing acts on a class it cannot name, and the row is not dropped. |
-| Adopt a `services/` home, its guide shape or its checks | The installing project's convention; this skill names no home. |
+| Adopt a `services/` home, its guide shape or its checks | The consuming project's own decision; this skill names no home. |
 | Decide service ownership or add a transport to an operation | service-design; this skill classifies rather than designs the boundary. |
 | Choose credentials, lifecycle controls or helper imports for a controller | runtime-operations, beyond naming that owner here. |
 | Correct a spelling error in an operating guide | Nothing from this skill. |

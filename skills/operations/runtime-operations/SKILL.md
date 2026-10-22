@@ -13,7 +13,7 @@ and the interface contract operational tooling must satisfy; project configurati
 stays in the repo.
 
 No code ships here. The modules a service controller imports are deployed by the
-project's framework, which also chooses the secret store and the process manager
+consuming project, which also chooses the secret store and the process manager
 they bind. [The helpers contract](references/runtime-helpers.md)
 states the surface those modules must offer, the binding a project supplies, and
 what survives an update. Read it before writing a controller, rather than

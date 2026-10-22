@@ -2,7 +2,7 @@
 
 A service controller does not drive a process manager directly. It binds one
 service and asks for one action, through a small set of Python modules the
-project's framework deploys: `serviceControl`, `serviceHealth`, `serviceReport`
+consuming project deploys: `serviceControl`, `serviceHealth`, `serviceReport`
 and `credentialStore`, with a `runtimeApi` declaration beside
 them. They are files in a deployed directory, not an installed package, so a
 consumer must put that directory on `sys.path` before importing them.
@@ -10,7 +10,7 @@ consumer must put that directory on `sys.path` before importing them.
 This reference owns the contract and nothing else: how a consumer admits the
 modules, what the two version numbers mean, what a project binding supplies, how
 the actions behave, and what survives an update. The modules themselves are
-deployed with the project's framework, which also chooses the process manager
+deployed by the consuming project, which also chooses the process manager
 and the secret store they bind. Read this contract instead
 of inferring the surface from a deployed module's source, and treat it as what a
 conforming deployment must offer.
@@ -81,7 +81,7 @@ This interface is versioned separately from the skill's `metadata.version`. Pros
 guidance and importable surface change for different reasons; a clarified
 paragraph is not an interface event, and a new helper argument is not a guidance
 event. Skill 3.0.0 moved the modules, the loader and their tests out of this
-package to the framework that deploys them. The interface did not move with them:
+package to the project that deploys them. The interface did not move with them:
 it remains `runtime-operations/1.2`, no signature or field changed, and a
 consumer already written against `major=1` needs no code change. What such a
 consumer must revisit is discovery — the directory it resolves now belongs to the
@@ -199,7 +199,7 @@ review the consumers a major change affects and exercise each affected
 controller.
 
 This contract states a surface, not an implementation. Which process manager
-and secret store the deployed modules bind is the framework's
+and secret store the deployed modules bind is the consuming project's
 choice, and that choice carries its own prerequisites: a client capability, a
 running manager, an installed credential tool, a container runtime. A conforming
 deployment documents them where it ships the code, and keeps its own tests with

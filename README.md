@@ -10,9 +10,9 @@ its contract to change, and read its scenarios for what it is evaluated against.
 A package may carry `scenarios/README.md`: the requests, context and expected
 behavior it is evaluated against. Ordinary use of a skill does not read it.
 
-A downstream distribution may bundle several skills from here into one
-installation. It owns its own membership, lock, checker and release rules; this
-repository supplies the packages and their versions.
+A consuming project may install several skills from here together. It owns
+its own selection, lock, checks and upgrade rules; this repository supplies the
+packages and their versions.
 
 ## Authoring
 
@@ -51,10 +51,10 @@ repository-design. Consumer adoption remains explicit and pinned.
 
 Runtime-operations states the
 [runtime helpers contract](skills/operations/runtime-operations/references/runtime-helpers.md)
-a consumer binds to, without shipping the helpers themselves: a distribution
-deploys that code and names the interface version it was written against.
+a consumer binds to, without shipping the helpers themselves: the consuming
+project deploys that code and names the interface version it was written against.
 Service homes, document shapes, control commands and their checks are the
-installing distribution's convention, and service-classes states only what a
+consuming project's own, and service-classes states only what a
 service and its status owe. Promotion from a spike to maintained service use
 selects service-design for runtime boundaries, service-classes for classification
 and runtime-operations for operating mechanics, as the work requires.
@@ -64,8 +64,8 @@ command, driving a project of containers, or accounting for what a host has
 accumulated. Each is standalone and carries its own copy of the identity,
 label-over-pattern and prune-refusal rules they share. The outcomes a project's
 containers must meet — lifecycle, state custody, image pinning, composed sets —
-are convention rather than CLI usage and belong to the consuming project's
-framework.
+are project decisions rather than CLI usage and belong to the consuming
+project.
 
 ## Verification
 
@@ -110,19 +110,19 @@ a revision after a move.
 
 Every package keeps its required resources inside its own directory: references,
 templates, scripts and their tests. Links must stay inside the package. A shipped
-skill names no other skill and depends on none: when two packages need the same
-rule, each states it in full in its own words. Packages are generic: they make no
+skill may name another skill but never links to it or depends on it: when two
+packages need the same rule, each states it in full in its own words. Packages are generic: they make no
 claims about a particular consuming project's process, records or conventions,
 and their examples are synthetic.
 
-A distribution may import an explicitly self-contained reference as a file,
+A consuming project may import an explicitly self-contained reference as a file,
 recording its owning skill, version, source path and full commit. This does not
 install or register the whole skill. The shared-value reference at
 `skills/design/single-source-of-truth/references/authoritative-values.md` supports that
 use and requires no sibling resources, as does
 `skills/operations/runtime-operations/references/runtime-helpers.md`. Keep both
 free of local links, so an importer that rejects them can carry the file. Preserve the imported bytes and record
-the distribution's own adoption and routes separately.
+the project's own adoption and routes separately.
 
 ## Maintenance checks
 
@@ -132,10 +132,6 @@ suite under `scripts/` and `skills/`, including each package's own `tests/`.
 Empty, failed, skipped and incomplete suites fail it, and missing prerequisites
 fail explicitly. CI runs the same command. These local checks do not establish
 live service or database acceptance.
-
-Document checks (frontmatter, links and anchors, containment, unique names,
-copy records, consumer names and scenario routing) are removed until the v4
-freeze; the rules still apply but are reviewed by hand.
 
 ### Where a package keeps its checks
 
@@ -310,8 +306,7 @@ Then apply each owner's own review steps to the package's files:
 | Application design | Application designs and runtime helpers produced by a skill, when present | [Check behavior at the owning boundary](skills/design/application-design/SKILL.md#check-behavior-at-the-owning-boundary) |
 | Other skills in this repository | Helpers and tests, such as Python scripts and their suites | Select from the catalog by trigger |
 
-A skill gaining a rule owner adds a row here in the same change. Skills that
-govern projects apply to this repository where AGENTS.md adopts them.
+A skill gaining a rule owner adds a row here in the same change.
 
 For each finding, record the rule, the file, the concrete consequence and its
 disposition: fixed, or an explicit exception stating its reason, scope, who
@@ -366,17 +361,14 @@ result.
 
 ## Adding a skill
 
-This repository owns reusable technical and authoring methods. Project-bootstrap
-owns project setup, governance and coordination skills, including bootstrap,
-planning, policy, work records and capture. It also owns adopted conventions,
-document shapes, placement, collection integration and installation. A native
-skill supplies the method; a convention supplies concrete defaults; the consuming
-project owns its decisions, priorities, responsibilities, requirements, local
-procedures and evidence.
+This repository owns reusable technical and authoring methods. Project setup,
+process and coordination belong to the consuming project, as do its decisions,
+priorities, responsibilities, requirements, local procedures and evidence. A
+skill here supplies the method; the consuming project supplies its defaults.
 
 - Keep it project-agnostic: no account details, credentials, service
-  identifiers or private domain records, and no names of the projects or
-  distributions that consume these skills. A skill about one project's systems
+  identifiers or private domain records, and no names of the projects that
+  consume these skills. A skill about one project's systems
   does not belong here. Skills about Jonas himself, such as his email style,
   live in his separate local `personal-skills` repository.
 - Make no claim about a consumer. A package states a need; where the consumer
@@ -385,8 +377,8 @@ procedures and evidence.
   project, and ships no code a consumer imports or executes — only the interface
   contract such code is bound by. Guidance selected by a command or artifact in
   front of the reader belongs here; an outcome a project's own work must meet
-  belongs to the installing distribution's conventions. An installing
-  distribution states the same division in its own words, from its side; fix an
+  belongs to the consuming project. The consuming project states the same
+  division in its own words, from its side; fix an
   overreaching package here rather than letting a consumer document the
   deviation. The retirements of `containerization` and `repository-services`
   record what this costs when it is noticed late.
@@ -443,11 +435,11 @@ holds the rest.
 | --- | --- | --- |
 | project-design 0.2.0, project-contracts 0.2.0 | 22 October 2026 | repository-design owns repository boundaries, external discovery and handoff contracts; application-design owns internal operations. Broad conceptual-model and provider-selection tutorials are outside the replacement scope. Existing pins retain the former packages. |
 | service-boundaries 0.5.0 | 22 October 2026 | service-design owns service interfaces, identity, storage custody and evidence matched to the task. Existing pins retain the former package. |
-| project-planning 0.1.0, project-bootstrap 0.5.0, pattern-capture 0.3.1, project-policy 0.4.0 | 12 October 2026 | [project-bootstrap](https://github.com/jonasferagen/project-bootstrap), which authors and versions them as native skills; `183148d34dd1434df0402a0c6e69b195da84a525` is the last commit here that ships them |
+| project-planning 0.1.0, project-bootstrap 0.5.0, pattern-capture 0.3.1, project-policy 0.4.0 | 12 October 2026 | project-bootstrap, since retired; `183148d34dd1434df0402a0c6e69b195da84a525` is the last commit here that ships them |
 | work-records 1.0.0 | 12 October 2026 | project-bootstrap; `e2e0ed4` is the last commit here that ships it |
 | typescript-patterns 2.0.3, typescript-design 1.0.3 | 13 October 2026 | Retired by the Owner's decision; `605cded` is the last commit that ships them, with the shared-contract check that compared their module-syntax copies and the TypeScript example check |
-| containerization 1.1.0 | 9 October 2026 | CLI usage split into docker-cli and docker-compose-cli; PostgreSQL and verification material to database-migrations and verification-design; convention-shaped outcomes, including one service image for API, migration and seed commands, to the consuming framework's convention |
-| repository-services 0.3.1 | 9 October 2026 | Judgment kept as service-classes 0.1.0; the `services/` home, document shapes, reserved actions, dispatcher and validator to the installing distribution's convention |
+| containerization 1.1.0 | 9 October 2026 | CLI usage split into docker-cli and docker-compose-cli; PostgreSQL and verification material to database-migrations and verification-design; convention-shaped outcomes, including one service image for API, migration and seed commands, to the consuming project |
+| repository-services 0.3.1 | 9 October 2026 | Judgment kept as service-classes 0.1.0; the `services/` home, document shapes, reserved actions, dispatcher and validator to the consuming project |
 | project-docs | 4 October 2026 | [project-foundation](https://github.com/jonasferagen/project-foundation) |
 | change-workflow | 3 October 2026 | Retired; Git worktree operations, verification, document maintenance and reporting conventions belong to the consuming project |
 | shared-code-design | 2 October 2026 | Retired; its distribution-boundary criteria are not carried by another package |
@@ -455,12 +447,12 @@ holds the rest.
 
 Installed copies keep working at their pinned commits. A consumer upgrading from
 containerization or repository-services adopts the successor packages and moves
-the convention-shaped outcomes to its own framework.
+the convention-shaped outcomes into the project itself.
 
 ### Current maintenance notes
 
 - **runtime-operations** 3.0.0 stopped shipping the Python helpers a consumer
-  imports. The distribution deploys that code and names the interface version it
+  imports. The consuming project deploys that code and names the interface version it
   was written against, as the
   [helpers contract](skills/operations/runtime-operations/references/runtime-helpers.md)
   states; the interface version did not move.
