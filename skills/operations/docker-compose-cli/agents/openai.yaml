@@ -1,4 +1,0 @@
-interface:
-  display_name: "Docker Compose CLI"
-  short_description: "Write or review a docker compose command and its project selection"
-  default_prompt: "Use $docker-compose-cli to review this compose command's project selection, inherited environment and teardown."

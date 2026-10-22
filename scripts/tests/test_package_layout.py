@@ -1,4 +1,4 @@
-"""Every skill is a standalone package directory with its UI metadata."""
+"""Every skill is a standalone package directory."""
 
 from pathlib import Path
 import unittest
@@ -16,5 +16,4 @@ class PackageLayoutTests(unittest.TestCase):
             with self.subTest(package=package.name):
                 self.assertEqual(len(package.relative_to(SKILLS).parts), 2,
                                  'a skill sits directly under one area')
-                self.assertTrue((package / 'agents/openai.yaml').is_file())
         self.assertFalse((ROOT / 'collections').exists(), 'the catalog ships no bundles')

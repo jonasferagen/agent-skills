@@ -1,4 +1,0 @@
-interface:
-  display_name: "Repository maintenance"
-  short_description: "Review repository coherence and maintenance drift"
-  default_prompt: "Use $repository-maintenance to review this repository for actionable drift within its current scope."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Diagrams and tables"
-  short_description: "Read, review and construct diagrams and tables"
-  default_prompt: "Use $diagrams-and-tables to explain, review or construct this view as requested."

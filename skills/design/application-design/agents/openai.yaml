@@ -1,4 +1,0 @@
-interface:
-  display_name: "Application design"
-  short_description: "Design operations, state and dependency boundaries"
-  default_prompt: "Use $application-design to shape this workflow into application operations and trace a consequential failure."

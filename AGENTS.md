@@ -43,6 +43,6 @@ diagram or table. Keep repository-specific package and release rules in the READ
   Record observed results with the change that ran them, never in the package.
 - Run bundled tests when the behaviour they check changes. Render changed
   diagrams and inspect them at their intended reading width.
-- On a rename, update the directory, manifest, UI metadata, scenarios,
+- On a rename, update the directory, manifest, scenarios,
   invocation examples and references. Keep source names in provenance where they
   identify material under its original name.

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Verification design"
-  short_description: "Choose checks for a change and consolidate overlapping evidence"
-  default_prompt: "Use $verification-design to choose the checks this change needs and identify validation that can be consolidated."

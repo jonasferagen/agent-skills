@@ -386,8 +386,7 @@ procedures and evidence.
   record what this costs when it is noticed late.
 - Put the manifest at `skills/<area>/<name>/SKILL.md`; choose the existing area
   whose task it serves. Keep skill names unique. Put every resource the skill
-  needs inside its directory. `agents/openai.yaml` carries the display name for
-  tools that read it.
+  needs inside its directory.
 - Choose a short lowercase hyphenated name for the activity or subject readers
   will seek. Use familiar terms and the actual language or tool when it narrows
   the scope. Preserve an established name unless clearer discovery justifies

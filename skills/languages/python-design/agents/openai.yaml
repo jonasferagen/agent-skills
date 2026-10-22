@@ -1,4 +1,0 @@
-interface:
-  display_name: "Python design"
-  short_description: "Python responsibilities, contracts and interfaces"
-  default_prompt: "Use $python-design to review this Python program's responsibilities, phase contracts and shared interfaces."

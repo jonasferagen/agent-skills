@@ -1,4 +1,0 @@
-interface:
-  display_name: "Bash patterns"
-  short_description: "Preserve Bash arguments, failures and cleanup ownership"
-  default_prompt: "Use $bash-patterns to review this Bash code for argument boundaries, failure handling and resource cleanup."

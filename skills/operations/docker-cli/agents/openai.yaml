@@ -1,4 +1,0 @@
-interface:
-  display_name: "Docker CLI"
-  short_description: "Write or review a docker run, inspect or image command"
-  default_prompt: "Use $docker-cli to review this container command's ports, secrets, mounts and cleanup."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Test audit"
-  short_description: "Audit settled tests for weak evidence, gaps and brittleness"
-  default_prompt: "Use $test-audit to assess whether these tests actually protect behavior."

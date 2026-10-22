@@ -1,3 +1,0 @@
-interface:
-  display_name: "Database migrations"
-  short_description: "Reproduce dev data and preserve migration history"
