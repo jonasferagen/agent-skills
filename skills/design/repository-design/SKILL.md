@@ -1,8 +1,8 @@
 ---
 name: repository-design
-description: "Design or review a repository's responsibilities, public boundaries and external dependencies, including handoff contracts and acceptance. Use for cross-repository coupling, dependency discovery, compatibility or independent build and verification; not for routine edits inside an established boundary."
+description: "Design or review repository responsibilities, public commands and external dependencies. Use for command-surface consolidation, cross-repository coupling, dependency discovery, handoff contracts or independent verification; not for routine edits inside an established boundary."
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Repository design
@@ -68,6 +68,8 @@ For discovery aliases, external prose and locator configuration, read
 [external references](references/external-references.md).
 For defining or reviewing acceptance, failure and compatibility obligations, read
 [boundary contracts](references/contracts.md).
+For inventorying, grouping, moving or changing public commands, read
+[command surfaces](references/command-surfaces.md).
 
 ## Preserve independent change
 

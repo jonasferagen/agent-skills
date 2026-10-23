@@ -3,6 +3,27 @@
 These synthetic cases exercise decisions; they are not executed results. Give a
 fresh evaluator the request and input context without the expected behavior.
 
+## Consolidating a command surface
+
+Request: “Reduce the public commands in this repository without losing behavior.”
+Context: A library has three related maintenance CLIs, a root verifier, package
+scripts, and a worker executable selected by configuration. A sibling imports one
+CLI through a dynamically constructed subprocess path. The project has its own
+naming and output conventions.
+Expected: find entrypoints outside tools directories, follow wrappers and callers,
+classify the worker's supported audience, and distinguish public commands from
+internal executables. Group cohesive library operations while preserving their
+effects and outputs; retain the verifier's conventional route. Account for the
+sibling caller and migration checks. Follow local grammar without inventing a
+global dispatcher or treating a count reduction as proof of simpler behavior.
+
+## Narrow command implementation change
+
+Request: “Correct the typo in this command's help description.”
+Context: Its invocation, ownership and output contract are unchanged.
+Expected: a scoped prose correction; no command inventory, restructuring or
+mandatory architecture review.
+
 ## Isolated checkout and local verification
 
 Request: “Make this library's ordinary tests work in a standalone checkout.”

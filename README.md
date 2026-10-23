@@ -25,7 +25,7 @@ packages and their versions.
 
 | Skill | Use it for |
 | --- | --- |
-| [repository-design](skills/design/repository-design/SKILL.md) | Define repository ownership, public boundaries, external references, handoff contracts and independent verification. |
+| [repository-design](skills/design/repository-design/SKILL.md) | Define repository ownership, public commands and boundaries, external references, handoff contracts and independent verification. |
 | [single-source-of-truth](skills/design/single-source-of-truth/SKILL.md) | Give each rule a home and derive or check its other appearances. |
 | [application-design](skills/design/application-design/SKILL.md) | Shape application operations, internal boundaries, state ownership, injected dependencies and recovery. |
 | [service-design](skills/design/service-design/SKILL.md) | Define runtime ownership, public interfaces, caller identity, retry behavior and storage custody. |

@@ -27,6 +27,8 @@ installed packages' metadata, no expected route. No test checks this table.
 | Add MCP access to an operation already exposed over HTTP | service-design | service-classes |
 | Define the handoff between design and implementation | repository-design | application-design |
 | Shape ownership, publication and dependency boundaries of a new repository | repository-design | application-design, service-design |
+| Consolidate a repository's public commands and find every affected caller | repository-design | repository-maintenance, service-design |
+| Correct a typo in a CLI help description without changing its interface | none | repository-design, repository-maintenance |
 | Design one external generation operation inside an application | application-design | repository-design, service-design |
 | Decide whether this section wants a diagram or a table | diagrams-and-tables | clear-writing |
 | Tighten this guide without changing what it requires | clear-writing | diagrams-and-tables |
