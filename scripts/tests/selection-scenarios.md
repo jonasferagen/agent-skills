@@ -3,7 +3,7 @@
 Cross-skill cases: a request, the package that should be selected first, and the
 neighbour that should not. They test the catalog's descriptions and the packages'
 scope statements together, which no single package can own. Run them as routing
-trials by the method in the README's routing-quality section: a fresh agent, the
+trials by the method in [routing quality](../../docs/verification.md#routing-quality): a fresh agent, the
 installed packages' metadata, no expected route. No test checks this table.
 
 | Request | Should select | Should not select |

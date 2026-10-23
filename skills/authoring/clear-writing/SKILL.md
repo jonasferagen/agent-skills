@@ -2,7 +2,7 @@
 name: clear-writing
 description: "Draft or edit explanatory and instructional prose for clarity, including technical explanations, documentation, skills, project instructions and concise labels. Preserve the requested voice, factual meaning and level of certainty."
 metadata:
-  version: "0.10.0"
+  version: "0.11.0"
 ---
 
 # Clear writing
@@ -111,6 +111,10 @@ not respond within 30 seconds, so the command timed out" explains the cause when
 that cause and duration are known. Do not add those details without evidence.
 
 ## Adapt to the form
+
+- For README structure, documentation entrypoints or task routing, read
+  [README routing](references/readme-routing.md). A local wording fix needs no
+  structural review.
 
 - For skills, project instructions, rules and procedures, read
   [writing instructions](references/instructions.md).

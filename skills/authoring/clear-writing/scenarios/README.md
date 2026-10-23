@@ -33,6 +33,9 @@ run's observed results with the change that ran it, not here.
 | Replace a metaphor whose word choice carries a distinction, such as "cheapest" meaning least information lost | Keep the distinction in plain wording, or keep the metaphor; do not substitute a near-synonym that changes the reason. |
 | Clarify a sentence where "when available" could limit one action or all of them | Keep the scope visible or ask; do not move the condition so that it governs more actions than before. |
 | Replace the idiom "that's a dead end" in a retry rule with an exception | State the consequence, keep the exception beside the rule, and ask what an unquantified "a few retries" means. |
+| Restructure a repository README that mixes a public catalog, developer setup and emergency recovery; existing guides and incoming fragments already exist | Keep useful catalog discovery and common constraints at entry; route tasks directly to authoritative guides, keep recovery prerequisites and preserve incoming links. Do not create another generic index or duplicate argument lists. |
+| Find the ordinary verification route after a README split, then find the additional evidence required for a service change | Both routes remain reachable; the source gate is not presented as live-health evidence and conditional obligations remain discoverable. |
+| Correct a spelling error in a README | Keep the edit local; do not activate a routing restructure or require a fresh-agent trial. |
 
 ### Regressions in long documents
 

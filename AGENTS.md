@@ -4,9 +4,14 @@ These instructions govern changes to this authoring repository. To use an
 installed skill in another project, start at that installation's entry point
 and the consuming project's instructions.
 
-[README](README.md) owns the catalog, package format, naming, verification,
-evaluation and release rules. For a named skill, start at its package and read
-only the README section the task needs.
+[README](README.md) owns the catalog and task routes. Its linked guides own
+package authoring, verification, evaluation and releases. For a named skill,
+start at its package. For package changes, read [authoring rules](docs/packages.md#adding-a-skill)
+and [selection](docs/packages.md#selection); for versions or tags, read
+[releases](docs/releases.md). Use the catalog only when choosing a skill.
+Read applicable instructions first; in long guides inspect headings and read the
+relevant sections, prerequisites and required references. A narrow route does not
+waive an applicable rule.
 
 ## Git
 
@@ -28,18 +33,18 @@ repository ships no bundles. Shipped content names no consumer: say
 Use [Clear Writing](skills/authoring/clear-writing/SKILL.md) for prose here and,
 for skill instructions, its [instruction guidance](skills/authoring/clear-writing/references/instructions.md).
 Use [Diagrams and Tables](skills/authoring/diagrams-and-tables/SKILL.md) for a
-diagram or table. Keep repository-specific package and release rules in the README.
+diagram or table. Keep repository-specific package and release rules in the linked maintenance guides.
 
 ## Verification
 
 - Run `python3 scripts/check.py` and `git diff --check`; see
-  [maintenance checks](README.md#maintenance-checks) for prerequisites.
+  [maintenance checks](docs/verification.md#maintenance-checks) for prerequisites.
 - Trigger, entrypoint, shared-guidance or packaging changes meet the
-  [routing acceptance requirement](README.md#routing-quality).
+  [routing acceptance requirement](docs/verification.md#routing-quality).
 - Before tagging a release of a skill that bundles scripts, templates or an
-  extension declaration, complete the [release review](README.md#release-review).
-- When evaluating a skill, follow the README's
-  [scenario guidance](README.md#evaluating-a-skill-against-its-scenarios).
+  extension declaration, complete the [release review](docs/releases.md#release-review).
+- When evaluating a skill, follow the source
+  [scenario guidance](docs/verification.md#evaluating-a-skill-against-its-scenarios).
   Record observed results with the change that ran them, never in the package.
 - Run bundled tests when the behaviour they check changes. Render changed
   diagrams and inspect them at their intended reading width.
