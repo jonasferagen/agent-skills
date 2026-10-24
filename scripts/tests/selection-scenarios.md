@@ -32,6 +32,9 @@ installed packages' metadata, no expected route. No test checks this table.
 | Design one external generation operation inside an application | application-design | repository-design, service-design |
 | Decide whether this section wants a diagram or a table | diagrams-and-tables | clear-writing |
 | Tighten this guide without changing what it requires | clear-writing | diagrams-and-tables |
+| The feature shipped; bring its guide up to date and deal with the implementation notes appended to it | documentation-records | clear-writing |
+| This README's Maintenance section tells the project's history and planned work | documentation-records | clear-writing, repository-maintenance |
+| Shorten this paragraph of a current guide without changing what it says | clear-writing | documentation-records |
 | Explain the cardinality at one end of an existing ER view | diagrams-and-tables | relational-modeling |
 | A headless Godot probe logs a failure and exits zero | godot-gdscript | bash-patterns |
 | Correct a spelling error in an operating guide | none | service-classes |

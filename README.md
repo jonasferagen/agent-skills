@@ -20,6 +20,7 @@ packages and their versions.
 | --- | --- |
 | [clear-writing](skills/authoring/clear-writing/SKILL.md) | Express facts and instructions clearly without changing their meaning. |
 | [diagrams-and-tables](skills/authoring/diagrams-and-tables/SKILL.md) | Choose and verify useful visual explanations of relationships and comparisons. |
+| [documentation-records](skills/authoring/documentation-records/SKILL.md) (draft) | Keep maintained documentation about the present and plans, logs and history in the project's records. |
 
 ## Design
 

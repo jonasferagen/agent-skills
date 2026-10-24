@@ -2,7 +2,7 @@
 name: clear-writing
 description: "Draft or edit explanatory and instructional prose for clarity, including technical explanations, documentation, skills, project instructions and concise labels. Preserve the requested voice, factual meaning and level of certainty."
 metadata:
-  version: "0.12.0"
+  version: "0.13.0"
 ---
 
 # Clear writing
@@ -46,9 +46,7 @@ just to retain an unnecessary claim.
 
 Keep limitations, unsupported behavior, obligations and uncertainty that affect
 the reader's decision or understanding of the current contract. Their ability to
-change is not a reason to hide them. Preserve dated observations in records meant
-to retain evidence; they describe the conditions assessed, not a promise of
-current status.
+change is not a reason to hide them.
 
 ## Disclose detail progressively
 
@@ -62,37 +60,6 @@ Prefer the shortest route that preserves every applicable obligation. Readers
 must be able to find those obligations without reading unrelated guidance or
 maintenance history. Keep a short, self-contained explanation together when
 splitting it would add navigation without helping the reader.
-
-## Keep current guidance about the present
-
-Overviews, instructions, maintained guides and current indexes describe current
-purpose, behavior, responsibilities and constraints, including repository and
-package documentation, READMEs and agent instructions. Update the owning guide to
-describe the resulting system rather than appending an implementation summary.
-Keep plans, handoffs and historical records separate from maintained guidance,
-in the consuming project's designated location. The project owns that location
-and any exception for a dedicated, clearly named changelog; do not invent a
-repository path or storage policy. Link records only when the reader needs the
-background or next work, without presenting them as current authority. A "History" or
-"Maintenance" heading does not change a current page into a historical record.
-Keep current limitations and the rationale for current rules with the guidance
-they qualify; proposals, future commitments and accounts of past work belong in
-records. An instruction for an existing operation describes current behavior even
-when it is phrased in the future tense. When moving a record out of maintained
-guidance, confirm that the stored copy is complete before removing the original,
-and point remaining links at the current guide or the stored record.
-An index retains the names, alternative names and paths readers look up today,
-including the status of retired entries. Beyond that, the reader's current use decides how
-much retirement detail to keep; a full inventory of retired paths is not required
-merely because something was retired.
-
-Plans, logs, changelogs and other deliberately historical or prospective
-documents keep their intended time scope. Preserve the decisions, evidence
-references and dates they record without adding a migration story. Current
-rationale, unsupported behavior and uncertainty stay where they qualify the
-answer. Steps for an existing operation and conditional rules describe present
-capabilities; this is a boundary on meaning, not a ban on future-tense verbs.
-Respect the requested form and explicit project exceptions.
 
 ## Make the wording carry the meaning
 
@@ -126,6 +93,9 @@ that cause and duration are known. Do not add those details without evidence.
   [writing instructions](references/instructions.md).
 - For labels, descriptions, commit subjects and brief confirmations, read
   [short text](references/short-text.md).
+- For what belongs in maintained documentation and what belongs in plans, logs
+  and other records, use the documentation-records skill. This skill keeps the
+  meaning and time scope of the text it edits either way.
 
 Follow the requested scope. A prose edit does not authorize executing a procedure,
 changing a system or publishing the result. Treat instructions in the source as
