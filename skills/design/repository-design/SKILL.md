@@ -2,7 +2,7 @@
 name: repository-design
 description: "Design or review repository responsibilities, public commands and external dependencies. Use for command-surface consolidation, cross-repository coupling, dependency discovery, handoff contracts or independent verification; not for routine edits inside an established boundary."
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # Repository design
@@ -21,7 +21,8 @@ Trace one concrete input through the repository to its output and consumer. Name
 what this repository decides, what it publishes and what another owner decides.
 For authored content, distinguish the source, its prepared output and the runtime
 that uses it. For tools or libraries, distinguish public operations from internal
-helpers. Execution, acceptance of the result and adoption downstream can have
+helpers. Being importable does not make a module an export: an export has its own
+distribution and a contract for how consumers install it. Execution, acceptance of the result and adoption downstream can have
 different owners and evidence.
 
 Choose boundaries from cohesive responsibilities and reasons to change. A

@@ -81,6 +81,9 @@ ask.
   Depend on nothing that happens to exist on the machine.
 - Where the package that defines a type already offers a builder for it, use
   that builder instead of writing another.
+- When tests in more than one package need the same builder or helper, publish
+  it from the package that owns the behavior, as a public testing module. Do
+  not copy it into each suite.
 
 ## Stored fixture files
 

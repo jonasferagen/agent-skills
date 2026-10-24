@@ -2,7 +2,7 @@
 name: clear-writing
 description: "Draft or edit explanatory and instructional prose for clarity, including technical explanations, documentation, skills, project instructions and concise labels. Preserve the requested voice, factual meaning and level of certainty."
 metadata:
-  version: "0.11.0"
+  version: "0.12.0"
 ---
 
 # Clear writing
@@ -75,6 +75,12 @@ and any exception for a dedicated, clearly named changelog; do not invent a
 repository path or storage policy. Link records only when the reader needs the
 background or next work, without presenting them as current authority. A "History" or
 "Maintenance" heading does not change a current page into a historical record.
+Keep current limitations and the rationale for current rules with the guidance
+they qualify; proposals, future commitments and accounts of past work belong in
+records. An instruction for an existing operation describes current behavior even
+when it is phrased in the future tense. When moving a record out of maintained
+guidance, confirm that the stored copy is complete before removing the original,
+and point remaining links at the current guide or the stored record.
 An index retains the names, alternative names and paths readers look up today,
 including the status of retired entries. Beyond that, the reader's current use decides how
 much retirement detail to keep; a full inventory of retired paths is not required

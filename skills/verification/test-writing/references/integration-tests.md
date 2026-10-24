@@ -21,6 +21,16 @@ Write down four things before the test:
 When two components meet at a contract, such as a file format, a schema or a
 message shape, that contract is the boundary. Name it.
 
+## One boundary per test module
+
+Keep integration tests apart from unit tests, and name each test module after
+the one boundary it crosses: a command run as a separate process, a database,
+another running service, a declared contract between components, or the code's
+own behavior in a separate interpreter. Split a module that crosses two. Let the
+verification command select suites by these names rather than by environment
+flags, so that a run's report says which boundaries it exercised. The consuming
+project fixes the names and their pattern.
+
 ## Enter through the boundary
 
 Call the entry point a real caller uses: the command, the public function, the

@@ -6,6 +6,12 @@ Use it for the cases of a rule. What happens when the rule meets a file, a
 database or another process belongs to an [integration
 test](integration-tests.md).
 
+A unit test imports only its own package, that package's declared dependencies
+and the standard library. It runs in one process and touches the filesystem only
+under a temporary directory. It never locates the source checkout, a sibling
+repository, a store or a service; a test that needs one of them is an
+integration test.
+
 ## Shape
 
 Arrange the input, act once, assert the outcome. If a test needs a second
