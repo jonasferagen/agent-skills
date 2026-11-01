@@ -28,6 +28,7 @@ packages and their versions.
 | --- | --- |
 | [repository-design](skills/design/repository-design/SKILL.md) | Define repository ownership, public commands and boundaries, external references, handoff contracts and independent verification. |
 | [single-source-of-truth](skills/design/single-source-of-truth/SKILL.md) | Give each rule a home and derive or check its other appearances. |
+| [compact-ux](skills/design/compact-ux/SKILL.md) (draft) | Compact familiar-user interfaces with stat badges and explanations on their subjects. |
 | [application-design](skills/design/application-design/SKILL.md) | Shape application operations, internal boundaries, state ownership, injected dependencies and recovery. |
 | [service-design](skills/design/service-design/SKILL.md) | Define runtime ownership, public interfaces, caller identity, retry behavior and storage custody. |
 | [relational-modeling](skills/design/relational-modeling/SKILL.md) (draft) | Structure known entities around retrieval questions and revise relationships through synthetic scenarios. |
