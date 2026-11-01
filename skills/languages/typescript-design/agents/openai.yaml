@@ -1,0 +1,4 @@
+interface:
+  display_name: "TypeScript Design"
+  short_description: "Shape TypeScript APIs, modules and state lifetimes"
+  default_prompt: "Use $typescript-design to review this TypeScript API, module boundary or state lifetime and propose the smallest useful change."

@@ -57,3 +57,11 @@ installed packages' metadata, no expected route. No test checks this table.
 | Split a TypeScript application's operations by responsibility | application-design | typescript-patterns |
 | A JavaScript process wrapper reports a killed child as successful | node-patterns | typescript-patterns |
 | Restyle a JavaScript screen while an engine migration is planned | none | typescript-patterns |
+
+| Request | Should select | Should not select |
+| --- | --- | --- |
+| Refactor TypeScript module APIs and give each simulation run its own state owner | typescript-design | typescript-patterns, application-design |
+| Choose a callback or a narrow TypeScript interface for an already defined capability | typescript-design | repository-design, service-design |
+| A TypeScript total registry or exhaustive switch still permits omissions | typescript-patterns | typescript-design |
+| Decide which operation owns durable publication and recovery in this application | application-design | typescript-design |
+| Change a TypeScript package's external distribution and adoption contract | repository-design | typescript-design |

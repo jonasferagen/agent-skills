@@ -82,12 +82,15 @@ own project governance, maintenance scheduling or local document shapes.
 | --- | --- |
 | [node-patterns](skills/languages/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
 | [typescript-patterns](skills/languages/typescript-patterns/SKILL.md) | TypeScript validation, narrowing, exhaustive states and registries, generics, collections, readonly contracts and compiler/runtime boundaries. |
+| [typescript-design](skills/languages/typescript-design/SKILL.md) | TypeScript module APIs, functions/closures/classes, state lifetimes, dependency interfaces and stage contracts. |
 | [python-patterns](skills/languages/python-patterns/SKILL.md) | Python types, runtime boundaries, numerical comparisons, defaults, exceptions, resource cleanup and async tasks. |
 | [python-design](skills/languages/python-design/SKILL.md) | Python program structure: responsibilities, phase contracts, state ownership, shared interfaces and naming. |
 | [bash-patterns](skills/languages/bash-patterns/SKILL.md) | Preserving arguments, command failures, query results and cleanup ownership in Bash scripts. |
 | [godot-gdscript](skills/languages/godot-gdscript/SKILL.md) (draft) | Typed Godot scripts, headless probes, imports and scene measurements. |
 
-The Python patterns and design skills pair naturally; each works alone.
+The TypeScript and Python patterns/design pairs separate language guarantees
+from code structure; each package works alone. Application-design owns
+language-independent operation responsibilities and effects.
 
 ## Using a skill
 
