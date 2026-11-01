@@ -49,3 +49,11 @@ installed packages' metadata, no expected route. No test checks this table.
 | Introduce aliases for current external references without duplicating package locks | repository-design | application-design |
 | A pinned schema differs from its publisher's latest source: is that drift? | single-source-of-truth | service-design |
 | Review a saved record whose meaning changes when its dependency updates | application-design or repository-design, according to the affected boundary | service-classes |
+
+| Request | Should select | Should not select |
+| --- | --- | --- |
+| A TypeScript handler registry needs casts after losing schema/input pairing | typescript-patterns | application-design, node-patterns |
+| A TypeScript union grows but its label table still compiles with a missing member | typescript-patterns | node-patterns |
+| Split a TypeScript application's operations by responsibility | application-design | typescript-patterns |
+| A JavaScript process wrapper reports a killed child as successful | node-patterns | typescript-patterns |
+| Restyle a JavaScript screen while an engine migration is planned | none | typescript-patterns |

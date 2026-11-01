@@ -2,9 +2,9 @@
 
 ## Maintenance checks
 
-For source maintenance, install Node 24 and Python 3.11 or later, then run
-`python3 scripts/check.py`. It runs every `test_*.py`
-suite under `scripts/` and `skills/`, including each package's own `tests/`.
+For source maintenance, install Node 24 and Python 3.11 or later, run `npm ci`
+for the pinned TypeScript example compiler, then run `python3 scripts/check.py`.
+It runs every `test_*.py` suite under `scripts/` and `skills/`, including each package's own `tests/`.
 Empty, failed, skipped and incomplete suites fail it, and missing prerequisites
 fail explicitly. CI runs the same command. These local checks do not establish
 live service or database acceptance.

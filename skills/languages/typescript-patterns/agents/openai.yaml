@@ -1,0 +1,4 @@
+interface:
+  display_name: "TypeScript Patterns"
+  short_description: "Preserve TypeScript type and runtime guarantees"
+  default_prompt: "Use $typescript-patterns to fix the type relationship or runtime boundary in this TypeScript code."

@@ -32,6 +32,8 @@ def prerequisites(root: Path) -> list[str]:
     errors = []
     if sys.version_info < (3, 11):
         errors.append('Python 3.11 or later is required for source checks')
+    if not (root / 'node_modules/.bin/tsc').is_file():
+        errors.append('the pinned TypeScript compiler is required; run npm ci before checks')
     if not shutil.which('node'):
         errors.append('node is required; install it before running checks')
     if shutil.which('node'):
@@ -62,7 +64,8 @@ def main() -> int:
         print(f'Checking {command[-1]}', flush=True)
         try:
             result = subprocess.run(command, cwd=ROOT, stdin=subprocess.DEVNULL, timeout=180,
-                                    env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONIOENCODING': 'utf-8'})
+                                    env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONIOENCODING': 'utf-8',
+                                         'PATH': str(ROOT / 'node_modules/.bin') + os.pathsep + os.environ.get('PATH', '')})
             failures += result.returncode != 0
         except (OSError, subprocess.TimeoutExpired) as error:
             print(f'Check did not complete: {error}', file=sys.stderr)

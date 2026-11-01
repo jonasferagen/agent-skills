@@ -81,6 +81,7 @@ own project governance, maintenance scheduling or local document shapes.
 | Skill | Use it for |
 | --- | --- |
 | [node-patterns](skills/languages/node-patterns/SKILL.md) | Preserving child-process outcomes, exit status and output in Node scripts, command-line tools and test harnesses. |
+| [typescript-patterns](skills/languages/typescript-patterns/SKILL.md) | TypeScript validation, narrowing, exhaustive states and registries, generics, collections, readonly contracts and compiler/runtime boundaries. |
 | [python-patterns](skills/languages/python-patterns/SKILL.md) | Python types, runtime boundaries, numerical comparisons, defaults, exceptions, resource cleanup and async tasks. |
 | [python-design](skills/languages/python-design/SKILL.md) | Python program structure: responsibilities, phase contracts, state ownership, shared interfaces and naming. |
 | [bash-patterns](skills/languages/bash-patterns/SKILL.md) | Preserving arguments, command failures, query results and cleanup ownership in Bash scripts. |
@@ -120,7 +121,7 @@ prerequisites and required references.
 | Task | Authoritative guidance |
 | --- | --- |
 | Add or change a package, its name or selection trigger | [Package authoring](docs/packages.md#adding-a-skill) and [selection](docs/packages.md#selection) |
-| Run the source gate | [Maintenance checks](docs/verification.md#maintenance-checks): Python 3.11+, Node 24, `python3 scripts/check.py` and `git diff --check` |
+| Run the source gate | [Maintenance checks](docs/verification.md#maintenance-checks): Python 3.11+, Node 24, `npm ci`, `python3 scripts/check.py` and `git diff --check` |
 | Change entrypoints, triggers, shared guidance or packaging | [Routing acceptance and fresh-agent trials](docs/verification.md#routing-quality) |
 | Evaluate a skill's scenarios | [Scenario evaluation](docs/verification.md#evaluating-a-skill-against-its-scenarios) |
 | Version or tag a skill | [Releases](docs/releases.md), including the applicable release review |

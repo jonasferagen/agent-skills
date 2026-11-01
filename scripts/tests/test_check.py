@@ -19,7 +19,9 @@ class CheckTests(unittest.TestCase):
     def test_missing_prerequisites_fail_explicitly(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(runner.shutil, 'which', return_value=None):
             errors = runner.prerequisites(Path(directory))
-        self.assertEqual(errors, ['node is required; install it before running checks'])
+        self.assertEqual(errors, [
+            'the pinned TypeScript compiler is required; run npm ci before checks',
+            'node is required; install it before running checks'])
 
     def test_discovery_includes_nested_helpers_without_duplicate_directories(self):
         with tempfile.TemporaryDirectory() as directory:

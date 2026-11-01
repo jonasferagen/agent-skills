@@ -32,6 +32,14 @@ holds the rest.
   Docker packages were written from reviews of the owner's own projects. The
   packages carry no project schema names, identifiers, paths or credentials.
 
+- **typescript-patterns** 3.0.0 rebuilds the retired 2.0.3 language package
+  from `605cded`, including its tuple-validation and total-registry lessons.
+  Schema/handler correlation and readonly ownership cases draw on reviews of
+  the owner's TypeScript applications. Primary TypeScript and Node documentation
+  inform the language and toolchain guidance; references link to the relevant
+  sections. Examples are synthetic. The former class-based design package is
+  not restored.
+
 ### Moves and retirements
 
 | Former package | Date | Where it is now |
@@ -41,7 +49,7 @@ holds the rest.
 | service-boundaries 0.5.0 | 22 October 2026 | service-design owns service interfaces, identity, storage custody and evidence matched to the task. Existing pins retain the former package. |
 | project-planning 0.1.0, project-bootstrap 0.5.0, pattern-capture 0.3.1, project-policy 0.4.0 | 12 October 2026 | project-bootstrap, since retired; `183148d34dd1434df0402a0c6e69b195da84a525` is the last commit here that ships them |
 | work-records 1.0.0 | 12 October 2026 | project-bootstrap; `e2e0ed4` is the last commit here that ships it |
-| typescript-patterns 2.0.3, typescript-design 1.0.3 | 13 October 2026 | Retired by the Owner's decision; `605cded` is the last commit that ships them, with the shared-contract check that compared their module-syntax copies and the TypeScript example check |
+| typescript-patterns 2.0.3, typescript-design 1.0.3 | 13 October 2026 | Retired by the Owner's decision; `605cded` is the last commit that ships both. Language guidance is rebuilt as typescript-patterns 3.0.0; review its changed defaults before replacing an older pin. typescript-design remains retired. |
 | containerization 1.1.0 | 9 October 2026 | CLI usage split into docker-cli and docker-compose-cli; PostgreSQL and verification material to database-migrations and verification-design; convention-shaped outcomes, including one service image for API, migration and seed commands, to the consuming project |
 | repository-services 0.3.1 | 9 October 2026 | Judgment kept as service-classes 0.1.0; the `services/` home, document shapes, reserved actions, dispatcher and validator to the consuming project |
 | project-docs | 4 October 2026 | [project-foundation](https://github.com/jonasferagen/project-foundation) |
