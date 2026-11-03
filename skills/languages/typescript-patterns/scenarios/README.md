@@ -36,6 +36,9 @@ observed results with the change that ran them.
 | Convert only a simulation engine; a browser UI and a dice renderer remain JavaScript | Preserve that boundary and current behavior, check engine and consumers, and do not spread TypeScript adoption or DOM dependencies into other parts. |
 | Fix a type in one package with inherited compiler settings | Read applicable inherited settings; do not impose a repo-wide strictness migration. |
 | A selected JavaScript boundary needs checking during migration | Distinguish allowJs inclusion from checkJs or per-file checking; account for imported files without inferring a whole-project conversion. |
+| A JavaScript module with JSDoc casts written without parentheses and a destructured `= {}` options default | Identify that the uncast comments are ignored and that unlisted binding elements drop out of the inferred type; use parenthesized casts and a named options `@param`. |
+| Enable `noImplicitAny` on part of a JSDoc-checked codebase | Measure the findings per flag and file; type shared owners first; gate opted-in files through a second configuration rather than a repo-wide flip. |
+| A type-only change adds `?? []`, a guard, or a comment mid-expression, and tests still pass | Report each as a runtime change and restore the original expression with a cast; compare the code without comments and type syntax against the base. |
 | A transpilation build passes while a type error remains | Find the actual type-check command and its included files; report execution separately. |
 | An emitted Node ESM package and a bundler app use different import spellings | Follow each execution path; no universal extension or alias rule. |
 | Native Node runs a TypeScript source file | Do not call that a type check or assume it reads tsconfig aliases. |
@@ -46,8 +49,8 @@ observed results with the change that ran them.
 
 ## Evidence limits
 
-The package's compiler-example tests check selected relationships and runtime
-examples, not arbitrary consumer behavior. They require Python 3.11+, Node 24
+The package's compiler-example tests check selected relationships, the JSDoc
+checking example and runtime examples, not arbitrary consumer behavior. They require Python 3.11+, Node 24
 and TypeScript 5.0+ (`tsc` on PATH). Install the source repository's pinned
 compiler for its maintenance gate. The examples do not establish a project's
 replay parity, performance, bundler compatibility or migration completeness.

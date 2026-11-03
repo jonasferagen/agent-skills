@@ -21,6 +21,14 @@ parallel hierarchy of `types` files that forces a reader to open two files for
 every small implementation. Conversely, do not make a low-level consumer import
 a large implementation just to name the small value it receives.
 
+When several modules handle the same record, such as a participant or a state
+that every adapter extends, give its type one owner. Variants that add fields
+should extend it, as in `Base & { extra: T }`, not restate it. Decide that owner
+before typing work is split by file or by worker. Otherwise each part tends to
+invent its own near-copy, and the copies drift until someone has to reconcile
+them. A near-duplicate type found during review usually means a contract is
+missing at its owner.
+
 ## Treat exports as a supported surface
 
 Use a barrel when it supplies a useful subsystem or package entrypoint, not

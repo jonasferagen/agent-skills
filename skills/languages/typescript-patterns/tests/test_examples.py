@@ -17,9 +17,9 @@ import unittest
 PACKAGE = Path(__file__).resolve().parents[1]
 
 
-def example(page: str, marker: str) -> str:
+def example(page: str, marker: str, language: str = 'ts') -> str:
     text = (PACKAGE / 'references' / page).read_text(encoding='utf-8')
-    blocks = re.findall(r'^```ts\n(.*?)^```$', text, re.M | re.S)
+    blocks = re.findall(rf'^```{language}\n(.*?)^```$', text, re.M | re.S)
     matches = [block for block in blocks if marker in block]
     if len(matches) != 1:
         raise AssertionError(f'{page}: expected one example containing {marker!r}')
@@ -63,6 +63,45 @@ class TypeScriptExamples(unittest.TestCase):
             else:
                 self.assertNotEqual(result.returncode, 0, 'An invalid caller compiled successfully')
             return diagnostics
+
+    def check_js(self, source: str, *, succeeds: bool = True) -> str:
+        with tempfile.TemporaryDirectory(prefix='typescript-patterns-js-') as directory:
+            root = Path(directory)
+            (root / 'example.js').write_text(source, encoding='utf-8')
+            (root / 'tsconfig.json').write_text('''{
+  "compilerOptions": {
+    "allowJs": true, "strict": true, "noEmit": true, "target": "ES2022",
+    "module": "nodenext", "lib": ["ES2022"], "types": []
+  },
+  "files": ["example.js"]
+}''', encoding='utf-8')
+            result = subprocess.run([self.tsc, '-p', 'tsconfig.json'], cwd=root,
+                                    stdin=subprocess.DEVNULL, capture_output=True,
+                                    text=True, encoding='utf-8', timeout=30)
+            diagnostics = result.stdout + result.stderr
+            if succeeds:
+                self.assertEqual(result.returncode, 0, diagnostics)
+            else:
+                self.assertNotEqual(result.returncode, 0, 'An invalid JavaScript caller checked successfully')
+            return diagnostics
+
+    def test_jsdoc_options_and_casts_check_as_described(self):
+        source = example('toolchain-and-modules.md', 'export function run(', 'js')
+        self.check_js(source + '''
+run('sample', { samples: 5, seed: 3 });
+// @ts-expect-error An unknown option is rejected.
+run('sample', { extra: 1 });
+const count = /** @type {number} */ (JSON.parse('1'));
+// Without parentheses the comment is no cast: the value keeps its type.
+const stillNumber = /** @type {string} */ count;
+/** @type {number} */
+const proof = stillNumber;
+export { proof };
+''')
+        diagnostics = self.check_js('''// @ts-check
+export function pick(rows = [1], { min, max } = {}) { return rows.filter(r => r >= min && r <= max); }
+''', succeeds=False)
+        self.assertIn("'min' does not exist", diagnostics)
 
     def test_tuple_preserves_positions_and_rejects_sparse_and_nonfinite_input(self):
         source = example('values-and-collections.md', 'function parseTriple(')
