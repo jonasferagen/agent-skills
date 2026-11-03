@@ -2,7 +2,7 @@
 name: typescript-design
 description: "Design or refactor the structure of TypeScript code: module APIs, functions, closures/classes, instance lifetimes and dependency interfaces. Use for local code organization; type correctness and application-wide operation ownership are separate."
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # TypeScript design
@@ -42,7 +42,7 @@ application-design guidance.
 | Structural question | Read |
 | --- | --- |
 | Export a function, capture state in a closure, or create an instance? | [Operations and state](references/operations-and-state.md) |
-| Where should contracts and exports live, or why do imports cycle? | [Modules and surfaces](references/modules-and-surfaces.md) |
+| Where should contracts and exports live, who owns a shared record type, or why do imports cycle? | [Modules and surfaces](references/modules-and-surfaces.md) |
 | Pass a callback, a narrow interface or a concrete dependency? | [Dependencies and composition](references/dependencies-and-composition.md) |
 | Group arguments, place value behavior, or expose a completed stage result? | [Values and phases](references/values-and-phases.md) |
 

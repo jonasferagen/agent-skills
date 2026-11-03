@@ -17,6 +17,7 @@ the change that ran them, not here.
 | A public module exposes every helper through a wildcard barrel | Identify the intended caller surface and preserve required exports while keeping implementation details internal. |
 | A type-only cycle is removed but runtime ownership still crosses both ways | Trace actual responsibilities and initialization; an erased edge alone does not establish a sound structure. |
 | Importing a reusable module opens a client or reads browser storage | Move composition to the intended entrypoint while preserving any deliberately import-driven registration contract. |
+| Typing work on several modules is split between parallel workers, and each module handles the same participant record | Name the record's owning module first; have variants extend its type rather than restate it; treat near-duplicate types found later as a missing owner contract. |
 | A feature contains multiple related exports in one file | Keep the cohesive module unless responsibility, lifetime or dependency differences justify a split. |
 | The project prescribes a naming or directory convention | Follow it without treating the convention as a universal TypeScript rule. |
 

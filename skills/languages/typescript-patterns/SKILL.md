@@ -2,7 +2,7 @@
 name: typescript-patterns
 description: "Write or review TypeScript validation, narrowing, exhaustive unions and registries, generics, collection access and readonly contracts. Use also for TypeScript compiler or module issues; code organization and JavaScript-only work are separate."
 metadata:
-  version: "3.0.0"
+  version: "3.1.0"
 ---
 
 # TypeScript patterns
@@ -44,7 +44,7 @@ relevant callers; a successful build alone does not establish type safety.
 | States admit impossible combinations, a switch ignores a variant, or a table omits a member | [States and registries](references/states-and-registries.md) |
 | Zero becomes a default, a lookup uses `!`, a tuple loses its shape, or a snapshot is still mutable | [Values and collections](references/values-and-collections.md) |
 | A key loses its payload type, a parser loses its handler relationship, or generics require casts | [Generics and correlation](references/generics-and-correlation.md) |
-| Compiler flags, JavaScript interop, import extensions or runtime globals disagree | [Toolchain and modules](references/toolchain-and-modules.md) |
+| Compiler flags, JSDoc-checked JavaScript, staged strictness, import extensions or runtime globals disagree, or a type-only change must be shown to change no behavior | [Toolchain and modules](references/toolchain-and-modules.md) |
 
 Read only the relevant routes. JavaScript child-process behavior belongs to
 Node patterns; operation ownership and module layout belong to the project's
